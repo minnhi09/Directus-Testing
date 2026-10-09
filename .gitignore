@@ -4,3 +4,8 @@
 # Metadata Windows
 *:Zone.Identifier
 /yeu_cau.pdf
+
+# Local lab credentials and generated run data
+/config/lab.env
+/artifacts/runs/
+/runtime/
