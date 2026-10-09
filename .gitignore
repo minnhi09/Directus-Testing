@@ -1,0 +1,6 @@
+# Thư mục riêng, không đưa lên repository
+/mnhy/
+
+# Metadata Windows
+*:Zone.Identifier
+/yeu_cau.pdf
