@@ -1,6 +1,6 @@
 schema: 1
-status: scaffolded
-recorded_at: 2026-10-09
+status: g1-temporary-implementation-blocked
+recorded_at: 2026-10-10
 project: r06-k05
 
 baseline:
@@ -33,13 +33,22 @@ runtime_observed:
 
 provenance:
   repository_head_before_scaffold: d81c0259beaec12994b8a8ae64d0f7a46680937e
+  harness_base_commit: a2693f6154753cca2f1d2eb3d84e3a831a42bbf0
   harness_commit: null
-  harness_worktree: uncommitted
+  harness_worktree: dirty_after_shared_interface
 
 lab_configuration:
   compose_project: r06-k05
   database_network: r06-k05_network
   database_volume: r06-k05_db_data
+  artifact_root: artifacts/runs/<run_id>
+  fixture_map: runtime/fixture-ids.json
+  fixture_map_shape: '{schema: 1, fixture_version: string, fixtures: {collection: {fixture_name: positive_integer_id}}}'
+  host_api_url_config_key: API_URL
+  runner_api_url_config_key: RUNNER_API_URL
+  actor_credential_config_keys:
+    editor: [EDITOR_EMAIL, EDITOR_PASSWORD]
+    reader: [READER_EMAIL, READER_PASSWORD]
   cache_enabled: false
   telemetry: false
   rate_limiter_enabled: false
@@ -49,13 +58,24 @@ lab_configuration:
   request_timeout_seconds: 10
   default_rate_target_per_second: 5
 
+license_observed:
+  endpoint: /license
+  custom_permission_rules_enabled: false
+  effect: reader_article_filter_and_field_restriction_not_available
+
 validation:
   image_manifest_lookup: verified_2026-10-09
   local_image_pull: verified_2026-10-09
   directus_liveness: passed_2026-10-09
-  directus_authenticated_health: passed_2026-10-09
+  directus_authenticated_health: passed_2026-10-10_run_20261010T054547Z-46801
   admin_bootstrap: passed_2026-10-09
-  fixture_seed: not_started
-  actor_schema_export: not_started
-  pilot: not_started
-  g1: not_started
+  shared_interface_shell_syntax: passed_2026-10-10
+  doctor_runtime: passed_2026-10-10
+  up_runtime: passed_2026-10-10_run_20261010T053700Z-41993
+  fixture_schema: passed_2026-10-10_run_20261010T063111Z-64428
+  fixture_seed: partial_data_map_users_blocked_license_run_20261010T063111Z-64428
+  smoke: partial_validation_relation_blocked_reader_run_20261010T063020Z-62841
+  actor_schema_export: passed_2026-10-10_run_20261010T063207Z-65790
+  scenarios: partial_3_passed_3_blocked_run_20261010T063203Z-65359
+  pilot: failed_report_coverage_fixture_restored_run_20261010T062453Z-61302
+  g1: blocked_license_and_no_independent_second_machine
