@@ -1,13 +1,13 @@
-# Nhật ký triển khai G0 và hướng dẫn đọc code
+# Nhật ký triển khai lab và hướng dẫn đọc code
 
 Ngày cập nhật: 2026-10-10
 
-Tài liệu này ghi lại phần nền tảng đã triển khai để người tiếp nhận có thể đọc code theo luồng, hiểu vì sao các tệp tồn tại và phân biệt phần đã chạy với phần mới chỉ giữ interface. Bản ghi này không thay thế [`AGENTS.md`](../AGENTS.md), hai kế hoạch trong `mnhy/` hoặc bằng chứng chạy riêng.
+Tài liệu này ghi lại phần nền tảng và bản triển khai tạm thời để người tiếp nhận có thể đọc code theo luồng, hiểu vì sao các tệp tồn tại và phân biệt quan sát đã chạy với phần còn bị chặn. Bản ghi này không thay thế [`AGENTS.md`](../AGENTS.md), hai kế hoạch trong `mnhy/` hoặc bằng chứng chạy riêng.
 
 ## Mốc Git
 
-- Nhánh: `feat/g0-lab-foundation`.
-- Commit nền tảng trước tài liệu này: `99b2f6d feat: add G0 lab foundation`.
+- Nhánh hiện tại: `main`.
+- HEAD trước các thay đổi chưa commit: `a2693f6 Merge branch 'feat/g0-lab-foundation'`.
 - Remote dự kiến: `origin` trỏ tới repository đồ án `minnhi09/Directus-Testing`.
 - Dòng `/AGENTS.md` trong `.gitignore` có từ thay đổi người dùng trước đó và được giữ lại ngoài commit nền tảng; không xóa để làm worktree sạch giả tạo.
 - `config/lab.env` là file cục bộ bị ignore. Credential trong đó chỉ dùng cho lab hiện tại, không được đưa vào commit hoặc report.
@@ -16,7 +16,8 @@ Tài liệu này ghi lại phần nền tảng đã triển khai để người 
 
 | Tệp | Vai trò khi đọc code |
 |---|---|
-| [`lab.sh`](../lab.sh) | Điểm vào duy nhất của lab; kiểm tra điều kiện, gọi Compose, chờ liveness và giữ mã lỗi của lệnh chưa triển khai |
+| [`lab.sh`](../lab.sh) | Điểm vào duy nhất của lab; kiểm tra điều kiện, tạo metadata/run log, gọi Compose hoặc component tạm thời và giữ mã lỗi thật |
+| [`scripts/lab-components.sh`](../scripts/lab-components.sh) | Seed schema/fixture/actor, smoke, schema export, sáu scenario và pilot Schemathesis; credential chỉ truyền qua môi trường tiến trình |
 | [`compose.yaml`](../compose.yaml) | Khai báo hai service `database` và `directus`, network `r06-k05_network`, volume `r06-k05_db_data`, port loopback và healthcheck |
 | [`config/lab.env.example`](../config/lab.env.example) | Danh sách biến cấu hình cần sao chép thành `config/lab.env`; chứa digest image và placeholder, không chứa credential thật |
 | [`manifest/baseline.yaml`](../manifest/baseline.yaml) | Baseline phiên bản, source commit, digest, runtime và trạng thái kiểm chứng |
@@ -31,10 +32,10 @@ Tài liệu này ghi lại phần nền tảng đã triển khai để người 
 
 Đọc `main()` ở cuối `lab.sh` trước. Lệnh được phân nhánh thành:
 
-- `doctor`: chỉ kiểm tra Docker, Compose, file cấu hình, placeholder, digest image, container của đúng project và liveness URL.
+- `doctor`: kiểm tra Docker, Compose, file cấu hình, placeholder, digest image, container của đúng project, URL và liveness/auth health.
 - `up`: yêu cầu `config/lab.env`, render Compose, gọi `docker compose up -d`, sau đó đợi trạng thái health của service `directus` tối đa 30 lần, mỗi lần 2 giây.
 - `down`: gọi `docker compose down` và không dùng `--volumes`, nên volume dữ liệu được giữ lại.
-- `seed`, `smoke`, `export-schema`, các profile `test`, `replay`, `reset`: hiện trả mã `2` cùng thông báo chưa triển khai. Đây là trạng thái có chủ ý để không báo pass giả.
+- `seed`, `smoke`, `export-schema` và `test scenarios` gọi component tạm thời. Các run này luôn lưu report và trả mã lỗi thật khi precondition/policy chưa đạt. `test raw`, `test guided`, `replay`, `reset` vẫn chưa bật.
 
 Hàm `compose()` cố định `--project-name r06-k05`, `compose.yaml` và `config/lab.env`. Vì vậy không được chạy một Compose project khác rồi suy luận đó là lab này.
 
@@ -81,22 +82,36 @@ Ngày 2026-10-09 trên máy hiện tại:
 
 Bằng chứng chi tiết và giới hạn nằm trong [`evidence/g0-2026-10-09.md`](../evidence/g0-2026-10-09.md). Kết quả này chỉ chứng minh một máy và một baseline local; chưa chứng minh tái lập trên máy thứ hai.
 
-## Những gì chưa được triển khai
+## Bản triển khai tạm thời — 2026-10-10
 
-Các lệnh dưới đây có tên trong interface nhưng chưa có implementation:
+Component ở [`scripts/lab-components.sh`](../scripts/lab-components.sh) đã thực hiện các phần độc lập cần cho bản demo:
 
-- Seed `qa_categories`, `qa_articles`, actor, policy và bảng ánh xạ ID.
-- Smoke sáu scenario của Trâm.
-- Xuất OpenAPI theo `admin`, `editor`, `reader` và allowlist năm operation `qa_articles`.
-- Pilot `schema-smoke`, raw/guided, metrics, replay và reproducer.
-- Reset có kiểm soát dữ liệu lab.
+- Kiểm tra/tạo hai collection, field validation và quan hệ `qa_articles.category` với `SET NULL`; seed lặp lại theo tên fixture, không hard-code ID và ghi [`runtime/fixture-ids.json`](../runtime/fixture-ids.json).
+- Tạo role/policy/actor editor và reader. Editor có CRUD hai collection. Reader category read tạo được; policy article có filter published và field giới hạn bị Directus từ chối vì entitlement `custom_permission_rules_enabled=false`.
+- Smoke kiểm tra score/status invalid và nullification quan hệ; không gửi request negative cho Reader nếu operation đã bị lọc khỏi schema.
+- Export raw OpenAPI riêng cho bốn actor và giữ hash bất biến. Editor có 14 operation do Directus xuất cả bulk operation; pilot lọc đúng 5 operation `qa_articles` bằng file overlay tạm, ghi lý do và không sửa raw.
+- Sáu scenario ghi rõ `passed`, `failed` hoặc `blocked`. S1–S3 đạt; S4–S6 blocked do Reader schema chỉ có hai operation category.
+- Pilot Schemathesis chạy một worker, tối đa 20 example/operation, seed `101`, timeout request 10 giây, rate 5 request/giây và tối đa 300 giây. Snapshot/restore fixture đã được thêm để pilot không làm bẩn trạng thái seed.
 
-Không được xuất schema trước khi seed xong, dùng schema admin thay schema actor, hard-code ID tự sinh hoặc biến lệnh chưa triển khai thành exit `0` để che phần thiếu.
+Chi tiết run ID, status và giới hạn nằm trong [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md). Không dùng output này để tuyên bố G1: license Reader và kiểm tra chéo trên máy khác còn thiếu.
+
+## Bổ sung giao diện dùng chung — 2026-10-10
+
+Phần Lành đã bổ sung vào `lab.sh` và cấu hình mẫu:
+
+- URL host/runner có khóa cấu hình riêng với giá trị mặc định của baseline.
+- Credential API của `editor` và `reader` có tên khóa thống nhất, vẫn nằm ngoài Git.
+- Mỗi lệnh hợp lệ tạo `artifacts/runs/<run_id>/metadata.json` và `run.log`; metadata ghi SHA harness, trạng thái working tree, baseline image, actor và các trường fixture/schema/seed/budget khi caller cung cấp.
+- `runtime/fixture-ids.json` được cố định làm điểm bàn giao ID fixture giữa Trâm và Nhân.
+- Docker preflight dừng sớm với thông báo rõ ràng khi CLI/daemon/Compose không khả dụng; không coi lần chạy lỗi là G1.
+
+Kiểm tra đã thực hiện: `bash -n lab.sh scripts/lab-components.sh`, ShellCheck và `git diff --check` đạt. Lần `doctor` đầu giữ mã thoát `1` vì Docker Desktop đang dừng; sau khi khởi động Docker Desktop bằng CLI chính thức, `./lab.sh doctor` và `./lab.sh up` đều đạt, hai container ở trạng thái healthy; auth check mới của `doctor` cũng nhận HTTP `200` từ `/server/health` bằng admin credential mà không ghi token. Các run seed/smoke/schema/scenario/pilot mới nhất được ghi ở [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md).
 
 ## Cách tiếp nhận phần việc tiếp theo
 
 1. Chạy `./lab.sh doctor` và xác nhận đúng project/URL trước khi gọi API.
 2. Đọc `docs/g0-quyet-dinh-ky-thuat.md` và `docs/traceability.md` để lấy interface, chủ sở hữu và phụ thuộc.
-3. Trâm triển khai seed/policy/six scenarios theo fixture contract; Nhân dùng ID map và schema thực để triển khai exporter/pilot.
-4. Sau mỗi phần, cập nhật evidence với command, exit code, actor, schema/fixture version và giới hạn; không ghi kết quả chưa chạy.
-5. Lành tích hợp tuần tự từ baseline sạch, review diff và chỉ công bố G1 khi có seed, CRUD/quyền, schema, pilot và dựng lại bởi người khác.
+3. Nếu có license Directus phù hợp, cấu hình entitlement `custom_permission_rules_enabled` cục bộ, không ghi secret vào repo; sau đó chạy `./lab.sh seed`, kiểm tra schema snapshot mới và chạy lại smoke/scenarios.
+4. Không tự ghi đè schema raw cũ: nếu policy làm schema actor thay đổi, chọn fixture version/run directory mới sau khi xác nhận quyết định baseline.
+5. Triage các failure Schemathesis bằng report raw và reproducer có precondition; không sửa expected chỉ để pilot pass.
+6. Lành điều phối kiểm tra chéo trên máy khác, cập nhật evidence/manifest rồi mới xem xét G1.
