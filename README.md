@@ -44,6 +44,7 @@ Image Schemathesis được dùng ở bước pilot sau khi exporter và schema 
 
 - [Quyết định G0](docs/g0-quyet-dinh-ky-thuat.md)
 - [Kiến trúc](docs/architecture.md)
+- [Nhật ký triển khai và hướng dẫn đọc code](docs/implementation-log-g0.md)
 - [Manifest baseline](manifest/baseline.yaml)
 - [AGENTS.md](AGENTS.md) — quy tắc bắt buộc tại máy làm việc; file này bị ignore theo quy ước riêng của nhóm
 
