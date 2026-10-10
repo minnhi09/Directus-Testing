@@ -1,0 +1,71 @@
+name: r06-k05
+
+services:
+  database:
+    image: ${POSTGRES_IMAGE:?POSTGRES_IMAGE must be set in config/lab.env}
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:?DB_DATABASE must be set in config/lab.env}
+      POSTGRES_USER: ${DB_USER:?DB_USER must be set in config/lab.env}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in config/lab.env}
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 5s
+    networks:
+      - lab
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  directus:
+    image: ${DIRECTUS_IMAGE:?DIRECTUS_IMAGE must be set in config/lab.env}
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      KEY: ${DIRECTUS_KEY:?DIRECTUS_KEY must be set in config/lab.env}
+      SECRET: ${DIRECTUS_SECRET:?DIRECTUS_SECRET must be set in config/lab.env}
+      DB_CLIENT: pg
+      DB_HOST: database
+      DB_PORT: "5432"
+      DB_DATABASE: ${DB_DATABASE:?DB_DATABASE must be set in config/lab.env}
+      DB_USER: ${DB_USER:?DB_USER must be set in config/lab.env}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in config/lab.env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL must be set in config/lab.env}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD must be set in config/lab.env}
+      PUBLIC_URL: http://127.0.0.1:8055
+      TELEMETRY: "false"
+      CACHE_ENABLED: "false"
+      RATE_LIMITER_ENABLED: "false"
+      RATE_LIMITER_STORE: memory
+      RATE_LIMITER_POINTS: "25"
+      RATE_LIMITER_DURATION: "1"
+      LOG_LEVEL: info
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - >-
+          require('http').get('http://127.0.0.1:8055/server/ping', response => {
+          response.resume(); process.exit(response.statusCode === 200 ? 0 : 1);
+          }).on('error', () => process.exit(1));
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    networks:
+      - lab
+    ports:
+      - 127.0.0.1:8055:8055
+
+networks:
+  lab:
+    name: r06-k05_network
+
+volumes:
+  db_data:
+    name: r06-k05_db_data

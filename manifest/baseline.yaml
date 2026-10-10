@@ -1,0 +1,61 @@
+schema: 1
+status: scaffolded
+recorded_at: 2026-10-09
+project: r06-k05
+
+baseline:
+  directus:
+    version: 12.5.0
+    source_tag: v12.5.0
+    source_commit: 4f77933bf9551cac6b289576078783e189b8f4e3
+    image: docker.io/directus/directus:12.5.0
+    image_digest: sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331
+    digest_scope: multiarch_manifest
+  postgres:
+    version_major: 16
+    image: docker.io/library/postgres:16-alpine
+    image_digest: sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+    digest_scope: multiarch_manifest
+  schemathesis:
+    version: 4.30.0
+    image: docker.io/schemathesis/schemathesis:4.30.0
+    image_digest: sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5
+    digest_scope: multiarch_manifest
+
+runtime_observed:
+  docker_server: 29.8.1
+  compose: v5.5.1
+  host_api_url: http://127.0.0.1:8055
+  runner_api_url: http://directus:8055
+  host_architecture: linux/amd64
+  directus_source_checkout: /home/mlanh/projects/KTPM/directus
+  directus_source_worktree: clean_at_survey
+
+provenance:
+  repository_head_before_scaffold: d81c0259beaec12994b8a8ae64d0f7a46680937e
+  harness_commit: null
+  harness_worktree: uncommitted
+
+lab_configuration:
+  compose_project: r06-k05
+  database_network: r06-k05_network
+  database_volume: r06-k05_db_data
+  cache_enabled: false
+  telemetry: false
+  rate_limiter_enabled: false
+  rate_limiter_points: 25
+  rate_limiter_duration_seconds: 1
+  worker_count: 1
+  request_timeout_seconds: 10
+  default_rate_target_per_second: 5
+
+validation:
+  image_manifest_lookup: verified_2026-10-09
+  local_image_pull: verified_2026-10-09
+  directus_liveness: passed_2026-10-09
+  directus_authenticated_health: passed_2026-10-09
+  admin_bootstrap: passed_2026-10-09
+  fixture_seed: not_started
+  actor_schema_export: not_started
+  pilot: not_started
+  g1: not_started
