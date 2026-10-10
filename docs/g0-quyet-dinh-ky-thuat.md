@@ -8,10 +8,10 @@ Tài liệu này chuyển các điểm thống nhất trong hai kế hoạch th�
 
 | Hạng mục | Giá trị | Trạng thái kiểm chứng |
 |---|---|---|
-| Directus | `12.5.0`, tag `v12.5.0`, commit `4f77933bf9551cac6b289576078783e189b8f4e3` | Commit tag đã đối chiếu trong checkout `/home/mlanh/projects/KTPM/directus`; instance chưa chạy |
+| Directus | `12.5.0`, tag `v12.5.0`, commit `4f77933bf9551cac6b289576078783e189b8f4e3` | Commit tag đã đối chiếu; image/runtime local đã được kiểm tra theo manifest |
 | Image Directus | `docker.io/directus/directus:12.5.0` với digest trong [`manifest/baseline.yaml`](../manifest/baseline.yaml) | Manifest registry và local pull đã xác nhận |
 | Database | PostgreSQL 16, image `postgres:16-alpine` với digest đã ghi | Manifest registry và local pull đã xác nhận |
-| Schemathesis | `4.30.0`, runner Docker | Manifest registry và local pull đã xác nhận; pilot chưa chạy |
+| Schemathesis | `4.30.0`, runner Docker | Manifest registry/local pull đã xác nhận; pilot report có, failure còn chờ triage |
 | Compose project | `r06-k05` | Được cố định trong `compose.yaml` và `lab.sh` |
 | API từ host | `http://127.0.0.1:8055` | `/server/ping` trả `200`; `/server/health` trả `200` với admin accountability |
 | API từ runner | `http://directus:8055` | Schemathesis pilot đã gửi request qua hostname trong network lab |

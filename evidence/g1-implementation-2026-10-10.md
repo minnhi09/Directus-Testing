@@ -6,10 +6,12 @@ Không ghi credential, access token hoặc nội dung secret vào evidence.
 
 ## Phạm vi và provenance
 
-- Repository đang ở nhánh `main`, HEAD trước thay đổi chưa commit là
-  `a2693f6154753cca2f1d2eb3d84e3a831a42bbf0`.
-- Harness working tree dirty do phần triển khai tạm thời; không bịa SHA cho
-  thay đổi chưa commit.
+- Các run ban đầu được ghi trước khi tích hợp, tại HEAD
+  `a2693f6154753cca2f1d2eb3d84e3a831a42bbf0`; không bịa SHA cho phần khi đó
+  còn chưa commit.
+- Checkpoint sau đó được tích hợp bằng commit
+  `1541fa1` trên nhánh `feat/g1-shared-interface` và PR
+  [#18](https://github.com/minnhi09/Directus-Testing/pull/18) vào `main`.
 - Baseline: Directus `12.5.0`, PostgreSQL `16-alpine`, Schemathesis `4.30.0`,
   image digest theo [`manifest/baseline.yaml`](../manifest/baseline.yaml).
 - URL host `http://127.0.0.1:8055`; runner dùng `http://directus:8055` trong
@@ -31,6 +33,25 @@ Không ghi credential, access token hoặc nội dung secret vào evidence.
 Các artefact chi tiết nằm trong `artifacts/runs/<run_id>/` và bị Git ignore.
 ID map hiện tại nằm ở `runtime/fixture-ids.json` và có ba category cùng 12 article
 với ID thật 14–25; test không hard-code các ID này.
+
+## Kiểm tra sau khi đóng gói checkpoint
+
+Các lệnh sau chạy trên cùng baseline local sau commit `1541fa1`; artefact chi tiết
+vẫn nằm trong thư mục run bị Git ignore:
+
+| Lệnh | Run ID | Kết quả thật |
+|---|---|---|
+| `./lab.sh doctor` | `20261010T084646Z-95059` | Exit `0`; config, digest, URL và authenticated health đạt |
+| `./lab.sh up` | `20261010T084649Z-95581` | Exit `0`; database và Directus healthy |
+| `./lab.sh seed` | `20261010T084652Z-96024` | Exit `1`; fixture/actor lặp lại được, license Reader vẫn bị chặn |
+| `./lab.sh export-schema` | `20261010T084735Z-96905` | Exit `0`; admin/editor 14 operation, reader 2, anonymous 0 |
+| `./lab.sh smoke` | `20261010T084739Z-97347` | Exit `1`; validation và `SET NULL` đạt, Reader article HTTP 403 |
+| `./lab.sh test scenarios` | `20261010T084743Z-97747` | Exit `1`; S1–S3 passed, S4–S6 blocked |
+| `./lab.sh test schema-smoke` | `20261010T084748Z-98189` | Exit `1`; 5/5 operation, 1.413 cases, 9 failure cases, 11 unique failures, snapshot restore PASS |
+
+Shell syntax, ShellCheck, `git diff --check` và secret scan cho commit tích hợp
+đều đạt. Các kết quả này chưa phải nghiệm thu G1 vì license Reader, triage và
+kiểm tra máy độc lập còn thiếu.
 
 ## License và policy Reader
 
@@ -63,16 +84,16 @@ khớp fixture trước pilot.
 - Chưa đạt: policy Reader published + ẩn `internal_notes`, Reader write
   rejection, đủ 10 operation campaign, raw/guided/replay và kiểm tra chéo độc
   lập trên máy thứ hai.
-- Không tạo commit, tag, push hoặc PR trong phiên này. `AGENTS.md` và `mnhy/`
-  vẫn không được đưa vào Git.
+- Các run ban đầu được ghi trước khi tạo commit/PR; sau đó checkpoint đã được
+  push qua PR #18. `AGENTS.md` và `mnhy/` vẫn không được đưa vào Git.
 
 ## Việc cần người dùng quyết định
 
-Nếu có license Directus hợp lệ với entitlement
-`custom_permission_rules_enabled`, hãy cấu hình nó cục bộ (không gửi secret vào
-chat), báo tôi biết đã sẵn sàng, rồi chạy lại seed → schema export → smoke →
-scenarios. Nếu không có license này, cần chấp nhận giới hạn Reader hiện tại và
-đưa blocker vào báo cáo thay vì bypass.
+Run `20261010T084652Z-96024` vẫn đọc được
+`custom_permission_rules_enabled=false`. Cần cấu hình license hợp lệ cục bộ
+ngoài Git, sau đó chạy lại `seed → export-schema → smoke → scenarios` bằng
+fixture/schema snapshot mới. Nếu entitlement không bật được, giữ giới hạn Reader
+trong báo cáo thay vì bypass.
 
 G1 còn cần một lần dựng/kiểm tra trên máy độc lập theo README và người review
 chéo xác nhận artefact; chạy hai container trên cùng máy không đủ bằng chứng đó.

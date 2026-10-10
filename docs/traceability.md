@@ -26,4 +26,4 @@ Bảng này là backlog tích hợp ban đầu theo hai kế hoạch. “Đã c�
 | G0-06 | Pilot Schemathesis `schema-smoke` | Lành triển khai tạm thời; Nhân chưa review | Export schema + credential interface | Đúng actor/URL, report/coverage/mã thoát lưu; fixture được khôi phục | G0-05 |
 | G0-07 | Dựng lại và kiểm tra chéo G1 | Lành điều phối | G0-03, G0-04, G0-06 | Người khác dựng/check lại; ghi rõ máy chưa chạy | G0-04, G0-06 |
 
-Chưa tạo nhánh, commit, PR hoặc tag trong checkpoint này. Các tệp `mnhy/` và `AGENTS.md` vẫn nằm ngoài Git theo quy ước của repository.
+Checkpoint đã được commit tại [`1541fa1`](https://github.com/minnhi09/Directus-Testing/commit/1541fa1) và đưa lên PR [#18](https://github.com/minnhi09/Directus-Testing/pull/18) vào `main`. Các tệp `mnhy/` và `AGENTS.md` vẫn nằm ngoài Git theo quy ước của repository. PR chưa được xem là G1; còn chờ review chéo, license Reader và dựng lại trên máy độc lập.
