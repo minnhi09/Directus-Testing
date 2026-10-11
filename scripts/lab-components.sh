@@ -1566,6 +1566,10 @@ replay_schemathesis_case() {
 	local request_body_file=''
 	local uri_without_scheme
 	local expected_status
+	local transition_applied='false'
+	local stateful_phase='false'
+	local sequence_replayed='true'
+	local replay_scope='single_request'
 	local actual_status='network-error'
 	local actual_summary='{}'
 	local request_rc=0
@@ -1622,6 +1626,12 @@ replay_schemathesis_case() {
 	request_method="$(jq -r '.interaction.request.method // empty' <<< "$case_json")"
 	request_uri="$(jq -r '.interaction.request.uri // empty' <<< "$case_json")"
 	request_body_b64="$(jq -r '.interaction.request.body["$base64"] // empty' <<< "$case_json")"
+	transition_applied="$(jq -r '.case.is_transition_applied // false' <<< "$case_json")"
+	stateful_phase="$(jq -r '.case.value.meta.phase.name == "stateful"' <<< "$case_json")"
+	if [[ "$transition_applied" == true || "$stateful_phase" == true ]]; then
+		sequence_replayed='false'
+		replay_scope='final_interaction_only'
+	fi
 	case "$request_method" in
 		GET|POST|PATCH|DELETE|TRACE) ;;
 		*) printf 'ERROR: method trong Schemathesis case không nằm trong replay allowlist: %s\n' "$request_method" >&2; return 2 ;;
@@ -1677,7 +1687,11 @@ replay_schemathesis_case() {
 
 	if (( request_rc == 0 && restore_rc == 0 )); then
 		if [[ -z "$expected_status" || "$actual_status" == "$expected_status" ]]; then
-			replay_status='reproduced'
+			if [[ "$transition_applied" == true || "$stateful_phase" == true ]]; then
+				replay_status='reproduced_request_only'
+			else
+				replay_status='reproduced'
+			fi
 		else
 			replay_status='mismatch'
 		fi
@@ -1685,9 +1699,10 @@ replay_schemathesis_case() {
 	jq -n --arg schema_version "$FIXTURE_VERSION" --arg case_id "$case_id" --arg source "$events_file" \
 		--arg method "$request_method" --arg path "$request_path" --arg expected_status "$expected_status" \
 		--arg actual_status "$actual_status" --arg status "$replay_status" --arg actor editor \
+		--arg replay_scope "$replay_scope" --argjson transition_applied "$transition_applied" --argjson stateful_phase "$stateful_phase" --argjson sequence_replayed "$sequence_replayed" \
 		--arg schema_hash "$replay_schema_hash" \
 		--argjson case "$case_json" --argjson actual "$actual_summary" --argjson request_rc "$request_rc" --argjson restore_rc "$restore_rc" \
-		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",request:{method:$method,path:$path},expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
+		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",replay_scope:$replay_scope,stateful_transition_applied:$transition_applied,stateful_phase:$stateful_phase,sequence_replayed:$sequence_replayed,request:{method:$method,path:$path},expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
 		> "$reproducer_file"
 	printf 'Schemathesis replay report: %s (status=%s restore=%s)\n' "$reproducer_file" "$replay_status" "$restore_rc"
 	[[ "$replay_status" == reproduced ]]
