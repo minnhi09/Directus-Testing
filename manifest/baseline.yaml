@@ -142,4 +142,5 @@ validation:
   raw_pilot_after_replay_fix: failed_10_operations_restore_passed_run_20261011T074023Z-44637
   guided_pilot_after_replay_fix: failed_10_operations_stateful_restore_passed_run_20261011T074112Z-45270
   doctor_after_pilot: passed_run_20261011T074209Z-45910
+  doctor_license_probe: passed_default_entitlement_run_20261011T074349Z-47097
   g1: blocked_license_and_no_independent_second_machine

@@ -54,7 +54,7 @@ Mỗi lệnh được nhận diện tạo một thư mục `artifacts/runs/<run_
 
 Trạng thái lệnh trên máy hiện tại:
 
-- `doctor`: đạt; Compose, digest, URL loopback và admin health đều được kiểm tra.
+- `doctor`: đạt; Compose, digest, URL loopback, admin health và trạng thái entitlement `/license` rút gọn đều được kiểm tra mà không ghi license/token.
 - `up`: đạt; database và Directus healthy.
 - `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor; kết thúc lỗi có chủ đích khi license không cho permission filter của Reader. Khi dùng Reader policy đầy đủ, `LICENSE_KEY` phải được cấu hình ngoài Git trước khi khởi động stack.
 - `smoke`: validation field và quan hệ `SET NULL` đạt; phần Reader bị chặn bởi cùng blocker.

@@ -121,3 +121,6 @@ Pilot xác nhận sau sửa đổi:
   errored 1, stateful phase chạy, restore PASS, runner exit 1 do `max_time`.
 - Doctor `20261011T074209Z-45910`: PASS; fixture map, image digest và
   authenticated health đạt.
+- Doctor `20261011T074349Z-47097`: PASS; probe `/license` báo
+  `source=null`, `status=active`, `custom_permission_rules_enabled=false` và
+  không ghi giá trị license/token.

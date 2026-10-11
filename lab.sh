@@ -228,6 +228,40 @@ admin_authenticated_health() {
 	[[ "$health_status" == 200 ]]
 }
 
+admin_license_summary() {
+	local admin_email
+	local admin_password
+	local login_response
+	local access_token
+	local license_response
+
+	admin_email="$(config_value ADMIN_EMAIL 2>/dev/null || true)"
+	admin_password="$(config_value ADMIN_PASSWORD 2>/dev/null || true)"
+	case "$admin_email:$admin_password" in
+		:*|*:|REPLACE_*|*:REPLACE_*)
+			return 2
+			;;
+	esac
+
+	login_response="$(
+		printf '{"email":%s,"password":%s}' "$(json_escape "$admin_email")" "$(json_escape "$admin_password")" |
+			curl -fsS --max-time 5 -H 'Content-Type: application/json' --data-binary @- "$API_URL/auth/login" 2>/dev/null
+	)" || return 1
+	access_token="$(printf '%s' "$login_response" | jq -r '.data.access_token // empty' 2>/dev/null || true)"
+	[[ -n "$access_token" ]] || return 1
+	license_response="$(curl -fsS --max-time 5 -H "Authorization: Bearer $access_token" "$API_URL/license" 2>/dev/null)" || return 1
+	printf '%s' "$license_response" | jq -c '
+		{
+			source: (.data.source // null),
+			status: (.data.status // null),
+			custom_permission_rules_enabled: (
+				.data.entitlements.custom_permission_rules_enabled as $entitlement
+				| if ($entitlement | (has("override") and .override != null)) then $entitlement.override else $entitlement.default end
+			)
+		}
+	'
+}
+
 write_run_metadata() {
 	local status="$1"
 	local exit_code="$2"
@@ -374,6 +408,7 @@ doctor() {
 	local docker_ready=0
 	local compose_ready=0
 	local api_url_allowed=1
+	local license_summary
 
 	configure_urls
 
@@ -552,6 +587,11 @@ doctor() {
 		else
 			if admin_authenticated_health 2>/dev/null; then
 				printf 'OK   Directus authenticated health\n'
+				if license_summary="$(admin_license_summary 2>/dev/null)"; then
+					printf 'INFO Directus license %s\n' "$license_summary"
+				else
+					printf 'INFO Directus license probe unavailable\n'
+				fi
 			else
 				printf 'FAIL Directus authenticated health\n'
 				failures=$((failures + 1))
