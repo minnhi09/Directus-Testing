@@ -1516,6 +1516,131 @@ campaign_restore() {
 	printf 'Campaign restore: PASS (categories + articles khớp snapshot)\n'
 }
 
+replay_schemathesis_case() {
+	local case_id="$1"
+	local events_file
+	local match
+	local case_json=''
+	local request_method
+	local request_uri
+	local request_path
+	local request_body_b64
+	local request_body=''
+	local uri_without_scheme
+	local expected_status
+	local actual_status='network-error'
+	local actual_summary='{}'
+	local request_rc=0
+	local restore_rc=1
+	local replay_status='not_reproduced'
+	local source_schema="$SCHEMA_ROOT/editor.json"
+	local source_file="$RUN_DIR/schemathesis-case.json"
+	local response_file="$RUN_DIR/schemathesis-replay-response.json"
+	local reproducer_file="$RUN_DIR/reproducer-schemathesis-$case_id.json"
+
+	require_tools
+	require_admin_login
+	require_actor_logins
+	load_fixture_map
+	[[ -f "$source_schema" ]] || export_schema || return 1
+
+	[[ -d "$LAB_ROOT_DIR/artifacts/runs" ]] || {
+		printf 'ERROR: chưa có artifact campaign để tìm Schemathesis case %s\n' "$case_id" >&2
+		return 2
+	}
+	while IFS= read -r -d '' events_file; do
+		if match="$(jq -c --arg case_id "$case_id" --arg source "$events_file" '
+			select(.ScenarioFinished != null and .ScenarioFinished.recorder.cases[$case_id] != null)
+			| .ScenarioFinished as $scenario
+			| {source:$source,case_id:$case_id,case:$scenario.recorder.cases[$case_id],checks:($scenario.recorder.checks[$case_id] // []),interaction:($scenario.recorder.interactions[$case_id] // null)}
+			| select(.interaction != null)
+		' "$events_file" | sed -n '1p')"; then
+			if [[ -n "$match" ]]; then
+				case_json="$match"
+				break
+			fi
+		fi
+	done < <(find "$LAB_ROOT_DIR/artifacts/runs" -type f -name 'schemathesis-events.ndjson' -print0)
+
+	[[ -n "$case_json" ]] || {
+		printf 'ERROR: không tìm thấy Schemathesis case-id %s trong artifacts/runs\n' "$case_id" >&2
+		return 2
+	}
+	printf '%s\n' "$case_json" > "$source_file"
+
+	request_method="$(jq -r '.interaction.request.method // empty' <<< "$case_json")"
+	request_uri="$(jq -r '.interaction.request.uri // empty' <<< "$case_json")"
+	request_body_b64="$(jq -r '.interaction.request.body["$base64"] // empty' <<< "$case_json")"
+	case "$request_method" in
+		GET|POST|PATCH|DELETE|TRACE) ;;
+		*) printf 'ERROR: method trong Schemathesis case không nằm trong replay allowlist: %s\n' "$request_method" >&2; return 2 ;;
+	esac
+	[[ "$request_uri" == http://* || "$request_uri" == https://* ]] || {
+		printf 'ERROR: URI Schemathesis case không phải absolute HTTP URI\n' >&2
+		return 2
+	}
+	uri_without_scheme="${request_uri#*://}"
+	[[ "$uri_without_scheme" == */* ]] || {
+		printf 'ERROR: URI Schemathesis case thiếu path\n' >&2
+		return 2
+	}
+	request_path="/${uri_without_scheme#*/}"
+	[[ "$request_path" == /items/qa_articles* || "$request_path" == /items/qa_categories* ]] || {
+		printf 'ERROR: chỉ replay case trên qa_articles/qa_categories; nhận %s\n' "$request_path" >&2
+		return 2
+	}
+	if [[ -n "$request_body_b64" ]]; then
+		if ! request_body="$(printf '%s' "$request_body_b64" | base64 --decode)"; then
+			printf 'ERROR: không decode được request body case %s\n' "$case_id" >&2
+			return 2
+		fi
+	fi
+	expected_status="$(jq -r '
+		[.checks[] | select(.status == "failure") | .failure_info.failure.message // ""]
+		| map(try capture("(?<status>[0-9]{3})").status catch null)
+		| map(select(. != null))
+		| .[0] // empty
+	' <<< "$case_json")"
+
+	campaign_snapshot || return 1
+	printf 'Schemathesis replay %s: %s %s\n' "$case_id" "$request_method" "$request_path"
+	if [[ -n "$request_body" ]]; then
+		if ! api_request "$request_method" "$request_path" "$EDITOR_TOKEN" "$request_body"; then
+			request_rc=1
+		fi
+	else
+		if ! api_request "$request_method" "$request_path" "$EDITOR_TOKEN"; then
+			request_rc=1
+		fi
+	fi
+	actual_status="${API_STATUS:-network-error}"
+	if [[ -f "$API_BODY" ]]; then
+		cp -- "$API_BODY" "$response_file"
+		actual_summary="$(http_summary "$API_BODY")"
+	fi
+	set +e
+	campaign_restore
+	restore_rc=$?
+	set -e
+
+	if (( request_rc == 0 && restore_rc == 0 )); then
+		if [[ -z "$expected_status" || "$actual_status" == "$expected_status" ]]; then
+			replay_status='reproduced'
+		else
+			replay_status='mismatch'
+		fi
+	fi
+	jq -n --arg schema_version "$FIXTURE_VERSION" --arg case_id "$case_id" --arg source "$events_file" \
+		--arg method "$request_method" --arg path "$request_path" --arg expected_status "$expected_status" \
+		--arg actual_status "$actual_status" --arg status "$replay_status" --arg actor editor \
+		--arg schema_hash "$(sha256sum "$source_schema" | awk '{print $1}')" \
+		--argjson case "$case_json" --argjson actual "$actual_summary" --argjson request_rc "$request_rc" --argjson restore_rc "$restore_rc" \
+		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",request:{method:$method,path:$path},expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
+		> "$reproducer_file"
+	printf 'Schemathesis replay report: %s (status=%s restore=%s)\n' "$reproducer_file" "$replay_status" "$restore_rc"
+	[[ "$replay_status" == reproduced ]]
+}
+
 campaign_inventory() {
 	local report_file="$RUN_DIR/schemathesis-report.json"
 	local coverage_file="$RUN_DIR/schemathesis-coverage.json"
@@ -1665,11 +1790,18 @@ invariants() {
 
 replay_case() {
 	local case_id="$1"
-	command -v python3 >/dev/null 2>&1 || {
-		printf 'ERROR: thiếu python3 cho replay\n' >&2
-		return 1
-	}
-	python3 "$LAB_ROOT_DIR/scripts/invariants.py" --case "$case_id"
+	case "$case_id" in
+		auth-invalid-token|anonymous-denied|editor-crud|query-fixture|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
+			command -v python3 >/dev/null 2>&1 || {
+				printf 'ERROR: thiếu python3 cho replay\n' >&2
+				return 1
+			}
+			python3 "$LAB_ROOT_DIR/scripts/invariants.py" --case "$case_id"
+			;;
+		*)
+			replay_schemathesis_case "$case_id"
+			;;
+	esac
 }
 
 schema_smoke() {
