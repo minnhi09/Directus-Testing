@@ -15,6 +15,16 @@ không phải số defect độc lập.
 - Harness sửa license configuration: commit `c7cc8d7`.
 - Harness sửa replay binary body: commit `686f4d1`.
 
+Pilot sau hai commit trên cũng xác nhận đường chạy độc lập của hai profile:
+
+| Profile/run | Operation | Cases | Unique failure | Errored | Restore | Kết thúc |
+|---|---:|---:|---:|---:|---|---|
+| raw / `20261011T074023Z-44637` | 10/10 | 47 | 15 | 0 | PASS | `max_time`, runner 1 |
+| guided / `20261011T074112Z-45270` | 10/10 | 134 | 29 | 1 | PASS | `max_time`, runner 1 |
+
+Doctor sau pilot `20261011T074209Z-45910` PASS; image digest, fixture map và
+authenticated health vẫn đúng baseline.
+
 ## Phân loại theo nhóm nguyên nhân
 
 | Nhóm | Raw | Guided | Đánh giá hiện tại |

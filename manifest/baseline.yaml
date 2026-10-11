@@ -139,4 +139,7 @@ validation:
   replay_binary_body_before_fix: mismatch_harness_bug_run_20261011T073501Z-43256
   replay_binary_body_after_fix: reproduced_run_20261011T073559Z-43850
   replay_fix_commit: 686f4d1
+  raw_pilot_after_replay_fix: failed_10_operations_restore_passed_run_20261011T074023Z-44637
+  guided_pilot_after_replay_fix: failed_10_operations_stateful_restore_passed_run_20261011T074112Z-45270
+  doctor_after_pilot: passed_run_20261011T074209Z-45910
   g1: blocked_license_and_no_independent_second_machine

@@ -112,3 +112,12 @@ Các run tiếp theo ghi nhận chính xác blocker và phần độc lập:
 Mismatch của `7DpEST` là lỗi harness đã được sửa trong commit `686f4d1`; không
 được tính là lỗi Directus. Phân loại campaign chi tiết nằm tại
 [`docs/campaign-triage-2026-10-11.md`](../docs/campaign-triage-2026-10-11.md).
+
+Pilot xác nhận sau sửa đổi:
+
+- Raw `20261011T074023Z-44637`: 10/10 operation, 47 case, 15 unique failure,
+  errored 0, restore PASS, runner exit 1 do `max_time`.
+- Guided `20261011T074112Z-45270`: 10/10 operation, 134 case, 29 unique failure,
+  errored 1, stateful phase chạy, restore PASS, runner exit 1 do `max_time`.
+- Doctor `20261011T074209Z-45910`: PASS; fixture map, image digest và
+  authenticated health đạt.
