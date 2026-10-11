@@ -199,6 +199,7 @@ khi người dùng cấu hình `LICENSE_KEY` cục bộ không ghi giá trị ke
 | `20261011T130457Z-141013` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; aggregate 500 và contract probe bốn candidate, harness giữ exit 1 |
 | `20261011T131803Z-147694` | `./lab.sh doctor` | PASS; latest recheck, license active, permission rules enabled, digest đúng manifest |
 | `20261011T134626Z-160826` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked dưới `bcbf219`; không có regression mới, exit 1 được giữ |
+| `20261011T141918Z-175886` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked dưới `8a0d042`; aggregate 500 và contract probe bốn candidate vẫn giữ nguyên, không có regression mới, exit 1 được giữ |
 
 Run doctor mới nhất dưới HEAD `a153e99`:
 
@@ -210,10 +211,11 @@ Run doctor mới nhất dưới HEAD `a153e99`:
 
 | Run | Lệnh | Kết quả |
 |---|---|---|
-| `20261011T141416Z-173791` | `./lab.sh doctor` dưới HEAD `7e729b5` | PASS; Docker/Compose, project `r06-k05`, fixture map, pinned images, authenticated health và license `source=env/status=active`, `custom_permission_rules_enabled=true`; exit `0` |
-| `20261011T141418Z-174367` | `./lab.sh test scenarios` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
+| `20261011T141416Z-173791` | `./lab.sh doctor` dưới HEAD `8a0d042` | PASS; Docker/Compose, project `r06-k05`, fixture map, pinned images, authenticated health và license `source=env/status=active`, `custom_permission_rules_enabled=true`; exit `0` |
+| `20261011T141418Z-174367` | `./lab.sh test scenarios` dưới HEAD `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
+| `20261011T141918Z-175886` | `./lab.sh test invariants` dưới HEAD `8a0d042` | `9 passed`, `2 failed`, `0 blocked`; known aggregate 500 và contract candidate được tái kiểm tra, exit `1` được giữ |
 
-Hai run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
+Ba run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
 không chạy lại campaign raw/guided dài. Các failure invariant/campaign đã biết
 vẫn giữ nguyên artifact và exit code riêng.
 

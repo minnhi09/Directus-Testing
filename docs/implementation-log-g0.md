@@ -338,10 +338,21 @@ thái để làm đẹp.
 
 ## Runtime recheck sau triage replay — 2026-10-11
 
-- `./lab.sh doctor` ở run `20261011T141416Z-173791`, dưới HEAD `7e729b5`, PASS:
+- `./lab.sh doctor` ở run `20261011T141416Z-173791`, dưới HEAD `8a0d042`, PASS:
   đúng project/image digest, fixture map, authenticated health và license active
   với `custom_permission_rules_enabled=true`.
 - `./lab.sh test scenarios` ở run `20261011T141418Z-174367` PASS: S1–S6 đều
   passed, `0 failed`, `0 blocked`, exit `0`.
 - Đây là runtime recheck ngắn sau replay, không phải campaign raw/guided mới;
   invariant `9 passed/2 failed/0 blocked` và campaign exit `1` vẫn giữ nguyên.
+
+## Invariant recheck sau triage replay — 2026-10-11
+
+- `./lab.sh test invariants` ở run `20261011T141918Z-175886`, dưới harness
+  `8a0d0428f665e8942946bd5b9f9d587afa364436`, ghi nhận `9 passed`, `2 failed`,
+  `0 blocked`, exit `1`.
+- Aggregate unknown shape vẫn trả HTTP `500` trong khi hai control trả `200`;
+  contract probe vẫn ghi bốn schema candidate. Không có regression mới so với
+  recheck trước.
+- Giữ nguyên report, log, metadata, exit code và phân loại finding. Đây là
+  recheck invariant ngắn, không phải campaign raw/guided mới.
