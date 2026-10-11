@@ -698,7 +698,7 @@ run_component() {
 		LAB_PROJECT_NAME="$PROJECT_NAME" \
 		LAB_NETWORK_NAME="${PROJECT_NAME}_network" \
 		LAB_RUN_ID="$RUN_ID" \
-		LAB_FIXTURE_VERSION="${LAB_FIXTURE_VERSION:-r06-k05-v1}" \
+		LAB_FIXTURE_VERSION="${LAB_FIXTURE_VERSION:-$(config_value_or_default LAB_FIXTURE_VERSION 'r06-k05-v2')}" \
 		LAB_ADMIN_EMAIL="$admin_email" \
 		LAB_ADMIN_PASSWORD="$admin_password" \
 		LAB_EDITOR_EMAIL="$editor_email" \
