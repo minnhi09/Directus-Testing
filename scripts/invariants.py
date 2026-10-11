@@ -551,6 +551,30 @@ class Lab:
         case.details = "Expected được tính từ fixture IDs và dữ liệu seed, không từ response của query đang kiểm tra."
         return case
 
+    def case_aggregate_query_robustness(self) -> Case:
+        case = Case(
+            "aggregate-query-robustness",
+            "Query aggregate không làm API trả 5xx",
+        )
+        aggregate = json.dumps({"foo": 1}, separators=(",", ":"))
+        path = "/items/qa_articles" + self.path_params({"fields": "", "aggregate": aggregate})
+        response = self.api.request("GET", path, self.editor_token)
+        case.step("GET", path, response, "API không trả 5xx cho query được schema chấp nhận")
+        if response.status == 0:
+            case.fail("có HTTP response", "network error", response.error or "network error")
+            return case
+        if response.status >= 500:
+            case.fail(
+                "query aggregate không trả 5xx",
+                str(response.status),
+                "Known baseline candidate: aggregate có key lạ/giá trị số làm Directus trả INTERNAL_SERVER_ERROR; giữ failure để triage.",
+            )
+            return case
+        case.expected = "query aggregate không trả 5xx"
+        case.actual = f"HTTP {response.status}"
+        case.details = "Regression probe không thay đổi dữ liệu; status cụ thể ngoài 5xx được giữ nguyên theo baseline."
+        return case
+
     def case_relation_nullification(self) -> Case:
         case = Case("relation-nullification", "Quan hệ article.category đặt NULL khi xóa category")
         category_id: int | None = None
@@ -714,7 +738,7 @@ def git_head(root: Path) -> str:
 
 def run() -> int:
     parser = argparse.ArgumentParser(description="Run deterministic Directus invariants")
-    parser.add_argument("--case", default="all", help="all or one of the stable replay case IDs")
+    parser.add_argument("--case", default="all", help="all or one of the stable replay/regression case IDs")
     args = parser.parse_args()
     run_dir = Path(env_required("LAB_RUN_DIR"))
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -729,6 +753,7 @@ def run() -> int:
         "editor-crud": lab.case_editor_crud,
         "positive-operations": lab.case_positive_operations,
         "query-fixture": lab.case_query_fixture,
+        "aggregate-query-robustness": lab.case_aggregate_query_robustness,
         "relation-nullification": lab.case_relation_nullification,
         "invalid-field-rejection": lab.case_invalid_field_rejection,
         "reader-visibility": lab.case_reader_visibility,

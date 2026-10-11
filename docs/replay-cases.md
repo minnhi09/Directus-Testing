@@ -30,6 +30,7 @@ Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào h
 | `editor-crud` | Editor create → read → PATCH → read → DELETE → read | Editor login/fixture không sẵn sàng |
 | `positive-operations` | Positive create/read/PATCH/delete cho đủ 10 operation của hai collection | Editor login/fixture hoặc permission CRUD không sẵn sàng |
 | `query-fixture` | Filter published, sort, projection, hai page | Fixture map không khớp dữ liệu |
+| `aggregate-query-robustness` | GET query tối giản `fields=&aggregate={"foo":1}`, yêu cầu không có 5xx | Không có API response |
 | `relation-nullification` | Tạo category/article, xóa category, kiểm tra FK thành null | Không tạo được relation probe |
 | `invalid-field-rejection` | Gửi status/score ngoài contract và kiểm tra không tạo row | Network/read-back precondition |
 | `reader-visibility` | Reader đọc published và thử projection có `internal_notes` | Reader schema thiếu operation |
@@ -41,6 +42,12 @@ các replay pass trước đó gồm `editor-crud` ở run `20261011T040109Z-199
 `20261011T035623Z-14472`, `anonymous-denied` ở `20261011T035408Z-12774` và
 Schemathesis case `ralwaW` ở run `20261011T040346Z-22406`. Đây là bằng chứng
 local trên một baseline, không phải kiểm tra chéo máy thứ hai.
+
+`aggregate-query-robustness` là regression probe deterministic được version hóa
+trong `scripts/invariants.py`, nên clone sạch vẫn replay được mà không cần
+Schemathesis artifact. Trên baseline hiện tại, run `20261011T080531Z-51046`
+trả `500` và exit `1` đúng theo assertion; đây là failure cần triage, không phải
+được chuyển thành pass bằng cách nới expected.
 
 Sau khi sửa replay nhị phân, case `UETNPW` (DELETE nhận 204 ngoài schema) được
 replay lại ở run `20261011T073454Z-42697`, còn case `7DpEST` (PATCH với payload

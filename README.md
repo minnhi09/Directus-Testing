@@ -60,10 +60,10 @@ Trạng thái lệnh trên máy hiện tại:
 - `smoke`: validation field và quan hệ `SET NULL` đạt; phần Reader bị chặn bởi cùng blocker.
 - `export-schema`: đạt; lưu schema raw bất biến cho `admin` (14 operation), `editor` (14), `reader` (2) và `anonymous` (0).
 - `test scenarios`: S1–S3 đạt; S4–S6 được ghi `blocked` vì operation article không xuất hiện trong schema Reader, nên harness không gửi request quyền bị cấm.
-- `test invariants`: các invariant deterministic chạy trong image Schemathesis đã pin; `positive-operations` kiểm tra đủ 10 method–path bằng dữ liệu tạm, còn Reader cases ghi `blocked` khi schema không có precondition.
+- `test invariants`: các invariant deterministic chạy trong image Schemathesis đã pin; `positive-operations` kiểm tra đủ 10 method–path bằng dữ liệu tạm, `aggregate-query-robustness` là regression probe không mutation và giữ failure HTTP 500 hiện tại, còn Reader cases ghi `blocked` khi schema không có precondition.
 - `test raw`: campaign chính chọn đúng 10 operation, lưu report/coverage/metrics và restore fixture; run đầy đủ `20261011T050204Z-28735` đã chạy seed 101/202/303, mỗi seed 10/10 operation, nhưng kết thúc `max_time` với runner exit 1 vì check failure.
 - `test guided`: campaign chính dùng overlay riêng, fixture IDs/examples và stateful phase; run đầy đủ `20261011T060247Z-30882` đã chạy seed 101/202/303, mỗi seed 10/10 operation, stateful có chạy, nhưng kết thúc `max_time` với runner exit 1 vì check failure.
-- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. Các case guided `AmXHZz`, `jShXuk` và `VllBgh` đã replay được để triage schema/robustness; không tự đếm mỗi check failure thành một defect.
+- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500. Các case guided `AmXHZz`, `jShXuk` và `VllBgh` đã replay được để triage schema/robustness; không tự đếm mỗi check failure thành một defect.
 - `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; safety reset đã được thực thi ở run `20261011T050050Z-26220`, sau đó stack được dựng và seed lại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
 

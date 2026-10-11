@@ -67,8 +67,11 @@ operation hit của Schemathesis.
 
 Các case ổn định được chạy bởi `scripts/invariants.py` trong runner Docker:
 `auth-invalid-token`, `anonymous-denied`, `editor-crud`, `positive-operations`,
-`query-fixture`, `relation-nullification`, `invalid-field-rejection`,
-`reader-visibility`, `reader-write`. `reader-visibility` và `reader-write`
+`query-fixture`, `aggregate-query-robustness`, `relation-nullification`,
+`invalid-field-rejection`, `reader-visibility`, `reader-write`.
+`aggregate-query-robustness` là regression probe không mutation, dùng query
+`fields=&aggregate={"foo":1}` và yêu cầu không có HTTP 5xx; trên baseline hiện
+tại nó tái hiện candidate 500 và giữ trạng thái `failed`. `reader-visibility` và `reader-write`
 kiểm tra schema trước; khi operation vắng mặt chúng ghi `blocked` và không gửi
 request cấm.
 

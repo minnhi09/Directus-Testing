@@ -103,6 +103,10 @@ chiếu với semantics POST object-vs-array; chưa gọi là lỗi sản phẩm
 - Reproducer đầy đủ giữ nguyên trong
   `artifacts/runs/20261011T075632Z-49739/reproducer-schemathesis-VllBgh.json`;
   request thu gọn ở trên là bằng chứng local bổ sung, không dùng credential.
+- Regression case đã được version hóa thành `aggregate-query-robustness` trong
+  `scripts/invariants.py`, nên không phụ thuộc Schemathesis artifact. Run
+  `20261011T080531Z-51046` trả `500`, tạo report/reproducer đã làm sạch và giữ
+  exit `1` để không che candidate này.
 
 ## Chưa được kết luận
 
