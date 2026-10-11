@@ -28,6 +28,7 @@ candidate được giữ nguyên để triage.
 | Guided timestamp replay | `20261011T135006Z-162769` dưới `a8c4a51` | `kb5gjq` source/expected/actual `500`, `reproduced_request_only`, restore PASS, exit `1`; PostgreSQL `22007` |
 | Guided export replay | `20261011T135713Z-165099` dưới `778ef20` | `F8j8Gl` source/expected/actual `200`, body array 12 item ngoài schema object, `reproduced_request_only`, restore PASS, exit `1` |
 | Guided XML export replay | `20261011T135951Z-166351` dưới `a0e8996` | `UNKW3j` source/expected/actual `200`, `text/xml` ngoài schema JSON, `reproduced_request_only`, restore PASS, exit `1` |
+| Guided YAML export replay | `20261011T140125Z-167402` dưới `4160c92` | `R0sH5o` source/expected/actual `200`, `text/yaml` ngoài schema JSON, `reproduced_request_only`, restore PASS, exit `1` |
 
 Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
@@ -43,7 +44,7 @@ hoặc response nhạy cảm.
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
 | Guided `POST /items/qa_articles` với `published_at=""` | Replay `kb5gjq`, editor schema `string` + nullable + custom `timestamp`, Directus log và PostgreSQL SQLSTATE `22007` | Schema-semantic/product robustness candidate; chưa xác nhận product defect |
-| Guided `export=json/xml` | Replay `F8j8Gl` và `UNKW3j`; HTTP `200` trả alternate body/media type ngoài operation schema | Schema/contract alternate-export candidate; chưa xác nhận product defect |
+| Guided `export=json/xml/yaml` | Replay `F8j8Gl`, `UNKW3j` và `R0sH5o`; HTTP `200` trả alternate body/media type ngoài operation schema | Schema/contract alternate-export candidate; chưa xác nhận product defect |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 

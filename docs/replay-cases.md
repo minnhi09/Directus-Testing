@@ -93,6 +93,11 @@ Các case guided đại diện được replay sau pilot:
   `200`, content type `text/xml; charset=utf-8` ngoài schema `application/json`.
   Restore PASS, exit `1`; đây là cùng nhóm export media-type candidate với
   `vx21yF`, không phải defect độc lập.
+- `R0sH5o` (`20261011T140125Z-167402`) tái hiện request-only
+  `GET /items/qa_articles?fields=*.*&limit=59189288&export=yaml&page=2`:
+  source/expected/actual `200`, content type `text/yaml; charset=utf-8` ngoài
+  schema `application/json`. Restore PASS, exit `1`; gộp vào export media-type
+  candidate, không phải defect độc lập.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

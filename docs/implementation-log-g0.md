@@ -269,3 +269,15 @@ thái để làm đẹp.
   `vx21yF` (`csv`), không phải product defect độc lập.
 - Không có parent transition trong artifact; giữ request-only và không đổi
   expected/check để làm campaign xanh.
+
+## Triage export YAML media type — 2026-10-11
+
+- Run `20261011T140125Z-167402`: `./lab.sh replay R0sH5o` dưới harness
+  `4160c925ed4fcd525eaa1319bbaf7c182278f34b`; source/expected/actual đều
+  HTTP `200`, restore PASS, exit `1`, `reproduced_request_only`.
+- Request `GET /items/qa_articles?fields=*.*&limit=59189288&export=yaml&page=2`
+  trả `text/yaml; charset=utf-8`, trong khi schema chỉ khai báo
+  `application/json`. Đây là cùng nhóm export media-type contract với CSV/XML,
+  không phải product defect độc lập.
+- Giữ nguyên exit `1`, không sửa expected/check và không gộp các replay
+  request-only thành full-chain evidence.

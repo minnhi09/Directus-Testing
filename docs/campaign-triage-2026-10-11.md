@@ -88,6 +88,12 @@ Replay `UNKW3j` ở run `20261011T135951Z-166351` tái hiện
 cùng nhóm export media-type contract với `vx21yF`, không phải product defect
 độc lập; artifact cũng không có parent transition.
 
+Replay `R0sH5o` ở run `20261011T140125Z-167402` tái hiện
+`GET /items/qa_articles?...&export=yaml&page=2` với source/expected/actual
+`200`, content type `text/yaml; charset=utf-8`, restore PASS và exit `1`. Đây
+là cùng nhóm export media-type candidate với CSV/XML, không phải product defect
+độc lập; artifact không có parent transition.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run
@@ -132,7 +138,7 @@ Chi tiết line-level nằm trong phần source comparison của
 | `UndefinedStatusCode` | 16/14/16 | 30/29/29 | Schema/contract candidate; cần đối chiếu response map và semantics Directus, chưa gọi là product defect |
 | `UnsupportedMethodResponse` | 2 mỗi seed | 2 mỗi seed | Cần xác minh hành vi TRACE ngoài allowlist; chưa kết luận |
 | `RejectedPositiveData` | 2/1/1 | 8/8/8 | Chưa kết luận; có thể do precondition/fixture/query sinh ra không phù hợp |
-| `UndefinedContentType` | 0/1/0 | 5/5/5 | `vx21yF`/`UNKW3j` tái hiện export CSV/XML ngoài schema JSON; giữ là export contract candidate |
+| `UndefinedContentType` | 0/1/0 | 5/5/5 | `vx21yF`/`UNKW3j`/`R0sH5o` tái hiện export CSV/XML/YAML ngoài schema JSON; giữ là export contract candidate |
 | `ServerError` | 0 | 9/8/8 | `kb5gjq` đã replay request-only và tái hiện 500; vẫn là candidate robustness/schema-semantic, không phải defect đã xác nhận |
 | `JsonSchemaError` | 0 | 6/10/7 | Chưa kết luận; cần phân biệt schema raw/overlay và response thực tế |
 | `AcceptedNegativeData` | 0 | 3 mỗi seed | Chưa kết luận; cần kiểm tra request/validation và trạng thái fixture |

@@ -58,6 +58,9 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
 - Replay `UNKW3j` ở `20261011T135951Z-166351` tái hiện `export=xml` với
   HTTP `200` và `text/xml` ngoài schema JSON; gộp với `vx21yF` thành export
   media-type candidate, không đếm thành defect độc lập.
+- Replay `R0sH5o` ở `20261011T140125Z-167402` tái hiện `export=yaml` với
+  HTTP `200` và `text/yaml` ngoài schema JSON; tiếp tục gộp vào export
+  media-type candidate, chưa xác nhận product defect.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

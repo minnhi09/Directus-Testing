@@ -52,6 +52,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `kb5gjq` / `20261011T135006Z-162769` | Guided stateful POST article với `published_at=""`; source/expected/actual `500` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Product robustness + schema-semantic candidate; PostgreSQL `22007`, chưa xác nhận defect |
 | `F8j8Gl` / `20261011T135713Z-165099` | Guided stateful GET article với `backlink=true&export=json`; source/expected/actual `200`, body là array 12 item thay vì object `data` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export response shape; không phải product defect đã xác nhận |
 | `UNKW3j` / `20261011T135951Z-166351` | Guided stateful GET article với `export=xml`; source/expected/actual `200`, content type `text/xml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`, chưa xác nhận defect |
+| `R0sH5o` / `20261011T140125Z-167402` | Guided stateful GET article với `export=yaml`; source/expected/actual `200`, content type `text/yaml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`/`UNKW3j`, chưa xác nhận defect |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -93,6 +94,9 @@ request-only, full-chain mismatch và product defect thành một kết luận.
 9. `UNKW3j` tái hiện `export=xml` với HTTP `200` và `text/xml; charset=utf-8`
    trong khi schema chỉ khai báo `application/json`. Đây là cùng nhóm export
    media-type contract với `vx21yF`, không phải product defect độc lập.
+10. `R0sH5o` tái hiện `export=yaml` với HTTP `200` và `text/yaml; charset=utf-8`
+    ngoài schema JSON. Gộp với các export media-type candidate trước đó; không
+    đếm thành product defect độc lập.
 
 ## Automated contract probe
 
