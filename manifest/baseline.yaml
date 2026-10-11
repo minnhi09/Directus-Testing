@@ -55,6 +55,8 @@ lab_configuration:
     reader: [READER_EMAIL, READER_PASSWORD]
   cache_enabled: false
   telemetry: false
+  access_token_ttl: 2h
+  access_token_ttl_reason: 'campaign can run up to three 20-minute seeds without the default 15-minute token expiring'
   rate_limiter_enabled: false
   rate_limiter_points: 25
   rate_limiter_duration_seconds: 1

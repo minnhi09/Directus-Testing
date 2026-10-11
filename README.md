@@ -17,6 +17,8 @@ Mở `config/lab.env` và thay các giá trị `REPLACE_*` bằng giá trị c�
 
 `API_URL` mặc định là `http://127.0.0.1:8055`; `RUNNER_API_URL` là `http://directus:8055` trong network Compose. Chỉ đổi URL khi có quyết định baseline mới; API host vẫn phải bind loopback.
 
+Lab đặt `ACCESS_TOKEN_TTL=2h` để một campaign tuần tự ba seed không bị token mặc định 15 phút hết hạn giữa lúc Schemathesis chạy. Đây là cấu hình thử nghiệm được ghi trong manifest, không phải thay đổi phiên bản Directus.
+
 Các image đã được ghi bằng tag và digest trong [`manifest/baseline.yaml`](manifest/baseline.yaml). Pull rõ ràng trước khi chạy:
 
 ```bash
@@ -91,6 +93,7 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 - `seed` dừng ở `custom_permission_rules_enabled=false`: đây là blocker license đã xác minh. Không bypass bằng DB/UI; cấu hình license ngoài Git rồi seed/export schema lại.
 - Raw schema hash thay đổi: giữ snapshot cũ bất biến, lưu schema mới như baseline/fixture version mới sau khi được chấp thuận; không overwrite âm thầm.
 - Campaign có failure: giữ `runner` exit code, report, coverage và restore status; triage theo [`docs/replay-cases.md`](docs/replay-cases.md), không dùng `|| true` để biến pass.
+- Campaign dài báo `TOKEN_EXPIRED`: kiểm tra `ACCESS_TOKEN_TTL` trong Compose/manifest, chạy `./lab.sh up` để recreate Directus rồi bắt đầu run mới; token được refresh trước snapshot và restore.
 - Cổng `8055` bận: dừng đúng container thuộc project `r06-k05` hoặc đổi port chỉ khi có quyết định baseline mới; không chiếm/dừng dịch vụ project khác.
 
 ## Tài liệu bàn giao

@@ -1516,6 +1516,10 @@ campaign_restore() {
 	printf 'Campaign restore: PASS (categories + articles khớp snapshot)\n'
 }
 
+campaign_refresh_tokens() {
+	require_admin_login && require_actor_logins
+}
+
 replay_schemathesis_case() {
 	local case_id="$1"
 	local events_file
@@ -1695,6 +1699,11 @@ campaign_one() {
 	local schema_file
 	mkdir -p "$campaign_dir"
 	RUN_DIR="$campaign_dir"
+	if ! campaign_refresh_tokens; then
+		printf 'ERROR: không refresh được token trước campaign %s seed=%s\n' "$profile" "$seed" >&2
+		RUN_DIR="$base_dir"
+		return 1
+	fi
 	if ! campaign_snapshot; then
 		printf 'ERROR: không snapshot được baseline cho %s seed=%s\n' "$profile" "$seed" >&2
 		RUN_DIR="$base_dir"
@@ -1730,8 +1739,13 @@ campaign_one() {
 	fi
 	[[ -f "$RUN_DIR/schemathesis-coverage.json" ]] && coverage_present=true
 	set +e
-	campaign_restore
-	restore_rc=$?
+	if campaign_refresh_tokens; then
+		campaign_restore
+		restore_rc=$?
+	else
+		printf 'ERROR: không refresh được token trước restore %s seed=%s\n' "$profile" "$seed" >&2
+		restore_rc=1
+	fi
 	set -e
 	campaign_inventory "$profile" "$seed"
 	if (( runner_rc == 0 && restore_rc == 0 )) && [[ "$report_present" == true && "$coverage_present" == true ]]; then

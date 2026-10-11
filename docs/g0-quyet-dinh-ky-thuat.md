@@ -17,6 +17,7 @@ Tài liệu này chuyển các điểm thống nhất trong hai kế hoạch th�
 | API từ runner | `http://directus:8055` | Schemathesis pilot đã gửi request qua hostname trong network lab |
 | Cache/telemetry | Tắt trong Compose | Đã dùng trong stack local; cần xác nhận lại khi dựng máy khác |
 | Rate limiter | Tắt; giá trị tham chiếu `25` điểm/giây nếu bật về sau | Đã ghi trong Compose; pilot tự giới hạn 5 request/giây |
+| Access token TTL | `2h` trong lab Compose | Để campaign tuần tự ba seed không hết token mặc định `15m`; được ghi trong manifest |
 | Actor | `admin`, `editor`, `reader`, `anonymous` | Admin/editor/reader đăng nhập được; anonymous schema đã xuất, không có operation |
 | Collection | `qa_categories`, `qa_articles` | Đã tạo/seed 3 category + 12 article; ID map runtime |
 

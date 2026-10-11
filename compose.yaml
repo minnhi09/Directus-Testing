@@ -36,6 +36,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in config/lab.env}
       ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL must be set in config/lab.env}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD must be set in config/lab.env}
+      ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-2h}
       PUBLIC_URL: http://127.0.0.1:8055
       TELEMETRY: "false"
       CACHE_ENABLED: "false"
