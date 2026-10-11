@@ -19,6 +19,7 @@ RUN_METADATA=""
 RUN_ID=""
 RUN_COMMAND=""
 RUN_STARTED_AT=""
+RUN_STARTED_EPOCH=0
 RUN_FINALIZED=0
 REDACTION_VALUES=()
 
@@ -33,7 +34,7 @@ Usage:
   ./lab.sh doctor
   ./lab.sh up|down
   ./lab.sh seed|smoke|export-schema
-  ./lab.sh test schema-smoke|scenarios|raw|guided
+  ./lab.sh test smoke|schema-smoke|scenarios|invariants|raw|guided
   ./lab.sh replay <case-id>
   ./lab.sh reset
 EOF
@@ -235,6 +236,7 @@ write_run_metadata() {
 	local seed="${LAB_SEED:-}"
 	local budget="${LAB_BUDGET:-}"
 	local actor="${LAB_ACTOR:-unspecified}"
+	local duration_seconds='null'
 	local directus_image
 	local postgres_image
 	local schemathesis_image
@@ -259,6 +261,9 @@ write_run_metadata() {
 	if [[ -z "$fixture_version" && -f "$RUNTIME_ROOT/fixture-ids.json" ]] && command -v jq >/dev/null 2>&1; then
 		fixture_version="$(jq -r '.fixture_version // empty' "$RUNTIME_ROOT/fixture-ids.json" 2>/dev/null || true)"
 	fi
+	if [[ "$RUN_STARTED_EPOCH" =~ ^[0-9]+$ ]] && (( RUN_STARTED_EPOCH > 0 )); then
+		duration_seconds="$(( $(date +%s) - RUN_STARTED_EPOCH ))"
+	fi
 
 	{
 		printf '{\n'
@@ -269,6 +274,7 @@ write_run_metadata() {
 		printf '  "exit_code": %s,\n' "$exit_code"
 		printf '  "started_at": %s,\n' "$(json_escape "$RUN_STARTED_AT")"
 		printf '  "finished_at": %s,\n' "$(json_or_null "$finished_at")"
+		printf '  "duration_seconds": %s,\n' "$duration_seconds"
 		printf '  "harness_sha": %s,\n' "$(json_escape "$(harness_sha)")"
 		printf '  "working_tree": %s,\n' "$(json_escape "$(working_tree_state)")"
 		printf '  "project": %s,\n' "$(json_escape "$PROJECT_NAME")"
@@ -309,6 +315,7 @@ begin_run() {
 	fi
 	RUN_COMMAND="$command_label"
 	RUN_STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+	RUN_STARTED_EPOCH="$(date +%s)"
 	RUN_DIR="$ARTIFACT_ROOT/$RUN_ID"
 	RUN_LOG="$RUN_DIR/run.log"
 	RUN_METADATA="$RUN_DIR/metadata.json"
@@ -585,6 +592,12 @@ run_component() {
 	local reader_email
 	local reader_password
 	local schemathesis_image
+	local campaign_seeds
+	local max_time
+	local max_examples
+	local workers
+	local rate_limit
+	local request_timeout
 
 	require_config
 	require_docker
@@ -596,6 +609,12 @@ run_component() {
 	reader_email="$(config_value READER_EMAIL 2>/dev/null || true)"
 	reader_password="$(config_value READER_PASSWORD 2>/dev/null || true)"
 	schemathesis_image="$(config_value SCHEMATHESIS_IMAGE 2>/dev/null || true)"
+	campaign_seeds="${LAB_CAMPAIGN_SEEDS:-$(config_value_or_default LAB_CAMPAIGN_SEEDS '101,202,303')}"
+	max_time="${LAB_MAX_TIME:-$(config_value_or_default LAB_MAX_TIME '1200')}"
+	max_examples="${LAB_MAX_EXAMPLES:-$(config_value_or_default LAB_MAX_EXAMPLES '100')}"
+	workers="${LAB_WORKERS:-$(config_value_or_default LAB_WORKERS '1')}"
+	rate_limit="${LAB_RATE_LIMIT:-$(config_value_or_default LAB_RATE_LIMIT '5/s')}"
+	request_timeout="${LAB_REQUEST_TIMEOUT:-$(config_value_or_default LAB_REQUEST_TIMEOUT '10')}"
 
 	env \
 		LAB_ROOT_DIR="$ROOT_DIR" \
@@ -614,31 +633,54 @@ run_component() {
 		LAB_READER_EMAIL="$reader_email" \
 		LAB_READER_PASSWORD="$reader_password" \
 		LAB_SCHEMATHESIS_IMAGE="$schemathesis_image" \
+			LAB_CAMPAIGN_SEEDS="$campaign_seeds" \
+			LAB_MAX_TIME="$max_time" \
+			LAB_MAX_EXAMPLES="$max_examples" \
+			LAB_WORKERS="$workers" \
+			LAB_RATE_LIMIT="$rate_limit" \
+			LAB_REQUEST_TIMEOUT="$request_timeout" \
 		bash "$component_script" "$profile" "$@"
 }
 
-unimplemented() {
-	local name="$1"
-	printf 'Chưa triển khai: %s. Chủ sở hữu theo G0 phải tích hợp phần bàn giao trước khi chạy lệnh này.\n' "$name" >&2
-	return 2
+reset_lab() {
+	local expected_volume="${PROJECT_NAME}_db_data"
+	local configured_volume
+	local volume_project
+	local volume_kind
+
+	require_config
+	require_docker
+	configured_volume="$(compose config --format json | jq -r '.volumes.db_data.name // empty')"
+	[[ "$configured_volume" == "$expected_volume" ]] || die "Compose volume không đúng baseline: ${configured_volume:-<trống>}"
+	if docker volume inspect "$expected_volume" >/dev/null 2>&1; then
+		volume_project="$(docker volume inspect --format '{{index .Labels "com.docker.compose.project"}}' "$expected_volume")"
+		volume_kind="$(docker volume inspect --format '{{index .Labels "com.docker.compose.volume"}}' "$expected_volume")"
+		[[ "$volume_project" == "$PROJECT_NAME" && "$volume_kind" == 'db_data' ]] || die 'Volume tồn tại nhưng label không thuộc r06-k05; dừng để bảo vệ dữ liệu.'
+	fi
+
+	compose down
+	if docker volume inspect "$expected_volume" >/dev/null 2>&1; then
+		docker volume rm "$expected_volume"
+	fi
+	if [[ -d "$RUNTIME_ROOT" ]]; then
+		find "$RUNTIME_ROOT" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+	fi
+	printf 'Reset: đã xóa volume %s và runtime artefact của lab r06-k05.\n' "$expected_volume"
 }
 
 dispatch() {
 	local command_name="$1"
 	shift
 	case "$command_name" in
-		seed|smoke|export-schema|schema-smoke|scenarios)
+		seed|smoke|export-schema|schema-smoke|scenarios|invariants|raw|guided)
 			run_component "$command_name" "$@"
-			;;
-		raw|guided)
-			unimplemented "test $command_name"
 			;;
 		replay)
 			[[ $# -eq 1 ]] || die 'replay cần một case-id.'
-			unimplemented "replay $1"
+			run_component replay "$1"
 			;;
 		reset)
-			unimplemented reset
+			reset_lab
 			;;
 		*)
 			usage >&2
