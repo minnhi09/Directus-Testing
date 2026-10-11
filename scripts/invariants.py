@@ -63,9 +63,10 @@ class ApiResponse:
 
 
 class Api:
-    def __init__(self, base_url: str, run_dir: Path) -> None:
+    def __init__(self, base_url: str, run_dir: Path, timeout: float = 10.0) -> None:
         self.base_url = base_url.rstrip("/")
         self.run_dir = run_dir
+        self.timeout = timeout
         self.counter = 0
         self.run_dir.mkdir(parents=True, exist_ok=True)
 
@@ -89,7 +90,7 @@ class Api:
         )
         response: ApiResponse
         try:
-            with urllib.request.urlopen(request, timeout=10) as raw_response:
+            with urllib.request.urlopen(request, timeout=self.timeout) as raw_response:
                 raw = raw_response.read()
                 response = ApiResponse(
                     raw_response.status,
@@ -175,7 +176,13 @@ class Lab:
     def __init__(self, run_dir: Path) -> None:
         self.run_dir = run_dir
         self.runtime_root = Path(env_required("LAB_RUNTIME_ROOT"))
-        self.api = Api(env_required("LAB_API_URL"), run_dir)
+        try:
+            timeout = float(os.environ.get("LAB_REQUEST_TIMEOUT", "10"))
+        except ValueError as error:
+            raise RuntimeError("LAB_REQUEST_TIMEOUT không phải số") from error
+        if timeout <= 0:
+            raise RuntimeError("LAB_REQUEST_TIMEOUT phải lớn hơn 0")
+        self.api = Api(env_required("LAB_API_URL"), run_dir, timeout)
         self.admin_email = env_required("LAB_ADMIN_EMAIL")
         self.admin_password = env_required("LAB_ADMIN_PASSWORD")
         self.editor_email = env_required("LAB_EDITOR_EMAIL")
@@ -308,6 +315,7 @@ class Lab:
             if response.status < 200 or response.status >= 300:
                 case.fail("DELETE thành công", str(response.status), "Editor không xóa được article")
                 return case
+            item_id = None
             response = self.api.request("GET", f"{path}?fields=id", self.editor_token)
             case.step("GET", f"{path}?fields=id", response, "resource không còn data")
             if 200 <= response.status < 300 and isinstance(response.body, dict) and response.body.get("data"):
@@ -412,6 +420,7 @@ class Lab:
             if deleted.status < 200 or deleted.status >= 300:
                 case.fail("xóa category probe", str(deleted.status), "xóa relation probe thất bại")
                 return case
+            category_id = None
             read_back = self.api.request("GET", f"/items/qa_articles/{article_id}?fields=id,category", self.editor_token)
             case.step("GET", f"/items/qa_articles/{article_id}?fields=id,category", read_back, "2xx và category=null")
             if read_back.status < 200 or read_back.status >= 300 or read_back.body.get("data", {}).get("category") is not None:
@@ -539,6 +548,7 @@ def run() -> int:
     args = parser.parse_args()
     run_dir = Path(env_required("LAB_RUN_DIR"))
     run_dir.mkdir(parents=True, exist_ok=True)
+    started_at = utc_now()
     lab = Lab(run_dir)
     lab.authenticate()
     lab.load_fixture()
@@ -592,7 +602,8 @@ def run() -> int:
         "run_id": os.environ.get("LAB_RUN_ID", "unknown"),
         "harness_sha": git_head(Path(env_required("LAB_ROOT_DIR"))),
         "fixture_version": lab.fixture_map.get("fixture_version"),
-        "started_at": utc_now(),
+        "started_at": started_at,
+        "finished_at": utc_now(),
         "cases": [case.as_dict() for case in results],
         "summary": {
             "passed": sum(case.status == "passed" for case in results),

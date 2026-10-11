@@ -1335,7 +1335,7 @@ campaign_build_schema() {
 	cp -- "$source" "$source_copy"
 	article_id="$(jq -r '.fixtures.qa_articles.article_alpha_published_1' "$FIXTURE_MAP")"
 	category_id="$(jq -r '.fixtures.qa_categories.category_alpha' "$FIXTURE_MAP")"
-	jq --arg profile "$profile" --argjson article_id "$article_id" --argjson category_id "$category_id" '
+	jq --arg profile "$profile" --arg fixture_version "$FIXTURE_VERSION" --argjson article_id "$article_id" --argjson category_id "$category_id" '
 		.paths = (.paths | with_entries(
 			if .key == "/items/qa_articles" or .key == "/items/qa_categories" then
 				.value |= with_entries(select(.key == "get" or .key == "post"))
@@ -1368,7 +1368,7 @@ campaign_build_schema() {
 				status:"draft",
 				score:3,
 				published_at:null,
-				metadata:{source:"guided",fixture_version:"r06-k05-v1"},
+				metadata:{source:"guided",fixture_version:$fixture_version},
 				internal_notes:"guided probe",
 				category:$category_id
 			}
