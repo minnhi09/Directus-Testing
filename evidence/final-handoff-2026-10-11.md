@@ -55,6 +55,7 @@ checkpoint mới nhất tương ứng; các dòng ghi `lịch sử`, `trước f
 | Post-status-fix schema export | `20261011T171009Z-223973` dưới `594785e` | PASS; actor `14/14/6/0`, bốn hash không đổi; exit `0` |
 | Scenario report trung gian | `20261011T171014Z-224445` dưới `594785e` | S1–S6 PASS nhưng S6 report ghi nhầm read-back `200` cho PATCH; giữ artifact, không dùng làm bằng chứng cuối |
 | Post-status-fix scenarios | `20261011T171054Z-225602` dưới `fdc750e` | S1–S6 PASS; S6 PATCH `403`, read-back `200`, target không đổi; exit `0` |
+| Post-status-fix invariants | `20261011T171247Z-226528` dưới `d4861f6` | `9 passed`, `2 failed`, `0 blocked`; aggregate 500 và contract candidate giữ nguyên; exit `1` |
 | Raw pilot final | `20261011T164716Z-216864` dưới `39093de` | 10/10 operation, 47 case, 14 unique failure, restore PASS; exit `1` do max-time/check failure |
 | Guided pilot final | `20261011T164757Z-217585` dưới `39093de` | 10/10 operation, 125 case, 26 unique failure, stateful chạy, restore PASS; exit `1` do max-time/check failure |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |

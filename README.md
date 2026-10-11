@@ -60,7 +60,7 @@ Trạng thái lệnh trên máy hiện tại:
 - `smoke`: validation field, quan hệ `SET NULL` và Reader published filter PASS; alias `./lab.sh test smoke` mới nhất `20261011T165604Z-220107` dưới HEAD `303152b`, run `20261011T162429Z-209848` được giữ làm checkpoint tích hợp trước đó.
 - `export-schema`: raw schema actor v2 bất biến; admin/editor/reader/anonymous lần lượt 14/14/6/0 operation, hash không đổi và được xác minh lại ở run `20261011T171009Z-223973` dưới HEAD `594785e`.
 - `test scenarios`: S1–S6 đều PASS ở run mới nhất `20261011T171054Z-225602` dưới HEAD `fdc750e`; S6 ghi đúng PATCH Reader `HTTP 403`, read-back Editor `HTTP 200` và dữ liệu không đổi. Run trung gian `20261011T171014Z-224445` được giữ nhưng không dùng làm bằng chứng cuối vì report ghi nhầm status read-back `200` cho PATCH; lỗi harness đã sửa ở `fdc750e`.
-- `test invariants`: baseline run `20261011T105236Z-105096` có 9 PASS và 1 failure aggregate; recheck mới nhất `20261011T162436Z-211214` dưới harness `fd28ef1` có 9 PASS, 2 failure (aggregate và contract probe), 0 blocked, exit `1`. Run trước `20261011T145918Z-189799`, `20261011T142618Z-178896`, `20261011T141918Z-175886` và `20261011T134626Z-160826` vẫn được giữ làm lịch sử. Các failure được giữ nguyên để làm evidence, không nới assertion.
+- `test invariants`: baseline run `20261011T105236Z-105096` có 9 PASS và 1 failure aggregate; recheck mới nhất `20261011T171247Z-226528` dưới harness `d4861f6` có 9 PASS, 2 failure (aggregate và contract probe), 0 blocked, exit `1`. Run trước `20261011T162436Z-211214`, `20261011T145918Z-189799`, `20261011T142618Z-178896`, `20261011T141918Z-175886` và `20261011T134626Z-160826` vẫn được giữ làm lịch sử. Các failure được giữ nguyên để làm evidence, không nới assertion.
 - `test raw`: campaign run `20261011T085034Z-76481` chọn đúng 10 operation trên seed `101,202,303`; lần lượt 59/65/51 case, restore PASS, runner exit 1 do `max_time`/check failure.
 - `test guided`: campaign run `20261011T095117Z-89079` dùng overlay riêng và stateful phase; lần lượt 5.770/5.864/5.894 case, restore PASS, runner exit 1 do `max_time`/check failure.
 - Pilot cuối dưới HEAD `39093de`: raw run `20261011T164716Z-216864` và guided run `20261011T164757Z-217585` đều test đủ 10/10 operation, restore PASS, nhưng exit `1` do `max_time`/check failure; raw sinh 47 case/14 unique failure, guided 125 case/26 unique failure. Đây là bằng chứng profile chạy độc lập, không phải campaign PASS.
@@ -132,8 +132,9 @@ Cả hai exit `1` đều được giữ nguyên để bảo toàn evidence; các
 Checkpoint tích hợp trước sửa report dưới commit `fd28ef1` vẫn được giữ: doctor
 `20261011T162426Z-209264`, smoke `20261011T162429Z-209848`, schema
 `20261011T162431Z-210275` và scenarios `20261011T162433Z-210740` đều PASS.
-Recheck schema `20261011T171009Z-223973` và scenarios
+Recheck schema `20261011T171009Z-223973`, scenarios
 `20261011T171054Z-225602` dưới các commit `594785e`/`fdc750e` xác nhận lại
-hash/inventory và sửa provenance status của S6. Invariants
-`20261011T162436Z-211214` vẫn `9 passed/2 failed/0 blocked`, exit `1`, đúng hai
-finding đã biết. Các run `1458xx` dưới `60be73d` được giữ làm checkpoint lịch sử.
+hash/inventory và sửa provenance status của S6. Invariants mới nhất
+`20261011T171247Z-226528` dưới `d4861f6` vẫn `9 passed/2 failed/0 blocked`, exit
+`1`, đúng hai finding đã biết. Các run `1458xx` dưới `60be73d` được giữ làm
+checkpoint lịch sử.

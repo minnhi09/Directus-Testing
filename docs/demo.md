@@ -46,7 +46,7 @@ dùng `./lab.sh reset`.
 | OpenAPI actor | `20261011T171009Z-223973` | admin/editor/reader/anonymous `14/14/6/0`, hash giữ nguyên; exit `0` |
 | Sáu scenario | `20261011T171054Z-225602` | S1–S6 PASS, `0 failed`, `0 blocked`; S6 PATCH `403`, read-back `200`; exit `0` |
 | Demo replay preflight | `20261011T161636Z-204795` … `20261011T161658Z-207292` | 7/7 replay PASS dưới harness `3a3dff5`, fixture `r06-k05-v2` |
-| Invariant | `20261011T162436Z-211214` | `9 passed`, `2 failed`, `0 blocked`; exit `1` đúng finding đã biết |
+| Invariant | `20261011T171247Z-226528` | `9 passed`, `2 failed`, `0 blocked`; exit `1` đúng finding đã biết |
 
 Các run trên được thực hiện dưới các harness SHA tương ứng trong metadata và được ghi tại
 [`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md)

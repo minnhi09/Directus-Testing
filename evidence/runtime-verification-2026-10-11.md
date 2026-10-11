@@ -118,6 +118,7 @@ run bên dưới. `dirty` chỉ do các file local/untracked có sẵn.
 | `20261011T171009Z-223973` | `./lab.sh export-schema` | PASS, exit `0`; actor `14/14/6/0`, bốn hash không đổi; harness `594785e` |
 | `20261011T171014Z-224445` | `./lab.sh test scenarios` | PASS, exit `0`, nhưng report trung gian ghi nhầm S6 actual `200` của read-back cho PATCH; không dùng làm bằng chứng cuối |
 | `20261011T171054Z-225602` | `./lab.sh test scenarios` | PASS, exit `0`; S1–S6 đạt, S6 PATCH `403`, read-back `200`, target không đổi; harness `fdc750e` |
+| `20261011T171247Z-226528` | `./lab.sh test invariants` | `9 passed`, `2 failed`, `0 blocked`; exit `1`, aggregate 500 và contract candidate giữ nguyên; harness `d4861f6` |
 
 Run `171014` phát hiện lỗi ghi nhận trong `scenario_reader_write`: biến status
 của PATCH bị ghi đè bởi GET read-back. Commit `fdc750e` lưu riêng

@@ -92,7 +92,7 @@ ghi `6 passed`, `0 failed`, `0 blocked`, exit `0`; S6 ghi đúng PATCH Reader
 `20261011T171014Z-224445` dưới `594785e` được giữ làm artifact lịch sử nhưng
 không dùng làm bằng chứng cuối vì report ghi nhầm status read-back `200` cho
 PATCH; commit `fdc750e` sửa việc lưu status trước read-back. Invariant cùng
-checkpoint `20261011T162436Z-211214` giữ `9 passed`, `2 failed`, `0 blocked`,
+checkpoint `20261011T171247Z-226528` giữ `9 passed`, `2 failed`, `0 blocked`,
 exit `1`; run `20261011T145912Z-189799` được giữ làm lịch sử.
 
 ## Positive operation acceptance
@@ -126,7 +126,7 @@ trạng thái `failed`, còn hai control trả 200. Recheck này nằm ở run
 và xác minh projection/private write theo hành vi thực tế. Nếu dựng máy không có
 license và operation vắng mặt, hai case vẫn ghi `blocked` và không gửi request cấm.
 
-Final invariant verification `20261011T162436Z-211214` dưới harness `fd28ef1`
+Final invariant verification `20261011T171247Z-226528` dưới harness `d4861f6`
 giữ nguyên `9 passed`, `2 failed`, `0 blocked`, exit `1`; không có regression
 mới. Run `20261011T145918Z-189799` dưới `60be73d` được giữ làm lịch sử.
 
