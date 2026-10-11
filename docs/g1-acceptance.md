@@ -30,6 +30,7 @@ replay.
 | Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
 | Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`, replay `20261011T105242Z-105524` | Đạt có finding |
+| Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, run `20261011T123728Z-131951` và `20261011T123735Z-132524` | Final interaction được ghi `reproduced_request_only`; full transition chain còn unresolved |
 | README, metadata và artifact không chứa secret | README, manifest, run metadata, static/secret scan | Đạt |
 | Review chéo thành viên | Không còn là gate G1 | Không áp dụng |
 | Dựng và xác minh trên máy thứ hai | Không còn là gate G1 | Không áp dụng |
