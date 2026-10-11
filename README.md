@@ -13,7 +13,7 @@ cp config/lab.env.example config/lab.env
 chmod 600 config/lab.env
 ```
 
-Mở `config/lab.env` và thay các giá trị `REPLACE_*` bằng giá trị cục bộ. File này bị Git ignore. Không ghi credential thật vào source, log hoặc report. Bốn khóa `EDITOR_*` và `READER_*` là credential cho API actor; chúng được seed/policy dùng sau khi admin bootstrap, không dùng quyền Studio. Máy hiện tại đã có credential cục bộ cho hai actor; giá trị không được ghi vào Git hay artefact.
+Mở `config/lab.env` và thay các giá trị `REPLACE_*` bằng giá trị cục bộ. File này bị Git ignore. Không ghi credential thật vào source, log hoặc report. Bốn khóa `EDITOR_*` và `READER_*` là credential cho API actor; chúng được seed/policy dùng sau khi admin bootstrap, không dùng quyền Studio. Máy hiện tại đã có credential cục bộ cho hai actor; giá trị không được ghi vào Git hay artefact. Nếu có license Directus hợp lệ, đặt khóa vào `LICENSE_KEY` trong `config/lab.env` (không commit), rồi chạy `./lab.sh up` để container nhận khóa và kiểm tra lại endpoint `/license`.
 
 `API_URL` mặc định là `http://127.0.0.1:8055`; `RUNNER_API_URL` là `http://directus:8055` trong network Compose. Chỉ đổi URL khi có quyết định baseline mới; API host vẫn phải bind loopback.
 
@@ -56,7 +56,7 @@ Trạng thái lệnh trên máy hiện tại:
 
 - `doctor`: đạt; Compose, digest, URL loopback và admin health đều được kiểm tra.
 - `up`: đạt; database và Directus healthy.
-- `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor; kết thúc lỗi có chủ đích khi license không cho permission filter của Reader.
+- `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor; kết thúc lỗi có chủ đích khi license không cho permission filter của Reader. Khi dùng Reader policy đầy đủ, `LICENSE_KEY` phải được cấu hình ngoài Git trước khi khởi động stack.
 - `smoke`: validation field và quan hệ `SET NULL` đạt; phần Reader bị chặn bởi cùng blocker.
 - `export-schema`: đạt; lưu schema raw bất biến cho `admin` (14 operation), `editor` (14), `reader` (2) và `anonymous` (0).
 - `test scenarios`: S1–S3 đạt; S4–S6 được ghi `blocked` vì operation article không xuất hiện trong schema Reader, nên harness không gửi request quyền bị cấm.

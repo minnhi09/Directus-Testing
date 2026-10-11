@@ -445,6 +445,19 @@ doctor() {
 			fi
 		done
 
+		if config_has_key LICENSE_KEY; then
+			case "$(config_value LICENSE_KEY)" in
+				''|REPLACE_*)
+					printf 'INFO license key is not configured; Reader custom rules may remain disabled\n'
+					;;
+				*)
+					printf 'OK   license key configured (value redacted)\n'
+					;;
+			esac
+		else
+			printf 'INFO license key config key missing; Directus will use its default entitlement\n'
+		fi
+
 		for key in DB_PASSWORD DIRECTUS_KEY DIRECTUS_SECRET ADMIN_PASSWORD; do
 			case "$(config_value "$key")" in
 				''|REPLACE_*)

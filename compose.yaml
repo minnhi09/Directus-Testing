@@ -36,6 +36,8 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in config/lab.env}
       ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL must be set in config/lab.env}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD must be set in config/lab.env}
+      # Optional local Directus license; the real value stays in config/lab.env.
+      LICENSE_KEY: ${LICENSE_KEY:-}
       ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-2h}
       PUBLIC_URL: http://127.0.0.1:8055
       TELEMETRY: "false"
