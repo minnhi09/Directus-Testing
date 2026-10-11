@@ -33,7 +33,7 @@ Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào h
 | `reader-visibility` | Reader đọc published và thử projection có `internal_notes` | Reader schema thiếu operation |
 | `reader-write` | Reader PATCH target published, Editor kiểm tra dữ liệu không đổi | Reader schema thiếu PATCH |
 
-Các replay pass mới nhất: `editor-crud` ở run `20261011T040109Z-19973`, `query-fixture` ở `20261011T035618Z-14109`, `auth-invalid-token` ở `20261011T035623Z-14472`, `anonymous-denied` ở `20261011T035408Z-12774` và Schemathesis case `ralwaW` ở `20261011T040317Z-21776`. Đây là bằng chứng local trên một baseline, không phải kiểm tra chéo máy thứ hai.
+Các replay pass mới nhất: `editor-crud` ở run `20261011T040109Z-19973`, `query-fixture` ở `20261011T035618Z-14109`, `auth-invalid-token` ở `20261011T035623Z-14472`, `anonymous-denied` ở `20261011T035408Z-12774` và Schemathesis case `ralwaW` ở run `20261011T040346Z-22406`. Đây là bằng chứng local trên một baseline, không phải kiểm tra chéo máy thứ hai.
 
 ## Artefact và phân loại
 
