@@ -102,11 +102,11 @@ case không có check failure, làm mọi status replay bị coi là `reproduced
 `a713481` sửa fallback này: status nguồn được dùng làm expected và được lưu riêng
 ở `source_status`; không sửa artifact cũ hoặc nới assertion.
 
-- `tFjhQT`, run `20261011T132137Z-149741`: chain `D3mEEJ → tFjhQT` được replay,
+- `tFjhQT`, run `20261011T132550Z-151921` dưới HEAD `916152e`: chain `D3mEEJ → tFjhQT` được replay,
   source/expected `200`, actual `403`, restore PASS, status `mismatch`, exit `1`.
   Đây là sai khác precondition/stateful cần triage, không phải product defect đã
   xác nhận.
-- `Q8K5Nh`, run `20261011T132145Z-150356`: source/expected/actual đều `403`,
+- `Q8K5Nh`, run `20261011T132604Z-152556` dưới cùng HEAD: source/expected/actual đều `403`,
   restore PASS, status `reproduced`, exit `0`.
 
 Run `20261011T131957Z-148748` trước commit sửa vẫn được giữ như lịch sử; report

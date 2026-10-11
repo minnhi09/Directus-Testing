@@ -178,3 +178,10 @@ ghi thêm `source_status` trong reproducer.
 
 Artifact trước sửa `20261011T131957Z-148748` được giữ nguyên để truy vết nhưng
 không dùng làm bằng chứng PASS cuối cho `tFjhQT`.
+
+Recheck dưới HEAD `916152e` giữ nguyên kết quả: `tFjhQT` ở run
+`20261011T132550Z-151921` là `200/200 → 403`, full-chain mismatch, restore PASS,
+exit `1`; `Q8K5Nh` ở run `20261011T132604Z-152556` là `403/403 → 403`,
+reproduced, restore PASS, exit `0`. Metadata của hai run ghi đúng harness SHA
+`916152ec983559303ec6c69dec07456ba5c5f25f`; working tree dirty chỉ vì các file
+untracked đã có trước, không phải thay đổi code chưa commit.

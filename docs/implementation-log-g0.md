@@ -184,3 +184,7 @@ thái để làm đẹp.
   `reproduced`, restore PASS, exit `0`.
 - Kiểm tra sau commit gồm `bash -n`, ShellCheck, diff check và hai replay; không
   chạy lại campaign dài vì thay đổi chỉ ảnh hưởng replay oracle.
+- Sau commit tài liệu `916152e`, đã recheck dưới HEAD hiện hành:
+  `20261011T132550Z-151921` giữ `tFjhQT` mismatch `200→403`, còn
+  `20261011T132604Z-152556` giữ `Q8K5Nh` reproduced `403→403`; cả hai restore
+  PASS và metadata ghi harness SHA `916152e` đầy đủ.

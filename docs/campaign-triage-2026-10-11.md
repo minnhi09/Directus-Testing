@@ -82,7 +82,9 @@ reproducer. Run `20261011T132137Z-149741` của `tFjhQT` ghi nguồn/expected `2
 nhưng replay `403`, nên giữ `mismatch`/exit `1` dù parent chain và restore đều
 đạt. Đây là bằng chứng precondition/stateful chưa tái lập được, không phải lý do
 đổi kết luận thành product defect. Regression `Q8K5Nh` ở run
-`20261011T132145Z-150356` giữ `403→403`, `reproduced`, restore PASS và exit `0`.
+`20261011T132604Z-152556` dưới HEAD `916152e` giữ `403→403`, `reproduced`,
+restore PASS và exit `0`; run `20261011T132550Z-151921` của `tFjhQT` cũng là
+recheck dưới HEAD hiện hành và giữ mismatch.
 
 Đối chiếu source release `4f77933bf9551cac6b289576078783e189b8f4e3` đã làm rõ
 thêm ba nhóm contract: POST object/array, export `csv` và DELETE `204` đều phù

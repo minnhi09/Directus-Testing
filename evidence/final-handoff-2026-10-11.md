@@ -18,7 +18,7 @@ candidate được giữ nguyên để triage.
 | Hạng mục | Run | Kết quả thực tế |
 |---|---|---|
 | Doctor | `20261011T131803Z-147694` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true` |
-| Replay status oracle | `a713481`; `20261011T132137Z-149741`, `20261011T132145Z-150356` | Positive `tFjhQT` không còn false-positive (`200→403` là mismatch); `Q8K5Nh` `403→403` reproduced; restore PASS |
+| Replay status oracle | `a713481`; final recheck dưới HEAD `916152e`: `20261011T132550Z-151921`, `20261011T132604Z-152556` | Positive `tFjhQT` không còn false-positive (`200→403` là mismatch); `Q8K5Nh` `403→403` reproduced; restore PASS |
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
 | Invariant recheck | `20261011T130457Z-141013` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
@@ -38,7 +38,7 @@ hoặc response nhạy cảm.
 | POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
-| Stateful replay | `baaee4b` + oracle fix `a713481`, run `20261011T131321Z-144935`, `20261011T131350Z-145631`, `20261011T132137Z-149741` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
+| Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 
 Contract probe được triển khai ở commit `7018107` và tài liệu hóa ở commit

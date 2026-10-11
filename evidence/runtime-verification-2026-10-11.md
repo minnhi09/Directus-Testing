@@ -270,3 +270,13 @@ Metadata hai run ghi harness SHA `139b3176...` và working tree dirty vì patch
 đang được kiểm thử trước commit `a713481`; code thay đổi tương ứng đã được
 commit sau đó. Run `20261011T131957Z-148748` trước sửa được giữ nhưng không dùng
 làm bằng chứng PASS cuối cho `tFjhQT`.
+
+Recheck cuối dưới HEAD `916152e`:
+
+| Run | Lệnh | Kết quả thực tế |
+|---|---|---|
+| `20261011T132550Z-151921` | `./lab.sh replay tFjhQT` | `source_status=200`, `expected_status=200`, actual `403`, full-chain `D3mEEJ → tFjhQT`, `mismatch`, restore PASS, exit `1` |
+| `20261011T132604Z-152556` | `./lab.sh replay Q8K5Nh` | `source_status=403`, `expected_status=403`, actual `403`, `reproduced`, restore PASS, exit `0` |
+
+Hai run đều ghi `harness_sha=916152ec983559303ec6c69dec07456ba5c5f25f`; working
+tree dirty do bốn file untracked có trước, không do thay đổi tracked chưa commit.
