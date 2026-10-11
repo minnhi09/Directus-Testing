@@ -218,6 +218,7 @@ Run doctor mới nhất dưới HEAD `a153e99`:
 | `20261011T142455Z-178114` | `./lab.sh test scenarios` dưới HEAD `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; Reader draft/private/write oracle và Editor CRUD/query đều đạt; exit `0` |
 | `20261011T142618Z-178896` | `./lab.sh test invariants` dưới HEAD `d186191` | `9 passed`, `2 failed`, `0 blocked`; aggregate unknown shape `500`, controls `200`, contract probe `4` candidate; exit `1` được giữ |
 | `20261011T142815Z-179693` | `./lab.sh export-schema` dưới HEAD `de078a2` | PASS; fixture `r06-k05-v2`, admin/editor/reader/anonymous `14/14/6/0` operation, hash khớp manifest, exit `0` |
+| `20261011T142942Z-180458` | `./lab.sh smoke` dưới HEAD `0f7e887` | PASS; field validation `400`, relation `SET NULL`, actor login, category read và Reader published filter; exit `0` |
 
 Năm run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
 không chạy lại campaign raw/guided dài. Các failure invariant/campaign đã biết

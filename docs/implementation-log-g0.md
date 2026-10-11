@@ -399,3 +399,12 @@ thái để làm đẹp.
   khớp manifest. Raw schema không bị sửa.
 - Đây là schema export recheck ngắn, không phải campaign Schemathesis mới;
   các failure invariant/raw/guided vẫn giữ nguyên.
+
+## Smoke recheck trên HEAD hiện tại — 2026-10-11
+
+- `./lab.sh smoke` ở run `20261011T142942Z-180458`, dưới harness
+  `0f7e8873c87f40eea5c738b176b4676cf09763d4`, PASS, exit `0`.
+- Field validation trả `400` đúng oracle; quan hệ category khi xóa giữ
+  `SET NULL`; actor login, category read và Reader published filter đều PASS.
+- Đây là smoke recheck ngắn trên fixture `r06-k05-v2`, không thay đổi các
+  finding invariant/raw/guided.

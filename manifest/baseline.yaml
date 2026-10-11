@@ -165,7 +165,8 @@ validation:
   current_reset: passed_run_20261011T084813Z-71356_project_volume_verified
   current_up: passed_run_20261011T084821Z-71845
   current_fixture_seed_v2: passed_run_20261011T084845Z-72361
-  current_smoke_v2: passed_run_20261011T085023Z-75556
+  current_smoke_v2: passed_run_20261011T142942Z-180458_harness_0f7e887
+  current_smoke_v2_harness_sha: 0f7e8873c87f40eea5c738b176b4676cf09763d4
   current_schema_export_v2: passed_run_20261011T142815Z-179693_harness_de078a2
   current_schema_export_v2_harness_sha: de078a2bc9ab7a16c0c5ebb23aa46b8708e16d98
   current_scenarios_v2: passed_6_of_6_run_20261011T105231Z-104612
