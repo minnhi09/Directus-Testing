@@ -67,6 +67,15 @@ Các case guided đại diện được replay sau pilot:
   `TypeError: fields is not iterable`. Đây là candidate cần đối chiếu upstream,
   không được ghi nhận tự động thành product defect.
 
+Triage bổ sung trên campaign v2 được ghi đầy đủ tại
+[`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).
+Các case `Q8K5Nh`, `lwZKEo`, `3Ble8Q`, `vx21yF`, `Z6K7ww` và request cuối của
+`CkqaOB` có replay request cụ thể với restore PASS. `VbURdO` và `pM4r4g` giữ
+`mismatch`/unresolved vì event stateful có `parent_id` nhưng replay hiện tại chỉ
+gửi interaction cuối, chưa tái dựng toàn bộ transition chain. Do đó status
+`reproduced` của một request cuối stateful không được diễn giải thành xác nhận
+reproducer độc lập của toàn bộ chuỗi.
+
 Checkpoint Reader v2 được replay bằng `reader-visibility` ở run
 `20261011T084935Z-74564` và full invariant `20261011T105236Z-105096`: request
 projection hợp lệ trả sáu published fixture; request thêm `internal_notes` bị

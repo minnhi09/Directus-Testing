@@ -46,6 +46,24 @@ một mẫu: response của Directus là một item object nhưng response schem
 cho status `200` mô tả `data` là array. Đây là lỗi/thiếu sót hợp đồng cần đối
 chiếu với semantics POST object-vs-array; chưa gọi là lỗi sản phẩm.
 
+## Triage v2 trên campaign hiện hành
+
+Sau campaign v2 đã chạy license thật, tám case đại diện được replay tuần tự để
+phân loại sâu hơn. Bảng tổng hợp và run ID đầy đủ nằm tại
+[`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).
+Raw có 121 `UndefinedStatusCode`, 6 `UnsupportedMethodResponse`, 5
+`RejectedPositiveData` và 1 `UndefinedContentType`; guided có 222
+`UndefinedStatusCode`, 45 `RejectedPositiveData`, 35 `JsonSchemaError`, 35
+`ServerError`, 22 `UndefinedContentType`, 10 `AcceptedNegativeData` và 6
+`UnsupportedMethodResponse`. Đây là check occurrence, không phải defect count.
+
+`Q8K5Nh`, `3Ble8Q`, `vx21yF`, `Z6K7ww`, `lwZKEo` và request cuối của `CkqaOB`
+đều có quan sát replay cụ thể, restore PASS; `VbURdO` và `pM4r4g` mismatch do
+replay trực tiếp không tái dựng parent transition/quyền của stateful case.
+`CkqaOB` vì vậy vẫn là product robustness candidate, chưa phải defect đã xác
+nhận. Replay harness hiện chỉ gửi interaction cuối của stateful case, nên không
+được gọi là tái lập đầy đủ chuỗi state.
+
 ## Phân loại theo nhóm nguyên nhân
 
 | Nhóm | Raw | Guided | Đánh giá hiện tại |

@@ -62,6 +62,12 @@ trạng thái trung thực do check failure và hết budget; không xem số ca
 operation coverage là defect count. Raw/guided sử dụng cùng 10 operation đã
 được allowlist, còn guided chỉ sửa bản overlay riêng.
 
+Triage đại diện sau campaign (kèm phân loại schema/precondition, stateful
+replay mismatch và candidate HTTP 500) được lưu tại
+[`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).
+Hai stateful mismatch trong báo cáo không làm campaign thành PASS; chúng là
+giới hạn tái dựng chuỗi cần giữ ở trạng thái chưa kết luận.
+
 ## Sáu scenario demo
 
 | ID | Precondition | Expected/oracle | Kết quả baseline |

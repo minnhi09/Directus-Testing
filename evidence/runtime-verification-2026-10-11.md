@@ -210,3 +210,24 @@ phân loại `schema omission + product robustness candidate`, chưa xác nhận
 product defect. Theo [`docs/g1-acceptance.md`](../docs/g1-acceptance.md), G1 đạt
 baseline kỹ thuật với findings; raw/guided `failed_or_incomplete` và aggregate
 HTTP 500 tiếp tục được giữ làm backlog triage.
+
+### Triage replay v2 sau campaign
+
+Tám replay đại diện được chạy tuần tự sau checkpoint trên. Chi tiết request,
+phân loại và giới hạn stateful nằm tại
+[`evidence/failure-triage-v2-2026-10-11.md`](failure-triage-v2-2026-10-11.md).
+
+| Case | Run | Quan sát | Trạng thái |
+|---|---|---|---|
+| `Q8K5Nh` | `20261011T122512Z-124267` | `403` do query chạm collection không được cấp quyền | replay request, restore PASS |
+| `VbURdO` | `20261011T122519Z-124858` | campaign `204`, direct replay `403` | mismatch, unresolved |
+| `lwZKEo` | `20261011T122522Z-125422` | `TRACE` trả `404`, check kỳ vọng `405` | replay request, restore PASS |
+| `3Ble8Q` | `20261011T122526Z-125993` | invalid query trả `400` | replay request, restore PASS |
+| `vx21yF` | `20261011T122531Z-126570` | export trả `200 text/csv` ngoài schema JSON | replay request, restore PASS |
+| `Z6K7ww` | `20261011T122536Z-127156` | POST trả object ngoài schema array | replay request, restore PASS |
+| `CkqaOB` | `20261011T122539Z-127722` | final request stateful tái hiện `500` | candidate; chưa đủ full-chain replay |
+| `pM4r4g` | `20261011T122542Z-128284` | campaign `200`, direct replay `403` | mismatch, unresolved |
+
+Harness replay hiện gửi interaction cuối của stateful case, không tự khôi phục
+parent transition chain. Vì vậy các status trên được báo đúng phạm vi; không
+được dùng làm bằng chứng đã tái lập đầy đủ stateful workflow.
