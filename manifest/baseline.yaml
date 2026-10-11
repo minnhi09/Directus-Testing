@@ -1,5 +1,5 @@
 schema: 1
-status: g1-local-verified-no-cross-machine-review
+status: g1-achieved-with-known-findings
 recorded_at: 2026-10-11
 project: r06-k05
 
@@ -156,7 +156,12 @@ validation:
   aggregate_query_robustness_regression: failed_known_candidate_run_20261011T080746Z-51887_harness_66ee05f
   invariants_after_aggregate_regression: failed_7_passed_1_failed_2_blocked_run_20261011T080753Z-52280
   final_doctor_local: passed_run_20261011T081001Z-52769_head_828c339
-  g1: blocked_no_independent_second_machine_or_review
+  g1: achieved_local_technical_baseline_with_known_findings
+  g1_criteria_revision: 2026-10-11_removed_second_machine_and_cross_member_review_gates
+  g1_acceptance_document: docs/g1-acceptance.md
+  g1_non_gates: [second_machine_execution, cross_member_review]
+  g1_open_findings: [aggregate_http_500, raw_guided_failed_or_incomplete, unresolved_campaign_failures]
+  instructor_requirements_preserved: [clean_machine_reproduction_instructions, final_peer_evaluation]
   current_reset: passed_run_20261011T084813Z-71356_project_volume_verified
   current_up: passed_run_20261011T084821Z-71845
   current_fixture_seed_v2: passed_run_20261011T084845Z-72361

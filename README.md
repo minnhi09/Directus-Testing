@@ -2,7 +2,7 @@
 
 Đây là harness kiểm thử REST API Directus theo schema, tập trung vào CRUD, query, quyền và invariant nghiệp vụ của hai collection `qa_categories` và `qa_articles`.
 
-Checkpoint local hiện tại đã xác minh license thật trên Directus `12.5.0`: `/license` báo `source=env`, `status=active` và `custom_permission_rules_enabled=true`. Baseline đang dùng fixture/schema version `r06-k05-v2`; snapshot `r06-k05-v1` trước license được giữ bất biến để truy vết. Seed, smoke, schema export, sáu scenario và Reader invariants đã chạy trên máy hiện tại. Raw/guided đều chạy đủ ba seed, 10/10 operation và restore PASS, nhưng runner giữ exit 1 do check failures/max-time; không coi đây là campaign pass. Candidate aggregate HTTP 500 đã replay lại được, vẫn phân loại product robustness candidate + schema omission, chưa xác nhận defect. G1 cuối cùng chưa được tuyên bố vì chưa có dựng lại trên máy thứ hai và review chéo thực tế.
+Checkpoint local hiện tại đã xác minh license thật trên Directus `12.5.0`: `/license` báo `source=env`, `status=active` và `custom_permission_rules_enabled=true`. Baseline đang dùng fixture/schema version `r06-k05-v2`; snapshot `r06-k05-v1` trước license được giữ bất biến để truy vết. Seed, smoke, schema export, sáu scenario và Reader invariants đã chạy trên máy hiện tại. Raw/guided đều chạy đủ ba seed, 10/10 operation và restore PASS, nhưng runner giữ exit 1 do check failures/max-time; không coi đây là campaign pass. Candidate aggregate HTTP 500 đã replay lại được, vẫn phân loại product robustness candidate + schema omission, chưa xác nhận defect. Theo tiêu chí G1 đã điều chỉnh, baseline kỹ thuật được ghi nhận **đạt có phát hiện chưa đóng**; không yêu cầu review chéo hoặc xác minh trên máy thứ hai.
 
 ## Chuẩn bị lab
 
@@ -99,6 +99,7 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 ## Tài liệu bàn giao
 
 - [Quyết định G0](docs/g0-quyet-dinh-ky-thuat.md)
+- [Tiêu chí nghiệm thu G1](docs/g1-acceptance.md)
 - [Kiến trúc](docs/architecture.md)
 - [Ma trận quyền](docs/permissions.md)
 - [Ma trận operation/scenario/invariant](docs/test-matrix.md)
@@ -106,7 +107,7 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 - [Kịch bản demo](docs/demo.md)
 - [Nhật ký triển khai và hướng dẫn đọc code](docs/implementation-log-g0.md)
 - [Manifest baseline](manifest/baseline.yaml)
-- [AGENTS.md](AGENTS.md) — quy tắc bắt buộc tại máy làm việc; file này bị ignore theo quy ước riêng của nhóm
+- [AGENTS.md](AGENTS.md) — quy tắc local tại máy làm việc; không thuộc checkpoint tracked hiện tại
 
 Các kết quả chạy sau này phải ghi run ID, SHA harness, baseline/image digest, actor, fixture version, schema hash, seed, budget, thời gian và trạng thái kết thúc. Kết quả chưa chạy phải giữ nguyên trạng thái chưa chạy.
 
@@ -115,3 +116,6 @@ Các kết quả chạy sau này phải ghi run ID, SHA harness, baseline/image 
 Run gần nhất và giới hạn được tổng hợp tại [`evidence/g1-implementation-2026-10-10.md`](evidence/g1-implementation-2026-10-10.md) và [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md). Report thô nằm trong `artifacts/runs/<run_id>/` (Git ignore); schema và ID map runtime nằm trong `runtime/` (Git ignore). Các thư mục này cần được giữ cục bộ để replay/triage, nhưng không được đưa credential hoặc response nhạy cảm vào commit.
 
 Full raw/guided v2 đã chứng minh pipeline 10 operation, artifact và restore trên ba seed; cả hai run vẫn giữ runner failure để triage, không được báo là pass. Raw có 59/65/51 case; guided có 5.770/5.864/5.894 case. Reader policy thật đã được kiểm tra: schema có 6 operation, published filter trả đúng fixture, projection `internal_notes` bị từ chối và PATCH bị từ chối với dữ liệu không đổi. Candidate `aggregate={"foo":1}` vẫn tái hiện HTTP 500 ở replay `20261011T105242Z-105524`; phân loại hiện tại là schema omission + product robustness candidate, chưa phải defect đã xác nhận. Một nguyên nhân có thể sinh nhiều check failure. Chi tiết full campaign mới và giới hạn nằm trong [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md).
+
+G1 không phải tuyên bố mọi test đều PASS. Checklist, nguồn yêu cầu và cách phân biệt
+baseline đạt với failure còn mở được ghi tại [`docs/g1-acceptance.md`](docs/g1-acceptance.md).

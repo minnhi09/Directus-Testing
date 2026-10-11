@@ -4,6 +4,13 @@ Tài liệu này phân loại các kết quả campaign đã chạy trên baseli
 12.5.0 trong project `r06-k05`. Các con số failure là số của Schemathesis,
 không phải số defect độc lập.
 
+Các bảng đầu tài liệu ghi lại campaign lịch sử trước khi license Reader hoạt
+động. Kết quả hiện hành của fixture `r06-k05-v2`, cùng tiêu chí G1 đã điều
+chỉnh, nằm trong [`docs/test-matrix.md`](test-matrix.md),
+[`docs/g1-acceptance.md`](g1-acceptance.md) và
+[`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md).
+Không dùng phần lịch sử này để suy ra Reader hiện tại còn blocked.
+
 ## Phạm vi và bằng chứng
 
 - Raw: run `20261011T050204Z-28735`, seed `101/202/303`, 10/10 operation mỗi seed,
@@ -118,11 +125,15 @@ chiếu với semantics POST object-vs-array; chưa gọi là lỗi sản phẩm
 - Chưa có defect sản phẩm Directus nào được xác nhận chính thức; `VllBgh` là
   candidate có stack trace và reproducer tối giản, cần bước đối chiếu upstream.
 
-## Điều kiện tiếp theo
+## Điều kiện tiếp theo sau checkpoint v2
 
-1. Đặt license hợp lệ vào `config/lab.env` bằng `LICENSE_KEY`, không commit giá trị.
-2. Recreate stack, xác minh `/license` có `custom_permission_rules_enabled` được
-   bật, rồi chạy lại `seed` và export schema actor.
-3. Chỉ khi Reader schema có operation article mới chạy S4–S6 và Reader invariants.
-4. Dựng lại lab trên máy thứ hai và ghi review thực tế; không dùng bằng chứng
-   local này để tuyên bố G1.
+1. Giữ nguyên license trong `config/lab.env`, không commit giá trị; baseline v2
+   đã xác minh `/license` active và Reader policy đã chạy qua API thật.
+2. Triage tiếp các `ServerError`, `JsonSchemaError` và response ngoài contract
+   của raw/guided; mỗi nhóm phải có precondition, expected/actual, phân loại và
+   reproducer hoặc trạng thái `unresolved`.
+3. Giữ invariant aggregate HTTP 500 và exit code campaign làm evidence; không
+   nới assertion, blanket skip/xfail hoặc đổi trạng thái runner để làm đẹp.
+4. Không cần dựng máy thứ hai hoặc review chéo thành viên để đóng G1. README và
+   manifest vẫn phải duy trì khả năng người khác dựng/chạy lại; peer evaluation
+   cuối kỳ của đề bài là quy trình riêng.

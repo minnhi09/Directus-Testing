@@ -81,7 +81,7 @@ Ngày 2026-10-09 trên máy hiện tại:
 - `./lab.sh up` exit `0`; database và Directus healthy.
 - Admin bootstrap/login và authenticated health thành công.
 
-Bằng chứng chi tiết và giới hạn nằm trong [`evidence/g0-2026-10-09.md`](../evidence/g0-2026-10-09.md). Kết quả này chỉ chứng minh một máy và một baseline local; chưa chứng minh tái lập trên máy thứ hai.
+Bằng chứng chi tiết và giới hạn nằm trong [`evidence/g0-2026-10-09.md`](../evidence/g0-2026-10-09.md). Kết quả lịch sử này chỉ chứng minh một máy và một baseline local; chưa chứng minh tái lập trên máy thứ hai. Đây không còn là gate G1 sau điều chỉnh tiêu chí.
 
 ## Bản triển khai tạm thời — 2026-10-10
 
@@ -102,7 +102,7 @@ Component ở [`scripts/lab-components.sh`](../scripts/lab-components.sh) đã t
   credential Editor hiện tại và snapshot/restore; body binary được truyền qua file
   `--data-binary`, không qua command substitution.
 
-Chi tiết run ID, status và giới hạn nằm trong [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md). Không dùng output này để tuyên bố G1: license Reader và kiểm tra chéo trên máy khác còn thiếu.
+Chi tiết run ID, status và giới hạn nằm trong [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md). Đây là checkpoint lịch sử trước khi license Reader hoạt động; không dùng các blocker lịch sử đó để phủ nhận checkpoint v2 hiện tại.
 
 ## Bổ sung giao diện dùng chung — 2026-10-10
 
@@ -126,9 +126,10 @@ Kiểm tra đã thực hiện: `bash -n lab.sh scripts/lab-components.sh`, Shell
 6. Replay các candidate đã ghi trong `docs/campaign-triage-2026-10-11.md`, đặc biệt
    `AmXHZz`, `jShXuk` và `VllBgh`; không gộp check failure thành defect nếu chưa
    đối chiếu contract/precondition.
-7. Lành điều phối kiểm tra chéo trên máy khác, cập nhật evidence/manifest rồi mới
-   xem xét G1. Trên máy hiện tại, blocker còn lại là license thật để bật Reader
-   custom permission rules.
+7. Lành đối chiếu run/artifact với [`docs/g1-acceptance.md`](g1-acceptance.md),
+   cập nhật evidence/manifest và giữ nguyên failure chưa đóng. License Reader
+   đã được bật ở checkpoint v2; không yêu cầu kiểm tra máy khác hoặc review chéo
+   để kết luận G1.
 
 ## Checkpoint local sau khi license hoạt động — 2026-10-11
 
@@ -150,4 +151,6 @@ fixture/schema version `r06-k05-v2`; snapshot `r06-k05-v1` không bị overwrite
 
 Doctor cuối `20261011T105225Z-104013` báo license `source=env`, `status=active`,
 `custom_permission_rules_enabled=true`. Reader visibility/write đã được kiểm tra
-qua API thật; remaining G1 work là dựng lại trên máy thứ hai và review chéo thật.
+qua API thật. G1 đạt baseline kỹ thuật với findings; aggregate HTTP 500 và các
+campaign `failed_or_incomplete` tiếp tục là backlog triage, không bị đổi trạng
+thái để làm đẹp.

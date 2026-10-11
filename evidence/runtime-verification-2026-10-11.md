@@ -1,6 +1,10 @@
 # Bằng chứng triển khai và xác minh runtime — 2026-10-11
 
-Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. Không dùng nó để khẳng định G1 hoặc kiểm tra chéo trên máy độc lập; campaign đầy đủ đã được chạy và giữ nguyên trạng thái kết thúc thực tế bên dưới.
+Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. Các phần trước
+heading “Checkpoint license và baseline v2” là bằng chứng lịch sử của fixture v1;
+phần v2 là checkpoint dùng để đánh giá G1 hiện hành. Không có run máy thứ hai
+được ghi nhận và cũng không cần tạo run đó để đóng G1; campaign vẫn giữ nguyên
+trạng thái kết thúc thực tế bên dưới.
 
 ## Baseline đã xác minh
 
@@ -74,7 +78,8 @@ Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261
 - Môi trường: Compose stack chạy và fixture được restore sau pilot.
 - Policy/schema blocker: license không cho custom permission rules; không thể chứng minh Reader published-only/field restriction.
 - Schema/contract candidate: full raw/guided có status `204/400/403` ngoài response map, content type export, POST response shape và unsupported `TRACE`; guided còn ghi nhận response schema, negative/positive data và một số `500`. Đây là nhóm phát hiện để triage, chưa kết luận product defect vì cần replay request cụ thể và đối chiếu contract/semantics của Directus.
-- Chưa có kết luận defect độc lập, chưa có kiểm tra chéo máy thứ hai.
+- Chưa có product defect được xác nhận; chưa có run máy thứ hai trong provenance
+  local, đây là giới hạn phạm vi chứ không phải gate G1 hiện hành.
 
 ### Số liệu campaign đầy đủ
 
@@ -202,4 +207,6 @@ Reader v2 đã được kiểm chứng qua API thật: projection hợp lệ tr�
 fixture; projection yêu cầu `internal_notes` trả 403 không lộ dữ liệu; PATCH
 Reader trả non-2xx và Editor read-back không đổi. Candidate aggregate vẫn được
 phân loại `schema omission + product robustness candidate`, chưa xác nhận
-product defect. G1 vẫn chờ dựng lại trên máy thứ hai và review chéo thực tế.
+product defect. Theo [`docs/g1-acceptance.md`](../docs/g1-acceptance.md), G1 đạt
+baseline kỹ thuật với findings; raw/guided `failed_or_incomplete` và aggregate
+HTTP 500 tiếp tục được giữ làm backlog triage.

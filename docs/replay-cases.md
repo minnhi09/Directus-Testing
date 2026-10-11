@@ -41,7 +41,8 @@ các replay pass trước đó gồm `editor-crud` ở run `20261011T040109Z-199
 `query-fixture` ở `20261011T035618Z-14109`, `auth-invalid-token` ở
 `20261011T035623Z-14472`, `anonymous-denied` ở `20261011T035408Z-12774` và
 Schemathesis case `ralwaW` ở run `20261011T040346Z-22406`. Đây là bằng chứng
-local trên một baseline, không phải kiểm tra chéo máy thứ hai.
+replay local trên một baseline; không suy diễn thành xác nhận upstream hoặc
+product defect nếu chưa đủ precondition.
 
 `aggregate-query-robustness` là regression probe deterministic được version hóa
 trong `scripts/invariants.py`, nên clone sạch vẫn replay được mà không cần

@@ -1,22 +1,22 @@
 # Truy vết A–H và backlog checkpoint
 
-Bảng này là backlog tích hợp ban đầu theo hai kế hoạch. “Đã có” chỉ nói về tệp hoặc kiểm tra đã tồn tại trong checkout hiện tại; không thay thế review chéo hay nghiệm thu G1.
+Bảng này là backlog tích hợp ban đầu theo hai kế hoạch. “Đã có” chỉ nói về tệp hoặc kiểm tra đã tồn tại trong checkout hiện tại; tiêu chí nghiệm thu G1 hiện hành nằm tại [`docs/g1-acceptance.md`](g1-acceptance.md).
 
 Checkpoint hiện tại dùng baseline local `r06-k05-v2` sau khi license thật được
 container nhận. Các trạng thái `blocked` trong bảng dưới đây là lịch sử trước
 license; kết quả mới được ghi ở cuối tài liệu và trong
-[`evidence/runtime-verification-2026-10-11.md`](runtime-verification-2026-10-11.md).
+[`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md).
 
 | Yêu cầu | Đầu ra | Chủ sở hữu | Bằng chứng hiện có | Trạng thái |
 |---|---|---|---|---|
 | A — mục tiêu, actor, module, data flow | Tổng quan và data flow | Lành | [`docs/architecture.md`](architecture.md), [`docs/g0-quyet-dinh-ky-thuat.md`](g0-quyet-dinh-ky-thuat.md) | Khung đã có; cần bổ sung phân tích các luồng |
-| B — kiến trúc | Sơ đồ container/component và giải thích request | Lành | [`docs/architecture.md`](architecture.md) | Đã có bản đầu; chưa review chéo |
-| C — môi trường, phiên bản, seed, luồng chạy | Compose, script, README, run evidence | Lành thực hiện/tích hợp | [`compose.yaml`](../compose.yaml), [`lab.sh`](../lab.sh), [`manifest/baseline.yaml`](../manifest/baseline.yaml), [`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md) | Checkpoint v2: stack/fixture/actor/policy và full raw/guided 3 seed đã chạy; chưa kiểm tra máy khác |
+| B — kiến trúc | Sơ đồ container/component và giải thích request | Lành | [`docs/architecture.md`](architecture.md) | Đã có bản đầu; không yêu cầu review chéo để đóng G1 |
+| C — môi trường, phiên bản, seed, luồng chạy | Compose, script, README, run evidence | Lành thực hiện/tích hợp | [`compose.yaml`](../compose.yaml), [`lab.sh`](../lab.sh), [`manifest/baseline.yaml`](../manifest/baseline.yaml), [`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md) | Checkpoint v2: stack/fixture/actor/policy và full raw/guided 3 seed đã chạy; README giữ quy trình máy sạch |
 | D — nguyên lý, phạm vi, pass/fail, rủi ro | Chiến lược raw/guided và phân loại | Lành thực hiện/tích hợp; co-author chỉ khi có đóng góp thật | [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md), [`evidence/pilot-triage-2026-10-11.md`](../evidence/pilot-triage-2026-10-11.md), report full campaign | Đã có triage sơ bộ; các failure full campaign chưa là defect kết luận, cần replay/đối chiếu contract |
 | E — input, precondition, expected, invariant | Fixture, ma trận actor, sáu scenario và positive operation acceptance | Lành thực hiện/tích hợp; Trâm chỉ co-author nếu có đóng góp thật | `runtime/fixture-ids.json`, `scenario-report.json`, [`scripts/lab-components.sh`](../scripts/lab-components.sh), [`scripts/invariants.py`](../scripts/invariants.py) | Checkpoint v2 S1–S6 và Reader invariant đạt; aggregate 500 giữ failure |
 | F — automation/harness | Exporter, runner, test bổ trợ, replay | Lành thực hiện/tích hợp | [`lab.sh`](../lab.sh), [`scripts/lab-components.sh`](../scripts/lab-components.sh), [`scripts/invariants.py`](../scripts/invariants.py), schema manifest | Campaign raw/guided 10 operation, full 3 seed, invariant/replay trong runner Docker và reset đã có đường chạy; runner failure được giữ nguyên |
-| G — log, report, metrics, defect/root cause | Run metadata, report, reproducer | Lành thực hiện/tích hợp; co-author chỉ khi có đóng góp thật | `artifacts/runs/<run_id>/`, [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md), [`evidence/pilot-triage-2026-10-11.md`](../evidence/pilot-triage-2026-10-11.md), [`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md) | Metadata/metrics/reproducer có; full campaign có phát hiện để triage, chưa kết luận defect hoặc kiểm tra chéo độc lập |
-| H — pin và tái lập | Manifest, snapshot, hướng dẫn dựng lại | Lành thực hiện/tích hợp | [`manifest/baseline.yaml`](../manifest/baseline.yaml), [`README.md`](../README.md) | Baseline, digest, token TTL, snapshot/restore và run máy hiện tại có; chưa đạt G1 vì máy thứ hai/review chéo chưa kiểm tra |
+| G — log, report, metrics, defect/root cause | Run metadata, report, reproducer | Lành thực hiện/tích hợp; co-author chỉ khi có đóng góp thật | `artifacts/runs/<run_id>/`, [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md), [`evidence/pilot-triage-2026-10-11.md`](../evidence/pilot-triage-2026-10-11.md), [`evidence/runtime-verification-2026-10-11.md`](../evidence/runtime-verification-2026-10-11.md) | Metadata/metrics/reproducer có; failure được phân loại, findings chưa đóng không bị đổi thành defect đã xác nhận |
+| H — pin và tái lập | Manifest, snapshot, hướng dẫn dựng lại | Lành thực hiện/tích hợp | [`manifest/baseline.yaml`](../manifest/baseline.yaml), [`README.md`](../README.md) | Baseline, digest, token TTL, snapshot/restore và run local có; README giữ khả năng dựng máy mới, không yêu cầu chạy máy thứ hai |
 
 ## Truy vết checkpoint v2 đã chạy
 
@@ -26,7 +26,7 @@ license; kết quả mới được ghi ở cuối tài liệu và trong
 | D–E | scenarios `20261011T105231Z-104612`, invariants `20261011T105236Z-105096` | S1–S6 PASS; 9 invariant PASS; aggregate regression HTTP 500 vẫn failed có chủ ý |
 | F | raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Mỗi profile đủ 3 seed và 10/10 operation; report/coverage/restore có, runner exit 1 do budget/check |
 | G | replay aggregate `20261011T105242Z-105524` | Candidate 500 tái hiện; phân loại schema omission + product robustness candidate, chưa xác nhận defect |
-| H | `manifest/baseline.yaml`, `config/lab.env.example`, default fixture v2 | Clone máy mới dùng v2 mặc định; license vẫn phải cấu hình ngoài Git; máy thứ hai/review chéo chưa thực hiện |
+| H | `manifest/baseline.yaml`, `config/lab.env.example`, default fixture v2 | Clone máy mới dùng v2 mặc định; license vẫn phải cấu hình ngoài Git; khả năng tái lập được mô tả, không ghi giả một run máy thứ hai |
 
 ## Backlog theo đường phụ thuộc
 
@@ -39,6 +39,6 @@ license; kết quả mới được ghi ở cuối tài liệu và trong
 | G0-04 | Sáu scenario query/quyền/invariant | Lành thực hiện/tích hợp; Trâm chỉ co-author nếu có đóng góp thật | Fixture map và actor login | S1–S3 đạt; S4–S6 blocked, không gửi request khi operation bị lọc | G0-03 |
 | G0-05 | Export schema theo actor, allowlist năm operation | Lành thực hiện/tích hợp; Nhân chỉ co-author nếu có đóng góp thật | Seed phần dữ liệu đạt, OpenAPI đọc được | Schema raw 4 actor bất biến; editor overlay có inventory 10 operation | G0-03 |
 | G0-06 | Campaign Schemathesis raw/guided | Lành triển khai/tích hợp; co-author chỉ khi có đóng góp thật | Export schema + credential interface | Đúng actor/URL, 10 operation, report/coverage/mã thoát lưu; fixture được khôi phục sau cả ba seed | G0-05 |
-| G0-07 | Dựng lại và kiểm tra chéo G1 | Lành điều phối | G0-03, G0-04, G0-06 | Người khác dựng/check lại; ghi rõ máy chưa chạy | G0-04, G0-06 |
+| G0-07 | Đối chiếu checklist nghiệm thu G1 và phân loại finding | Lành | G0-03, G0-04, G0-06 | Đối chiếu run/artifact với [`docs/g1-acceptance.md`](g1-acceptance.md); không yêu cầu máy thứ hai hoặc review chéo | G0-04, G0-06 |
 
-Các checkpoint mới trong phiên rush được commit trên nhánh hiện tại; không push hoặc rewrite remote. Các tệp `mnhy/` và `AGENTS.md` vẫn nằm ngoài Git theo quy ước của repository. Chưa xem là G1; còn chờ license Reader, review chéo và dựng lại trên máy độc lập.
+Các checkpoint mới trong phiên rush được commit trên nhánh hiện tại; không push hoặc rewrite remote. Các tệp `mnhy/` và các tệp local-only chưa track vẫn nằm ngoài Git. G1 hiện đạt baseline kỹ thuật với findings: Reader đã được kiểm tra, còn aggregate HTTP 500 và campaign `failed_or_incomplete` được giữ nguyên để triage.

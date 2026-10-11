@@ -39,3 +39,10 @@ chưa có vì seed chưa được triển khai.
   khởi động Docker Desktop bằng CLI chính thức và kiểm tra lại thành công.
 - Health/liveness của stack đã được xác nhận trên máy này; chưa phải bằng chứng
   tái lập trên máy thứ hai.
+
+## Ghi chú tiêu chí hiện hành
+
+Các giới hạn trên là giới hạn của checkpoint G0 ngày 2026-10-10 và được giữ
+nguyên để bảo toàn provenance. README vẫn duy trì hướng dẫn dựng lại trên máy
+mới, nhưng xác minh thực tế trên máy thứ hai và review chéo không còn là gate G1;
+tiêu chí hiện hành nằm tại [`docs/g1-acceptance.md`](../docs/g1-acceptance.md).
