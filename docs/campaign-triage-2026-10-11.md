@@ -156,7 +156,9 @@ Chi tiết line-level nằm trong phần source comparison của
   `extractPathsFromQuery` trong module xử lý permission AST.
 - Thu gọn trên cùng baseline cho thấy `GET /items/qa_articles?fields=&aggregate={"foo":1}`
   vẫn trả `500` với `INTERNAL_SERVER_ERROR`; các biến thể `aggregate={}` và
-  `aggregate={"count":["id"]}` trả `200`.
+  `aggregate={"count":["id"]}` trả `200`. Regression replay mới
+  `20261011T134519Z-160153` chạy lại cả ba variant và ghi đúng phân bố này
+  dưới harness commit `bcbf219`.
 - OpenAPI hiện mô tả `aggregate` là object có các property được biết nhưng không
   đặt `additionalProperties: false`, nên key lạ và giá trị số vẫn lọt qua schema
   JSON. Vì vậy đây là **schema omission + product robustness candidate**: schema
@@ -168,8 +170,8 @@ Chi tiết line-level nằm trong phần source comparison của
   request thu gọn ở trên là bằng chứng local bổ sung, không dùng credential.
 - Regression case đã được version hóa thành `aggregate-query-robustness` trong
   `scripts/invariants.py`, nên không phụ thuộc Schemathesis artifact. Run
-  `20261011T080746Z-51887` trả `500`, tạo report/reproducer đã làm sạch và giữ
-  exit `1` để không che candidate này.
+  `20261011T134519Z-160153` trả unknown shape `500`, hai control `200`, tạo
+  report/reproducer đã làm sạch và giữ exit `1` để không che candidate này.
 
 ## Chưa được kết luận
 

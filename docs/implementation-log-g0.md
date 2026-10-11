@@ -148,6 +148,9 @@ fixture/schema version `r06-k05-v2`; snapshot `r06-k05-v1` không bị overwrite
   seed `101,202,303`, 10/10 operation và restore PASS; runner exit 1 do
   `max_time`/check failure, không báo campaign pass.
 - `20261011T105242Z-105524`: replay aggregate candidate tái hiện HTTP 500.
+- `20261011T134519Z-160153`: replay aggregate mở rộng dưới commit `bcbf219`
+  ghi unknown shape `500`,
+  control `{}` và `{"count":["id"]}` trả `200`; exit `1` được giữ nguyên.
 
 Doctor cuối `20261011T105225Z-104013` báo license `source=env`, `status=active`,
 `custom_permission_rules_enabled=true`. Reader visibility/write đã được kiểm tra
@@ -162,8 +165,12 @@ thái để làm đẹp.
   `custom_permission_rules_enabled=true`, digest image khớp manifest.
 - Invariant recheck `20261011T130457Z-141013` có `9 passed`, `2 failed`, `0
   blocked`, exit `1`: aggregate HTTP 500 và `contract-schema-candidates` ghi
-  bốn schema candidate. Kết quả này bổ sung evidence, không thay thế run lịch
-  sử `20261011T105236Z-105096`.
+  bốn schema candidate. Replay aggregate mở rộng `20261011T134519Z-160153`
+  xác nhận unknown shape `500`, hai control `200`; kết quả này bổ sung
+  evidence, không thay thế run lịch sử `20261011T105236Z-105096`.
+- Full invariant recheck `20261011T134626Z-160826` dưới `bcbf219` vẫn có
+  `9 passed`, `2 failed`, `0 blocked`, exit `1`; không có regression mới ngoài
+  aggregate candidate và bốn contract candidate.
 - Contract probe commit `7018107` và tài liệu commit `01e14d1` được ghi trong
   README, G1 acceptance, replay/test matrix, runtime evidence và manifest.
 - Stateful replay từ commit `baaee4b` dựng full chain khi artifact đủ parent;

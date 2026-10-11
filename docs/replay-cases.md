@@ -30,7 +30,7 @@ Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào h
 | `editor-crud` | Editor create → read → PATCH → read → DELETE → read | Editor login/fixture không sẵn sàng |
 | `positive-operations` | Positive create/read/PATCH/delete cho đủ 10 operation của hai collection | Editor login/fixture hoặc permission CRUD không sẵn sàng |
 | `query-fixture` | Filter published, sort, projection, hai page | Fixture map không khớp dữ liệu |
-| `aggregate-query-robustness` | GET query tối giản `fields=&aggregate={"foo":1}`, yêu cầu không có 5xx | Không có API response |
+| `aggregate-query-robustness` | GET query `fields=&aggregate={"foo":1}` và hai control aggregate, unknown không được 5xx, control phải 2xx | Không có API response |
 | `contract-schema-candidates` | Editor POST category/article, GET export CSV và DELETE detail; đối chiếu runtime với schema | API/schema precondition không sẵn sàng |
 | `relation-nullification` | Tạo category/article, xóa category, kiểm tra FK thành null | Không tạo được relation probe |
 | `invalid-field-rejection` | Gửi status/score ngoài contract và kiểm tra không tạo row | Network/read-back precondition |
@@ -47,10 +47,12 @@ product defect nếu chưa đủ precondition.
 
 `aggregate-query-robustness` là regression probe deterministic được version hóa
 trong `scripts/invariants.py`, nên clone sạch vẫn replay được mà không cần
-Schemathesis artifact. Trên baseline v2, run `20261011T105242Z-105524` trả
-`500` và exit `1` đúng theo assertion; đây là failure cần triage, không phải
-được chuyển thành pass bằng cách nới expected. Run lịch sử `20261011T080746Z-51887`
-được giữ để đối chiếu trước license.
+Schemathesis artifact. Trên baseline v2, run mới `20261011T134519Z-160153` ghi
+unknown shape `500`, control `aggregate={}` `200` và control
+`aggregate={"count":["id"]}` `200`; exit `1` được giữ đúng theo assertion. Đây
+là failure cần triage, không phải được chuyển thành pass bằng cách nới expected.
+Các run lịch sử `20261011T105242Z-105524` và `20261011T080746Z-51887` được giữ
+để đối chiếu trước các checkpoint sau.
 
 `contract-schema-candidates` là probe contract độc lập, chạy tại commit
 `7018107` ở run `20261011T130227Z-139257`. Probe tạo dữ liệu tạm bằng Editor,

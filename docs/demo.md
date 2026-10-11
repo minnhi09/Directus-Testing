@@ -19,7 +19,7 @@ Nếu `seed` dừng ở license Reader, trình bày đó là blocker đã xác m
 2. Query fixture: `./lab.sh replay query-fixture`. Chỉ ra filter published, sort `title,id`, projection và hai page được tính oracle từ `fixture-ids.json`.
 3. Anonymous/auth: `./lab.sh replay anonymous-denied` và `./lab.sh replay auth-invalid-token`. Chỉ ra hai collection trả non-2xx, token giả không được chấp nhận, status cụ thể được giữ theo baseline.
 4. Reader policy: `./lab.sh replay reader-visibility` và `./lab.sh replay reader-write`; chỉ ra published read, private projection bị từ chối và target không đổi sau PATCH bị từ chối.
-5. Schemathesis finding: `./lab.sh replay aggregate-query-robustness`; chỉ ra request tối giản, HTTP 500, report failure và restore fixture.
+5. Schemathesis finding: `./lab.sh replay aggregate-query-robustness`; chỉ ra request tối giản, HTTP 500, hai control 200, report failure và restore fixture.
 
 ## Schemathesis
 

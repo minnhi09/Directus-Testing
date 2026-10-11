@@ -70,8 +70,9 @@ request-only, full-chain mismatch và product defect thành một kết luận.
 5. `CkqaOB` được giữ là candidate ưu tiên cao vì có HTTP 500, nhưng cần log/
    upstream hoặc reproducer đầy đủ trước khi phân loại `product` chính thức.
 6. Candidate aggregate HTTP 500 đã có invariant regression riêng và vẫn giữ
-   exit `1` trong run `20261011T105242Z-105524`; báo cáo này không thay đổi
-   kết luận đó.
+   exit `1` trong run `20261011T134519Z-160153` dưới `bcbf219`; cùng run ghi hai control
+   `200`, làm rõ failure phụ thuộc shape/giá trị aggregate. Báo cáo này không
+   đổi candidate thành defect đã xác nhận.
 
 ## Automated contract probe
 
@@ -155,7 +156,7 @@ nhưng không dùng commit đó để kết luận baseline và không sửa ups
 | POST trả object nhưng schema mô tả array | `api/src/controllers/items.ts:37-51`: body object gọi `readOne` và đặt `data` là item; body array mới gọi `readMany` | Schema/OpenAPI response-shape candidate đã được source hỗ trợ; không xác nhận lỗi sản phẩm |
 | `export=csv` trả `text/csv` | `api/src/utils/validate-query.ts:34` cho phép `csv`; `api/src/middleware/respond.ts:101-104` đặt `Content-Type: text/csv` và trả `200` | Schema/contract omission đã được xác nhận trên baseline; không phải lỗi response runtime |
 | DELETE detail trả `204` | `api/src/controllers/items.ts:235-250` gọi `respond`; `api/src/middleware/respond.ts:120-125` trả `204` khi không có payload | Schema response map thiếu status `204`; gộp vào nhóm schema candidate |
-| `aggregate={"foo":1}` gây `500` | `validate-query.ts:34` chỉ yêu cầu aggregate là object; `extract-paths-from-query.ts:60-61` lặp qua từng value như iterable; runtime regression `20261011T105242Z-105524` tái hiện `500` | Product robustness candidate kèm schema omission; vẫn chưa gọi là defect chính thức |
+| `aggregate={"foo":1}` gây `500` | `validate-query.ts:34` chỉ yêu cầu aggregate là object; `extract-paths-from-query.ts:60-61` lặp qua từng value như iterable; runtime regression `20261011T134519Z-160153` tái hiện `500`, trong khi `{}` và `{"count":["id"]}` trả `200` | Product robustness candidate kèm schema omission; vẫn chưa gọi là defect chính thức |
 
 Đối chiếu này đóng mức phân loại cho POST/export/DELETE, nhưng không làm đổi
 raw snapshot, không tạo overlay mới và không thay đổi expected result của các

@@ -152,12 +152,15 @@ run nêu trên. Credential/token không được ghi vào report. Đây là bằ
 trên một máy, không phải kiểm tra chéo hay xác nhận upstream.
 
 Regression case deterministic sau triage: `./lab.sh replay
-aggregate-query-robustness` ở run `20261011T080746Z-51887` dùng Editor GET
-`/items/qa_articles?fields=&aggregate=%7B%22foo%22%3A1%7D`, không thay đổi dữ
-liệu, và nhận HTTP `500`. Report ghi `failed` với expected “query aggregate
-không trả 5xx”, actual `500`, harness SHA
-`66ee05f5b4c351637885bb35c3f468b52151c12b`. Đây là regression evidence cho
-candidate đã triage, không phải kết luận product defect đã xác nhận.
+aggregate-query-robustness` ở run mới `20261011T134519Z-160153` dưới harness
+`bcbf21955e87a03529f970eaccbe4d4312b74af6` dùng Editor GET
+`/items/qa_articles?fields=&aggregate=%7B%22foo%22%3A1%7D` cùng hai control
+`aggregate={}` và `aggregate={"count":["id"]}`. Kết quả lần lượt là `500`,
+`200`, `200`; report giữ `failed`, exit `1`, harness SHA
+`bcbf21955e87a03529f970eaccbe4d4312b74af6`; metadata ghi working tree dirty do
+file untracked có trước. Đây là regression evidence cho
+candidate đã triage, không phải kết luận product defect đã xác nhận. Run lịch sử
+`20261011T080746Z-51887` vẫn được giữ để đối chiếu.
 
 Toàn bộ invariant suite sau commit `66ee05f` ở run `20261011T080753Z-52280`:
 7 case passed (`auth-invalid-token`, `anonymous-denied`, `editor-crud`,
@@ -190,10 +193,12 @@ khi người dùng cấu hình `LICENSE_KEY` cục bộ không ghi giá trị ke
 | `20261011T105231Z-104612` | `./lab.sh test scenarios` | S1–S6: 6 passed, 0 failed, 0 blocked |
 | `20261011T105236Z-105096` | `./lab.sh test invariants` | 9 passed, 1 failed; failure duy nhất aggregate HTTP 500 |
 | `20261011T105242Z-105524` | `./lab.sh replay aggregate-query-robustness` | Tái hiện HTTP 500, exit 1, không mutation |
+| `20261011T134519Z-160153` | `./lab.sh replay aggregate-query-robustness` | `unknown-function-shape=500`, `empty-object-control=200`, `count-function-control=200`; exit 1 được giữ, không mutation |
 | `20261011T130227Z-139257` | `./lab.sh replay contract-schema-candidates` | Exit 1 có chủ đích; ghi bốn schema candidate, cleanup dữ liệu tạm PASS |
 | `20261011T130338Z-139934` | `./lab.sh doctor` | PASS; license active, custom permission rules enabled, image digest đúng manifest |
 | `20261011T130457Z-141013` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; aggregate 500 và contract probe bốn candidate, harness giữ exit 1 |
 | `20261011T131803Z-147694` | `./lab.sh doctor` | PASS; latest recheck, license active, permission rules enabled, digest đúng manifest |
+| `20261011T134626Z-160826` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked dưới `bcbf219`; không có regression mới, exit 1 được giữ |
 
 Run doctor mới nhất dưới HEAD `d0d199f`:
 

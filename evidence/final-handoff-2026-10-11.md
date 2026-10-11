@@ -35,7 +35,7 @@ hoặc response nhạy cảm.
 
 | Nhóm | Bằng chứng | Phân loại hiện tại |
 |---|---|---|
-| Aggregate `{"foo":1}` | `./lab.sh replay aggregate-query-robustness`, run `20261011T105242Z-105524` | Schema omission + product robustness candidate; HTTP 500 chưa phải product defect đã xác nhận |
+| Aggregate `{"foo":1}` | `./lab.sh replay aggregate-query-robustness`, run `20261011T134519Z-160153` dưới `bcbf219`; control `{}` và `{"count":["id"]}` trả 200 | Schema omission + product robustness candidate; HTTP 500 chưa phải product defect đã xác nhận |
 | POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |

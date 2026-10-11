@@ -23,9 +23,9 @@ license; kết quả mới được ghi ở cuối tài liệu và trong
 | Nhóm | Bằng chứng hiện tại | Kết luận thực tế |
 |---|---|---|
 | A–C | `doctor` `20261011T105225Z-104013`, recheck `20261011T130338Z-139934`, seed `20261011T084845Z-72361`, schema export `20261011T085027Z-75998` | Directus/DB/runner healthy; license active; schema actor v2 có 14/14/6/0 operation |
-| D–E | scenarios `20261011T105231Z-104612`, invariant recheck `20261011T130457Z-141013` | S1–S6 PASS; invariant recheck 9 PASS/2 failure/0 blocked; aggregate 500 và contract candidates vẫn giữ failure |
+| D–E | scenarios `20261011T105231Z-104612`, full invariant recheck `20261011T134626Z-160826` | S1–S6 PASS; invariant recheck 9 PASS/2 failure/0 blocked; aggregate 500 và contract candidates vẫn giữ failure |
 | F | raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Mỗi profile đủ 3 seed và 10/10 operation; report/coverage/restore có, runner exit 1 do budget/check |
-| G | replay aggregate `20261011T105242Z-105524`, contract probe `20261011T130227Z-139257` | Candidate 500 tái hiện; bốn contract candidate được ghi; chưa xác nhận product defect |
+| G | replay aggregate `20261011T134519Z-160153` dưới `bcbf219`, contract probe `20261011T130227Z-139257` | Candidate 500 tái hiện, hai control aggregate trả 200; bốn contract candidate được ghi; chưa xác nhận product defect |
 | H | `manifest/baseline.yaml`, `config/lab.env.example`, default fixture v2 | Clone máy mới dùng v2 mặc định; license vẫn phải cấu hình ngoài Git; khả năng tái lập được mô tả, không ghi giả một run máy thứ hai |
 
 ## Backlog theo đường phụ thuộc

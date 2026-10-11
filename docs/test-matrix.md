@@ -103,8 +103,11 @@ Các case ổn định được chạy bởi `scripts/invariants.py` trong runne
 `query-fixture`, `aggregate-query-robustness`, `contract-schema-candidates`, `relation-nullification`,
 `invalid-field-rejection`, `reader-visibility`, `reader-write`.
 `aggregate-query-robustness` là regression probe không mutation, dùng query
-`fields=&aggregate={"foo":1}` và yêu cầu không có HTTP 5xx; trên baseline v2 nó
-tái hiện candidate 500 và giữ trạng thái `failed`. `reader-visibility` và
+`fields=&aggregate={"foo":1}` và hai control `aggregate={}`/
+`aggregate={"count":["id"]}`. Probe yêu cầu variant unknown không có HTTP 5xx,
+control trả 2xx; trên baseline v2 variant unknown tái hiện candidate 500 và giữ
+trạng thái `failed`, còn hai control trả 200. Recheck này nằm ở run
+`20261011T134519Z-160153` dưới harness `bcbf219`. `reader-visibility` và
 `reader-write` kiểm tra schema trước; v2 có operation cần thiết nên đã gửi request
 và xác minh projection/private write theo hành vi thực tế. Nếu dựng máy không có
 license và operation vắng mặt, hai case vẫn ghi `blocked` và không gửi request cấm.
