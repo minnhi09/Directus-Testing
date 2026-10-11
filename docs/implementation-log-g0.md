@@ -304,3 +304,13 @@ thái để làm đẹp.
 - Đây là giới hạn artifact/precondition của stateful replay. Không dùng nó để
   kết luận API accepted/rejected negative data, không đổi expected và không
   che failure.
+
+## Triage positive query safe-number — 2026-10-11
+
+- Run `20261011T140814Z-170794`: `./lab.sh replay 6IayFG` dưới harness
+  `8bfefad50d5fc205d51d2387e595f0a732b04c20`.
+- Request `GET /items/qa_articles` có `offset` vượt giới hạn safe number;
+  source/expected/actual đều `400`, response code `INVALID_QUERY`, report ghi
+  `reproduced_request_only`, restore PASS và exit `1`.
+- Đây là schema semantic/generator-positive candidate và response-map gap;
+  không phải product defect. Giữ nguyên failure và expected, không thêm skip.

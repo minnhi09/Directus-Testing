@@ -106,6 +106,11 @@ Các case guided đại diện được replay sau pilot:
   trả số ID khác transition mapping, report ghi `stateful_sequence_failed`,
   target `not-sent`, restore PASS, exit `1`. Đây là stateful artifact/precondition
   limitation, không phải kết luận API chấp nhận negative data.
+- `6IayFG` (`20261011T140814Z-170794`) replay request-only
+  `GET /items/qa_articles` với `offset` vượt safe-number; Directus trả `400
+  INVALID_QUERY`, source/expected/actual đều `400`, restore PASS, exit `1`.
+  Đây là schema semantic/generator-positive candidate, không phải product
+  defect; artifact không có parent chain để suy diễn full-state.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

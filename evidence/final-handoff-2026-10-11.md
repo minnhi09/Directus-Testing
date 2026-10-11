@@ -31,6 +31,7 @@ candidate được giữ nguyên để triage.
 | Guided YAML export replay | `20261011T140125Z-167402` dưới `4160c92` | `R0sH5o` source/expected/actual `200`, `text/yaml` ngoài schema JSON, `reproduced_request_only`, restore PASS, exit `1` |
 | Guided negative replay | `20261011T140307Z-168360` dưới `231842a` | `DhqXrn` full chain `UqHibT → DhqXrn`, source `204`, actual `403` do field `id`, restore PASS, exit `1` |
 | Stateful negative setup | `20261011T140452Z-169384` dưới `6bfe3ad` | `UTk4sa` parent ID mapping mismatch, target not sent, restore PASS, exit `1` |
+| Positive query semantic replay | `20261011T140814Z-170794` dưới `8bfefad` | `6IayFG` `offset` vượt safe-number, source/expected/actual `400 INVALID_QUERY`, restore PASS, exit `1` |
 
 Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
@@ -49,6 +50,7 @@ hoặc response nhạy cảm.
 | Guided `export=json/xml/yaml` | Replay `F8j8Gl`, `UNKW3j` và `R0sH5o`; HTTP `200` trả alternate body/media type ngoài operation schema | Schema/contract alternate-export candidate; chưa xác nhận product defect |
 | Accepted negative `DhqXrn` | Full-chain replay; source `204`, actual `403` với permission error trên `id` | Precondition/policy/negative-oracle mismatch; không xác nhận defect |
 | Accepted negative `UTk4sa` | Parent transition không map được ID, target không gửi | Stateful artifact/precondition limitation; chưa kết luận |
+| Positive query `6IayFG` | `GET /items/qa_articles` với `offset` vượt safe-number | Schema semantic/generator-positive candidate; response-map gap `400`, chưa xác nhận defect |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 

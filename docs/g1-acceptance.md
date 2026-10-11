@@ -67,6 +67,10 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
 - Replay `UTk4sa` ở `20261011T140452Z-169384` dừng tại parent ID mapping,
   target không gửi, restore PASS; giữ là stateful artifact/precondition
   limitation, không kết luận API accepted/rejected negative data.
+- Replay `6IayFG` ở `20261011T140814Z-170794` tái hiện request positive có
+  `offset` vượt safe-number và HTTP `400 INVALID_QUERY`; restore PASS, exit `1`.
+  Giữ là schema semantic/generator-positive candidate, không xác nhận product
+  defect và không đổi expected để làm campaign xanh.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

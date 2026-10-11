@@ -55,6 +55,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `R0sH5o` / `20261011T140125Z-167402` | Guided stateful GET article với `export=yaml`; source/expected/actual `200`, content type `text/yaml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`/`UNKW3j`, chưa xác nhận defect |
 | `DhqXrn` / `20261011T140307Z-168360` | Guided stateful negative PATCH category; full chain `UqHibT → DhqXrn`, source `204`, replay `403` do field `id` không được phép cập nhật | `full_transition_chain`, restore PASS, exit `1`, mismatch | Precondition/policy/negative-oracle mismatch; không coi là accepted-negative defect |
 | `UTk4sa` / `20261011T140452Z-169384` | Guided stateful negative PATCH article; parent `vfAiah` trả số ID không khớp transition mapping | `stateful_sequence_failed`, target không gửi, restore PASS, exit `1` | Stateful artifact/precondition limitation; không kết luận accepted-negative defect |
+| `6IayFG` / `20261011T140814Z-170794` | Guided stateful positive GET article list với `offset` vượt safe-number; Directus trả `400 INVALID_QUERY` | `reproduced_request_only`, source/expected/actual `400`, restore PASS, exit `1` | Schema semantic/generator-positive candidate; response map thiếu `400`, không phải product defect |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -106,6 +107,10 @@ request-only, full-chain mismatch và product defect thành một kết luận.
 12. `UTk4sa` không vượt qua setup parent: `vfAiah` trả số ID khác transition
     mapping nên PATCH target không được gửi. Giữ `stateful_sequence_failed` và
     exit `1`; không dùng việc target chưa gửi để kết luận API pass/fail.
+13. `6IayFG` tái hiện request positive có `offset` vượt giới hạn safe number;
+    Directus trả `400 INVALID_QUERY` với thông báo phải là safe number. Đây là
+    schema semantic/generator-positive candidate và response-map gap, không
+    phải product defect; giữ nguyên source/expected/actual `400` và exit `1`.
 
 ## Automated contract probe
 
@@ -138,6 +143,10 @@ Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
   như `CkqaOB` thiếu parent trong artifact vẫn phải ghi final-request-only và
   unresolved. Không được dùng replay trực tiếp hiện tại để tuyên bố full state
   cho case không có đủ chain.
+- `6IayFG` đã có replay request-only ở run `20261011T140814Z-170794`; query
+  positive chứa `offset` quá lớn bị Directus từ chối `400 INVALID_QUERY`. Giữ
+  đây là schema semantic/generator-positive candidate, không đổi expected hoặc
+  gọi là product defect.
 - Đã đối chiếu response map/content type/POST shape với contract Directus đã
   pin bằng probe riêng; nếu tạo overlay trong tương lai thì chỉ sửa bản
   `guided`, giữ raw snapshot bất biến và lưu diff/lý do.

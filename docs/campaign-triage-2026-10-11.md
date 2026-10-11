@@ -105,6 +105,12 @@ ID trả về không khớp transition mapping; PATCH target không được g�
 PASS và exit `1`. Đây là stateful artifact/precondition limitation, không được
 đếm là accepted-negative defect.
 
+Replay `6IayFG` ở run `20261011T140814Z-170794` gửi request positive
+`GET /items/qa_articles` với `offset` vượt safe-number, Directus trả source/
+expected/actual `400` và mã `INVALID_QUERY`; restore PASS, request-only, exit
+`1`. Đây là schema semantic/generator-positive candidate vì schema cho phép số
+nhưng runtime yêu cầu safe number, không phải product defect.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run
@@ -148,7 +154,7 @@ Chi tiết line-level nằm trong phần source comparison của
 |---|---:|---:|---|
 | `UndefinedStatusCode` | 16/14/16 | 30/29/29 | Schema/contract candidate; cần đối chiếu response map và semantics Directus, chưa gọi là product defect |
 | `UnsupportedMethodResponse` | 2 mỗi seed | 2 mỗi seed | Cần xác minh hành vi TRACE ngoài allowlist; chưa kết luận |
-| `RejectedPositiveData` | 2/1/1 | 8/8/8 | Chưa kết luận; có thể do precondition/fixture/query sinh ra không phù hợp |
+| `RejectedPositiveData` | 2/1/1 | 8/8/8 | `3Ble8Q` và `6IayFG` cho thấy query positive có thể vượt semantic runtime (`INVALID_QUERY`); giữ là schema/generator candidate, các ca còn lại chưa kết luận |
 | `UndefinedContentType` | 0/1/0 | 5/5/5 | `vx21yF`/`UNKW3j`/`R0sH5o` tái hiện export CSV/XML/YAML ngoài schema JSON; giữ là export contract candidate |
 | `ServerError` | 0 | 9/8/8 | `kb5gjq` đã replay request-only và tái hiện 500; vẫn là candidate robustness/schema-semantic, không phải defect đã xác nhận |
 | `JsonSchemaError` | 0 | 6/10/7 | Chưa kết luận; cần phân biệt schema raw/overlay và response thực tế |
