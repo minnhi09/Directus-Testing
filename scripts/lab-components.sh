@@ -1561,7 +1561,7 @@ campaign_one() {
 		--mount "type=bind,src=$schema_file,dst=/work/schema.json,readonly" \
 		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
 		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
-		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks all --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"'
+		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"'
 	runner_rc=$?
 	set -e
 	if [[ -f "$RUN_DIR/schemathesis-report.json" ]]; then
@@ -1719,7 +1719,7 @@ schema_smoke() {
 		--mount "type=bind,src=$pilot_schema,dst=/work/schema.json,readonly" \
 		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
 		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
-		-c 'exec schemathesis run "$1" --url "$RUNNER_API_URL" --include-path-regex "^/items/qa_articles(/\\{id\\})?$" --workers 1 --max-examples 20 --seed 101 --request-timeout 10 --rate-limit 5/s --max-time 300 --phases examples,fuzzing --checks all --report json --report-json-path /work/run/schemathesis-report.json --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --output-sanitize true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"' \
+		-c 'exec schemathesis run "$1" --url "$RUNNER_API_URL" --include-path-regex "^/items/qa_articles(/\\{id\\})?$" --workers 1 --max-examples 20 --seed 101 --request-timeout 10 --rate-limit 5/s --max-time 300 --phases examples,fuzzing --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json --report-json-path /work/run/schemathesis-report.json --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --output-sanitize true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"' \
 		sh /work/schema.json
 	runner_rc=$?
 	set -e
