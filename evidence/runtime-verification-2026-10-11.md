@@ -40,6 +40,7 @@ Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. K
 | `20261011T040113Z-20338` | `./lab.sh smoke` cleanup recheck | Field validation và `SET NULL` PASS; Reader vẫn HTTP 403 nên run failed đúng blocker |
 | `20261011T040317Z-21776` | `./lab.sh replay ralwaW` | PASS/reproduced; Schemathesis case HTTP 403, reproducer sanitized và restore PASS |
 | `20261011T040346Z-22406` | `./lab.sh replay ralwaW` scoped-hash recheck | PASS/reproduced; reproducer ghi đúng hash schema scoped `433cb61a...`, restore PASS |
+| `20261011T040415Z-23383` | `./lab.sh doctor` final replay-code recheck | PASS; syntax/lint, YAML và Compose config cũng PASS |
 
 Sau pilot recheck, cả `database`, `directus` và `runner` đều ở trạng thái `running/healthy`; image hiển thị đúng digest đã pin. Hai campaign ngắn đều dừng `max_time`, không đại diện cho campaign đủ ngân sách.
 
