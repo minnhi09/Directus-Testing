@@ -314,3 +314,13 @@ thái để làm đẹp.
   `reproduced_request_only`, restore PASS và exit `1`.
 - Đây là schema semantic/generator-positive candidate và response-map gap;
   không phải product defect. Giữ nguyên failure và expected, không thêm skip.
+
+## Triage negative type coercion — 2026-10-11
+
+- Run `20261011T141024Z-171863`: `./lab.sh replay 6THjzP` dưới harness
+  `9d71e9c351fb2000c8bb23d358ab000d84b1f7b0`.
+- Negative mutation gửi `POST /items/qa_categories` với `name` integer. Directus
+  trả `200`, response lưu `name` thành string; source/actual `200`, expected
+  negative `400`, restore PASS và exit `1`.
+- Giữ `mismatch` như bằng chứng semantic coercion/negative-oracle mismatch;
+  chưa kết luận product defect, không đổi expected và không che failure.

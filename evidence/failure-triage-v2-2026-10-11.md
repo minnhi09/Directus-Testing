@@ -56,6 +56,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `DhqXrn` / `20261011T140307Z-168360` | Guided stateful negative PATCH category; full chain `UqHibT → DhqXrn`, source `204`, replay `403` do field `id` không được phép cập nhật | `full_transition_chain`, restore PASS, exit `1`, mismatch | Precondition/policy/negative-oracle mismatch; không coi là accepted-negative defect |
 | `UTk4sa` / `20261011T140452Z-169384` | Guided stateful negative PATCH article; parent `vfAiah` trả số ID không khớp transition mapping | `stateful_sequence_failed`, target không gửi, restore PASS, exit `1` | Stateful artifact/precondition limitation; không kết luận accepted-negative defect |
 | `6IayFG` / `20261011T140814Z-170794` | Guided stateful positive GET article list với `offset` vượt safe-number; Directus trả `400 INVALID_QUERY` | `reproduced_request_only`, source/expected/actual `400`, restore PASS, exit `1` | Schema semantic/generator-positive candidate; response map thiếu `400`, không phải product defect |
+| `6THjzP` / `20261011T141024Z-171863` | Guided stateful negative POST category với `name` là integer; Directus trả `200` và ép thành string | `mismatch`, source/actual `200`, expected negative `400`, restore PASS, exit `1` | Schema-negative/oracle semantic mismatch; chưa xác nhận product defect |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -111,6 +112,10 @@ request-only, full-chain mismatch và product defect thành một kết luận.
     Directus trả `400 INVALID_QUERY` với thông báo phải là safe number. Đây là
     schema semantic/generator-positive candidate và response-map gap, không
     phải product defect; giữ nguyên source/expected/actual `400` và exit `1`.
+14. `6THjzP` gửi `name` kiểu integer trong negative mutation nhưng Directus
+    trả `200` và response đã ép giá trị thành string. Đây là semantic coercion
+    cần quyết định trong contract/negative oracle; giữ mismatch `200` so với
+    expected `400`, không gọi là product defect và không đổi check.
 
 ## Automated contract probe
 
@@ -147,6 +152,10 @@ Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
   positive chứa `offset` quá lớn bị Directus từ chối `400 INVALID_QUERY`. Giữ
   đây là schema semantic/generator-positive candidate, không đổi expected hoặc
   gọi là product defect.
+- `6THjzP` đã có replay request-only ở run `20261011T141024Z-171863`; Directus
+  chấp nhận `name` integer và ép thành string, tạo response `200` trong khi
+  negative oracle kỳ vọng `400`. Giữ mismatch để quyết định contract coercion,
+  không đổi expected và không đóng thành product defect.
 - Đã đối chiếu response map/content type/POST shape với contract Directus đã
   pin bằng probe riêng; nếu tạo overlay trong tương lai thì chỉ sửa bản
   `guided`, giữ raw snapshot bất biến và lưu diff/lý do.

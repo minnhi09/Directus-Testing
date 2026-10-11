@@ -249,6 +249,7 @@ phân loại và giới hạn stateful nằm tại
 | `DhqXrn` | `20261011T140307Z-168360` | Full chain `UqHibT → DhqXrn`; source `204`, replay `403` do field `id` forbidden | `full_transition_chain`, restore PASS, exit `1`; mismatch, chưa kết luận |
 | `UTk4sa` | `20261011T140452Z-169384` | Parent `vfAiah` trả ID count khác transition mapping; PATCH target không gửi | `stateful_sequence_failed`, restore PASS, exit `1`; precondition/artifact limitation |
 | `6IayFG` | `20261011T140814Z-170794` | GET article list positive với `offset` vượt safe-number; Directus trả `400 INVALID_QUERY` | `reproduced_request_only`, source/expected/actual `400`, restore PASS, exit `1`; schema semantic/generator-positive candidate |
+| `6THjzP` | `20261011T141024Z-171863` | POST category negative với `name` integer; Directus trả `200` và ép thành string | `mismatch`, source/actual `200`, expected `400`, restore PASS, exit `1`; coercion/negative-oracle mismatch |
 
 Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
 Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
@@ -285,6 +286,12 @@ Replay `6IayFG` gửi request positive nhưng `offset` là số vượt giới h
 number. Directus trả `400 INVALID_QUERY`, restore PASS và report giữ exit `1`;
 đây là bằng chứng query semantic chưa được mô tả đủ trong schema/generator,
 không phải product defect đã xác nhận.
+
+Replay `6THjzP` gửi negative mutation đổi `name` thành integer. Directus trả
+`200` và response canonicalize giá trị thành string; restore PASS nhưng report
+giữ mismatch với negative expected `400`. Đây là semantic coercion/negative
+oracle mismatch cần quyết định theo contract, không phải product defect đã xác
+nhận.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 

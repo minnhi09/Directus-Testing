@@ -111,6 +111,12 @@ expected/actual `400` và mã `INVALID_QUERY`; restore PASS, request-only, exit
 `1`. Đây là schema semantic/generator-positive candidate vì schema cho phép số
 nhưng runtime yêu cầu safe number, không phải product defect.
 
+Replay `6THjzP` ở run `20261011T141024Z-171863` gửi negative
+`POST /items/qa_categories` với `name` là integer. Directus trả source/actual
+`200`, response lưu `name` thành chuỗi, trong khi negative oracle kỳ vọng `400`;
+restore PASS, request-only, exit `1`. Đây là semantic coercion/negative-oracle
+mismatch cần quyết định theo contract, chưa xác nhận product defect.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run
@@ -158,7 +164,7 @@ Chi tiết line-level nằm trong phần source comparison của
 | `UndefinedContentType` | 0/1/0 | 5/5/5 | `vx21yF`/`UNKW3j`/`R0sH5o` tái hiện export CSV/XML/YAML ngoài schema JSON; giữ là export contract candidate |
 | `ServerError` | 0 | 9/8/8 | `kb5gjq` đã replay request-only và tái hiện 500; vẫn là candidate robustness/schema-semantic, không phải defect đã xác nhận |
 | `JsonSchemaError` | 0 | 6/10/7 | Chưa kết luận; cần phân biệt schema raw/overlay và response thực tế |
-| `AcceptedNegativeData` | 0 | 3 mỗi seed | `DhqXrn` full-chain replay trả `403` thay source `204`; `UTk4sa` target không gửi do ID mapping; giữ mismatch/precondition, chưa kết luận defect |
+| `AcceptedNegativeData` | 0 | 3 mỗi seed | `DhqXrn` full-chain replay trả `403` thay source `204`; `UTk4sa` target không gửi do ID mapping; `6THjzP` được Directus ép kiểu và trả `200`; giữ mismatch/precondition/oracle, chưa kết luận defect |
 
 ## Replay đã xác minh
 

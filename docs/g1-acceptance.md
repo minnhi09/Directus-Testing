@@ -71,6 +71,10 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
   `offset` vượt safe-number và HTTP `400 INVALID_QUERY`; restore PASS, exit `1`.
   Giữ là schema semantic/generator-positive candidate, không xác nhận product
   defect và không đổi expected để làm campaign xanh.
+- Replay `6THjzP` ở `20261011T141024Z-171863` gửi `name` integer trong negative
+  mutation; Directus trả `200` và ép response thành string, trái expected `400`,
+  restore PASS, exit `1`. Giữ là schema-negative/oracle semantic mismatch,
+  chưa xác nhận product defect.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

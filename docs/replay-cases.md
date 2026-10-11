@@ -111,6 +111,11 @@ Các case guided đại diện được replay sau pilot:
   INVALID_QUERY`, source/expected/actual đều `400`, restore PASS, exit `1`.
   Đây là schema semantic/generator-positive candidate, không phải product
   defect; artifact không có parent chain để suy diễn full-state.
+- `6THjzP` (`20261011T141024Z-171863`) replay request-only
+  `POST /items/qa_categories` với `name` integer; Directus trả `200` và ép
+  response `name` thành string, source/actual `200` trái expected negative
+  `400`, restore PASS, exit `1`. Đây là semantic coercion/negative-oracle
+  mismatch, chưa phải product defect.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).
