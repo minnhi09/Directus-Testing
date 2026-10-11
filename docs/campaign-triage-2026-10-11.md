@@ -70,7 +70,8 @@ Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ đư�
 sung parent-chain replay và ID mapping từ response parent. Run
 `20261011T131321Z-144935` xác nhận `pM4r4g` replay đủ chain và restore PASS;
 run `20261011T131350Z-145631` xác nhận `CkqaOB` không có chain nên vẫn
-final-request-only. Case non-stateful `Q8K5Nh` vẫn PASS.
+final-request-only. Case non-stateful `Q8K5Nh` vẫn PASS; sanity recheck sau
+commit ở run `20261011T131702Z-146905` cũng restore PASS.
 
 Đối chiếu source release `4f77933bf9551cac6b289576078783e189b8f4e3` đã làm rõ
 thêm ba nhóm contract: POST object/array, export `csv` và DELETE `204` đều phù

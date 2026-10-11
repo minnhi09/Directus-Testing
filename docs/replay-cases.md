@@ -91,7 +91,9 @@ khi campaign negative oracle kỳ vọng non-2xx; restore PASS và exit `1`.
 `CkqaOB` (`20261011T131350Z-145631`) không có parent case trong artifact, nên
 ghi `reproduced_request_only`, `sequence_replayed=false`, final HTTP 500,
 restore PASS và exit `1`. Case non-stateful `Q8K5Nh`
-(`20261011T123735Z-132524`) vẫn ghi `status=reproduced`, restore PASS và exit `0`.
+(`20261011T123735Z-132524`) vẫn ghi `status=reproduced`, restore PASS và exit
+`0`; sanity recheck sau chain hardening ở run `20261011T131702Z-146905` cũng
+PASS với restore PASS.
 
 Checkpoint Reader v2 được replay bằng `reader-visibility` ở run
 `20261011T084935Z-74564` và full invariant `20261011T105236Z-105096`: request

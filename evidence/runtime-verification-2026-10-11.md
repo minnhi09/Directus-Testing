@@ -251,3 +251,4 @@ xóa failure.
 |---|---|---|
 | `20261011T131321Z-144935` | `./lab.sh replay pM4r4g` | `mvlcIV → pM4r4g`, `sequence_replayed=true`, parent `200`, final `200` trái expected `400`, restore PASS, exit `1` |
 | `20261011T131350Z-145631` | `./lab.sh replay CkqaOB` | Không có parent chain trong event, `reproduced_request_only`, final `500`, restore PASS, exit `1` |
+| `20261011T131702Z-146905` | `./lab.sh replay Q8K5Nh` | Non-stateful `reproduced`, restore PASS, exit `0` sau chain hardening |
