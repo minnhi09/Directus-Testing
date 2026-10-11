@@ -45,7 +45,7 @@ local trên một baseline, không phải kiểm tra chéo máy thứ hai.
 
 `aggregate-query-robustness` là regression probe deterministic được version hóa
 trong `scripts/invariants.py`, nên clone sạch vẫn replay được mà không cần
-Schemathesis artifact. Trên baseline hiện tại, run `20261011T080531Z-51046`
+Schemathesis artifact. Trên baseline hiện tại, run `20261011T080746Z-51887`
 trả `500` và exit `1` đúng theo assertion; đây là failure cần triage, không phải
 được chuyển thành pass bằng cách nới expected.
 

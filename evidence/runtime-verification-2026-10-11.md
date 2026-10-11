@@ -145,3 +145,19 @@ schema omission + product robustness candidate; chưa kết luận product defec
 Các reproducer JSON, request đầy đủ và metadata nằm trong ba thư mục artifact
 run nêu trên. Credential/token không được ghi vào report. Đây là bằng chứng local
 trên một máy, không phải kiểm tra chéo hay xác nhận upstream.
+
+Regression case deterministic sau triage: `./lab.sh replay
+aggregate-query-robustness` ở run `20261011T080746Z-51887` dùng Editor GET
+`/items/qa_articles?fields=&aggregate=%7B%22foo%22%3A1%7D`, không thay đổi dữ
+liệu, và nhận HTTP `500`. Report ghi `failed` với expected “query aggregate
+không trả 5xx”, actual `500`, harness SHA
+`66ee05f5b4c351637885bb35c3f468b52151c12b`. Đây là regression evidence cho
+candidate đã triage, không phải kết luận product defect đã xác nhận.
+
+Toàn bộ invariant suite sau commit `66ee05f` ở run `20261011T080753Z-52280`:
+7 case passed (`auth-invalid-token`, `anonymous-denied`, `editor-crud`,
+`positive-operations`, `query-fixture`, `relation-nullification`,
+`invalid-field-rejection`), 1 regression case failed
+(`aggregate-query-robustness`, HTTP 500), và 2 Reader case blocked do schema
+không có operation article/PATCH. Exit `1` được giữ nguyên; dữ liệu tạm được
+cleanup, không có request Reader forbidden nào được gửi.
