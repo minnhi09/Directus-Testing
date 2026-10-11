@@ -244,3 +244,16 @@ thái để làm đẹp.
 - Đã cập nhật failure triage, replay guide, runtime/final evidence, G1,
   traceability, README và manifest. Không sửa expected, không xóa artifact
   thất bại và không chạy lại campaign dài.
+
+## Triage export JSON response shape — 2026-10-11
+
+- Run `20261011T135713Z-165099`: `./lab.sh replay F8j8Gl` dưới harness
+  `778ef20561843be0841d47779a776f88b2c56b2d`; source/expected/actual đều
+  HTTP `200`, restore PASS, exit `1`, `reproduced_request_only`.
+- Request `GET /items/qa_articles?backlink=true&export=json` trả raw array 12
+  item, trong khi response schema của operation yêu cầu object có `data`.
+  Đây là schema/contract candidate về alternate export shape; không có 5xx và
+  không kết luận product defect.
+- Artifact không có parent transition nên giữ đúng phạm vi request-only; không
+  giả lập full-chain và không gộp case này thành defect độc lập với nhóm
+  response-shape đã triage.

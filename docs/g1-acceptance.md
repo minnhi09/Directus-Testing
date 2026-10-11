@@ -51,6 +51,10 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
   PostgreSQL SQLSTATE `22007`. Đây là candidate schema-semantic/product
   robustness, chưa đủ căn cứ gọi là product defect và không được đổi thành
   PASS để làm đẹp kết quả.
+- Replay `F8j8Gl` ở `20261011T135713Z-165099` tái hiện request-only
+  `GET ...?backlink=true&export=json` với HTTP `200` và raw array 12 item
+  ngoài response schema object. Đây là schema/contract candidate về alternate
+  export shape, không phải product defect đã xác nhận.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

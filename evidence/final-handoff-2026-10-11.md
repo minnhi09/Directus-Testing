@@ -26,6 +26,7 @@ candidate được giữ nguyên để triage.
 | Raw campaign | `20261011T085034Z-76481` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
 | Guided campaign | `20261011T095117Z-89079` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
 | Guided timestamp replay | `20261011T135006Z-162769` dưới `a8c4a51` | `kb5gjq` source/expected/actual `500`, `reproduced_request_only`, restore PASS, exit `1`; PostgreSQL `22007` |
+| Guided export replay | `20261011T135713Z-165099` dưới `778ef20` | `F8j8Gl` source/expected/actual `200`, body array 12 item ngoài schema object, `reproduced_request_only`, restore PASS, exit `1` |
 
 Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
@@ -41,6 +42,7 @@ hoặc response nhạy cảm.
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
 | Guided `POST /items/qa_articles` với `published_at=""` | Replay `kb5gjq`, editor schema `string` + nullable + custom `timestamp`, Directus log và PostgreSQL SQLSTATE `22007` | Schema-semantic/product robustness candidate; chưa xác nhận product defect |
+| Guided `export=json` | Replay `F8j8Gl`; HTTP `200` raw array trong khi operation schema yêu cầu object `data` | Schema/contract alternate-response candidate; chưa xác nhận product defect |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 

@@ -83,6 +83,11 @@ Các case guided đại diện được replay sau pilot:
   Snapshot editor khai báo `published_at` là `string`, `nullable: true`,
   `format: timestamp` và không có `pattern`/`minLength`; source Directus pin
   `4f77933bf9551cac6b289576078783e189b8f4e3` dùng cùng custom format mapping.
+- `F8j8Gl` (`20261011T135713Z-165099`) tái hiện request-only
+  `GET /items/qa_articles?backlink=true&export=json`: source/expected/actual
+  `200`, response là array 12 item, trong khi schema operation yêu cầu object
+  chứa `data`. Restore PASS, exit `1`; đây là schema/contract candidate cho
+  alternate export shape, không phải product defect đã xác nhận.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

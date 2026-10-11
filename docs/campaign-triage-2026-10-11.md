@@ -75,6 +75,13 @@ nghĩa; snapshot editor chỉ mô tả `type: string`, `nullable: true`, custom
 `format: timestamp` và không có `pattern`/`minLength`; chưa kết luận product
 defect.
 
+Replay bổ sung `F8j8Gl` ở run `20261011T135713Z-165099` tái hiện
+`GET /items/qa_articles?backlink=true&export=json` với source/expected/actual
+`200`, restore PASS và exit `1`; body thực tế là array 12 item còn response
+schema của operation yêu cầu object có `data`. Đây là schema/contract candidate
+về alternate export shape; artifact không có parent transition nên chỉ ghi
+`reproduced_request_only`.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run

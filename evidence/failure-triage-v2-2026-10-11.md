@@ -50,6 +50,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `CkqaOB` / `20261011T122539Z-127722` | Guided stateful POST category, final request malformed/generated làm Directus trả `500 INTERNAL_SERVER_ERROR` | Request cuối tái hiện `500`, restore PASS, exit `0` | Product robustness candidate + stateful limitation; chưa xác nhận defect |
 | `pM4r4g` / `20261011T122542Z-128284` | Guided stateful negative PATCH category; event campaign nhận `200`, replay trực tiếp hiện tại nhận `403` | Mismatch, restore PASS, exit `1` | Chưa kết luận; không coi là negative-acceptance defect |
 | `kb5gjq` / `20261011T135006Z-162769` | Guided stateful POST article với `published_at=""`; source/expected/actual `500` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Product robustness + schema-semantic candidate; PostgreSQL `22007`, chưa xác nhận defect |
+| `F8j8Gl` / `20261011T135713Z-165099` | Guided stateful GET article với `backlink=true&export=json`; source/expected/actual `200`, body là array 12 item thay vì object `data` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export response shape; không phải product defect đã xác nhận |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -84,6 +85,10 @@ request-only, full-chain mismatch và product defect thành một kết luận.
    pin `4f77933bf9551cac6b289576078783e189b8f4e3` cũng ánh xạ kiểu timestamp
    thành custom OpenAPI format `timestamp`, nên đây là schema semantic gap cần
    đối chiếu contract, không phải bằng chứng đủ để kết luận upstream defect.
+8. `F8j8Gl` tái hiện `GET /items/qa_articles?backlink=true&export=json` với
+   HTTP `200` và body array 12 item. Schema operation vẫn kiểm tra object có
+   `data`, nên `JsonSchemaError` được gộp vào schema/contract candidate về
+   alternate export response shape; không đếm riêng thành product defect.
 
 ## Automated contract probe
 
