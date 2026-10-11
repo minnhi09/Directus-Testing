@@ -17,21 +17,26 @@ chạy thực tế. Không được diễn giải kết luận này thành “m�
 recheck vẫn exit `1`, hai campaign đầy đủ vẫn `failed_or_incomplete`, và các
 candidate được giữ nguyên để triage.
 
-## Bằng chứng runtime mới nhất
+## Bằng chứng runtime theo checkpoint
+
+Bảng dưới giữ cả lịch sử để truy vết. Các dòng có nhãn `Post-documentation
+final`, `Raw pilot final` và `Guided pilot final` là checkpoint mới nhất tương
+ứng; các dòng ghi `lịch sử` hoặc `trước final` không được đọc như bằng chứng
+latest hiện hành.
 
 | Hạng mục | Run | Kết quả thực tế |
 |---|---|---|
 | Doctor | `20261011T134705Z-161373` dưới `a153e99` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true`, digest đúng manifest |
 | Doctor recheck | `20261011T141416Z-173791` dưới `8a0d042` | PASS; stack, fixture map, pinned images, authenticated health và license active; exit `0` |
-| Doctor latest recheck | `20261011T142245Z-177107` dưới `9d26617` | PASS; Directus/DB/runner, fixture map, pinned image digest, authenticated health và license active; exit `0` |
+| Doctor recheck lịch sử | `20261011T142245Z-177107` dưới `9d26617` | PASS; Directus/DB/runner, fixture map, pinned image digest, authenticated health và license active; exit `0` |
 | Replay status oracle | `a713481`; final recheck dưới HEAD `916152e`: `20261011T132550Z-151921`, `20261011T132604Z-152556` | Positive `tFjhQT` không còn false-positive (`200→403` là mismatch); `Q8K5Nh` `403→403` reproduced; restore PASS |
 | Full-chain stateful replay | `3960f55`; `20261011T133817Z-157078`, `20261011T133626Z-155874` | `aZmz3k` full-chain reproduced; `Ag8Csb` bị dừng đúng vì precondition pool không khớp, restore PASS |
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
 | Invariant recheck | `20261011T134626Z-160826` dưới `bcbf219` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
-| Invariant latest recheck | `20261011T141918Z-175886` dưới `8a0d042` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500 và contract candidate không đổi, không có regression mới |
-| Invariant current recheck | `20261011T142618Z-178896` dưới `d186191` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500, controls 200 và 4 contract candidate vẫn tái hiện |
-| Aggregate targeted replay latest | `20261011T144640Z-184631` dưới `ddce259` | `unknown-function-shape=500`, hai control `200`; exit `1` được giữ, không mutation |
-| Contract targeted replay latest | `20261011T144648Z-185062` dưới `ddce259` | Bốn schema candidate; probe tạo/xóa dữ liệu tạm và cleanup thành công; exit `1` được giữ |
+| Invariant recheck lịch sử | `20261011T141918Z-175886` dưới `8a0d042` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500 và contract candidate không đổi, không có regression mới |
+| Invariant recheck trước final | `20261011T142618Z-178896` dưới `d186191` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500, controls 200 và 4 contract candidate vẫn tái hiện |
+| Aggregate targeted replay trước final | `20261011T144640Z-184631` dưới `ddce259` | `unknown-function-shape=500`, hai control `200`; exit `1` được giữ, không mutation |
+| Contract targeted replay trước final | `20261011T144648Z-185062` dưới `ddce259` | Bốn schema candidate; probe tạo/xóa dữ liệu tạm và cleanup thành công; exit `1` được giữ |
 | Aggregate targeted replay final | `20261011T163231Z-213262` dưới `3c40339` | `unknown-function-shape=500`, hai control `200`; exit `1` được giữ, không mutation |
 | Contract targeted replay final | `20261011T163234Z-213685` dưới `3c40339` | Bốn schema candidate; probe tạo/xóa dữ liệu tạm và cleanup thành công; exit `1` được giữ |
 | Final doctor | `20261011T145849Z-187766` dưới `60be73d` | PASS; image digest, health, fixture map và license active; exit `0` |
@@ -49,9 +54,9 @@ candidate được giữ nguyên để triage.
 | Guided pilot final | `20261011T164757Z-217585` dưới `39093de` | 10/10 operation, 125 case, 26 unique failure, stateful chạy, restore PASS; exit `1` do max-time/check failure |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
 | Scenario recheck | `20261011T141418Z-174367` dưới `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0` |
-| Scenario latest recheck | `20261011T142455Z-178114` dưới `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0`; Reader và Editor oracle giữ nguyên |
-| Schema latest recheck | `20261011T142815Z-179693` dưới `de078a2` | Admin/editor/reader/anonymous `14/14/6/0` operation; bốn hash khớp manifest; exit `0` |
-| Smoke latest recheck | `20261011T142942Z-180458` dưới `0f7e887` | Field validation, `SET NULL`, actor login, category read và Reader published filter PASS; exit `0` |
+| Scenario recheck trước final | `20261011T142455Z-178114` dưới `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0`; Reader và Editor oracle giữ nguyên |
+| Schema recheck trước final | `20261011T142815Z-179693` dưới `de078a2` | Admin/editor/reader/anonymous `14/14/6/0` operation; bốn hash khớp manifest; exit `0` |
+| Smoke recheck trước final | `20261011T142942Z-180458` dưới `0f7e887` | Field validation, `SET NULL`, actor login, category read và Reader published filter PASS; exit `0` |
 | Raw campaign | `20261011T085034Z-76481` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
 | Guided campaign | `20261011T095117Z-89079` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
 | Guided timestamp replay | `20261011T135006Z-162769` dưới `a8c4a51` | `kb5gjq` source/expected/actual `500`, `reproduced_request_only`, restore PASS, exit `1`; PostgreSQL `22007` |

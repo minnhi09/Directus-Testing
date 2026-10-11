@@ -84,7 +84,7 @@ không dùng `|| true` và không gọi pilot là campaign đạt. Mở
 đối chiếu dòng `Campaign restore: PASS` trước khi kết luận dữ liệu đã được
 khôi phục.
 
-Pilot gần nhất dưới HEAD `3c40339`: raw run `20261011T164716Z-216864` có
+Pilot gần nhất dưới HEAD `39093de`: raw run `20261011T164716Z-216864` có
 10/10 operation, 47 case và 14 unique failure; guided run
 `20261011T164757Z-217585` có 10/10 operation, 125 case và 26 unique failure.
 Cả hai restore PASS nhưng exit `1` do `max_time`/check failure; chỉ dùng để
