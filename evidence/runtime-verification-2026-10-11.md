@@ -242,10 +242,18 @@ phân loại và giới hạn stateful nằm tại
 | `Z6K7ww` | `20261011T122536Z-127156` | POST trả object ngoài schema array | replay request, restore PASS |
 | `CkqaOB` | `20261011T122539Z-127722` | final request stateful tái hiện `500` | candidate; chưa đủ full-chain replay |
 | `pM4r4g` | `20261011T122542Z-128284` | campaign `200`, direct replay `403` | mismatch, unresolved |
+| `kb5gjq` | `20261011T135006Z-162769` | POST article với `published_at=""` tái hiện `500`; source/expected/actual đều `500` | `reproduced_request_only`, restore PASS, exit `1`; SQLSTATE `22007` |
 
 Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
 Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
 và transition mapping; case thiếu parent vẫn giữ request-only/unresolved.
+
+`kb5gjq` là replay bổ sung sau bảng tám case ban đầu. Request array được
+Schemathesis đánh dấu positive nhưng truyền timestamp rỗng; log Directus ghi
+PostgreSQL `invalid input syntax for type timestamp with time zone: ""`
+(`22007`). Vì đây là giá trị sai ngữ nghĩa dù JSON type là string, finding được
+giữ là schema-semantic/product robustness candidate, chưa kết luận product
+defect.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 

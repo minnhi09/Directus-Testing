@@ -49,6 +49,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `Z6K7ww` / `20261011T122536Z-127156` | Guided `POST /items/qa_articles`; Directus trả `200` với `data` object, response schema mô tả array | Tái hiện `200` và shape object, restore PASS, exit `0` | Schema/contract candidate; cùng nhóm với POST category đã triage trước |
 | `CkqaOB` / `20261011T122539Z-127722` | Guided stateful POST category, final request malformed/generated làm Directus trả `500 INTERNAL_SERVER_ERROR` | Request cuối tái hiện `500`, restore PASS, exit `0` | Product robustness candidate + stateful limitation; chưa xác nhận defect |
 | `pM4r4g` / `20261011T122542Z-128284` | Guided stateful negative PATCH category; event campaign nhận `200`, replay trực tiếp hiện tại nhận `403` | Mismatch, restore PASS, exit `1` | Chưa kết luận; không coi là negative-acceptance defect |
+| `kb5gjq` / `20261011T135006Z-162769` | Guided stateful POST article với `published_at=""`; source/expected/actual `500` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Product robustness + schema-semantic candidate; PostgreSQL `22007`, chưa xác nhận defect |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -73,6 +74,11 @@ request-only, full-chain mismatch và product defect thành một kết luận.
    exit `1` trong run `20261011T134519Z-160153` dưới `bcbf219`; cùng run ghi hai control
    `200`, làm rõ failure phụ thuộc shape/giá trị aggregate. Báo cáo này không
    đổi candidate thành defect đã xác nhận.
+7. `kb5gjq` tái hiện một POST array được Schemathesis đánh dấu positive nhưng
+   chứa `published_at=""`; Directus chuyển giá trị rỗng xuống PostgreSQL và trả
+   `22007` rồi HTTP `500`. Vì timestamp rỗng là sai ngữ nghĩa dù JSON type là
+   string, finding được giữ là schema-semantic/product robustness candidate,
+   không đếm thành defect đã xác nhận.
 
 ## Automated contract probe
 
@@ -98,6 +104,9 @@ Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
 
 ## Việc còn lại
 
+- `kb5gjq` đã có reproducer request-only và log DB đủ để triage; nếu muốn đóng
+  candidate cần quyết định contract timestamp hoặc đối chiếu upstream, không
+  sửa expected thành `PASS`.
 - `pM4r4g` đã có full-chain replay ở run `20261011T131321Z-144935`; các case
   như `CkqaOB` thiếu parent trong artifact vẫn phải ghi final-request-only và
   unresolved. Không được dùng replay trực tiếp hiện tại để tuyên bố full state

@@ -65,6 +65,14 @@ negative oracle nên giữ mismatch/exit `1`, chưa gọi là product defect.
 `CkqaOB` không có parent case trong artifact nên vẫn là final-request-only
 candidate.
 
+Recheck thêm `kb5gjq` ở run `20261011T135006Z-162769`: guided stateful POST
+`/items/qa_articles` với body array tối giản có `published_at=""` được replay
+request-only, source/expected/actual đều `500`, restore PASS và exit `1`. Log
+Directus ghi PostgreSQL SQLSTATE `22007` (`invalid input syntax for type timestamp
+with time zone: ""`). Đây là candidate robustness/schema-semantic vì generator
+đã coi request là positive nhưng giá trị timestamp rỗng không hợp lệ về ngữ
+nghĩa; chưa kết luận product defect.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run
@@ -110,7 +118,7 @@ Chi tiết line-level nằm trong phần source comparison của
 | `UnsupportedMethodResponse` | 2 mỗi seed | 2 mỗi seed | Cần xác minh hành vi TRACE ngoài allowlist; chưa kết luận |
 | `RejectedPositiveData` | 2/1/1 | 8/8/8 | Chưa kết luận; có thể do precondition/fixture/query sinh ra không phù hợp |
 | `UndefinedContentType` | 0/1/0 | 5/5/5 | Chưa kết luận; cần replay response cụ thể |
-| `ServerError` | 0 | 9/8/8 | Mức ưu tiên cao, nhưng chỉ là candidate cho đến khi replay được chuỗi stateful |
+| `ServerError` | 0 | 9/8/8 | `kb5gjq` đã replay request-only và tái hiện 500; vẫn là candidate robustness/schema-semantic, không phải defect đã xác nhận |
 | `JsonSchemaError` | 0 | 6/10/7 | Chưa kết luận; cần phân biệt schema raw/overlay và response thực tế |
 | `AcceptedNegativeData` | 0 | 3 mỗi seed | Chưa kết luận; cần kiểm tra request/validation và trạng thái fixture |
 

@@ -75,6 +75,11 @@ Các case guided đại diện được replay sau pilot:
   tối giản đã kiểm tra là `fields=&aggregate={"foo":1}`; log Directus ghi
   `TypeError: fields is not iterable`. Đây là candidate cần đối chiếu upstream,
   không được ghi nhận tự động thành product defect.
+- `kb5gjq` (`20261011T135006Z-162769`) tái hiện `500` trên guided stateful
+  `POST /items/qa_articles` với body array `[{"score":0,"title":"","category":0,"id":1186,"published_at":""}]`.
+  Source/expected/actual đều `500`, `reproduced_request_only`, restore PASS,
+  exit `1`. Log Directus ghi PostgreSQL `22007` do timestamp rỗng; đây là
+  schema-semantic/product robustness candidate, chưa phải defect đã xác nhận.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

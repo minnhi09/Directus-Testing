@@ -46,6 +46,11 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
   500 với `fields=&aggregate={"foo":1}`; replay mở rộng
   `20261011T134519Z-160153` ghi hai control aggregate trả 200. Case contract
   probe ghi bốn schema candidate trong một failure có chủ đích.
+- Replay bổ sung `kb5gjq` ở `20261011T135006Z-162769` tái hiện request-only
+  `POST /items/qa_articles` với `published_at=""` trả HTTP `500`; log ghi
+  PostgreSQL SQLSTATE `22007`. Đây là candidate schema-semantic/product
+  robustness, chưa đủ căn cứ gọi là product defect và không được đổi thành
+  PASS để làm đẹp kết quả.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

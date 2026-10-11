@@ -21,10 +21,11 @@ candidate được giữ nguyên để triage.
 | Replay status oracle | `a713481`; final recheck dưới HEAD `916152e`: `20261011T132550Z-151921`, `20261011T132604Z-152556` | Positive `tFjhQT` không còn false-positive (`200→403` là mismatch); `Q8K5Nh` `403→403` reproduced; restore PASS |
 | Full-chain stateful replay | `3960f55`; `20261011T133817Z-157078`, `20261011T133626Z-155874` | `aZmz3k` full-chain reproduced; `Ag8Csb` bị dừng đúng vì precondition pool không khớp, restore PASS |
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
-| Invariant recheck | `20261011T130457Z-141013` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
+| Invariant recheck | `20261011T134626Z-160826` dưới `bcbf219` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
 | Raw campaign | `20261011T085034Z-76481` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
 | Guided campaign | `20261011T095117Z-89079` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
+| Guided timestamp replay | `20261011T135006Z-162769` dưới `a8c4a51` | `kb5gjq` source/expected/actual `500`, `reproduced_request_only`, restore PASS, exit `1`; PostgreSQL `22007` |
 
 Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
@@ -39,6 +40,7 @@ hoặc response nhạy cảm.
 | POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
+| Guided `POST /items/qa_articles` với `published_at=""` | Replay `kb5gjq`, Directus log và PostgreSQL SQLSTATE `22007` | Schema-semantic/product robustness candidate; chưa xác nhận product defect |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 
@@ -86,6 +88,9 @@ Các việc chưa đóng không được che giấu:
 - positive stateful replay `tFjhQT` đã được kiểm tra lại sau oracle fix: source
   `200`, replay `403`, nên giữ `mismatch`/exit `1`; không dùng report cũ trước
   `a713481` để tuyên bố reproduced;
+- `kb5gjq` đã tái hiện request-only `500` do timestamp rỗng (`22007`); cần
+  quyết định contract/upstream để đóng candidate, không đổi expected thành
+  `PASS` và không đếm finding này như defect đã xác nhận;
 - không có bằng chứng review chéo hoặc chạy trên máy thứ hai trong checkpoint
   này; hai nội dung đó không còn là gate G1 nội bộ, nhưng hướng dẫn dựng máy
   sạch và peer evaluation cuối kỳ của đề bài vẫn được giữ trong tài liệu.

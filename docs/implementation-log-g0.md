@@ -221,3 +221,21 @@ thái để làm đẹp.
   `stateful_sequence_failed`, target không gửi, restore PASS, exit `1`.
 - Hai kết quả được phân biệt trong README, replay guide, campaign/failure/runtime
   evidence, G1, final handoff và manifest; không coi setup failure là product bug.
+
+## Triage guided ServerError timestamp — 2026-10-11
+
+- Chạy `./lab.sh replay kb5gjq` ở run `20261011T135006Z-162769` dưới harness
+  `a8c4a510c03fbd7325f952e786f43103aab2c817`.
+- Case guided stateful `POST /items/qa_articles` có body array với
+  `published_at=""`; source/expected/actual đều HTTP `500`, report ghi
+  `reproduced_request_only`, `sequence_replayed=false`, restore PASS và exit
+  `1`. Không có parent transition trong artifact nên không gọi là full-chain
+  reproduction.
+- Log Directus ghi `DatabaseError`, PostgreSQL SQLSTATE `22007` và thông báo
+  timestamp rỗng không hợp lệ. Đây là bằng chứng root cause kỹ thuật cho
+  request đã tái hiện, nhưng vẫn là schema-semantic/product robustness
+  candidate vì generator coi chuỗi rỗng là dữ liệu positive; chưa kết luận
+  product defect.
+- Đã cập nhật failure triage, replay guide, runtime/final evidence, G1,
+  traceability, README và manifest. Không sửa expected, không xóa artifact
+  thất bại và không chạy lại campaign dài.
