@@ -599,23 +599,43 @@ class Lab:
             "aggregate-query-robustness",
             "Query aggregate không làm API trả 5xx",
         )
-        aggregate = json.dumps({"foo": 1}, separators=(",", ":"))
-        path = "/items/qa_articles" + self.path_params({"fields": "", "aggregate": aggregate})
-        response = self.api.request("GET", path, self.editor_token)
-        case.step("GET", path, response, "API không trả 5xx cho query được schema chấp nhận")
-        if response.status == 0:
-            case.fail("có HTTP response", "network error", response.error or "network error")
-            return case
-        if response.status >= 500:
-            case.fail(
-                "query aggregate không trả 5xx",
-                str(response.status),
-                "Known baseline candidate: aggregate có key lạ/giá trị số làm Directus trả INTERNAL_SERVER_ERROR; giữ failure để triage.",
-            )
-            return case
-        case.expected = "query aggregate không trả 5xx"
-        case.actual = f"HTTP {response.status}"
-        case.details = "Regression probe không thay đổi dữ liệu; status cụ thể ngoài 5xx được giữ nguyên theo baseline."
+        variants = (
+            ("unknown-function-shape", {"foo": 1}, "schema-accepted input không trả 5xx"),
+            ("empty-object-control", {}, "aggregate rỗng trả 2xx"),
+            ("count-function-control", {"count": ["id"]}, "aggregate count trả 2xx"),
+        )
+        observed: dict[str, int | str] = {}
+        for name, aggregate_object, expected in variants:
+            aggregate = json.dumps(aggregate_object, separators=(",", ":"))
+            path = "/items/qa_articles" + self.path_params({"fields": "", "aggregate": aggregate})
+            response = self.api.request("GET", path, self.editor_token)
+            case.step("GET", path, response, expected)
+            observed[name] = response.status if response.status else "network-error"
+
+            if response.status == 0:
+                case.fail("có HTTP response cho mọi aggregate variant", "network error", response.error or "network error")
+                return case
+            if response.status >= 500:
+                case.fail(
+                    "unknown aggregate không 5xx; control variants trả 2xx",
+                    f"{name}=HTTP {response.status}",
+                    "Known baseline candidate: aggregate có key lạ/giá trị số làm Directus trả INTERNAL_SERVER_ERROR; giữ failure để triage.",
+                )
+                continue
+            if name != "unknown-function-shape" and not 200 <= response.status < 300:
+                case.fail(
+                    expected,
+                    f"{name}=HTTP {response.status}",
+                    "Control aggregate variant khác expected 2xx trên baseline hiện tại.",
+                )
+
+        if case.status == "passed":
+            case.expected = "unknown aggregate không 5xx; control variants trả 2xx"
+        case.actual = json.dumps(observed, ensure_ascii=False, separators=(",", ":"))
+        case.details = (
+            "Regression probe chỉ đọc, không thay đổi dữ liệu; lưu cả variant gây candidate và hai control "
+            "để phân biệt lỗi shape với trạng thái API bình thường."
+        )
         return case
 
     def case_contract_schema_candidates(self) -> Case:
