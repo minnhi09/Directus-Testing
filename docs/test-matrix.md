@@ -20,6 +20,8 @@ Bulk `PATCH` và bulk `DELETE` trên đường dẫn list không thuộc campaig
 
 Giá trị mặc định: một worker, `5/s`, timeout request 10 giây, tối đa 100 example/operation, tối đa 1.200 giây/profile/seed, seed `101,202,303`. Pilot ngắn đã chạy với seed `101`, max examples `1`, và max time lần lượt 30 giây (`raw`) / 20 giây (`guided`); đó không phải kết quả campaign đầy đủ.
 
+Campaign bật tường minh các check `not_a_server_error`, `status_code_conformance`, `content_type_conformance`, `response_schema_conformance`, `unsupported_method`, `negative_data_rejection` và `positive_data_acceptance`. Không dùng blanket skip/xfail; failure và warning được giữ trong report.
+
 Mỗi seed tạo thư mục `artifacts/runs/<run_id>/<profile>/seed-<seed>/` với schema copy, hash, diff, inventory, metrics, report JSON/NDJSON, coverage, generation database, summary và snapshot để restore. Fixture được khôi phục trước khi seed kế tiếp tiếp tục.
 
 ## Sáu scenario demo
