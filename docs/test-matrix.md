@@ -80,11 +80,14 @@ giới hạn tái dựng chuỗi cần giữ ở trạng thái chưa kết luậ
 | S6 Reader ghi | Reader có detail PATCH | PATCH bị từ chối và Editor đọc lại thấy dữ liệu không đổi | passed: HTTP 403, dữ liệu không đổi |
 
 Run v2 gần nhất trước recheck `20261011T141418Z-174367` ghi S1–S6 passed.
-Recheck mới nhất `20261011T142455Z-178114` dưới harness `3811b44` cũng ghi
+Recheck trước final `20261011T142455Z-178114` dưới harness `3811b44` cũng ghi
 `6 passed`, `0 failed`, `0 blocked`, exit `0`. Run v2 cũ
 `20261011T105231Z-104612` và run v1
 `20261011T035341Z-11908` vẫn được giữ như bằng chứng lịch sử S1–S3 passed,
 S4–S6 blocked trước license.
+
+Final verification mới nhất `20261011T145912Z-189309` dưới harness `60be73d`
+tiếp tục ghi `6 passed`, `0 failed`, `0 blocked`, exit `0`.
 
 ## Positive operation acceptance
 
@@ -110,12 +113,16 @@ Các case ổn định được chạy bởi `scripts/invariants.py` trong runne
 `aggregate={"count":["id"]}`. Probe yêu cầu variant unknown không có HTTP 5xx,
 control trả 2xx; trên baseline v2 variant unknown tái hiện candidate 500 và giữ
 trạng thái `failed`, còn hai control trả 200. Recheck này nằm ở run
-`20261011T134519Z-160153` dưới harness `bcbf219`; full invariant recheck mới
-nhất `20261011T142618Z-178896` ghi `9 passed`, `2 failed`, `0 blocked`, exit
+`20261011T134519Z-160153` dưới harness `bcbf219`; recheck trước final
+`20261011T142618Z-178896` ghi `9 passed`, `2 failed`, `0 blocked`, exit
 `1`. `reader-visibility` và
 `reader-write` kiểm tra schema trước; v2 có operation cần thiết nên đã gửi request
 và xác minh projection/private write theo hành vi thực tế. Nếu dựng máy không có
 license và operation vắng mặt, hai case vẫn ghi `blocked` và không gửi request cấm.
+
+Final invariant verification `20261011T145918Z-189799` dưới harness `60be73d`
+giữ nguyên `9 passed`, `2 failed`, `0 blocked`, exit `1`; không có regression
+mới.
 
 `contract-schema-candidates` đối chiếu runtime Editor với response map/content
 type/POST shape trong `editor.json`, dùng dữ liệu tạm và cleanup sau probe. Run

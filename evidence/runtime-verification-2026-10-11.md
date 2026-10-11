@@ -82,6 +82,23 @@ sau đó lặp qua `fields`. Đây là bằng chứng source hỗ trợ phân lo
 `schema omission + product robustness candidate`, không đủ một mình để kết luận
 product defect. Không sửa checkout `../directus`.
 
+## Final verification ngắn dưới HEAD `60be73d`
+
+Sau hai targeted replay, chuỗi kiểm tra ngắn được chạy tuần tự; không chạy raw
+hoặc guided campaign dài:
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T145849Z-187766` | `./lab.sh doctor` | PASS, exit `0`; license active, digest/health/fixture map đạt |
+| `20261011T145854Z-188363` | `./lab.sh smoke` | PASS, exit `0`; field validation, `SET NULL`, login và Reader filter đạt |
+| `20261011T145907Z-188832` | `./lab.sh export-schema` | PASS, exit `0`; actor `14/14/6/0`, bốn hash không đổi |
+| `20261011T145912Z-189309` | `./lab.sh test scenarios` | S1–S6 passed, 0 failed, 0 blocked; exit `0` |
+| `20261011T145918Z-189799` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; exit `1`, đúng aggregate 500 và 4 contract candidate |
+
+Tất cả metadata ghi fixture `r06-k05-v2` và harness SHA
+`60be73df7cf5c0555a4e96e99c864a0dff2386d2`. Hai failure invariant không có
+regression mới và được giữ nguyên trong artifact.
+
 ## Schema snapshot
 
 Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261011T035010Z-8515`):

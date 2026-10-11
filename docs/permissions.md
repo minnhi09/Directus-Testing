@@ -56,10 +56,10 @@ entitlement:
 - Projection yêu cầu `internal_notes` trả HTTP 403 trên baseline này, không có dữ liệu private; oracle cũng chấp nhận trường hợp 2xx nhưng field bị loại.
 - Reader PATCH trả HTTP 403 và Editor đọc lại thấy target không đổi.
 
-Recheck schema mới nhất `20261011T142815Z-179693` dưới harness `de078a2` giữ
-nguyên bốn hash và inventory `14/14/6/0`. Run `20261011T085027Z-75998` ở trên
-được giữ như bằng chứng export baseline v2 ban đầu; không overwrite snapshot raw
-hoặc dùng hash của run lịch sử để đại diện cho recheck mới.
+Recheck schema mới nhất `20261011T145907Z-188832` dưới harness `60be73d` giữ
+nguyên bốn hash và inventory `14/14/6/0`. Các run `20261011T142815Z-179693`
+và `20261011T085027Z-75998` vẫn được giữ như bằng chứng lịch sử; không
+overwrite snapshot raw hoặc dùng hash của run lịch sử để đại diện cho recheck mới.
 
 ## Cách mở khóa Reader khi dựng máy mới
 
