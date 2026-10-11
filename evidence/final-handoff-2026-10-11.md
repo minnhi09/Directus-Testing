@@ -45,6 +45,8 @@ candidate được giữ nguyên để triage.
 | Post-documentation final schema | `20261011T162431Z-210275` dưới `fd28ef1` | PASS; actor `14/14/6/0`, hash không đổi; exit `0` |
 | Post-documentation final scenarios | `20261011T162433Z-210740` dưới `fd28ef1` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
 | Post-documentation final invariants | `20261011T162436Z-211214` dưới `fd28ef1` | `9 passed`, `2 failed`, `0 blocked`; hai finding đã biết giữ nguyên; exit `1` |
+| Raw pilot final | `20261011T164716Z-216864` dưới `39093de` | 10/10 operation, 47 case, 14 unique failure, restore PASS; exit `1` do max-time/check failure |
+| Guided pilot final | `20261011T164757Z-217585` dưới `39093de` | 10/10 operation, 125 case, 26 unique failure, stateful chạy, restore PASS; exit `1` do max-time/check failure |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
 | Scenario recheck | `20261011T141418Z-174367` dưới `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0` |
 | Scenario latest recheck | `20261011T142455Z-178114` dưới `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0`; Reader và Editor oracle giữ nguyên |

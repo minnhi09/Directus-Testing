@@ -134,6 +134,22 @@ file local/untracked có sẵn. Đây là bằng chứng tái hiện cuối; fai
 schema/contract hoặc product robustness candidate, chưa phải product defect đã
 xác nhận.
 
+### Pilot raw/guided cuối dưới HEAD `3c40339`
+
+Hai profile được chạy độc lập với `LAB_CAMPAIGN_SEEDS=101`,
+`LAB_MAX_EXAMPLES=1`, `LAB_MAX_TIME=30`. Cả hai chọn đủ 10 operation, có report
+và coverage, restore fixture PASS; runner giữ exit `1` vì budget/check failure.
+
+| Run | Profile | Metrics thực tế | Trạng thái |
+|---|---|---|---|
+| `20261011T164716Z-216864` | raw | 47 case, 14 unique failure, 0 errored, termination `max_time` | `failed_or_incomplete`, restore `0`, exit `1` |
+| `20261011T164757Z-217585` | guided | 125 case, 26 unique failure, 1 errored, stateful 26 scenario, termination `max_time` | `failed_or_incomplete`, restore `0`, exit `1` |
+
+Metadata ghi fixture `r06-k05-v2`, harness SHA
+`39093de94c055a1e57faabc0b964d73639afa9d2`. Các pilot này chứng minh raw và
+guided có thể chạy độc lập trong ngân sách ngắn; không nâng trạng thái hai
+campaign đầy đủ thành PASS.
+
 ## Schema snapshot
 
 Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261011T035010Z-8515`):
