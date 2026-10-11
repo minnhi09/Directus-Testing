@@ -389,3 +389,13 @@ thái để làm đẹp.
   candidate. Không có regression mới.
 - Giữ nguyên report, metadata, log, exit code và phân loại; đây là recheck
   invariant ngắn, không phải campaign raw/guided mới.
+
+## Schema export recheck trên HEAD hiện tại — 2026-10-11
+
+- `./lab.sh export-schema` ở run `20261011T142815Z-179693`, dưới harness
+  `de078a2bc9ab7a16c0c5ebb23aa46b8708e16d98`, PASS, exit `0`.
+- Fixture `r06-k05-v2`; schema admin/editor/reader/anonymous lần lượt có
+  `14/14/6/0` operation và hash `993a95d2…/bd32aa69…/d7dc1393…/2070c25c…`,
+  khớp manifest. Raw schema không bị sửa.
+- Đây là schema export recheck ngắn, không phải campaign Schemathesis mới;
+  các failure invariant/raw/guided vẫn giữ nguyên.

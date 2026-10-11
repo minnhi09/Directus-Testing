@@ -217,6 +217,7 @@ Run doctor mới nhất dưới HEAD `a153e99`:
 | `20261011T142245Z-177107` | `./lab.sh doctor` dưới HEAD `9d26617` | PASS; Directus/DB/runner, fixture map, ba pinned image digest, authenticated health và license `source=env/status=active`, `custom_permission_rules_enabled=true`; exit `0` |
 | `20261011T142455Z-178114` | `./lab.sh test scenarios` dưới HEAD `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; Reader draft/private/write oracle và Editor CRUD/query đều đạt; exit `0` |
 | `20261011T142618Z-178896` | `./lab.sh test invariants` dưới HEAD `d186191` | `9 passed`, `2 failed`, `0 blocked`; aggregate unknown shape `500`, controls `200`, contract probe `4` candidate; exit `1` được giữ |
+| `20261011T142815Z-179693` | `./lab.sh export-schema` dưới HEAD `de078a2` | PASS; fixture `r06-k05-v2`, admin/editor/reader/anonymous `14/14/6/0` operation, hash khớp manifest, exit `0` |
 
 Năm run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
 không chạy lại campaign raw/guided dài. Các failure invariant/campaign đã biết

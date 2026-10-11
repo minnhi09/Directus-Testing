@@ -27,7 +27,7 @@ replay.
 | Stack healthy, version/digest đúng manifest | Doctor `20261011T105225Z-104013`; latest recheck `20261011T142245Z-177107` dưới `9d26617` | Đạt |
 | Seed schema/fixture/actor/policy đúng và lặp lại không nhân bản | Seed `20261011T084845Z-72361`, smoke `20261011T085023Z-75556` | Đạt |
 | CRUD, query, quan hệ và phân quyền đạt oracle | Scenario mới nhất `20261011T142455Z-178114` dưới `3811b44`, S1–S6; run cũ `20261011T141418Z-174367` và `20261011T105231Z-104612` được giữ | Đạt |
-| Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
+| Schema theo actor và inventory 10 operation | Export mới nhất `20261011T142815Z-179693` dưới `de078a2`, admin/editor/reader/anonymous `14/14/6/0`; hash giữ nguyên | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
 | Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`; full recheck mới nhất `20261011T142618Z-178896` dưới `d186191`; aggregate replay `20261011T134519Z-160153`; contract probe `20261011T130227Z-139257` | Đạt có finding |
 | Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, chain replay `baaee4b`, oracle fix `a713481`; recheck `20261011T132550Z-151921`, `20261011T133817Z-157078`, `20261011T133626Z-155874` | Có bằng chứng full-chain reproduced (`aZmz3k`), mismatch không bị đổi thành PASS (`tFjhQT`), và precondition không đủ bị dừng đúng (`Ag8Csb`); status source/expected/actual được ghi rõ |
