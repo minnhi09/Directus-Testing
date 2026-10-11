@@ -193,6 +193,7 @@ class Lab:
         self.editor_token = ""
         self.reader_token = ""
         self.fixture_map: dict[str, Any] = {}
+        self.editor_schema: dict[str, Any] = {}
         self.reader_schema: dict[str, Any] = {}
 
     def login(self, email: str, password: str) -> str:
@@ -224,6 +225,9 @@ class Lab:
             if not all(isinstance(value, int) and value > 0 for value in rows.values()):
                 raise RuntimeError(f"fixture map {collection} có ID không hợp lệ")
         schema_root = self.runtime_root / "schemas" / self.fixture_map["fixture_version"]
+        editor_path = schema_root / "editor.json"
+        if editor_path.exists():
+            self.editor_schema = json.loads(editor_path.read_text(encoding="utf-8"))
         reader_path = schema_root / "reader.json"
         if reader_path.exists():
             self.reader_schema = json.loads(reader_path.read_text(encoding="utf-8"))
@@ -237,6 +241,45 @@ class Lab:
     def has_operation(self, method: str, path: str) -> bool:
         value = self.reader_schema.get("paths", {}).get(path, {})
         return method.lower() in value
+
+    def editor_response_contract(self, method: str, path: str, status: int = 200) -> dict[str, Any]:
+        operation = self.editor_schema.get("paths", {}).get(path, {}).get(method.lower(), {})
+        responses = operation.get("responses", {}) if isinstance(operation, dict) else {}
+        response = responses.get(str(status), {})
+        return response if isinstance(response, dict) else {}
+
+    @staticmethod
+    def value_type(value: Any) -> str:
+        if value is None:
+            return "null"
+        if isinstance(value, bool):
+            return "boolean"
+        if isinstance(value, list):
+            return "array"
+        if isinstance(value, dict):
+            return "object"
+        if isinstance(value, int) and not isinstance(value, bool):
+            return "integer"
+        if isinstance(value, float):
+            return "number"
+        return "string"
+
+    def response_data_schema_type(self, method: str, path: str) -> str | None:
+        response = self.editor_response_contract(method, path)
+        schema = response.get("content", {}).get("application/json", {}).get("schema", {})
+        data_schema = schema.get("properties", {}).get("data", {}) if isinstance(schema, dict) else {}
+        value = data_schema.get("type") if isinstance(data_schema, dict) else None
+        return str(value) if value else None
+
+    def response_content_types(self, method: str, path: str) -> list[str]:
+        response = self.editor_response_contract(method, path)
+        content = response.get("content", {})
+        return sorted(content) if isinstance(content, dict) else []
+
+    def response_statuses(self, method: str, path: str) -> list[str]:
+        operation = self.editor_schema.get("paths", {}).get(path, {}).get(method.lower(), {})
+        responses = operation.get("responses", {}) if isinstance(operation, dict) else {}
+        return sorted(str(status) for status in responses) if isinstance(responses, dict) else []
 
     @staticmethod
     def path_params(params: dict[str, Any]) -> str:
@@ -575,6 +618,159 @@ class Lab:
         case.details = "Regression probe không thay đổi dữ liệu; status cụ thể ngoài 5xx được giữ nguyên theo baseline."
         return case
 
+    def case_contract_schema_candidates(self) -> Case:
+        case = Case(
+            "contract-schema-candidates",
+            "Đối chiếu response runtime với OpenAPI actor Editor",
+        )
+        if not self.editor_schema:
+            case.block("editor schema đã export", "thiếu editor.json", "chạy ./lab.sh export-schema trước")
+            return case
+
+        findings: list[dict[str, Any]] = []
+        category_id: int | None = None
+        article_id: int | None = None
+        delete_category_id: int | None = None
+        run_id = os.environ.get("LAB_RUN_ID", "local")
+
+        try:
+            category = self.api.request(
+                "POST",
+                "/items/qa_categories",
+                self.editor_token,
+                {"name": f"Contract candidate category {run_id}"},
+            )
+            case.step("POST", "/items/qa_categories", category, "2xx và data object theo runtime Directus")
+            category_data = category.body.get("data") if isinstance(category.body, dict) else None
+            category_id = category_data.get("id") if isinstance(category_data, dict) else None
+            category_schema_type = self.response_data_schema_type("POST", "/items/qa_categories")
+            category_actual_type = self.value_type(category_data)
+            if category.status < 200 or category.status >= 300 or not isinstance(category_id, int):
+                case.fail("POST category có response hợp lệ", str(category.status), "không tạo được probe category")
+                return case
+            if category_schema_type and category_schema_type != category_actual_type:
+                findings.append(
+                    {
+                        "kind": "schema_response_shape",
+                        "operation": "POST /items/qa_categories",
+                        "documented_data_type": category_schema_type,
+                        "actual_data_type": category_actual_type,
+                        "classification": "schema_contract_candidate",
+                    }
+                )
+
+            article = self.api.request(
+                "POST",
+                "/items/qa_articles",
+                self.editor_token,
+                {
+                    "title": f"Contract candidate article {run_id}",
+                    "status": "draft",
+                    "score": 2,
+                    "published_at": None,
+                    "metadata": {"case": "contract-schema-candidates"},
+                    "internal_notes": "contract probe",
+                    "category": category_id,
+                },
+            )
+            case.step("POST", "/items/qa_articles", article, "2xx và data object theo runtime Directus")
+            article_data = article.body.get("data") if isinstance(article.body, dict) else None
+            article_id = article_data.get("id") if isinstance(article_data, dict) else None
+            article_schema_type = self.response_data_schema_type("POST", "/items/qa_articles")
+            article_actual_type = self.value_type(article_data)
+            if article.status < 200 or article.status >= 300 or not isinstance(article_id, int):
+                case.fail("POST article có response hợp lệ", str(article.status), "không tạo được probe article")
+                return case
+            if article_schema_type and article_schema_type != article_actual_type:
+                findings.append(
+                    {
+                        "kind": "schema_response_shape",
+                        "operation": "POST /items/qa_articles",
+                        "documented_data_type": article_schema_type,
+                        "actual_data_type": article_actual_type,
+                        "classification": "schema_contract_candidate",
+                    }
+                )
+
+            export_path = "/items/qa_articles" + self.path_params(
+                {"limit": "1", "fields": "id,title", "export": "csv"}
+            )
+            exported = self.api.request("GET", export_path, self.editor_token)
+            case.step("GET", export_path, exported, "200 text/csv theo Directus runtime")
+            documented_types = self.response_content_types("GET", "/items/qa_articles")
+            actual_content_type = exported.content_type.split(";", 1)[0].strip().lower()
+            if exported.status != 200:
+                case.fail("export csv trả HTTP 200", str(exported.status), "export probe thất bại")
+                return case
+            if actual_content_type != "text/csv":
+                case.fail("export csv trả Content-Type text/csv", exported.content_type, "runtime content type khác contract Directus")
+                return case
+            if "text/csv" not in [content_type.lower() for content_type in documented_types]:
+                findings.append(
+                    {
+                        "kind": "schema_content_type",
+                        "operation": "GET /items/qa_articles?export=csv",
+                        "documented_content_types": documented_types,
+                        "actual_content_type": actual_content_type,
+                        "classification": "schema_contract_candidate",
+                    }
+                )
+
+            delete_category = self.api.request(
+                "POST",
+                "/items/qa_categories",
+                self.editor_token,
+                {"name": f"Contract delete candidate {run_id}"},
+            )
+            case.step("POST", "/items/qa_categories", delete_category, "2xx và có ID cho DELETE probe")
+            delete_data = delete_category.body.get("data") if isinstance(delete_category.body, dict) else None
+            delete_category_id = delete_data.get("id") if isinstance(delete_data, dict) else None
+            if delete_category.status < 200 or delete_category.status >= 300 or not isinstance(delete_category_id, int):
+                case.fail("DELETE probe có category precondition", str(delete_category.status), "không tạo được category DELETE probe")
+                return case
+
+            delete_path = f"/items/qa_categories/{delete_category_id}"
+            deleted = self.api.request("DELETE", delete_path, self.editor_token)
+            case.step("DELETE", delete_path, deleted, "204 theo runtime Directus")
+            documented_statuses = self.response_statuses("DELETE", "/items/qa_categories/{id}")
+            if deleted.status != 204:
+                case.fail("DELETE detail trả 204", str(deleted.status), "runtime DELETE status khác baseline")
+                return case
+            delete_category_id = None
+            if "204" not in documented_statuses:
+                findings.append(
+                    {
+                        "kind": "schema_status",
+                        "operation": "DELETE /items/qa_categories/{id}",
+                        "documented_statuses": documented_statuses,
+                        "actual_status": 204,
+                        "classification": "schema_contract_candidate",
+                    }
+                )
+
+            case.expected = "runtime response và OpenAPI được đối chiếu, không coi schema gap là product defect"
+            case.actual = f"schema_candidates={len(findings)}"
+            case.details = json.dumps(
+                {
+                    "classification": "schema_contract_candidate",
+                    "findings": findings,
+                    "source_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+                },
+                ensure_ascii=False,
+                separators=(",", ":"),
+            )
+            if findings:
+                case.status = "failed"
+                case.expected = "known schema candidates are recorded without masking runtime behavior"
+            return case
+        finally:
+            if article_id is not None:
+                self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token, record=False)
+            if category_id is not None:
+                self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token, record=False)
+            if delete_category_id is not None:
+                self.api.request("DELETE", f"/items/qa_categories/{delete_category_id}", self.editor_token, record=False)
+
     def case_relation_nullification(self) -> Case:
         case = Case("relation-nullification", "Quan hệ article.category đặt NULL khi xóa category")
         category_id: int | None = None
@@ -784,6 +980,7 @@ def run() -> int:
         "positive-operations": lab.case_positive_operations,
         "query-fixture": lab.case_query_fixture,
         "aggregate-query-robustness": lab.case_aggregate_query_robustness,
+        "contract-schema-candidates": lab.case_contract_schema_candidates,
         "relation-nullification": lab.case_relation_nullification,
         "invalid-field-rejection": lab.case_invalid_field_rejection,
         "reader-visibility": lab.case_reader_visibility,

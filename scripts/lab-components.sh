@@ -1897,7 +1897,7 @@ invariants() {
 replay_case() {
 	local case_id="$1"
 	case "$case_id" in
-		auth-invalid-token|anonymous-denied|editor-crud|positive-operations|query-fixture|aggregate-query-robustness|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
+		auth-invalid-token|anonymous-denied|editor-crud|positive-operations|query-fixture|aggregate-query-robustness|contract-schema-candidates|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
 			local harness_sha
 			require_tools
 			[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
