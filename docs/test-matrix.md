@@ -86,8 +86,10 @@ Recheck trước final `20261011T142455Z-178114` dưới harness `3811b44` cũng
 `20261011T035341Z-11908` vẫn được giữ như bằng chứng lịch sử S1–S3 passed,
 S4–S6 blocked trước license.
 
-Final verification mới nhất `20261011T145912Z-189309` dưới harness `60be73d`
-tiếp tục ghi `6 passed`, `0 failed`, `0 blocked`, exit `0`.
+Final verification mới nhất `20261011T162433Z-210740` dưới harness `fd28ef1`
+tiếp tục ghi `6 passed`, `0 failed`, `0 blocked`, exit `0`. Invariant cùng
+checkpoint `20261011T162436Z-211214` giữ `9 passed`, `2 failed`, `0 blocked`,
+exit `1`; run `20261011T145912Z-189309` được giữ làm lịch sử.
 
 ## Positive operation acceptance
 
@@ -120,9 +122,9 @@ trạng thái `failed`, còn hai control trả 200. Recheck này nằm ở run
 và xác minh projection/private write theo hành vi thực tế. Nếu dựng máy không có
 license và operation vắng mặt, hai case vẫn ghi `blocked` và không gửi request cấm.
 
-Final invariant verification `20261011T145918Z-189799` dưới harness `60be73d`
+Final invariant verification `20261011T162436Z-211214` dưới harness `fd28ef1`
 giữ nguyên `9 passed`, `2 failed`, `0 blocked`, exit `1`; không có regression
-mới.
+mới. Run `20261011T145918Z-189799` dưới `60be73d` được giữ làm lịch sử.
 
 `contract-schema-candidates` đối chiếu runtime Editor với response map/content
 type/POST shape trong `editor.json`, dùng dữ liệu tạm và cleanup sau probe. Run

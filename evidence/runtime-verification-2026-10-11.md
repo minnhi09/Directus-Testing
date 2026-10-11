@@ -99,6 +99,25 @@ Tất cả metadata ghi fixture `r06-k05-v2` và harness SHA
 `60be73df7cf5c0555a4e96e99c864a0dff2386d2`. Hai failure invariant không có
 regression mới và được giữ nguyên trong artifact.
 
+### Post-documentation final verification dưới HEAD `fd28ef1`
+
+Sau các commit tài liệu demo/G1, chạy lại chuỗi kiểm tra ngắn để xác minh
+interface và baseline không lệch. Metadata của cả run ghi fixture
+`r06-k05-v2`, harness SHA `fd28ef1aa80eadf03a838eaa4246bef1a1890570` và
+working tree `dirty` chỉ vì các file local/untracked có sẵn:
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T162426Z-209264` | `./lab.sh doctor` | PASS, exit `0`; license active, pinned digest/health/fixture map đạt |
+| `20261011T162429Z-209848` | `./lab.sh smoke` | PASS, exit `0`; field validation, `SET NULL`, login và Reader filter đạt |
+| `20261011T162431Z-210275` | `./lab.sh export-schema` | PASS, exit `0`; actor `14/14/6/0`, bốn hash không đổi |
+| `20261011T162433Z-210740` | `./lab.sh test scenarios` | S1–S6 passed, 0 failed, 0 blocked; exit `0` |
+| `20261011T162436Z-211214` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; exit `1`, đúng aggregate 500 và 4 contract candidate |
+
+Các run mới không sửa assertion hoặc expected result; chúng chỉ xác nhận lại
+checkpoint sau thay đổi tài liệu. Locale warning `LC_ALL=en_US.UTF-8` trên host
+vẫn xuất hiện nhưng không ảnh hưởng kết quả lệnh.
+
 ## Schema snapshot
 
 Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261011T035010Z-8515`):
