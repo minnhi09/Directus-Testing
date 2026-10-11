@@ -45,6 +45,7 @@ dùng `./lab.sh reset`.
 | Smoke | `20261011T145854Z-188363` | PASS, validation/SET NULL/login/Reader filter; exit `0` |
 | OpenAPI actor | `20261011T145907Z-188832` | admin/editor/reader/anonymous `14/14/6/0`, hash giữ nguyên; exit `0` |
 | Sáu scenario | `20261011T145912Z-189309` | S1–S6 PASS, `0 failed`, `0 blocked`; exit `0` |
+| Demo replay preflight | `20261011T161636Z-204795` … `20261011T161658Z-207292` | 7/7 replay PASS dưới harness `3a3dff5`, fixture `r06-k05-v2` |
 | Invariant | `20261011T145918Z-189799` | `9 passed`, `2 failed`, `0 blocked`; exit `1` đúng finding đã biết |
 
 Các run trên được thực hiện dưới harness `60be73d` và được ghi tại

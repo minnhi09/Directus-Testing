@@ -36,6 +36,7 @@ candidate được giữ nguyên để triage.
 | Final smoke | `20261011T145854Z-188363` dưới `60be73d` | PASS; field validation, `SET NULL`, actor login và Reader published filter; exit `0` |
 | Final schema export | `20261011T145907Z-188832` dưới `60be73d` | PASS; actor `14/14/6/0`, hash không đổi; exit `0` |
 | Final scenarios | `20261011T145912Z-189309` dưới `60be73d` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
+| Demo replay preflight | `20261011T161636Z-204795` … `20261011T161658Z-207292` dưới `3a3dff5` | 7/7 case PASS: auth, anonymous, Editor CRUD, query, relation, Reader visibility/write; fixture `r06-k05-v2` |
 | Final invariants | `20261011T145918Z-189799` dưới `60be73d` | `9 passed`, `2 failed`, `0 blocked`; aggregate/contract finding giữ nguyên; exit `1` |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
 | Scenario recheck | `20261011T141418Z-174367` dưới `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0` |
@@ -58,6 +59,25 @@ Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
 schema hash, fixture version và trạng thái restore; không chia sẻ credential
 hoặc response nhạy cảm.
+
+## Demo replay preflight dưới HEAD `3a3dff5`
+
+Các lệnh được chạy tuần tự trên cùng lab sau khi commit tài liệu demo; mỗi run
+ghi `exit_code=0`, `status=passed`, `fixture_version=r06-k05-v2` và restore/oracle
+PASS:
+
+| Case | Run |
+|---|---|
+| `auth-invalid-token` | `20261011T161636Z-204795` |
+| `anonymous-denied` | `20261011T161641Z-205208` |
+| `editor-crud` | `20261011T161644Z-205625` |
+| `query-fixture` | `20261011T161648Z-206049` |
+| `relation-nullification` | `20261011T161651Z-206459` |
+| `reader-visibility` | `20261011T161655Z-206873` |
+| `reader-write` | `20261011T161658Z-207292` |
+
+Đây là bằng chứng preflight cho kịch bản demo, không thay thế campaign raw/guided
+hoặc invariant đang còn failure.
 
 ## Phân loại finding
 
