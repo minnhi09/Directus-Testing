@@ -2,7 +2,7 @@
 
 Đây là harness kiểm thử REST API Directus theo schema, tập trung vào CRUD, query, quyền và invariant nghiệp vụ của hai collection `qa_categories` và `qa_articles`.
 
-Trạng thái hiện tại là bản triển khai tạm thời sau G0. Compose, seed fixture, actor, schema export, sáu scenario và pilot Schemathesis đã có đường chạy thật trên máy hiện tại. G1 chưa được tuyên bố: Directus đang báo `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader; kiểm tra độc lập trên máy thứ hai cũng chưa có.
+Trạng thái hiện tại là harness đã có đường chạy thật trên nhánh `feat/g1-shared-interface`; phần nền trước đó đã được tích hợp vào `main` tại merge commit `8d85949`. G1 chưa được tuyên bố. Directus đang báo `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader. Các profile `raw`, `guided`, invariant và replay đã được tích hợp; campaign đầy đủ ba seed, kiểm tra độc lập trên máy thứ hai và review chéo của thành viên vẫn chưa có.
 
 ## Chuẩn bị lab
 
@@ -36,9 +36,16 @@ Image Schemathesis được dùng ở bước pilot sau khi exporter và schema 
 ./lab.sh export-schema
 ./lab.sh test schema-smoke
 ./lab.sh test scenarios
+./lab.sh test invariants
+./lab.sh test raw
+./lab.sh test guided
+./lab.sh replay editor-crud
+./lab.sh reset
 ```
 
-Mỗi lệnh được nhận diện tạo một thư mục `artifacts/runs/<run_id>/` bị Git ignore, gồm `metadata.json` và `run.log`. Metadata ghi command, mã thoát, SHA harness, trạng thái working tree, baseline image, actor nếu được truyền qua `LAB_ACTOR` (`admin`, `editor`, `reader`, `anonymous` hoặc `unspecified`), fixture/schema/seed/budget nếu có và đường dẫn ID map. Token và password không được ghi vào đó. Có thể đặt `LAB_RUN_ID` để chọn ID ổn định cho một lệnh; ID phải chưa tồn tại, chỉ gồm chữ, số, `.`, `-`, `_` và tối đa 64 ký tự.
+`./lab.sh test smoke` là alias tương đương `./lab.sh smoke`. `raw` và `guided` mặc định chạy ba seed `101,202,303`; dùng biến môi trường để pilot ngắn, ví dụ `LAB_CAMPAIGN_SEEDS=101 LAB_MAX_EXAMPLES=1 LAB_MAX_TIME=30 ./lab.sh test raw`. Không fuzz URL ngoài lab.
+
+Mỗi lệnh được nhận diện tạo một thư mục `artifacts/runs/<run_id>/` bị Git ignore, gồm `metadata.json` và `run.log`. Metadata ghi command, mã thoát, SHA harness, trạng thái working tree, baseline image, actor nếu được truyền qua `LAB_ACTOR` (`admin`, `editor`, `reader`, `anonymous` hoặc `unspecified`), fixture/schema/seed/budget nếu có và đường dẫn ID map. `test schema-smoke` luôn dùng actor `editor` và tự ghi actor này; truyền actor khác là lỗi để tránh provenance sai. Token và password không được ghi vào đó. Có thể đặt `LAB_RUN_ID` để chọn ID ổn định cho một lệnh; ID phải chưa tồn tại, chỉ gồm chữ, số, `.`, `-`, `_` và tối đa 64 ký tự.
 
 `runtime/fixture-ids.json` là vị trí dùng chung để seed bàn giao `fixture_version` và ánh xạ tên fixture → ID tự sinh. Hình dạng tối thiểu là `{"schema":1,"fixture_version":"...","fixtures":{"qa_categories":{"name":1},"qa_articles":{"name":1}}}`; ID phải là số nguyên dương. Lệnh đọc schema/test phải dùng đường dẫn này thay vì hard-code ID.
 
@@ -50,16 +57,49 @@ Trạng thái lệnh trên máy hiện tại:
 - `smoke`: validation field và quan hệ `SET NULL` đạt; phần Reader bị chặn bởi cùng blocker.
 - `export-schema`: đạt; lưu schema raw bất biến cho `admin` (14 operation), `editor` (14), `reader` (2) và `anonymous` (0).
 - `test scenarios`: S1–S3 đạt; S4–S6 được ghi `blocked` vì operation article không xuất hiện trong schema Reader, nên harness không gửi request quyền bị cấm.
-- `test schema-smoke`: pilot 5 operation chạy với Schemathesis, lưu report/coverage và khôi phục fixture; run hiện thất bại để giữ nguyên các failure cần triage.
+- `test invariants`: các invariant deterministic chạy độc lập; Reader cases ghi `blocked` khi schema không có precondition.
+- `test raw`: campaign chính chọn đúng 10 operation, lưu report/coverage/metrics và restore fixture; pilot đã chạy thật với seed 101.
+- `test guided`: campaign chính dùng overlay riêng, fixture IDs/examples và stateful phase; pilot đã chạy thật với seed 101.
+- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud` và `anonymous-denied` đã có run pass.
+- `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; chưa chạy trong phiên này để bảo toàn dữ liệu lab hiện tại.
+- `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
 
 Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm license key vào repository, sửa trực tiếp DB hoặc nới assertion để biến blocker thành pass. `seed` sẽ chạy tiếp được phần policy Reader sau khi license hợp lệ được cấu hình cục bộ và người dùng xác nhận xử lý snapshot schema cũ.
 
 `down` mặc định giữ volume `r06-k05_db_data`. Không dùng `docker compose down -v`, `docker system prune` hoặc lệnh xóa volume hàng loạt để xử lý lỗi lab.
 
+## Quy trình dựng lại từ máy sạch
+
+1. Cài Docker Engine và Docker Compose plugin; không cần cài Node, PostgreSQL hay Python package trên host.
+2. Sao chép `config/lab.env.example` thành `config/lab.env`, thay toàn bộ `REPLACE_*`, rồi chạy `chmod 600 config/lab.env`. Không commit file này.
+3. Kiểm tra dependency, digest và URL bằng `./lab.sh doctor`.
+4. Khởi động stack bằng `./lab.sh up`. Lệnh chờ Directus healthy; nếu cần xem trạng thái, dùng `docker compose --env-file config/lab.env --project-name r06-k05 -f compose.yaml ps`.
+5. Chạy `./lab.sh seed`. Seed tạo schema/fixture idempotent và ghi `runtime/fixture-ids.json`; nếu license Reader chưa hợp lệ, run phải kết thúc failed ở precondition đó.
+6. Chạy `./lab.sh test smoke` và `./lab.sh test scenarios`. `blocked` là trạng thái cần xử lý, không phải pass giả.
+7. Chạy `./lab.sh export-schema` sau seed. Schema raw theo actor nằm dưới `runtime/schemas/<fixture_version>/`; hash và inventory nằm trong run artifact.
+8. Chạy `./lab.sh test raw` hoặc `./lab.sh test guided` với ngân sách mặc định. Dùng override ngắn chỉ cho pilot và ghi rõ trong report.
+9. Xem `artifacts/runs/<run_id>/metadata.json`, `run.log`, `campaign-index.json`, `metrics.json`, report JSON/NDJSON và `invariant-report.json`. Ví dụ: `jq . artifacts/runs/<run_id>/metadata.json`.
+10. Replay ca ổn định bằng `./lab.sh replay <case-id>`. Reproducer failed/blocked nằm cùng run directory.
+11. Khi kết thúc, dùng `./lab.sh down` để giữ dữ liệu hoặc `./lab.sh reset` để xóa đúng lab sau khi đã xác minh volume; reset không thể khôi phục fixture nếu không có backup ngoài lab.
+
+## Khắc phục lỗi thường gặp
+
+- `config/lab.env` thiếu hoặc sai quyền: copy lại file example, điền giá trị cục bộ và `chmod 600`.
+- Compose báo thiếu biến: mọi lệnh phải đi qua `lab.sh`, hoặc dùng đủ `--env-file config/lab.env --project-name r06-k05 -f compose.yaml`.
+- Directus chưa healthy: kiểm tra `docker compose ... ps` và `artifacts/runs/<run_id>/run.log`; không dừng container của project khác.
+- `seed` dừng ở `custom_permission_rules_enabled=false`: đây là blocker license đã xác minh. Không bypass bằng DB/UI; cấu hình license ngoài Git rồi seed/export schema lại.
+- Raw schema hash thay đổi: giữ snapshot cũ bất biến, lưu schema mới như baseline/fixture version mới sau khi được chấp thuận; không overwrite âm thầm.
+- Campaign có failure: giữ `runner` exit code, report, coverage và restore status; triage theo [`docs/replay-cases.md`](docs/replay-cases.md), không dùng `|| true` để biến pass.
+- Cổng `8055` bận: dừng đúng container thuộc project `r06-k05` hoặc đổi port chỉ khi có quyết định baseline mới; không chiếm/dừng dịch vụ project khác.
+
 ## Tài liệu bàn giao
 
 - [Quyết định G0](docs/g0-quyet-dinh-ky-thuat.md)
 - [Kiến trúc](docs/architecture.md)
+- [Ma trận quyền](docs/permissions.md)
+- [Ma trận operation/scenario/invariant](docs/test-matrix.md)
+- [Replay và reproducer](docs/replay-cases.md)
+- [Kịch bản demo](docs/demo.md)
 - [Nhật ký triển khai và hướng dẫn đọc code](docs/implementation-log-g0.md)
 - [Manifest baseline](manifest/baseline.yaml)
 - [AGENTS.md](AGENTS.md) — quy tắc bắt buộc tại máy làm việc; file này bị ignore theo quy ước riêng của nhóm
@@ -68,6 +108,6 @@ Các kết quả chạy sau này phải ghi run ID, SHA harness, baseline/image 
 
 ## Bằng chứng triển khai tạm thời
 
-Run gần nhất và giới hạn được tổng hợp tại [`evidence/g1-implementation-2026-10-10.md`](evidence/g1-implementation-2026-10-10.md). Report thô nằm trong `artifacts/runs/<run_id>/` (Git ignore); schema và ID map runtime nằm trong `runtime/` (Git ignore). Các thư mục này cần được giữ cục bộ để replay/triage, nhưng không được đưa credential hoặc response nhạy cảm vào commit.
+Run gần nhất và giới hạn được tổng hợp tại [`evidence/g1-implementation-2026-10-10.md`](evidence/g1-implementation-2026-10-10.md) và [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md). Report thô nằm trong `artifacts/runs/<run_id>/` (Git ignore); schema và ID map runtime nằm trong `runtime/` (Git ignore). Các thư mục này cần được giữ cục bộ để replay/triage, nhưng không được đưa credential hoặc response nhạy cảm vào commit.
 
-Các profile `test raw`, `test guided`, `replay` và `reset` vẫn chưa bật. Pilot hiện chỉ là `schema-smoke` năm operation của `qa_articles`, có overlay allowlist được ghi lý do; schema raw không bị sửa.
+Pilot raw/guided đã chứng minh pipeline 10 operation, artifact và restore; chúng đều giữ runner failure để triage, không được báo là pass. Các failure response/status và POST response shape chưa phải defect kết luận. Triage kỹ thuật tạm thời của 11 failure nằm trong [`evidence/pilot-triage-2026-10-11.md`](evidence/pilot-triage-2026-10-11.md); cần replay độc lập trước khi phân loại product/schema.
