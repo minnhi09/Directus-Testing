@@ -52,8 +52,8 @@ dùng bảng này làm coverage hoặc defect count.
 
 `status=reproduced` của harness ở case stateful chỉ nói request cuối được gửi
 lại và cho cùng status trong lần chạy đó. Harness hiện tìm interaction cuối
-trong event stream, không tự tái dựng toàn bộ `parent_id`/transition chain trước
-đó. Vì vậy `CkqaOB` là bằng chứng mạnh cho candidate ở request cuối, nhưng chưa
+trong event stream, không tự tái dựng toàn bộ parent transition chain trước đó.
+Vì vậy `CkqaOB` là bằng chứng mạnh cho candidate ở request cuối, nhưng chưa
 phải reproducer đầy đủ của chuỗi stateful; `VbURdO` và `pM4r4g` phải giữ trạng
 thái unresolved do mismatch.
 
@@ -86,3 +86,19 @@ thái unresolved do mismatch.
 
 Không có credential, token, mật khẩu hoặc toàn bộ request body nhạy cảm nào
 được ghi trong tài liệu này.
+
+## Hardening replay sau triage
+
+Commit `64e88f9` (`fix: scope stateful replay results`) đã sửa harness để nhận
+diện cả `meta.phase.name=stateful`, không chỉ cờ `is_transition_applied`.
+Replay vẫn gửi interaction cuối và restore fixture để hỗ trợ điều tra, nhưng
+report không còn gọi đó là `reproduced` đầy đủ:
+
+| Case / run sau hardening | Kết quả |
+|---|---|
+| `CkqaOB` / `20261011T123728Z-131951` | `reproduced_request_only`, `sequence_replayed=false`, final request `500`, restore PASS, exit `1` |
+| `Q8K5Nh` / `20261011T123735Z-132524` | `reproduced`, `sequence_replayed=true`, `403`, restore PASS, exit `0` |
+
+Các run trong bảng replay chính ở trên là bằng chứng triage đã chạy trước khi
+hardening; chúng vẫn được giữ nguyên. Từ commit này, exit `1` của stateful
+final-request-only là chủ ý và giúp tránh tuyên bố quá mức về khả năng tái lập.

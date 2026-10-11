@@ -63,7 +63,7 @@ Trạng thái lệnh trên máy hiện tại:
 - `test invariants`: 9 PASS, 1 failure ở run `20261011T105236Z-105096`; Reader cases PASS. `aggregate-query-robustness` giữ HTTP 500 để làm regression evidence, không nới assertion.
 - `test raw`: campaign run `20261011T085034Z-76481` chọn đúng 10 operation trên seed `101,202,303`; lần lượt 59/65/51 case, restore PASS, runner exit 1 do `max_time`/check failure.
 - `test guided`: campaign run `20261011T095117Z-89079` dùng overlay riêng và stateful phase; lần lượt 5.770/5.864/5.894 case, restore PASS, runner exit 1 do `max_time`/check failure.
-- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500. Các case guided `AmXHZz`, `jShXuk` và `VllBgh` đã replay được để triage schema/robustness; không tự đếm mỗi check failure thành một defect.
+- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500. Các case guided `AmXHZz`, `jShXuk` và `VllBgh` đã replay được để triage schema/robustness; case stateful chỉ gửi final interaction được ghi `reproduced_request_only` và giữ exit `1` từ commit hardening `64e88f9`; không tự đếm mỗi check failure thành một defect.
 - `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; safety reset đã được thực thi ở run `20261011T050050Z-26220`, sau đó stack được dựng và seed lại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
 

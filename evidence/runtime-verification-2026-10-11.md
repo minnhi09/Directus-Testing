@@ -231,3 +231,13 @@ phân loại và giới hạn stateful nằm tại
 Harness replay hiện gửi interaction cuối của stateful case, không tự khôi phục
 parent transition chain. Vì vậy các status trên được báo đúng phạm vi; không
 được dùng làm bằng chứng đã tái lập đầy đủ stateful workflow.
+
+Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T123728Z-131951` | `./lab.sh replay CkqaOB` | final request `500`, `reproduced_request_only`, `sequence_replayed=false`, restore PASS, exit `1` |
+| `20261011T123735Z-132524` | `./lab.sh replay Q8K5Nh` | `reproduced`, `sequence_replayed=true`, restore PASS, exit `0` |
+
+Đây là thay đổi trung thực hóa trạng thái replay, không phải nới assertion hoặc
+xóa failure.

@@ -64,6 +64,13 @@ replay trực tiếp không tái dựng parent transition/quyền của stateful
 nhận. Replay harness hiện chỉ gửi interaction cuối của stateful case, nên không
 được gọi là tái lập đầy đủ chuỗi state.
 
+Sau triage, commit `64e88f9` đã harden replay scope: stateful case được ghi
+`reproduced_request_only` và exit `1` khi chỉ gửi final interaction. Run
+`20261011T123728Z-131951` xác nhận `CkqaOB` final request vẫn `500` và restore
+PASS; đây là bằng chứng request cuối, không phải full-chain reproducer. Case
+non-stateful `Q8K5Nh` ở run `20261011T123735Z-132524` vẫn PASS với
+`sequence_replayed=true`.
+
 ## Phân loại theo nhóm nguyên nhân
 
 | Nhóm | Raw | Guided | Đánh giá hiện tại |
