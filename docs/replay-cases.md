@@ -25,7 +25,7 @@ Không truyền token, password hoặc ID tự sinh trong command. `runtime/fixt
 | `reader-visibility` | Reader đọc published và thử projection có `internal_notes` | Reader schema thiếu operation |
 | `reader-write` | Reader PATCH target published, Editor kiểm tra dữ liệu không đổi | Reader schema thiếu PATCH |
 
-Các replay pass mới nhất: `editor-crud` ở run `20261011T035615Z-13741`, `query-fixture` ở `20261011T035618Z-14109`, `auth-invalid-token` ở `20261011T035623Z-14472` và `anonymous-denied` ở `20261011T035408Z-12774`. Đây là bằng chứng local trên một baseline, không phải kiểm tra chéo máy thứ hai.
+Các replay pass mới nhất: `editor-crud` ở run `20261011T035909Z-17742`, `query-fixture` ở `20261011T035618Z-14109`, `auth-invalid-token` ở `20261011T035623Z-14472` và `anonymous-denied` ở `20261011T035408Z-12774`. Đây là bằng chứng local trên một baseline, không phải kiểm tra chéo máy thứ hai.
 
 ## Artefact và phân loại
 

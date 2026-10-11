@@ -32,6 +32,8 @@ Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. K
 | `20261011T035626Z-14831` | `./lab.sh test invariants` recheck | 6 passed, 0 failed, 2 blocked; exit 1 do Reader precondition |
 | `20261011T035638Z-15197` | raw pilot recheck, seed 101, 10s | 10/10 operation tested, 41 case, 13 unique failure, restore PASS; exit 1 giữ failure |
 | `20261011T035658Z-15731` | guided pilot recheck, seed 101, 10s | 10/10 operation tested, stateful chạy, 17 unique failure, restore PASS; exit 1 giữ failure |
+| `20261011T035904Z-17158` | `./lab.sh doctor` final recheck | PASS; static checks, YAML và Compose config cũng PASS trong cùng checkpoint |
+| `20261011T035909Z-17742` | `./lab.sh replay editor-crud` final recheck | PASS; CRUD invariant và cleanup |
 
 Sau pilot recheck, cả `database`, `directus` và `runner` đều ở trạng thái `running/healthy`; image hiển thị đúng digest đã pin. Hai campaign ngắn đều dừng `max_time`, không đại diện cho campaign đủ ngân sách.
 
