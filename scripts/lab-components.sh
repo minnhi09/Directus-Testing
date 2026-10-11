@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Temporary G1 implementation used by lab.sh. All credentials arrive through
+# Shared lab implementation used by lab.sh. All credentials arrive through
 # the parent process and are never written into reports.
 set -Eeuo pipefail
 

@@ -1,13 +1,14 @@
 # Nhật ký triển khai lab và hướng dẫn đọc code
 
-Ngày cập nhật: 2026-10-10
+Ngày cập nhật: 2026-10-11
 
 Tài liệu này ghi lại phần nền tảng và bản triển khai tạm thời để người tiếp nhận có thể đọc code theo luồng, hiểu vì sao các tệp tồn tại và phân biệt quan sát đã chạy với phần còn bị chặn. Bản ghi này không thay thế [`AGENTS.md`](../AGENTS.md), hai kế hoạch trong `mnhy/` hoặc bằng chứng chạy riêng.
 
 ## Mốc Git
 
-- Nhánh hiện tại: `main`.
-- HEAD trước các thay đổi chưa commit: `a2693f6 Merge branch 'feat/g0-lab-foundation'`.
+- Nhánh hiện tại tại lần cập nhật: `feat/g1-shared-interface`.
+- HEAD hiện tại tại lần cập nhật: `a3c1191 docs: record replay triage evidence`.
+- HEAD nền tảng trước các thay đổi G1: `a2693f6 Merge branch 'feat/g0-lab-foundation'`.
 - Remote dự kiến: `origin` trỏ tới repository đồ án `minnhi09/Directus-Testing`.
 - Dòng `/AGENTS.md` trong `.gitignore` có từ thay đổi người dùng trước đó và được giữ lại ngoài commit nền tảng; không xóa để làm worktree sạch giả tạo.
 - `config/lab.env` là file cục bộ bị ignore. Credential trong đó chỉ dùng cho lab hiện tại, không được đưa vào commit hoặc report.
@@ -16,9 +17,9 @@ Tài liệu này ghi lại phần nền tảng và bản triển khai tạm th�
 
 | Tệp | Vai trò khi đọc code |
 |---|---|
-| [`lab.sh`](../lab.sh) | Điểm vào duy nhất của lab; kiểm tra điều kiện, tạo metadata/run log, gọi Compose hoặc component tạm thời và giữ mã lỗi thật |
-| [`scripts/lab-components.sh`](../scripts/lab-components.sh) | Seed schema/fixture/actor, smoke, schema export, sáu scenario và pilot Schemathesis; credential chỉ truyền qua môi trường tiến trình |
-| [`compose.yaml`](../compose.yaml) | Khai báo hai service `database` và `directus`, network `r06-k05_network`, volume `r06-k05_db_data`, port loopback và healthcheck |
+| [`lab.sh`](../lab.sh) | Điểm vào duy nhất của lab; kiểm tra điều kiện, tạo metadata/run log, gọi Compose hoặc shared component và giữ mã lỗi thật |
+| [`scripts/lab-components.sh`](../scripts/lab-components.sh) | Seed schema/fixture/actor, smoke, schema export, sáu scenario, campaign raw/guided và replay; credential chỉ truyền qua môi trường tiến trình |
+| [`compose.yaml`](../compose.yaml) | Khai báo ba service `database`, `directus` và `runner`, network `r06-k05_network`, volume `r06-k05_db_data`, port loopback và healthcheck |
 | [`config/lab.env.example`](../config/lab.env.example) | Danh sách biến cấu hình cần sao chép thành `config/lab.env`; chứa digest image và placeholder, không chứa credential thật |
 | [`manifest/baseline.yaml`](../manifest/baseline.yaml) | Baseline phiên bản, source commit, digest, runtime và trạng thái kiểm chứng |
 | [`docs/g0-quyet-dinh-ky-thuat.md`](g0-quyet-dinh-ky-thuat.md) | Quyết định G0, giao diện lệnh, sở hữu phần việc và giới hạn nghiệm thu |
@@ -35,7 +36,7 @@ Tài liệu này ghi lại phần nền tảng và bản triển khai tạm th�
 - `doctor`: kiểm tra Docker, Compose, file cấu hình, placeholder, digest image, container của đúng project, URL và liveness/auth health.
 - `up`: yêu cầu `config/lab.env`, render Compose, gọi `docker compose up -d`, sau đó đợi trạng thái health của service `directus` tối đa 30 lần, mỗi lần 2 giây.
 - `down`: gọi `docker compose down` và không dùng `--volumes`, nên volume dữ liệu được giữ lại.
-- `seed`, `smoke`, `export-schema` và `test scenarios` gọi component tạm thời. Các run này luôn lưu report và trả mã lỗi thật khi precondition/policy chưa đạt. `test raw`, `test guided`, `replay`, `reset` vẫn chưa bật.
+- `seed`, `smoke`, `export-schema`, `test scenarios`, `test invariants`, `test raw`, `test guided`, `replay` và `reset` gọi shared component. Các run luôn lưu report và trả mã lỗi thật khi precondition, policy hoặc check chưa đạt; artifact không bị xóa khi test thất bại.
 
 Hàm `compose()` cố định `--project-name r06-k05`, `compose.yaml` và `config/lab.env`. Vì vậy không được chạy một Compose project khác rồi suy luận đó là lab này.
 
@@ -91,7 +92,15 @@ Component ở [`scripts/lab-components.sh`](../scripts/lab-components.sh) đã t
 - Smoke kiểm tra score/status invalid và nullification quan hệ; không gửi request negative cho Reader nếu operation đã bị lọc khỏi schema.
 - Export raw OpenAPI riêng cho bốn actor và giữ hash bất biến. Editor có 14 operation do Directus xuất cả bulk operation; pilot lọc đúng 5 operation `qa_articles` bằng file overlay tạm, ghi lý do và không sửa raw.
 - Sáu scenario ghi rõ `passed`, `failed` hoặc `blocked`. S1–S3 đạt; S4–S6 blocked do Reader schema chỉ có hai operation category.
-- Pilot Schemathesis chạy một worker, tối đa 20 example/operation, seed `101`, timeout request 10 giây, rate 5 request/giây và tối đa 300 giây. Snapshot/restore fixture đã được thêm để pilot không làm bẩn trạng thái seed.
+- Campaign Schemathesis chính chạy tuần tự một worker, rate mục tiêu 5 request/giây,
+  timeout request 10 giây, tối đa 100 example/operation, ngân sách 1.200 giây/profile/seed
+  với seed `101,202,303`; pilot có thể override bằng biến môi trường. Raw giữ schema
+  operation gốc trong allowlist 10 operation; guided dùng overlay riêng với fixture
+  ID/example và stateful phase. Snapshot/restore fixture được chạy giữa các seed để
+  campaign không làm bẩn trạng thái baseline.
+- Replay Schemathesis case dùng artifact event NDJSON, allowlist hai collection,
+  credential Editor hiện tại và snapshot/restore; body binary được truyền qua file
+  `--data-binary`, không qua command substitution.
 
 Chi tiết run ID, status và giới hạn nằm trong [`evidence/g1-implementation-2026-10-10.md`](../evidence/g1-implementation-2026-10-10.md). Không dùng output này để tuyên bố G1: license Reader và kiểm tra chéo trên máy khác còn thiếu.
 
@@ -114,4 +123,9 @@ Kiểm tra đã thực hiện: `bash -n lab.sh scripts/lab-components.sh`, Shell
 3. Nếu có license Directus phù hợp, cấu hình entitlement `custom_permission_rules_enabled` cục bộ, không ghi secret vào repo; sau đó chạy `./lab.sh seed`, kiểm tra schema snapshot mới và chạy lại smoke/scenarios.
 4. Không tự ghi đè schema raw cũ: nếu policy làm schema actor thay đổi, chọn fixture version/run directory mới sau khi xác nhận quyết định baseline.
 5. Triage các failure Schemathesis bằng report raw và reproducer có precondition; không sửa expected chỉ để pilot pass.
-6. Lành điều phối kiểm tra chéo trên máy khác, cập nhật evidence/manifest rồi mới xem xét G1.
+6. Replay các candidate đã ghi trong `docs/campaign-triage-2026-10-11.md`, đặc biệt
+   `AmXHZz`, `jShXuk` và `VllBgh`; không gộp check failure thành defect nếu chưa
+   đối chiếu contract/precondition.
+7. Lành điều phối kiểm tra chéo trên máy khác, cập nhật evidence/manifest rồi mới
+   xem xét G1. Trên máy hiện tại, blocker còn lại là license thật để bật Reader
+   custom permission rules.
