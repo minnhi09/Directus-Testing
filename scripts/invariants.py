@@ -265,6 +265,26 @@ class Lab:
             case.details = "Không hard-code 401; giữ status thực tế của baseline."
         return case
 
+    def case_anonymous_denied(self) -> Case:
+        case = Case("anonymous-denied", "Anonymous không truy cập hai collection lab")
+        checks = (
+            "/items/qa_categories?limit=1&fields=id,name",
+            "/items/qa_articles?limit=1&fields=id,title,status",
+        )
+        for path in checks:
+            response = self.api.request("GET", path)
+            case.step("GET", path, response, "request anonymous bị từ chối")
+            if response.status == 0:
+                case.fail("anonymous request có HTTP response", "network error", response.error or "network error")
+                return case
+            if 200 <= response.status < 300:
+                case.fail("anonymous không đọc được collection", str(response.status), f"API cho phép {path}")
+                return case
+        case.expected = "anonymous bị từ chối trên qa_categories và qa_articles"
+        case.actual = "cả hai request đều non-2xx"
+        case.details = "Không gán cứng status 401/403; giữ status thực tế của baseline."
+        return case
+
     def case_editor_crud(self) -> Case:
         case = Case("editor-crud", "Editor CRUD article và invariant read-back/delete")
         item_id: int | None = None
@@ -555,6 +575,7 @@ def run() -> int:
 
     cases: dict[str, Callable[[], Case]] = {
         "auth-invalid-token": lab.case_auth_invalid_token,
+        "anonymous-denied": lab.case_anonymous_denied,
         "editor-crud": lab.case_editor_crud,
         "query-fixture": lab.case_query_fixture,
         "relation-nullification": lab.case_relation_nullification,
