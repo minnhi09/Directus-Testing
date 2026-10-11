@@ -19,7 +19,7 @@ Với case ID do Schemathesis in trong report, dùng cùng interface:
 ./lab.sh replay ralwaW
 ```
 
-Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào hai collection lab, dùng token Editor hiện tại, chụp snapshot trước request và restore sau request. Kết quả ghi `schemathesis-case.json`, response, `reproducer-schemathesis-<case-id>.json` và status `reproduced`/`mismatch`. Case không tìm thấy hoặc ngoài allowlist bị từ chối, không gửi request tùy ý.
+Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào hai collection lab, dùng token Editor hiện tại, chụp snapshot trước request và restore sau request. Body fuzz được giải mã vào file nhị phân tạm trong artifact rồi truyền bằng `curl --data-binary @file`, nên payload chứa byte NUL không bị mất qua biến Bash. Kết quả ghi `schemathesis-case.json`, response, `reproducer-schemathesis-<case-id>.json` và status `reproduced`/`mismatch`. Case không tìm thấy hoặc ngoài allowlist bị từ chối, không gửi request tùy ý.
 
 ## Case IDs ổn định
 
@@ -41,6 +41,12 @@ các replay pass trước đó gồm `editor-crud` ở run `20261011T040109Z-199
 `20261011T035623Z-14472`, `anonymous-denied` ở `20261011T035408Z-12774` và
 Schemathesis case `ralwaW` ở run `20261011T040346Z-22406`. Đây là bằng chứng
 local trên một baseline, không phải kiểm tra chéo máy thứ hai.
+
+Sau khi sửa replay nhị phân, case `UETNPW` (DELETE nhận 204 ngoài schema) được
+replay lại ở run `20261011T073454Z-42697`, còn case `7DpEST` (PATCH với payload
+NUL) được replay đúng ở run `20261011T073559Z-43850`. Lần chạy trước của
+`7DpEST` ở `20261011T073501Z-43256` bị `mismatch` do harness làm mất byte NUL;
+đó là lỗi harness đã sửa, không phải kết luận về Directus.
 
 ## Artefact và phân loại
 

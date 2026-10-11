@@ -93,6 +93,40 @@ api_request() {
 	return 0
 }
 
+api_request_file() {
+	local method="$1"
+	local path="$2"
+	local token="$3"
+	local body_file="$4"
+	local response_file
+	local http_status
+	local curl_rc
+
+	[[ -f "$body_file" ]] || {
+		printf 'API request body file không tồn tại: %s\n' "$body_file" >&2
+		return 1
+	}
+	HTTP_COUNTER=$((HTTP_COUNTER + 1))
+	response_file="$RUN_DIR/http-$HTTP_COUNTER.json"
+	local -a args
+	args=(-sS --globoff --max-time 10 -o "$response_file" -w '%{http_code}' -X "$method")
+	[[ -n "$token" ]] && args+=(-H "Authorization: Bearer $token")
+	args+=(-H 'Content-Type: application/json' --data-binary "@$body_file")
+
+	set +e
+	http_status="$(curl "${args[@]}" "$API_URL$path")"
+	curl_rc=$?
+	set -e
+	API_STATUS="$http_status"
+	API_BODY="$response_file"
+	API_CURL_RC="$curl_rc"
+	if (( curl_rc != 0 )); then
+		printf 'API request failed: %s %s (curl=%s)\n' "$method" "$path" "$curl_rc" >&2
+		return 1
+	fi
+	return 0
+}
+
 api_expect_2xx() {
 	local context="$1"
 	shift
@@ -1529,7 +1563,7 @@ replay_schemathesis_case() {
 	local request_uri
 	local request_path
 	local request_body_b64
-	local request_body=''
+	local request_body_file=''
 	local uri_without_scheme
 	local expected_status
 	local actual_status='network-error'
@@ -1607,7 +1641,8 @@ replay_schemathesis_case() {
 		return 2
 	}
 	if [[ -n "$request_body_b64" ]]; then
-		if ! request_body="$(printf '%s' "$request_body_b64" | base64 --decode)"; then
+		request_body_file="$RUN_DIR/replay-request-body.bin"
+		if ! printf '%s' "$request_body_b64" | base64 --decode > "$request_body_file"; then
 			printf 'ERROR: không decode được request body case %s\n' "$case_id" >&2
 			return 2
 		fi
@@ -1621,8 +1656,8 @@ replay_schemathesis_case() {
 
 	campaign_snapshot || return 1
 	printf 'Schemathesis replay %s: %s %s\n' "$case_id" "$request_method" "$request_path"
-	if [[ -n "$request_body" ]]; then
-		if ! api_request "$request_method" "$request_path" "$EDITOR_TOKEN" "$request_body"; then
+	if [[ -n "$request_body_file" ]]; then
+		if ! api_request_file "$request_method" "$request_path" "$EDITOR_TOKEN" "$request_body_file"; then
 			request_rc=1
 		fi
 	else
