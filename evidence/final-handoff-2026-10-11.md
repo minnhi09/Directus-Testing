@@ -37,7 +37,7 @@ hoặc response nhạy cảm.
 | POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
-| Stateful replay | `64e88f9`, run `20261011T123728Z-131951` | Chỉ `reproduced_request_only`; full parent transition chain còn unresolved |
+| Stateful replay | `baaee4b`, run `20261011T131321Z-144935` và `20261011T131350Z-145631` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 
 Contract probe được triển khai ở commit `7018107` và tài liệu hóa ở commit
@@ -67,8 +67,9 @@ chỉ dùng `./lab.sh reset` khi muốn xóa đúng lab `r06-k05` sau safety pre
 
 ## Git và giới hạn bàn giao
 
-HEAD local là `5a181c1` trên branch `feat/g1-shared-interface`, chưa push. Các
-checkpoint gần nhất đều do Lành commit với `minnhi09 <lanhdtm264@gmail.com>`;
+Branch `feat/g1-shared-interface` chưa push; replay hardening hiện tại là commit
+`baaee4b`. Các checkpoint gần nhất đều do Lành commit với
+`minnhi09 <lanhdtm264@gmail.com>`;
 không thêm co-author vì chưa có bằng chứng đóng góp thực tế trong các thay đổi
 này. Bốn file untracked có trước được bảo toàn và `mnhy/` vẫn ignored, không
 được đưa vào Git.
@@ -78,8 +79,8 @@ Các việc chưa đóng không được che giấu:
 - raw/guided full campaign cần triage tiếp nếu muốn phân tích hết check failure;
 - aggregate HTTP 500 cần reproducer/source/upstream evidence thêm trước khi
   gọi là product defect;
-- full stateful replay chỉ nên triển khai khi artifact có đủ parent transition
-  chain và oracle mapping; hiện tại phải giữ trạng thái unresolved;
+- full stateful replay hiện đã có cho chain `pM4r4g`; `CkqaOB` vẫn không đủ
+  parent artifact nên phải giữ `reproduced_request_only`/unresolved;
 - không có bằng chứng review chéo hoặc chạy trên máy thứ hai trong checkpoint
   này; hai nội dung đó không còn là gate G1 nội bộ, nhưng hướng dẫn dựng máy
   sạch và peer evaluation cuối kỳ của đề bài vẫn được giữ trong tài liệu.

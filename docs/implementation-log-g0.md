@@ -165,5 +165,6 @@ thái để làm đẹp.
   sử `20261011T105236Z-105096`.
 - Contract probe commit `7018107` và tài liệu commit `01e14d1` được ghi trong
   README, G1 acceptance, replay/test matrix, runtime evidence và manifest.
-- Stateful replay vẫn chỉ được gọi `reproduced_request_only` khi chưa có đủ
-  parent transition chain; không tự đổi thành full-chain PASS.
+- Stateful replay từ commit `baaee4b` dựng full chain khi artifact đủ parent;
+  `pM4r4g` đã được kiểm chứng, còn case thiếu parent vẫn gọi
+  `reproduced_request_only`; không tự đổi mismatch thành full-chain PASS.

@@ -50,12 +50,12 @@ dùng bảng này làm coverage hoặc defect count.
 | `CkqaOB` / `20261011T122539Z-127722` | Guided stateful POST category, final request malformed/generated làm Directus trả `500 INTERNAL_SERVER_ERROR` | Request cuối tái hiện `500`, restore PASS, exit `0` | Product robustness candidate + stateful limitation; chưa xác nhận defect |
 | `pM4r4g` / `20261011T122542Z-128284` | Guided stateful negative PATCH category; event campaign nhận `200`, replay trực tiếp hiện tại nhận `403` | Mismatch, restore PASS, exit `1` | Chưa kết luận; không coi là negative-acceptance defect |
 
-`status=reproduced` của harness ở case stateful chỉ nói request cuối được gửi
-lại và cho cùng status trong lần chạy đó. Harness hiện tìm interaction cuối
-trong event stream, không tự tái dựng toàn bộ parent transition chain trước đó.
-Vì vậy `CkqaOB` là bằng chứng mạnh cho candidate ở request cuối, nhưng chưa
-phải reproducer đầy đủ của chuỗi stateful; `VbURdO` và `pM4r4g` phải giữ trạng
-thái unresolved do mismatch.
+Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
+`CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
+chain phù hợp với precondition replay. Sau commit `baaee4b`, `pM4r4g` đã được
+replay full chain ở run `20261011T131321Z-144935`; kết quả mới là mismatch
+`final 200` so với negative expected `400`, restore PASS. Vì vậy không gộp
+request-only, full-chain mismatch và product defect thành một kết luận.
 
 ## Quyết định triage
 
@@ -97,9 +97,10 @@ Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
 
 ## Việc còn lại
 
-- Nếu cần đóng các case stateful, harness phải lưu và replay chuỗi transition
-  đầy đủ, hoặc phải ghi rõ chúng là final-request-only và unresolved. Không
-  được dùng replay trực tiếp hiện tại để tuyên bố tái lập độc lập toàn bộ state.
+- `pM4r4g` đã có full-chain replay ở run `20261011T131321Z-144935`; các case
+  như `CkqaOB` thiếu parent trong artifact vẫn phải ghi final-request-only và
+  unresolved. Không được dùng replay trực tiếp hiện tại để tuyên bố full state
+  cho case không có đủ chain.
 - Đã đối chiếu response map/content type/POST shape với contract Directus đã
   pin bằng probe riêng; nếu tạo overlay trong tương lai thì chỉ sửa bản
   `guided`, giữ raw snapshot bất biến và lưu diff/lý do.
@@ -108,6 +109,23 @@ Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
 
 Không có credential, token, mật khẩu hoặc toàn bộ request body nhạy cảm nào
 được ghi trong tài liệu này.
+
+## Replay parent chain sau commit `baaee4b`
+
+Harness hiện replay parent chain khi event có đủ parent case, interaction và
+transition mapping; ID sinh trong parent response được ánh xạ vào path/body của
+request con. Run `20261011T131321Z-144935` của `pM4r4g` ghi:
+
+- `sequence_case_ids=[mvlcIV,pM4r4g]` và `replay_scope=full_transition_chain`;
+- parent `POST /items/qa_categories` trả `200`, final `PATCH` trả `200`;
+- campaign negative oracle kỳ vọng non-2xx (report bắt được expected `400`),
+  nên replay giữ `status=mismatch`, exit `1`, restore PASS.
+
+Đây là full-chain replay được kiểm chứng cho case này, nhưng không tự động là
+product defect: cần xác minh semantics của input negative/ID âm và contract
+chính thức. Ngược lại, `CkqaOB` ở run `20261011T131350Z-145631` không có parent
+case trong event artifact; harness giữ `reproduced_request_only`, final `500`,
+restore PASS và exit `1`. Không được gộp hai phạm vi này thành một kết luận.
 
 ## Hardening replay sau triage
 

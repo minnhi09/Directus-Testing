@@ -58,18 +58,19 @@ Raw có 121 `UndefinedStatusCode`, 6 `UnsupportedMethodResponse`, 5
 `UnsupportedMethodResponse`. Đây là check occurrence, không phải defect count.
 
 `Q8K5Nh`, `3Ble8Q`, `vx21yF`, `Z6K7ww`, `lwZKEo` và request cuối của `CkqaOB`
-đều có quan sát replay cụ thể, restore PASS; `VbURdO` và `pM4r4g` mismatch do
-replay trực tiếp không tái dựng parent transition/quyền của stateful case.
-`CkqaOB` vì vậy vẫn là product robustness candidate, chưa phải defect đã xác
-nhận. Replay harness hiện chỉ gửi interaction cuối của stateful case, nên không
-được gọi là tái lập đầy đủ chuỗi state.
+đều có quan sát replay cụ thể, restore PASS. `VbURdO` vẫn mismatch do
+precondition/query khác campaign. Sau hardening chain, `pM4r4g` đã replay được
+parent `mvlcIV` và final PATCH trong cùng chuỗi; runtime final `200` vẫn trái
+negative oracle nên giữ mismatch/exit `1`, chưa gọi là product defect.
+`CkqaOB` không có parent case trong artifact nên vẫn là final-request-only
+candidate.
 
-Sau triage, commit `64e88f9` đã harden replay scope: stateful case được ghi
-`reproduced_request_only` và exit `1` khi chỉ gửi final interaction. Run
-`20261011T123728Z-131951` xác nhận `CkqaOB` final request vẫn `500` và restore
-PASS; đây là bằng chứng request cuối, không phải full-chain reproducer. Case
-non-stateful `Q8K5Nh` ở run `20261011T123735Z-132524` vẫn PASS với
-`sequence_replayed=true`.
+Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
+`reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
+sung parent-chain replay và ID mapping từ response parent. Run
+`20261011T131321Z-144935` xác nhận `pM4r4g` replay đủ chain và restore PASS;
+run `20261011T131350Z-145631` xác nhận `CkqaOB` không có chain nên vẫn
+final-request-only. Case non-stateful `Q8K5Nh` vẫn PASS.
 
 Đối chiếu source release `4f77933bf9551cac6b289576078783e189b8f4e3` đã làm rõ
 thêm ba nhóm contract: POST object/array, export `csv` và DELETE `204` đều phù

@@ -231,9 +231,9 @@ phân loại và giới hạn stateful nằm tại
 | `CkqaOB` | `20261011T122539Z-127722` | final request stateful tái hiện `500` | candidate; chưa đủ full-chain replay |
 | `pM4r4g` | `20261011T122542Z-128284` | campaign `200`, direct replay `403` | mismatch, unresolved |
 
-Harness replay hiện gửi interaction cuối của stateful case, không tự khôi phục
-parent transition chain. Vì vậy các status trên được báo đúng phạm vi; không
-được dùng làm bằng chứng đã tái lập đầy đủ stateful workflow.
+Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
+Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
+và transition mapping; case thiếu parent vẫn giữ request-only/unresolved.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 
@@ -244,3 +244,10 @@ Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứn
 
 Đây là thay đổi trung thực hóa trạng thái replay, không phải nới assertion hoặc
 xóa failure.
+
+### Replay parent chain sau `baaee4b`
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T131321Z-144935` | `./lab.sh replay pM4r4g` | `mvlcIV → pM4r4g`, `sequence_replayed=true`, parent `200`, final `200` trái expected `400`, restore PASS, exit `1` |
+| `20261011T131350Z-145631` | `./lab.sh replay CkqaOB` | Không có parent chain trong event, `reproduced_request_only`, final `500`, restore PASS, exit `1` |
