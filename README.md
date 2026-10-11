@@ -54,7 +54,7 @@ Mỗi lệnh được nhận diện tạo một thư mục `artifacts/runs/<run_
 
 Trạng thái lệnh trên máy hiện tại:
 
-- `doctor`: đạt; Compose, digest, URL loopback, admin health và entitlement `/license` rút gọn đều được kiểm tra mà không ghi license/token; run mới nhất `20261011T131803Z-147694` (các recheck trước `20261011T130338Z-139934` và `20261011T105225Z-104013` vẫn được giữ trong evidence).
+- `doctor`: đạt; Compose, digest, URL loopback, admin health và entitlement `/license` rút gọn đều được kiểm tra mà không ghi license/token; run mới nhất `20261011T132716Z-153452` (các recheck trước `20261011T131803Z-147694`, `20261011T130338Z-139934` và `20261011T105225Z-104013` vẫn được giữ trong evidence).
 - `up`: đạt; database và Directus healthy.
 - `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor/policy; baseline v2 PASS ở run `20261011T084845Z-72361`.
 - `smoke`: validation field, quan hệ `SET NULL` và Reader published filter PASS; run `20261011T085023Z-75556`.

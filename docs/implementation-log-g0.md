@@ -188,3 +188,9 @@ thái để làm đẹp.
   `20261011T132550Z-151921` giữ `tFjhQT` mismatch `200→403`, còn
   `20261011T132604Z-152556` giữ `Q8K5Nh` reproduced `403→403`; cả hai restore
   PASS và metadata ghi harness SHA `916152e` đầy đủ.
+
+## Doctor cuối dưới HEAD `d0d199f`
+
+- Run `20261011T132716Z-153452`: `./lab.sh doctor` PASS, Directus/DB/runner
+  healthy, license active với `custom_permission_rules_enabled=true`, ba image
+  digest đúng manifest và exit `0`.

@@ -17,7 +17,7 @@ candidate được giữ nguyên để triage.
 
 | Hạng mục | Run | Kết quả thực tế |
 |---|---|---|
-| Doctor | `20261011T131803Z-147694` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true` |
+| Doctor | `20261011T132716Z-153452` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true`, digest đúng manifest |
 | Replay status oracle | `a713481`; final recheck dưới HEAD `916152e`: `20261011T132550Z-151921`, `20261011T132604Z-152556` | Positive `tFjhQT` không còn false-positive (`200→403` là mismatch); `Q8K5Nh` `403→403` reproduced; restore PASS |
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
 | Invariant recheck | `20261011T130457Z-141013` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |

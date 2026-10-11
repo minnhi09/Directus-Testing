@@ -195,6 +195,12 @@ khi người dùng cấu hình `LICENSE_KEY` cục bộ không ghi giá trị ke
 | `20261011T130457Z-141013` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; aggregate 500 và contract probe bốn candidate, harness giữ exit 1 |
 | `20261011T131803Z-147694` | `./lab.sh doctor` | PASS; latest recheck, license active, permission rules enabled, digest đúng manifest |
 
+Run doctor mới nhất dưới HEAD `d0d199f`:
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T132716Z-153452` | `./lab.sh doctor` | PASS; Directus/DB/runner healthy, license `source=env/status=active`, `custom_permission_rules_enabled=true`, ba image digest đúng manifest, exit `0` |
+
 ### Campaign v2
 
 Raw run `20261011T085034Z-76481` dùng schema hash
