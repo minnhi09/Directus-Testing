@@ -35,6 +35,7 @@ Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. K
 | `20261011T035904Z-17158` | `./lab.sh doctor` final recheck | PASS; static checks, YAML và Compose config cũng PASS trong cùng checkpoint |
 | `20261011T035909Z-17742` | `./lab.sh replay editor-crud` final recheck | PASS; CRUD invariant và cleanup |
 | `20261011T040004Z-18580` | raw campaign metadata recheck, seed 101, 3s | Runner failure/restore PASS; top-level metadata now contains scoped schema hash, seed, budget và campaign index |
+| `20261011T040029Z-19303` | `./lab.sh doctor` final runtime recheck | PASS; Directus authenticated health and all pinned images |
 
 Sau pilot recheck, cả `database`, `directus` và `runner` đều ở trạng thái `running/healthy`; image hiển thị đúng digest đã pin. Hai campaign ngắn đều dừng `max_time`, không đại diện cho campaign đủ ngân sách.
 
