@@ -5,6 +5,10 @@ Phạm vi: baseline local `r06-k05`, Directus `12.5.0`, PostgreSQL `16`,
 Schemathesis `4.30.0`. Đây là kết quả quan sát được trên máy hiện tại; không
 phải bằng chứng chạy trên máy thứ hai.
 
+Phạm vi R06/K05 và đối chiếu với yêu cầu nguồn được chuẩn hóa tại
+[`docs/scope-review-r06-k05.md`](../docs/scope-review-r06-k05.md). Tài liệu này
+không thay thế `yeu_cau.pdf` và không làm mất các artifact failure.
+
 ## Kết luận ngắn
 
 G1 đạt baseline kỹ thuật với findings chưa đóng. Stack, seed, schema actor,

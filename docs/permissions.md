@@ -37,7 +37,8 @@ Snapshot này được giữ để chứng minh trạng thái trước khi có e
 
 ## Baseline local hiện tại — `r06-k05-v2`
 
-Run export `20261011T085027Z-75998` sau reset, seed và license entitlement:
+Run export ban đầu `20261011T085027Z-75998` sau reset, seed và license
+entitlement:
 
 | Actor | Schema | SHA-256 | Operation toàn schema | Operation `/items/qa_*` |
 |---|---|---|---:|---:|
@@ -54,6 +55,11 @@ Run export `20261011T085027Z-75998` sau reset, seed và license entitlement:
 - Reader đọc đúng sáu published fixture với projection được phép.
 - Projection yêu cầu `internal_notes` trả HTTP 403 trên baseline này, không có dữ liệu private; oracle cũng chấp nhận trường hợp 2xx nhưng field bị loại.
 - Reader PATCH trả HTTP 403 và Editor đọc lại thấy target không đổi.
+
+Recheck schema mới nhất `20261011T142815Z-179693` dưới harness `de078a2` giữ
+nguyên bốn hash và inventory `14/14/6/0`. Run `20261011T085027Z-75998` ở trên
+được giữ như bằng chứng export baseline v2 ban đầu; không overwrite snapshot raw
+hoặc dùng hash của run lịch sử để đại diện cho recheck mới.
 
 ## Cách mở khóa Reader khi dựng máy mới
 

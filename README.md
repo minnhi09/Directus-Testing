@@ -100,6 +100,7 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 
 - [Quyết định G0](docs/g0-quyet-dinh-ky-thuat.md)
 - [Tiêu chí nghiệm thu G1](docs/g1-acceptance.md)
+- [Rà soát phạm vi R06 + K05](docs/scope-review-r06-k05.md)
 - [Kiến trúc](docs/architecture.md)
 - [Ma trận quyền](docs/permissions.md)
 - [Ma trận operation/scenario/invariant](docs/test-matrix.md)

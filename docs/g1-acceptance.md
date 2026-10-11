@@ -4,6 +4,11 @@ Ngày cập nhật: 2026-10-11
 Baseline: Directus `12.5.0`, PostgreSQL `16`, Schemathesis `4.30.0`, fixture
 `r06-k05-v2`.
 
+Phạm vi R06/K05 được rà soát tập trung tại
+[`docs/scope-review-r06-k05.md`](scope-review-r06-k05.md); tài liệu đó chỉ
+chuẩn hóa truy vết, không thay đổi schema raw, policy, budget hoặc kết quả
+failure.
+
 ## 1. Phạm vi và nguồn yêu cầu
 
 G1 là mốc nghiệm thu kỹ thuật nội bộ của đồ án, không phải thuật ngữ được định
