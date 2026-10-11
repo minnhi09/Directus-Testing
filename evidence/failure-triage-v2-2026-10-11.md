@@ -57,6 +57,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `UTk4sa` / `20261011T140452Z-169384` | Guided stateful negative PATCH article; parent `vfAiah` trả số ID không khớp transition mapping | `stateful_sequence_failed`, target không gửi, restore PASS, exit `1` | Stateful artifact/precondition limitation; không kết luận accepted-negative defect |
 | `6IayFG` / `20261011T140814Z-170794` | Guided stateful positive GET article list với `offset` vượt safe-number; Directus trả `400 INVALID_QUERY` | `reproduced_request_only`, source/expected/actual `400`, restore PASS, exit `1` | Schema semantic/generator-positive candidate; response map thiếu `400`, không phải product defect |
 | `6THjzP` / `20261011T141024Z-171863` | Guided stateful negative POST category với `name` là integer; Directus trả `200` và ép thành string | `mismatch`, source/actual `200`, expected negative `400`, restore PASS, exit `1` | Schema-negative/oracle semantic mismatch; chưa xác nhận product defect |
+| `QPKZ6w` / `20261011T141213Z-172805` | Fuzzing GET article detail với projection `fields=title,author.name`; response chỉ có `title` nhưng schema yêu cầu `score` | `reproduced`, source/expected/actual `200`, restore PASS, exit `0` | Schema/projection contract gap; replay exit `0` chỉ xác nhận tái hiện, không phải contract PASS |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -116,6 +117,10 @@ request-only, full-chain mismatch và product defect thành một kết luận.
     trả `200` và response đã ép giá trị thành string. Đây là semantic coercion
     cần quyết định trong contract/negative oracle; giữ mismatch `200` so với
     expected `400`, không gọi là product defect và không đổi check.
+15. `QPKZ6w` tái hiện projection hợp lệ trả object chỉ có `title`, trong khi
+    schema item vẫn yêu cầu `score`. Giữ là schema/projection contract gap;
+    trạng thái `reproduced` và exit `0` chỉ nói request được tái hiện chính xác,
+    không chuyển response-schema failure thành PASS.
 
 ## Automated contract probe
 
@@ -156,6 +161,10 @@ Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
   chấp nhận `name` integer và ép thành string, tạo response `200` trong khi
   negative oracle kỳ vọng `400`. Giữ mismatch để quyết định contract coercion,
   không đổi expected và không đóng thành product defect.
+- `QPKZ6w` đã có replay ở run `20261011T141213Z-172805`; projection chỉ trả
+  `title`, response-schema check vẫn ghi thiếu `score`. Reproducer exit `0` là
+  trạng thái tái hiện request, không phải kết luận schema đúng; giữ candidate
+  projection contract để xử lý riêng.
 - Đã đối chiếu response map/content type/POST shape với contract Directus đã
   pin bằng probe riêng; nếu tạo overlay trong tương lai thì chỉ sửa bản
   `guided`, giữ raw snapshot bất biến và lưu diff/lý do.

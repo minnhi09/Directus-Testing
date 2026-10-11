@@ -117,6 +117,13 @@ Replay `6THjzP` ở run `20261011T141024Z-171863` gửi negative
 restore PASS, request-only, exit `1`. Đây là semantic coercion/negative-oracle
 mismatch cần quyết định theo contract, chưa xác nhận product defect.
 
+Replay `QPKZ6w` ở run `20261011T141213Z-172805` gửi
+`GET /items/qa_articles/7?fields=title,author.name`; Directus trả `200` với
+object chỉ có `title`, còn schema item vẫn yêu cầu `score`. Reproducer ghi
+`response_schema_conformance` failure, restore PASS và exit `0` vì request được
+tái hiện; exit này không phải contract PASS. Phân loại là schema/projection
+contract gap, không phải product defect.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run
@@ -163,7 +170,7 @@ Chi tiết line-level nằm trong phần source comparison của
 | `RejectedPositiveData` | 2/1/1 | 8/8/8 | `3Ble8Q` và `6IayFG` cho thấy query positive có thể vượt semantic runtime (`INVALID_QUERY`); giữ là schema/generator candidate, các ca còn lại chưa kết luận |
 | `UndefinedContentType` | 0/1/0 | 5/5/5 | `vx21yF`/`UNKW3j`/`R0sH5o` tái hiện export CSV/XML/YAML ngoài schema JSON; giữ là export contract candidate |
 | `ServerError` | 0 | 9/8/8 | `kb5gjq` đã replay request-only và tái hiện 500; vẫn là candidate robustness/schema-semantic, không phải defect đã xác nhận |
-| `JsonSchemaError` | 0 | 6/10/7 | Chưa kết luận; cần phân biệt schema raw/overlay và response thực tế |
+| `JsonSchemaError` | 0 | 6/10/7 | `QPKZ6w` tái hiện projection thiếu field bắt buộc và được giữ là schema/projection contract gap; các shape/export candidate khác đã triage riêng |
 | `AcceptedNegativeData` | 0 | 3 mỗi seed | `DhqXrn` full-chain replay trả `403` thay source `204`; `UTk4sa` target không gửi do ID mapping; `6THjzP` được Directus ép kiểu và trả `200`; giữ mismatch/precondition/oracle, chưa kết luận defect |
 
 ## Replay đã xác minh

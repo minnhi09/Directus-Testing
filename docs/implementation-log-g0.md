@@ -324,3 +324,14 @@ thái để làm đẹp.
   negative `400`, restore PASS và exit `1`.
 - Giữ `mismatch` như bằng chứng semantic coercion/negative-oracle mismatch;
   chưa kết luận product defect, không đổi expected và không che failure.
+
+## Triage projection response-schema failure — 2026-10-11
+
+- Run `20261011T141213Z-172805`: `./lab.sh replay QPKZ6w` dưới harness
+  `091873929a4e72639b49f7df75a0eeae8d2f0c8e`.
+- Request `GET /items/qa_articles/7?fields=title,author.name` trả `200` với
+  object chỉ có `title`; response-schema check tái hiện lỗi thiếu field bắt buộc
+  `score`. Restore PASS, report `reproduced`, exit `0`.
+- Exit `0` ở replay này chỉ xác nhận request/status được tái hiện; `expected_checks`
+  vẫn chứa `JsonSchemaError`. Phân loại là schema/projection contract gap, không
+  tuyên bố API contract PASS và không đổi schema raw.

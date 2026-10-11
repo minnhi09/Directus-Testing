@@ -116,6 +116,11 @@ Các case guided đại diện được replay sau pilot:
   response `name` thành string, source/actual `200` trái expected negative
   `400`, restore PASS, exit `1`. Đây là semantic coercion/negative-oracle
   mismatch, chưa phải product defect.
+- `QPKZ6w` (`20261011T141213Z-172805`) replay
+  `GET /items/qa_articles/7?fields=title,author.name`; response `200` chỉ có
+  `title`, schema check ghi thiếu `score`, restore PASS. Trạng thái `reproduced`
+  và exit `0` chỉ xác nhận tái hiện request; đây là schema/projection contract
+  gap, không phải API contract PASS.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

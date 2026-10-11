@@ -250,6 +250,7 @@ phân loại và giới hạn stateful nằm tại
 | `UTk4sa` | `20261011T140452Z-169384` | Parent `vfAiah` trả ID count khác transition mapping; PATCH target không gửi | `stateful_sequence_failed`, restore PASS, exit `1`; precondition/artifact limitation |
 | `6IayFG` | `20261011T140814Z-170794` | GET article list positive với `offset` vượt safe-number; Directus trả `400 INVALID_QUERY` | `reproduced_request_only`, source/expected/actual `400`, restore PASS, exit `1`; schema semantic/generator-positive candidate |
 | `6THjzP` | `20261011T141024Z-171863` | POST category negative với `name` integer; Directus trả `200` và ép thành string | `mismatch`, source/actual `200`, expected `400`, restore PASS, exit `1`; coercion/negative-oracle mismatch |
+| `QPKZ6w` | `20261011T141213Z-172805` | GET article detail projection chỉ trả `title`, schema yêu cầu `score` | `reproduced`, source/expected/actual `200`, restore PASS, exit `0`; response-schema failure được tái hiện, không phải contract PASS |
 
 Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
 Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
@@ -292,6 +293,12 @@ Replay `6THjzP` gửi negative mutation đổi `name` thành integer. Directus t
 giữ mismatch với negative expected `400`. Đây là semantic coercion/negative
 oracle mismatch cần quyết định theo contract, không phải product defect đã xác
 nhận.
+
+Replay `QPKZ6w` gửi projection `fields=title,author.name` và tái hiện response
+`200` chỉ có `title`, trong khi schema item yêu cầu `score`. Report giữ
+`response_schema_conformance` failure nhưng lệnh replay exit `0` vì status và
+request được tái hiện; phải đọc `expected_checks` để thấy đây là schema/
+projection contract gap, không phải PASS của API.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 

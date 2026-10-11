@@ -33,6 +33,7 @@ candidate được giữ nguyên để triage.
 | Stateful negative setup | `20261011T140452Z-169384` dưới `6bfe3ad` | `UTk4sa` parent ID mapping mismatch, target not sent, restore PASS, exit `1` |
 | Positive query semantic replay | `20261011T140814Z-170794` dưới `8bfefad` | `6IayFG` `offset` vượt safe-number, source/expected/actual `400 INVALID_QUERY`, restore PASS, exit `1` |
 | Negative coercion replay | `20261011T141024Z-171863` dưới `9d71e9c` | `6THjzP` `name` integer được Directus ép thành string, source/actual `200` trái expected `400`, restore PASS, exit `1` |
+| Projection schema replay | `20261011T141213Z-172805` dưới `0918739` | `QPKZ6w` projection chỉ trả `title`, schema yêu cầu `score`, `reproduced`, restore PASS, exit `0`; không phải contract PASS |
 
 Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
@@ -53,6 +54,7 @@ hoặc response nhạy cảm.
 | Accepted negative `UTk4sa` | Parent transition không map được ID, target không gửi | Stateful artifact/precondition limitation; chưa kết luận |
 | Positive query `6IayFG` | `GET /items/qa_articles` với `offset` vượt safe-number | Schema semantic/generator-positive candidate; response-map gap `400`, chưa xác nhận defect |
 | Negative coercion `6THjzP` | `POST /items/qa_categories` với `name` integer trả `200`, response là string | Schema-negative/oracle semantic mismatch; chưa xác nhận defect |
+| Projection `QPKZ6w` | `GET /items/qa_articles/7?fields=title,author.name` trả object thiếu `score` theo schema item | Schema/projection contract gap; reproducer exit `0` không đóng response-schema failure |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 
