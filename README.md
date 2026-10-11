@@ -40,6 +40,7 @@ Image Schemathesis được dùng ở bước pilot sau khi exporter và schema 
 ./lab.sh test raw
 ./lab.sh test guided
 ./lab.sh replay editor-crud
+./lab.sh replay positive-operations
 ./lab.sh reset
 ```
 
@@ -57,10 +58,10 @@ Trạng thái lệnh trên máy hiện tại:
 - `smoke`: validation field và quan hệ `SET NULL` đạt; phần Reader bị chặn bởi cùng blocker.
 - `export-schema`: đạt; lưu schema raw bất biến cho `admin` (14 operation), `editor` (14), `reader` (2) và `anonymous` (0).
 - `test scenarios`: S1–S3 đạt; S4–S6 được ghi `blocked` vì operation article không xuất hiện trong schema Reader, nên harness không gửi request quyền bị cấm.
-- `test invariants`: các invariant deterministic chạy độc lập; Reader cases ghi `blocked` khi schema không có precondition.
+- `test invariants`: các invariant deterministic chạy trong image Schemathesis đã pin; `positive-operations` kiểm tra đủ 10 method–path bằng dữ liệu tạm, còn Reader cases ghi `blocked` khi schema không có precondition.
 - `test raw`: campaign chính chọn đúng 10 operation, lưu report/coverage/metrics và restore fixture; pilot đã chạy thật với seed 101.
 - `test guided`: campaign chính dùng overlay riêng, fixture IDs/examples và stateful phase; pilot đã chạy thật với seed 101.
-- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud` và `anonymous-denied` đã có run pass.
+- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass.
 - `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; chưa chạy trong phiên này để bảo toàn dữ liệu lab hiện tại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
 

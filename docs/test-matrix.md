@@ -37,8 +37,26 @@ Mỗi seed tạo thư mục `artifacts/runs/<run_id>/<profile>/seed-<seed>/` v�
 
 Run `20261011T035341Z-11908` ghi S1–S3 passed, S4–S6 blocked; exit code 1 là có chủ đích vì còn precondition blocked.
 
+## Positive operation acceptance
+
+Case `positive-operations` chạy tuần tự bằng Editor và tạo dữ liệu tạm. Case
+này kiểm tra từng operation trong allowlist 10 method–path:
+
+- POST/GET list/GET detail/PATCH/DELETE cho `qa_categories`.
+- POST/GET list/GET detail/PATCH/DELETE cho `qa_articles`.
+
+ID được lấy từ response POST; PATCH được đọc lại để kiểm tra field không cập
+nhật vẫn giữ nguyên; DELETE được đọc lại để xác nhận tài nguyên không còn data;
+cuối case dữ liệu tạm được dọn. Report tách positive operation coverage khỏi
+operation hit của Schemathesis.
+
 ## Invariant/replay IDs
 
-Các case ổn định được chạy bởi `scripts/invariants.py`: `auth-invalid-token`, `anonymous-denied`, `editor-crud`, `query-fixture`, `relation-nullification`, `invalid-field-rejection`, `reader-visibility`, `reader-write`. `reader-visibility` và `reader-write` kiểm tra schema trước; khi operation vắng mặt chúng ghi `blocked` và không gửi request cấm.
+Các case ổn định được chạy bởi `scripts/invariants.py` trong runner Docker:
+`auth-invalid-token`, `anonymous-denied`, `editor-crud`, `positive-operations`,
+`query-fixture`, `relation-nullification`, `invalid-field-rejection`,
+`reader-visibility`, `reader-write`. `reader-visibility` và `reader-write`
+kiểm tra schema trước; khi operation vắng mặt chúng ghi `blocked` và không gửi
+request cấm.
 
 Expected status của negative case là quan hệ `non-2xx`, không gán cứng 401/403/404 khi baseline chưa chứng minh mã cụ thể. Chi tiết precondition, request path, expected/actual và response summary được lưu trong `invariant-report.json`; token không được ghi.
