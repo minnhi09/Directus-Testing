@@ -206,6 +206,17 @@ Run doctor mới nhất dưới HEAD `a153e99`:
 |---|---|---|
 | `20261011T134705Z-161373` | `./lab.sh doctor` | PASS; Directus/DB/runner healthy, license `source=env/status=active`, `custom_permission_rules_enabled=true`, ba image digest đúng manifest, exit `0` |
 
+### Runtime recheck sau triage replay
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T141416Z-173791` | `./lab.sh doctor` dưới HEAD `7e729b5` | PASS; Docker/Compose, project `r06-k05`, fixture map, pinned images, authenticated health và license `source=env/status=active`, `custom_permission_rules_enabled=true`; exit `0` |
+| `20261011T141418Z-174367` | `./lab.sh test scenarios` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
+
+Hai run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
+không chạy lại campaign raw/guided dài. Các failure invariant/campaign đã biết
+vẫn giữ nguyên artifact và exit code riêng.
+
 ### Campaign v2
 
 Raw run `20261011T085034Z-76481` dùng schema hash

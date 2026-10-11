@@ -335,3 +335,13 @@ thái để làm đẹp.
 - Exit `0` ở replay này chỉ xác nhận request/status được tái hiện; `expected_checks`
   vẫn chứa `JsonSchemaError`. Phân loại là schema/projection contract gap, không
   tuyên bố API contract PASS và không đổi schema raw.
+
+## Runtime recheck sau triage replay — 2026-10-11
+
+- `./lab.sh doctor` ở run `20261011T141416Z-173791`, dưới HEAD `7e729b5`, PASS:
+  đúng project/image digest, fixture map, authenticated health và license active
+  với `custom_permission_rules_enabled=true`.
+- `./lab.sh test scenarios` ở run `20261011T141418Z-174367` PASS: S1–S6 đều
+  passed, `0 failed`, `0 blocked`, exit `0`.
+- Đây là runtime recheck ngắn sau replay, không phải campaign raw/guided mới;
+  invariant `9 passed/2 failed/0 blocked` và campaign exit `1` vẫn giữ nguyên.

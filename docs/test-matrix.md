@@ -79,7 +79,8 @@ giới hạn tái dựng chuỗi cần giữ ở trạng thái chưa kết luậ
 | S5 Reader không lộ `internal_notes` | Reader có published read | Field kín không xuất hiện hoặc request bị từ chối | passed: published projection 2xx; private projection HTTP 403 |
 | S6 Reader ghi | Reader có detail PATCH | PATCH bị từ chối và Editor đọc lại thấy dữ liệu không đổi | passed: HTTP 403, dữ liệu không đổi |
 
-Run v2 `20261011T105231Z-104612` ghi S1–S6 passed. Run v1
+Run v2 mới nhất `20261011T141418Z-174367` ghi S1–S6 passed. Run v2 cũ
+`20261011T105231Z-104612` và run v1
 `20261011T035341Z-11908` vẫn được giữ như bằng chứng lịch sử S1–S3 passed,
 S4–S6 blocked trước license.
 

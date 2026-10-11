@@ -24,9 +24,9 @@ replay.
 
 | Tiêu chí | Bằng chứng | Trạng thái |
 |---|---|---|
-| Stack healthy, version/digest đúng manifest | Doctor `20261011T105225Z-104013`; latest recheck `20261011T134705Z-161373` dưới `a153e99` | Đạt |
+| Stack healthy, version/digest đúng manifest | Doctor `20261011T105225Z-104013`; latest recheck `20261011T141416Z-173791` dưới `7e729b5` | Đạt |
 | Seed schema/fixture/actor/policy đúng và lặp lại không nhân bản | Seed `20261011T084845Z-72361`, smoke `20261011T085023Z-75556` | Đạt |
-| CRUD, query, quan hệ và phân quyền đạt oracle | Scenario `20261011T105231Z-104612`, S1–S6 | Đạt |
+| CRUD, query, quan hệ và phân quyền đạt oracle | Scenario `20261011T141418Z-174367`, S1–S6; run cũ `20261011T105231Z-104612` được giữ | Đạt |
 | Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
 | Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`; full recheck `20261011T134626Z-160826`; aggregate replay `20261011T134519Z-160153` dưới `bcbf219`; contract probe `20261011T130227Z-139257` | Đạt có finding |
