@@ -808,7 +808,11 @@ check_relation_nullification() {
 	api_request POST '/items/qa_articles' "$EDITOR_TOKEN" "$article_body" || return 1
 	if ! valid_http_success "$API_STATUS"; then
 		printf 'ERROR: relation probe không tạo được article\n' >&2
-		api_request DELETE "/items/qa_categories/$category_id" "$EDITOR_TOKEN" >/dev/null 2>&1 || true
+		if ! api_request DELETE "/items/qa_categories/$category_id" "$EDITOR_TOKEN" >/dev/null 2>&1; then
+			printf 'WARN: cleanup category relation probe lỗi network\n' >&2
+		elif ! valid_http_success "$API_STATUS"; then
+			printf 'WARN: cleanup category relation probe HTTP %s\n' "$API_STATUS" >&2
+		fi
 		return 1
 	fi
 	article_id="$(jq -r '.data.id // empty' "$API_BODY")"
@@ -819,7 +823,14 @@ check_relation_nullification() {
 	}
 	api_expect_2xx 'đọc relation probe article' GET "/items/qa_articles/$article_id?fields=id,category" "$EDITOR_TOKEN" || return 1
 	after_category="$(jq -r '.data.category // "null"' "$API_BODY")"
-	api_request DELETE "/items/qa_articles/$article_id" "$EDITOR_TOKEN" >/dev/null 2>&1 || true
+	if ! api_request DELETE "/items/qa_articles/$article_id" "$EDITOR_TOKEN" >/dev/null 2>&1; then
+		printf 'ERROR: cleanup relation probe article lỗi network\n' >&2
+		return 1
+	fi
+	if ! valid_http_success "$API_STATUS"; then
+		printf 'ERROR: cleanup relation probe article HTTP %s\n' "$API_STATUS" >&2
+		return 1
+	fi
 	if [[ "$after_category" != null ]]; then
 		printf 'ERROR: xóa category không đặt article.category về null (actual=%s)\n' "$after_category" >&2
 		return 1
@@ -978,7 +989,14 @@ ensure_reader_schema() {
 cleanup_item() {
 	local item_id="$1"
 	[[ -n "$item_id" ]] || return 0
-	api_request DELETE "/items/qa_articles/$item_id" "$EDITOR_TOKEN" >/dev/null 2>&1 || true
+	if ! api_request DELETE "/items/qa_articles/$item_id" "$EDITOR_TOKEN" >/dev/null 2>&1; then
+		printf 'WARN: cleanup article %s lỗi network\n' "$item_id" >&2
+		return 1
+	fi
+	if ! valid_http_success "$API_STATUS"; then
+		printf 'WARN: cleanup article %s HTTP %s\n' "$item_id" "$API_STATUS" >&2
+		return 1
+	fi
 }
 
 scenario_editor_crud() {
@@ -1042,7 +1060,10 @@ scenario_editor_crud() {
 		scenario_record S1 'Editor CRUD' failed 'DELETE detail 2xx' "HTTP $deleted_status" "$(http_summary "$API_BODY")"
 		return 1
 	fi
-	api_request GET "/items/qa_articles/$item_id?fields=id" "$EDITOR_TOKEN" || true
+	api_request GET "/items/qa_articles/$item_id?fields=id" "$EDITOR_TOKEN" || {
+		scenario_record S1 'Editor CRUD' failed 'post-delete read returns an HTTP response' 'network error' 'read-back request failed'
+		return 1
+	}
 	if valid_http_success "$API_STATUS" && jq -e '.data != null' "$API_BODY" >/dev/null 2>&1; then
 		scenario_record S1 'Editor CRUD' failed 'deleted item is unavailable' "HTTP $API_STATUS" 'item still returned'
 		return 1

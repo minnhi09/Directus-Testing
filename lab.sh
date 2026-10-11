@@ -357,7 +357,9 @@ finish_run() {
 	[[ "$exit_code" -eq 0 ]] || status='failed'
 	if [[ "$RUN_FINALIZED" -eq 0 && -n "$RUN_METADATA" ]]; then
 		RUN_FINALIZED=1
-		write_run_metadata "$status" "$exit_code" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" || true
+		if ! write_run_metadata "$status" "$exit_code" "$(date -u +%Y-%m-%dT%H:%M:%SZ)"; then
+			printf 'ERROR: không ghi được metadata cho run %s\n' "$RUN_ID" >&2
+		fi
 		printf 'Run status: %s (exit %s)\n' "$status" "$exit_code"
 	fi
 }
