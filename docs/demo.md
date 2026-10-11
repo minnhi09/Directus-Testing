@@ -18,6 +18,7 @@ Nếu `seed` dừng ở license Reader, trình bày đó là blocker đã xác m
 1. Editor CRUD: `./lab.sh replay editor-crud`. Chỉ ra ID lấy từ response create, PATCH chỉ đổi `score`, đọc lại vẫn giữ `title`, DELETE trả success và đọc lại không còn data.
 2. Query fixture: `./lab.sh replay query-fixture`. Chỉ ra filter published, sort `title,id`, projection và hai page được tính oracle từ `fixture-ids.json`.
 3. Anonymous/auth: `./lab.sh replay anonymous-denied` và `./lab.sh replay auth-invalid-token`. Chỉ ra hai collection trả non-2xx, token giả không được chấp nhận, status cụ thể được giữ theo baseline.
+4. Schemathesis finding: `./lab.sh replay ralwaW` nếu artifact pilot còn ở `artifacts/runs/`; chỉ ra request/response, status `reproduced` và dòng restore fixture.
 
 ## Schemathesis
 
