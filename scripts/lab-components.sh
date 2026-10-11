@@ -1794,22 +1794,76 @@ campaign() {
 }
 
 invariants() {
-	command -v python3 >/dev/null 2>&1 || {
-		printf 'ERROR: thiếu python3 cho invariant runner\n' >&2
+	local harness_sha
+	require_tools
+	[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
+		printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
 		return 1
 	}
-	python3 "$LAB_ROOT_DIR/scripts/invariants.py" --case all
+	docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
+		printf 'ERROR: runner image chưa có trên máy\n' >&2
+		return 1
+	}
+	[[ -f "$LAB_ROOT_DIR/scripts/invariants.py" && -d "$RUNTIME_ROOT" ]] || {
+		printf 'ERROR: thiếu invariant script hoặc runtime mount\n' >&2
+		return 1
+	}
+	harness_sha="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf 'no_commit')"
+	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+		-e PYTHONDONTWRITEBYTECODE=1 \
+		-e LAB_ROOT_DIR=/work \
+		-e LAB_RUN_DIR=/work/run \
+		-e LAB_RUNTIME_ROOT=/work/runtime \
+		-e LAB_API_URL="$RUNNER_API_URL" \
+		-e LAB_RUN_ID="$RUN_ID" \
+		-e LAB_HARNESS_SHA="$harness_sha" \
+		-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" \
+		-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" \
+		-e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
+		-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" \
+		-e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
+		-e LAB_READER_EMAIL="$READER_EMAIL" \
+		-e LAB_READER_PASSWORD="$READER_PASSWORD" \
+		--mount "type=bind,src=$LAB_ROOT_DIR/scripts/invariants.py,dst=/work/invariants.py,readonly" \
+		--mount "type=bind,src=$RUNTIME_ROOT,dst=/work/runtime,readonly" \
+		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
+		--entrypoint python3 "$SCHEMATHESIS_IMAGE" /work/invariants.py --case all
 }
 
 replay_case() {
 	local case_id="$1"
 	case "$case_id" in
-		auth-invalid-token|anonymous-denied|editor-crud|query-fixture|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
-			command -v python3 >/dev/null 2>&1 || {
-				printf 'ERROR: thiếu python3 cho replay\n' >&2
+		auth-invalid-token|anonymous-denied|editor-crud|positive-operations|query-fixture|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
+			local harness_sha
+			require_tools
+			[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
+				printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
 				return 1
 			}
-			python3 "$LAB_ROOT_DIR/scripts/invariants.py" --case "$case_id"
+			docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
+				printf 'ERROR: runner image chưa có trên máy\n' >&2
+				return 1
+			}
+			harness_sha="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf 'no_commit')"
+			docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+				-e PYTHONDONTWRITEBYTECODE=1 \
+				-e LAB_ROOT_DIR=/work \
+				-e LAB_RUN_DIR=/work/run \
+				-e LAB_RUNTIME_ROOT=/work/runtime \
+				-e LAB_API_URL="$RUNNER_API_URL" \
+				-e LAB_RUN_ID="$RUN_ID" \
+				-e LAB_HARNESS_SHA="$harness_sha" \
+				-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" \
+				-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" \
+				-e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
+				-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" \
+				-e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
+				-e LAB_READER_EMAIL="$READER_EMAIL" \
+				-e LAB_READER_PASSWORD="$READER_PASSWORD" \
+				--mount "type=bind,src=$LAB_ROOT_DIR/scripts/invariants.py,dst=/work/invariants.py,readonly" \
+				--mount "type=bind,src=$RUNTIME_ROOT,dst=/work/runtime,readonly" \
+				--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
+				--entrypoint python3 "$SCHEMATHESIS_IMAGE" /work/invariants.py --case "$case_id"
 			;;
 		*)
 			replay_schemathesis_case "$case_id"

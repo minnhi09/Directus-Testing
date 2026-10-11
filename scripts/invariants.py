@@ -351,6 +351,153 @@ class Lab:
                 if cleanup.status and not (200 <= cleanup.status < 300):
                     print(f"WARN cleanup editor-crud thất bại HTTP {cleanup.status}")
 
+    def case_positive_operations(self) -> Case:
+        case = Case("positive-operations", "Positive acceptance cho đủ 10 operation campaign")
+        category_id: int | None = None
+        article_id: int | None = None
+        run_id = os.environ.get("LAB_RUN_ID", "local")
+        category_name = f"Positive category {run_id}"
+        article_title = f"Positive article {run_id}"
+
+        def require_2xx(response: ApiResponse, expected: str) -> bool:
+            if response.status < 200 or response.status >= 300:
+                case.fail(expected, str(response.status), "Editor positive precondition không đạt")
+                return False
+            return True
+
+        try:
+            response = self.api.request("POST", "/items/qa_categories", self.editor_token, {"name": category_name})
+            case.step("POST", "/items/qa_categories", response, "2xx và có ID")
+            if not require_2xx(response, "POST category thành công"):
+                return case
+            category_id = response.body.get("data", {}).get("id") if isinstance(response.body, dict) else None
+            if not isinstance(category_id, int) or category_id <= 0:
+                case.fail("POST category trả ID số dương", repr(category_id), "response không có ID hợp lệ")
+                return case
+
+            list_path = "/items/qa_categories" + self.path_params(
+                {"filter[id][_eq]": category_id, "fields": "id,name"}
+            )
+            response = self.api.request("GET", list_path, self.editor_token)
+            case.step("GET", list_path, response, "2xx và chứa category vừa tạo")
+            if not require_2xx(response, "GET category list thành công"):
+                return case
+            rows = response.body.get("data", []) if isinstance(response.body, dict) else []
+            if not any(row.get("id") == category_id and row.get("name") == category_name for row in rows):
+                case.fail("GET category list chứa fixture tạm", repr(rows), "category vừa tạo không đọc lại được")
+                return case
+
+            category_path = f"/items/qa_categories/{category_id}"
+            response = self.api.request("GET", f"{category_path}?fields=id,name", self.editor_token)
+            case.step("GET", category_path, response, "2xx và name đúng")
+            if not require_2xx(response, "GET category detail thành công"):
+                return case
+            if response.body.get("data", {}).get("name") != category_name:
+                case.fail("GET category detail giữ name", repr(response.body), "detail response sai dữ liệu")
+                return case
+
+            updated_category_name = f"{category_name} updated"
+            response = self.api.request("PATCH", category_path, self.editor_token, {"name": updated_category_name})
+            case.step("PATCH", category_path, response, "2xx")
+            if not require_2xx(response, "PATCH category thành công"):
+                return case
+            response = self.api.request("GET", f"{category_path}?fields=id,name", self.editor_token)
+            case.step("GET", f"{category_path}?fields=id,name", response, "2xx và name đã cập nhật")
+            if not require_2xx(response, "đọc lại category sau PATCH"):
+                return case
+            if response.body.get("data", {}).get("name") != updated_category_name:
+                case.fail("PATCH category được đọc lại", repr(response.body), "PATCH không giữ giá trị mới")
+                return case
+
+            article_body = {
+                "title": article_title,
+                "status": "draft",
+                "score": 2,
+                "published_at": None,
+                "metadata": {"case": "positive-operations", "run_id": run_id},
+                "internal_notes": "positive-operation probe",
+                "category": category_id,
+            }
+            response = self.api.request("POST", "/items/qa_articles", self.editor_token, article_body)
+            case.step("POST", "/items/qa_articles", response, "2xx và có ID")
+            if not require_2xx(response, "POST article thành công"):
+                return case
+            article_id = response.body.get("data", {}).get("id") if isinstance(response.body, dict) else None
+            if not isinstance(article_id, int) or article_id <= 0:
+                case.fail("POST article trả ID số dương", repr(article_id), "response không có ID hợp lệ")
+                return case
+
+            article_list_path = "/items/qa_articles" + self.path_params(
+                {"filter[id][_eq]": article_id, "fields": "id,title,status,score,category"}
+            )
+            response = self.api.request("GET", article_list_path, self.editor_token)
+            case.step("GET", article_list_path, response, "2xx và chứa article vừa tạo")
+            if not require_2xx(response, "GET article list thành công"):
+                return case
+            rows = response.body.get("data", []) if isinstance(response.body, dict) else []
+            if not any(row.get("id") == article_id and row.get("title") == article_title for row in rows):
+                case.fail("GET article list chứa fixture tạm", repr(rows), "article vừa tạo không đọc lại được")
+                return case
+
+            article_path = f"/items/qa_articles/{article_id}"
+            response = self.api.request("GET", f"{article_path}?fields=id,title,status,score,category", self.editor_token)
+            case.step("GET", article_path, response, "2xx và title/category đúng")
+            if not require_2xx(response, "GET article detail thành công"):
+                return case
+            data = response.body.get("data", {})
+            if data.get("title") != article_title or data.get("category") != category_id:
+                case.fail("GET article detail giữ title/category", repr(data), "detail response sai dữ liệu")
+                return case
+
+            response = self.api.request("PATCH", article_path, self.editor_token, {"score": 4})
+            case.step("PATCH", article_path, response, "2xx")
+            if not require_2xx(response, "PATCH article thành công"):
+                return case
+            response = self.api.request("GET", f"{article_path}?fields=id,title,score,category", self.editor_token)
+            case.step("GET", f"{article_path}?fields=id,title,score,category", response, "2xx và PATCH giữ title/category")
+            if not require_2xx(response, "đọc lại article sau PATCH"):
+                return case
+            data = response.body.get("data", {})
+            if data.get("score") != 4 or data.get("title") != article_title or data.get("category") != category_id:
+                case.fail("PATCH article giữ field không cập nhật", repr(data), "PATCH invariant thất bại")
+                return case
+
+            response = self.api.request("DELETE", article_path, self.editor_token)
+            case.step("DELETE", article_path, response, "2xx")
+            if not require_2xx(response, "DELETE article thành công"):
+                return case
+            article_id = None
+            response = self.api.request("GET", f"{article_path}?fields=id", self.editor_token)
+            case.step("GET", f"{article_path}?fields=id", response, "resource article không còn data")
+            if response.status == 0 or (200 <= response.status < 300 and response.body.get("data")):
+                case.fail("article sau DELETE không còn truy cập được", str(response.status), "article vẫn trả về")
+                return case
+
+            response = self.api.request("DELETE", category_path, self.editor_token)
+            case.step("DELETE", category_path, response, "2xx")
+            if not require_2xx(response, "DELETE category thành công"):
+                return case
+            category_id = None
+            response = self.api.request("GET", f"{category_path}?fields=id", self.editor_token)
+            case.step("GET", f"{category_path}?fields=id", response, "resource category không còn data")
+            if response.status == 0 or (200 <= response.status < 300 and response.body.get("data")):
+                case.fail("category sau DELETE không còn truy cập được", str(response.status), "category vẫn trả về")
+                return case
+
+            case.expected = "đủ 10 operation có ca positive hợp lệ và DELETE không còn tài nguyên"
+            case.actual = "qa_categories=5 operation, qa_articles=5 operation; create/PATCH/read-back/delete đạt"
+            case.details = "ID được lấy từ response create; dữ liệu probe được xóa sau khi kiểm tra."
+            return case
+        finally:
+            if article_id is not None:
+                cleanup = self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token, record=False)
+                if cleanup.status and not (200 <= cleanup.status < 300):
+                    print(f"WARN cleanup positive article thất bại HTTP {cleanup.status}")
+            if category_id is not None:
+                cleanup = self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token, record=False)
+                if cleanup.status and not (200 <= cleanup.status < 300):
+                    print(f"WARN cleanup positive category thất bại HTTP {cleanup.status}")
+
     def case_query_fixture(self) -> Case:
         case = Case("query-fixture", "Filter, sort, pagination và projection trên fixture")
         response = self.all_articles(self.editor_token)
@@ -556,6 +703,9 @@ class Lab:
 
 
 def git_head(root: Path) -> str:
+    reported = os.environ.get("LAB_HARNESS_SHA", "")
+    if reported:
+        return reported
     try:
         return subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
     except (OSError, subprocess.CalledProcessError):
@@ -577,6 +727,7 @@ def run() -> int:
         "auth-invalid-token": lab.case_auth_invalid_token,
         "anonymous-denied": lab.case_anonymous_denied,
         "editor-crud": lab.case_editor_crud,
+        "positive-operations": lab.case_positive_operations,
         "query-fixture": lab.case_query_fixture,
         "relation-nullification": lab.case_relation_nullification,
         "invalid-field-rejection": lab.case_invalid_field_rejection,
