@@ -25,6 +25,11 @@ Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. K
 | `20261011T035341Z-11908` | `./lab.sh test scenarios` | S1–S3 passed, S4–S6 blocked; không gửi forbidden Reader request |
 | `20261011T035355Z-12361` | `./lab.sh test smoke` | Xác nhận alias interface; kết quả Reader blocker như trên |
 | `20261011T035408Z-12774` | `./lab.sh replay anonymous-denied` | PASS; hai collection trả non-2xx |
+| `20261011T035610Z-13294` | `./lab.sh export-schema` recheck | PASS; bốn hash schema không đổi |
+| `20261011T035615Z-13741` | `./lab.sh replay editor-crud` recheck | PASS; cleanup không gửi DELETE lặp |
+| `20261011T035618Z-14109` | `./lab.sh replay query-fixture` | PASS; filter/sort/page/projection |
+| `20261011T035623Z-14472` | `./lab.sh replay auth-invalid-token` | PASS; token giả trả HTTP 401 trên baseline |
+| `20261011T035626Z-14831` | `./lab.sh test invariants` recheck | 6 passed, 0 failed, 2 blocked; exit 1 do Reader precondition |
 
 Các run metadata ghi `harness_sha` riêng. Tại thời điểm các run đầu, working tree còn dirty do thay đổi tích hợp có sẵn; đây là provenance thực tế, không được coi là clean release.
 
