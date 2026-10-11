@@ -30,6 +30,7 @@ candidate được giữ nguyên để triage.
 | Guided XML export replay | `20261011T135951Z-166351` dưới `a0e8996` | `UNKW3j` source/expected/actual `200`, `text/xml` ngoài schema JSON, `reproduced_request_only`, restore PASS, exit `1` |
 | Guided YAML export replay | `20261011T140125Z-167402` dưới `4160c92` | `R0sH5o` source/expected/actual `200`, `text/yaml` ngoài schema JSON, `reproduced_request_only`, restore PASS, exit `1` |
 | Guided negative replay | `20261011T140307Z-168360` dưới `231842a` | `DhqXrn` full chain `UqHibT → DhqXrn`, source `204`, actual `403` do field `id`, restore PASS, exit `1` |
+| Stateful negative setup | `20261011T140452Z-169384` dưới `6bfe3ad` | `UTk4sa` parent ID mapping mismatch, target not sent, restore PASS, exit `1` |
 
 Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
 được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
@@ -47,6 +48,7 @@ hoặc response nhạy cảm.
 | Guided `POST /items/qa_articles` với `published_at=""` | Replay `kb5gjq`, editor schema `string` + nullable + custom `timestamp`, Directus log và PostgreSQL SQLSTATE `22007` | Schema-semantic/product robustness candidate; chưa xác nhận product defect |
 | Guided `export=json/xml/yaml` | Replay `F8j8Gl`, `UNKW3j` và `R0sH5o`; HTTP `200` trả alternate body/media type ngoài operation schema | Schema/contract alternate-export candidate; chưa xác nhận product defect |
 | Accepted negative `DhqXrn` | Full-chain replay; source `204`, actual `403` với permission error trên `id` | Precondition/policy/negative-oracle mismatch; không xác nhận defect |
+| Accepted negative `UTk4sa` | Parent transition không map được ID, target không gửi | Stateful artifact/precondition limitation; chưa kết luận |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 

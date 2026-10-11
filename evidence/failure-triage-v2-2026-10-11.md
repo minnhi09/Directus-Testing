@@ -54,6 +54,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `UNKW3j` / `20261011T135951Z-166351` | Guided stateful GET article với `export=xml`; source/expected/actual `200`, content type `text/xml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`, chưa xác nhận defect |
 | `R0sH5o` / `20261011T140125Z-167402` | Guided stateful GET article với `export=yaml`; source/expected/actual `200`, content type `text/yaml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`/`UNKW3j`, chưa xác nhận defect |
 | `DhqXrn` / `20261011T140307Z-168360` | Guided stateful negative PATCH category; full chain `UqHibT → DhqXrn`, source `204`, replay `403` do field `id` không được phép cập nhật | `full_transition_chain`, restore PASS, exit `1`, mismatch | Precondition/policy/negative-oracle mismatch; không coi là accepted-negative defect |
+| `UTk4sa` / `20261011T140452Z-169384` | Guided stateful negative PATCH article; parent `vfAiah` trả số ID không khớp transition mapping | `stateful_sequence_failed`, target không gửi, restore PASS, exit `1` | Stateful artifact/precondition limitation; không kết luận accepted-negative defect |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -102,6 +103,9 @@ request-only, full-chain mismatch và product defect thành một kết luận.
     với lỗi quyền trên field `id`; dữ liệu được restore nguyên trạng. Vì replay
     không tái hiện việc accepted negative và status oracle giữ source failure,
     đây là mismatch precondition/policy, không phải bằng chứng product defect.
+12. `UTk4sa` không vượt qua setup parent: `vfAiah` trả số ID khác transition
+    mapping nên PATCH target không được gửi. Giữ `stateful_sequence_failed` và
+    exit `1`; không dùng việc target chưa gửi để kết luận API pass/fail.
 
 ## Automated contract probe
 

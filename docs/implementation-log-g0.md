@@ -293,3 +293,14 @@ thái để làm đẹp.
   precondition/policy/negative oracle, không phải product defect.
 - Không có mutation tồn tại sau restore; không đổi expected status, không nới
   assertion và không coi full-chain mismatch là PASS.
+
+## Triage accepted-negative stateful setup failure — 2026-10-11
+
+- Run `20261011T140452Z-169384`: `./lab.sh replay UTk4sa` dưới harness
+  `6bfe3ad1f7ef81a113e3488c90811ce683d8ca52`.
+- Parent `vfAiah` được gửi và trả `200`, nhưng số ID không khớp transition
+  mapping; target `PATCH /items/qa_articles/117` không được gửi. Report ghi
+  `stateful_sequence_failed`, `actual_status=not-sent`, restore PASS, exit `1`.
+- Đây là giới hạn artifact/precondition của stateful replay. Không dùng nó để
+  kết luận API accepted/rejected negative data, không đổi expected và không
+  che failure.

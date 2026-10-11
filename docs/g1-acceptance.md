@@ -64,6 +64,9 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
 - Replay `DhqXrn` ở `20261011T140307Z-168360` dựng đủ chain nhưng source
   `204` và actual `403` do field `id` bị từ chối; giữ là negative
   precondition/policy mismatch, không xác nhận defect.
+- Replay `UTk4sa` ở `20261011T140452Z-169384` dừng tại parent ID mapping,
+  target không gửi, restore PASS; giữ là stateful artifact/precondition
+  limitation, không kết luận API accepted/rejected negative data.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

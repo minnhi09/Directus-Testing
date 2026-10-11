@@ -102,6 +102,10 @@ Các case guided đại diện được replay sau pilot:
   source campaign `204` nhưng actual replay `403`, Directus từ chối cập nhật
   field `id`; restore PASS, exit `1`, `full_transition_chain`. Đây là mismatch
   precondition/policy/negative oracle, không kết luận accepted-negative defect.
+- `UTk4sa` (`20261011T140452Z-169384`) không gửi target PATCH: parent `vfAiah`
+  trả số ID khác transition mapping, report ghi `stateful_sequence_failed`,
+  target `not-sent`, restore PASS, exit `1`. Đây là stateful artifact/precondition
+  limitation, không phải kết luận API chấp nhận negative data.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

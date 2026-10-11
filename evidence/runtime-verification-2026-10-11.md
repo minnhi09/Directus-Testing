@@ -247,6 +247,7 @@ phân loại và giới hạn stateful nằm tại
 | `UNKW3j` | `20261011T135951Z-166351` | GET article `export=xml` trả `200` với `text/xml` ngoài schema JSON | `reproduced_request_only`, restore PASS, exit `1`; export media-type candidate |
 | `R0sH5o` | `20261011T140125Z-167402` | GET article `export=yaml` trả `200` với `text/yaml` ngoài schema JSON | `reproduced_request_only`, restore PASS, exit `1`; export media-type candidate |
 | `DhqXrn` | `20261011T140307Z-168360` | Full chain `UqHibT → DhqXrn`; source `204`, replay `403` do field `id` forbidden | `full_transition_chain`, restore PASS, exit `1`; mismatch, chưa kết luận |
+| `UTk4sa` | `20261011T140452Z-169384` | Parent `vfAiah` trả ID count khác transition mapping; PATCH target không gửi | `stateful_sequence_failed`, restore PASS, exit `1`; precondition/artifact limitation |
 
 Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
 Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
@@ -274,6 +275,10 @@ CSV/XML/YAML được giữ trong cùng nhóm export contract candidate.
 Replay `DhqXrn` là ca negative khác với request-only: parent transition được
 replay đầy đủ nhưng kết quả hiện tại là `403` thay source `204`. Restore PASS và
 không có thay đổi dữ liệu tồn tại; giữ mismatch, không đổi thành PASS.
+
+Replay `UTk4sa` không vượt qua setup parent nên target không được gửi; đây là
+giới hạn tái dựng stateful, không phải bằng chứng request bị chấp nhận hoặc bị
+từ chối trên baseline hiện tại.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 
