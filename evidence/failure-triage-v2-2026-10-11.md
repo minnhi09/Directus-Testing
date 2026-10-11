@@ -102,3 +102,22 @@ report không còn gọi đó là `reproduced` đầy đủ:
 Các run trong bảng replay chính ở trên là bằng chứng triage đã chạy trước khi
 hardening; chúng vẫn được giữ nguyên. Từ commit này, exit `1` của stateful
 final-request-only là chủ ý và giúp tránh tuyên bố quá mức về khả năng tái lập.
+
+## Đối chiếu mã nguồn Directus đã pin
+
+Đối chiếu được thực hiện read-only trong checkout `../directus` tại release
+commit `4f77933bf9551cac6b289576078783e189b8f4e3` (`12.5.0`). Worktree
+upstream hiện tại đang ở commit mới hơn `d3c9a8bb0c0096148c4740ce908e76c24f2413a0`,
+nhưng không dùng commit đó để kết luận baseline và không sửa upstream.
+
+| Finding | Bằng chứng tại commit đã pin | Kết luận triage |
+|---|---|---|
+| POST trả object nhưng schema mô tả array | `api/src/controllers/items.ts:37-51`: body object gọi `readOne` và đặt `data` là item; body array mới gọi `readMany` | Schema/OpenAPI response-shape candidate đã được source hỗ trợ; không xác nhận lỗi sản phẩm |
+| `export=csv` trả `text/csv` | `api/src/utils/validate-query.ts:34` cho phép `csv`; `api/src/middleware/respond.ts:101-104` đặt `Content-Type: text/csv` và trả `200` | Schema/contract omission đã được xác nhận trên baseline; không phải lỗi response runtime |
+| DELETE detail trả `204` | `api/src/controllers/items.ts:235-250` gọi `respond`; `api/src/middleware/respond.ts:120-125` trả `204` khi không có payload | Schema response map thiếu status `204`; gộp vào nhóm schema candidate |
+| `aggregate={"foo":1}` gây `500` | `validate-query.ts:34` chỉ yêu cầu aggregate là object; `extract-paths-from-query.ts:60-61` lặp qua từng value như iterable; runtime regression `20261011T105242Z-105524` tái hiện `500` | Product robustness candidate kèm schema omission; vẫn chưa gọi là defect chính thức |
+
+Đối chiếu này đóng mức phân loại cho POST/export/DELETE, nhưng không làm đổi
+raw snapshot, không tạo overlay mới và không thay đổi expected result của các
+run đã thực hiện. Candidate aggregate vẫn cần quyết định cuối hoặc bằng chứng
+upstream bổ sung trước khi chuyển sang `product defect`.

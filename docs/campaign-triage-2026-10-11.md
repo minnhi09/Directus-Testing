@@ -71,6 +71,14 @@ PASS; đây là bằng chứng request cuối, không phải full-chain reproduc
 non-stateful `Q8K5Nh` ở run `20261011T123735Z-132524` vẫn PASS với
 `sequence_replayed=true`.
 
+Đối chiếu source release `4f77933bf9551cac6b289576078783e189b8f4e3` đã làm rõ
+thêm ba nhóm contract: POST object/array, export `csv` và DELETE `204` đều phù
+hợp với runtime Directus nhưng bị mô tả thiếu hoặc sai trong OpenAPI snapshot.
+Riêng aggregate `{"foo":1}` có đường dẫn source dẫn tới lỗi lặp value không
+iterable và vẫn giữ là product robustness candidate, chưa xác nhận defect.
+Chi tiết line-level nằm trong phần source comparison của
+[`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).
+
 ## Phân loại theo nhóm nguyên nhân
 
 | Nhóm | Raw | Guided | Đánh giá hiện tại |
