@@ -31,6 +31,7 @@ Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào h
 | `positive-operations` | Positive create/read/PATCH/delete cho đủ 10 operation của hai collection | Editor login/fixture hoặc permission CRUD không sẵn sàng |
 | `query-fixture` | Filter published, sort, projection, hai page | Fixture map không khớp dữ liệu |
 | `aggregate-query-robustness` | GET query tối giản `fields=&aggregate={"foo":1}`, yêu cầu không có 5xx | Không có API response |
+| `contract-schema-candidates` | Editor POST category/article, GET export CSV và DELETE detail; đối chiếu runtime với schema | API/schema precondition không sẵn sàng |
 | `relation-nullification` | Tạo category/article, xóa category, kiểm tra FK thành null | Không tạo được relation probe |
 | `invalid-field-rejection` | Gửi status/score ngoài contract và kiểm tra không tạo row | Network/read-back precondition |
 | `reader-visibility` | Reader đọc published và thử projection có `internal_notes` | Reader schema thiếu operation |
@@ -50,6 +51,12 @@ Schemathesis artifact. Trên baseline v2, run `20261011T105242Z-105524` trả
 `500` và exit `1` đúng theo assertion; đây là failure cần triage, không phải
 được chuyển thành pass bằng cách nới expected. Run lịch sử `20261011T080746Z-51887`
 được giữ để đối chiếu trước license.
+
+`contract-schema-candidates` là probe contract độc lập, chạy tại commit
+`7018107` ở run `20261011T130227Z-139257`. Probe tạo dữ liệu tạm bằng Editor,
+đối chiếu POST response shape, export `text/csv` và DELETE `204` với
+`editor.json`, sau đó cleanup thành công. Report cố ý giữ `failed` vì ghi nhận
+bốn schema candidate; đây không phải kết luận bốn product defect.
 
 Sau khi sửa replay nhị phân, case `UETNPW` (DELETE nhận 204 ngoài schema) được
 replay lại ở run `20261011T073454Z-42697`, còn case `7DpEST` (PATCH với payload

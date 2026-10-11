@@ -100,7 +100,7 @@ operation hit của Schemathesis.
 
 Các case ổn định được chạy bởi `scripts/invariants.py` trong runner Docker:
 `auth-invalid-token`, `anonymous-denied`, `editor-crud`, `positive-operations`,
-`query-fixture`, `aggregate-query-robustness`, `relation-nullification`,
+`query-fixture`, `aggregate-query-robustness`, `contract-schema-candidates`, `relation-nullification`,
 `invalid-field-rejection`, `reader-visibility`, `reader-write`.
 `aggregate-query-robustness` là regression probe không mutation, dùng query
 `fields=&aggregate={"foo":1}` và yêu cầu không có HTTP 5xx; trên baseline v2 nó
@@ -108,5 +108,10 @@ tái hiện candidate 500 và giữ trạng thái `failed`. `reader-visibility` 
 `reader-write` kiểm tra schema trước; v2 có operation cần thiết nên đã gửi request
 và xác minh projection/private write theo hành vi thực tế. Nếu dựng máy không có
 license và operation vắng mặt, hai case vẫn ghi `blocked` và không gửi request cấm.
+
+`contract-schema-candidates` đối chiếu runtime Editor với response map/content
+type/POST shape trong `editor.json`, dùng dữ liệu tạm và cleanup sau probe. Run
+`20261011T130227Z-139257` ghi bốn schema candidate và giữ exit `1`; đây là số
+candidate contract, không phải số product defect.
 
 Expected status của negative case là quan hệ `non-2xx`, không gán cứng 401/403/404 khi baseline chưa chứng minh mã cụ thể. Chi tiết precondition, request path, expected/actual và response summary được lưu trong `invariant-report.json`; token không được ghi.

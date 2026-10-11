@@ -73,14 +73,36 @@ thái unresolved do mismatch.
    exit `1` trong run `20261011T105242Z-105524`; báo cáo này không thay đổi
    kết luận đó.
 
+## Automated contract probe
+
+Harness commit `7018107` bổ sung case `contract-schema-candidates` để đối chiếu
+runtime với schema Editor đã export, không sửa raw snapshot và không nới
+assertion. Lệnh `./lab.sh replay contract-schema-candidates` ở run
+`20261011T130227Z-139257` kết thúc `exit 1` có chủ đích: report ghi
+`schema_candidates=4`, toàn bộ dữ liệu tạm được cleanup bằng DELETE `204`.
+
+Bốn candidate được ghi trong
+`artifacts/runs/20261011T130227Z-139257/invariant-report.json`:
+
+1. POST category trả `data` object trong khi response schema mô tả array.
+2. POST article trả `data` object trong khi response schema mô tả array.
+3. GET với `export=csv` trả `text/csv` trong khi schema chỉ khai báo
+   `application/json`.
+4. DELETE category detail trả `204` trong khi response map hiện khai báo
+   `200/401/404`.
+
+Đây là các `schema_contract_candidate`, không được đếm thành product defect.
+Run này có harness SHA `701810742a87c6d210c627503aabc22940dc4abc` và source
+Directus đã pin `4f77933bf9551cac6b289576078783e189b8f4e3`.
+
 ## Việc còn lại
 
 - Nếu cần đóng các case stateful, harness phải lưu và replay chuỗi transition
   đầy đủ, hoặc phải ghi rõ chúng là final-request-only và unresolved. Không
   được dùng replay trực tiếp hiện tại để tuyên bố tái lập độc lập toàn bộ state.
-- Đối chiếu response map/content type/POST shape với contract Directus đã pin;
-  nếu tạo overlay thì chỉ sửa bản `guided`, giữ raw snapshot bất biến và lưu
-  diff/lý do.
+- Đã đối chiếu response map/content type/POST shape với contract Directus đã
+  pin bằng probe riêng; nếu tạo overlay trong tương lai thì chỉ sửa bản
+  `guided`, giữ raw snapshot bất biến và lưu diff/lý do.
 - Giữ nguyên exit code campaign, report và artifact hiện tại; không thêm
   skip/xfail hoặc nới assertion để làm đẹp kết quả.
 

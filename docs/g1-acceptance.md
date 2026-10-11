@@ -29,7 +29,7 @@ replay.
 | CRUD, query, quan hệ và phân quyền đạt oracle | Scenario `20261011T105231Z-104612`, S1–S6 | Đạt |
 | Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
-| Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`, replay `20261011T105242Z-105524` | Đạt có finding |
+| Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`, replay `20261011T105242Z-105524`, contract probe `20261011T130227Z-139257` | Đạt có finding |
 | Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, run `20261011T123728Z-131951` và `20261011T123735Z-132524` | Final interaction được ghi `reproduced_request_only`; full transition chain còn unresolved |
 | README, metadata và artifact không chứa secret | README, manifest, run metadata, static/secret scan | Đạt |
 | Review chéo thành viên | Không còn là gate G1 | Không áp dụng |
@@ -49,6 +49,9 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
   harness/fixture issue, product robustness candidate, environment và
   unresolved; không đếm nhiều check failure từ một nguyên nhân thành nhiều
   defect.
+- Contract probe độc lập ghi nhận bốn schema candidate (POST response shape,
+  export content type và DELETE `204`) ở run `20261011T130227Z-139257`; exit
+  `1` được giữ nguyên và không được diễn giải thành bốn product defect.
 - Chưa có product defect Directus nào được xác nhận chính thức. Candidate HTTP
   500 cần tiếp tục đối chiếu contract/upstream nếu muốn đóng ở giai đoạn cuối.
 
