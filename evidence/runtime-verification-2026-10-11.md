@@ -111,6 +111,7 @@ working tree `dirty` chỉ vì các file local/untracked có sẵn:
 | `20261011T162426Z-209264` | `./lab.sh doctor` | PASS, exit `0`; license active, pinned digest/health/fixture map đạt |
 | `20261011T162429Z-209848` | `./lab.sh smoke` | PASS, exit `0`; field validation, `SET NULL`, login và Reader filter đạt |
 | `20261011T165604Z-220107` | `./lab.sh test smoke` | PASS, exit `0`; alias interface xác nhận field validation, `SET NULL`, actor login và Reader published filter; harness `303152b` |
+| `20261011T165804Z-221010` | `./lab.sh doctor` | PASS, exit `0`; checkpoint sau tài liệu, pinned digest/health/fixture map và license active; harness `1fc8780` |
 | `20261011T162431Z-210275` | `./lab.sh export-schema` | PASS, exit `0`; actor `14/14/6/0`, bốn hash không đổi |
 | `20261011T162433Z-210740` | `./lab.sh test scenarios` | S1–S6 passed, 0 failed, 0 blocked; exit `0` |
 | `20261011T162436Z-211214` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; exit `1`, đúng aggregate 500 và 4 contract candidate |
