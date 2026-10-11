@@ -257,3 +257,15 @@ thái để làm đẹp.
 - Artifact không có parent transition nên giữ đúng phạm vi request-only; không
   giả lập full-chain và không gộp case này thành defect độc lập với nhóm
   response-shape đã triage.
+
+## Triage export XML media type — 2026-10-11
+
+- Run `20261011T135951Z-166351`: `./lab.sh replay UNKW3j` dưới harness
+  `a0e8996456fd56f37c3558d5e140db735bee9c3f`; source/expected/actual đều
+  HTTP `200`, restore PASS, exit `1`, `reproduced_request_only`.
+- Request `GET /items/qa_articles?export=xml&search=Directus` trả
+  `text/xml; charset=utf-8`, trong khi operation schema chỉ khai báo
+  `application/json`. Đây là cùng nhóm export media-type contract với
+  `vx21yF` (`csv`), không phải product defect độc lập.
+- Không có parent transition trong artifact; giữ request-only và không đổi
+  expected/check để làm campaign xanh.

@@ -244,6 +244,7 @@ phân loại và giới hạn stateful nằm tại
 | `pM4r4g` | `20261011T122542Z-128284` | campaign `200`, direct replay `403` | mismatch, unresolved |
 | `kb5gjq` | `20261011T135006Z-162769` | POST article với `published_at=""` tái hiện `500`; source/expected/actual đều `500` | `reproduced_request_only`, restore PASS, exit `1`; SQLSTATE `22007` |
 | `F8j8Gl` | `20261011T135713Z-165099` | GET article `export=json` trả `200` với array 12 item ngoài schema object | `reproduced_request_only`, restore PASS, exit `1`; schema/contract candidate |
+| `UNKW3j` | `20261011T135951Z-166351` | GET article `export=xml` trả `200` với `text/xml` ngoài schema JSON | `reproduced_request_only`, restore PASS, exit `1`; export media-type candidate |
 
 Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
 Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
@@ -260,6 +261,10 @@ Replay `F8j8Gl` bổ sung cho thấy biến thể `export=json` trả raw array 
 schema operation đang kiểm tra envelope object `data`; đây là contract/schema
 candidate cần giữ riêng với timestamp candidate, không phải 5xx hoặc product
 defect đã xác nhận.
+
+Replay `UNKW3j` bổ sung xác nhận biến thể `export=xml` cũng trả media type
+ngoài schema JSON; gộp với `vx21yF` thành export contract candidate, không đếm
+riêng thành defect.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 

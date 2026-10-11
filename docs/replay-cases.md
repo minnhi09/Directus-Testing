@@ -88,6 +88,11 @@ Các case guided đại diện được replay sau pilot:
   `200`, response là array 12 item, trong khi schema operation yêu cầu object
   chứa `data`. Restore PASS, exit `1`; đây là schema/contract candidate cho
   alternate export shape, không phải product defect đã xác nhận.
+- `UNKW3j` (`20261011T135951Z-166351`) tái hiện request-only
+  `GET /items/qa_articles?export=xml&search=Directus`: source/expected/actual
+  `200`, content type `text/xml; charset=utf-8` ngoài schema `application/json`.
+  Restore PASS, exit `1`; đây là cùng nhóm export media-type candidate với
+  `vx21yF`, không phải defect độc lập.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).
