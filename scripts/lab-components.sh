@@ -1245,6 +1245,412 @@ restore_fixture_articles() {
 	printf 'Pilot restore: PASS (fixture article snapshot khớp)\n'
 }
 
+CAMPAIGN_BASE_RUN_DIR=''
+CAMPAIGN_SUMMARIES='[]'
+CAMPAIGN_SEEDS="${LAB_CAMPAIGN_SEEDS:-101,202,303}"
+CAMPAIGN_MAX_TIME="${LAB_MAX_TIME:-1200}"
+CAMPAIGN_MAX_EXAMPLES="${LAB_MAX_EXAMPLES:-100}"
+CAMPAIGN_WORKERS="${LAB_WORKERS:-1}"
+CAMPAIGN_RATE_LIMIT="${LAB_RATE_LIMIT:-5/s}"
+CAMPAIGN_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}"
+TARGET_OPERATIONS_JSON=''
+
+target_operations_json() {
+	jq -cn '[
+		{method:"GET",path:"/items/qa_articles"},
+		{method:"POST",path:"/items/qa_articles"},
+		{method:"GET",path:"/items/qa_articles/{id}"},
+		{method:"PATCH",path:"/items/qa_articles/{id}"},
+		{method:"DELETE",path:"/items/qa_articles/{id}"},
+		{method:"GET",path:"/items/qa_categories"},
+		{method:"POST",path:"/items/qa_categories"},
+		{method:"GET",path:"/items/qa_categories/{id}"},
+		{method:"PATCH",path:"/items/qa_categories/{id}"},
+		{method:"DELETE",path:"/items/qa_categories/{id}"}
+	]'
+}
+
+campaign_validate_config() {
+	local value
+	for value in "$CAMPAIGN_MAX_TIME" "$CAMPAIGN_MAX_EXAMPLES" "$CAMPAIGN_WORKERS" "$CAMPAIGN_REQUEST_TIMEOUT"; do
+		[[ "$value" =~ ^[1-9][0-9]*$ ]] || {
+			printf 'ERROR: campaign numeric config không hợp lệ: %s\n' "$value" >&2
+			return 1
+		}
+	done
+	[[ "$CAMPAIGN_RATE_LIMIT" =~ ^[1-9][0-9]*/[smh]$ ]] || {
+		printf 'ERROR: LAB_RATE_LIMIT phải có dạng 5/s, 100/m hoặc 1/h\n' >&2
+		return 1
+	}
+}
+
+campaign_require_inputs() {
+	local source schema_operations expected_count
+	require_tools
+	command -v sha256sum >/dev/null 2>&1 || {
+		printf 'ERROR: thiếu sha256sum để ghi schema hash\n' >&2
+		return 1
+	}
+	campaign_validate_config || return 1
+	require_admin_login
+	require_actor_logins
+	load_fixture_map
+	TARGET_OPERATIONS_JSON="$(target_operations_json)"
+	source="$SCHEMA_ROOT/editor.json"
+	if [[ ! -f "$source" ]]; then
+		export_schema || return 1
+	fi
+	[[ -f "$source" ]] || {
+		printf 'ERROR: thiếu raw editor schema: %s\n' "$source" >&2
+		return 1
+	}
+	schema_operations="$(schema_operations_json "$source")"
+	expected_count="$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")"
+	jq -n -e --argjson expected "$TARGET_OPERATIONS_JSON" --argjson actual "$schema_operations" '
+		($actual | map({method,path}) | sort_by(.path,.method)) as $actual_ops
+		| ($expected | sort_by(.path,.method)) as $expected_ops
+		| (($expected_ops - $actual_ops) | length) == 0
+	' >/dev/null 2>/dev/null || {
+		printf 'ERROR: editor raw schema không có đủ inventory %s operation\n' "$expected_count" >&2
+		return 1
+	}
+	[[ "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
+		printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
+		return 1
+	}
+	docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
+		printf 'ERROR: runner image chưa có trên máy\n' >&2
+		return 1
+	}
+}
+
+campaign_build_schema() {
+	local profile="$1"
+	local source="$SCHEMA_ROOT/editor.json"
+	local target="$RUN_DIR/schema-$profile.json"
+	local source_copy="$RUN_DIR/source-editor.json"
+	local article_id
+	local category_id
+	local diff_status
+	cp -- "$source" "$source_copy"
+	article_id="$(jq -r '.fixtures.qa_articles.article_alpha_published_1' "$FIXTURE_MAP")"
+	category_id="$(jq -r '.fixtures.qa_categories.category_alpha' "$FIXTURE_MAP")"
+	jq --arg profile "$profile" --argjson article_id "$article_id" --argjson category_id "$category_id" '
+		.paths = (.paths | with_entries(
+			if .key == "/items/qa_articles" or .key == "/items/qa_categories" then
+				.value |= with_entries(select(.key == "get" or .key == "post"))
+			elif .key == "/items/qa_articles/{id}" or .key == "/items/qa_categories/{id}" then
+				.value |= with_entries(select(.key == "get" or .key == "patch" or .key == "delete"))
+			else empty
+			end
+		))
+		| if $profile == "guided" then
+			.paths["/items/qa_articles/{id}"].get.parameters = ((.paths["/items/qa_articles/{id}"].get.parameters // []) | map(
+				if .name == "id" then . + {example:$article_id} else . end
+			))
+			| .paths["/items/qa_articles/{id}"].patch.parameters = ((.paths["/items/qa_articles/{id}"].patch.parameters // []) | map(
+				if .name == "id" then . + {example:$article_id} else . end
+			))
+			| .paths["/items/qa_articles/{id}"].delete.parameters = ((.paths["/items/qa_articles/{id}"].delete.parameters // []) | map(
+				if .name == "id" then . + {example:$article_id} else . end
+			))
+			| .paths["/items/qa_categories/{id}"].get.parameters = ((.paths["/items/qa_categories/{id}"].get.parameters // []) | map(
+				if .name == "id" then . + {example:$category_id} else . end
+			))
+			| .paths["/items/qa_categories/{id}"].patch.parameters = ((.paths["/items/qa_categories/{id}"].patch.parameters // []) | map(
+				if .name == "id" then . + {example:$category_id} else . end
+			))
+			| .paths["/items/qa_categories/{id}"].delete.parameters = ((.paths["/items/qa_categories/{id}"].delete.parameters // []) | map(
+				if .name == "id" then . + {example:$category_id} else . end
+			))
+			| .paths["/items/qa_articles"].post.requestBody.content["application/json"].example = {
+				title:"Guided Schemathesis article",
+				status:"draft",
+				score:3,
+				published_at:null,
+				metadata:{source:"guided",fixture_version:"r06-k05-v1"},
+				internal_notes:"guided probe",
+				category:$category_id
+			}
+			| .paths["/items/qa_categories"].post.requestBody.content["application/json"].example = {name:"Guided Schemathesis category"}
+			| .paths["/items/qa_articles/{id}"].patch.requestBody.content["application/json"].example = {score:4}
+			| .paths["/items/qa_categories/{id}"].patch.requestBody.content["application/json"].example = {name:"Guided category update"}
+			| .["x-r06-k05-guidance"] = {
+				profile:"guided",
+				reason:"fixture IDs and valid request examples improve reachability; raw schema remains unchanged",
+				fixture_ids:{article:$article_id,category:$category_id},
+				query_focus:["fields","filter","sort","limit","offset","page","search"]
+			}
+		else .
+		end
+	' "$source" > "$target"
+	set +e
+	diff -u "$source_copy" "$target" > "$RUN_DIR/schema-$profile.diff"
+	diff_status=$?
+	set -e
+	[[ "$diff_status" -eq 0 || "$diff_status" -eq 1 ]] || {
+		printf 'ERROR: không tạo được diff schema %s\n' "$profile" >&2
+		return 1
+	}
+	jq -e '.openapi == "3.0.1" and (.paths|type == "object")' "$target" >/dev/null || {
+		printf 'ERROR: schema scope %s không hợp lệ\n' "$target" >&2
+		return 1
+	}
+	jq -n --arg profile "$profile" --arg source "$source" --arg target "$target" \
+		--arg source_sha "$(sha256sum "$source" | awk '{print $1}')" \
+		--arg target_sha "$(sha256sum "$target" | awk '{print $1}')" \
+		--arg reason "$(if [[ "$profile" == guided ]]; then printf '%s' 'guided adds fixture ID examples and valid request examples in a separate overlay'; else printf '%s' 'raw selects only the approved 10 method-path pairs; operation contracts are not edited'; fi)" \
+		--argjson operations "$TARGET_OPERATIONS_JSON" \
+		'{schema:1,profile:$profile,source_schema:$source,source_sha256:$source_sha,scoped_schema:$target,scoped_sha256:$target_sha,reason:$reason,operations:$operations}' \
+		> "$RUN_DIR/schema-manifest.json"
+	printf 'Campaign schema %s: %s\n' "$profile" "$target"
+}
+
+campaign_snapshot() {
+	api_expect_2xx 'snapshot categories trước campaign' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
+	cp -- "$API_BODY" "$RUN_DIR/baseline-categories.json"
+	api_expect_2xx 'snapshot articles trước campaign' GET '/items/qa_articles?limit=-1&fields=id,title,status,score,published_at,metadata,internal_notes,category' "$ADMIN_TOKEN" || return 1
+	cp -- "$API_BODY" "$RUN_DIR/baseline-articles.json"
+}
+
+campaign_delete_extras() {
+	local collection="$1"
+	local snapshot="$2"
+	local fields="$3"
+	local current_file
+	local item_id
+	local failures=0
+	api_expect_2xx "đọc $collection sau campaign" GET "/items/$collection?limit=-1&fields=$fields" "$ADMIN_TOKEN" || return 1
+	current_file="$API_BODY"
+	while IFS= read -r item_id; do
+		if ! jq -e --argjson id "$item_id" 'any(.data[]; .id == $id)' "$snapshot" >/dev/null; then
+			if ! api_request DELETE "/items/$collection/$item_id" "$ADMIN_TOKEN"; then
+				failures=$((failures + 1))
+			elif ! valid_http_success "$API_STATUS"; then
+				failures=$((failures + 1))
+			fi
+		fi
+	done < <(jq -r '.data[]|.id' "$current_file")
+	(( failures == 0 )) || {
+		printf 'ERROR: xóa row ngoài snapshot %s gặp %s lỗi\n' "$collection" "$failures" >&2
+		return 1
+	}
+}
+
+campaign_restore_collection() {
+	local collection="$1"
+	local snapshot="$2"
+	local current_file="$3"
+	local item_id
+	local row
+	local body
+	local failures=0
+	while IFS= read -r row; do
+		item_id="$(jq -r '.id' <<< "$row")"
+		if jq -e --argjson id "$item_id" 'any(.data[]; .id == $id)' "$current_file" >/dev/null; then
+			body="$(jq -c 'del(.id)' <<< "$row")"
+			if ! api_request PATCH "/items/$collection/$item_id" "$ADMIN_TOKEN" "$body"; then
+				failures=$((failures + 1))
+			elif ! valid_http_success "$API_STATUS"; then
+				failures=$((failures + 1))
+			fi
+		else
+			if ! api_request POST "/items/$collection" "$ADMIN_TOKEN" "$row"; then
+				failures=$((failures + 1))
+			elif ! valid_http_success "$API_STATUS"; then
+				failures=$((failures + 1))
+			fi
+		fi
+	done < <(jq -c '.data[]' "$snapshot")
+	(( failures == 0 )) || {
+		printf 'ERROR: khôi phục collection %s gặp %s lỗi\n' "$collection" "$failures" >&2
+		return 1
+	}
+}
+
+campaign_restore() {
+	local failures=0
+	local current_categories
+	local current_articles
+	if ! campaign_delete_extras qa_articles "$RUN_DIR/baseline-articles.json" 'id,title,status,score,published_at,metadata,internal_notes,category'; then
+		failures=$((failures + 1))
+	fi
+	if ! campaign_delete_extras qa_categories "$RUN_DIR/baseline-categories.json" 'id,name'; then
+		failures=$((failures + 1))
+	fi
+	api_expect_2xx 'đọc categories để restore' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
+	current_categories="$API_BODY"
+	campaign_restore_collection qa_categories "$RUN_DIR/baseline-categories.json" "$current_categories" || failures=$((failures + 1))
+	api_expect_2xx 'đọc articles để restore' GET '/items/qa_articles?limit=-1&fields=id,title,status,score,published_at,metadata,internal_notes,category' "$ADMIN_TOKEN" || return 1
+	current_articles="$API_BODY"
+	campaign_restore_collection qa_articles "$RUN_DIR/baseline-articles.json" "$current_articles" || failures=$((failures + 1))
+	api_expect_2xx 'xác minh categories sau restore' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
+	jq -e --slurpfile expected "$RUN_DIR/baseline-categories.json" '.data | sort_by(.id) == ($expected[0].data | sort_by(.id))' "$API_BODY" >/dev/null || failures=$((failures + 1))
+	api_expect_2xx 'xác minh articles sau restore' GET '/items/qa_articles?limit=-1&fields=id,title,status,score,published_at,metadata,internal_notes,category' "$ADMIN_TOKEN" || return 1
+	jq -e --slurpfile expected "$RUN_DIR/baseline-articles.json" '.data | sort_by(.id) == ($expected[0].data | sort_by(.id))' "$API_BODY" >/dev/null || failures=$((failures + 1))
+	if (( failures != 0 )); then
+		printf 'ERROR: restore campaign không đạt (%s lỗi)\n' "$failures" >&2
+		return 1
+	fi
+	printf 'Campaign restore: PASS (categories + articles khớp snapshot)\n'
+}
+
+campaign_inventory() {
+	local report_file="$RUN_DIR/schemathesis-report.json"
+	local coverage_file="$RUN_DIR/schemathesis-coverage.json"
+	local coverage='{}'
+	if [[ -f "$coverage_file" ]]; then
+		coverage="$(cat "$coverage_file")"
+	fi
+	jq -n --arg profile "$1" --arg seed "$2" --argjson expected "$TARGET_OPERATIONS_JSON" --argjson coverage "$coverage" '
+		[ $expected[] as $op
+		| (($coverage.operations // []) | map(select(.method == $op.method and .path == $op.path)) | .[0] // {}) as $hit
+		| $op + {hits:($hit.hits // null),covered:(($hit.hits // 0) > 0)}
+		] as $rows
+		| {schema:1,profile:$profile,seed:($seed|tonumber),expected_operation_count:($rows|length),
+		   covered_operation_count:([$rows[]|select(.covered)]|length),operations:$rows}
+	' > "$RUN_DIR/operation-inventory.json"
+	if [[ -f "$report_file" ]]; then
+		jq -n --arg profile "$1" --arg seed "$2" --slurpfile report "$report_file" --slurpfile inventory "$RUN_DIR/operation-inventory.json" \
+			'{schema:1,profile:$profile,seed:($seed|tonumber),operation_inventory:$inventory[0],schemathesis:{operations:($report[0].operations // null),test_cases:($report[0].test_cases // null),failures:($report[0].failures // []),warnings:($report[0].warnings // {})}}' \
+			> "$RUN_DIR/metrics.json"
+	else
+		jq -n --arg profile "$1" --arg seed "$2" --slurpfile inventory "$RUN_DIR/operation-inventory.json" \
+			'{schema:1,profile:$profile,seed:($seed|tonumber),operation_inventory:$inventory[0],schemathesis:null}' \
+			> "$RUN_DIR/metrics.json"
+	fi
+}
+
+campaign_one() {
+	local profile="$1"
+	local seed="$2"
+	local base_dir="$CAMPAIGN_BASE_RUN_DIR"
+	local runner_rc=1
+	local restore_rc=1
+	local report_present=false
+	local coverage_present=false
+	local termination='not_started'
+	local status='failed'
+	local report_summary='null'
+	local campaign_dir="$base_dir/$profile/seed-$seed"
+	local schema_file
+	mkdir -p "$campaign_dir"
+	RUN_DIR="$campaign_dir"
+	if ! campaign_snapshot; then
+		printf 'ERROR: không snapshot được baseline cho %s seed=%s\n' "$profile" "$seed" >&2
+		RUN_DIR="$base_dir"
+		return 1
+	fi
+	if ! campaign_build_schema "$profile"; then
+		RUN_DIR="$base_dir"
+		return 1
+	fi
+	schema_file="$RUN_DIR/schema-$profile.json"
+	printf 'Schemathesis %s: 10 operation, max-examples=%s, seed=%s, max-time=%ss\n' "$profile" "$CAMPAIGN_MAX_EXAMPLES" "$seed" "$CAMPAIGN_MAX_TIME"
+	set +e
+	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+		-e SCHEMA_TOKEN="$EDITOR_TOKEN" \
+		-e RUNNER_API_URL="$RUNNER_API_URL" \
+		-e LAB_WORKERS="$CAMPAIGN_WORKERS" \
+		-e LAB_MAX_EXAMPLES="$CAMPAIGN_MAX_EXAMPLES" \
+		-e LAB_SEED="$seed" \
+		-e LAB_REQUEST_TIMEOUT="$CAMPAIGN_REQUEST_TIMEOUT" \
+		-e LAB_RATE_LIMIT="$CAMPAIGN_RATE_LIMIT" \
+		-e LAB_MAX_TIME="$CAMPAIGN_MAX_TIME" \
+		-e LAB_PHASES="$(if [[ "$profile" == guided ]]; then printf '%s' 'examples,coverage,fuzzing,stateful'; else printf '%s' 'examples,coverage,fuzzing'; fi)" \
+		--mount "type=bind,src=$schema_file,dst=/work/schema.json,readonly" \
+		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
+		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
+		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks all --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"'
+	runner_rc=$?
+	set -e
+	if [[ -f "$RUN_DIR/schemathesis-report.json" ]]; then
+		report_present=true
+		termination="$(jq -r '.stop_reason // "unknown"' "$RUN_DIR/schemathesis-report.json")"
+		report_summary="$(jq -c '{operations,test_cases,failures,errors,stop_reason,complete,exit_code,running_time}' "$RUN_DIR/schemathesis-report.json")"
+	fi
+	[[ -f "$RUN_DIR/schemathesis-coverage.json" ]] && coverage_present=true
+	set +e
+	campaign_restore
+	restore_rc=$?
+	set -e
+	campaign_inventory "$profile" "$seed"
+	if (( runner_rc == 0 && restore_rc == 0 )) && [[ "$report_present" == true && "$coverage_present" == true ]]; then
+		if [[ "$termination" == max_time ]]; then
+			status='incomplete'
+		else
+			status='passed'
+		fi
+	fi
+	if [[ "$status" == passed ]]; then
+		printf 'Campaign %s seed=%s: PASS\n' "$profile" "$seed"
+	else
+		printf 'Campaign %s seed=%s: %s (runner=%s restore=%s termination=%s)\n' "$profile" "$seed" "$status" "$runner_rc" "$restore_rc" "$termination"
+	fi
+	jq -n --arg profile "$profile" --arg seed "$seed" --arg status "$status" --arg termination "$termination" \
+		--arg schema_sha "$(sha256sum "$schema_file" | awk '{print $1}')" \
+		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" \
+		--argjson report_present "$report_present" --argjson coverage_present "$coverage_present" \
+		--argjson report "$report_summary" \
+		--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
+		'{schema:1,profile:$profile,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
+		> "$RUN_DIR/campaign-summary.json"
+	CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$RUN_DIR/campaign-summary.json" '$current + [$next[0]]')"
+	RUN_DIR="$base_dir"
+	[[ "$status" == passed ]] || return 1
+}
+
+campaign() {
+	local profile="$1"
+	local seed
+	local overall=0
+	local base_dir="$RUN_DIR"
+	local -a seeds
+	case "$profile" in
+		raw|guided) ;;
+		*) printf 'ERROR: campaign profile phải là raw hoặc guided\n' >&2; return 2 ;;
+	esac
+	campaign_require_inputs || return 1
+	CAMPAIGN_BASE_RUN_DIR="$base_dir"
+	CAMPAIGN_SUMMARIES='[]'
+	IFS=',' read -r -a seeds <<< "$CAMPAIGN_SEEDS"
+	[[ "${#seeds[@]}" -gt 0 ]] || {
+		printf 'ERROR: LAB_CAMPAIGN_SEEDS rỗng\n' >&2
+		return 1
+	}
+	for seed in "${seeds[@]}"; do
+		[[ "$seed" =~ ^[0-9]+$ ]] || {
+			printf 'ERROR: seed không hợp lệ: %s\n' "$seed" >&2
+			return 1
+		}
+		campaign_one "$profile" "$seed" || overall=1
+	done
+	RUN_DIR="$base_dir"
+	jq -n --arg profile "$profile" --arg fixture "$FIXTURE_VERSION" --arg seeds "$CAMPAIGN_SEEDS" --argjson campaigns "$CAMPAIGN_SUMMARIES" \
+		--argjson expected_seed_count "${#seeds[@]}" \
+		'{schema:1,profile:$profile,fixture_version:$fixture,seeds:($seeds|split(",")|map(tonumber)),operation_count:10,campaigns:$campaigns,status:(if (($campaigns|length) == $expected_seed_count and all($campaigns[];.status == "passed")) then "passed" else "failed_or_incomplete" end)}' \
+		> "$base_dir/campaign-index.json"
+	printf 'Campaign index: %s\n' "$base_dir/campaign-index.json"
+	return "$overall"
+}
+
+invariants() {
+	command -v python3 >/dev/null 2>&1 || {
+		printf 'ERROR: thiếu python3 cho invariant runner\n' >&2
+		return 1
+	}
+	python3 "$LAB_ROOT_DIR/scripts/invariants.py" --case all
+}
+
+replay_case() {
+	local case_id="$1"
+	command -v python3 >/dev/null 2>&1 || {
+		printf 'ERROR: thiếu python3 cho replay\n' >&2
+		return 1
+	}
+	python3 "$LAB_ROOT_DIR/scripts/invariants.py" --case "$case_id"
+}
+
 schema_smoke() {
 	local schema_file="$SCHEMA_ROOT/editor.json"
 	local pilot_schema="$RUN_DIR/editor-pilot-schema.json"
@@ -1342,7 +1748,14 @@ main() {
 		smoke) smoke ;;
 		export-schema) export_schema ;;
 		scenarios) scenarios ;;
+		invariants) invariants ;;
 		schema-smoke) schema_smoke ;;
+		raw) campaign raw ;;
+		guided) campaign guided ;;
+		replay)
+			[[ "$#" -eq 2 ]] || { printf 'ERROR: replay cần một case-id\n' >&2; return 2; }
+			replay_case "$2"
+			;;
 		*) printf 'ERROR: component không hỗ trợ profile %s\n' "$command_name" >&2; return 2 ;;
 	esac
 }
