@@ -1,6 +1,6 @@
 # Bằng chứng triển khai và xác minh runtime — 2026-10-11
 
-Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. Không dùng nó để khẳng định G1, kiểm tra chéo hoặc campaign đầy đủ đã hoàn thành.
+Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. Không dùng nó để khẳng định G1 hoặc kiểm tra chéo trên máy độc lập; campaign đầy đủ đã được chạy và giữ nguyên trạng thái kết thúc thực tế bên dưới.
 
 ## Baseline đã xác minh
 
@@ -41,14 +41,28 @@ Tài liệu này chỉ ghi kết quả đã quan sát trên máy hiện tại. K
 | `20261011T040317Z-21776` | `./lab.sh replay ralwaW` | PASS/reproduced; Schemathesis case HTTP 403, reproducer sanitized và restore PASS |
 | `20261011T040346Z-22406` | `./lab.sh replay ralwaW` scoped-hash recheck | PASS/reproduced; reproducer ghi đúng hash schema scoped `433cb61a...`, restore PASS |
 | `20261011T040415Z-23383` | `./lab.sh doctor` final replay-code recheck | PASS; syntax/lint, YAML và Compose config cũng PASS |
+| `20261011T043809Z-24724` | `./lab.sh test invariants` sau positive-operation | 7 passed, 0 failed, 2 blocked; đủ 10 operation positive đạt, Reader vẫn blocked |
+| `20261011T043919Z-25183` | raw campaign lần đầu | Seed 101 hết budget nhưng token hết hạn trước restore; các seed sau không được chạy; run giữ lại để chứng minh lỗi lifecycle, không dùng làm campaign chính |
+| `20261011T050050Z-26220` | `./lab.sh reset` | Safety preflight khớp project/volume/label; chỉ reset lab `r06-k05` và giữ artifact cũ |
+| `20261011T050059Z-26669` | `./lab.sh up` sau reset | PASS; tạo lại stack riêng, Directus/PostgreSQL/runner healthy |
+| `20261011T050124Z-27123` | `./lab.sh seed` sau reset | Schema/fixture/actor đạt; exit 1 tại license `custom_permission_rules_enabled=false` |
+| `20261011T050148Z-27885` | `./lab.sh export-schema` sau reset | PASS; bốn schema theo actor, hash không đổi |
+| `20261011T050155Z-28328` | `./lab.sh test invariants` sau reset | 7 passed, 0 failed, 2 blocked; runner Docker dùng image Schemathesis đã pin |
+| `20261011T050204Z-28735` | `./lab.sh test raw` campaign đầy đủ | Seed 101/202/303 đều 10/10 operation; lần lượt 59/65/51 cases; đều `max_time`, runner exit 1, restore PASS |
+| `20261011T060247Z-30882` | `./lab.sh test guided` campaign đầy đủ | Seed 101/202/303 đều 10/10 operation; lần lượt 5.809/5.874/5.899 cases; đều `max_time`, runner exit 1, restore PASS |
+| `20261011T070408Z-35276` | `./lab.sh doctor` sau full campaigns | PASS; pinned images, fixture map và authenticated health đạt |
+| `20261011T070417Z-35832` | `./lab.sh smoke` sau full campaigns | Field validation và `SET NULL` PASS; Reader article vẫn HTTP 403 do license |
+| `20261011T070430Z-36257` | `./lab.sh test scenarios` sau full campaigns | S1–S3 passed, S4–S6 blocked; không gửi forbidden Reader request |
+| `20261011T070437Z-36709` | `./lab.sh test invariants` sau full campaigns | 7 passed, 0 failed, 2 blocked; positive 10 operation và các invariant non-Reader đạt |
+| `20261011T070445Z-37115` | `./lab.sh export-schema` final | PASS; schema hash actor giữ nguyên sau campaign |
 
-Sau pilot recheck, cả `database`, `directus` và `runner` đều ở trạng thái `running/healthy`; image hiển thị đúng digest đã pin. Hai campaign ngắn đều dừng `max_time`, không đại diện cho campaign đủ ngân sách.
+Sau full campaign và các recheck cuối, cả `database`, `directus` và `runner` đều ở trạng thái `running/healthy`; image hiển thị đúng digest đã pin. Raw và guided đều thực thi đủ ba seed và đủ 10 operation mỗi seed, nhưng runner trả failure vì các check phát hiện; đây không phải trạng thái campaign pass. Cả sáu lần restore của hai profile đều PASS.
 
 Các run metadata ghi `harness_sha` riêng. Tại thời điểm các run đầu, working tree còn dirty do thay đổi tích hợp có sẵn; đây là provenance thực tế, không được coi là clean release.
 
 ## Schema snapshot
 
-Schema export `20261011T035010Z-8515`:
+Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261011T035010Z-8515`):
 
 - Admin: 14 operation, hash `993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e`.
 - Editor: 14 operation, hash `bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26`.
@@ -59,7 +73,18 @@ Schema export `20261011T035010Z-8515`:
 
 - Môi trường: Compose stack chạy và fixture được restore sau pilot.
 - Policy/schema blocker: license không cho custom permission rules; không thể chứng minh Reader published-only/field restriction.
-- Schema/contract candidate: pilot có các check failure như response status ngoài schema và POST response shape; chưa kết luận product defect vì cần replay request cụ thể và đối chiếu contract.
+- Schema/contract candidate: full raw/guided có status `204/400/403` ngoài response map, content type export, POST response shape và unsupported `TRACE`; guided còn ghi nhận response schema, negative/positive data và một số `500`. Đây là nhóm phát hiện để triage, chưa kết luận product defect vì cần replay request cụ thể và đối chiếu contract/semantics của Directus.
 - Chưa có kết luận defect độc lập, chưa có kiểm tra chéo máy thứ hai.
 
-Chưa chạy campaign đầy đủ ba seed `101,202,303` ở ngân sách 100 example/operation và 20 phút/profile/seed; không báo cáo coverage đầy đủ như đã đạt.
+### Số liệu campaign đầy đủ
+
+| Profile | Run | Seed | Operation | Cases | Unique failure | Errored | Restore | Kết thúc |
+|---|---|---:|---:|---:|---:|---:|---|---|
+| raw | `20261011T050204Z-28735` | 101 | 10/10 | 59 | 20 | 0 | PASS | `max_time`, runner 1 |
+| raw | cùng run | 202 | 10/10 | 65 | 18 | 0 | PASS | `max_time`, runner 1 |
+| raw | cùng run | 303 | 10/10 | 51 | 19 | 0 | PASS | `max_time`, runner 1 |
+| guided | `20261011T060247Z-30882` | 101 | 10/10 | 5.809 | 63 | 111 | PASS | `max_time`, runner 1 |
+| guided | cùng run | 202 | 10/10 | 5.874 | 65 | 176 | PASS | `max_time`, runner 1 |
+| guided | cùng run | 303 | 10/10 | 5.899 | 62 | 200 | PASS | `max_time`, runner 1 |
+
+Schema hash raw của cả ba seed là `433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e`; guided overlay dùng hash `dc3f057aefb095c4c51ddb712de33d762176d0472f8e7af313522b0551824d7e`. Harness SHA trong metadata của cả hai run là `57d4c2dd25e6c99f128de0336e88e918a2deee79`.

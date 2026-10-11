@@ -2,7 +2,7 @@
 
 Đây là harness kiểm thử REST API Directus theo schema, tập trung vào CRUD, query, quyền và invariant nghiệp vụ của hai collection `qa_categories` và `qa_articles`.
 
-Trạng thái hiện tại là harness đã có đường chạy thật trên nhánh `feat/g1-shared-interface`; phần nền trước đó đã được tích hợp vào `main` tại merge commit `8d85949`. G1 chưa được tuyên bố. Directus đang báo `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader. Các profile `raw`, `guided`, invariant và replay đã được tích hợp; campaign đầy đủ ba seed, kiểm tra độc lập trên máy thứ hai và review chéo của thành viên vẫn chưa có.
+Trạng thái hiện tại là harness đã có đường chạy thật trên nhánh `feat/g1-shared-interface`; phần nền trước đó đã được tích hợp vào `main` tại merge commit `8d85949`. G1 chưa được tuyên bố. Directus đang báo `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader. Campaign đầy đủ `raw` và `guided` đã chạy đủ ba seed trên máy hiện tại, nhưng runner kết thúc `failed` vì các check phát hiện; restore fixture đều đạt. Kiểm tra độc lập trên máy thứ hai và review chéo của thành viên vẫn chưa có.
 
 ## Chuẩn bị lab
 
@@ -25,7 +25,7 @@ Các image đã được ghi bằng tag và digest trong [`manifest/baseline.yam
 docker compose --env-file config/lab.env --project-name r06-k05 -f compose.yaml pull
 ```
 
-Image Schemathesis được dùng ở bước pilot sau khi exporter và schema đã sẵn sàng; kiểm tra image runner bằng digest trong manifest trước campaign.
+Image Schemathesis được dùng sau khi exporter và schema đã sẵn sàng; kiểm tra image runner bằng digest trong manifest trước campaign.
 
 ## Giao diện
 
@@ -61,10 +61,10 @@ Trạng thái lệnh trên máy hiện tại:
 - `export-schema`: đạt; lưu schema raw bất biến cho `admin` (14 operation), `editor` (14), `reader` (2) và `anonymous` (0).
 - `test scenarios`: S1–S3 đạt; S4–S6 được ghi `blocked` vì operation article không xuất hiện trong schema Reader, nên harness không gửi request quyền bị cấm.
 - `test invariants`: các invariant deterministic chạy trong image Schemathesis đã pin; `positive-operations` kiểm tra đủ 10 method–path bằng dữ liệu tạm, còn Reader cases ghi `blocked` khi schema không có precondition.
-- `test raw`: campaign chính chọn đúng 10 operation, lưu report/coverage/metrics và restore fixture; pilot đã chạy thật với seed 101.
-- `test guided`: campaign chính dùng overlay riêng, fixture IDs/examples và stateful phase; pilot đã chạy thật với seed 101.
+- `test raw`: campaign chính chọn đúng 10 operation, lưu report/coverage/metrics và restore fixture; run đầy đủ `20261011T050204Z-28735` đã chạy seed 101/202/303, mỗi seed 10/10 operation, nhưng kết thúc `max_time` với runner exit 1 vì check failure.
+- `test guided`: campaign chính dùng overlay riêng, fixture IDs/examples và stateful phase; run đầy đủ `20261011T060247Z-30882` đã chạy seed 101/202/303, mỗi seed 10/10 operation, stateful có chạy, nhưng kết thúc `max_time` với runner exit 1 vì check failure.
 - `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass.
-- `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; chưa chạy trong phiên này để bảo toàn dữ liệu lab hiện tại.
+- `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; safety reset đã được thực thi ở run `20261011T050050Z-26220`, sau đó stack được dựng và seed lại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
 
 Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm license key vào repository, sửa trực tiếp DB hoặc nới assertion để biến blocker thành pass. `seed` sẽ chạy tiếp được phần policy Reader sau khi license hợp lệ được cấu hình cục bộ và người dùng xác nhận xử lý snapshot schema cũ.
@@ -110,8 +110,8 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 
 Các kết quả chạy sau này phải ghi run ID, SHA harness, baseline/image digest, actor, fixture version, schema hash, seed, budget, thời gian và trạng thái kết thúc. Kết quả chưa chạy phải giữ nguyên trạng thái chưa chạy.
 
-## Bằng chứng triển khai tạm thời
+## Bằng chứng triển khai và giới hạn
 
 Run gần nhất và giới hạn được tổng hợp tại [`evidence/g1-implementation-2026-10-10.md`](evidence/g1-implementation-2026-10-10.md) và [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md). Report thô nằm trong `artifacts/runs/<run_id>/` (Git ignore); schema và ID map runtime nằm trong `runtime/` (Git ignore). Các thư mục này cần được giữ cục bộ để replay/triage, nhưng không được đưa credential hoặc response nhạy cảm vào commit.
 
-Pilot raw/guided đã chứng minh pipeline 10 operation, artifact và restore; chúng đều giữ runner failure để triage, không được báo là pass. Các failure response/status và POST response shape chưa phải defect kết luận. Triage kỹ thuật tạm thời của 11 failure nằm trong [`evidence/pilot-triage-2026-10-11.md`](evidence/pilot-triage-2026-10-11.md); cần replay độc lập trước khi phân loại product/schema.
+Full raw/guided đã chứng minh pipeline 10 operation, artifact và restore trên ba seed; cả hai run vẫn giữ runner failure để triage, không được báo là pass. Raw có 59/65/51 case theo seed; guided có 5.809/5.874/5.899 case. Các failure response/status, content type, POST response shape và server error chưa phải defect kết luận; một nguyên nhân có thể sinh nhiều check failure. Triage kỹ thuật tạm thời của pilot nằm trong [`evidence/pilot-triage-2026-10-11.md`](evidence/pilot-triage-2026-10-11.md), còn số liệu full campaign và giới hạn nằm trong [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md).

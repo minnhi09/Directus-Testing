@@ -93,7 +93,7 @@ validation:
   fixture_schema: passed_2026-10-10_run_20261010T063111Z-64428
   fixture_seed: partial_data_map_users_blocked_license_run_20261010T063111Z-64428
   smoke: partial_validation_relation_blocked_reader_run_20261010T063020Z-62841
-  actor_schema_export: passed_2026-10-10_run_20261010T063207Z-65790
+  actor_schema_export: passed_run_20261011T070445Z-37115
   scenarios: partial_3_passed_3_blocked_run_20261010T063203Z-65359
   pilot: failed_report_coverage_fixture_restored_run_20261010T062453Z-61302
   schema_export_recheck: passed_run_20261011T035610Z-13294
@@ -111,4 +111,19 @@ validation:
   schemathesis_replay_ralwaW: reproduced_restore_passed_run_20261011T040317Z-21776
   schemathesis_replay_scoped_hash_recheck: reproduced_restore_passed_run_20261011T040346Z-22406
   final_doctor_runtime_recheck_2: passed_run_20261011T040415Z-23383
+  reset_safety_recheck: passed_run_20261011T050050Z-26220
+  up_runtime_recheck: passed_run_20261011T050059Z-26669
+  fixture_seed_recheck: partial_data_map_users_blocked_license_run_20261011T050124Z-27123
+  invariants_positive_operations_recheck: partial_7_passed_2_blocked_run_20261011T050155Z-28328
+  raw_campaign_full: failed_max_time_restore_passed_3_seeds_run_20261011T050204Z-28735
+  raw_campaign_schema_hash: 433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e
+  raw_campaign_harness_sha: 57d4c2dd25e6c99f128de0336e88e918a2deee79
+  guided_campaign_full: failed_max_time_restore_passed_3_seeds_run_20261011T060247Z-30882
+  guided_campaign_schema_hash: dc3f057aefb095c4c51ddb712de33d762176d0472f8e7af313522b0551824d7e
+  guided_campaign_harness_sha: 57d4c2dd25e6c99f128de0336e88e918a2deee79
+  final_doctor_runtime_recheck_2026-10-11: passed_run_20261011T070408Z-35276
+  final_smoke_recheck: partial_reader_license_blocker_run_20261011T070417Z-35832
+  final_scenarios_recheck: partial_3_passed_3_blocked_run_20261011T070430Z-36257
+  final_invariants_recheck: partial_7_passed_2_blocked_run_20261011T070437Z-36709
+  final_schema_export_recheck: passed_run_20261011T070445Z-37115
   g1: blocked_license_and_no_independent_second_machine

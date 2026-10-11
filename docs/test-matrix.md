@@ -18,11 +18,24 @@ Bulk `PATCH` và bulk `DELETE` trên đường dẫn list không thuộc campaig
 | `raw` | Editor raw schema | Chỉ chọn 10 operation; không sửa contract operation | `examples,coverage,fuzzing` | Kiểm schema gốc trong phạm vi đã chọn |
 | `guided` | Bản copy riêng từ editor raw schema | Thêm ID fixture, request example hợp lệ và `x-r06-k05-guidance` | `examples,coverage,fuzzing,stateful` | Đi sâu vào dữ liệu và liên kết nghiệp vụ |
 
-Giá trị mặc định: một worker, `5/s`, timeout request 10 giây, tối đa 100 example/operation, tối đa 1.200 giây/profile/seed, seed `101,202,303`. Pilot ngắn đã chạy với seed `101`, max examples `1`, và max time lần lượt 30 giây (`raw`) / 20 giây (`guided`); đó không phải kết quả campaign đầy đủ.
+Giá trị mặc định: một worker, `5/s`, timeout request 10 giây, tối đa 100 example/operation, tối đa 1.200 giây/profile/seed, seed `101,202,303`. Pilot ngắn dùng seed `101`, max examples `1` và max time 30 giây (`raw`) / 20 giây (`guided`); kết quả pilot không được trộn với campaign đầy đủ.
 
 Campaign bật tường minh các check `not_a_server_error`, `status_code_conformance`, `content_type_conformance`, `response_schema_conformance`, `unsupported_method`, `negative_data_rejection` và `positive_data_acceptance`. Không dùng blanket skip/xfail; failure và warning được giữ trong report.
 
 Mỗi seed tạo thư mục `artifacts/runs/<run_id>/<profile>/seed-<seed>/` với schema copy, hash, diff, inventory, metrics, report JSON/NDJSON, coverage, generation database, summary và snapshot để restore. Fixture được khôi phục trước khi seed kế tiếp tiếp tục.
+
+## Kết quả campaign đầy đủ trên baseline hiện tại
+
+| Profile/run | Seed | Operation tested | Cases generated | Unique failure | Errored | Restore | Trạng thái runner |
+|---|---:|---:|---:|---:|---:|---|---|
+| raw / `20261011T050204Z-28735` | 101 | 10/10 | 59 | 20 | 0 | PASS | `failed`, `max_time`, exit 1 |
+| raw / cùng run | 202 | 10/10 | 65 | 18 | 0 | PASS | `failed`, `max_time`, exit 1 |
+| raw / cùng run | 303 | 10/10 | 51 | 19 | 0 | PASS | `failed`, `max_time`, exit 1 |
+| guided / `20261011T060247Z-30882` | 101 | 10/10 | 5.809 | 63 | 111 | PASS | `failed`, `max_time`, exit 1 |
+| guided / cùng run | 202 | 10/10 | 5.874 | 65 | 176 | PASS | `failed`, `max_time`, exit 1 |
+| guided / cùng run | 303 | 10/10 | 5.899 | 62 | 200 | PASS | `failed`, `max_time`, exit 1 |
+
+Các số unique failure là số của từng seed, không cộng thành số defect. Report cần triage theo request/chuỗi stateful cụ thể; `500`, response ngoài schema, status/content type ngoài hợp đồng và unsupported method hiện là phát hiện chưa kết luận. Raw dùng schema hash `433cb61a...`; guided dùng overlay hash `dc3f057a...`, được lưu tách khỏi schema raw.
 
 ## Sáu scenario demo
 

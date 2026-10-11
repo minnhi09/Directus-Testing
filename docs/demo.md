@@ -31,6 +31,8 @@ LAB_CAMPAIGN_SEEDS=101 LAB_MAX_EXAMPLES=1 LAB_MAX_TIME=30 ./lab.sh test guided
 
 Mở `campaign-index.json`, `operation-inventory.json`, `metrics.json` và report. Nêu rõ đây là pilot; runner failure phải được giữ để triage. Chứng minh fixture vẫn khớp snapshot bằng dòng `Campaign restore: PASS`.
 
+Campaign đầy đủ đã được chạy trên máy hiện tại tại raw run `20261011T050204Z-28735` và guided run `20261011T060247Z-30882`. Khi trình bày, phân biệt hai run này với demo pilot: cả ba seed đều test 10/10 operation và restore PASS, nhưng runner kết thúc `failed` do các check phát hiện, không phải pass campaign.
+
 ## Kết thúc
 
 ```bash

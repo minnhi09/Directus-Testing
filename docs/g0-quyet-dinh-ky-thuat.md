@@ -1,8 +1,12 @@
 # G0 — Quyết định kỹ thuật và trạng thái bàn giao
 
-Ngày ghi nhận: 2026-10-09; cập nhật trạng thái chạy: 2026-10-10
+Ngày ghi nhận: 2026-10-09; cập nhật trạng thái chạy: 2026-10-11
 
-Tài liệu này chuyển các điểm thống nhất trong hai kế hoạch thành giao diện làm việc ban đầu. Đây là quyết định baseline G0 và không thay thế bằng chứng G1. Sau scaffold, bản triển khai tạm thời đã chạy seed/schema/scenario/pilot trên máy hiện tại vào ngày 2026-10-10; G1 vẫn bị chặn bởi entitlement policy Reader và thiếu kiểm tra độc lập trên máy khác.
+Tài liệu này chuyển các điểm thống nhất trong hai kế hoạch thành giao diện làm việc ban đầu. Đây là quyết định baseline G0 và không thay thế bằng chứng G1. Bản triển khai đã chạy seed/schema/scenario, invariant và full raw/guided campaign trên máy hiện tại; G1 vẫn bị chặn bởi entitlement policy Reader, thiếu kiểm tra độc lập trên máy khác và chưa có review chéo thực tế.
+
+## Điều chỉnh điều hành ngày 2026-10-11
+
+Lành là người thực hiện và author chính cho toàn bộ phần việc trong phiên rush đến deadline. Nhân và Trâm chỉ được ghi `Co-authored-by` trong commit nào có bằng chứng họ thực sự đóng góp vào phần từng được phân chia; không tự gắn co-author cho các commit Lành tự thực hiện. Không push, amend, rebase hoặc rewrite remote trong phiên này.
 
 ## Quyết định áp dụng cho checkpoint
 
@@ -31,13 +35,13 @@ Digest được ghi theo manifest đa kiến trúc để giữ cùng tham chiế
 |---|---|---|
 | `doctor` | Lành | Đã có kiểm tra Docker, cấu hình, image và compose |
 | `up` / `down` | Lành | Đã có; `down` không xóa volume |
-| `seed` | Lành triển khai tạm thời; Trâm chưa review | Đã chạy schema/fixture/actor; policy Reader bị chặn bởi license |
-| `smoke` | Lành triển khai tạm thời; Trâm chưa review | Field/quan hệ đạt; Reader article bị chặn |
-| `export-schema` | Lành triển khai tạm thời; Nhân chưa review | Raw schema 4 actor đã xuất và giữ hash |
-| `test schema-smoke` | Lành triển khai tạm thời; Nhân chưa review | Pilot 5 operation đã chạy; report/coverage có, exit lỗi cần triage |
-| `test scenarios` | Lành triển khai tạm thời; Trâm chưa review | S1–S3 đạt; S4–S6 blocked theo precondition schema |
-| `test raw` / `test guided` / `replay` | Nhân | Sau mốc giữa kỳ |
-| `reset` | Lành | Chưa bật thao tác phá dữ liệu; chỉ thêm sau khi xác minh project/volume |
+| `seed` | Lành thực hiện/tích hợp; Trâm chỉ co-author nếu có đóng góp thật | Đã chạy schema/fixture/actor; policy Reader bị chặn bởi license |
+| `smoke` | Lành thực hiện/tích hợp; Trâm chỉ co-author nếu có đóng góp thật | Field/quan hệ đạt; Reader article bị chặn |
+| `export-schema` | Lành thực hiện/tích hợp; Nhân chỉ co-author nếu có đóng góp thật | Raw schema 4 actor đã xuất và giữ hash |
+| `test schema-smoke` | Lành thực hiện/tích hợp; Nhân chỉ co-author nếu có đóng góp thật | Pilot 5 operation đã chạy; report/coverage có, exit lỗi cần triage |
+| `test scenarios` | Lành thực hiện/tích hợp; Trâm chỉ co-author nếu có đóng góp thật | S1–S3 đạt; S4–S6 blocked theo precondition schema |
+| `test raw` / `test guided` / `replay` | Lành thực hiện/tích hợp; Nhân chỉ co-author nếu có đóng góp thật | Đã chạy full raw/guided; replay/invariant có artifact |
+| `reset` | Lành | Đã có safety preflight; run `20261011T050050Z-26220` chỉ thao tác đúng project/volume lab |
 
 Các gói dùng chung sau này phải lấy URL, actor, credential, fixture ID và `run_id` từ lớp này. Không tạo helper đăng nhập/reset cạnh tranh trong từng suite.
 
@@ -57,5 +61,5 @@ Lớp dùng chung hiện thực hóa các quy ước sau: URL đọc từ `API_U
 - Chưa tuyên bố G0/G1 đã được nghiệm thu bởi cả nhóm.
 - Lần chạy local hiện tại chứng minh Directus và PostgreSQL healthy trên máy này; chưa chứng minh tái lập trên máy thứ hai.
 - Reader policy filter/field restriction chưa tạo được vì license hiện báo `custom_permission_rules_enabled=false`; không bypass bằng DB/license giả.
-- Raw schema, scenario report và Schemathesis report/coverage đã có trong runtime/artefact local; các failure pilot chưa được phân loại thành defect sản phẩm.
+- Raw schema, scenario report và Schemathesis report/coverage đã có trong runtime/artefact local; full raw/guided đã chạy ba seed nhưng các failure chưa được phân loại thành defect sản phẩm.
 - Chưa có kiểm tra dựng lại độc lập trên máy khác và chưa có review chéo của thành viên; vì vậy chưa nghiệm thu G1.
