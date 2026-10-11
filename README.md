@@ -59,7 +59,7 @@ Trạng thái lệnh trên máy hiện tại:
 - `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor/policy; baseline v2 PASS ở run `20261011T084845Z-72361`.
 - `smoke`: validation field, quan hệ `SET NULL` và Reader published filter PASS; run `20261011T085023Z-75556`.
 - `export-schema`: raw schema actor v2 bất biến; admin/editor/reader/anonymous lần lượt 14/14/6/0 operation, hash được ghi ở manifest/run `20261011T085027Z-75998`.
-- `test scenarios`: S1–S6 đều PASS ở run mới nhất `20261011T141418Z-174367`; Reader projection private bị từ chối an toàn và Reader PATCH bị từ chối, không làm đổi dữ liệu. Run cũ `20261011T105231Z-104612` được giữ làm evidence lịch sử.
+- `test scenarios`: S1–S6 đều PASS ở run mới nhất `20261011T142455Z-178114` dưới HEAD `3811b44`; Reader projection private bị từ chối an toàn và Reader PATCH bị từ chối, không làm đổi dữ liệu. Run cũ `20261011T141418Z-174367` và `20261011T105231Z-104612` được giữ làm evidence lịch sử.
 - `test invariants`: baseline run `20261011T105236Z-105096` có 9 PASS và 1 failure aggregate; recheck mới nhất `20261011T141918Z-175886` dưới harness `8a0d042` có 9 PASS, 2 failure (aggregate và contract probe), 0 blocked, exit `1`. Run trước `20261011T134626Z-160826` vẫn được giữ làm lịch sử. Các failure được giữ nguyên để làm evidence, không nới assertion.
 - `test raw`: campaign run `20261011T085034Z-76481` chọn đúng 10 operation trên seed `101,202,303`; lần lượt 59/65/51 case, restore PASS, runner exit 1 do `max_time`/check failure.
 - `test guided`: campaign run `20261011T095117Z-89079` dùng overlay riêng và stateful phase; lần lượt 5.770/5.864/5.894 case, restore PASS, runner exit 1 do `max_time`/check failure.

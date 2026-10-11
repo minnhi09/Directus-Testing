@@ -367,3 +367,14 @@ thái để làm đẹp.
   redacted.
 - Đây là kiểm tra chẩn đoán ngắn trên HEAD mới, không phải campaign raw/guided
   hoặc invariant recheck mới; các failure đã biết giữ nguyên.
+
+## Scenario recheck trên HEAD hiện tại — 2026-10-11
+
+- `./lab.sh test scenarios` ở run `20261011T142455Z-178114`, dưới harness
+  `3811b44e7f6aecb59f014d6c7a987b1da36b97c0`, PASS: S1–S6 đều passed,
+  `0 failed`, `0 blocked`, exit `0`.
+- S1 Editor CRUD tạo/đọc/PATCH/xóa thành công và dọn item tạm; S2 filter
+  published trả sáu ID fixture; S3 sort/pagination khớp oracle; S4–S6 xác minh
+  Reader không đọc draft/private field và không ghi làm đổi dữ liệu.
+- Đây là scenario recheck ngắn trên fixture `r06-k05-v2`, không phải campaign
+  raw/guided hoặc invariant recheck mới; các failure đã biết giữ nguyên.
