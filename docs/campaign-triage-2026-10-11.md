@@ -71,7 +71,9 @@ request-only, source/expected/actual đều `500`, restore PASS và exit `1`. Lo
 Directus ghi PostgreSQL SQLSTATE `22007` (`invalid input syntax for type timestamp
 with time zone: ""`). Đây là candidate robustness/schema-semantic vì generator
 đã coi request là positive nhưng giá trị timestamp rỗng không hợp lệ về ngữ
-nghĩa; chưa kết luận product defect.
+nghĩa; snapshot editor chỉ mô tả `type: string`, `nullable: true`, custom
+`format: timestamp` và không có `pattern`/`minLength`; chưa kết luận product
+defect.
 
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ

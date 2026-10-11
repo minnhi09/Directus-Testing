@@ -78,7 +78,12 @@ request-only, full-chain mismatch và product defect thành một kết luận.
    chứa `published_at=""`; Directus chuyển giá trị rỗng xuống PostgreSQL và trả
    `22007` rồi HTTP `500`. Vì timestamp rỗng là sai ngữ nghĩa dù JSON type là
    string, finding được giữ là schema-semantic/product robustness candidate,
-   không đếm thành defect đã xác nhận.
+   không đếm thành defect đã xác nhận. Snapshot editor hiện khai báo field là
+   `type: string`, `nullable: true`, `format: timestamp` nhưng không có
+   `pattern`/`minLength`; POST schema nhận object hoặc array. Source Directus
+   pin `4f77933bf9551cac6b289576078783e189b8f4e3` cũng ánh xạ kiểu timestamp
+   thành custom OpenAPI format `timestamp`, nên đây là schema semantic gap cần
+   đối chiếu contract, không phải bằng chứng đủ để kết luận upstream defect.
 
 ## Automated contract probe
 

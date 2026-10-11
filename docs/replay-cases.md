@@ -80,6 +80,9 @@ Các case guided đại diện được replay sau pilot:
   Source/expected/actual đều `500`, `reproduced_request_only`, restore PASS,
   exit `1`. Log Directus ghi PostgreSQL `22007` do timestamp rỗng; đây là
   schema-semantic/product robustness candidate, chưa phải defect đã xác nhận.
+  Snapshot editor khai báo `published_at` là `string`, `nullable: true`,
+  `format: timestamp` và không có `pattern`/`minLength`; source Directus pin
+  `4f77933bf9551cac6b289576078783e189b8f4e3` dùng cùng custom format mapping.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

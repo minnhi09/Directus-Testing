@@ -40,7 +40,7 @@ hoặc response nhạy cảm.
 | POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
-| Guided `POST /items/qa_articles` với `published_at=""` | Replay `kb5gjq`, Directus log và PostgreSQL SQLSTATE `22007` | Schema-semantic/product robustness candidate; chưa xác nhận product defect |
+| Guided `POST /items/qa_articles` với `published_at=""` | Replay `kb5gjq`, editor schema `string` + nullable + custom `timestamp`, Directus log và PostgreSQL SQLSTATE `22007` | Schema-semantic/product robustness candidate; chưa xác nhận product defect |
 | Stateful replay | `baaee4b` + oracle fix `a713481`, final recheck `20261011T132550Z-151921` | `pM4r4g` replay đủ parent chain nhưng mismatch; `CkqaOB` không có parent nên request-only; positive chain status mismatch được giữ đúng |
 | Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
 

@@ -236,6 +236,11 @@ thái để làm đẹp.
   request đã tái hiện, nhưng vẫn là schema-semantic/product robustness
   candidate vì generator coi chuỗi rỗng là dữ liệu positive; chưa kết luận
   product defect.
+- Đối chiếu snapshot `runtime/schemas/r06-k05-v2/editor.json` và source Directus
+  pin `4f77933bf9551cac6b289576078783e189b8f4e3`: `published_at` là string
+  nullable với custom `format: timestamp`, không có `pattern`/`minLength`; POST
+  cho phép object hoặc array. Evidence này củng cố phân loại schema semantic gap,
+  nhưng chưa đủ để kết luận lỗi upstream.
 - Đã cập nhật failure triage, replay guide, runtime/final evidence, G1,
   traceability, README và manifest. Không sửa expected, không xóa artifact
   thất bại và không chạy lại campaign dài.
