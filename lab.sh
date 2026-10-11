@@ -238,6 +238,7 @@ write_run_metadata() {
 	local budget="${LAB_BUDGET:-}"
 	local actor="${LAB_ACTOR:-unspecified}"
 	local duration_seconds='null'
+	local campaign_index=''
 	local directus_image
 	local postgres_image
 	local schemathesis_image
@@ -253,6 +254,18 @@ write_run_metadata() {
 	if [[ -z "$schema_hash" && -f "$RUN_DIR/pilot-summary.json" ]] && command -v jq >/dev/null 2>&1; then
 		schema_hash="$(jq -r '.source_schema_sha256 // empty' "$RUN_DIR/pilot-summary.json" 2>/dev/null || true)"
 	fi
+	if [[ -f "$RUN_DIR/campaign-index.json" ]] && command -v jq >/dev/null 2>&1; then
+		campaign_index="$RUN_DIR/campaign-index.json"
+		if [[ -z "$schema_hash" ]]; then
+			schema_hash="$(jq -r '[.campaigns[]?.schema_sha256] | unique | join(",")' "$campaign_index" 2>/dev/null || true)"
+		fi
+		if [[ -z "$seed" ]]; then
+			seed="$(jq -r '.seeds | map(tostring) | join(",")' "$campaign_index" 2>/dev/null || true)"
+		fi
+		if [[ -z "$budget" ]]; then
+			budget="$(jq -c '.campaigns[0].budget // empty' "$campaign_index" 2>/dev/null || true)"
+		fi
+	fi
 	if [[ -z "$seed" && -f "$RUN_DIR/pilot-summary.json" ]] && command -v jq >/dev/null 2>&1; then
 		seed="$(jq -r '.seed // empty' "$RUN_DIR/pilot-summary.json" 2>/dev/null || true)"
 	fi
@@ -261,6 +274,9 @@ write_run_metadata() {
 	fi
 	if [[ -z "$fixture_version" && -f "$RUNTIME_ROOT/fixture-ids.json" ]] && command -v jq >/dev/null 2>&1; then
 		fixture_version="$(jq -r '.fixture_version // empty' "$RUNTIME_ROOT/fixture-ids.json" 2>/dev/null || true)"
+	fi
+	if [[ -z "$schema_hash" && -n "$fixture_version" && -f "$RUNTIME_ROOT/schemas/$fixture_version/editor.json" ]]; then
+		schema_hash="$(sha256sum "$RUNTIME_ROOT/schemas/$fixture_version/editor.json" | awk '{print $1}')"
 	fi
 	if [[ "$RUN_STARTED_EPOCH" =~ ^[0-9]+$ ]] && (( RUN_STARTED_EPOCH > 0 )); then
 		duration_seconds="$(( $(date +%s) - RUN_STARTED_EPOCH ))"
@@ -291,6 +307,7 @@ write_run_metadata() {
 		printf '    "postgres_image": %s,\n' "$(json_or_null "$postgres_image")"
 		printf '    "schemathesis_image": %s\n' "$(json_or_null "$schemathesis_image")"
 		printf '  },\n'
+		printf '  "campaign_index": %s,\n' "$(json_or_null "$campaign_index")"
 		printf '  "fixture_map": %s,\n' "$(json_escape "$RUNTIME_ROOT/fixture-ids.json")"
 		printf '  "artifact_dir": %s,\n' "$(json_escape "$RUN_DIR")"
 		printf '  "log_file": %s\n' "$(json_escape "$RUN_LOG")"
