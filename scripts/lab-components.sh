@@ -1539,6 +1539,10 @@ replay_schemathesis_case() {
 	local source_file="$RUN_DIR/schemathesis-case.json"
 	local response_file="$RUN_DIR/schemathesis-replay-response.json"
 	local reproducer_file="$RUN_DIR/reproducer-schemathesis-$case_id.json"
+	[[ "$case_id" =~ ^[A-Za-z0-9._-]{1,64}$ ]] || {
+		printf 'ERROR: Schemathesis case-id chỉ được chứa chữ, số, ., _ hoặc - (tối đa 64 ký tự)\n' >&2
+		return 2
+	}
 
 	require_tools
 	require_admin_login
