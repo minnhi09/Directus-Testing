@@ -715,6 +715,15 @@ main() {
 			;;
 	esac
 
+	# The pilot always uses the editor token. Record that actor in run metadata
+	# instead of leaving a successful component invocation as "unspecified".
+	if [[ "$run_command" == 'test schema-smoke' || "$run_command" == 'test raw' || "$run_command" == 'test guided' ]]; then
+		case "${LAB_ACTOR:-unspecified}" in
+			unspecified|editor) LAB_ACTOR=editor ;;
+			*) die 'test schema-smoke/raw/guided cố định actor editor; không được gắn actor khác vào metadata.' ;;
+		esac
+	fi
+
 	begin_run "$run_command"
 	trap 'finish_run "$?"' EXIT
 
