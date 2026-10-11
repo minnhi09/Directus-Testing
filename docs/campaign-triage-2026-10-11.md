@@ -73,6 +73,17 @@ run `20261011T131350Z-145631` xác nhận `CkqaOB` không có chain nên vẫn
 final-request-only. Case non-stateful `Q8K5Nh` vẫn PASS; sanity recheck sau
 commit ở run `20261011T131702Z-146905` cũng restore PASS.
 
+### Oracle status replay sau audit harness
+
+Audit một positive stateful case phát hiện logic cũ để trống expected status khi
+không có check failure. Commit `a713481` sửa logic để dùng status của interaction
+nguồn làm expected trong trường hợp đó và ghi thêm `source_status` vào
+reproducer. Run `20261011T132137Z-149741` của `tFjhQT` ghi nguồn/expected `200`
+nhưng replay `403`, nên giữ `mismatch`/exit `1` dù parent chain và restore đều
+đạt. Đây là bằng chứng precondition/stateful chưa tái lập được, không phải lý do
+đổi kết luận thành product defect. Regression `Q8K5Nh` ở run
+`20261011T132145Z-150356` giữ `403→403`, `reproduced`, restore PASS và exit `0`.
+
 Đối chiếu source release `4f77933bf9551cac6b289576078783e189b8f4e3` đã làm rõ
 thêm ba nhóm contract: POST object/array, export `csv` và DELETE `204` đều phù
 hợp với runtime Directus nhưng bị mô tả thiếu hoặc sai trong OpenAPI snapshot.

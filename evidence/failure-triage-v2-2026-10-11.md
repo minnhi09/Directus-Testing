@@ -161,3 +161,20 @@ nhưng không dùng commit đó để kết luận baseline và không sửa ups
 raw snapshot, không tạo overlay mới và không thay đổi expected result của các
 run đã thực hiện. Candidate aggregate vẫn cần quyết định cuối hoặc bằng chứng
 upstream bổ sung trước khi chuyển sang `product defect`.
+
+## Oracle status replay sau audit harness
+
+Audit ngày 2026-10-11 phát hiện một lỗi phân loại trong replay: khi case nguồn
+không có check failure, code cũ để `expected_status` rỗng và có thể ghi
+`reproduced` dù HTTP status đã thay đổi. Đây là lỗi harness, không phải finding
+Directus. Commit `a713481` sửa theo quy tắc: ưu tiên status được oracle failure
+chỉ ra; nếu tất cả check nguồn đều PASS thì dùng status của interaction nguồn và
+ghi thêm `source_status` trong reproducer.
+
+| Case / run | Source/expected → actual | Kết quả | Phân loại |
+|---|---|---|---|
+| `tFjhQT` / `20261011T132137Z-149741` | `200/200 → 403`; chain `D3mEEJ → tFjhQT` | `mismatch`, restore PASS, exit `1` | Stateful precondition chưa tái lập; không kết luận product defect |
+| `Q8K5Nh` / `20261011T132145Z-150356` | `403/403 → 403` | `reproduced`, restore PASS, exit `0` | Regression replay ổn định |
+
+Artifact trước sửa `20261011T131957Z-148748` được giữ nguyên để truy vết nhưng
+không dùng làm bằng chứng PASS cuối cho `tFjhQT`.

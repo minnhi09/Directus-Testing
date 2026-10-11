@@ -7,7 +7,7 @@ Tài liệu này ghi lại phần nền tảng và bản triển khai tạm th�
 ## Mốc Git
 
 - Nhánh hiện tại tại lần cập nhật: `feat/g1-shared-interface`.
-- HEAD hiện tại tại lần cập nhật: `a3c1191 docs: record replay triage evidence`.
+- HEAD hiện tại tại lần cập nhật: `a713481 fix: validate replay status for successful cases`.
 - HEAD nền tảng trước các thay đổi G1: `a2693f6 Merge branch 'feat/g0-lab-foundation'`.
 - Remote dự kiến: `origin` trỏ tới repository đồ án `minnhi09/Directus-Testing`.
 - Dòng `/AGENTS.md` trong `.gitignore` có từ thay đổi người dùng trước đó và được giữ lại ngoài commit nền tảng; không xóa để làm worktree sạch giả tạo.
@@ -169,3 +169,18 @@ thái để làm đẹp.
 - Stateful replay từ commit `baaee4b` dựng full chain khi artifact đủ parent;
   `pM4r4g` đã được kiểm chứng, còn case thiếu parent vẫn gọi
   `reproduced_request_only`; không tự đổi mismatch thành full-chain PASS.
+
+## Sửa oracle status của replay — 2026-10-11
+
+- Audit `tFjhQT` phát hiện lỗi harness: case nguồn không có check failure nên
+  `expected_status` rỗng, replay `403` vẫn bị ghi `reproduced` dù interaction
+  nguồn là `200`.
+- Commit `a713481` sửa fallback expected status từ response nguồn khi mọi check
+  nguồn PASS và ghi thêm `source_status` vào reproducer. Artifact lịch sử trước
+  sửa được giữ nguyên, không chỉnh sửa để làm đẹp kết quả.
+- Run `20261011T132137Z-149741`: `tFjhQT` full chain `D3mEEJ → tFjhQT`,
+  source/expected `200`, actual `403`, restore PASS, `mismatch`, exit `1`.
+- Run `20261011T132145Z-150356`: `Q8K5Nh` source/expected/actual `403`,
+  `reproduced`, restore PASS, exit `0`.
+- Kiểm tra sau commit gồm `bash -n`, ShellCheck, diff check và hai replay; không
+  chạy lại campaign dài vì thay đổi chỉ ảnh hưởng replay oracle.

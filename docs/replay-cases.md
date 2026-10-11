@@ -19,7 +19,7 @@ Với case ID do Schemathesis in trong report, dùng cùng interface:
 ./lab.sh replay ralwaW
 ```
 
-Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào hai collection lab, dùng token Editor hiện tại, chụp snapshot trước request và restore sau request. Body fuzz được giải mã vào file nhị phân tạm trong artifact rồi truyền bằng `curl --data-binary @file`, nên payload chứa byte NUL không bị mất qua biến Bash. Kết quả ghi `schemathesis-case.json`, response, `reproducer-schemathesis-<case-id>.json` và status `reproduced`/`mismatch`. Case không tìm thấy hoặc ngoài allowlist bị từ chối, không gửi request tùy ý.
+Harness tìm case trong `schemathesis-events.ndjson`, giới hạn replay vào hai collection lab, dùng token Editor hiện tại, chụp snapshot trước request và restore sau request. Body fuzz được giải mã vào file nhị phân tạm trong artifact rồi truyền bằng `curl --data-binary @file`, nên payload chứa byte NUL không bị mất qua biến Bash. Kết quả ghi `schemathesis-case.json`, response, `reproducer-schemathesis-<case-id>.json` và status `reproduced`/`mismatch`. Reproducer ghi cả `source_status` của interaction nguồn và `expected_status`: nếu source có check failure thì expected lấy từ oracle failure; nếu mọi check đều PASS thì expected lấy từ HTTP status nguồn. Case không tìm thấy hoặc ngoài allowlist bị từ chối, không gửi request tùy ý.
 
 ## Case IDs ổn định
 
@@ -94,6 +94,24 @@ restore PASS và exit `1`. Case non-stateful `Q8K5Nh`
 (`20261011T123735Z-132524`) vẫn ghi `status=reproduced`, restore PASS và exit
 `0`; sanity recheck sau chain hardening ở run `20261011T131702Z-146905` cũng
 PASS với restore PASS.
+
+### Kiểm tra oracle status của replay
+
+Một audit positive chain phát hiện report cũ có thể để `expected_status=null` khi
+case không có check failure, làm mọi status replay bị coi là `reproduced`. Commit
+`a713481` sửa fallback này: status nguồn được dùng làm expected và được lưu riêng
+ở `source_status`; không sửa artifact cũ hoặc nới assertion.
+
+- `tFjhQT`, run `20261011T132137Z-149741`: chain `D3mEEJ → tFjhQT` được replay,
+  source/expected `200`, actual `403`, restore PASS, status `mismatch`, exit `1`.
+  Đây là sai khác precondition/stateful cần triage, không phải product defect đã
+  xác nhận.
+- `Q8K5Nh`, run `20261011T132145Z-150356`: source/expected/actual đều `403`,
+  restore PASS, status `reproduced`, exit `0`.
+
+Run `20261011T131957Z-148748` trước commit sửa vẫn được giữ như lịch sử; report
+`reproduced` của `tFjhQT` trong run đó không dùng làm bằng chứng cuối vì metadata
+ghi working tree dirty và bug oracle khi ấy chưa được sửa.
 
 Checkpoint Reader v2 được replay bằng `reader-visibility` ở run
 `20261011T084935Z-74564` và full invariant `20261011T105236Z-105096`: request

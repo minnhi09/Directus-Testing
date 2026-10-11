@@ -253,3 +253,20 @@ xóa failure.
 | `20261011T131321Z-144935` | `./lab.sh replay pM4r4g` | `mvlcIV → pM4r4g`, `sequence_replayed=true`, parent `200`, final `200` trái expected `400`, restore PASS, exit `1` |
 | `20261011T131350Z-145631` | `./lab.sh replay CkqaOB` | Không có parent chain trong event, `reproduced_request_only`, final `500`, restore PASS, exit `1` |
 | `20261011T131702Z-146905` | `./lab.sh replay Q8K5Nh` | Non-stateful `reproduced`, restore PASS, exit `0` sau chain hardening |
+
+### Replay status oracle sau commit `a713481`
+
+Audit một case positive cho thấy logic cũ có thể báo `reproduced` khi case nguồn
+không có check failure nhưng replay trả status khác. Commit `a713481` bổ sung
+fallback expected từ interaction nguồn và ghi `source_status`; không đổi artifact
+cũ hoặc bỏ failure.
+
+| Run | Lệnh | Kết quả thực tế |
+|---|---|---|
+| `20261011T132137Z-149741` | `./lab.sh replay tFjhQT` | Full chain `D3mEEJ → tFjhQT`; source/expected `200`, actual `403`, `mismatch`, restore PASS, exit `1` |
+| `20261011T132145Z-150356` | `./lab.sh replay Q8K5Nh` | Source/expected/actual `403`, `reproduced`, restore PASS, exit `0` |
+
+Metadata hai run ghi harness SHA `139b3176...` và working tree dirty vì patch
+đang được kiểm thử trước commit `a713481`; code thay đổi tương ứng đã được
+commit sau đó. Run `20261011T131957Z-148748` trước sửa được giữ nhưng không dùng
+làm bằng chứng PASS cuối cho `tFjhQT`.
