@@ -25,6 +25,7 @@ candidate được giữ nguyên để triage.
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
 | Invariant recheck | `20261011T134626Z-160826` dưới `bcbf219` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
 | Invariant latest recheck | `20261011T141918Z-175886` dưới `8a0d042` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500 và contract candidate không đổi, không có regression mới |
+| Invariant current recheck | `20261011T142618Z-178896` dưới `d186191` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500, controls 200 và 4 contract candidate vẫn tái hiện |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
 | Scenario recheck | `20261011T141418Z-174367` dưới `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0` |
 | Scenario latest recheck | `20261011T142455Z-178114` dưới `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0`; Reader và Editor oracle giữ nguyên |

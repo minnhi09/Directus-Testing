@@ -378,3 +378,14 @@ thái để làm đẹp.
   Reader không đọc draft/private field và không ghi làm đổi dữ liệu.
 - Đây là scenario recheck ngắn trên fixture `r06-k05-v2`, không phải campaign
   raw/guided hoặc invariant recheck mới; các failure đã biết giữ nguyên.
+
+## Invariant recheck trên HEAD hiện tại — 2026-10-11
+
+- `./lab.sh test invariants` ở run `20261011T142618Z-178896`, dưới harness
+  `d1861919f01925f9aa446b2bdb2daf59706c99c6`, ghi nhận `9 passed`, `2 failed`,
+  `0 blocked`, exit `1`.
+- `aggregate-query-robustness` tiếp tục ghi unknown function shape HTTP `500`,
+  hai control HTTP `200`; `contract-schema-candidates` tiếp tục ghi bốn schema
+  candidate. Không có regression mới.
+- Giữ nguyên report, metadata, log, exit code và phân loại; đây là recheck
+  invariant ngắn, không phải campaign raw/guided mới.
