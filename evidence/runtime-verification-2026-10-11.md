@@ -118,6 +118,22 @@ Các run mới không sửa assertion hoặc expected result; chúng chỉ xác 
 checkpoint sau thay đổi tài liệu. Locale warning `LC_ALL=en_US.UTF-8` trên host
 vẫn xuất hiện nhưng không ảnh hưởng kết quả lệnh.
 
+### Final targeted replays dưới HEAD `3c40339`
+
+Hai finding mở được replay lại sau final runtime recheck, không chạy campaign
+dài và không thay đổi dữ liệu fixture:
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T163231Z-213262` | `./lab.sh replay aggregate-query-robustness` | `500/200/200` cho unknown/empty/count aggregate; exit `1`, status `failed`, không mutation |
+| `20261011T163234Z-213685` | `./lab.sh replay contract-schema-candidates` | `schema_candidates=4`, source commit Directus pin đúng, cleanup PASS; exit `1`, status `failed` |
+
+Metadata hai run ghi fixture `r06-k05-v2`, harness SHA
+`3c403393b833725776e8c74bd5c8d925b6ce9a12` và working tree dirty chỉ vì các
+file local/untracked có sẵn. Đây là bằng chứng tái hiện cuối; failure vẫn là
+schema/contract hoặc product robustness candidate, chưa phải product defect đã
+xác nhận.
+
 ## Schema snapshot
 
 Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261011T035010Z-8515`):

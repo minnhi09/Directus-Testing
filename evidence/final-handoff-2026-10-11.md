@@ -32,6 +32,8 @@ candidate được giữ nguyên để triage.
 | Invariant current recheck | `20261011T142618Z-178896` dưới `d186191` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500, controls 200 và 4 contract candidate vẫn tái hiện |
 | Aggregate targeted replay latest | `20261011T144640Z-184631` dưới `ddce259` | `unknown-function-shape=500`, hai control `200`; exit `1` được giữ, không mutation |
 | Contract targeted replay latest | `20261011T144648Z-185062` dưới `ddce259` | Bốn schema candidate; probe tạo/xóa dữ liệu tạm và cleanup thành công; exit `1` được giữ |
+| Aggregate targeted replay final | `20261011T163231Z-213262` dưới `3c40339` | `unknown-function-shape=500`, hai control `200`; exit `1` được giữ, không mutation |
+| Contract targeted replay final | `20261011T163234Z-213685` dưới `3c40339` | Bốn schema candidate; probe tạo/xóa dữ liệu tạm và cleanup thành công; exit `1` được giữ |
 | Final doctor | `20261011T145849Z-187766` dưới `60be73d` | PASS; image digest, health, fixture map và license active; exit `0` |
 | Final smoke | `20261011T145854Z-188363` dưới `60be73d` | PASS; field validation, `SET NULL`, actor login và Reader published filter; exit `0` |
 | Final schema export | `20261011T145907Z-188832` dưới `60be73d` | PASS; actor `14/14/6/0`, hash không đổi; exit `0` |

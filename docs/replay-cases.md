@@ -49,15 +49,17 @@ product defect nếu chưa đủ precondition.
 trong `scripts/invariants.py`, nên clone sạch vẫn replay được mà không cần
 Schemathesis artifact. Run lịch sử `20261011T134519Z-160153` ghi unknown shape
 `500`, control `aggregate={}` `200` và control `aggregate={"count":["id"]}`
-`200`; targeted recheck gần nhất `20261011T144640Z-184631` xác nhận lại cùng
-phân bố dưới harness `ddce259`. Exit `1` được giữ đúng theo assertion. Đây là
+`200`; targeted recheck gần nhất `20261011T163231Z-213262` xác nhận lại cùng
+phân bố dưới harness `3c40339` (run `20261011T144640Z-184631` được giữ làm
+lịch sử). Exit `1` được giữ đúng theo assertion. Đây là
 failure cần triage, không phải được chuyển thành pass bằng cách nới expected.
 Các run lịch sử `20261011T105242Z-105524` và `20261011T080746Z-51887` được giữ
 để đối chiếu trước các checkpoint sau.
 
 `contract-schema-candidates` là probe contract độc lập, chạy lịch sử tại commit
 `7018107` ở run `20261011T130227Z-139257`. Targeted recheck gần nhất là
-`20261011T144648Z-185062` dưới harness `ddce259`. Probe tạo dữ liệu tạm bằng
+`20261011T163234Z-213685` dưới harness `3c40339` (run
+`20261011T144648Z-185062` được giữ làm lịch sử). Probe tạo dữ liệu tạm bằng
 Editor, đối chiếu POST response shape, export `text/csv` và DELETE `204` với
 `editor.json`, sau đó cleanup thành công. Report cố ý giữ `failed` vì ghi nhận
 bốn schema candidate; đây không phải kết luận bốn product defect.

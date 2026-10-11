@@ -34,7 +34,7 @@ replay.
 | CRUD, query, quan hệ và phân quyền đạt oracle | Scenario mới nhất `20261011T162433Z-210740` dưới `fd28ef1`, S1–S6; run cũ được giữ | Đạt |
 | Schema theo actor và inventory 10 operation | Export mới nhất `20261011T162431Z-210275` dưới `fd28ef1`, admin/editor/reader/anonymous `14/14/6/0`; hash giữ nguyên | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
-| Invariant và replay có precondition, expected/actual, phân loại | Invariant mới nhất `20261011T162436Z-211214` dưới `fd28ef1`: 9 passed/2 failed/0 blocked; aggregate replay `20261011T144640Z-184631`; contract probe `20261011T144648Z-185062`; demo replay 7/7 PASS | Đạt có finding |
+| Invariant và replay có precondition, expected/actual, phân loại | Invariant mới nhất `20261011T162436Z-211214` dưới `fd28ef1`: 9 passed/2 failed/0 blocked; aggregate replay `20261011T163231Z-213262`; contract probe `20261011T163234Z-213685`; demo replay 7/7 PASS | Đạt có finding |
 | Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, chain replay `baaee4b`, oracle fix `a713481`; recheck `20261011T132550Z-151921`, `20261011T133817Z-157078`, `20261011T133626Z-155874` | Có bằng chứng full-chain reproduced (`aZmz3k`), mismatch không bị đổi thành PASS (`tFjhQT`), và precondition không đủ bị dừng đúng (`Ag8Csb`); status source/expected/actual được ghi rõ |
 | README, metadata và artifact không chứa secret | README, manifest, run metadata, static/secret scan | Đạt |
 | Review chéo thành viên | Không còn là gate G1 | Không áp dụng |
@@ -52,9 +52,9 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
   `20261011T134626Z-160826` vẫn được giữ trong lịch sử.
   `aggregate-query-robustness` tiếp tục tái hiện HTTP
   500 với `fields=&aggregate={"foo":1}`; replay mở rộng
-  `20261011T134519Z-160153` và targeted recheck `20261011T144640Z-184631`
+  `20261011T134519Z-160153` và targeted recheck `20261011T163231Z-213262`
   đều ghi hai control aggregate trả 200. Case contract probe lịch sử ghi bốn
-  schema candidate; targeted recheck `20261011T144648Z-185062` xác nhận lại và
+  schema candidate; targeted recheck `20261011T163234Z-213685` xác nhận lại và
   cleanup thành công trong một failure có chủ đích.
 - Replay bổ sung `kb5gjq` ở `20261011T135006Z-162769` tái hiện request-only
   `POST /items/qa_articles` với `published_at=""` trả HTTP `500`; log ghi

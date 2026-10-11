@@ -103,7 +103,7 @@ write. Đây là cách phân rã của năm luồng trên, không phải mở r�
 | Năm luồng/nghiệp vụ và oracle | Scenarios `20261011T162433Z-210740`: 6 passed, 0 failed, 0 blocked | Đạt |
 | Schema theo actor và 10 operation | Export `20261011T162431Z-210275`: 14/14/6/0 theo actor; allowlist campaign 10/10 | Đạt; raw hash bất biến |
 | Raw/guided độc lập, artifact và restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng chạy đủ 3 seed/10 operation; runner vẫn `exit 1` do check failure/max-time |
-| Invariant, replay và phân loại | Invariant `20261011T162436Z-211214`: 9 pass, 2 fail, 0 blocked; targeted replay `20261011T144640Z-184631`/`20261011T144648Z-185062`, replay demo 7/7 PASS | Harness đạt; finding chưa đóng, không phải PASS giả |
+| Invariant, replay và phân loại | Invariant `20261011T162436Z-211214`: 9 pass, 2 fail, 0 blocked; targeted replay `20261011T163231Z-213262`/`20261011T163234Z-213685`, replay demo 7/7 PASS | Harness đạt; finding chưa đóng, không phải PASS giả |
 | Tái lập | README, Compose, manifest, fixture map, schema hash, metadata và replay | Có hướng dẫn/cấu hình; chưa tuyên bố đã chạy trên máy khác |
 | Review chéo thành viên | Đã loại khỏi gate G1 | Không áp dụng cho G1; provenance review thật vẫn không được bịa |
 | Dựng/xác minh máy thứ hai | Đã loại khỏi gate G1 | Không áp dụng cho G1; khả năng dựng máy sạch vẫn phải được tài liệu hóa |

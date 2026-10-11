@@ -63,7 +63,7 @@ Trạng thái lệnh trên máy hiện tại:
 - `test invariants`: baseline run `20261011T105236Z-105096` có 9 PASS và 1 failure aggregate; recheck mới nhất `20261011T162436Z-211214` dưới harness `fd28ef1` có 9 PASS, 2 failure (aggregate và contract probe), 0 blocked, exit `1`. Run trước `20261011T145918Z-189799`, `20261011T142618Z-178896`, `20261011T141918Z-175886` và `20261011T134626Z-160826` vẫn được giữ làm lịch sử. Các failure được giữ nguyên để làm evidence, không nới assertion.
 - `test raw`: campaign run `20261011T085034Z-76481` chọn đúng 10 operation trên seed `101,202,303`; lần lượt 59/65/51 case, restore PASS, runner exit 1 do `max_time`/check failure.
 - `test guided`: campaign run `20261011T095117Z-89079` dùng overlay riêng và stateful phase; lần lượt 5.770/5.864/5.894 case, restore PASS, runner exit 1 do `max_time`/check failure.
-- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500; run lịch sử `20261011T134519Z-160153` và targeted recheck gần nhất `20261011T144640Z-184631` đều ghi unknown `500`, hai control `200`, giữ exit `1`. `contract-schema-candidates` có run lịch sử `20261011T130227Z-139257` và targeted recheck gần nhất `20261011T144648Z-185062`, cùng ghi bốn schema candidate và cleanup PASS, giữ exit `1` có chủ đích. Các replay stateful/semantic khác được giữ nguyên trong [`docs/replay-cases.md`](docs/replay-cases.md) và không tự đếm mỗi check failure thành một defect.
+- `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500; run lịch sử `20261011T134519Z-160153` và targeted recheck gần nhất `20261011T163231Z-213262` dưới `3c40339` đều ghi unknown `500`, hai control `200`, giữ exit `1`. `contract-schema-candidates` có run lịch sử `20261011T130227Z-139257` và targeted recheck gần nhất `20261011T163234Z-213685` dưới `3c40339`, cùng ghi bốn schema candidate và cleanup PASS, giữ exit `1` có chủ đích. Các replay stateful/semantic khác được giữ nguyên trong [`docs/replay-cases.md`](docs/replay-cases.md) và không tự đếm mỗi check failure thành một defect.
 - `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; safety reset đã được thực thi ở run `20261011T050050Z-26220`, sau đó stack được dựng và seed lại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
 
@@ -122,10 +122,11 @@ Full raw/guided v2 đã chứng minh pipeline 10 operation, artifact và restore
 G1 không phải tuyên bố mọi test đều PASS. Checklist, nguồn yêu cầu và cách phân biệt
 baseline đạt với failure còn mở được ghi tại [`docs/g1-acceptance.md`](docs/g1-acceptance.md).
 
-Recheck targeted mới nhất sau commit `ddce259`:
-`20261011T144640Z-184631` giữ aggregate `500/200/200`, còn
-`20261011T144648Z-185062` giữ bốn contract candidate và cleanup thành công.
-Cả hai exit `1` đều được giữ nguyên để bảo toàn evidence.
+Recheck targeted mới nhất dưới HEAD `3c40339`:
+`20261011T163231Z-213262` giữ aggregate `500/200/200`, còn
+`20261011T163234Z-213685` giữ bốn contract candidate và cleanup thành công.
+Cả hai exit `1` đều được giữ nguyên để bảo toàn evidence; các run
+`20261011T144640Z-184631` và `20261011T144648Z-185062` được giữ làm lịch sử.
 
 Final verification dưới commit `fd28ef1`: doctor `20261011T162426Z-209264`,
 smoke `20261011T162429Z-209848`, schema `20261011T162431Z-210275` và scenarios
