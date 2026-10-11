@@ -191,6 +191,7 @@ khi người dùng cấu hình `LICENSE_KEY` cục bộ không ghi giá trị ke
 | `20261011T105236Z-105096` | `./lab.sh test invariants` | 9 passed, 1 failed; failure duy nhất aggregate HTTP 500 |
 | `20261011T105242Z-105524` | `./lab.sh replay aggregate-query-robustness` | Tái hiện HTTP 500, exit 1, không mutation |
 | `20261011T130227Z-139257` | `./lab.sh replay contract-schema-candidates` | Exit 1 có chủ đích; ghi bốn schema candidate, cleanup dữ liệu tạm PASS |
+| `20261011T130338Z-139934` | `./lab.sh doctor` | PASS; license active, custom permission rules enabled, image digest đúng manifest |
 
 ### Campaign v2
 

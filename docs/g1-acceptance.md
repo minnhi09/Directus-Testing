@@ -24,7 +24,7 @@ replay.
 
 | Tiêu chí | Bằng chứng | Trạng thái |
 |---|---|---|
-| Stack healthy, version/digest đúng manifest | Doctor `20261011T105225Z-104013` | Đạt |
+| Stack healthy, version/digest đúng manifest | Doctor `20261011T105225Z-104013`; recheck `20261011T130338Z-139934` | Đạt |
 | Seed schema/fixture/actor/policy đúng và lặp lại không nhân bản | Seed `20261011T084845Z-72361`, smoke `20261011T085023Z-75556` | Đạt |
 | CRUD, query, quan hệ và phân quyền đạt oracle | Scenario `20261011T105231Z-104612`, S1–S6 | Đạt |
 | Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
