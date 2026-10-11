@@ -161,3 +161,9 @@ Toàn bộ invariant suite sau commit `66ee05f` ở run `20261011T080753Z-52280`
 (`aggregate-query-robustness`, HTTP 500), và 2 Reader case blocked do schema
 không có operation article/PATCH. Exit `1` được giữ nguyên; dữ liệu tạm được
 cleanup, không có request Reader forbidden nào được gửi.
+
+Final local doctor `20261011T081001Z-52769` PASS trên HEAD `828c339`: ba service
+`database`, `directus`, `runner` healthy; image digest đúng manifest; Directus
+authenticated health PASS; `/license` vẫn quan sát `source=null`, `status=active`,
+`custom_permission_rules_enabled=false`. Static syntax/lint, YAML/Compose config
+và tracked secret-pattern scan cũng PASS.

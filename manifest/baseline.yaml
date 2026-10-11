@@ -149,4 +149,5 @@ validation:
   replay_guided_query_500_minimal: 'GET /items/qa_articles?fields=&aggregate={"foo":1} -> 500; log TypeError fields is not iterable'
   aggregate_query_robustness_regression: failed_known_candidate_run_20261011T080746Z-51887_harness_66ee05f
   invariants_after_aggregate_regression: failed_7_passed_1_failed_2_blocked_run_20261011T080753Z-52280
+  final_doctor_local: passed_run_20261011T081001Z-52769_head_828c339
   g1: blocked_license_and_no_independent_second_machine
