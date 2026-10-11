@@ -1,6 +1,6 @@
 schema: 1
 status: g1-temporary-implementation-blocked
-recorded_at: 2026-10-10
+recorded_at: 2026-10-11
 project: r06-k05
 
 baseline:
@@ -34,8 +34,12 @@ runtime_observed:
 provenance:
   repository_head_before_scaffold: d81c0259beaec12994b8a8ae64d0f7a46680937e
   harness_base_commit: a2693f6154753cca2f1d2eb3d84e3a831a42bbf0
-  harness_commit: null
-  harness_worktree: dirty_after_shared_interface
+  integrated_main_commit: 8d85949a1d815908fe8da10d1f85027d1e19680d
+  integrated_main_branch: main
+  runtime_evidence_harness_commit: 1541fa119e9d06a3713ca7ce5e439f2962e5e79e
+  runtime_evidence_worktree: dirty_at_run
+  implementation_head_before_manifest: feat/g1-shared-interface@f8715d3f0f16992fbc02816b77fe9ef4dcee5fb3
+  implementation_worktree_before_manifest: dirty_traceability_and_untracked_project_files
 
 lab_configuration:
   compose_project: r06-k05
@@ -57,6 +61,14 @@ lab_configuration:
   worker_count: 1
   request_timeout_seconds: 10
   default_rate_target_per_second: 5
+  fixture_version: r06-k05-v1
+  fixture_categories: 3
+  fixture_articles: 12
+  fixture_draft_articles: 6
+  fixture_published_articles: 6
+  campaign_operation_count: 10
+  campaign_seeds: [101, 202, 303]
+  campaign_profiles: [raw, guided]
 
 license_observed:
   endpoint: /license
@@ -71,6 +83,10 @@ validation:
   admin_bootstrap: passed_2026-10-09
   shared_interface_shell_syntax: passed_2026-10-10
   doctor_runtime: passed_2026-10-10
+  doctor_recheck_2026-10-11: passed_run_20261011T035333Z-10935
+  shell_syntax_recheck: passed_2026-10-11
+  shellcheck_recheck: passed_2026-10-11
+  diff_check_recheck: passed_2026-10-11
   up_runtime: passed_2026-10-10_run_20261010T053700Z-41993
   fixture_schema: passed_2026-10-10_run_20261010T063111Z-64428
   fixture_seed: partial_data_map_users_blocked_license_run_20261010T063111Z-64428
@@ -78,4 +94,11 @@ validation:
   actor_schema_export: passed_2026-10-10_run_20261010T063207Z-65790
   scenarios: partial_3_passed_3_blocked_run_20261010T063203Z-65359
   pilot: failed_report_coverage_fixture_restored_run_20261010T062453Z-61302
+  schema_export_recheck: passed_run_20261011T035610Z-13294
+  replay_editor_crud: passed_run_20261011T035615Z-13741
+  replay_query_fixture: passed_run_20261011T035618Z-14109
+  replay_auth_invalid_token: passed_run_20261011T035623Z-14472
+  invariants_recheck: partial_6_passed_2_blocked_run_20261011T035626Z-14831
+  raw_campaign_recheck: failed_runner_restore_passed_run_20261011T035638Z-15197
+  guided_campaign_recheck: failed_runner_restore_passed_run_20261011T035658Z-15731
   g1: blocked_license_and_no_independent_second_machine
