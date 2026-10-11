@@ -45,14 +45,17 @@ replay.
 G1 hiện được ghi nhận là **đạt baseline kỹ thuật, có phát hiện chưa đóng**.
 Trạng thái này không có nghĩa mọi campaign đều xanh:
 
-- Invariant baseline có `9 passed`, `1 failed`; full recheck mới nhất
-  `20261011T142618Z-178896` dưới `d186191` có `9 passed`, `2 failed`, `0
-  blocked`, exit `1`. Recheck trước `20261011T141918Z-175886` và
-  `20261011T134626Z-160826` vẫn được giữ trong lịch sử.
+- Invariant baseline có `9 passed`, `1 failed`; recheck mới nhất
+  `20261011T145918Z-189799` dưới `60be73d` có `9 passed`, `2 failed`, `0
+  blocked`, exit `1`. Các recheck `20261011T142618Z-178896`,
+  `20261011T141918Z-175886` và `20261011T134626Z-160826` vẫn được giữ trong
+  lịch sử.
   `aggregate-query-robustness` tiếp tục tái hiện HTTP
   500 với `fields=&aggregate={"foo":1}`; replay mở rộng
-  `20261011T134519Z-160153` ghi hai control aggregate trả 200. Case contract
-  probe ghi bốn schema candidate trong một failure có chủ đích.
+  `20261011T134519Z-160153` và targeted recheck `20261011T144640Z-184631`
+  đều ghi hai control aggregate trả 200. Case contract probe lịch sử ghi bốn
+  schema candidate; targeted recheck `20261011T144648Z-185062` xác nhận lại và
+  cleanup thành công trong một failure có chủ đích.
 - Replay bổ sung `kb5gjq` ở `20261011T135006Z-162769` tái hiện request-only
   `POST /items/qa_articles` với `published_at=""` trả HTTP `500`; log ghi
   PostgreSQL SQLSTATE `22007`. Đây là candidate schema-semantic/product
