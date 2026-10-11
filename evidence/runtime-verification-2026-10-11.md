@@ -200,11 +200,11 @@ khi người dùng cấu hình `LICENSE_KEY` cục bộ không ghi giá trị ke
 | `20261011T131803Z-147694` | `./lab.sh doctor` | PASS; latest recheck, license active, permission rules enabled, digest đúng manifest |
 | `20261011T134626Z-160826` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked dưới `bcbf219`; không có regression mới, exit 1 được giữ |
 
-Run doctor mới nhất dưới HEAD `d0d199f`:
+Run doctor mới nhất dưới HEAD `a153e99`:
 
 | Run | Lệnh | Kết quả |
 |---|---|---|
-| `20261011T132716Z-153452` | `./lab.sh doctor` | PASS; Directus/DB/runner healthy, license `source=env/status=active`, `custom_permission_rules_enabled=true`, ba image digest đúng manifest, exit `0` |
+| `20261011T134705Z-161373` | `./lab.sh doctor` | PASS; Directus/DB/runner healthy, license `source=env/status=active`, `custom_permission_rules_enabled=true`, ba image digest đúng manifest, exit `0` |
 
 ### Campaign v2
 

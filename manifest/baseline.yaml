@@ -182,8 +182,8 @@ validation:
   current_guided_campaign_v2_overlay_hash: cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831
   current_final_doctor_license: passed_run_20261011T105225Z-104013
   current_final_doctor_license_recheck: passed_run_20261011T130338Z-139934
-  current_final_doctor_latest: passed_run_20261011T132716Z-153452
-  current_final_doctor_harness_sha: d0d199fed69f0e8039c5faca7a8fdde114093752
+  current_final_doctor_latest: passed_run_20261011T134705Z-161373
+  current_final_doctor_harness_sha: a153e9920febc9801b3556482b15bc16cd5b3ad6
   current_v2_failure_triage: evidence/failure-triage-v2-2026-10-11.md
   current_v2_representative_replays: 8_sequential_replays_restore_passed_with_2_stateful_mismatches
   current_v2_replay_Q8K5Nh: reproduced_request_run_20261011T122512Z-124267

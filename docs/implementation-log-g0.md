@@ -202,6 +202,15 @@ thái để làm đẹp.
   healthy, license active với `custom_permission_rules_enabled=true`, ba image
   digest đúng manifest và exit `0`.
 
+## Doctor chốt sau aggregate probe dưới HEAD `a153e99`
+
+- Run `20261011T134705Z-161373`: `./lab.sh doctor` PASS; Compose, ba image
+  digest, fixture map, authenticated health và license
+  `source=env/status=active`, `custom_permission_rules_enabled=true` đều đạt.
+- Metadata ghi harness SHA đầy đủ `a153e9920febc9801b3556482b15bc16cd5b3ad6`;
+  working tree dirty chỉ do file untracked có trước. Không thay đổi baseline,
+  credential hoặc kết quả failure.
+
 ## Xác minh full-chain stateful bổ sung
 
 - Run `20261011T133817Z-157078` dưới HEAD `3960f55`: replay `aZmz3k` đủ chain
