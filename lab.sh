@@ -37,6 +37,7 @@ Usage:
   ./lab.sh test smoke|schema-smoke|scenarios|invariants|raw|guided
   ./lab.sh replay <case-id>
   ./lab.sh reset
+  ./lab.sh help
 EOF
 }
 
@@ -694,10 +695,18 @@ main() {
 	local run_command=""
 
 	case "$command_name" in
+		help|-h|--help)
+			usage
+			return 0
+			;;
 		doctor|up|down|seed|smoke|export-schema|reset)
 			run_command="$command_name"
 			;;
 		test)
+			if [[ $# -eq 2 && ( "$2" == 'help' || "$2" == '-h' || "$2" == '--help' ) ]]; then
+				usage
+				return 0
+			fi
 			[[ $# -eq 2 ]] || die 'test cần một profile.'
 			run_command="test $2"
 			;;
