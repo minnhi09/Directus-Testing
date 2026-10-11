@@ -17,7 +17,7 @@ candidate được giữ nguyên để triage.
 
 | Hạng mục | Run | Kết quả thực tế |
 |---|---|---|
-| Doctor | `20261011T130338Z-139934` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true` |
+| Doctor | `20261011T131803Z-147694` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true` |
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
 | Invariant recheck | `20261011T130457Z-141013` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |

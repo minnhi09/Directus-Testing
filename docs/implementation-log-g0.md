@@ -157,7 +157,8 @@ thái để làm đẹp.
 
 ## Recheck sau hardening và contract probe — 2026-10-11
 
-- Doctor recheck `20261011T130338Z-139934` PASS; license active, entitlement
+- Doctor recheck `20261011T130338Z-139934` và latest `20261011T131803Z-147694`
+  PASS; license active, entitlement
   `custom_permission_rules_enabled=true`, digest image khớp manifest.
 - Invariant recheck `20261011T130457Z-141013` có `9 passed`, `2 failed`, `0
   blocked`, exit `1`: aggregate HTTP 500 và `contract-schema-candidates` ghi
