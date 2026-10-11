@@ -24,7 +24,7 @@ Campaign bật tường minh các check `not_a_server_error`, `status_code_confo
 
 Mỗi seed tạo thư mục `artifacts/runs/<run_id>/<profile>/seed-<seed>/` với schema copy, hash, diff, inventory, metrics, report JSON/NDJSON, coverage, generation database, summary và snapshot để restore. Fixture được khôi phục trước khi seed kế tiếp tiếp tục.
 
-## Kết quả campaign đầy đủ trên baseline hiện tại
+## Kết quả campaign lịch sử trước license — `r06-k05-v1`
 
 | Profile/run | Seed | Operation tested | Cases generated | Unique failure | Errored | Restore | Trạng thái runner |
 |---|---:|---:|---:|---:|---:|---|---|
@@ -37,6 +37,31 @@ Mỗi seed tạo thư mục `artifacts/runs/<run_id>/<profile>/seed-<seed>/` v�
 
 Các số unique failure là số của từng seed, không cộng thành số defect. Report cần triage theo request/chuỗi stateful cụ thể; `500`, response ngoài schema, status/content type ngoài hợp đồng và unsupported method không tự động là defect. Ba case guided đã replay được (`AmXHZz`, `jShXuk`, `VllBgh`); trong đó hai case POST được gộp thành một schema/contract candidate và `VllBgh` là product robustness candidate kèm schema omission, chưa phải defect đã xác nhận. Raw dùng schema hash `433cb61a...`; guided dùng overlay hash `dc3f057a...`, được lưu tách khỏi schema raw. Triage và replay đại diện được ghi tại [`docs/campaign-triage-2026-10-11.md`](campaign-triage-2026-10-11.md); chưa có product defect nào được xác nhận.
 
+## Kết quả campaign local hiện tại — `r06-k05-v2`
+
+Raw run `20261011T085034Z-76481`, schema hash
+`433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e`:
+
+| Seed | Operation | Cases | Unique failure | Errored | Restore | Kết thúc |
+|---:|---:|---:|---:|---:|---|---|
+| 101 | 10/10 | 59 | 20 | 0 | PASS | `max_time`, exit 1 |
+| 202 | 10/10 | 65 | 18 | 0 | PASS | `max_time`, exit 1 |
+| 303 | 10/10 | 51 | 19 | 0 | PASS | `max_time`, exit 1 |
+
+Guided run `20261011T095117Z-89079`, overlay hash
+`cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831`:
+
+| Seed | Operation | Cases | Unique failure | Errored | Stateful scenarios | Links | Restore | Kết thúc |
+|---:|---:|---:|---:|---:|---:|---:|---|---|
+| 101 | 10/10 | 5770 | 63 | 111 | 1141 | 14/20 | PASS | `max_time`, exit 1 |
+| 202 | 10/10 | 5864 | 65 | 176 | 1183 | 19/20 | PASS | `max_time`, exit 1 |
+| 303 | 10/10 | 5894 | 62 | 200 | 1195 | 16/20 | PASS | `max_time`, exit 1 |
+
+Các campaign v2 có report/coverage đầy đủ và restore PASS, nhưng `failed` là
+trạng thái trung thực do check failure và hết budget; không xem số case hay
+operation coverage là defect count. Raw/guided sử dụng cùng 10 operation đã
+được allowlist, còn guided chỉ sửa bản overlay riêng.
+
 ## Sáu scenario demo
 
 | ID | Precondition | Expected/oracle | Kết quả baseline |
@@ -44,11 +69,13 @@ Các số unique failure là số của từng seed, không cộng thành số d
 | S1 Editor CRUD | Fixture + Editor login | Create/read/PATCH/delete; PATCH giữ field không cập nhật; item bị xóa không còn data | passed |
 | S2 Filter status | 6 published + 6 draft | Filter published trả đúng sáu fixture ID | passed |
 | S3 Sort/pagination | Fixture cố định | `sort=title,id`, `limit`, `offset` và projection khớp oracle fixture | passed |
-| S4 Reader không đọc draft | Reader schema có detail GET | Draft không lộ | blocked: Reader article operation absent |
-| S5 Reader không lộ `internal_notes` | Reader có published read | Field kín không xuất hiện hoặc request bị từ chối | blocked: Reader article operation absent |
-| S6 Reader ghi | Reader có detail PATCH | PATCH bị từ chối và Editor đọc lại thấy dữ liệu không đổi | blocked: Reader PATCH absent |
+| S4 Reader không đọc draft | Reader schema có detail GET | Draft không lộ | passed: HTTP 403, không có draft payload |
+| S5 Reader không lộ `internal_notes` | Reader có published read | Field kín không xuất hiện hoặc request bị từ chối | passed: published projection 2xx; private projection HTTP 403 |
+| S6 Reader ghi | Reader có detail PATCH | PATCH bị từ chối và Editor đọc lại thấy dữ liệu không đổi | passed: HTTP 403, dữ liệu không đổi |
 
-Run `20261011T035341Z-11908` ghi S1–S3 passed, S4–S6 blocked; exit code 1 là có chủ đích vì còn precondition blocked.
+Run v2 `20261011T105231Z-104612` ghi S1–S6 passed. Run v1
+`20261011T035341Z-11908` vẫn được giữ như bằng chứng lịch sử S1–S3 passed,
+S4–S6 blocked trước license.
 
 ## Positive operation acceptance
 
@@ -70,9 +97,10 @@ Các case ổn định được chạy bởi `scripts/invariants.py` trong runne
 `query-fixture`, `aggregate-query-robustness`, `relation-nullification`,
 `invalid-field-rejection`, `reader-visibility`, `reader-write`.
 `aggregate-query-robustness` là regression probe không mutation, dùng query
-`fields=&aggregate={"foo":1}` và yêu cầu không có HTTP 5xx; trên baseline hiện
-tại nó tái hiện candidate 500 và giữ trạng thái `failed`. `reader-visibility` và `reader-write`
-kiểm tra schema trước; khi operation vắng mặt chúng ghi `blocked` và không gửi
-request cấm.
+`fields=&aggregate={"foo":1}` và yêu cầu không có HTTP 5xx; trên baseline v2 nó
+tái hiện candidate 500 và giữ trạng thái `failed`. `reader-visibility` và
+`reader-write` kiểm tra schema trước; v2 có operation cần thiết nên đã gửi request
+và xác minh projection/private write theo hành vi thực tế. Nếu dựng máy không có
+license và operation vắng mặt, hai case vẫn ghi `blocked` và không gửi request cấm.
 
 Expected status của negative case là quan hệ `non-2xx`, không gán cứng 401/403/404 khi baseline chưa chứng minh mã cụ thể. Chi tiết precondition, request path, expected/actual và response summary được lưu trong `invariant-report.json`; token không được ghi.

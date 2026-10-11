@@ -45,9 +45,10 @@ local trên một baseline, không phải kiểm tra chéo máy thứ hai.
 
 `aggregate-query-robustness` là regression probe deterministic được version hóa
 trong `scripts/invariants.py`, nên clone sạch vẫn replay được mà không cần
-Schemathesis artifact. Trên baseline hiện tại, run `20261011T080746Z-51887`
-trả `500` và exit `1` đúng theo assertion; đây là failure cần triage, không phải
-được chuyển thành pass bằng cách nới expected.
+Schemathesis artifact. Trên baseline v2, run `20261011T105242Z-105524` trả
+`500` và exit `1` đúng theo assertion; đây là failure cần triage, không phải
+được chuyển thành pass bằng cách nới expected. Run lịch sử `20261011T080746Z-51887`
+được giữ để đối chiếu trước license.
 
 Sau khi sửa replay nhị phân, case `UETNPW` (DELETE nhận 204 ngoài schema) được
 replay lại ở run `20261011T073454Z-42697`, còn case `7DpEST` (PATCH với payload
@@ -64,6 +65,11 @@ Các case guided đại diện được replay sau pilot:
   tối giản đã kiểm tra là `fields=&aggregate={"foo":1}`; log Directus ghi
   `TypeError: fields is not iterable`. Đây là candidate cần đối chiếu upstream,
   không được ghi nhận tự động thành product defect.
+
+Checkpoint Reader v2 được replay bằng `reader-visibility` ở run
+`20261011T084935Z-74564` và full invariant `20261011T105236Z-105096`: request
+projection hợp lệ trả sáu published fixture; request thêm `internal_notes` bị
+Directus từ chối HTTP 403; Reader PATCH bị từ chối và Editor read-back không đổi.
 
 ## Artefact và phân loại
 

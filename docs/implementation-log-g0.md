@@ -129,3 +129,25 @@ Kiểm tra đã thực hiện: `bash -n lab.sh scripts/lab-components.sh`, Shell
 7. Lành điều phối kiểm tra chéo trên máy khác, cập nhật evidence/manifest rồi mới
    xem xét G1. Trên máy hiện tại, blocker còn lại là license thật để bật Reader
    custom permission rules.
+
+## Checkpoint local sau khi license hoạt động — 2026-10-11
+
+Phần trên giữ nguyên lịch sử G0 trước license. Checkpoint thực tế mới dùng
+fixture/schema version `r06-k05-v2`; snapshot `r06-k05-v1` không bị overwrite.
+
+- `20261011T084813Z-71356`: reset đúng volume/project `r06-k05`, sau đó
+  `20261011T084821Z-71845` dựng lại stack healthy.
+- `20261011T084845Z-72361`: seed v2 PASS; 3 category, 12 article, 6 draft,
+  6 published, actor/policy PASS.
+- `20261011T085023Z-75556`: smoke PASS; `20261011T085027Z-75998`: export
+  schema PASS, Reader 6 operation.
+- `20261011T105231Z-104612`: S1–S6 PASS; `20261011T105236Z-105096`: 9
+  invariant PASS, 1 regression failure aggregate HTTP 500.
+- Raw `20261011T085034Z-76481` và guided `20261011T095117Z-89079` chạy đủ
+  seed `101,202,303`, 10/10 operation và restore PASS; runner exit 1 do
+  `max_time`/check failure, không báo campaign pass.
+- `20261011T105242Z-105524`: replay aggregate candidate tái hiện HTTP 500.
+
+Doctor cuối `20261011T105225Z-104013` báo license `source=env`, `status=active`,
+`custom_permission_rules_enabled=true`. Reader visibility/write đã được kiểm tra
+qua API thật; remaining G1 work là dựng lại trên máy thứ hai và review chéo thật.

@@ -167,3 +167,39 @@ Final local doctor `20261011T081001Z-52769` PASS trên HEAD `828c339`: ba servic
 authenticated health PASS; `/license` vẫn quan sát `source=null`, `status=active`,
 `custom_permission_rules_enabled=false`. Static syntax/lint, YAML/Compose config
 và tracked secret-pattern scan cũng PASS.
+
+## Checkpoint license và baseline v2
+
+Phần trên giữ nguyên bằng chứng lịch sử trước khi có license. Checkpoint mới sau
+khi người dùng cấu hình `LICENSE_KEY` cục bộ không ghi giá trị key vào report:
+
+| Run | Lệnh | Kết quả quan sát |
+|---|---|---|
+| `20261011T084813Z-71356` | `./lab.sh reset` | Safety preflight khớp project/volume; chỉ xóa `r06-k05_db_data` và runtime của lab |
+| `20261011T084821Z-71845` | `./lab.sh up` | Network/volume/container tạo lại; database, Directus, runner healthy |
+| `20261011T084845Z-72361` | `LAB_FIXTURE_VERSION=r06-k05-v2 ./lab.sh seed` | PASS; 3 category, 12 article, 6 draft/6 published, actor/policy PASS |
+| `20261011T084854Z-73115` | `LAB_FIXTURE_VERSION=r06-k05-v2 ./lab.sh export-schema` | PASS; admin/editor/reader/anonymous 14/14/6/0 operation |
+| `20261011T085023Z-75556` | `./lab.sh smoke` | PASS; validation, relation `SET NULL`, Reader published filter |
+| `20261011T085027Z-75998` | `./lab.sh export-schema` | PASS theo default v2; raw schema hash bất biến |
+| `20261011T105225Z-104013` | `./lab.sh doctor` | PASS; `/license` `source=env`, `status=active`, `custom_permission_rules_enabled=true` |
+| `20261011T105231Z-104612` | `./lab.sh test scenarios` | S1–S6: 6 passed, 0 failed, 0 blocked |
+| `20261011T105236Z-105096` | `./lab.sh test invariants` | 9 passed, 1 failed; failure duy nhất aggregate HTTP 500 |
+| `20261011T105242Z-105524` | `./lab.sh replay aggregate-query-robustness` | Tái hiện HTTP 500, exit 1, không mutation |
+
+### Campaign v2
+
+Raw run `20261011T085034Z-76481` dùng schema hash
+`433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e`; seed
+101/202/303 lần lượt có 59/65/51 case, 20/18/19 unique failure, 10/10
+operation và restore PASS. Guided run `20261011T095117Z-89079` dùng overlay hash
+`cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831`; seed
+101/202/303 lần lượt có 5770/5864/5894 case, 63/65/62 unique failure,
+111/176/200 errored, stateful 1141/1183/1195 scenario, restore PASS. Cả hai
+profile đều kết thúc `max_time`, runner exit 1; đây là kết quả chưa hoàn tất về
+pass/fail acceptance, không được báo là campaign pass.
+
+Reader v2 đã được kiểm chứng qua API thật: projection hợp lệ trả sáu published
+fixture; projection yêu cầu `internal_notes` trả 403 không lộ dữ liệu; PATCH
+Reader trả non-2xx và Editor read-back không đổi. Candidate aggregate vẫn được
+phân loại `schema omission + product robustness candidate`, chưa xác nhận
+product defect. G1 vẫn chờ dựng lại trên máy thứ hai và review chéo thực tế.

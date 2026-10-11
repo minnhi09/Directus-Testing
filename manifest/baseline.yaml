@@ -1,5 +1,5 @@
 schema: 1
-status: g1-temporary-implementation-blocked
+status: g1-local-verified-no-cross-machine-review
 recorded_at: 2026-10-11
 project: r06-k05
 
@@ -63,7 +63,13 @@ lab_configuration:
   worker_count: 1
   request_timeout_seconds: 10
   default_rate_target_per_second: 5
-  fixture_version: r06-k05-v1
+  fixture_version: r06-k05-v2
+  schema_hashes:
+    admin: 993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e
+    editor: bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26
+    reader: d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8
+    anonymous: 2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3
+  schema_operation_counts: {admin: 14, editor: 14, reader: 6, anonymous: 0}
   fixture_categories: 3
   fixture_articles: 12
   fixture_draft_articles: 6
@@ -74,11 +80,11 @@ lab_configuration:
 
 license_observed:
   endpoint: /license
-  source: null
+  source: env
   status: active
-  license_key_configured: false
-  custom_permission_rules_enabled: false
-  effect: reader_article_filter_and_field_restriction_not_available
+  license_key_configured: true
+  custom_permission_rules_enabled: true
+  effect: reader_article_filter_and_field_restriction_available
 
 validation:
   image_manifest_lookup: verified_2026-10-09
@@ -150,4 +156,18 @@ validation:
   aggregate_query_robustness_regression: failed_known_candidate_run_20261011T080746Z-51887_harness_66ee05f
   invariants_after_aggregate_regression: failed_7_passed_1_failed_2_blocked_run_20261011T080753Z-52280
   final_doctor_local: passed_run_20261011T081001Z-52769_head_828c339
-  g1: blocked_license_and_no_independent_second_machine
+  g1: blocked_no_independent_second_machine_or_review
+  current_reset: passed_run_20261011T084813Z-71356_project_volume_verified
+  current_up: passed_run_20261011T084821Z-71845
+  current_fixture_seed_v2: passed_run_20261011T084845Z-72361
+  current_smoke_v2: passed_run_20261011T085023Z-75556
+  current_schema_export_v2: passed_run_20261011T085027Z-75998
+  current_scenarios_v2: passed_6_of_6_run_20261011T105231Z-104612
+  current_reader_replay_v2: passed_run_20261011T084935Z-74564
+  current_invariants_v2: partial_9_passed_1_known_aggregate_failure_run_20261011T105236Z-105096
+  current_aggregate_replay_v2: reproduced_http_500_run_20261011T105242Z-105524
+  current_raw_campaign_v2: failed_max_time_restore_passed_3_seeds_run_20261011T085034Z-76481
+  current_raw_campaign_v2_schema_hash: 433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e
+  current_guided_campaign_v2: failed_max_time_restore_passed_3_seeds_run_20261011T095117Z-89079
+  current_guided_campaign_v2_overlay_hash: cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831
+  current_final_doctor_license: passed_run_20261011T105225Z-104013

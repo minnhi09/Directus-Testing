@@ -2,7 +2,7 @@
 
 Đây là harness kiểm thử REST API Directus theo schema, tập trung vào CRUD, query, quyền và invariant nghiệp vụ của hai collection `qa_categories` và `qa_articles`.
 
-Trạng thái hiện tại là harness đã có đường chạy thật trên nhánh `feat/g1-shared-interface`; phần nền trước đó đã được tích hợp vào `main` tại merge commit `8d85949`. G1 chưa được tuyên bố. Directus đang báo `source=null` và `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader. Campaign đầy đủ `raw` và `guided` đã chạy đủ ba seed trên máy hiện tại, nhưng runner kết thúc `failed` vì các check phát hiện; restore fixture đều đạt. Replay local đã tái hiện hai candidate response-shape của POST và một candidate 500 tối giản (`VllBgh`), nhưng chưa xác nhận product defect. Kiểm tra độc lập trên máy thứ hai và review chéo của thành viên vẫn chưa có. Triage campaign và replay đại diện nằm tại [`docs/campaign-triage-2026-10-11.md`](docs/campaign-triage-2026-10-11.md).
+Checkpoint local hiện tại đã xác minh license thật trên Directus `12.5.0`: `/license` báo `source=env`, `status=active` và `custom_permission_rules_enabled=true`. Baseline đang dùng fixture/schema version `r06-k05-v2`; snapshot `r06-k05-v1` trước license được giữ bất biến để truy vết. Seed, smoke, schema export, sáu scenario và Reader invariants đã chạy trên máy hiện tại. Raw/guided đều chạy đủ ba seed, 10/10 operation và restore PASS, nhưng runner giữ exit 1 do check failures/max-time; không coi đây là campaign pass. Candidate aggregate HTTP 500 đã replay lại được, vẫn phân loại product robustness candidate + schema omission, chưa xác nhận defect. G1 cuối cùng chưa được tuyên bố vì chưa có dựng lại trên máy thứ hai và review chéo thực tế.
 
 ## Chuẩn bị lab
 
@@ -54,15 +54,15 @@ Mỗi lệnh được nhận diện tạo một thư mục `artifacts/runs/<run_
 
 Trạng thái lệnh trên máy hiện tại:
 
-- `doctor`: đạt; Compose, digest, URL loopback, admin health và trạng thái entitlement `/license` rút gọn đều được kiểm tra mà không ghi license/token.
+- `doctor`: đạt; Compose, digest, URL loopback, admin health và entitlement `/license` rút gọn đều được kiểm tra mà không ghi license/token; run mới nhất `20261011T105225Z-104013`.
 - `up`: đạt; database và Directus healthy.
-- `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor; kết thúc lỗi có chủ đích khi license không cho permission filter của Reader. Khi dùng Reader policy đầy đủ, `LICENSE_KEY` phải được cấu hình ngoài Git trước khi khởi động stack.
-- `smoke`: validation field và quan hệ `SET NULL` đạt; phần Reader bị chặn bởi cùng blocker.
-- `export-schema`: đạt; lưu schema raw bất biến cho `admin` (14 operation), `editor` (14), `reader` (2) và `anonymous` (0).
-- `test scenarios`: S1–S3 đạt; S4–S6 được ghi `blocked` vì operation article không xuất hiện trong schema Reader, nên harness không gửi request quyền bị cấm.
-- `test invariants`: các invariant deterministic chạy trong image Schemathesis đã pin; `positive-operations` kiểm tra đủ 10 method–path bằng dữ liệu tạm, `aggregate-query-robustness` là regression probe không mutation và giữ failure HTTP 500 hiện tại, còn Reader cases ghi `blocked` khi schema không có precondition.
-- `test raw`: campaign chính chọn đúng 10 operation, lưu report/coverage/metrics và restore fixture; run đầy đủ `20261011T050204Z-28735` đã chạy seed 101/202/303, mỗi seed 10/10 operation, nhưng kết thúc `max_time` với runner exit 1 vì check failure.
-- `test guided`: campaign chính dùng overlay riêng, fixture IDs/examples và stateful phase; run đầy đủ `20261011T060247Z-30882` đã chạy seed 101/202/303, mỗi seed 10/10 operation, stateful có chạy, nhưng kết thúc `max_time` với runner exit 1 vì check failure.
+- `seed`: tạo/kiểm tra schema, seed 3 category + 12 article, ghi ID map và tạo actor/policy; baseline v2 PASS ở run `20261011T084845Z-72361`.
+- `smoke`: validation field, quan hệ `SET NULL` và Reader published filter PASS; run `20261011T085023Z-75556`.
+- `export-schema`: raw schema actor v2 bất biến; admin/editor/reader/anonymous lần lượt 14/14/6/0 operation, hash được ghi ở manifest/run `20261011T085027Z-75998`.
+- `test scenarios`: S1–S6 đều PASS ở run `20261011T105231Z-104612`; Reader projection private bị từ chối an toàn và Reader PATCH bị từ chối, không làm đổi dữ liệu.
+- `test invariants`: 9 PASS, 1 failure ở run `20261011T105236Z-105096`; Reader cases PASS. `aggregate-query-robustness` giữ HTTP 500 để làm regression evidence, không nới assertion.
+- `test raw`: campaign run `20261011T085034Z-76481` chọn đúng 10 operation trên seed `101,202,303`; lần lượt 59/65/51 case, restore PASS, runner exit 1 do `max_time`/check failure.
+- `test guided`: campaign run `20261011T095117Z-89079` dùng overlay riêng và stateful phase; lần lượt 5.770/5.864/5.894 case, restore PASS, runner exit 1 do `max_time`/check failure.
 - `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500. Các case guided `AmXHZz`, `jShXuk` và `VllBgh` đã replay được để triage schema/robustness; không tự đếm mỗi check failure thành một defect.
 - `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; safety reset đã được thực thi ở run `20261011T050050Z-26220`, sau đó stack được dựng và seed lại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
@@ -77,7 +77,7 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 2. Sao chép `config/lab.env.example` thành `config/lab.env`, thay toàn bộ `REPLACE_*`, rồi chạy `chmod 600 config/lab.env`. Không commit file này.
 3. Kiểm tra dependency, digest và URL bằng `./lab.sh doctor`.
 4. Khởi động stack bằng `./lab.sh up`. Lệnh chờ Directus healthy; nếu cần xem trạng thái, dùng `docker compose --env-file config/lab.env --project-name r06-k05 -f compose.yaml ps`.
-5. Chạy `./lab.sh seed`. Seed tạo schema/fixture idempotent và ghi `runtime/fixture-ids.json`; nếu license Reader chưa hợp lệ, run phải kết thúc failed ở precondition đó.
+5. Chạy `./lab.sh seed`. Seed tạo schema/fixture idempotent và ghi `runtime/fixture-ids.json`; để đạt Reader policy, `LICENSE_KEY` phải hợp lệ và được cấu hình cục bộ trước `up`.
 6. Chạy `./lab.sh test smoke` và `./lab.sh test scenarios`. `blocked` là trạng thái cần xử lý, không phải pass giả.
 7. Chạy `./lab.sh export-schema` sau seed. Schema raw theo actor nằm dưới `runtime/schemas/<fixture_version>/`; hash và inventory nằm trong run artifact.
 8. Chạy `./lab.sh test raw` hoặc `./lab.sh test guided` với ngân sách mặc định. Dùng override ngắn chỉ cho pilot và ghi rõ trong report.
@@ -114,4 +114,4 @@ Các kết quả chạy sau này phải ghi run ID, SHA harness, baseline/image 
 
 Run gần nhất và giới hạn được tổng hợp tại [`evidence/g1-implementation-2026-10-10.md`](evidence/g1-implementation-2026-10-10.md) và [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md). Report thô nằm trong `artifacts/runs/<run_id>/` (Git ignore); schema và ID map runtime nằm trong `runtime/` (Git ignore). Các thư mục này cần được giữ cục bộ để replay/triage, nhưng không được đưa credential hoặc response nhạy cảm vào commit.
 
-Full raw/guided đã chứng minh pipeline 10 operation, artifact và restore trên ba seed; cả hai run vẫn giữ runner failure để triage, không được báo là pass. Raw có 59/65/51 case theo seed; guided có 5.809/5.874/5.899 case. Hai POST response-shape được gộp thành schema/contract candidate; `VllBgh` có reproducer tối giản `aggregate={"foo":1}` và stack trace `fields is not iterable`, nên là product robustness candidate kèm schema omission, chưa phải defect đã xác nhận. Một nguyên nhân có thể sinh nhiều check failure. Triage kỹ thuật tạm thời của pilot nằm trong [`evidence/pilot-triage-2026-10-11.md`](evidence/pilot-triage-2026-10-11.md), còn số liệu full campaign và giới hạn nằm trong [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md).
+Full raw/guided v2 đã chứng minh pipeline 10 operation, artifact và restore trên ba seed; cả hai run vẫn giữ runner failure để triage, không được báo là pass. Raw có 59/65/51 case; guided có 5.770/5.864/5.894 case. Reader policy thật đã được kiểm tra: schema có 6 operation, published filter trả đúng fixture, projection `internal_notes` bị từ chối và PATCH bị từ chối với dữ liệu không đổi. Candidate `aggregate={"foo":1}` vẫn tái hiện HTTP 500 ở replay `20261011T105242Z-105524`; phân loại hiện tại là schema omission + product robustness candidate, chưa phải defect đã xác nhận. Một nguyên nhân có thể sinh nhiều check failure. Chi tiết full campaign mới và giới hạn nằm trong [`evidence/runtime-verification-2026-10-11.md`](evidence/runtime-verification-2026-10-11.md).
