@@ -1534,6 +1534,8 @@ replay_schemathesis_case() {
 	local restore_rc=1
 	local replay_status='not_reproduced'
 	local source_schema="$SCHEMA_ROOT/editor.json"
+	local replay_schema_path
+	local replay_schema_hash
 	local source_file="$RUN_DIR/schemathesis-case.json"
 	local response_file="$RUN_DIR/schemathesis-replay-response.json"
 	local reproducer_file="$RUN_DIR/reproducer-schemathesis-$case_id.json"
@@ -1566,6 +1568,13 @@ replay_schemathesis_case() {
 		printf 'ERROR: không tìm thấy Schemathesis case-id %s trong artifacts/runs\n' "$case_id" >&2
 		return 2
 	}
+	replay_schema_path="$(dirname "$events_file")/schema-raw.json"
+	[[ -f "$replay_schema_path" ]] || replay_schema_path="$(dirname "$events_file")/schema-guided.json"
+	if [[ -f "$replay_schema_path" ]]; then
+		replay_schema_hash="$(sha256sum "$replay_schema_path" | awk '{print $1}')"
+	else
+		replay_schema_hash="$(sha256sum "$source_schema" | awk '{print $1}')"
+	fi
 	printf '%s\n' "$case_json" > "$source_file"
 
 	request_method="$(jq -r '.interaction.request.method // empty' <<< "$case_json")"
@@ -1633,7 +1642,7 @@ replay_schemathesis_case() {
 	jq -n --arg schema_version "$FIXTURE_VERSION" --arg case_id "$case_id" --arg source "$events_file" \
 		--arg method "$request_method" --arg path "$request_path" --arg expected_status "$expected_status" \
 		--arg actual_status "$actual_status" --arg status "$replay_status" --arg actor editor \
-		--arg schema_hash "$(sha256sum "$source_schema" | awk '{print $1}')" \
+		--arg schema_hash "$replay_schema_hash" \
 		--argjson case "$case_json" --argjson actual "$actual_summary" --argjson request_rc "$request_rc" --argjson restore_rc "$restore_rc" \
 		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",request:{method:$method,path:$path},expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
 		> "$reproducer_file"
