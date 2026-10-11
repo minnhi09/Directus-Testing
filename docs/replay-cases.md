@@ -98,6 +98,10 @@ Các case guided đại diện được replay sau pilot:
   source/expected/actual `200`, content type `text/yaml; charset=utf-8` ngoài
   schema `application/json`. Restore PASS, exit `1`; gộp vào export media-type
   candidate, không phải defect độc lập.
+- `DhqXrn` (`20261011T140307Z-168360`) replay đủ chain `UqHibT → DhqXrn`:
+  source campaign `204` nhưng actual replay `403`, Directus từ chối cập nhật
+  field `id`; restore PASS, exit `1`, `full_transition_chain`. Đây là mismatch
+  precondition/policy/negative oracle, không kết luận accepted-negative defect.
 
 Triage bổ sung trên campaign v2 được ghi đầy đủ tại
 [`evidence/failure-triage-v2-2026-10-11.md`](../evidence/failure-triage-v2-2026-10-11.md).

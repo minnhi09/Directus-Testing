@@ -281,3 +281,15 @@ thái để làm đẹp.
   không phải product defect độc lập.
 - Giữ nguyên exit `1`, không sửa expected/check và không gộp các replay
   request-only thành full-chain evidence.
+
+## Triage accepted-negative stateful mismatch — 2026-10-11
+
+- Run `20261011T140307Z-168360`: `./lab.sh replay DhqXrn` dưới harness
+  `231842ac827f29822af9b8f2eb3095ec5e1943fa`; parent chain `UqHibT → DhqXrn`
+  được replay đầy đủ, restore PASS, exit `1`.
+- Campaign source ghi `204` cho negative request; replay hiện tại trả `403` với
+  lỗi Directus không cho cập nhật field `id`. Vì actual không tái hiện việc
+  accepted negative và replay giữ expected failure, trạng thái là mismatch
+  precondition/policy/negative oracle, không phải product defect.
+- Không có mutation tồn tại sau restore; không đổi expected status, không nới
+  assertion và không coi full-chain mismatch là PASS.

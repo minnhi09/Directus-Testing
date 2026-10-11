@@ -53,6 +53,7 @@ dùng bảng này làm coverage hoặc defect count.
 | `F8j8Gl` / `20261011T135713Z-165099` | Guided stateful GET article với `backlink=true&export=json`; source/expected/actual `200`, body là array 12 item thay vì object `data` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export response shape; không phải product defect đã xác nhận |
 | `UNKW3j` / `20261011T135951Z-166351` | Guided stateful GET article với `export=xml`; source/expected/actual `200`, content type `text/xml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`, chưa xác nhận defect |
 | `R0sH5o` / `20261011T140125Z-167402` | Guided stateful GET article với `export=yaml`; source/expected/actual `200`, content type `text/yaml` ngoài schema `application/json` | `reproduced_request_only`, restore PASS, exit `1`; không có parent transition | Schema/contract candidate về export media type; cùng nhóm `vx21yF`/`UNKW3j`, chưa xác nhận defect |
+| `DhqXrn` / `20261011T140307Z-168360` | Guided stateful negative PATCH category; full chain `UqHibT → DhqXrn`, source `204`, replay `403` do field `id` không được phép cập nhật | `full_transition_chain`, restore PASS, exit `1`, mismatch | Precondition/policy/negative-oracle mismatch; không coi là accepted-negative defect |
 
 Các status trong bảng là kết quả của các run lịch sử trước chain hardening.
 `CkqaOB` vẫn chỉ có final interaction trong artifact; `VbURdO` không có parent
@@ -97,6 +98,10 @@ request-only, full-chain mismatch và product defect thành một kết luận.
 10. `R0sH5o` tái hiện `export=yaml` với HTTP `200` và `text/yaml; charset=utf-8`
     ngoài schema JSON. Gộp với các export media-type candidate trước đó; không
     đếm thành product defect độc lập.
+11. `DhqXrn` có source campaign `204` nhưng full-chain replay hiện tại trả `403`
+    với lỗi quyền trên field `id`; dữ liệu được restore nguyên trạng. Vì replay
+    không tái hiện việc accepted negative và status oracle giữ source failure,
+    đây là mismatch precondition/policy, không phải bằng chứng product defect.
 
 ## Automated contract probe
 

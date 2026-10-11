@@ -94,6 +94,12 @@ Replay `R0sH5o` ở run `20261011T140125Z-167402` tái hiện
 là cùng nhóm export media-type candidate với CSV/XML, không phải product defect
 độc lập; artifact không có parent transition.
 
+Replay `DhqXrn` ở run `20261011T140307Z-168360` đã dựng đủ chain
+`UqHibT → DhqXrn`: campaign source `204`, còn replay hiện tại `403` vì Directus
+từ chối cập nhật field `id`; restore PASS và exit `1`. Đây là mismatch về
+precondition/policy/negative oracle, không coi là accepted-negative defect và
+không có mutation còn sót sau restore.
+
 Sau triage, commit `64e88f9` đã harden replay scope: stateful case chỉ được ghi
 `reproduced_request_only` khi chỉ gửi final interaction. Commit `baaee4b` bổ
 sung parent-chain replay và ID mapping từ response parent. Run
@@ -141,7 +147,7 @@ Chi tiết line-level nằm trong phần source comparison của
 | `UndefinedContentType` | 0/1/0 | 5/5/5 | `vx21yF`/`UNKW3j`/`R0sH5o` tái hiện export CSV/XML/YAML ngoài schema JSON; giữ là export contract candidate |
 | `ServerError` | 0 | 9/8/8 | `kb5gjq` đã replay request-only và tái hiện 500; vẫn là candidate robustness/schema-semantic, không phải defect đã xác nhận |
 | `JsonSchemaError` | 0 | 6/10/7 | Chưa kết luận; cần phân biệt schema raw/overlay và response thực tế |
-| `AcceptedNegativeData` | 0 | 3 mỗi seed | Chưa kết luận; cần kiểm tra request/validation và trạng thái fixture |
+| `AcceptedNegativeData` | 0 | 3 mỗi seed | `DhqXrn` full-chain replay trả `403` thay source `204`; giữ mismatch precondition/policy, chưa kết luận defect |
 
 ## Replay đã xác minh
 

@@ -61,6 +61,9 @@ Trạng thái này không có nghĩa mọi campaign đều xanh:
 - Replay `R0sH5o` ở `20261011T140125Z-167402` tái hiện `export=yaml` với
   HTTP `200` và `text/yaml` ngoài schema JSON; tiếp tục gộp vào export
   media-type candidate, chưa xác nhận product defect.
+- Replay `DhqXrn` ở `20261011T140307Z-168360` dựng đủ chain nhưng source
+  `204` và actual `403` do field `id` bị từ chối; giữ là negative
+  precondition/policy mismatch, không xác nhận defect.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.

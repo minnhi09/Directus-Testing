@@ -246,6 +246,7 @@ phân loại và giới hạn stateful nằm tại
 | `F8j8Gl` | `20261011T135713Z-165099` | GET article `export=json` trả `200` với array 12 item ngoài schema object | `reproduced_request_only`, restore PASS, exit `1`; schema/contract candidate |
 | `UNKW3j` | `20261011T135951Z-166351` | GET article `export=xml` trả `200` với `text/xml` ngoài schema JSON | `reproduced_request_only`, restore PASS, exit `1`; export media-type candidate |
 | `R0sH5o` | `20261011T140125Z-167402` | GET article `export=yaml` trả `200` với `text/yaml` ngoài schema JSON | `reproduced_request_only`, restore PASS, exit `1`; export media-type candidate |
+| `DhqXrn` | `20261011T140307Z-168360` | Full chain `UqHibT → DhqXrn`; source `204`, replay `403` do field `id` forbidden | `full_transition_chain`, restore PASS, exit `1`; mismatch, chưa kết luận |
 
 Trước commit `baaee4b`, harness chỉ gửi interaction cuối của stateful case.
 Sau commit này, chain được dựng lại khi artifact có đủ parent case, interaction
@@ -269,6 +270,10 @@ riêng thành defect.
 
 Replay `R0sH5o` xác nhận biến thể `export=yaml` có cùng hành vi; ba media type
 CSV/XML/YAML được giữ trong cùng nhóm export contract candidate.
+
+Replay `DhqXrn` là ca negative khác với request-only: parent transition được
+replay đầy đủ nhưng kết quả hiện tại là `403` thay source `204`. Restore PASS và
+không có thay đổi dữ liệu tồn tại; giữ mismatch, không đổi thành PASS.
 
 Commit `64e88f9` đã làm rõ phạm vi này trong report replay. Kiểm chứng sau sửa:
 
