@@ -154,3 +154,16 @@ Doctor cuối `20261011T105225Z-104013` báo license `source=env`, `status=activ
 qua API thật. G1 đạt baseline kỹ thuật với findings; aggregate HTTP 500 và các
 campaign `failed_or_incomplete` tiếp tục là backlog triage, không bị đổi trạng
 thái để làm đẹp.
+
+## Recheck sau hardening và contract probe — 2026-10-11
+
+- Doctor recheck `20261011T130338Z-139934` PASS; license active, entitlement
+  `custom_permission_rules_enabled=true`, digest image khớp manifest.
+- Invariant recheck `20261011T130457Z-141013` có `9 passed`, `2 failed`, `0
+  blocked`, exit `1`: aggregate HTTP 500 và `contract-schema-candidates` ghi
+  bốn schema candidate. Kết quả này bổ sung evidence, không thay thế run lịch
+  sử `20261011T105236Z-105096`.
+- Contract probe commit `7018107` và tài liệu commit `01e14d1` được ghi trong
+  README, G1 acceptance, replay/test matrix, runtime evidence và manifest.
+- Stateful replay vẫn chỉ được gọi `reproduced_request_only` khi chưa có đủ
+  parent transition chain; không tự đổi thành full-chain PASS.

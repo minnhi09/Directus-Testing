@@ -29,7 +29,7 @@ replay.
 | CRUD, query, quan hệ và phân quyền đạt oracle | Scenario `20261011T105231Z-104612`, S1–S6 | Đạt |
 | Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
-| Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`, replay `20261011T105242Z-105524`, contract probe `20261011T130227Z-139257` | Đạt có finding |
+| Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`; recheck `20261011T130457Z-141013`; replay `20261011T105242Z-105524`; contract probe `20261011T130227Z-139257` | Đạt có finding |
 | Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, run `20261011T123728Z-131951` và `20261011T123735Z-132524` | Final interaction được ghi `reproduced_request_only`; full transition chain còn unresolved |
 | README, metadata và artifact không chứa secret | README, manifest, run metadata, static/secret scan | Đạt |
 | Review chéo thành viên | Không còn là gate G1 | Không áp dụng |
@@ -40,8 +40,10 @@ replay.
 G1 hiện được ghi nhận là **đạt baseline kỹ thuật, có phát hiện chưa đóng**.
 Trạng thái này không có nghĩa mọi campaign đều xanh:
 
-- Invariant có `9 passed`, `1 failed`; `aggregate-query-robustness` tái hiện
-  HTTP 500 với `fields=&aggregate={"foo":1}`.
+- Invariant baseline có `9 passed`, `1 failed`; recheck mới nhất có `9 passed`,
+  `2 failed`, `0 blocked`. `aggregate-query-robustness` tiếp tục tái hiện HTTP
+  500 với `fields=&aggregate={"foo":1}`; case contract probe ghi bốn schema
+  candidate trong một failure có chủ đích.
 - Raw và guided đã chạy đủ seed `101`, `202`, `303`, đủ 10/10 operation và
   restore PASS, nhưng kết thúc `failed_or_incomplete` do check failure và
   `max_time`. Các exit code và report được giữ nguyên.
