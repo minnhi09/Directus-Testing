@@ -48,6 +48,16 @@ NUL) được replay đúng ở run `20261011T073559Z-43850`. Lần chạy trư�
 `7DpEST` ở `20261011T073501Z-43256` bị `mismatch` do harness làm mất byte NUL;
 đó là lỗi harness đã sửa, không phải kết luận về Directus.
 
+Các case guided đại diện được replay sau pilot:
+
+- `AmXHZz` (`20261011T075613Z-48561`) và `jShXuk` (`20261011T075622Z-49153`)
+  đều tái hiện response `200` có `data` object trong khi schema mô tả array;
+  đây là một nhóm schema/contract candidate.
+- `VllBgh` (`20261011T075632Z-49739`) tái hiện `500` trên GET query. Reproducer
+  tối giản đã kiểm tra là `fields=&aggregate={"foo":1}`; log Directus ghi
+  `TypeError: fields is not iterable`. Đây là candidate cần đối chiếu upstream,
+  không được ghi nhận tự động thành product defect.
+
 ## Artefact và phân loại
 
 Mỗi replay ghi `metadata.json`, `run.log`, `invariant-report.json`, các response body đã chọn và `reproducer-<case>.json` khi failed/blocked. Reproducer không chứa credential; login response không ghi ra file.

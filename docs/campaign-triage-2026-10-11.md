@@ -25,6 +25,20 @@ Pilot sau hai commit trên cũng xác nhận đường chạy độc lập của
 Doctor sau pilot `20261011T074209Z-45910` PASS; image digest, fixture map và
 authenticated health vẫn đúng baseline.
 
+Replay sau pilot trên HEAD `6fe1865`:
+
+| Case/run | Request | Kết quả | Phân loại hiện tại |
+|---|---|---|---|
+| `AmXHZz` / `20261011T075613Z-48561` | `POST /items/qa_articles` | expected/actual `200`; `data` là object, restore PASS | Schema/contract candidate |
+| `jShXuk` / `20261011T075622Z-49153` | `POST /items/qa_categories` | expected/actual `200`; `data` là object, restore PASS | Schema/contract candidate |
+| `VllBgh` / `20261011T075632Z-49739` | `GET /items/qa_articles` với query aggregate/deep fuzz | expected/actual `500`, restore PASS | Product robustness candidate; kèm schema permissive |
+
+Các reproducer nằm trong từng thư mục run tương ứng dưới
+`artifacts/runs/<run_id>/`, không chứa credential. Hai case POST tái hiện cùng
+một mẫu: response của Directus là một item object nhưng response schema export
+cho status `200` mô tả `data` là array. Đây là lỗi/thiếu sót hợp đồng cần đối
+chiếu với semantics POST object-vs-array; chưa gọi là lỗi sản phẩm.
+
 ## Phân loại theo nhóm nguyên nhân
 
 | Nhóm | Raw | Guided | Đánh giá hiện tại |
@@ -61,13 +75,44 @@ authenticated health vẫn đúng baseline.
   PASS.
 - Kết luận: lỗi thuộc harness đã được sửa; không phải product defect.
 
+### `AmXHZz` và `jShXuk`
+
+- `AmXHZz`: `POST /items/qa_articles` với body hợp lệ từ guided example; Directus
+  tạo item và trả `200` với `data` object. Schema snapshot guided hash
+  `dc3f057a...` yêu cầu array.
+- `jShXuk`: cùng hiện tượng trên `POST /items/qa_categories`.
+- Replay lần lượt ở `20261011T075613Z-48561` và `20261011T075622Z-49153`, cả hai
+  đều `status=reproduced`, request exit `0` và restore exit `0`.
+- Kết luận: gộp thành một nhóm schema/contract candidate về response shape,
+  không đếm thành hai product defect độc lập.
+
+### `VllBgh`
+
+- Replay ở `20261011T075632Z-49739` trả `500` giống campaign và restore fixture
+  PASS. Log Directus lúc `07:56:37` ghi `TypeError: fields is not iterable` tại
+  `extractPathsFromQuery` trong module xử lý permission AST.
+- Thu gọn trên cùng baseline cho thấy `GET /items/qa_articles?fields=&aggregate={"foo":1}`
+  vẫn trả `500` với `INTERNAL_SERVER_ERROR`; các biến thể `aggregate={}` và
+  `aggregate={"count":["id"]}` trả `200`.
+- OpenAPI hiện mô tả `aggregate` là object có các property được biết nhưng không
+  đặt `additionalProperties: false`, nên key lạ và giá trị số vẫn lọt qua schema
+  JSON. Vì vậy đây là **schema omission + product robustness candidate**: schema
+  cần giới hạn aggregate function, còn API không nên phát sinh 500 cho input
+  được schema chấp nhận. Chưa kết luận product defect cho đến khi đối chiếu
+  upstream hoặc xác nhận contract chính thức.
+- Reproducer đầy đủ giữ nguyên trong
+  `artifacts/runs/20261011T075632Z-49739/reproducer-schemathesis-VllBgh.json`;
+  request thu gọn ở trên là bằng chứng local bổ sung, không dùng credential.
+
 ## Chưa được kết luận
 
-- Các `ServerError` và `JsonSchemaError` trong guided stateful campaign chưa có
-  reproducer độc lập đủ precondition.
+- Các `ServerError` và `JsonSchemaError` khác trong guided stateful campaign chưa
+  có reproducer độc lập đủ precondition; `AmXHZz`, `jShXuk` và `VllBgh` là ba case
+  đại diện đã replay được ở trên.
 - Các status/content-type ngoài schema cần đối chiếu schema raw, overlay và
   hành vi đã pin trước khi tạo defect.
-- Không có defect sản phẩm Directus nào được xác nhận trong checkpoint này.
+- Chưa có defect sản phẩm Directus nào được xác nhận chính thức; `VllBgh` là
+  candidate có stack trace và reproducer tối giản, cần bước đối chiếu upstream.
 
 ## Điều kiện tiếp theo
 

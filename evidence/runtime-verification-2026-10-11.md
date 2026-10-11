@@ -124,3 +124,24 @@ Pilot xác nhận sau sửa đổi:
 - Doctor `20261011T074349Z-47097`: PASS; probe `/license` báo
   `source=null`, `status=active`, `custom_permission_rules_enabled=false` và
   không ghi giá trị license/token.
+
+## Replay triage tiếp theo trên HEAD `6fe1865`
+
+| Run | Lệnh/kết quả thực tế |
+|---|---|
+| `20261011T075613Z-48561` | `./lab.sh replay AmXHZz`: `reproduced`; POST article expected/actual `200`, response `data` object thay vì array theo schema; restore PASS |
+| `20261011T075622Z-49153` | `./lab.sh replay jShXuk`: `reproduced`; POST category expected/actual `200`, response `data` object thay vì array theo schema; restore PASS |
+| `20261011T075632Z-49739` | `./lab.sh replay VllBgh`: `reproduced`; GET query expected/actual `500`, restore PASS |
+
+Triage không đếm hai response-shape thành hai defect: chúng cùng một nhóm
+schema/contract candidate. Với `VllBgh`, log container ở thời điểm replay ghi
+`TypeError: fields is not iterable` tại `extractPathsFromQuery`. Phép thu gọn
+chỉ GET trên cùng fixture cho thấy `fields=&aggregate={"foo":1}` vẫn trả
+`500 INTERNAL_SERVER_ERROR`, trong khi `aggregate={}` và
+`aggregate={"count":["id"]}` trả `200`. Schema OpenAPI hiện không cấm
+`additionalProperties` của object `aggregate`, nên kết quả được phân loại là
+schema omission + product robustness candidate; chưa kết luận product defect.
+
+Các reproducer JSON, request đầy đủ và metadata nằm trong ba thư mục artifact
+run nêu trên. Credential/token không được ghi vào report. Đây là bằng chứng local
+trên một máy, không phải kiểm tra chéo hay xác nhận upstream.

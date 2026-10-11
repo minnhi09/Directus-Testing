@@ -143,4 +143,8 @@ validation:
   guided_pilot_after_replay_fix: failed_10_operations_stateful_restore_passed_run_20261011T074112Z-45270
   doctor_after_pilot: passed_run_20261011T074209Z-45910
   doctor_license_probe: passed_default_entitlement_run_20261011T074349Z-47097
+  replay_guided_post_article_shape: reproduced_schema_candidate_run_20261011T075613Z-48561_case_AmXHZz
+  replay_guided_post_category_shape: reproduced_schema_candidate_run_20261011T075622Z-49153_case_jShXuk
+  replay_guided_query_500: reproduced_product_robustness_candidate_run_20261011T075632Z-49739_case_VllBgh
+  replay_guided_query_500_minimal: 'GET /items/qa_articles?fields=&aggregate={"foo":1} -> 500; log TypeError fields is not iterable'
   g1: blocked_license_and_no_independent_second_machine
