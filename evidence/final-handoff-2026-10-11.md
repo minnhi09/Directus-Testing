@@ -19,6 +19,7 @@ candidate được giữ nguyên để triage.
 |---|---|---|
 | Doctor | `20261011T134705Z-161373` dưới `a153e99` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true`, digest đúng manifest |
 | Doctor recheck | `20261011T141416Z-173791` dưới `8a0d042` | PASS; stack, fixture map, pinned images, authenticated health và license active; exit `0` |
+| Doctor latest recheck | `20261011T142245Z-177107` dưới `9d26617` | PASS; Directus/DB/runner, fixture map, pinned image digest, authenticated health và license active; exit `0` |
 | Replay status oracle | `a713481`; final recheck dưới HEAD `916152e`: `20261011T132550Z-151921`, `20261011T132604Z-152556` | Positive `tFjhQT` không còn false-positive (`200→403` là mismatch); `Q8K5Nh` `403→403` reproduced; restore PASS |
 | Full-chain stateful replay | `3960f55`; `20261011T133817Z-157078`, `20261011T133626Z-155874` | `aZmz3k` full-chain reproduced; `Ag8Csb` bị dừng đúng vì precondition pool không khớp, restore PASS |
 | Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |

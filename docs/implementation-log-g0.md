@@ -356,3 +356,14 @@ thái để làm đẹp.
   recheck trước.
 - Giữ nguyên report, log, metadata, exit code và phân loại finding. Đây là
   recheck invariant ngắn, không phải campaign raw/guided mới.
+
+## Doctor recheck trên HEAD hiện tại — 2026-10-11
+
+- `./lab.sh doctor` ở run `20261011T142245Z-177107`, dưới harness
+  `9d26617758f7c069aab48908d074014b4266ce05`, PASS với exit `0`.
+- Directus `12.5.0`, PostgreSQL `16`, Schemathesis `4.30.0`, ba image digest,
+  fixture map, authenticated health và license `source=env/status=active` với
+  `custom_permission_rules_enabled=true` đều được xác minh; secret vẫn được
+  redacted.
+- Đây là kiểm tra chẩn đoán ngắn trên HEAD mới, không phải campaign raw/guided
+  hoặc invariant recheck mới; các failure đã biết giữ nguyên.

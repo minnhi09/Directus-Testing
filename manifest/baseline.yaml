@@ -186,7 +186,7 @@ validation:
   current_final_doctor_license_recheck: passed_run_20261011T130338Z-139934
   current_final_doctor_latest: passed_run_20261011T134705Z-161373
   current_final_doctor_harness_sha: a153e9920febc9801b3556482b15bc16cd5b3ad6
-  current_final_doctor_runtime_recheck_latest: passed_run_20261011T141416Z-173791_harness_8a0d042
+  current_final_doctor_runtime_recheck_latest: passed_run_20261011T142245Z-177107_harness_9d26617
   current_scenarios_runtime_recheck_latest: passed_6_of_6_run_20261011T141418Z-174367_harness_8a0d042
   current_v2_failure_triage: evidence/failure-triage-v2-2026-10-11.md
   current_v2_representative_replays: 8_sequential_replays_restore_passed_with_2_stateful_mismatches

@@ -214,8 +214,9 @@ Run doctor mới nhất dưới HEAD `a153e99`:
 | `20261011T141416Z-173791` | `./lab.sh doctor` dưới HEAD `8a0d042` | PASS; Docker/Compose, project `r06-k05`, fixture map, pinned images, authenticated health và license `source=env/status=active`, `custom_permission_rules_enabled=true`; exit `0` |
 | `20261011T141418Z-174367` | `./lab.sh test scenarios` dưới HEAD `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
 | `20261011T141918Z-175886` | `./lab.sh test invariants` dưới HEAD `8a0d042` | `9 passed`, `2 failed`, `0 blocked`; known aggregate 500 và contract candidate được tái kiểm tra, exit `1` được giữ |
+| `20261011T142245Z-177107` | `./lab.sh doctor` dưới HEAD `9d26617` | PASS; Directus/DB/runner, fixture map, ba pinned image digest, authenticated health và license `source=env/status=active`, `custom_permission_rules_enabled=true`; exit `0` |
 
-Ba run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
+Bốn run trên là recheck ngắn sau các replay `6IayFG`, `6THjzP` và `QPKZ6w`;
 không chạy lại campaign raw/guided dài. Các failure invariant/campaign đã biết
 vẫn giữ nguyên artifact và exit code riêng.
 
