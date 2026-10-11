@@ -74,6 +74,9 @@ lab_configuration:
 
 license_observed:
   endpoint: /license
+  source: null
+  status: active
+  license_key_configured: false
   custom_permission_rules_enabled: false
   effect: reader_article_filter_and_field_restriction_not_available
 
@@ -126,4 +129,14 @@ validation:
   final_scenarios_recheck: partial_3_passed_3_blocked_run_20261011T070430Z-36257
   final_invariants_recheck: partial_7_passed_2_blocked_run_20261011T070437Z-36709
   final_schema_export_recheck: passed_run_20261011T070445Z-37115
+  license_configuration_support: implemented_commit_c7cc8d7_verified_run_20261011T073328Z-39520
+  current_seed_recheck: failed_license_precondition_run_20261011T073335Z-40109
+  current_smoke_recheck: failed_reader_403_run_20261011T073350Z-40854
+  current_schema_export_recheck: passed_run_20261011T073356Z-41277
+  current_scenarios_recheck: partial_3_passed_3_blocked_run_20261011T073401Z-41735
+  current_invariants_recheck: partial_7_passed_2_blocked_run_20261011T073406Z-42194
+  replay_undefined_status: reproduced_run_20261011T073454Z-42697
+  replay_binary_body_before_fix: mismatch_harness_bug_run_20261011T073501Z-43256
+  replay_binary_body_after_fix: reproduced_run_20261011T073559Z-43850
+  replay_fix_commit: 686f4d1
   g1: blocked_license_and_no_independent_second_machine

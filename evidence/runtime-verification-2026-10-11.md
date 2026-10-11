@@ -88,3 +88,27 @@ Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261
 | guided | cùng run | 303 | 10/10 | 5.899 | 62 | 200 | PASS | `max_time`, runner 1 |
 
 Schema hash raw của cả ba seed là `433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e`; guided overlay dùng hash `dc3f057aefb095c4c51ddb712de33d762176d0472f8e7af313522b0551824d7e`. Harness SHA trong metadata của cả hai run là `57d4c2dd25e6c99f128de0336e88e918a2deee79`.
+
+## Recheck sau khi tiếp tục triển khai
+
+Sau commit `c7cc8d7`, Compose nhận biến môi trường tùy chọn `LICENSE_KEY` nhưng
+`config/lab.env` hiện không có khóa license. Run `20261011T073328Z-39520` xác
+nhận `doctor` PASS, còn `/license` trả `source=null`, `status=active` và
+`custom_permission_rules_enabled.default=false`.
+
+Các run tiếp theo ghi nhận chính xác blocker và phần độc lập:
+
+| Run | Lệnh | Kết quả |
+|---|---|---|
+| `20261011T073335Z-40109` | `./lab.sh seed` | Schema/fixture/actor idempotent đạt; exit 1 tại license precondition |
+| `20261011T073350Z-40854` | `./lab.sh smoke` | Field validation và `SET NULL` PASS; Reader article GET HTTP 403 |
+| `20261011T073356Z-41277` | `./lab.sh export-schema` | PASS; hash actor không đổi |
+| `20261011T073401Z-41735` | `./lab.sh test scenarios` | S1–S3 passed, S4–S6 blocked |
+| `20261011T073406Z-42194` | `./lab.sh test invariants` | 7 passed, 0 failed, 2 blocked |
+| `20261011T073454Z-42697` | `./lab.sh replay UETNPW` | PASS/reproduced, actual 204, restore PASS |
+| `20261011T073501Z-43256` | `./lab.sh replay 7DpEST` trước sửa | Mismatch do replay làm mất byte NUL; restore PASS |
+| `20261011T073559Z-43850` | `./lab.sh replay 7DpEST` sau `686f4d1` | PASS/reproduced, expected/actual 400, restore PASS |
+
+Mismatch của `7DpEST` là lỗi harness đã được sửa trong commit `686f4d1`; không
+được tính là lỗi Directus. Phân loại campaign chi tiết nằm tại
+[`docs/campaign-triage-2026-10-11.md`](../docs/campaign-triage-2026-10-11.md).

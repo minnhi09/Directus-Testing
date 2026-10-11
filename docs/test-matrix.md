@@ -35,7 +35,7 @@ Mỗi seed tạo thư mục `artifacts/runs/<run_id>/<profile>/seed-<seed>/` v�
 | guided / cùng run | 202 | 10/10 | 5.874 | 65 | 176 | PASS | `failed`, `max_time`, exit 1 |
 | guided / cùng run | 303 | 10/10 | 5.899 | 62 | 200 | PASS | `failed`, `max_time`, exit 1 |
 
-Các số unique failure là số của từng seed, không cộng thành số defect. Report cần triage theo request/chuỗi stateful cụ thể; `500`, response ngoài schema, status/content type ngoài hợp đồng và unsupported method hiện là phát hiện chưa kết luận. Raw dùng schema hash `433cb61a...`; guided dùng overlay hash `dc3f057a...`, được lưu tách khỏi schema raw.
+Các số unique failure là số của từng seed, không cộng thành số defect. Report cần triage theo request/chuỗi stateful cụ thể; `500`, response ngoài schema, status/content type ngoài hợp đồng và unsupported method hiện là phát hiện chưa kết luận. Raw dùng schema hash `433cb61a...`; guided dùng overlay hash `dc3f057a...`, được lưu tách khỏi schema raw. Triage và replay đại diện được ghi tại [`docs/campaign-triage-2026-10-11.md`](campaign-triage-2026-10-11.md); chưa có product defect nào được xác nhận.
 
 ## Sáu scenario demo
 

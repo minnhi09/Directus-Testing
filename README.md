@@ -2,7 +2,7 @@
 
 Đây là harness kiểm thử REST API Directus theo schema, tập trung vào CRUD, query, quyền và invariant nghiệp vụ của hai collection `qa_categories` và `qa_articles`.
 
-Trạng thái hiện tại là harness đã có đường chạy thật trên nhánh `feat/g1-shared-interface`; phần nền trước đó đã được tích hợp vào `main` tại merge commit `8d85949`. G1 chưa được tuyên bố. Directus đang báo `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader. Campaign đầy đủ `raw` và `guided` đã chạy đủ ba seed trên máy hiện tại, nhưng runner kết thúc `failed` vì các check phát hiện; restore fixture đều đạt. Kiểm tra độc lập trên máy thứ hai và review chéo của thành viên vẫn chưa có.
+Trạng thái hiện tại là harness đã có đường chạy thật trên nhánh `feat/g1-shared-interface`; phần nền trước đó đã được tích hợp vào `main` tại merge commit `8d85949`. G1 chưa được tuyên bố. Directus đang báo `source=null` và `custom_permission_rules_enabled=false`, nên chưa tạo được policy lọc/ẩn field cho Reader. Campaign đầy đủ `raw` và `guided` đã chạy đủ ba seed trên máy hiện tại, nhưng runner kết thúc `failed` vì các check phát hiện; restore fixture đều đạt. Kiểm tra độc lập trên máy thứ hai và review chéo của thành viên vẫn chưa có. Triage campaign và replay đại diện nằm tại [`docs/campaign-triage-2026-10-11.md`](docs/campaign-triage-2026-10-11.md).
 
 ## Chuẩn bị lab
 
