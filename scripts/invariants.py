@@ -669,27 +669,57 @@ class Lab:
         if not self.has_operation("GET", path):
             case.block("reader GET article xuất hiện trong schema", "operation absent", "không gửi request quyền bị cấm")
             return case
-        request_path = path + self.path_params(
-            {"filter[status][_eq]": "published", "limit": "-1", "fields": "id,title,status,internal_notes"}
-        )
-        response = self.api.request("GET", request_path, self.reader_token)
-        case.step("GET", request_path, response, "2xx, published-only, không internal_notes")
-        rows = response.body.get("data", []) if isinstance(response.body, dict) else []
         expected_ids = {
             value
             for key, value in self.fixture_map["fixtures"]["qa_articles"].items()
             if "_published_" in key
         }
-        actual_ids = {row.get("id") for row in rows if isinstance(row, dict)}
-        if response.status < 200 or response.status >= 300:
-            case.fail("reader đọc published article", str(response.status), "reader operation có nhưng request thất bại")
-        elif actual_ids != expected_ids or any(row.get("status") != "published" for row in rows):
+
+        allowed_path = path + self.path_params(
+            {"filter[status][_eq]": "published", "limit": "-1", "fields": "id,title,status"}
+        )
+        allowed = self.api.request("GET", allowed_path, self.reader_token)
+        case.step("GET", allowed_path, allowed, "2xx, đúng published fixture và chỉ field được phép")
+        allowed_rows = allowed.body.get("data", []) if isinstance(allowed.body, dict) else []
+        actual_ids = {row.get("id") for row in allowed_rows if isinstance(row, dict)}
+        if allowed.status < 200 or allowed.status >= 300:
+            case.fail("reader đọc published article", str(allowed.status), "reader operation có nhưng request được phép thất bại")
+            return case
+        if actual_ids != expected_ids or any(row.get("status") != "published" for row in allowed_rows):
             case.fail("reader chỉ nhận sáu published fixture", repr(actual_ids), "reader trả draft hoặc sai tập dữ liệu")
-        elif any("internal_notes" in row for row in rows if isinstance(row, dict)):
-            case.fail("internal_notes không xuất hiện", "field present", "private field bị lộ")
+            return case
+        if any("internal_notes" in row for row in allowed_rows if isinstance(row, dict)):
+            case.fail("internal_notes không xuất hiện trong projection được phép", "field present", "private field bị lộ")
+            return case
+
+        restricted_path = path + self.path_params(
+            {
+                "filter[status][_eq]": "published",
+                "limit": "-1",
+                "fields": "id,title,status,internal_notes",
+            }
+        )
+        restricted = self.api.request("GET", restricted_path, self.reader_token)
+        case.step(
+            "GET",
+            restricted_path,
+            restricted,
+            "non-2xx hoặc 2xx nhưng không có internal_notes",
+        )
+        restricted_rows = restricted.body.get("data", []) if isinstance(restricted.body, dict) else []
+        if restricted.status == 0:
+            case.fail("projection private field có response HTTP", "network error", restricted.error or "network error")
+        elif 200 <= restricted.status < 300 and any(
+            "internal_notes" in row for row in restricted_rows if isinstance(row, dict)
+        ):
+            case.fail("internal_notes không bị lộ qua projection", "field present", "private field bị lộ")
         else:
-            case.expected = "published-only và internal_notes bị ẩn"
-            case.actual = f"rows={len(rows)}"
+            case.expected = "published-only; private projection bị từ chối hoặc field bị loại"
+            if 200 <= restricted.status < 300:
+                case.actual = f"allowed_rows={len(allowed_rows)}, restricted_projection={restricted.status}, field_omitted=true"
+            else:
+                case.actual = f"allowed_rows={len(allowed_rows)}, restricted_projection={restricted.status}, no_private_data=true"
+            case.details = "Reader được kiểm tra bằng projection hợp lệ trước; Directus có thể từ chối projection chứa field cấm."
         return case
 
     def case_reader_write(self) -> Case:
