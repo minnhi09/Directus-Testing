@@ -1,0 +1,88 @@
+# Bàn giao checkpoint cuối local — R06 + K05
+
+Ngày ghi nhận: `2026-10-11`
+Phạm vi: baseline local `r06-k05`, Directus `12.5.0`, PostgreSQL `16`,
+Schemathesis `4.30.0`. Đây là kết quả quan sát được trên máy hiện tại; không
+phải bằng chứng chạy trên máy thứ hai.
+
+## Kết luận ngắn
+
+G1 đạt baseline kỹ thuật với findings chưa đóng. Stack, seed, schema actor,
+scenario nghiệp vụ, Reader policy và pipeline raw/guided đều có bằng chứng
+chạy thực tế. Không được diễn giải kết luận này thành “mọi test PASS”: invariant
+recheck vẫn exit `1`, hai campaign đầy đủ vẫn `failed_or_incomplete`, và các
+candidate được giữ nguyên để triage.
+
+## Bằng chứng runtime mới nhất
+
+| Hạng mục | Run | Kết quả thực tế |
+|---|---|---|
+| Doctor | `20261011T130338Z-139934` | PASS; Directus/DB/runner sẵn sàng, license active, `custom_permission_rules_enabled=true` |
+| Contract probe | `20261011T130227Z-139257` | Exit `1` có chủ đích; ghi 4 schema candidate, cleanup dữ liệu tạm PASS |
+| Invariant recheck | `20261011T130457Z-141013` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
+| Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
+| Raw campaign | `20261011T085034Z-76481` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
+| Guided campaign | `20261011T095117Z-89079` | Đủ seed `101/202/303`, đủ 10/10 operation, restore PASS; runner exit `1` do budget/check failure |
+
+Artifact chi tiết nằm cục bộ tại `artifacts/runs/<run_id>/`; các thư mục này
+được Git ignore. Run report phải được đọc cùng `metadata.json`, `run.log`,
+schema hash, fixture version và trạng thái restore; không chia sẻ credential
+hoặc response nhạy cảm.
+
+## Phân loại finding
+
+| Nhóm | Bằng chứng | Phân loại hiện tại |
+|---|---|---|
+| Aggregate `{"foo":1}` | `./lab.sh replay aggregate-query-robustness`, run `20261011T105242Z-105524` | Schema omission + product robustness candidate; HTTP 500 chưa phải product defect đã xác nhận |
+| POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
+| `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
+| DELETE detail trả `204` | Contract probe | Schema response-map candidate |
+| Stateful replay | `64e88f9`, run `20261011T123728Z-131951` | Chỉ `reproduced_request_only`; full parent transition chain còn unresolved |
+| Check failures campaign | Raw/guided reports | Occurrence để triage, không phải defect count; không đổi exit code để làm đẹp |
+
+Contract probe được triển khai ở commit `7018107` và tài liệu hóa ở commit
+`01e14d1`. Report probe ghi `schema_candidates=4`, không che runtime behavior.
+
+## Tái lập an toàn
+
+```bash
+cp config/lab.env.example config/lab.env
+chmod 600 config/lab.env
+# điền credential và LICENSE_KEY cục bộ; không commit config/lab.env
+./lab.sh doctor
+./lab.sh up
+./lab.sh seed
+./lab.sh smoke
+./lab.sh test scenarios
+./lab.sh export-schema
+./lab.sh test invariants
+./lab.sh replay aggregate-query-robustness
+./lab.sh replay contract-schema-candidates
+```
+
+`invariants` và hai replay có thể trả exit `1` đúng theo finding hiện tại. Đó
+là kết quả mong đợi của regression/contract probe, không phải lý do để dùng
+`|| true`, skip hoặc nới assertion. Dùng `./lab.sh down` để dừng và giữ volume;
+chỉ dùng `./lab.sh reset` khi muốn xóa đúng lab `r06-k05` sau safety preflight.
+
+## Git và giới hạn bàn giao
+
+HEAD local là `5a181c1` trên branch `feat/g1-shared-interface`, chưa push. Các
+checkpoint gần nhất đều do Lành commit với `minnhi09 <lanhdtm264@gmail.com>`;
+không thêm co-author vì chưa có bằng chứng đóng góp thực tế trong các thay đổi
+này. Bốn file untracked có trước được bảo toàn và `mnhy/` vẫn ignored, không
+được đưa vào Git.
+
+Các việc chưa đóng không được che giấu:
+
+- raw/guided full campaign cần triage tiếp nếu muốn phân tích hết check failure;
+- aggregate HTTP 500 cần reproducer/source/upstream evidence thêm trước khi
+  gọi là product defect;
+- full stateful replay chỉ nên triển khai khi artifact có đủ parent transition
+  chain và oracle mapping; hiện tại phải giữ trạng thái unresolved;
+- không có bằng chứng review chéo hoặc chạy trên máy thứ hai trong checkpoint
+  này; hai nội dung đó không còn là gate G1 nội bộ, nhưng hướng dẫn dựng máy
+  sạch và peer evaluation cuối kỳ của đề bài vẫn được giữ trong tài liệu.
+
+Kiểm tra cuối sau commit: Bash syntax, ShellCheck, Python compile, YAML parse,
+`git diff --check` và high-confidence tracked secret scan đều PASS.

@@ -106,6 +106,7 @@ Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm li
 - [Replay và reproducer](docs/replay-cases.md)
 - [Kịch bản demo](docs/demo.md)
 - [Nhật ký triển khai và hướng dẫn đọc code](docs/implementation-log-g0.md)
+- [Bản bàn giao checkpoint cuối local](evidence/final-handoff-2026-10-11.md)
 - [Manifest baseline](manifest/baseline.yaml)
 - [AGENTS.md](AGENTS.md) — quy tắc local tại máy làm việc; không thuộc checkpoint tracked hiện tại
 
