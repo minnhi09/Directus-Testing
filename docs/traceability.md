@@ -22,8 +22,8 @@ license; kết quả mới được ghi ở cuối tài liệu và trong
 
 | Nhóm | Bằng chứng hiện tại | Kết luận thực tế |
 |---|---|---|
-| A–C | `doctor` latest `20261011T162426Z-209264`, seed `20261011T084845Z-72361`, schema export latest `20261011T162431Z-210275` | Directus/DB/runner healthy; license active; schema actor v2 có 14/14/6/0 operation |
-| D–E | scenarios latest `20261011T162433Z-210740`, invariant latest `20261011T162436Z-211214` | S1–S6 PASS; invariant 9 PASS/2 failure/0 blocked; aggregate 500 và contract candidates vẫn giữ failure |
+| A–C | `doctor` latest `20261011T165804Z-221010`, seed `20261011T084845Z-72361`, schema export latest `20261011T171009Z-223973` | Directus/DB/runner healthy; license active; schema actor v2 có 14/14/6/0 operation |
+| D–E | scenarios latest `20261011T171054Z-225602`, invariant latest `20261011T162436Z-211214` | S1–S6 PASS; S6 PATCH `403` và read-back `200`; invariant 9 PASS/2 failure/0 blocked; aggregate 500 và contract candidates vẫn giữ failure |
 | F | raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Mỗi profile đủ 3 seed và 10/10 operation; report/coverage/restore có, runner exit 1 do budget/check |
 | G | aggregate recheck `20261011T163231Z-213262` dưới `3c40339`, contract probe `20261011T163234Z-213685` dưới `3c40339` | Candidate 500 tái hiện, hai control aggregate trả 200; bốn contract candidate được ghi và cleanup đạt; chưa xác nhận product defect |
 | H | `manifest/baseline.yaml`, `config/lab.env.example`, default fixture v2, [`docs/scope-review-r06-k05.md`](scope-review-r06-k05.md) | Clone máy mới dùng v2 mặc định; license vẫn phải cấu hình ngoài Git; khả năng tái lập được mô tả, không ghi giả một run máy thứ hai |

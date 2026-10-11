@@ -86,10 +86,14 @@ Recheck trước final `20261011T142455Z-178114` dưới harness `3811b44` cũng
 `20261011T035341Z-11908` vẫn được giữ như bằng chứng lịch sử S1–S3 passed,
 S4–S6 blocked trước license.
 
-Final verification mới nhất `20261011T162433Z-210740` dưới harness `fd28ef1`
-tiếp tục ghi `6 passed`, `0 failed`, `0 blocked`, exit `0`. Invariant cùng
+Final verification mới nhất `20261011T171054Z-225602` dưới harness `fdc750e`
+ghi `6 passed`, `0 failed`, `0 blocked`, exit `0`; S6 ghi đúng PATCH Reader
+`403`, read-back Editor `200` và dữ liệu không đổi. Run trung gian
+`20261011T171014Z-224445` dưới `594785e` được giữ làm artifact lịch sử nhưng
+không dùng làm bằng chứng cuối vì report ghi nhầm status read-back `200` cho
+PATCH; commit `fdc750e` sửa việc lưu status trước read-back. Invariant cùng
 checkpoint `20261011T162436Z-211214` giữ `9 passed`, `2 failed`, `0 blocked`,
-exit `1`; run `20261011T145912Z-189309` được giữ làm lịch sử.
+exit `1`; run `20261011T145912Z-189799` được giữ làm lịch sử.
 
 ## Positive operation acceptance
 

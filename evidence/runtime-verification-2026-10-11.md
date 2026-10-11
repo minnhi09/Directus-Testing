@@ -102,9 +102,9 @@ regression mới và được giữ nguyên trong artifact.
 ### Post-documentation final verification dưới HEAD `fd28ef1`
 
 Sau các commit tài liệu demo/G1, chạy lại chuỗi kiểm tra ngắn để xác minh
-interface và baseline không lệch. Metadata của cả run ghi fixture
-`r06-k05-v2`, harness SHA `fd28ef1aa80eadf03a838eaa4246bef1a1890570` và
-working tree `dirty` chỉ vì các file local/untracked có sẵn:
+interface và baseline không lệch. Mỗi metadata ghi fixture `r06-k05-v2`,
+baseline image pin và trạng thái working tree; harness SHA được ghi theo từng
+run bên dưới. `dirty` chỉ do các file local/untracked có sẵn.
 
 | Run | Lệnh | Kết quả |
 |---|---|---|
@@ -115,10 +115,15 @@ working tree `dirty` chỉ vì các file local/untracked có sẵn:
 | `20261011T162431Z-210275` | `./lab.sh export-schema` | PASS, exit `0`; actor `14/14/6/0`, bốn hash không đổi |
 | `20261011T162433Z-210740` | `./lab.sh test scenarios` | S1–S6 passed, 0 failed, 0 blocked; exit `0` |
 | `20261011T162436Z-211214` | `./lab.sh test invariants` | 9 passed, 2 failed, 0 blocked; exit `1`, đúng aggregate 500 và 4 contract candidate |
+| `20261011T171009Z-223973` | `./lab.sh export-schema` | PASS, exit `0`; actor `14/14/6/0`, bốn hash không đổi; harness `594785e` |
+| `20261011T171014Z-224445` | `./lab.sh test scenarios` | PASS, exit `0`, nhưng report trung gian ghi nhầm S6 actual `200` của read-back cho PATCH; không dùng làm bằng chứng cuối |
+| `20261011T171054Z-225602` | `./lab.sh test scenarios` | PASS, exit `0`; S1–S6 đạt, S6 PATCH `403`, read-back `200`, target không đổi; harness `fdc750e` |
 
-Các run mới không sửa assertion hoặc expected result; chúng chỉ xác nhận lại
-checkpoint sau thay đổi tài liệu. Locale warning `LC_ALL=en_US.UTF-8` trên host
-vẫn xuất hiện nhưng không ảnh hưởng kết quả lệnh.
+Run `171014` phát hiện lỗi ghi nhận trong `scenario_reader_write`: biến status
+của PATCH bị ghi đè bởi GET read-back. Commit `fdc750e` lưu riêng
+`denied_status`; run `171054` là bằng chứng sau sửa. Không thay đổi policy,
+expected oracle hoặc kết quả failure khác. Locale warning `LC_ALL=en_US.UTF-8`
+trên host vẫn xuất hiện nhưng không ảnh hưởng kết quả lệnh.
 
 ### Final targeted replays dưới HEAD `3c40339`
 

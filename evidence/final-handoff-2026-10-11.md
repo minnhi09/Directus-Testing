@@ -20,9 +20,9 @@ candidate được giữ nguyên để triage.
 ## Bằng chứng runtime theo checkpoint
 
 Bảng dưới giữ cả lịch sử để truy vết. Các dòng có nhãn `Post-documentation
-final`, `Raw pilot final` và `Guided pilot final` là checkpoint mới nhất tương
-ứng; các dòng ghi `lịch sử` hoặc `trước final` không được đọc như bằng chứng
-latest hiện hành.
+final`, `Post-status-fix`, `Raw pilot final` và `Guided pilot final` là
+checkpoint mới nhất tương ứng; các dòng ghi `lịch sử`, `trước final` hoặc
+`trung gian` không được đọc như bằng chứng latest hiện hành.
 
 | Hạng mục | Run | Kết quả thực tế |
 |---|---|---|
@@ -52,6 +52,9 @@ latest hiện hành.
 | Post-documentation final schema | `20261011T162431Z-210275` dưới `fd28ef1` | PASS; actor `14/14/6/0`, hash không đổi; exit `0` |
 | Post-documentation final scenarios | `20261011T162433Z-210740` dưới `fd28ef1` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
 | Post-documentation final invariants | `20261011T162436Z-211214` dưới `fd28ef1` | `9 passed`, `2 failed`, `0 blocked`; hai finding đã biết giữ nguyên; exit `1` |
+| Post-status-fix schema export | `20261011T171009Z-223973` dưới `594785e` | PASS; actor `14/14/6/0`, bốn hash không đổi; exit `0` |
+| Scenario report trung gian | `20261011T171014Z-224445` dưới `594785e` | S1–S6 PASS nhưng S6 report ghi nhầm read-back `200` cho PATCH; giữ artifact, không dùng làm bằng chứng cuối |
+| Post-status-fix scenarios | `20261011T171054Z-225602` dưới `fdc750e` | S1–S6 PASS; S6 PATCH `403`, read-back `200`, target không đổi; exit `0` |
 | Raw pilot final | `20261011T164716Z-216864` dưới `39093de` | 10/10 operation, 47 case, 14 unique failure, restore PASS; exit `1` do max-time/check failure |
 | Guided pilot final | `20261011T164757Z-217585` dưới `39093de` | 10/10 operation, 125 case, 26 unique failure, stateful chạy, restore PASS; exit `1` do max-time/check failure |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
