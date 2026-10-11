@@ -1192,7 +1192,7 @@ scenario_reader_hidden_field() {
 }
 
 scenario_reader_write() {
-	local published_id before before_score new_score after
+	local published_id before before_score new_score denied_status after
 	published_id="$(fixture_article_id article_alpha_published_1)"
 	if ! schema_has_operation reader PATCH '/items/qa_articles/{id}'; then
 		scenario_record S6 'Reader ghi bị từ chối' blocked 'reader PATCH must be present before intentional negative request' 'operation absent from reader schema' 'permission operation filtered; request not sent'
@@ -1210,6 +1210,7 @@ scenario_reader_write() {
 		scenario_record S6 'Reader ghi bị từ chối' failed 'reader PATCH request reaches API' 'network error' 'request failed'
 		return 1
 	fi
+	denied_status="$API_STATUS"
 	if valid_http_success "$API_STATUS"; then
 		scenario_record S6 'Reader ghi bị từ chối' failed 'reader PATCH is rejected' "HTTP $API_STATUS" 'write request accepted'
 		return 1
@@ -1223,7 +1224,7 @@ scenario_reader_write() {
 		scenario_record S6 'Reader ghi bị từ chối' failed 'target data unchanged' "$after" 'reader rejection did not preserve data'
 		return 1
 	fi
-	scenario_record S6 'Reader ghi bị từ chối' passed 'reader PATCH rejected and target unchanged' "HTTP $API_STATUS" 'editor read-back equals precondition'
+	scenario_record S6 'Reader ghi bị từ chối' passed 'reader PATCH rejected and target unchanged' "HTTP $denied_status" 'editor read-back equals precondition'
 }
 
 scenarios() {
