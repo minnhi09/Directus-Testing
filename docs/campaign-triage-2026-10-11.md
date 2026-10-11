@@ -254,3 +254,25 @@ Chi tiết line-level nằm trong phần source comparison của
 4. Không cần dựng máy thứ hai hoặc review chéo thành viên để đóng G1. README và
    manifest vẫn phải duy trì khả năng người khác dựng/chạy lại; peer evaluation
    cuối kỳ của đề bài là quy trình riêng.
+
+## Recheck targeted sau scope-review
+
+Sau commit `ddce259`, hai reproducer ngắn được chạy tuần tự trên baseline
+`r06-k05-v2`:
+
+- `20261011T144640Z-184631` — `aggregate-query-robustness`: unknown aggregate
+  vẫn HTTP `500`, hai control vẫn `200`, exit `1`.
+- `20261011T144648Z-185062` — `contract-schema-candidates`: vẫn ghi đúng bốn
+  candidate (POST response shape, export CSV content type, DELETE `204`),
+  cleanup probe thành công, exit `1`.
+
+Metadata của cả hai run ghi harness SHA
+`ddce259b950656f230a5cd7546e4124612a6e249` và fixture `r06-k05-v2`. Các run
+không làm thay đổi kết luận: candidate được tái hiện, không phải product defect
+đã xác nhận và không được đổi thành PASS.
+
+Đối chiếu read-only với source tag `v12.5.0`
+(`4f77933bf9551cac6b289576078783e189b8f4e3`) cho thấy `sanitizeAggregate`
+không giới hạn key/value trước khi `applyAggregate` lặp qua `fields`; đây là
+căn cứ bổ sung cho phân loại schema omission + robustness candidate. Checkout
+Directus upstream không bị sửa.

@@ -30,6 +30,8 @@ candidate được giữ nguyên để triage.
 | Invariant recheck | `20261011T134626Z-160826` dưới `bcbf219` | `9 passed`, `2 failed`, `0 blocked`, exit `1` |
 | Invariant latest recheck | `20261011T141918Z-175886` dưới `8a0d042` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500 và contract candidate không đổi, không có regression mới |
 | Invariant current recheck | `20261011T142618Z-178896` dưới `d186191` | `9 passed`, `2 failed`, `0 blocked`, exit `1`; aggregate 500, controls 200 và 4 contract candidate vẫn tái hiện |
+| Aggregate targeted replay latest | `20261011T144640Z-184631` dưới `ddce259` | `unknown-function-shape=500`, hai control `200`; exit `1` được giữ, không mutation |
+| Contract targeted replay latest | `20261011T144648Z-185062` dưới `ddce259` | Bốn schema candidate; probe tạo/xóa dữ liệu tạm và cleanup thành công; exit `1` được giữ |
 | Scenario nghiệp vụ | `20261011T105231Z-104612` | S1–S6: `6 passed`, `0 failed`, `0 blocked` |
 | Scenario recheck | `20261011T141418Z-174367` dưới `8a0d042` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0` |
 | Scenario latest recheck | `20261011T142455Z-178114` dưới `3811b44` | S1–S6: `6 passed`, `0 failed`, `0 blocked`, exit `0`; Reader và Editor oracle giữ nguyên |
@@ -56,7 +58,7 @@ hoặc response nhạy cảm.
 
 | Nhóm | Bằng chứng | Phân loại hiện tại |
 |---|---|---|
-| Aggregate `{"foo":1}` | `./lab.sh replay aggregate-query-robustness`, run `20261011T134519Z-160153` dưới `bcbf219`; control `{}` và `{"count":["id"]}` trả 200 | Schema omission + product robustness candidate; HTTP 500 chưa phải product defect đã xác nhận |
+| Aggregate `{"foo":1}` | Recheck `./lab.sh replay aggregate-query-robustness`, run `20261011T144640Z-184631` dưới `ddce259`; control `{}` và `{"count":["id"]}` trả 200 | Schema omission + product robustness candidate; HTTP 500 chưa phải product defect đã xác nhận |
 | POST category/article trả `data` object | Contract probe và source Directus pin `4f77933bf9551cac6b289576078783e189b8f4e3` | Schema/contract candidate; không đếm thành hai defect |
 | `export=csv` trả `text/csv` | Contract probe | Schema/contract content-type candidate |
 | DELETE detail trả `204` | Contract probe | Schema response-map candidate |
@@ -72,6 +74,13 @@ hoặc response nhạy cảm.
 
 Contract probe được triển khai ở commit `7018107` và tài liệu hóa ở commit
 `01e14d1`. Report probe ghi `schema_candidates=4`, không che runtime behavior.
+
+Recheck sau scope-review commit `ddce259` giữ nguyên hai finding có chủ đích:
+aggregate run `20261011T144640Z-184631` trả `500/200/200`; contract run
+`20261011T144648Z-185062` ghi bốn candidate và cleanup thành công. Cả hai
+metadata đều ghi `fixture_version=r06-k05-v2` và harness SHA `ddce259...`;
+working tree `dirty` chỉ vì các file local/untracked có sẵn, không phải thay đổi
+runtime chưa commit.
 
 ## Tái lập an toàn
 

@@ -64,6 +64,24 @@ Sau full campaign và các recheck cuối, cả `database`, `directus` và `runn
 
 Các run metadata ghi `harness_sha` riêng. Tại thời điểm các run đầu, working tree còn dirty do thay đổi tích hợp có sẵn; đây là provenance thực tế, không được coi là clean release.
 
+## Recheck candidate sau scope-review commit
+
+Hai reproducer ngắn được chạy tuần tự sau commit `ddce259` trên cùng lab
+`r06-k05`, không chạy campaign dài và không thay đổi fixture lâu dài:
+
+| Run | Lệnh | Kết quả quan sát |
+|---|---|---|
+| `20261011T144640Z-184631` | `./lab.sh replay aggregate-query-robustness` | `unknown-function-shape=500`, `aggregate={}` và `aggregate={"count":["id"]}` đều `200`; status `failed`, exit `1`, harness SHA `ddce259b950656f230a5cd7546e4124612a6e249` |
+| `20261011T144648Z-185062` | `./lab.sh replay contract-schema-candidates` | `schema_candidates=4`, POST shape/export CSV/DELETE 204 như các run trước; dữ liệu probe cleanup thành công; status `failed`, exit `1`, cùng harness SHA |
+
+Đối chiếu read-only với Directus tag `v12.5.0`
+(`4f77933bf9551cac6b289576078783e189b8f4e3`):
+`api/src/utils/sanitize-query.ts:147-162` chuyển đổi string/array nhưng không
+chặn key lạ hoặc giá trị số; `api/src/database/run-ast/lib/apply-query/aggregate.ts:24-37`
+sau đó lặp qua `fields`. Đây là bằng chứng source hỗ trợ phân loại
+`schema omission + product robustness candidate`, không đủ một mình để kết luận
+product defect. Không sửa checkout `../directus`.
+
 ## Schema snapshot
 
 Schema export final `20261011T070445Z-37115` (hash giữ nguyên so với `20261011T035010Z-8515`):

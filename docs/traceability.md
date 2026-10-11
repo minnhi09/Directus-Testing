@@ -25,7 +25,7 @@ license; kết quả mới được ghi ở cuối tài liệu và trong
 | A–C | `doctor` latest `20261011T142245Z-177107`, seed `20261011T084845Z-72361`, schema export latest `20261011T142815Z-179693` | Directus/DB/runner healthy; license active; schema actor v2 có 14/14/6/0 operation |
 | D–E | scenarios latest `20261011T142455Z-178114`, invariant latest `20261011T142618Z-178896` | S1–S6 PASS; invariant 9 PASS/2 failure/0 blocked; aggregate 500 và contract candidates vẫn giữ failure |
 | F | raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Mỗi profile đủ 3 seed và 10/10 operation; report/coverage/restore có, runner exit 1 do budget/check |
-| G | replay aggregate `20261011T134519Z-160153` dưới `bcbf219`, contract probe `20261011T130227Z-139257` | Candidate 500 tái hiện, hai control aggregate trả 200; bốn contract candidate được ghi; chưa xác nhận product defect |
+| G | aggregate recheck `20261011T144640Z-184631` dưới `ddce259`, contract probe `20261011T144648Z-185062` dưới `ddce259` | Candidate 500 tái hiện, hai control aggregate trả 200; bốn contract candidate được ghi và cleanup đạt; chưa xác nhận product defect |
 | H | `manifest/baseline.yaml`, `config/lab.env.example`, default fixture v2, [`docs/scope-review-r06-k05.md`](scope-review-r06-k05.md) | Clone máy mới dùng v2 mặc định; license vẫn phải cấu hình ngoài Git; khả năng tái lập được mô tả, không ghi giả một run máy thứ hai |
 
 ## Backlog theo đường phụ thuộc

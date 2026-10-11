@@ -121,3 +121,8 @@ Full raw/guided v2 đã chứng minh pipeline 10 operation, artifact và restore
 
 G1 không phải tuyên bố mọi test đều PASS. Checklist, nguồn yêu cầu và cách phân biệt
 baseline đạt với failure còn mở được ghi tại [`docs/g1-acceptance.md`](docs/g1-acceptance.md).
+
+Recheck targeted mới nhất sau commit `ddce259`:
+`20261011T144640Z-184631` giữ aggregate `500/200/200`, còn
+`20261011T144648Z-185062` giữ bốn contract candidate và cleanup thành công.
+Cả hai exit `1` đều được giữ nguyên để bảo toàn evidence.
