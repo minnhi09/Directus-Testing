@@ -113,6 +113,22 @@ Run `20261011T131957Z-148748` trước commit sửa vẫn được giữ như l�
 `reproduced` của `tFjhQT` trong run đó không dùng làm bằng chứng cuối vì metadata
 ghi working tree dirty và bug oracle khi ấy chưa được sửa.
 
+### Recheck stateful chain có parent tạo item
+
+Để kiểm tra nhánh full-chain ngoài ca mismatch, `aZmz3k` được replay dưới HEAD
+`3960f55` ở run `20261011T133817Z-157078`. Parent `C7nkph` là POST category
+HTTP 200, target GET HTTP 200; report ghi `source_status=200`,
+`expected_status=200`, `actual_status=200`, `replay_scope=full_transition_chain`,
+`sequence_replayed=true`, restore PASS và exit `0`. Đây là bằng chứng full-chain
+replay thành công trên baseline hiện tại.
+
+Ca `Ag8Csb` ở run `20261011T133626Z-155874` được giữ riêng: parent GET list trả
+HTTP 200 nhưng source transition có 100 ID (bao gồm `298`), trong khi fixture
+snapshot hiện tại chỉ có 3 category và không có `298`. Harness ghi
+`stateful_sequence_failed`, không gửi target request, restore PASS và exit `1`;
+đây là thiếu precondition/stateful artifact, không phải product defect và không
+được đổi thành `reproduced`.
+
 Checkpoint Reader v2 được replay bằng `reader-visibility` ở run
 `20261011T084935Z-74564` và full invariant `20261011T105236Z-105096`: request
 projection hợp lệ trả sáu published fixture; request thêm `internal_notes` bị

@@ -86,6 +86,14 @@ nhưng replay `403`, nên giữ `mismatch`/exit `1` dù parent chain và restore
 restore PASS và exit `0`; run `20261011T132550Z-151921` của `tFjhQT` cũng là
 recheck dưới HEAD hiện hành và giữ mismatch.
 
+Recheck thêm một parent chain có mutation: `aZmz3k` ở run
+`20261011T133817Z-157078` replay đủ `C7nkph → aZmz3k`, source/expected/actual
+`200`, restore PASS, exit `0`; đây là full-chain reproduction hợp lệ. Ngược lại,
+`Ag8Csb` ở run `20261011T133626Z-155874` bị `stateful_sequence_failed` vì source
+parent pool có 100 ID còn fixture hiện tại có 3, target ID `298` không tồn tại
+trong snapshot; final request không được gửi và finding được phân loại là
+precondition/stateful artifact, không phải product defect.
+
 Đối chiếu source release `4f77933bf9551cac6b289576078783e189b8f4e3` đã làm rõ
 thêm ba nhóm contract: POST object/array, export `csv` và DELETE `204` đều phù
 hợp với runtime Directus nhưng bị mô tả thiếu hoặc sai trong OpenAPI snapshot.

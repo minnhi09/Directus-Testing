@@ -194,3 +194,14 @@ thái để làm đẹp.
 - Run `20261011T132716Z-153452`: `./lab.sh doctor` PASS, Directus/DB/runner
   healthy, license active với `custom_permission_rules_enabled=true`, ba image
   digest đúng manifest và exit `0`.
+
+## Xác minh full-chain stateful bổ sung
+
+- Run `20261011T133817Z-157078` dưới HEAD `3960f55`: replay `aZmz3k` đủ chain
+  `C7nkph → aZmz3k`, parent/target HTTP 200, source/expected/actual 200, restore
+  PASS, exit `0`.
+- Run `20261011T133626Z-155874`: replay `Ag8Csb` bị dừng ở setup vì parent source
+  có 100 ID còn snapshot hiện tại có 3 category và không có target `298`; report
+  `stateful_sequence_failed`, target không gửi, restore PASS, exit `1`.
+- Hai kết quả được phân biệt trong README, replay guide, campaign/failure/runtime
+  evidence, G1, final handoff và manifest; không coi setup failure là product bug.

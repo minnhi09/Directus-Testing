@@ -286,3 +286,14 @@ Recheck cuối dưới HEAD `916152e`:
 
 Hai run đều ghi `harness_sha=916152ec983559303ec6c69dec07456ba5c5f25f`; working
 tree dirty do bốn file untracked có trước, không do thay đổi tracked chưa commit.
+
+### Stateful chain recheck dưới HEAD `3960f55`
+
+| Run | Lệnh | Kết quả thực tế |
+|---|---|---|
+| `20261011T133817Z-157078` | `./lab.sh replay aZmz3k` | Full chain `C7nkph → aZmz3k`, source/expected/actual `200`, `sequence_replayed=true`, restore PASS, exit `0` |
+| `20261011T133626Z-155874` | `./lab.sh replay Ag8Csb` | Parent 200 nhưng source pool 100 ID khác snapshot 3 ID; `stateful_sequence_failed`, target không gửi, restore PASS, exit `1` |
+
+Đây là hai trạng thái khác nhau: `aZmz3k` chứng minh full-chain replay thành
+công; `Ag8Csb` chứng minh harness dừng an toàn khi precondition/stateful artifact
+không tái lập được.

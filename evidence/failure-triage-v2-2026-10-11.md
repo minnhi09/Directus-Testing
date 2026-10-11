@@ -185,3 +185,14 @@ exit `1`; `Q8K5Nh` ở run `20261011T132604Z-152556` là `403/403 → 403`,
 reproduced, restore PASS, exit `0`. Metadata của hai run ghi đúng harness SHA
 `916152ec983559303ec6c69dec07456ba5c5f25f`; working tree dirty chỉ vì các file
 untracked đã có trước, không phải thay đổi code chưa commit.
+
+## Stateful chain recheck dưới HEAD `3960f55`
+
+| Case / run | Chuỗi và kết quả | Phân loại |
+|---|---|---|
+| `aZmz3k` / `20261011T133817Z-157078` | `C7nkph → aZmz3k`, parent POST 200, target GET 200, source/expected/actual 200, `full_transition_chain`, restore PASS, exit `0` | Full-chain reproduction hợp lệ |
+| `Ag8Csb` / `20261011T133626Z-155874` | Parent GET 200 nhưng transition source có 100 ID; snapshot replay có 3 category, không có target `298`; target không gửi, `stateful_sequence_failed`, restore PASS, exit `1` | Stateful precondition/artifact mismatch; chưa kết luận product |
+
+Hai run ghi `harness_sha=3960f55f4bb3f5aef329a6d34c47c5fa287de5c6`. Không dùng
+`Ag8Csb` làm bằng chứng Directus từ chối request vì request cuối đã được chặn
+đúng khi chuỗi setup không tái lập được.

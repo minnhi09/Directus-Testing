@@ -30,7 +30,7 @@ replay.
 | Schema theo actor và inventory 10 operation | Export `20261011T085027Z-75998`, admin/editor/reader/anonymous `14/14/6/0` | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
 | Invariant và replay có precondition, expected/actual, phân loại | Invariant `20261011T105236Z-105096`; recheck `20261011T130457Z-141013`; replay `20261011T105242Z-105524`; contract probe `20261011T130227Z-139257` | Đạt có finding |
-| Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, chain replay `baaee4b`, oracle fix `a713481`; final recheck `20261011T132550Z-151921` | Chain có parent được replay đầy đủ; status source/expected/actual được ghi đúng, mismatch không bị đổi thành PASS; case không có parent vẫn `reproduced_request_only` |
+| Stateful replay ghi đúng phạm vi tái lập | Hardening `64e88f9`, chain replay `baaee4b`, oracle fix `a713481`; recheck `20261011T132550Z-151921`, `20261011T133817Z-157078`, `20261011T133626Z-155874` | Có bằng chứng full-chain reproduced (`aZmz3k`), mismatch không bị đổi thành PASS (`tFjhQT`), và precondition không đủ bị dừng đúng (`Ag8Csb`); status source/expected/actual được ghi rõ |
 | README, metadata và artifact không chứa secret | README, manifest, run metadata, static/secret scan | Đạt |
 | Review chéo thành viên | Không còn là gate G1 | Không áp dụng |
 | Dựng và xác minh trên máy thứ hai | Không còn là gate G1 | Không áp dụng |
