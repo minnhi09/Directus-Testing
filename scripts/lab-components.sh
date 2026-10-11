@@ -1554,6 +1554,21 @@ campaign_refresh_tokens() {
 	require_admin_login && require_actor_logins
 }
 
+replay_path_from_uri() {
+	local request_uri="$1"
+	local uri_without_scheme
+	[[ "$request_uri" == http://* || "$request_uri" == https://* ]] || {
+		printf 'ERROR: URI Schemathesis case không phải absolute HTTP URI\n' >&2
+		return 1
+	}
+	uri_without_scheme="${request_uri#*://}"
+	[[ "$uri_without_scheme" == */* ]] || {
+		printf 'ERROR: URI Schemathesis case thiếu path\n' >&2
+		return 1
+	}
+	printf '/%s\n' "${uri_without_scheme#*/}"
+}
+
 replay_schemathesis_case() {
 	local case_id="$1"
 	local events_file
@@ -1564,7 +1579,6 @@ replay_schemathesis_case() {
 	local request_path
 	local request_body_b64
 	local request_body_file=''
-	local uri_without_scheme
 	local expected_status
 	local transition_applied='false'
 	local stateful_phase='false'
@@ -1574,6 +1588,25 @@ replay_schemathesis_case() {
 	local actual_summary='{}'
 	local request_rc=0
 	local restore_rc=1
+	local sequence_setup_rc=0
+	local sequence_ids_json='[]'
+	local sequence_length=1
+	local sequence_report_file="$RUN_DIR/replay-sequence.json"
+	local id_map='{}'
+	local chain_id
+	local next_chain_id
+	local chain_index
+	local chain_method
+	local chain_uri
+	local chain_path
+	local chain_body_b64
+	local chain_body_file
+	local mapped_body_file
+	local chain_request_rc
+	local chain_status
+	local generated_ids_json
+	local actual_ids_json
+	local step_map
 	local replay_status='not_reproduced'
 	local source_schema="$SCHEMA_ROOT/editor.json"
 	local replay_schema_path
@@ -1598,9 +1631,16 @@ replay_schemathesis_case() {
 	}
 	while IFS= read -r -d '' events_file; do
 		if match="$(jq -c --arg case_id "$case_id" --arg source "$events_file" '
+			def parent_chain($cases; $id):
+				if $id == null then []
+				elif ($cases[$id] == null) then error("missing parent case")
+				else parent_chain($cases; ($cases[$id].parent_id // null)) + [$id]
+				end;
 			select(.ScenarioFinished != null and .ScenarioFinished.recorder.cases[$case_id] != null)
 			| .ScenarioFinished as $scenario
-			| {source:$source,case_id:$case_id,case:$scenario.recorder.cases[$case_id],checks:($scenario.recorder.checks[$case_id] // []),interaction:($scenario.recorder.interactions[$case_id] // null)}
+			| $scenario.recorder as $recorder
+			| (try parent_chain($recorder.cases; $case_id) catch [$case_id]) as $chain_ids
+			| {source:$source,case_id:$case_id,case:$recorder.cases[$case_id],checks:($recorder.checks[$case_id] // []),interaction:($recorder.interactions[$case_id] // null),chain_ids:$chain_ids,chain:(reduce $chain_ids[] as $chain_id ({}; .[$chain_id]={case:$recorder.cases[$chain_id],interaction:($recorder.interactions[$chain_id] // null)}))}
 			| select(.interaction != null)
 		' "$events_file" | sed -n '1p')"; then
 			if [[ -n "$match" ]]; then
@@ -1626,6 +1666,8 @@ replay_schemathesis_case() {
 	request_method="$(jq -r '.interaction.request.method // empty' <<< "$case_json")"
 	request_uri="$(jq -r '.interaction.request.uri // empty' <<< "$case_json")"
 	request_body_b64="$(jq -r '.interaction.request.body["$base64"] // empty' <<< "$case_json")"
+	sequence_ids_json="$(jq -c '.chain_ids // []' <<< "$case_json")"
+	sequence_length="$(jq -r 'length' <<< "$sequence_ids_json")"
 	transition_applied="$(jq -r '.case.is_transition_applied // false' <<< "$case_json")"
 	stateful_phase="$(jq -r '.case.value.meta.phase.name == "stateful"' <<< "$case_json")"
 	if [[ "$transition_applied" == true || "$stateful_phase" == true ]]; then
@@ -1636,27 +1678,11 @@ replay_schemathesis_case() {
 		GET|POST|PATCH|DELETE|TRACE) ;;
 		*) printf 'ERROR: method trong Schemathesis case không nằm trong replay allowlist: %s\n' "$request_method" >&2; return 2 ;;
 	esac
-	[[ "$request_uri" == http://* || "$request_uri" == https://* ]] || {
-		printf 'ERROR: URI Schemathesis case không phải absolute HTTP URI\n' >&2
-		return 2
-	}
-	uri_without_scheme="${request_uri#*://}"
-	[[ "$uri_without_scheme" == */* ]] || {
-		printf 'ERROR: URI Schemathesis case thiếu path\n' >&2
-		return 2
-	}
-	request_path="/${uri_without_scheme#*/}"
+	request_path="$(replay_path_from_uri "$request_uri")" || return 2
 	[[ "$request_path" == /items/qa_articles* || "$request_path" == /items/qa_categories* ]] || {
 		printf 'ERROR: chỉ replay case trên qa_articles/qa_categories; nhận %s\n' "$request_path" >&2
 		return 2
 	}
-	if [[ -n "$request_body_b64" ]]; then
-		request_body_file="$RUN_DIR/replay-request-body.bin"
-		if ! printf '%s' "$request_body_b64" | base64 --decode > "$request_body_file"; then
-			printf 'ERROR: không decode được request body case %s\n' "$case_id" >&2
-			return 2
-		fi
-	fi
 	expected_status="$(jq -r '
 		[.checks[] | select(.status == "failure") | .failure_info.failure.message // ""]
 		| map(try capture("(?<status>[0-9]{3})").status catch null)
@@ -1665,8 +1691,118 @@ replay_schemathesis_case() {
 	' <<< "$case_json")"
 
 	campaign_snapshot || return 1
+	printf '[]\n' > "$sequence_report_file"
+	if [[ "$stateful_phase" == true || "$transition_applied" == true ]] && (( sequence_length > 1 )); then
+		sequence_replayed='true'
+		replay_scope='full_transition_chain'
+		chain_index=0
+		while (( chain_index < sequence_length - 1 )); do
+			chain_id="$(jq -r --argjson ids "$sequence_ids_json" --argjson index "$chain_index" '$ids[$index]' <<< '{}')"
+			next_chain_id="$(jq -r --argjson ids "$sequence_ids_json" --argjson index "$((chain_index + 1))" '$ids[$index]' <<< '{}')"
+			chain_method="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.method // empty' <<< "$case_json")"
+			chain_uri="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.uri // empty' <<< "$case_json")"
+			chain_path="$(replay_path_from_uri "$chain_uri")" || { sequence_setup_rc=1; break; }
+			chain_body_b64="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.body["$base64"] // empty' <<< "$case_json")"
+			case "$chain_method" in
+				GET|POST|PATCH|DELETE) ;;
+				*) printf 'ERROR: method parent stateful không nằm trong replay allowlist: %s\n' "$chain_method" >&2; sequence_setup_rc=1; break ;;
+			esac
+			[[ "$chain_path" == /items/qa_articles* || "$chain_path" == /items/qa_categories* ]] || {
+				printf 'ERROR: parent stateful path ngoài allowlist: %s\n' "$chain_path" >&2
+				sequence_setup_rc=1
+				break
+			}
+			while IFS=$'\t' read -r generated_id actual_id; do
+				[[ -n "$generated_id" && -n "$actual_id" ]] || continue
+				chain_path="${chain_path//$generated_id/$actual_id}"
+			done < <(jq -r 'to_entries[] | [.key, (.value|tostring)] | @tsv' <<< "$id_map")
+			chain_body_file=''
+			if [[ -n "$chain_body_b64" ]]; then
+				chain_body_file="$RUN_DIR/replay-sequence-$chain_index-body.bin"
+				if ! printf '%s' "$chain_body_b64" | base64 --decode > "$chain_body_file"; then
+					printf 'ERROR: không decode được parent request body %s\n' "$chain_id" >&2
+					sequence_setup_rc=1
+					break
+				fi
+				if [[ "$id_map" != '{}' ]]; then
+					mapped_body_file="$RUN_DIR/replay-sequence-$chain_index-body-mapped.bin"
+					if ! jq --argjson id_map "$id_map" 'walk(if type == "number" and ($id_map[(tostring)] != null) then $id_map[(tostring)] else . end)' "$chain_body_file" > "$mapped_body_file"; then
+						printf 'ERROR: không áp dụng được ID mapping cho parent %s\n' "$chain_id" >&2
+						sequence_setup_rc=1
+						break
+					fi
+					chain_body_file="$mapped_body_file"
+				fi
+			fi
+			printf 'Schemathesis stateful parent %s: %s %s\n' "$chain_id" "$chain_method" "$chain_path"
+			if [[ -n "$chain_body_file" ]]; then
+				if ! api_request_file "$chain_method" "$chain_path" "$EDITOR_TOKEN" "$chain_body_file"; then
+					chain_request_rc=1
+				else
+					chain_request_rc=0
+				fi
+			else
+				if ! api_request "$chain_method" "$chain_path" "$EDITOR_TOKEN"; then
+					chain_request_rc=1
+				else
+					chain_request_rc=0
+				fi
+			fi
+			chain_status="${API_STATUS:-network-error}"
+			jq --arg id "$chain_id" --arg method "$chain_method" --arg path "$chain_path" --arg status "$chain_status" --argjson request_rc "$chain_request_rc" \
+				'. + [{case_id:$id,method:$method,path:$path,status:(if ($status|test("^[0-9]+$")) then ($status|tonumber) else $status end),request_exit_code:$request_rc}]' \
+				"$sequence_report_file" > "$sequence_report_file.tmp"
+			mv -- "$sequence_report_file.tmp" "$sequence_report_file"
+			if (( chain_request_rc != 0 )) || ! valid_http_success "$chain_status"; then
+				printf 'ERROR: parent stateful %s không đạt 2xx (HTTP %s)\n' "$chain_id" "$chain_status" >&2
+				sequence_setup_rc=1
+				break
+			fi
+			actual_ids_json="$(jq -c 'if (.data|type) == "array" then [.data[]?.id] elif (.data|type) == "object" then [.data.id] else [] end' "$API_BODY" 2>/dev/null || printf '[]')"
+			generated_ids_json="$(jq -c --arg id "$next_chain_id" '.chain[$id].case.transition.parameters.path_parameters // {} | to_entries | sort_by(.key) | map(.value.value.values // []) | add // []' <<< "$case_json")"
+			if [[ "$(jq -r 'length' <<< "$generated_ids_json")" -gt 0 ]]; then
+				if [[ "$(jq -r 'length' <<< "$generated_ids_json")" -ne "$(jq -r 'length' <<< "$actual_ids_json")" ]]; then
+					printf 'ERROR: parent %s trả số ID khác transition mapping\n' "$chain_id" >&2
+					sequence_setup_rc=1
+					break
+				fi
+				step_map="$(jq -n --argjson generated "$generated_ids_json" --argjson actual "$actual_ids_json" 'reduce range(0; ($generated|length)) as $index ({}; . + {($generated[$index]|tostring):$actual[$index]})')"
+				id_map="$(jq -n --argjson old "$id_map" --argjson new "$step_map" '$old + $new')"
+			fi
+			chain_index=$((chain_index + 1))
+		done
+	fi
+	if (( sequence_setup_rc == 0 )); then
+		while IFS=$'\t' read -r generated_id actual_id; do
+			[[ -n "$generated_id" && -n "$actual_id" ]] || continue
+			request_path="${request_path//$generated_id/$actual_id}"
+		done < <(jq -r 'to_entries[] | [.key, (.value|tostring)] | @tsv' <<< "$id_map")
+		if [[ -n "$request_body_b64" ]]; then
+			request_body_file="$RUN_DIR/replay-request-body.bin"
+			if ! printf '%s' "$request_body_b64" | base64 --decode > "$request_body_file"; then
+				printf 'ERROR: không decode được request body case %s\n' "$case_id" >&2
+				sequence_setup_rc=1
+			elif [[ "$id_map" != '{}' ]]; then
+				mapped_body_file="$RUN_DIR/replay-request-body-mapped.bin"
+				if ! jq --argjson id_map "$id_map" 'walk(if type == "number" and ($id_map[(tostring)] != null) then $id_map[(tostring)] else . end)' "$request_body_file" > "$mapped_body_file"; then
+					printf 'ERROR: không áp dụng được ID mapping cho case %s\n' "$case_id" >&2
+					sequence_setup_rc=1
+				else
+					request_body_file="$mapped_body_file"
+				fi
+			fi
+		fi
+	fi
+	if (( sequence_setup_rc != 0 )); then
+		sequence_replayed='false'
+		replay_scope='stateful_sequence_setup_failed'
+	fi
 	printf 'Schemathesis replay %s: %s %s\n' "$case_id" "$request_method" "$request_path"
-	if [[ -n "$request_body_file" ]]; then
+	if (( sequence_setup_rc != 0 )); then
+		request_rc=1
+		actual_status='not-sent'
+		actual_summary='{"reason":"stateful_sequence_setup_failed"}'
+	elif [[ -n "$request_body_file" ]]; then
 		if ! api_request_file "$request_method" "$request_path" "$EDITOR_TOKEN" "$request_body_file"; then
 			request_rc=1
 		fi
@@ -1675,19 +1811,23 @@ replay_schemathesis_case() {
 			request_rc=1
 		fi
 	fi
-	actual_status="${API_STATUS:-network-error}"
-	if [[ -f "$API_BODY" ]]; then
-		cp -- "$API_BODY" "$response_file"
-		actual_summary="$(http_summary "$API_BODY")"
+	if (( sequence_setup_rc == 0 )); then
+		actual_status="${API_STATUS:-network-error}"
+		if [[ -f "$API_BODY" ]]; then
+			cp -- "$API_BODY" "$response_file"
+			actual_summary="$(http_summary "$API_BODY")"
+		fi
 	fi
 	set +e
 	campaign_restore
 	restore_rc=$?
 	set -e
 
-	if (( request_rc == 0 && restore_rc == 0 )); then
+	if (( sequence_setup_rc != 0 )); then
+		replay_status='stateful_sequence_failed'
+	elif (( request_rc == 0 && restore_rc == 0 )); then
 		if [[ -z "$expected_status" || "$actual_status" == "$expected_status" ]]; then
-			if [[ "$transition_applied" == true || "$stateful_phase" == true ]]; then
+			if [[ "$sequence_replayed" == false ]]; then
 				replay_status='reproduced_request_only'
 			else
 				replay_status='reproduced'
@@ -1696,13 +1836,16 @@ replay_schemathesis_case() {
 			replay_status='mismatch'
 		fi
 	fi
+	local sequence_steps
+	sequence_steps="$(jq -c '.' "$sequence_report_file")"
 	jq -n --arg schema_version "$FIXTURE_VERSION" --arg case_id "$case_id" --arg source "$events_file" \
 		--arg method "$request_method" --arg path "$request_path" --arg expected_status "$expected_status" \
 		--arg actual_status "$actual_status" --arg status "$replay_status" --arg actor editor \
 		--arg replay_scope "$replay_scope" --argjson transition_applied "$transition_applied" --argjson stateful_phase "$stateful_phase" --argjson sequence_replayed "$sequence_replayed" \
+		--argjson sequence_case_ids "$sequence_ids_json" --argjson sequence_steps "$sequence_steps" \
 		--arg schema_hash "$replay_schema_hash" \
 		--argjson case "$case_json" --argjson actual "$actual_summary" --argjson request_rc "$request_rc" --argjson restore_rc "$restore_rc" \
-		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",replay_scope:$replay_scope,stateful_transition_applied:$transition_applied,stateful_phase:$stateful_phase,sequence_replayed:$sequence_replayed,request:{method:$method,path:$path},expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
+		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",replay_scope:$replay_scope,stateful_transition_applied:$transition_applied,stateful_phase:$stateful_phase,sequence_replayed:$sequence_replayed,sequence_case_ids:$sequence_case_ids,sequence_steps:$sequence_steps,request:{method:$method,path:$path},expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
 		> "$reproducer_file"
 	printf 'Schemathesis replay report: %s (status=%s restore=%s)\n' "$reproducer_file" "$replay_status" "$restore_rc"
 	[[ "$replay_status" == reproduced ]]
