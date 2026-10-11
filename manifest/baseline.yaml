@@ -38,7 +38,7 @@ provenance:
   integrated_main_branch: main
   runtime_evidence_harness_commit: 1541fa119e9d06a3713ca7ce5e439f2962e5e79e
   runtime_evidence_worktree: dirty_at_run
-  implementation_head_before_manifest: feat/g1-shared-interface@f8715d3f0f16992fbc02816b77fe9ef4dcee5fb3
+  implementation_head_before_manifest: feat/g1-shared-interface@65caec92198a3824f1fa346ac193905192e982e4
   implementation_worktree_before_manifest: dirty_traceability_and_untracked_project_files
 
 lab_configuration:
@@ -101,4 +101,6 @@ validation:
   invariants_recheck: partial_6_passed_2_blocked_run_20261011T035626Z-14831
   raw_campaign_recheck: failed_runner_restore_passed_run_20261011T035638Z-15197
   guided_campaign_recheck: failed_runner_restore_passed_run_20261011T035658Z-15731
+  final_doctor_recheck: passed_run_20261011T035904Z-17158
+  final_replay_editor_crud: passed_run_20261011T035909Z-17742
   g1: blocked_license_and_no_independent_second_machine
