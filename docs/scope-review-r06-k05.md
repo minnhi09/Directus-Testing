@@ -99,7 +99,7 @@ write. Đây là cách phân rã của năm luồng trên, không phải mở r�
 | Tiêu chí kỹ thuật | Bằng chứng gần nhất | Kết luận |
 |---|---|---|
 | Stack healthy, version/digest đúng | Doctor `20261011T162426Z-209264`, exit `0` | Đạt trên máy hiện tại |
-| Seed, fixture, actor và policy | Smoke `20261011T162429Z-209848`, exit `0` | Đạt trên baseline v2 |
+| Seed, fixture, actor và policy | Alias `./lab.sh test smoke` run `20261011T165604Z-220107`, exit `0` | Đạt trên baseline v2 |
 | Năm luồng/nghiệp vụ và oracle | Scenarios `20261011T162433Z-210740`: 6 passed, 0 failed, 0 blocked | Đạt |
 | Schema theo actor và 10 operation | Export `20261011T162431Z-210275`: 14/14/6/0 theo actor; allowlist campaign 10/10 | Đạt; raw hash bất biến |
 | Raw/guided độc lập, artifact và restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng chạy đủ 3 seed/10 operation; runner vẫn `exit 1` do check failure/max-time |

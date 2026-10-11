@@ -47,6 +47,7 @@ latest hiện hành.
 | Final invariants | `20261011T145918Z-189799` dưới `60be73d` | `9 passed`, `2 failed`, `0 blocked`; aggregate/contract finding giữ nguyên; exit `1` |
 | Post-documentation final doctor | `20261011T162426Z-209264` dưới `fd28ef1` | PASS; health, pinned digest, fixture map và license active; exit `0` |
 | Post-documentation final smoke | `20261011T162429Z-209848` dưới `fd28ef1` | PASS; field validation, `SET NULL`, actor login và Reader published filter; exit `0` |
+| Post-provenance smoke alias | `20261011T165604Z-220107` dưới `303152b` | PASS; `./lab.sh test smoke` xác nhận alias, field validation, `SET NULL`, actor login và Reader published filter; exit `0` |
 | Post-documentation final schema | `20261011T162431Z-210275` dưới `fd28ef1` | PASS; actor `14/14/6/0`, hash không đổi; exit `0` |
 | Post-documentation final scenarios | `20261011T162433Z-210740` dưới `fd28ef1` | S1–S6: `6 passed`, `0 failed`, `0 blocked`; exit `0` |
 | Post-documentation final invariants | `20261011T162436Z-211214` dưới `fd28ef1` | `9 passed`, `2 failed`, `0 blocked`; hai finding đã biết giữ nguyên; exit `1` |

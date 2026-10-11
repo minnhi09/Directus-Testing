@@ -167,6 +167,8 @@ validation:
   current_fixture_seed_v2: passed_run_20261011T084845Z-72361
   current_smoke_v2: passed_run_20261011T162429Z-209848_harness_fd28ef1
   current_smoke_v2_harness_sha: fd28ef1aa80eadf03a838eaa4246bef1a1890570
+  current_smoke_alias_latest: passed_run_20261011T165604Z-220107_harness_303152b
+  current_smoke_alias_latest_harness_sha: 303152beb2e879d16dbb44106b0e67f64049053b
   current_schema_export_v2: passed_run_20261011T162431Z-210275_harness_fd28ef1
   current_schema_export_v2_harness_sha: fd28ef1aa80eadf03a838eaa4246bef1a1890570
   current_scenarios_v2: passed_6_of_6_run_20261011T162433Z-210740

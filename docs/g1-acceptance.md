@@ -30,7 +30,7 @@ replay.
 | Tiêu chí | Bằng chứng | Trạng thái |
 |---|---|---|
 | Stack healthy, version/digest đúng manifest | Doctor `20261011T162426Z-209264` dưới `fd28ef1`, exit `0` | Đạt |
-| Seed schema/fixture/actor/policy đúng và lặp lại không nhân bản | Seed `20261011T084845Z-72361`; smoke mới nhất `20261011T162429Z-209848` dưới `fd28ef1` | Đạt |
+| Seed schema/fixture/actor/policy đúng và lặp lại không nhân bản | Seed `20261011T084845Z-72361`; alias smoke mới nhất `20261011T165604Z-220107` dưới `303152b` | Đạt |
 | CRUD, query, quan hệ và phân quyền đạt oracle | Scenario mới nhất `20261011T162433Z-210740` dưới `fd28ef1`, S1–S6; run cũ được giữ | Đạt |
 | Schema theo actor và inventory 10 operation | Export mới nhất `20261011T162431Z-210275` dưới `fd28ef1`, admin/editor/reader/anonymous `14/14/6/0`; hash giữ nguyên | Đạt |
 | Raw/guided chạy độc lập, có report/coverage/restore | Raw `20261011T085034Z-76481`, guided `20261011T095117Z-89079` | Có bằng chứng; runner giữ `failed_or_incomplete` |
