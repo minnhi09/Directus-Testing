@@ -42,6 +42,7 @@ Usage:
   ./lab.sh doctor
   ./lab.sh up|down
   ./lab.sh seed|smoke|export-schema
+  ./lab.sh swagger up|down
   ./lab.sh test smoke|schema-smoke|scenarios|invariants|designed|cost-query|raw|guided
   ./lab.sh test cost-query --set exhaustive|pairwise
   ./lab.sh test designed [--case ID|--selection course|short|all|assertable|--group GROUP]
@@ -155,6 +156,25 @@ require_docker() {
 	command -v docker >/dev/null 2>&1 || die 'Không tìm thấy Docker CLI trong PATH của phiên shell này.'
 	docker info >/dev/null 2>&1 || die 'Docker CLI có nhưng Docker daemon không khả dụng trong phiên shell này.'
 	docker compose version >/dev/null 2>&1 || die 'Docker Compose plugin không khả dụng trong phiên shell này.'
+	verify_project_checkout
+}
+
+verify_project_checkout() {
+	local container_id owner owner_unix root_unix containers
+	containers="$(docker ps -aq --filter "label=com.docker.compose.project=$PROJECT_NAME")" || die 'Không kiểm tra được container của project lab.'
+	for container_id in $containers; do
+		owner="$(docker inspect --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}' "$container_id")" || die "Không kiểm tra được checkout của container $container_id."
+		[[ -n "$owner" && "$owner" != '<no value>' ]] || die "Container $container_id thiếu nhãn checkout."
+		if [[ "$owner" == "$ROOT_DIR" ]]; then continue; fi
+		case "$(uname -s)" in
+			MINGW*|MSYS*|CYGWIN*)
+				owner_unix="$(cygpath -u "$owner")" || die "Không chuẩn hóa được checkout của container $container_id."
+				root_unix="$(cygpath -u "$ROOT_DIR")" || die 'Không chuẩn hóa được checkout hiện tại.'
+				[[ "${owner_unix,,}" == "${root_unix,,}" ]] && continue
+				;;
+		esac
+		die "Project $PROJECT_NAME thuộc checkout khác ($owner), không phải $ROOT_DIR."
+	done
 }
 
 verify_compose_target() {
@@ -351,6 +371,7 @@ write_run_metadata() {
 	local actor="${LAB_ACTOR:-unspecified}"
 	local duration_seconds='null'
 	local campaign_index=''
+	local swagger_schema_manifest=''
 	local directus_image
 	local postgres_image
 	local schemathesis_image
@@ -381,6 +402,9 @@ write_run_metadata() {
 		if [[ -z "$budget" ]]; then
 			budget="$(jq -c '.campaigns[0].budget // empty' "$campaign_index" 2>/dev/null || true)"
 		fi
+	fi
+	if [[ -f "$RUN_DIR/swagger-schema-manifest.json" ]]; then
+		swagger_schema_manifest="$RUN_DIR/swagger-schema-manifest.json"
 	fi
 	if [[ -z "$seed" && -f "$RUN_DIR/pilot-summary.json" ]] && command -v jq >/dev/null 2>&1; then
 		seed="$(jq -r '.seed // empty' "$RUN_DIR/pilot-summary.json" 2>/dev/null || true)"
@@ -428,6 +452,7 @@ write_run_metadata() {
 		printf '    "schemathesis_image": %s\n' "$(json_or_null "$schemathesis_image")"
 		printf '  },\n'
 		printf '  "campaign_index": %s,\n' "$(json_or_null "$campaign_index")"
+		printf '  "swagger_schema_manifest": %s,\n' "$(json_or_null "$swagger_schema_manifest")"
 		printf '  "fixture_map": %s,\n' "$(json_escape "$RUNTIME_ROOT/fixture-ids.json")"
 		printf '  "artifact_dir": %s,\n' "$(json_escape "$RUN_DIR")"
 		printf '  "log_file": %s\n' "$(json_escape "$RUN_LOG")"
@@ -545,6 +570,9 @@ doctor() {
 	else
 		printf 'FAIL Docker Compose unavailable\n'
 		failures=$((failures + 1))
+	fi
+	if (( docker_ready == 1 )) && ! (verify_project_checkout); then
+		return 1
 	fi
 
 	if [[ ! -f "$ENV_FILE" ]]; then
@@ -754,7 +782,61 @@ up() {
 down() {
 	require_config
 	require_docker
-	compose down
+	compose --profile docs down
+}
+
+swagger() {
+	local action="$1"
+	local fixture_version configured_version directus_container swagger_spec_dir served_file actor attempt ready
+	local SWAGGER_SPEC_DIR
+
+	require_config
+	require_docker
+	if [[ "$action" == down ]]; then
+		compose --profile docs stop swagger-ui
+		printf 'Swagger UI đã dừng; các service lab và database vẫn chạy.\n'
+		return 0
+	fi
+
+	[[ "$API_URL" == "$DEFAULT_API_URL" ]] || die 'Swagger yêu cầu API_URL=http://127.0.0.1:8055.'
+	verify_compose_target
+	directus_container="$(compose ps -q directus)"
+	docker inspect "$directus_container" | jq -e '
+		.[0].Config.Env
+		| (index("CORS_ENABLED=true") != null)
+		  and (index("CORS_ORIGIN=http://127.0.0.1:8086") != null)
+		  and (index("CORS_CREDENTIALS=false") != null)
+	' >/dev/null || die 'Directus đang chạy chưa có CORS cho Swagger; áp dụng Compose mới cho riêng service directus.'
+	[[ -f "$RUNTIME_ROOT/fixture-ids.json" ]] || die 'Thiếu fixture ID map; chạy ./lab.sh seed trước.'
+	fixture_version="$(jq -er '.fixture_version | select(type == "string" and length > 0)' "$RUNTIME_ROOT/fixture-ids.json")" || die 'Fixture ID map không có version hợp lệ.'
+	[[ "$fixture_version" =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$ ]] || die 'Fixture version không hợp lệ cho đường dẫn Swagger.'
+	configured_version="${LAB_FIXTURE_VERSION:-$(config_value_or_default LAB_FIXTURE_VERSION 'r06-k05-v2')}"
+	[[ "$fixture_version" == "$configured_version" ]] || die 'Fixture version trong map khác cấu hình lab.'
+	swagger_spec_dir="$RUNTIME_ROOT/swagger/$fixture_version"
+	bash "$ROOT_DIR/scripts/swagger-spec.sh" \
+		"$RUNTIME_ROOT/schemas/$fixture_version" "$swagger_spec_dir" "$RUN_DIR" "$fixture_version" "$DEFAULT_API_URL"
+	SWAGGER_SPEC_DIR="$swagger_spec_dir"
+	case "$(uname -s)" in
+		MINGW*|MSYS*|CYGWIN*) SWAGGER_SPEC_DIR="$(cygpath -m "$swagger_spec_dir")" ;;
+	esac
+	export SWAGGER_SPEC_DIR
+	compose --profile docs config --quiet
+	compose --profile docs up -d --no-deps swagger-ui
+	for actor in editor reader; do
+		served_file="$RUN_DIR/swagger-served-$actor.json"
+		ready=0
+		for attempt in {1..10}; do
+			if curl -fsS --max-time 3 -o "$served_file" "http://127.0.0.1:8086/specs/$actor.json" 2>/dev/null &&
+				[[ "$(sha256sum "$served_file" | awk '{print $1}')" == "$(sha256sum "$swagger_spec_dir/$actor.json" | awk '{print $1}')" ]]; then
+				ready=1
+				break
+			fi
+			sleep 1
+		done
+		[[ "$ready" -eq 1 ]] || die "Swagger không phục vụ đúng schema $actor tại 127.0.0.1:8086."
+	done
+	printf 'Swagger UI: http://127.0.0.1:8086\n'
+	printf 'Dùng /auth/login của từng actor, sau đó nhập Bearer <access_token> trong Authorize.\n'
 }
 
 run_component() {
@@ -835,7 +917,7 @@ reset_lab() {
 		[[ "$volume_project" == "$PROJECT_NAME" && "$volume_kind" == 'db_data' ]] || die 'Volume tồn tại nhưng label không thuộc r06-k05; dừng để bảo vệ dữ liệu.'
 	fi
 
-	compose down
+	compose --profile docs down
 	if docker volume inspect "$expected_volume" >/dev/null 2>&1; then
 		docker volume rm "$expected_volume"
 	fi
@@ -877,6 +959,10 @@ main() {
 			;;
 		doctor|up|down|seed|smoke|export-schema|reset)
 			run_command="$command_name"
+			;;
+		swagger)
+			[[ $# -eq 2 && ( "$2" == up || "$2" == down ) ]] || die 'swagger cần up hoặc down.'
+			run_command="swagger $2"
 			;;
 		test)
 			if [[ $# -eq 2 && ( "$2" == 'help' || "$2" == '-h' || "$2" == '--help' ) ]]; then
@@ -923,6 +1009,9 @@ main() {
 			;;
 		down)
 			down
+			;;
+		swagger)
+			swagger "$2"
 			;;
 		seed|smoke|export-schema|reset)
 			dispatch "$command_name"
