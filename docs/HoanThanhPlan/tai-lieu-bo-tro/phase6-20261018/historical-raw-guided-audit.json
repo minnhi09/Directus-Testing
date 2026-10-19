@@ -1,0 +1,1733 @@
+{
+  "post_hoc": true,
+  "interaction_metric": "unique persisted recorder interactions by (case ID, timestamp), not all wire requests incl auth/setup/restore or in-flight requests at timeout",
+  "defects_per_hour": null,
+  "reason": "No per-cohort root-cause deduplication sufficient for a qualified defect numerator",
+  "cohort": [
+    {
+      "run_id": "20261011T085034Z-76481",
+      "profile": "raw",
+      "seed": 101,
+      "runner_seconds": 1200.0164045560014,
+      "stop_reason": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "tested_operations": 10,
+      "generated_cases": 59,
+      "unique_check_failures": 20,
+      "cases_errored": 0,
+      "recorded_http_interactions": 59,
+      "recorded_2xx": 25,
+      "recorded_2xx_percent": 42.3728813559322,
+      "parameter_coverage_percent": 58.333333333333336,
+      "keyword_coverage_percent": 29.646017699115045,
+      "response_coverage_percent": 30.76923076923077,
+      "examples_coverage_percent": 75.0,
+      "harness_sha": "d14c6151bb2131f0b738921d1a3b9b5f7c979d07",
+      "working_tree": "dirty",
+      "schema_sha256": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+      "budget": {
+        "max_time_seconds": 1200,
+        "max_examples_per_operation": 100,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "coverage_summary": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 28,
+          "partial": 20,
+          "total": 48,
+          "percent": 58.333333333333336
+        },
+        "keywords": {
+          "covered": 67,
+          "partial": 101,
+          "total": 226,
+          "percent": 29.646017699115045
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 110,
+          "violated": 6,
+          "total": 386,
+          "percent": 28.497409326424872
+        }
+      },
+      "failure_types": [
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 16,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 3,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "recorded_statuses": {
+        "403": 17,
+        "204": 11,
+        "404": 2,
+        "400": 15,
+        "200": 14
+      },
+      "recorded_interactions_by_phase": {
+        "examples": 8,
+        "coverage": 8,
+        "fuzzing": 43
+      },
+      "recorder_references": 59,
+      "recorded_unique_interactions": 59,
+      "source_files": [
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-101/campaign-summary.json",
+          "sha256": "64993adfe99e9f577a1c2e699ca041e1d74ac07e54200b3273d74954ea49cf8f"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-101/schemathesis-report.json",
+          "sha256": "8274ea4c43d43a6c5fda91e8128b8a47c3f3a4f4eccd84481c70c740c1053b3b"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-101/schemathesis-coverage.json",
+          "sha256": "1c2fc680ba9d4bbbab7c8506548683a230fb834f887ce822ca88a4d6fb34bedc"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-101/schemathesis-events.ndjson",
+          "sha256": "62a047f3dee9775ee1d8f5dabff714863e4599c85365749c095274eb06468a7f"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-101/baseline-articles.json",
+          "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-101/baseline-categories.json",
+          "sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+        }
+      ]
+    },
+    {
+      "run_id": "20261011T085034Z-76481",
+      "profile": "raw",
+      "seed": 202,
+      "runner_seconds": 1200.074334388999,
+      "stop_reason": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "tested_operations": 10,
+      "generated_cases": 65,
+      "unique_check_failures": 18,
+      "cases_errored": 0,
+      "recorded_http_interactions": 65,
+      "recorded_2xx": 32,
+      "recorded_2xx_percent": 49.23076923076923,
+      "parameter_coverage_percent": 58.333333333333336,
+      "keyword_coverage_percent": 30.97345132743363,
+      "response_coverage_percent": 30.76923076923077,
+      "examples_coverage_percent": 75.0,
+      "harness_sha": "d14c6151bb2131f0b738921d1a3b9b5f7c979d07",
+      "working_tree": "dirty",
+      "schema_sha256": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+      "budget": {
+        "max_time_seconds": 1200,
+        "max_examples_per_operation": 100,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "coverage_summary": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 28,
+          "partial": 20,
+          "total": 48,
+          "percent": 58.333333333333336
+        },
+        "keywords": {
+          "covered": 70,
+          "partial": 104,
+          "total": 226,
+          "percent": 30.97345132743363
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 110,
+          "violated": 11,
+          "total": 386,
+          "percent": 28.497409326424872
+        }
+      },
+      "failure_types": [
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 1,
+          "operations": [
+            "PATCH /items/qa_articles/{id}"
+          ]
+        },
+        {
+          "type": "UndefinedContentType",
+          "title": "Undocumented Content-Type",
+          "severity": "medium",
+          "count": 1,
+          "operations": [
+            "GET /items/qa_articles"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 14,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 4,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "recorded_statuses": {
+        "403": 20,
+        "204": 11,
+        "404": 2,
+        "400": 11,
+        "200": 21
+      },
+      "recorded_interactions_by_phase": {
+        "examples": 8,
+        "coverage": 8,
+        "fuzzing": 49
+      },
+      "recorder_references": 65,
+      "recorded_unique_interactions": 65,
+      "source_files": [
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-202/campaign-summary.json",
+          "sha256": "579333a1ec1819ec265386865df5987eac1f08f96ef98f78111b5814f9e132db"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-202/schemathesis-report.json",
+          "sha256": "5927d065a908c44b8f18c510a6df394cef5d5bae073dfed8ae844b1b240f1d93"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-202/schemathesis-coverage.json",
+          "sha256": "7c2dd8bde48e4795e9a4fd7c7dc09c7d95d587dc175173ff7b0b4e4651c8980e"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-202/schemathesis-events.ndjson",
+          "sha256": "c29d4b99a9e7b6b80338b12cc7421c165112f85a8a13dedf5833183786837be5"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-202/baseline-articles.json",
+          "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-202/baseline-categories.json",
+          "sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+        }
+      ]
+    },
+    {
+      "run_id": "20261011T085034Z-76481",
+      "profile": "raw",
+      "seed": 303,
+      "runner_seconds": 1200.1740637229996,
+      "stop_reason": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "tested_operations": 10,
+      "generated_cases": 51,
+      "unique_check_failures": 19,
+      "cases_errored": 0,
+      "recorded_http_interactions": 51,
+      "recorded_2xx": 21,
+      "recorded_2xx_percent": 41.17647058823529,
+      "parameter_coverage_percent": 58.333333333333336,
+      "keyword_coverage_percent": 29.646017699115045,
+      "response_coverage_percent": 30.76923076923077,
+      "examples_coverage_percent": 75.0,
+      "harness_sha": "d14c6151bb2131f0b738921d1a3b9b5f7c979d07",
+      "working_tree": "dirty",
+      "schema_sha256": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+      "budget": {
+        "max_time_seconds": 1200,
+        "max_examples_per_operation": 100,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "coverage_summary": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 28,
+          "partial": 20,
+          "total": 48,
+          "percent": 58.333333333333336
+        },
+        "keywords": {
+          "covered": 67,
+          "partial": 101,
+          "total": 226,
+          "percent": 29.646017699115045
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 110,
+          "violated": 6,
+          "total": 386,
+          "percent": 28.497409326424872
+        }
+      },
+      "failure_types": [
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 1,
+          "operations": [
+            "GET /items/qa_categories"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 16,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "recorded_statuses": {
+        "403": 22,
+        "204": 8,
+        "404": 2,
+        "400": 6,
+        "200": 13
+      },
+      "recorded_interactions_by_phase": {
+        "examples": 8,
+        "coverage": 8,
+        "fuzzing": 35
+      },
+      "recorder_references": 51,
+      "recorded_unique_interactions": 51,
+      "source_files": [
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-303/campaign-summary.json",
+          "sha256": "1994b449cf02f1a6b1337754f729afd1bf34836b6e614ef03e45cfd08cb1ba8d"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-303/schemathesis-report.json",
+          "sha256": "7419a84f193409078f3c4ada783f0d29e6cbe3ec86a30135a5d2388b30091b7e"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-303/schemathesis-coverage.json",
+          "sha256": "5108bddda3172c48dc9ccadbdd8d82dbbb89e4e5ab048591479fb3ecd7a5895b"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-303/schemathesis-events.ndjson",
+          "sha256": "920dd99e711a8112b17cdbe656af90ee67ea1d52f103fd0577567b777f827c84"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-303/baseline-articles.json",
+          "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+        },
+        {
+          "path": "artifacts/runs/20261011T085034Z-76481/raw/seed-303/baseline-categories.json",
+          "sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+        }
+      ]
+    },
+    {
+      "run_id": "20261011T095117Z-89079",
+      "profile": "guided",
+      "seed": 101,
+      "runner_seconds": 1200.1404996160018,
+      "stop_reason": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "tested_operations": 10,
+      "generated_cases": 5770,
+      "unique_check_failures": 63,
+      "cases_errored": 111,
+      "recorded_http_interactions": 5659,
+      "recorded_2xx": 1491,
+      "recorded_2xx_percent": 26.347411203392824,
+      "parameter_coverage_percent": 85.41666666666667,
+      "keyword_coverage_percent": 79.64601769911505,
+      "response_coverage_percent": 30.76923076923077,
+      "examples_coverage_percent": 75.0,
+      "harness_sha": "d14c6151bb2131f0b738921d1a3b9b5f7c979d07",
+      "working_tree": "dirty",
+      "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+      "budget": {
+        "max_time_seconds": 1200,
+        "max_examples_per_operation": 100,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "coverage_summary": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 41,
+          "partial": 7,
+          "total": 48,
+          "percent": 85.41666666666667
+        },
+        "keywords": {
+          "covered": 180,
+          "partial": 44,
+          "total": 226,
+          "percent": 79.64601769911505
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 150,
+          "violated": 39,
+          "total": 386,
+          "percent": 38.86010362694301
+        }
+      },
+      "failure_types": [
+        {
+          "type": "ServerError",
+          "title": "Server error",
+          "severity": "critical",
+          "count": 9,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema",
+          "severity": "high",
+          "count": 6,
+          "operations": [
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "AcceptedNegativeData",
+          "title": "API accepted schema-violating request",
+          "severity": "medium",
+          "count": 3,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 8,
+          "operations": [
+            "GET /items/qa_articles",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedContentType",
+          "title": "Undocumented Content-Type",
+          "severity": "medium",
+          "count": 5,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 30,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "POST /items/qa_articles": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 0,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        }
+      },
+      "recorded_statuses": {
+        "200": 1178,
+        "403": 1302,
+        "204": 313,
+        "404": 2,
+        "400": 2686,
+        "500": 178
+      },
+      "recorded_interactions_by_phase": {
+        "examples": 10,
+        "coverage": 10,
+        "fuzzing": 30,
+        "stateful": 5609
+      },
+      "recorder_references": 5659,
+      "recorded_unique_interactions": 5659,
+      "source_files": [
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-101/campaign-summary.json",
+          "sha256": "860b312dcf9aada4eae58bfe24dfa62a82c88689fa044774cb34139ce6a0740a"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-101/schemathesis-report.json",
+          "sha256": "f080b1eb75e911b30d861628ff0e24dd5274658272541fb1891232624ef7ccae"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-101/schemathesis-coverage.json",
+          "sha256": "e8ff2f32c9c50d769cb52431a8cd816d0edfcd2c6d3f968331e659132bf470df"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-101/schemathesis-events.ndjson",
+          "sha256": "4258d1977020887cb12089051f86d92bec6b12a3315dc23441c4f206ef2e59b3"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-101/baseline-articles.json",
+          "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-101/baseline-categories.json",
+          "sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+        }
+      ]
+    },
+    {
+      "run_id": "20261011T095117Z-89079",
+      "profile": "guided",
+      "seed": 202,
+      "runner_seconds": 1200.3344009419998,
+      "stop_reason": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "tested_operations": 10,
+      "generated_cases": 5864,
+      "unique_check_failures": 65,
+      "cases_errored": 176,
+      "recorded_http_interactions": 5688,
+      "recorded_2xx": 1646,
+      "recorded_2xx_percent": 28.938115330520393,
+      "parameter_coverage_percent": 87.5,
+      "keyword_coverage_percent": 80.97345132743362,
+      "response_coverage_percent": 30.76923076923077,
+      "examples_coverage_percent": 75.0,
+      "harness_sha": "d14c6151bb2131f0b738921d1a3b9b5f7c979d07",
+      "working_tree": "dirty",
+      "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+      "budget": {
+        "max_time_seconds": 1200,
+        "max_examples_per_operation": 100,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "coverage_summary": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 42,
+          "partial": 6,
+          "total": 48,
+          "percent": 87.5
+        },
+        "keywords": {
+          "covered": 183,
+          "partial": 41,
+          "total": 226,
+          "percent": 80.97345132743362
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 150,
+          "violated": 45,
+          "total": 386,
+          "percent": 38.86010362694301
+        }
+      },
+      "failure_types": [
+        {
+          "type": "ServerError",
+          "title": "Server error",
+          "severity": "critical",
+          "count": 8,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema",
+          "severity": "high",
+          "count": 10,
+          "operations": [
+            "GET /items/qa_articles/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "AcceptedNegativeData",
+          "title": "API accepted schema-violating request",
+          "severity": "medium",
+          "count": 3,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 8,
+          "operations": [
+            "GET /items/qa_categories/{id}",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedContentType",
+          "title": "Undocumented Content-Type",
+          "severity": "medium",
+          "count": 5,
+          "operations": [
+            "GET /items/qa_articles",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 29,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "POST /items/qa_articles": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 4,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        }
+      },
+      "recorded_statuses": {
+        "200": 1291,
+        "403": 1418,
+        "204": 355,
+        "404": 2,
+        "400": 2459,
+        "500": 163
+      },
+      "recorded_interactions_by_phase": {
+        "examples": 10,
+        "coverage": 10,
+        "fuzzing": 22,
+        "stateful": 5646
+      },
+      "recorder_references": 5688,
+      "recorded_unique_interactions": 5688,
+      "source_files": [
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-202/campaign-summary.json",
+          "sha256": "84816be4ba10740f0cb72895ae33f9894285731cf9f575ed373264e04c40f9e2"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-202/schemathesis-report.json",
+          "sha256": "2e00698f8bcc54edfcaa236c26cadddf45e2a5bd58e2149c1c828b99b45676fe"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-202/schemathesis-coverage.json",
+          "sha256": "7837be196d8af36152eeb7aa6c9be7019f91bbe4ac437da054f698cf9a0e1777"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-202/schemathesis-events.ndjson",
+          "sha256": "a95cf9b8ce75845aff95cc9f9bd50d08657785da4b1f4ee7acf026252f421d42"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-202/baseline-articles.json",
+          "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-202/baseline-categories.json",
+          "sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+        }
+      ]
+    },
+    {
+      "run_id": "20261011T095117Z-89079",
+      "profile": "guided",
+      "seed": 303,
+      "runner_seconds": 1200.2035174260018,
+      "stop_reason": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "tested_operations": 10,
+      "generated_cases": 5894,
+      "unique_check_failures": 62,
+      "cases_errored": 200,
+      "recorded_http_interactions": 5694,
+      "recorded_2xx": 1457,
+      "recorded_2xx_percent": 25.58833860203723,
+      "parameter_coverage_percent": 87.5,
+      "keyword_coverage_percent": 77.87610619469027,
+      "response_coverage_percent": 30.76923076923077,
+      "examples_coverage_percent": 75.0,
+      "harness_sha": "d14c6151bb2131f0b738921d1a3b9b5f7c979d07",
+      "working_tree": "dirty",
+      "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+      "budget": {
+        "max_time_seconds": 1200,
+        "max_examples_per_operation": 100,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "coverage_summary": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 42,
+          "partial": 6,
+          "total": 48,
+          "percent": 87.5
+        },
+        "keywords": {
+          "covered": 176,
+          "partial": 48,
+          "total": 226,
+          "percent": 77.87610619469027
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 150,
+          "violated": 37,
+          "total": 386,
+          "percent": 38.86010362694301
+        }
+      },
+      "failure_types": [
+        {
+          "type": "ServerError",
+          "title": "Server error",
+          "severity": "critical",
+          "count": 8,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema",
+          "severity": "high",
+          "count": 7,
+          "operations": [
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "AcceptedNegativeData",
+          "title": "API accepted schema-violating request",
+          "severity": "medium",
+          "count": 3,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 8,
+          "operations": [
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedContentType",
+          "title": "Undocumented Content-Type",
+          "severity": "medium",
+          "count": 5,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 29,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "POST /items/qa_articles": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        }
+      },
+      "recorded_statuses": {
+        "200": 1159,
+        "403": 1404,
+        "204": 298,
+        "404": 2,
+        "400": 2669,
+        "500": 162
+      },
+      "recorded_interactions_by_phase": {
+        "examples": 10,
+        "coverage": 10,
+        "fuzzing": 26,
+        "stateful": 5648
+      },
+      "recorder_references": 5694,
+      "recorded_unique_interactions": 5694,
+      "source_files": [
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-303/campaign-summary.json",
+          "sha256": "76e32b76b7d6c902bbaf693e4fd1ad931f3c15720e25b29d418f68a864bc936c"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-303/schemathesis-report.json",
+          "sha256": "58dcdd17be2a4457645e8d0d15b0041fbed5cfc8f92e958d4c6fc19e36315972"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-303/schemathesis-coverage.json",
+          "sha256": "2506dbf137c2356ff610ea60ce92cdc432bdbedeaf384b3790448c9cc8f4e699"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-303/schemathesis-events.ndjson",
+          "sha256": "8d5469ab48e1780d7105482c35110c46ab4e0510da08fc8be2e4edeb339382a1"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-303/baseline-articles.json",
+          "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+        },
+        {
+          "path": "artifacts/runs/20261011T095117Z-89079/guided/seed-303/baseline-categories.json",
+          "sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+        }
+      ]
+    }
+  ],
+  "by_profile": {
+    "raw": {
+      "runner_seconds": {
+        "median": 1200.074334388999,
+        "min": 1200.0164045560014,
+        "max": 1200.1740637229996
+      },
+      "generated_cases": {
+        "median": 59,
+        "min": 51,
+        "max": 65
+      },
+      "unique_check_failures": {
+        "median": 19,
+        "min": 18,
+        "max": 20
+      },
+      "recorded_http_interactions": {
+        "median": 59,
+        "min": 51,
+        "max": 65
+      },
+      "recorded_2xx_percent": {
+        "median": 42.3728813559322,
+        "min": 41.17647058823529,
+        "max": 49.23076923076923
+      },
+      "parameter_coverage_percent": {
+        "median": 58.333333333333336,
+        "min": 58.333333333333336,
+        "max": 58.333333333333336
+      },
+      "keyword_coverage_percent": {
+        "median": 29.646017699115045,
+        "min": 29.646017699115045,
+        "max": 30.97345132743363
+      },
+      "response_coverage_percent": {
+        "median": 30.76923076923077,
+        "min": 30.76923076923077,
+        "max": 30.76923076923077
+      }
+    },
+    "guided": {
+      "runner_seconds": {
+        "median": 1200.2035174260018,
+        "min": 1200.1404996160018,
+        "max": 1200.3344009419998
+      },
+      "generated_cases": {
+        "median": 5864,
+        "min": 5770,
+        "max": 5894
+      },
+      "unique_check_failures": {
+        "median": 63,
+        "min": 62,
+        "max": 65
+      },
+      "recorded_http_interactions": {
+        "median": 5688,
+        "min": 5659,
+        "max": 5694
+      },
+      "recorded_2xx_percent": {
+        "median": 26.347411203392824,
+        "min": 25.58833860203723,
+        "max": 28.938115330520393
+      },
+      "parameter_coverage_percent": {
+        "median": 87.5,
+        "min": 85.41666666666667,
+        "max": 87.5
+      },
+      "keyword_coverage_percent": {
+        "median": 79.64601769911505,
+        "min": 77.87610619469027,
+        "max": 80.97345132743362
+      },
+      "response_coverage_percent": {
+        "median": 30.76923076923077,
+        "min": 30.76923076923077,
+        "max": 30.76923076923077
+      }
+    }
+  }
+}

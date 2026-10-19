@@ -1,0 +1,51 @@
+{
+  "created_at": "2026-10-18T10:23:48.535994+00:00",
+  "status": "PASS",
+  "checks": {
+    "source-after.zip": {
+      "files": 25,
+      "manifest_and_source_hashes": "PASS",
+      "crc": "PASS",
+      "sha256": "fddbf66b2b0913c5a248fa27939624b4b5a867c79b94d99614dd23d09d72c453"
+    },
+    "evidence-selected.zip": {
+      "files": 493,
+      "manifest_and_source_hashes": "PASS",
+      "crc": "PASS",
+      "sha256": "3cab235f649d2670179661536afe1fe36667188c2696c37001dbd64ab2ff5d17"
+    },
+    "original_evidence": {
+      "checked": 177,
+      "unchanged": 177
+    },
+    "measurement_freeze": {
+      "checked": 20,
+      "unchanged": true
+    },
+    "shared_oracle": "Phase 4 Runner and Api unchanged",
+    "local_links": {
+      "checked": 175,
+      "broken": 0
+    },
+    "catalog": {
+      "rows": 257,
+      "passed": 94,
+      "not_run": 163,
+      "new_unique_cases": 36,
+      "other_phase4_rows_preserved": true
+    },
+    "runtime": {
+      "mutation_lock_released": true,
+      "replay_source_pilot_three_seeds_max_time_60": true
+    },
+    "executed_checks": {
+      "host_offline": "18 PASS",
+      "pinned_offline": "18 PASS",
+      "bash_syntax": "PASS",
+      "real_query_trials": "6 PASS, runner/restore 0"
+    }
+  },
+  "errors": [],
+  "scope": "P6 only; P7 removed; P8/P9 not executed; no commit/push",
+  "validation_note": "Historical CSV uses UTF-8 BOM; read both CSVs with utf-8-sig. Initial ad-hoc validator was corrected without changing experiment data."
+}

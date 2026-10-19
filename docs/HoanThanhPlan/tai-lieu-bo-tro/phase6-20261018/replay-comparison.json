@@ -1,0 +1,29 @@
+{
+  "scope": "reuse Phase 4 measurement, not a new replay in Phase 6",
+  "replay_run": "20261018T091638Z-1712",
+  "finding": "P5-F02",
+  "case_id": "qfqspn",
+  "metadata_wall_seconds": 20,
+  "python_reproducer_timestamp_span_seconds": 5,
+  "timing_precision": "integer metadata/timestamps, not new Stopwatch",
+  "replay_scope": "single_request",
+  "sequence_replayed": false,
+  "matched_checks": [
+    {
+      "name": "response_schema_conformance",
+      "failure_type": "JsonSchemaError"
+    }
+  ],
+  "reproduced": true,
+  "runner_exit_code": 0,
+  "restore_exit_code": 0,
+  "campaign_source": "20261012T190350Z-1047",
+  "campaign_profile": "guided",
+  "source_seed": 101,
+  "source_line": 14,
+  "campaign_three_seed_metadata_wall_seconds": 229,
+  "campaign_per_seed_budget_seconds": 60,
+  "campaign_max_examples": 10,
+  "campaign_status": "failed; all three reached max_time; discovery search incomplete",
+  "comparison_limit": "Known-failure verification vs exploratory discovery; no percent saving for equal tasks or time-to-first-failure estimate."
+}

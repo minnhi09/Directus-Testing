@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-18",
+  "scope": "static design validation; no API/test execution",
+  "checks": {
+    "catalog_has_257_unique_cases_and_required_fields": {
+      "passed": true
+    },
+    "all_new_execution_is_NOT_RUN_no_fabricated_results": {
+      "passed": true
+    },
+    "all_oracles_defined_and_open_cases_have_questions": {
+      "passed": true
+    },
+    "readiness_and_core_counts_consistent": {
+      "passed": true
+    },
+    "all_26_BR_and_case_UR_AC_trace_correct": {
+      "passed": true,
+      "details": []
+    },
+    "inventory_20_items_keeps_existing_ids": {
+      "passed": true
+    },
+    "ten_positive_operation_designs_exact_scope": {
+      "passed": true
+    },
+    "69_decision_rules_mapped_actor_state_projection": {
+      "passed": true,
+      "details": []
+    },
+    "34_boundary_instances_have_exact_values_and_cases": {
+      "passed": true,
+      "details": []
+    },
+    "48_field_partitions_have_expected_and_class": {
+      "passed": true
+    },
+    "bounded_probe_templates_avoid_unrelated_length_failures": {
+      "passed": true
+    },
+    "pairwise_9_of36_covers37_feasible_pairs": {
+      "passed": true
+    },
+    "pairwise_witnesses_and_lower_bound_valid": {
+      "passed": true
+    },
+    "fixture_oracle_12_articles_3_categories_no_hardcoded_ids": {
+      "passed": true
+    },
+    "14_design_inputs_including_harness_PDF_schemas_unchanged": {
+      "passed": true,
+      "details": []
+    },
+    "phase2_31_review_inputs_still_unchanged": {
+      "passed": true,
+      "details": {
+        "file_count": 31,
+        "changed": []
+      }
+    },
+    "phase0_177_selected_evidence_unchanged": {
+      "passed": true,
+      "details": []
+    },
+    "four_pinned_error_source_snapshots_hash_match": {
+      "passed": true
+    },
+    "only_phase3_checklist_completed_no_phase4_started": {
+      "passed": true
+    },
+    "current_document_local_links_exist": {
+      "passed": true,
+      "details": {
+        "documents": 8,
+        "links": 220,
+        "broken": []
+      }
+    },
+    "new_markdown_table_columns_consistent": {
+      "passed": true,
+      "details": []
+    }
+  },
+  "all_passed": true,
+  "output_sha256": {
+    "03-bang-quyet-dinh-quyen.csv": "05a6f49cfff87331d8e35d6ecb13732b47fe6dda941eab01c1eb40ba2e200300",
+    "03-gia-tri-bien.csv": "33fa8a71734619abc29732a7f8725528b7a7701036175f133da7ee751ecc1e0a",
+    "03-inventory-test-hien-co.csv": "a20763bd356a30a343894a21fda16359256f8ccd390e30cd7a3f3716b4a85efb",
+    "03-phan-vung-tuong-duong.csv": "1810ef0d8dd3c7a2ad2e422684c508732dac35d63c59af25f8ac15a8712ec6c1",
+    "03-query-exhaustive-36.csv": "be3e3e2bc9bb0b1661199699b8df318dc63ac4bada388892b594387ac8ac070d",
+    "03-query-pairwise.csv": "561e7a586ef032fb55d8f8b1045ad4cfbedcc91678e34a13dc690a743ec2222f",
+    "03-review-thiet-ke.md": "536171ef9c2f3813250092960122440566e7bc614dc3c6ee3c971b4b80ee53ca",
+    "03-test-case-catalog.csv": "ba7041266ce2c1fcbfe97e0769a6f995f470f77933f498279d0e396519f8e7ae",
+    "03-test-case-catalog.md": "628ca707a94054f43af98e361dc4ad7b6d49e0da65f9787fc0985d3721270f75",
+    "03-thiet-ke-test-va-coverage.md": "8b3f258e6913f7459f13822f8d3fa70d839f3d59cfa6944c2ecd8e3eed63271a",
+    "03-tieu-chi-ket-thuc.md": "d30701489fae293d9d56a7febda25ff1a60f559d7397ff280b6a092487bd4daa",
+    "03-traceability.csv": "f04c98589d53c9a3d1e0955667ec07f098cb28266c1e77cddfd7986dde5c8643",
+    "tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/invalid-foreign-key.ts": "b744f06139bd045762af10ec433729fbcc3ba6e9d592ab1f37608711a1cba5d9",
+    "tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/invalid-payload.ts": "76294d7e69bc3b5e466118cf057ab90b56b4b9ff7f1d72b051ea3870e221c640",
+    "tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/not-null-violation.ts": "9a46ae8362a977ba054d711c9bc61778275878d982fdc14acf45c2bde5052de2",
+    "tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/value-too-long.ts": "316c563f930f2787e6074a7ab9745eb84262a6426fa76219605fe161938ace35",
+    "tai-lieu-bo-tro/phase3-20261018/baseline-source-manifest.json": "95a7fb9576b3501b7994139039fbc6f904de8aebd4f44f875644169b4566fe10",
+    "tai-lieu-bo-tro/phase3-20261018/design-summary.json": "52d70744fbb08e3b9886fba80fdd6ed0f06af42bc324566d9be4b46d422d17dd",
+    "tai-lieu-bo-tro/phase3-20261018/fixture-oracle.json": "8dc8fde62dcbcd73d9bdfe05cf0ed0df93bf4cec48d1cbf4e4e41fb238fb71e0",
+    "tai-lieu-bo-tro/phase3-20261018/oracle-library.json": "0528262f9933610606c184347c94f2d776cc774a4ff7805aaec256181aed6a57",
+    "tai-lieu-bo-tro/phase3-20261018/pairwise-model-and-coverage.json": "f853d0b8295d3f9d042334fd02f8d31e1c55c0ea0aa0975024d1ce765fddc870",
+    "tai-lieu-bo-tro/phase3-20261018/source-manifest-before.json": "027a7dbc1a7f2a921486f573275fe8fdd3dc6df9f8fe4f84088e8c3108e3ce6d",
+    "tai-lieu-bo-tro/phase3-20261018/test-case-catalog.json": "7c5c6f09181a81e37e6abc143e66eb2107bc6baa0f1965f1ef2bbd7c2e1fa80f"
+  }
+}

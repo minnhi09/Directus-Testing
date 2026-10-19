@@ -1,0 +1,19 @@
+test_budget_and_precondition_still_cleanup_and_report (test_harness.LifecycleTests.test_budget_and_precondition_still_cleanup_and_report) ... ok
+test_cleanup_failure_stops_next_case_and_persists_result (test_harness.LifecycleTests.test_cleanup_failure_stops_next_case_and_persists_result) ... ok
+test_url_scope_and_redirect_guard (test_harness.LifecycleTests.test_url_scope_and_redirect_guard) ... ok
+test_wrong_fixture_sends_no_target (test_harness.LifecycleTests.test_wrong_fixture_sends_no_target) ... ok
+test_missing_or_cyclic_parent_refuses_fallback (test_harness.ReplayTests.test_missing_or_cyclic_parent_refuses_fallback) ... ok
+test_producer_mapping_uses_identity_not_row_position (test_harness.ReplayTests.test_producer_mapping_uses_identity_not_row_position) ... ok
+test_replay_path_scope (test_harness.ReplayTests.test_replay_path_scope) ... ok
+test_typed_mapping_does_not_rewrite_score_metadata_or_limit (test_harness.ReplayTests.test_typed_mapping_does_not_rewrite_score_metadata_or_limit) ... ok
+test_bool_is_not_integer_oracle (test_harness.VerdictTests.test_bool_is_not_integer_oracle) ... ok
+test_category_permission_controls_use_category_fields (test_harness.VerdictTests.test_category_permission_controls_use_category_fields) ... ok
+test_denial_requires_status_and_error_code (test_harness.VerdictTests.test_denial_requires_status_and_error_code) ... ok
+test_positive_requires_json_shape (test_harness.VerdictTests.test_positive_requires_json_shape) ... ok
+test_status_equality_is_not_reproduced_failure (test_harness.VerdictTests.test_status_equality_is_not_reproduced_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.034s
+
+OK
+Designed a failed 

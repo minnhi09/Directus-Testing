@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-10-18T11:16:15.808034+00:00",
+  "status": "PASS",
+  "meaning": "Artifact integrity/document validation only. SUT assertion failures and incomplete searches remain unchanged.",
+  "checks": {
+    "checkpoint": {
+      "files": 28,
+      "archive_hashes_match": true,
+      "current_runtime_code_data_config_schemas_unchanged": true,
+      "documentation_changed_after_tests": [
+        "README.md"
+      ],
+      "explanation": "README simplified after all API runs at explicit user request; pre-test README preserved in immutable checkpoint and source-before."
+    },
+    "original_evidence": {
+      "checked": 177,
+      "unchanged": 177
+    },
+    "selected_evidence": {
+      "files": 1554,
+      "source_copy_archive_sha_match": true,
+      "zip_sha256": "84467bb5af744f66cda7bc6de047bcfe06b0b91cf74eda4435eaf3aeb15748f2",
+      "credential_pattern_scan": "PASS for selected files only; no private env read"
+    },
+    "catalog": {
+      "passed": 184,
+      "failed": 7,
+      "open": 1,
+      "NOT_RUN": 65
+    },
+    "new_runs": {
+      "count": 17,
+      "all_recorded_restores_zero": true,
+      "not_all_test_runners_passed": true
+    },
+    "runtime_lock_released": true,
+    "offline_regression": {
+      "host": "18 PASS",
+      "pinned": "18 PASS",
+      "no_extra_package_install": true
+    },
+    "markdown_links": {
+      "checked": 180,
+      "broken": 0
+    }
+  },
+  "errors": [],
+  "security_restriction": "UI notice recorded; no exact denied command identified in available tool logs. No attempt to bypass controls.",
+  "git": "No stage, commit, tag, push or PR",
+  "scope": "P8 simplified per user; no more API runs, campaigns or deep candidate investigation planned; P9 remains.",
+  "document_validation_note": "Validation report now exists before checking its self-referencing links; no source or test data changed."
+}

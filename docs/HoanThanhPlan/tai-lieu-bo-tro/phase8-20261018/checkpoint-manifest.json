@@ -1,0 +1,152 @@
+{
+  "checkpoint_id": "P8-ACCEPT-v1",
+  "created_at": "2026-10-18T10:30:42.809874+00:00",
+  "before_target_tests": true,
+  "head": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "dirty": true,
+  "git_checkpoint": "local file archive, not a commit or tag",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 23983,
+      "sha256": "bcefa2089b55f2d38d8709597bd23d5ad90542de65e1b4bca8584b0fc9f5401d"
+    },
+    {
+      "path": "compose.yaml",
+      "bytes": 2787,
+      "sha256": "181241bdf99db9591ea27b1cfb26cab6cbe50f4500a3a8f141fabf55b2f36276"
+    },
+    {
+      "path": "config/lab.env.example",
+      "bytes": 1716,
+      "sha256": "b485602ce6aef27ad7c826abbc24bf45f9f2479ac281b21d845712059fac0fed"
+    },
+    {
+      "path": "docs/HoanThanhPlan/tai-lieu-bo-tro/phase8-20261018/protocol-v1.json",
+      "bytes": 8931,
+      "sha256": "c5dabe97590bff28949b30882f2cfa2de96a28e9ff5d091764bce7b769098514"
+    },
+    {
+      "path": "docs/HoanThanhPlan/tai-lieu-bo-tro/phase8-20261018/run-acceptance-step.ps1",
+      "bytes": 2289,
+      "sha256": "ae4c5565edb81198e39b33181041496396c35929a98afd9ec6077a016195eb31"
+    },
+    {
+      "path": "lab.sh",
+      "bytes": 32201,
+      "sha256": "888fd13be3091e1e52385edf75e8be4ea914377ea0d5357e8ce1530deb1e28fa"
+    },
+    {
+      "path": "manifest/baseline.yaml",
+      "bytes": 19935,
+      "sha256": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee"
+    },
+    {
+      "path": "runtime/profiles/phase8-20261018/fixture-ids.json",
+      "bytes": 706,
+      "sha256": "f22aedd3c75fb8860971279dce2c408b70b3ad356afe4c7f9d8cd5937c4c6133"
+    },
+    {
+      "path": "runtime/profiles/phase8-20261018/schemas/r06-k05-v2/admin.json",
+      "bytes": 175679,
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e"
+    },
+    {
+      "path": "runtime/profiles/phase8-20261018/schemas/r06-k05-v2/anonymous.json",
+      "bytes": 23273,
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3"
+    },
+    {
+      "path": "runtime/profiles/phase8-20261018/schemas/r06-k05-v2/editor.json",
+      "bytes": 48325,
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26"
+    },
+    {
+      "path": "runtime/profiles/phase8-20261018/schemas/r06-k05-v2/reader.json",
+      "bytes": 43137,
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8"
+    },
+    {
+      "path": "scripts/contract_checks.py",
+      "bytes": 2255,
+      "sha256": "66616c35d9c9619322dd793cd64623df07099f8acef38e2e2ec689569fec2cbb"
+    },
+    {
+      "path": "scripts/cost_query.py",
+      "bytes": 9002,
+      "sha256": "97bb4a10c20811c265ee7e1a59c42796a4b965e9507cb276f6c19ec82d6acd88"
+    },
+    {
+      "path": "scripts/data/fixture-oracle.json",
+      "bytes": 7185,
+      "sha256": "8dc8fde62dcbcd73d9bdfe05cf0ed0df93bf4cec48d1cbf4e4e41fb238fb71e0"
+    },
+    {
+      "path": "scripts/data/query-cost-model-v1.json",
+      "bytes": 14505,
+      "sha256": "b8384d7c7ecf9a864d871d2fa56cd94a6be55555ef4f5490e0d2f27d4402ad55"
+    },
+    {
+      "path": "scripts/data/query-cost-protocol-v1.json",
+      "bytes": 3320,
+      "sha256": "02ac195775b34a57c3b69ca5ca9f66b34781ba65f2e67ba3e9fa1f867b8af682"
+    },
+    {
+      "path": "scripts/data/test-catalog-v1.json",
+      "bytes": 503499,
+      "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58"
+    },
+    {
+      "path": "scripts/designed_cases.py",
+      "bytes": 42187,
+      "sha256": "a3dfcc48131b6f441e0b64c3e8db4b748a267d9cec9ed10a626d941a88b187f4"
+    },
+    {
+      "path": "scripts/invariants.py",
+      "bytes": 65484,
+      "sha256": "a33781917c8a8be509ffd575daf4b8b9eb9e4617b940f3524b92bb77eb8094d1"
+    },
+    {
+      "path": "scripts/lab-components.sh",
+      "bytes": 89586,
+      "sha256": "b9f9f92b77cb75d9ca9f931a2c1da8a4e178b6efdc8f4f21cdb3737b7496f8ef"
+    },
+    {
+      "path": "scripts/replay_cases.py",
+      "bytes": 14071,
+      "sha256": "6893c89a5215078b51b994c4a5562b414730d4b90c9394aa60f0de4b9885ae13"
+    },
+    {
+      "path": "scripts/run-lab.ps1",
+      "bytes": 1310,
+      "sha256": "e635f5a6eb7cec50f042187286d859310428a98a398f43c3963a0d7241eb803b"
+    },
+    {
+      "path": "scripts/setup-windows.ps1",
+      "bytes": 1624,
+      "sha256": "37340918f50e8a2aaf61fb9874fbb6a0ce586f1832382b0c20c8662b1ff8f5f2"
+    },
+    {
+      "path": "scripts/windows/jq",
+      "bytes": 287,
+      "sha256": "1a899fe22167a510d1aae32826c55ed600658388c7e18b92c6a6f1c6ef04962b"
+    },
+    {
+      "path": "tests/probe_pinned_contract.py",
+      "bytes": 2756,
+      "sha256": "387efe7d19dab26f8cfc50e2edbaeb4dbc81af1ec9b96d336027c33c26a11683"
+    },
+    {
+      "path": "tests/test_cost_query.py",
+      "bytes": 4682,
+      "sha256": "8c9a5a03d0ee5863020541ef8cd5590d8115f739b5216a05d69fb454326327ea"
+    },
+    {
+      "path": "tests/test_harness.py",
+      "bytes": 8125,
+      "sha256": "0cbbd23a3d89b9425a19ac13775003bf4d5b25bc0b581811304cc6032b2a9b97"
+    }
+  ],
+  "zip_sha256": "b5522acaf2440fee4a3f1013b89dc61a1b7389f207793402220c1e0e6f74e8d0",
+  "no_secrets": "Only code/public config and synthetic fixture/schema snapshots; no lab.env, license value or DB dump."
+}

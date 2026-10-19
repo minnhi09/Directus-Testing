@@ -1,0 +1,79 @@
+{
+  "protocol_id": "P6-COST-v1",
+  "created_at": "2026-10-18T10:07:57.265330+00:00",
+  "status": "fixed before new target measurements",
+  "primary_experiment": {
+    "model": "QRY-PW-v1",
+    "actor": "editor",
+    "method": "GET",
+    "path": "/items/qa_articles",
+    "exhaustive_cases": 36,
+    "pairwise_cases": 9,
+    "feasible_pairs": 37,
+    "oracle": "shared Runner.expected_query/assert_query using seed spec + dynamic map; title order independently verified by PostgreSQL",
+    "rounds": 3,
+    "order": [
+      [
+        "exhaustive",
+        "pairwise"
+      ],
+      [
+        "pairwise",
+        "exhaustive"
+      ],
+      [
+        "exhaustive",
+        "pairwise"
+      ]
+    ],
+    "planned_run_ids": [
+      "p6-query-20261018-r1-all",
+      "p6-query-20261018-r1-pw",
+      "p6-query-20261018-r2-pw",
+      "p6-query-20261018-r2-all",
+      "p6-query-20261018-r3-all",
+      "p6-query-20261018-r3-pw"
+    ],
+    "runtime_profile": "phase6-20261018",
+    "rate": "5/s",
+    "timeout_seconds": 10,
+    "workers": 1,
+    "max_time_seconds_per_runner": 120,
+    "target_writes": false,
+    "state_guard": "baseline snapshot + shared preflight; post-batch full equality; shared final restore; project lock, no parallel mutation",
+    "cache_policy": "keep baseline cache configuration; no cache flush; no extra warmup beyond common preflight",
+    "measurement": [
+      "client target HTTP attempts/responses/status",
+      "target wall time incl pacing, decoding, oracle and recording",
+      "API request elapsed incl response read",
+      "Python setup/auth/verification HTTP",
+      "shell lifecycle HTTP attempts incl auth (no headers/body)",
+      "end-to-end invocation stopwatch; metadata seconds retained"
+    ],
+    "analysis": "report all 6 runs and per-round ratios, median/min/max; no statistical generalization from n=3",
+    "failure_policy": "retain failed/incomplete run, stop dependent measurements on precondition/restore/network failure; no blanket skips; changes after measurements require a new protocol version or explicitly separate pilot",
+    "human_effort": "not measured; do not convert agent/session wall time into person-hours or currency"
+  },
+  "historical_comparison": {
+    "post_hoc": true,
+    "primary_raw": "20261011T085034Z-76481",
+    "primary_guided": "20261011T095117Z-89079",
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "budget_seconds_per_seed": 1200,
+    "comparison_unit": "strategies incl guided stateful, not guidance alone",
+    "qualification": "same recorded image/budget/actor/fixture snapshots; dirty historical source not frozen byte-for-byte, no claim causal isolation or current runtime validation",
+    "interrupted_alternative_guided": "20261012T122826Z-22781 (report interruption separately, do not merge with primary cohort)"
+  },
+  "replay_evaluation": {
+    "use_existing_measurements": true,
+    "replay_run": "20261018T091638Z-1712",
+    "case": "qfqspn",
+    "campaign_source": "20261012T190350Z-1047",
+    "rule": "compare task scope and measured wall/runner times separately; no claim equal discovery power or time-to-first-failure from full-campaign duration"
+  },
+  "budget_or_baseline_changes": "query-only measurement cap recorded here; main campaign budget, schema, policy, fixture and raw/guided phases unchanged"
+}

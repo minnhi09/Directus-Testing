@@ -1,0 +1,513 @@
+{
+  "schema": 1,
+  "client_date": "2026-10-18",
+  "timezone": "Asia/Bangkok",
+  "kind": "local_file_snapshot_before_phase0_document_updates",
+  "not_a_git_commit_or_database_backup": true,
+  "excludes": [
+    "config/lab.env",
+    ".git",
+    "mnhy",
+    "raw artifacts/runs",
+    "01_ke_hoach_trien_khai_R06_K05.md",
+    "AGENTS.md"
+  ],
+  "archive_sha256": "5ee3e1c64812f41610dd1065a451389d6e3cba604a23f706f27552ec55a02126",
+  "files": [
+    {
+      "path": "DAMH/.gitignore",
+      "bytes": 199,
+      "sha256": "721e54d5381ddae388e210fbcad7fd697c9fdbd3e5caf53777854779fc3bf58f"
+    },
+    {
+      "path": "DAMH/compose.yaml",
+      "bytes": 2787,
+      "sha256": "181241bdf99db9591ea27b1cfb26cab6cbe50f4500a3a8f141fabf55b2f36276"
+    },
+    {
+      "path": "DAMH/config/lab.env.example",
+      "bytes": 1716,
+      "sha256": "b485602ce6aef27ad7c826abbc24bf45f9f2479ac281b21d845712059fac0fed"
+    },
+    {
+      "path": "DAMH/docs/architecture.md",
+      "bytes": 2455,
+      "sha256": "47a512f0b50f08d3f4cf9edc67cb8fee82cda7bfae3c03b874c1363c9e6d35fa"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_giua_ky_R06_K05.md",
+      "bytes": 60227,
+      "sha256": "e259cb4e91f9587416d0a9a498f2c1c66511313783b6141abc18d44d1d4df183"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_giua_ky_R06_K05_hoan_thien_v2.pdf",
+      "bytes": 1470477,
+      "sha256": "ab5bc1f5d530da9481c9dae739bb50c9c6610c41fece8408572a7438b399cd2f"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_giua_ky_R06_K05_hoan_thien_v2.pptx",
+      "bytes": 110879,
+      "sha256": "5937b0b01431bf0413675305209f52c284ab1126ffc7e9665f04754bbe34902e"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_giua_ky_R06_K05_phan_tich_thiet_ke_trang_den_hoan_thien.pdf",
+      "bytes": 998472,
+      "sha256": "d7a28275222b415a6b84a71b13d0f89b2cb3787cd066b6c21c845872ad5e0177"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_giua_ky_R06_K05_phan_tich_thiet_ke_trang_den_hoan_thien.pptx",
+      "bytes": 75702,
+      "sha256": "9699cdca9a8bf05d73a70688730fbeaa94ba8f99c62c81543af7039309d2ef0c"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_Huong_dan_chay_du_an.md",
+      "bytes": 38501,
+      "sha256": "0f50bc20fdbe5703b028ec6c87434049553a3940078f882cee86e07935485c30"
+    },
+    {
+      "path": "DAMH/docs/Bao_cao_Thiet_ke_kich_ban_kiem_thu.md",
+      "bytes": 37286,
+      "sha256": "55aeeade77d4e65f44d2be6037c4ca897b3a559f97694ee99cd4009b616b5b53"
+    },
+    {
+      "path": "DAMH/docs/campaign-triage-2026-10-11.md",
+      "bytes": 17805,
+      "sha256": "558d444613b7dbce2b3a8ea76df70f5bc13003efb68314df8e5c756d301ddf48"
+    },
+    {
+      "path": "DAMH/docs/demo.md",
+      "bytes": 7862,
+      "sha256": "1d7c4483476cf64ebd8693d8e62728ded7a9586b0d53ddf0663eec0b54cabd70"
+    },
+    {
+      "path": "DAMH/docs/g0-quyet-dinh-ky-thuat.md",
+      "bytes": 8065,
+      "sha256": "1a7713e49e09dd0ebcfe32774342f1dd6cb1770064a0c8cea4bde2bf20e9e4dd"
+    },
+    {
+      "path": "DAMH/docs/g1-acceptance.md",
+      "bytes": 8229,
+      "sha256": "2d41713b9dce3729465b3aac4d0948826090d082c7aad6b2794be401e0cd1a1d"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/01_nen_tang_kiem_thu.md",
+      "bytes": 7033,
+      "sha256": "8fdc69640c5dcacb50239aa90f9e20823fce89488741e9f0271c18b69e4cc843"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/02_http_rest_directus.md",
+      "bytes": 6699,
+      "sha256": "4d0126675476d521d40f9205b98dfdf5d7e031bc220ac4a588627e31944b0983"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/03_kien_truc_lab.md",
+      "bytes": 5627,
+      "sha256": "c3c6046df199f078d29f7881aa3dc1afb3d326eeb8cc3ff6ee21cea4994d0494"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/04_openapi_schema.md",
+      "bytes": 5299,
+      "sha256": "7b523c00e1f52343066f2bc19379734ae472742b6855ea22cd44833c1d8d4ac9"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/05_k05_schemathesis.md",
+      "bytes": 7039,
+      "sha256": "c3b510995b0728ed6ace53bfb4d3dc69c007f59cca00452d2b1852f05b9bbaac"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/06_scenario_invariant_harness.md",
+      "bytes": 5920,
+      "sha256": "02b48ade53e765e3235575dbe117acc253bdb046e83e6079badf3dfbfdab9fd0"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/07_failure_metrics_replay.md",
+      "bytes": 6461,
+      "sha256": "51b1702de410e7d86c524b010fa677b49c26ee4dbab2b0a7136c974bf6792f40"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/08_thuc_hanh_va_bao_ve.md",
+      "bytes": 5063,
+      "sha256": "431cc2c1bd4ddf1a806612f5ca6a2e1d1f5472afc9dd214ab4f1068fbe2555f9"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/bai-tap.md",
+      "bytes": 4100,
+      "sha256": "8a8030c62d531e47c49140a9f54675eced2ee23c9df57c1f42935a704567470d"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/cau-hoi-bao-ve.md",
+      "bytes": 5879,
+      "sha256": "64828dfeab48609323a3226ed74c91f918ce84363f2d45f840c4a791e0b660f3"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/dap-an.md",
+      "bytes": 5972,
+      "sha256": "df80f7770250e7a31ec44e8f606ed010a1583d653cf5ba5ef4c56c6de957f547"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/glossary.md",
+      "bytes": 3415,
+      "sha256": "e90b8bf095f8582b4731bda46fbdf1bfbc7ac910dbef9e8d9d5d27117520f372"
+    },
+    {
+      "path": "DAMH/docs/hoc-tap-r06-k05/README.md",
+      "bytes": 7129,
+      "sha256": "3fa10d6391b247ea601b33213fd5e1a272e2e0502ea4772e28552cdfe9cfae89"
+    },
+    {
+      "path": "DAMH/docs/Huong_dan_chay_Directus_Windows.md",
+      "bytes": 3189,
+      "sha256": "6fa0f5dc4262d739f817c0b5c2cde175dd09531117a7df2e7b2b080b1cf083d5"
+    },
+    {
+      "path": "DAMH/docs/images/bao-cao-giua-ky/01-moi-truong.png",
+      "bytes": 60480,
+      "sha256": "91393b0409e0120c8307992b0c35d421ba92aaa5f10970307f9468e98367c3be"
+    },
+    {
+      "path": "DAMH/docs/images/bao-cao-giua-ky/02-crud-editor.png",
+      "bytes": 58234,
+      "sha256": "1cf438026e87878aa20537c22a7d2f42d2a445f331c7c8c4056dbd544516e209"
+    },
+    {
+      "path": "DAMH/docs/images/bao-cao-giua-ky/03-query.png",
+      "bytes": 72363,
+      "sha256": "a1263b503ed42fc4c1e46e2e1da77b8597aeeed1d322bfdc4a8c9690d67b46d1"
+    },
+    {
+      "path": "DAMH/docs/images/bao-cao-giua-ky/04-reader.png",
+      "bytes": 63261,
+      "sha256": "dab0c86811cbeb4f4b4ecca42b30bcc08f98a67464a16bc55dfd9e073ed40d94"
+    },
+    {
+      "path": "DAMH/docs/implementation-log-g0.md",
+      "bytes": 28377,
+      "sha256": "9c3cf2df03feee811f8caa360305bc0fdae6acdaff1060105fdecf5a5cc64a5b"
+    },
+    {
+      "path": "DAMH/docs/Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "bytes": 48949,
+      "sha256": "135fb50bb83a621ee17225023cf5d7554396b79392e49644a3db988223ca1d91"
+    },
+    {
+      "path": "DAMH/docs/Mo_ta_he_thong_actor_module_dependency_luong_du_lieu.md",
+      "bytes": 35619,
+      "sha256": "c2fd2202010597f7b1e3fbcdb859fb6dbc04789d86b7d295d2822b3084bc2c37"
+    },
+    {
+      "path": "DAMH/docs/permissions.md",
+      "bytes": 5390,
+      "sha256": "0eb70e4bafa7d294170d9c8edd582d490e6a061d1aa7bba075152719e19b867c"
+    },
+    {
+      "path": "DAMH/docs/phan1/01-phan-tich-he-thong.md",
+      "bytes": 9290,
+      "sha256": "6baca95347e6c84160809767af05df09461ff2c67190eeea0e38538ca715e8ee"
+    },
+    {
+      "path": "DAMH/docs/phan1/02-kien-truc-va-luong-du-lieu.md",
+      "bytes": 16412,
+      "sha256": "e878b696bf49873806414a04b5da17d052772e5ba37ae257442b74b2929e9e68"
+    },
+    {
+      "path": "DAMH/docs/phan1/03-huong-dan-cai-dat.md",
+      "bytes": 9956,
+      "sha256": "a0b416c8835701ad622c5db53a32f20f9a16e4a008ceddd4b5a175ab3aa44eed"
+    },
+    {
+      "path": "DAMH/docs/phan1/04-bao-cao-xac-minh.md",
+      "bytes": 6475,
+      "sha256": "fc11d261fc9bde5cea06b6a62ec40eb8d08413c8593151155b3d2b254cae7f45"
+    },
+    {
+      "path": "DAMH/docs/phan1/05-doi-chieu-yeu-cau.md",
+      "bytes": 4168,
+      "sha256": "d7844d4dcef302c2575dcf7af3eb03d02c9b59044e24613f9fcb87ee23fea6d6"
+    },
+    {
+      "path": "DAMH/docs/phan2/01-co-so-ly-thuyet.md",
+      "bytes": 5214,
+      "sha256": "b30a08c141ba8e965335c67636eb5adc452f17c26f0516ca35310b28e48ed602"
+    },
+    {
+      "path": "DAMH/docs/phan2/02-test-model-va-test-cases.md",
+      "bytes": 6429,
+      "sha256": "952acce26b97d485007fce0ece4df6586d6db50b44f3cf999bbe649a04507979"
+    },
+    {
+      "path": "DAMH/docs/phan2/03-trien-khai-automation.md",
+      "bytes": 3550,
+      "sha256": "d47560d1e28f21f54b15a9c30ceaaed2792632a0446c64af1a5285cfbc901081"
+    },
+    {
+      "path": "DAMH/docs/phan2/04-ket-qua-kiem-thu.md",
+      "bytes": 7427,
+      "sha256": "3f10dba5e65b57dcbd9c32e66925ff96213a348c2ea7d9e12555457eb1526851"
+    },
+    {
+      "path": "DAMH/docs/phan2/05-phan-tich-loi-va-root-cause.md",
+      "bytes": 5255,
+      "sha256": "962f4acc5c147d66d0a4c2aa211706b930d745668afa2c0b686c7459c1c520ea"
+    },
+    {
+      "path": "DAMH/docs/phan2/06-doi-chieu-yeu-cau.md",
+      "bytes": 1547,
+      "sha256": "f14f47372c2fa81de3612787e2c780764f0b641ac54eae86cfc42b40c4408ea5"
+    },
+    {
+      "path": "DAMH/docs/replay-cases.md",
+      "bytes": 13968,
+      "sha256": "31a737165e91c9c301b9a155a7a1d1b96847a319592186f8658eff4b8b081350"
+    },
+    {
+      "path": "DAMH/docs/scope-review-r06-k05.md",
+      "bytes": 10158,
+      "sha256": "b5117fc176cb8d0e4eb2c7ddfae0ba82033db970fecaa680714e50006d9e0c6f"
+    },
+    {
+      "path": "DAMH/docs/slide_bai_giang/2-kiem-thu-hop-den-0.pdf",
+      "bytes": 1438117,
+      "sha256": "2b2eee98e7cb6305132114cbf76e728515438de58e9846b5db1aaf31e109586b"
+    },
+    {
+      "path": "DAMH/docs/slide_bai_giang/kiem_thu-hop-trang.pdf",
+      "bytes": 5120173,
+      "sha256": "9156fb760630cf1bcead6b502057a2c775ace6cf0ab203bba23386094afdf251"
+    },
+    {
+      "path": "DAMH/docs/slide_bai_giang/lms_presentation.pdf",
+      "bytes": 3212120,
+      "sha256": "1b4c9d22bc60622ba8f1ecbc239ab261aa89a78b544200755a5d476ed5e110a1"
+    },
+    {
+      "path": "DAMH/docs/slide_bai_giang/slide1.pdf",
+      "bytes": 960057,
+      "sha256": "b292738c09d1f65e3818da2013e0cdc6ddd843fcc4a4c7ebcfa652eb32c2a24e"
+    },
+    {
+      "path": "DAMH/docs/test-matrix.md",
+      "bytes": 10754,
+      "sha256": "9abc8915e8c3e1d894ffb63a4d314f19f5c646a30644ade80643dbfb1a96f7f8"
+    },
+    {
+      "path": "DAMH/docs/traceability.md",
+      "bytes": 8626,
+      "sha256": "133231918a443c2059373de1b2ad0a176f97106462bc29c70a7b5c4b7648bb77"
+    },
+    {
+      "path": "DAMH/docs/yeu_cau.pdf",
+      "bytes": 144696,
+      "sha256": "b032a7a78a6ea02bb6f5bf52f037c2e06f80cba18bbffef02c2fce39c56cd405"
+    },
+    {
+      "path": "DAMH/evidence/failure-triage-v2-2026-10-11.md",
+      "bytes": 21925,
+      "sha256": "5452fbad4404da5cb3a839291990f4f56f2953eb0b86638b67894a1720ad7943"
+    },
+    {
+      "path": "DAMH/evidence/final-handoff-2026-10-11.md",
+      "bytes": 16468,
+      "sha256": "0e6b332c8cff5dd98792367f784f6f9a710e92451b79768cc4f2188bafa6c797"
+    },
+    {
+      "path": "DAMH/evidence/g0-2026-10-09.md",
+      "bytes": 2546,
+      "sha256": "e23ff02999b187f3eb631269d6417ad67023e4525ae4582d1ecc17ae7330fc4b"
+    },
+    {
+      "path": "DAMH/evidence/g0-shared-interface-2026-10-10.md",
+      "bytes": 2799,
+      "sha256": "800f68266832e11b45095847089d7b1780875afb15ddce140143d9ae365a43c6"
+    },
+    {
+      "path": "DAMH/evidence/g1-implementation-2026-10-10.md",
+      "bytes": 7059,
+      "sha256": "0633cadb77ae104125bd5083f199a7d4d969bf97a451801953772eff976f87dc"
+    },
+    {
+      "path": "DAMH/evidence/local-startup-2026-10-13.md",
+      "bytes": 3306,
+      "sha256": "e849afdef6345a8ac141a4165b95e819ebae9344eaf38a2d844f1ca458904a62"
+    },
+    {
+      "path": "DAMH/evidence/pilot-triage-2026-10-11.md",
+      "bytes": 5338,
+      "sha256": "c28e4a511b92814c154e7bd02602a48d7944c4806b4497bcc9fff98bbe8e7ff9"
+    },
+    {
+      "path": "DAMH/evidence/progress-2026-10-11.md",
+      "bytes": 5015,
+      "sha256": "94f2475d69d87deabedda8d44f1ac009915b49597546b607724094b0018bca93"
+    },
+    {
+      "path": "DAMH/evidence/runtime-verification-2026-10-11.md",
+      "bytes": 37819,
+      "sha256": "6160d56a251ef2c791d40b8a933e8d2d8b019664c7bae8084ee72bc6b3a5f778"
+    },
+    {
+      "path": "DAMH/evidence/windows-recheck-2026-10-13.md",
+      "bytes": 7830,
+      "sha256": "41c09149e44a6295863ded53dfd914488367fbafb880f7805cd9401f8b9f1d44"
+    },
+    {
+      "path": "DAMH/lab.sh",
+      "bytes": 27806,
+      "sha256": "472a32052c9a774fffd0157ce7e3ea5155124e905e5790781b6205130750264d"
+    },
+    {
+      "path": "DAMH/manifest/baseline.yaml",
+      "bytes": 19935,
+      "sha256": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee"
+    },
+    {
+      "path": "DAMH/README.md",
+      "bytes": 19587,
+      "sha256": "ef9872a8099f5e85c3f97b9c6613203a3ae01016337d15128d121e225a01856c"
+    },
+    {
+      "path": "DAMH/runtime/fixture-ids.json",
+      "bytes": 715,
+      "sha256": "b93fc1ac5ec2b90fa3d221f5f0373de3e6f46bdaea108ca1fc95a00f1f122670"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013/fixture-ids.json",
+      "bytes": 706,
+      "sha256": "e7a73661cd9ecaf1fb20bea7fe782ef0f211eeaf503a0a04f01efdf3ccfd7818"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013/schemas/r06-k05-v2/admin.json",
+      "bytes": 175679,
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013/schemas/r06-k05-v2/anonymous.json",
+      "bytes": 23273,
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013/schemas/r06-k05-v2/editor.json",
+      "bytes": 48325,
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013/schemas/r06-k05-v2/reader.json",
+      "bytes": 38499,
+      "sha256": "20fbfe9a517710ac73d05622f4b158bab4ccbcd96da51ec61363268ed92683cb"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013-oig/fixture-ids.json",
+      "bytes": 705,
+      "sha256": "df6a38444e4d8ea6bd2f9a4bdd31772d3889b6c06316d3cbea17902b51743673"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/admin.json",
+      "bytes": 175679,
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/anonymous.json",
+      "bytes": 23273,
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/editor.json",
+      "bytes": 48325,
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26"
+    },
+    {
+      "path": "DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/reader.json",
+      "bytes": 43137,
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8"
+    },
+    {
+      "path": "DAMH/runtime/schemas/r06-k05-v2/admin.json",
+      "bytes": 175679,
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e"
+    },
+    {
+      "path": "DAMH/runtime/schemas/r06-k05-v2/anonymous.json",
+      "bytes": 23273,
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3"
+    },
+    {
+      "path": "DAMH/runtime/schemas/r06-k05-v2/editor.json",
+      "bytes": 48325,
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26"
+    },
+    {
+      "path": "DAMH/runtime/schemas/r06-k05-v2/reader.json",
+      "bytes": 43137,
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8"
+    },
+    {
+      "path": "DAMH/scripts/invariants.py",
+      "bytes": 57767,
+      "sha256": "caf2db35746680776832f8b86318852b4d73372ea1ee270ac827fec626d83cfe"
+    },
+    {
+      "path": "DAMH/scripts/lab-components.sh",
+      "bytes": 98963,
+      "sha256": "de5cde0e09c7e88261f30d197081d3a86ff76bc25837ea2e3ff7d5c3d84b40e6"
+    },
+    {
+      "path": "tmp/lab-tools/check-acl.sh",
+      "bytes": 920,
+      "sha256": "8eb7f7f73f1c8116e8d738824e1f29e02a9aa86fc82fb1199c9398e53c74cb65"
+    },
+    {
+      "path": "tmp/lab-tools/check-runtime-profile.sh",
+      "bytes": 154,
+      "sha256": "77aed2054ba4d8fc3639d9c5aae1ee7cbe9bb205abd92473b36845f92950d61d"
+    },
+    {
+      "path": "tmp/lab-tools/expected-fixture.json",
+      "bytes": 6229,
+      "sha256": "f0a4a44aee634d26e3126ea91e97a72682c69ee09ba94b098bb2e75c0ccefafb"
+    },
+    {
+      "path": "tmp/lab-tools/expected-fixture.sh",
+      "bytes": 5536,
+      "sha256": "cf025b5163bf82049935f8e26b8eda58f0c368ac740cb710e057efcda3eb2b6c"
+    },
+    {
+      "path": "tmp/lab-tools/jq",
+      "bytes": 217,
+      "sha256": "d803a25dcf6a3599854a7648e2716143f8d5e3983440c509bc22579aff865f35"
+    },
+    {
+      "path": "tmp/lab-tools/jq-sha256sum.txt",
+      "bytes": 2302,
+      "sha256": "dc86824a41c165ece971ff691aff6e08bbfe6e1d1f531688b47ee78c283a85cd"
+    },
+    {
+      "path": "tmp/lab-tools/jq.exe",
+      "bytes": 1035264,
+      "sha256": "a6fc67fedaf9128a3309a1e2ebb8b986aeccf70122ee46d2cb4849e423f0c627"
+    },
+    {
+      "path": "tmp/lab-tools/rebuild-inventory.sh",
+      "bytes": 2366,
+      "sha256": "9cf756a3d1e2f0ce0b8cc821961ba6954f4ce2310b1ef47153906f0a64513d9b"
+    },
+    {
+      "path": "tmp/lab-tools/run-lab.ps1",
+      "bytes": 711,
+      "sha256": "143bff62a342de842680791e84575031c8221b09240c9152feae2b6dd089ffbd"
+    },
+    {
+      "path": "tmp/lab-tools/unicode-check.sh",
+      "bytes": 205,
+      "sha256": "bbb3757951786fdde37235dcbe085dbe1e355084e9f174400983cf83cf9a1738"
+    },
+    {
+      "path": "tmp/lab-tools/verify-k05.ps1",
+      "bytes": 1184,
+      "sha256": "98a9cdd8571991c071fa59f054e5dd1c1e2abcebf3fa0dd7b564b823b0eca3b2"
+    },
+    {
+      "path": "tmp/lab-tools/verify-lab.ps1",
+      "bytes": 913,
+      "sha256": "a00b9767254db2279eb9044927da996c75252f6845963dbc314ac142f67ff561"
+    }
+  ]
+}

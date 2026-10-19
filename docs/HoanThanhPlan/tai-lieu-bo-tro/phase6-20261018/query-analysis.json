@@ -1,0 +1,95 @@
+{
+  "all_six_passed": true,
+  "source_freeze_verified": true,
+  "identical_inputs_and_baselines": true,
+  "target_requests_total": 135,
+  "unique_catalog_cases": 36,
+  "by_set": {
+    "exhaustive": {
+      "target_requests": {
+        "median": 36,
+        "min": 36,
+        "max": 36
+      },
+      "target_seconds": {
+        "median": 7.199643713999649,
+        "min": 7.197154870999839,
+        "max": 7.200262459999976
+      },
+      "target_api_seconds_sum": {
+        "median": 0.19550879800408438,
+        "min": 0.194418149003468,
+        "max": 0.19706714400035708
+      },
+      "total_sut_http_attempts": {
+        "median": 79,
+        "min": 79,
+        "max": 79
+      },
+      "runner_seconds": {
+        "median": 10.743333824999354,
+        "min": 10.739129787999445,
+        "max": 10.744057752999652
+      },
+      "invocation_seconds": {
+        "median": 26.8932962,
+        "min": 26.8267258,
+        "max": 27.1995672
+      }
+    },
+    "pairwise": {
+      "target_requests": {
+        "median": 9,
+        "min": 9,
+        "max": 9
+      },
+      "target_seconds": {
+        "median": 1.7969813280005837,
+        "min": 1.794464994000009,
+        "max": 1.7976738260003913
+      },
+      "target_api_seconds_sum": {
+        "median": 0.048460483000781096,
+        "min": 0.04619612300029985,
+        "max": 0.04882977999841387
+      },
+      "total_sut_http_attempts": {
+        "median": 52,
+        "min": 52,
+        "max": 52
+      },
+      "runner_seconds": {
+        "median": 5.342920700999457,
+        "min": 5.338906259999931,
+        "max": 5.3450484730001335
+      },
+      "invocation_seconds": {
+        "median": 21.6375819,
+        "min": 21.4383087,
+        "max": 21.6453501
+      }
+    }
+  },
+  "paired_reductions": {
+    "target_requests_reduction_percent": {
+      "median": 75.0,
+      "min": 75.0,
+      "max": 75.0
+    },
+    "target_seconds_reduction_percent": {
+      "median": 75.04069090937975,
+      "min": 75.03321808076984,
+      "max": 75.06702264764911
+    },
+    "total_sut_http_attempts_reduction_percent": {
+      "median": 34.17721518987342,
+      "min": 34.17721518987342,
+      "max": 34.17721518987342
+    },
+    "invocation_seconds_reduction_percent": {
+      "median": 19.54284168409226,
+      "min": 19.31423066172315,
+      "max": 21.18143446047186
+    }
+  }
+}

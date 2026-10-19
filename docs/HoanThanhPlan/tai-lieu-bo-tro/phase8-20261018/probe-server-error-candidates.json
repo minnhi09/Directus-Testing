@@ -1,0 +1,330 @@
+{
+  "scope": "Safe metadata only; no headers, payloads or claim of confirmed root causes",
+  "source": "DAMH/artifacts/runs/p8-20261018-probe-guided/guided/seed-101/schemathesis-events.ndjson",
+  "source_sha256": "b93b84f9d52f1030c885ed0a18e4baad1f5000f7b5f5c5318f097a7d6dc31fa9",
+  "recorded_500_occurrences": 27,
+  "by_method_path": {
+    "POST /items/qa_categories": 22,
+    "GET /items/qa_articles": 5
+  },
+  "tool_unique_server_error_failures": 2,
+  "candidate_state": "UNRESOLVED; no additional replay after user narrowed course scope",
+  "qualification": "Shrinking/repeated requests are not distinct defects. Compound GET query is not automatically merged with aggregate F01; POST-array 500 not assigned a cause without isolation.",
+  "occurrences": [
+    {
+      "source_line": 98,
+      "case_id": "GfKtWV",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": [
+        {
+          "name": "not_a_server_error",
+          "failure_type": "ServerError"
+        },
+        {
+          "name": "status_code_conformance",
+          "failure_type": "UndefinedStatusCode"
+        }
+      ]
+    },
+    {
+      "source_line": 102,
+      "case_id": "7A3VvM",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 106,
+      "case_id": "bTIKZs",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 110,
+      "case_id": "ngYH4F",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 114,
+      "case_id": "vFVbKG",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 118,
+      "case_id": "HUoTLm",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 122,
+      "case_id": "P7ABfw",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 126,
+      "case_id": "i8rhhS",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 130,
+      "case_id": "g3AaWF",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 132,
+      "case_id": "50ZLjt",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 136,
+      "case_id": "lTkcoB",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 138,
+      "case_id": "gYzXiD",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 140,
+      "case_id": "30N4pr",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 142,
+      "case_id": "gHU7u9",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 146,
+      "case_id": "aydpSe",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 148,
+      "case_id": "LgtpAN",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 150,
+      "case_id": "u4TTh2",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 152,
+      "case_id": "ve91m7",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 154,
+      "case_id": "RGySBH",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 156,
+      "case_id": "Bcob0h",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3470,
+      "request_body_sha256": "f526d5ed41a79057159fb2c352f4393cdbae33deca42b9a6ce8c72e9eee7c153",
+      "failed_checks": []
+    },
+    {
+      "source_line": 202,
+      "case_id": "MulW1W",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query_keys": [
+        "aggregate",
+        "offset",
+        "page",
+        "search",
+        "sort"
+      ],
+      "request_body_bytes": 0,
+      "request_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failed_checks": [
+        {
+          "name": "not_a_server_error",
+          "failure_type": "ServerError"
+        },
+        {
+          "name": "status_code_conformance",
+          "failure_type": "UndefinedStatusCode"
+        }
+      ]
+    },
+    {
+      "source_line": 206,
+      "case_id": "MtKgOF",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query_keys": [
+        "aggregate",
+        "offset",
+        "page",
+        "search",
+        "sort"
+      ],
+      "request_body_bytes": 0,
+      "request_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failed_checks": []
+    },
+    {
+      "source_line": 210,
+      "case_id": "2ctmN1",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query_keys": [
+        "aggregate",
+        "offset",
+        "page",
+        "search",
+        "sort"
+      ],
+      "request_body_bytes": 0,
+      "request_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failed_checks": []
+    },
+    {
+      "source_line": 210,
+      "case_id": "0I1Dtn",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query_keys": [
+        "aggregate",
+        "page"
+      ],
+      "request_body_bytes": 0,
+      "request_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failed_checks": []
+    },
+    {
+      "source_line": 212,
+      "case_id": "Anb5qH",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query_keys": [
+        "aggregate",
+        "offset",
+        "page",
+        "search",
+        "sort"
+      ],
+      "request_body_bytes": 0,
+      "request_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "failed_checks": []
+    },
+    {
+      "source_line": 260,
+      "case_id": "VEDUsZ",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3429,
+      "request_body_sha256": "64f257d767aee79708f7c71c9c799ca65714099ec8b8e2bc64af9667e555879a",
+      "failed_checks": []
+    },
+    {
+      "source_line": 264,
+      "case_id": "9qhOsc",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "query_keys": [],
+      "request_body_bytes": 3429,
+      "request_body_sha256": "64f257d767aee79708f7c71c9c799ca65714099ec8b8e2bc64af9667e555879a",
+      "failed_checks": []
+    }
+  ]
+}
