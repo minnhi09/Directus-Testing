@@ -1,8 +1,11 @@
 # Evidence — triển khai tạm thời G1 — 2026-10-10
 
 Tài liệu này ghi nhận những gì đã chạy thật trên máy hiện tại sau khi người dùng
-cho phép tạm triển khai các phần còn thiếu. Đây chưa phải biên bản nghiệm thu G1.
-Không ghi credential, access token hoặc nội dung secret vào evidence.
+cho phép tạm triển khai các phần còn thiếu. Đây là bằng chứng lịch sử của
+checkpoint trước license Reader; không ghi credential, access token hoặc nội
+dung secret vào evidence. Tiêu chí G1 hiện hành được chuẩn hóa tại
+[`docs/g1-acceptance.md`](../docs/g1-acceptance.md); các câu kết luận cũ về
+review chéo/máy thứ hai chỉ mô tả gate nội bộ tại thời điểm ghi nhận.
 
 ## Phạm vi và provenance
 
@@ -50,8 +53,9 @@ vẫn nằm trong thư mục run bị Git ignore:
 | `./lab.sh test schema-smoke` | `20261010T084748Z-98189` | Exit `1`; 5/5 operation, 1.413 cases, 9 failure cases, 11 unique failures, snapshot restore PASS |
 
 Shell syntax, ShellCheck, `git diff --check` và secret scan cho commit tích hợp
-đều đạt. Các kết quả này chưa phải nghiệm thu G1 vì license Reader, triage và
-kiểm tra máy độc lập còn thiếu.
+đều đạt. Các kết quả này khi đó chưa đủ baseline G1 vì license Reader và triage
+còn thiếu. Việc kiểm tra máy độc lập từng được ghi như gate nội bộ cũ; hiện
+không còn là điều kiện G1, trong khi kết quả run lịch sử vẫn được giữ nguyên.
 
 ## License và policy Reader
 
@@ -77,13 +81,13 @@ schema raw, phản hồi 403/400 từ input/query của Directus và các mismat
 liên quan quan hệ. Chưa kết luận thành defect sản phẩm. Snapshot/restore sau pilot
 khớp fixture trước pilot.
 
-## Trạng thái nghiệm thu
+## Trạng thái nghiệm thu tại thời điểm 2026-10-10 (lịch sử)
 
 - Đạt một phần: stack healthy, schema/fixture/ID map/editor CRUD/query và raw
   actor schema đã có bằng chứng.
-- Chưa đạt: policy Reader published + ẩn `internal_notes`, Reader write
-  rejection, đủ 10 operation campaign, raw/guided/replay và kiểm tra chéo độc
-  lập trên máy thứ hai.
+- Chưa đạt tại thời điểm đó: policy Reader published + ẩn `internal_notes`,
+  Reader write rejection, đủ 10 operation campaign, raw/guided/replay và
+  kiểm tra chéo độc lập trên máy thứ hai theo gate nội bộ cũ.
 - Các run ban đầu được ghi trước khi tạo commit/PR; sau đó checkpoint đã được
   push qua PR #18. `AGENTS.md` và `mnhy/` vẫn không được đưa vào Git.
 
@@ -95,5 +99,8 @@ ngoài Git, sau đó chạy lại `seed → export-schema → smoke → scenario
 fixture/schema snapshot mới. Nếu entitlement không bật được, giữ giới hạn Reader
 trong báo cáo thay vì bypass.
 
-G1 còn cần một lần dựng/kiểm tra trên máy độc lập theo README và người review
-chéo xác nhận artefact; chạy hai container trên cùng máy không đủ bằng chứng đó.
+README vẫn phải đủ để người khác dựng/chạy lại theo yêu cầu của đề bài, nhưng
+không cần ghi nhận một lần chạy trên máy thứ hai hoặc review chéo để đóng G1.
+Checkpoint v2 mới nhất và trạng thái G1 hiện hành được ghi trong
+[`evidence/runtime-verification-2026-10-11.md`](runtime-verification-2026-10-11.md)
+và [`docs/g1-acceptance.md`](../docs/g1-acceptance.md).

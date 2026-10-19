@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Temporary G1 implementation used by lab.sh. All credentials arrive through
+# Shared lab implementation used by lab.sh. All credentials arrive through
 # the parent process and are never written into reports.
 set -Eeuo pipefail
 
@@ -19,7 +19,7 @@ READER_PASSWORD="$LAB_READER_PASSWORD"
 SCHEMATHESIS_IMAGE="$LAB_SCHEMATHESIS_IMAGE"
 RUN_ID="$LAB_RUN_ID"
 FIXTURE_VERSION="$LAB_FIXTURE_VERSION"
-[[ -n "$FIXTURE_VERSION" ]] || FIXTURE_VERSION='r06-k05-v1'
+[[ -n "$FIXTURE_VERSION" ]] || FIXTURE_VERSION='r06-k05-v2'
 SCHEMA_ROOT="$RUNTIME_ROOT/schemas/$FIXTURE_VERSION"
 FIXTURE_MAP="$RUNTIME_ROOT/fixture-ids.json"
 
@@ -78,6 +78,40 @@ api_request() {
 	if [[ -n "$body" ]]; then
 		args+=(-H 'Content-Type: application/json' --data-binary "$body")
 	fi
+
+	set +e
+	http_status="$(curl "${args[@]}" "$API_URL$path")"
+	curl_rc=$?
+	set -e
+	API_STATUS="$http_status"
+	API_BODY="$response_file"
+	API_CURL_RC="$curl_rc"
+	if (( curl_rc != 0 )); then
+		printf 'API request failed: %s %s (curl=%s)\n' "$method" "$path" "$curl_rc" >&2
+		return 1
+	fi
+	return 0
+}
+
+api_request_file() {
+	local method="$1"
+	local path="$2"
+	local token="$3"
+	local body_file="$4"
+	local response_file
+	local http_status
+	local curl_rc
+
+	[[ -f "$body_file" ]] || {
+		printf 'API request body file không tồn tại: %s\n' "$body_file" >&2
+		return 1
+	}
+	HTTP_COUNTER=$((HTTP_COUNTER + 1))
+	response_file="$RUN_DIR/http-$HTTP_COUNTER.json"
+	local -a args
+	args=(-sS --globoff --max-time 10 -o "$response_file" -w '%{http_code}' -X "$method")
+	[[ -n "$token" ]] && args+=(-H "Authorization: Bearer $token")
+	args+=(-H 'Content-Type: application/json' --data-binary "@$body_file")
 
 	set +e
 	http_status="$(curl "${args[@]}" "$API_URL$path")"
@@ -808,7 +842,11 @@ check_relation_nullification() {
 	api_request POST '/items/qa_articles' "$EDITOR_TOKEN" "$article_body" || return 1
 	if ! valid_http_success "$API_STATUS"; then
 		printf 'ERROR: relation probe không tạo được article\n' >&2
-		api_request DELETE "/items/qa_categories/$category_id" "$EDITOR_TOKEN" >/dev/null 2>&1 || true
+		if ! api_request DELETE "/items/qa_categories/$category_id" "$EDITOR_TOKEN" >/dev/null 2>&1; then
+			printf 'WARN: cleanup category relation probe lỗi network\n' >&2
+		elif ! valid_http_success "$API_STATUS"; then
+			printf 'WARN: cleanup category relation probe HTTP %s\n' "$API_STATUS" >&2
+		fi
 		return 1
 	fi
 	article_id="$(jq -r '.data.id // empty' "$API_BODY")"
@@ -819,7 +857,14 @@ check_relation_nullification() {
 	}
 	api_expect_2xx 'đọc relation probe article' GET "/items/qa_articles/$article_id?fields=id,category" "$EDITOR_TOKEN" || return 1
 	after_category="$(jq -r '.data.category // "null"' "$API_BODY")"
-	api_request DELETE "/items/qa_articles/$article_id" "$EDITOR_TOKEN" >/dev/null 2>&1 || true
+	if ! api_request DELETE "/items/qa_articles/$article_id" "$EDITOR_TOKEN" >/dev/null 2>&1; then
+		printf 'ERROR: cleanup relation probe article lỗi network\n' >&2
+		return 1
+	fi
+	if ! valid_http_success "$API_STATUS"; then
+		printf 'ERROR: cleanup relation probe article HTTP %s\n' "$API_STATUS" >&2
+		return 1
+	fi
 	if [[ "$after_category" != null ]]; then
 		printf 'ERROR: xóa category không đặt article.category về null (actual=%s)\n' "$after_category" >&2
 		return 1
@@ -978,7 +1023,14 @@ ensure_reader_schema() {
 cleanup_item() {
 	local item_id="$1"
 	[[ -n "$item_id" ]] || return 0
-	api_request DELETE "/items/qa_articles/$item_id" "$EDITOR_TOKEN" >/dev/null 2>&1 || true
+	if ! api_request DELETE "/items/qa_articles/$item_id" "$EDITOR_TOKEN" >/dev/null 2>&1; then
+		printf 'WARN: cleanup article %s lỗi network\n' "$item_id" >&2
+		return 1
+	fi
+	if ! valid_http_success "$API_STATUS"; then
+		printf 'WARN: cleanup article %s HTTP %s\n' "$item_id" "$API_STATUS" >&2
+		return 1
+	fi
 }
 
 scenario_editor_crud() {
@@ -1042,7 +1094,10 @@ scenario_editor_crud() {
 		scenario_record S1 'Editor CRUD' failed 'DELETE detail 2xx' "HTTP $deleted_status" "$(http_summary "$API_BODY")"
 		return 1
 	fi
-	api_request GET "/items/qa_articles/$item_id?fields=id" "$EDITOR_TOKEN" || true
+	api_request GET "/items/qa_articles/$item_id?fields=id" "$EDITOR_TOKEN" || {
+		scenario_record S1 'Editor CRUD' failed 'post-delete read returns an HTTP response' 'network error' 'read-back request failed'
+		return 1
+	}
 	if valid_http_success "$API_STATUS" && jq -e '.data != null' "$API_BODY" >/dev/null 2>&1; then
 		scenario_record S1 'Editor CRUD' failed 'deleted item is unavailable' "HTTP $API_STATUS" 'item still returned'
 		return 1
@@ -1137,7 +1192,7 @@ scenario_reader_hidden_field() {
 }
 
 scenario_reader_write() {
-	local published_id before before_score new_score after
+	local published_id before before_score new_score denied_status after
 	published_id="$(fixture_article_id article_alpha_published_1)"
 	if ! schema_has_operation reader PATCH '/items/qa_articles/{id}'; then
 		scenario_record S6 'Reader ghi bị từ chối' blocked 'reader PATCH must be present before intentional negative request' 'operation absent from reader schema' 'permission operation filtered; request not sent'
@@ -1155,6 +1210,7 @@ scenario_reader_write() {
 		scenario_record S6 'Reader ghi bị từ chối' failed 'reader PATCH request reaches API' 'network error' 'request failed'
 		return 1
 	fi
+	denied_status="$API_STATUS"
 	if valid_http_success "$API_STATUS"; then
 		scenario_record S6 'Reader ghi bị từ chối' failed 'reader PATCH is rejected' "HTTP $API_STATUS" 'write request accepted'
 		return 1
@@ -1168,7 +1224,7 @@ scenario_reader_write() {
 		scenario_record S6 'Reader ghi bị từ chối' failed 'target data unchanged' "$after" 'reader rejection did not preserve data'
 		return 1
 	fi
-	scenario_record S6 'Reader ghi bị từ chối' passed 'reader PATCH rejected and target unchanged' "HTTP $API_STATUS" 'editor read-back equals precondition'
+	scenario_record S6 'Reader ghi bị từ chối' passed 'reader PATCH rejected and target unchanged' "HTTP $denied_status" 'editor read-back equals precondition'
 }
 
 scenarios() {
@@ -1245,6 +1301,815 @@ restore_fixture_articles() {
 	printf 'Pilot restore: PASS (fixture article snapshot khớp)\n'
 }
 
+CAMPAIGN_BASE_RUN_DIR=''
+CAMPAIGN_SUMMARIES='[]'
+CAMPAIGN_SEEDS="${LAB_CAMPAIGN_SEEDS:-101,202,303}"
+CAMPAIGN_MAX_TIME="${LAB_MAX_TIME:-1200}"
+CAMPAIGN_MAX_EXAMPLES="${LAB_MAX_EXAMPLES:-100}"
+CAMPAIGN_WORKERS="${LAB_WORKERS:-1}"
+CAMPAIGN_RATE_LIMIT="${LAB_RATE_LIMIT:-5/s}"
+CAMPAIGN_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}"
+TARGET_OPERATIONS_JSON=''
+
+target_operations_json() {
+	jq -cn '[
+		{method:"GET",path:"/items/qa_articles"},
+		{method:"POST",path:"/items/qa_articles"},
+		{method:"GET",path:"/items/qa_articles/{id}"},
+		{method:"PATCH",path:"/items/qa_articles/{id}"},
+		{method:"DELETE",path:"/items/qa_articles/{id}"},
+		{method:"GET",path:"/items/qa_categories"},
+		{method:"POST",path:"/items/qa_categories"},
+		{method:"GET",path:"/items/qa_categories/{id}"},
+		{method:"PATCH",path:"/items/qa_categories/{id}"},
+		{method:"DELETE",path:"/items/qa_categories/{id}"}
+	]'
+}
+
+campaign_validate_config() {
+	local value
+	for value in "$CAMPAIGN_MAX_TIME" "$CAMPAIGN_MAX_EXAMPLES" "$CAMPAIGN_WORKERS" "$CAMPAIGN_REQUEST_TIMEOUT"; do
+		[[ "$value" =~ ^[1-9][0-9]*$ ]] || {
+			printf 'ERROR: campaign numeric config không hợp lệ: %s\n' "$value" >&2
+			return 1
+		}
+	done
+	[[ "$CAMPAIGN_RATE_LIMIT" =~ ^[1-9][0-9]*/[smh]$ ]] || {
+		printf 'ERROR: LAB_RATE_LIMIT phải có dạng 5/s, 100/m hoặc 1/h\n' >&2
+		return 1
+	}
+}
+
+campaign_require_inputs() {
+	local source schema_operations expected_count
+	require_tools
+	command -v sha256sum >/dev/null 2>&1 || {
+		printf 'ERROR: thiếu sha256sum để ghi schema hash\n' >&2
+		return 1
+	}
+	campaign_validate_config || return 1
+	require_admin_login
+	require_actor_logins
+	load_fixture_map
+	TARGET_OPERATIONS_JSON="$(target_operations_json)"
+	source="$SCHEMA_ROOT/editor.json"
+	if [[ ! -f "$source" ]]; then
+		export_schema || return 1
+	fi
+	[[ -f "$source" ]] || {
+		printf 'ERROR: thiếu raw editor schema: %s\n' "$source" >&2
+		return 1
+	}
+	schema_operations="$(schema_operations_json "$source")"
+	expected_count="$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")"
+	jq -n -e --argjson expected "$TARGET_OPERATIONS_JSON" --argjson actual "$schema_operations" '
+		($actual | map({method,path}) | sort_by(.path,.method)) as $actual_ops
+		| ($expected | sort_by(.path,.method)) as $expected_ops
+		| (($expected_ops - $actual_ops) | length) == 0
+	' >/dev/null 2>/dev/null || {
+		printf 'ERROR: editor raw schema không có đủ inventory %s operation\n' "$expected_count" >&2
+		return 1
+	}
+	[[ "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
+		printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
+		return 1
+	}
+	docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
+		printf 'ERROR: runner image chưa có trên máy\n' >&2
+		return 1
+	}
+}
+
+campaign_build_schema() {
+	local profile="$1"
+	local source="$SCHEMA_ROOT/editor.json"
+	local target="$RUN_DIR/schema-$profile.json"
+	local source_copy="$RUN_DIR/source-editor.json"
+	local article_id
+	local category_id
+	local diff_status
+	cp -- "$source" "$source_copy"
+	article_id="$(jq -r '.fixtures.qa_articles.article_alpha_published_1' "$FIXTURE_MAP")"
+	category_id="$(jq -r '.fixtures.qa_categories.category_alpha' "$FIXTURE_MAP")"
+	jq --arg profile "$profile" --arg fixture_version "$FIXTURE_VERSION" --argjson article_id "$article_id" --argjson category_id "$category_id" '
+		.paths = (.paths | with_entries(
+			if .key == "/items/qa_articles" or .key == "/items/qa_categories" then
+				.value |= with_entries(select(.key == "get" or .key == "post"))
+			elif .key == "/items/qa_articles/{id}" or .key == "/items/qa_categories/{id}" then
+				.value |= with_entries(select(.key == "get" or .key == "patch" or .key == "delete"))
+			else empty
+			end
+		))
+		| if $profile == "guided" then
+			.paths["/items/qa_articles/{id}"].get.parameters = ((.paths["/items/qa_articles/{id}"].get.parameters // []) | map(
+				if .name == "id" then . + {example:$article_id} else . end
+			))
+			| .paths["/items/qa_articles/{id}"].patch.parameters = ((.paths["/items/qa_articles/{id}"].patch.parameters // []) | map(
+				if .name == "id" then . + {example:$article_id} else . end
+			))
+			| .paths["/items/qa_articles/{id}"].delete.parameters = ((.paths["/items/qa_articles/{id}"].delete.parameters // []) | map(
+				if .name == "id" then . + {example:$article_id} else . end
+			))
+			| .paths["/items/qa_categories/{id}"].get.parameters = ((.paths["/items/qa_categories/{id}"].get.parameters // []) | map(
+				if .name == "id" then . + {example:$category_id} else . end
+			))
+			| .paths["/items/qa_categories/{id}"].patch.parameters = ((.paths["/items/qa_categories/{id}"].patch.parameters // []) | map(
+				if .name == "id" then . + {example:$category_id} else . end
+			))
+			| .paths["/items/qa_categories/{id}"].delete.parameters = ((.paths["/items/qa_categories/{id}"].delete.parameters // []) | map(
+				if .name == "id" then . + {example:$category_id} else . end
+			))
+			| .paths["/items/qa_articles"].post.requestBody.content["application/json"].example = {
+				title:"Guided Schemathesis article",
+				status:"draft",
+				score:3,
+				published_at:null,
+				metadata:{source:"guided",fixture_version:$fixture_version},
+				internal_notes:"guided probe",
+				category:$category_id
+			}
+			| .paths["/items/qa_categories"].post.requestBody.content["application/json"].example = {name:"Guided Schemathesis category"}
+			| .paths["/items/qa_articles/{id}"].patch.requestBody.content["application/json"].example = {score:4}
+			| .paths["/items/qa_categories/{id}"].patch.requestBody.content["application/json"].example = {name:"Guided category update"}
+			| .["x-r06-k05-guidance"] = {
+				profile:"guided",
+				reason:"fixture IDs and valid request examples improve reachability; raw schema remains unchanged",
+				fixture_ids:{article:$article_id,category:$category_id},
+				query_focus:["fields","filter","sort","limit","offset","page","search"]
+			}
+		else .
+		end
+	' "$source" > "$target"
+	set +e
+	diff -u "$source_copy" "$target" > "$RUN_DIR/schema-$profile.diff"
+	diff_status=$?
+	set -e
+	[[ "$diff_status" -eq 0 || "$diff_status" -eq 1 ]] || {
+		printf 'ERROR: không tạo được diff schema %s\n' "$profile" >&2
+		return 1
+	}
+	jq -e '.openapi == "3.0.1" and (.paths|type == "object")' "$target" >/dev/null || {
+		printf 'ERROR: schema scope %s không hợp lệ\n' "$target" >&2
+		return 1
+	}
+	jq -n --arg profile "$profile" --arg source "$source" --arg target "$target" \
+		--arg source_sha "$(sha256sum "$source" | awk '{print $1}')" \
+		--arg target_sha "$(sha256sum "$target" | awk '{print $1}')" \
+		--arg reason "$(if [[ "$profile" == guided ]]; then printf '%s' 'guided adds fixture ID examples and valid request examples in a separate overlay'; else printf '%s' 'raw selects only the approved 10 method-path pairs; operation contracts are not edited'; fi)" \
+		--argjson operations "$TARGET_OPERATIONS_JSON" \
+		'{schema:1,profile:$profile,source_schema:$source,source_sha256:$source_sha,scoped_schema:$target,scoped_sha256:$target_sha,reason:$reason,operations:$operations}' \
+		> "$RUN_DIR/schema-manifest.json"
+	printf 'Campaign schema %s: %s\n' "$profile" "$target"
+}
+
+campaign_snapshot() {
+	api_expect_2xx 'snapshot categories trước campaign' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
+	cp -- "$API_BODY" "$RUN_DIR/baseline-categories.json"
+	api_expect_2xx 'snapshot articles trước campaign' GET '/items/qa_articles?limit=-1&fields=id,title,status,score,published_at,metadata,internal_notes,category' "$ADMIN_TOKEN" || return 1
+	cp -- "$API_BODY" "$RUN_DIR/baseline-articles.json"
+}
+
+campaign_delete_extras() {
+	local collection="$1"
+	local snapshot="$2"
+	local fields="$3"
+	local current_file
+	local item_id
+	local failures=0
+	api_expect_2xx "đọc $collection sau campaign" GET "/items/$collection?limit=-1&fields=$fields" "$ADMIN_TOKEN" || return 1
+	current_file="$API_BODY"
+	while IFS= read -r item_id; do
+		if ! jq -e --argjson id "$item_id" 'any(.data[]; .id == $id)' "$snapshot" >/dev/null; then
+			if ! api_request DELETE "/items/$collection/$item_id" "$ADMIN_TOKEN"; then
+				failures=$((failures + 1))
+			elif ! valid_http_success "$API_STATUS"; then
+				failures=$((failures + 1))
+			fi
+		fi
+	done < <(jq -r '.data[]|.id' "$current_file")
+	(( failures == 0 )) || {
+		printf 'ERROR: xóa row ngoài snapshot %s gặp %s lỗi\n' "$collection" "$failures" >&2
+		return 1
+	}
+}
+
+campaign_restore_collection() {
+	local collection="$1"
+	local snapshot="$2"
+	local current_file="$3"
+	local item_id
+	local row
+	local body
+	local failures=0
+	while IFS= read -r row; do
+		item_id="$(jq -r '.id' <<< "$row")"
+		if jq -e --argjson id "$item_id" 'any(.data[]; .id == $id)' "$current_file" >/dev/null; then
+			body="$(jq -c 'del(.id)' <<< "$row")"
+			if ! api_request PATCH "/items/$collection/$item_id" "$ADMIN_TOKEN" "$body"; then
+				failures=$((failures + 1))
+			elif ! valid_http_success "$API_STATUS"; then
+				failures=$((failures + 1))
+			fi
+		else
+			if ! api_request POST "/items/$collection" "$ADMIN_TOKEN" "$row"; then
+				failures=$((failures + 1))
+			elif ! valid_http_success "$API_STATUS"; then
+				failures=$((failures + 1))
+			fi
+		fi
+	done < <(jq -c '.data[]' "$snapshot")
+	(( failures == 0 )) || {
+		printf 'ERROR: khôi phục collection %s gặp %s lỗi\n' "$collection" "$failures" >&2
+		return 1
+	}
+}
+
+campaign_restore() {
+	local failures=0
+	local current_categories
+	local current_articles
+	if ! campaign_delete_extras qa_articles "$RUN_DIR/baseline-articles.json" 'id,title,status,score,published_at,metadata,internal_notes,category'; then
+		failures=$((failures + 1))
+	fi
+	if ! campaign_delete_extras qa_categories "$RUN_DIR/baseline-categories.json" 'id,name'; then
+		failures=$((failures + 1))
+	fi
+	api_expect_2xx 'đọc categories để restore' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
+	current_categories="$API_BODY"
+	campaign_restore_collection qa_categories "$RUN_DIR/baseline-categories.json" "$current_categories" || failures=$((failures + 1))
+	api_expect_2xx 'đọc articles để restore' GET '/items/qa_articles?limit=-1&fields=id,title,status,score,published_at,metadata,internal_notes,category' "$ADMIN_TOKEN" || return 1
+	current_articles="$API_BODY"
+	campaign_restore_collection qa_articles "$RUN_DIR/baseline-articles.json" "$current_articles" || failures=$((failures + 1))
+	api_expect_2xx 'xác minh categories sau restore' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
+	jq -e --slurpfile expected "$RUN_DIR/baseline-categories.json" '.data | sort_by(.id) == ($expected[0].data | sort_by(.id))' "$API_BODY" >/dev/null || failures=$((failures + 1))
+	api_expect_2xx 'xác minh articles sau restore' GET '/items/qa_articles?limit=-1&fields=id,title,status,score,published_at,metadata,internal_notes,category' "$ADMIN_TOKEN" || return 1
+	jq -e --slurpfile expected "$RUN_DIR/baseline-articles.json" '.data | sort_by(.id) == ($expected[0].data | sort_by(.id))' "$API_BODY" >/dev/null || failures=$((failures + 1))
+	if (( failures != 0 )); then
+		printf 'ERROR: restore campaign không đạt (%s lỗi)\n' "$failures" >&2
+		return 1
+	fi
+	printf 'Campaign restore: PASS (categories + articles khớp snapshot)\n'
+}
+
+campaign_refresh_tokens() {
+	require_admin_login && require_actor_logins
+}
+
+replay_path_from_uri() {
+	local request_uri="$1"
+	local uri_without_scheme
+	[[ "$request_uri" == http://* || "$request_uri" == https://* ]] || {
+		printf 'ERROR: URI Schemathesis case không phải absolute HTTP URI\n' >&2
+		return 1
+	}
+	uri_without_scheme="${request_uri#*://}"
+	[[ "$uri_without_scheme" == */* ]] || {
+		printf 'ERROR: URI Schemathesis case thiếu path\n' >&2
+		return 1
+	}
+	printf '/%s\n' "${uri_without_scheme#*/}"
+}
+
+replay_schemathesis_case() {
+	local case_id="$1"
+	local events_file
+	local match
+	local case_json=''
+	local request_method
+	local request_uri
+	local request_path
+	local request_body_b64
+	local request_body_file=''
+	local expected_status
+	local source_status
+	local transition_applied='false'
+	local stateful_phase='false'
+	local sequence_replayed='true'
+	local replay_scope='single_request'
+	local actual_status='network-error'
+	local actual_summary='{}'
+	local request_rc=0
+	local restore_rc=1
+	local sequence_setup_rc=0
+	local sequence_ids_json='[]'
+	local sequence_length=1
+	local sequence_report_file="$RUN_DIR/replay-sequence.json"
+	local id_map='{}'
+	local chain_id
+	local next_chain_id
+	local chain_index
+	local chain_method
+	local chain_uri
+	local chain_path
+	local chain_body_b64
+	local chain_body_file
+	local mapped_body_file
+	local chain_request_rc
+	local chain_status
+	local generated_ids_json
+	local actual_ids_json
+	local step_map
+	local replay_status='not_reproduced'
+	local source_schema="$SCHEMA_ROOT/editor.json"
+	local replay_schema_path
+	local replay_schema_hash
+	local source_file="$RUN_DIR/schemathesis-case.json"
+	local response_file="$RUN_DIR/schemathesis-replay-response.json"
+	local reproducer_file="$RUN_DIR/reproducer-schemathesis-$case_id.json"
+	[[ "$case_id" =~ ^[A-Za-z0-9._-]{1,64}$ ]] || {
+		printf 'ERROR: Schemathesis case-id chỉ được chứa chữ, số, ., _ hoặc - (tối đa 64 ký tự)\n' >&2
+		return 2
+	}
+
+	require_tools
+	require_admin_login
+	require_actor_logins
+	load_fixture_map
+	[[ -f "$source_schema" ]] || export_schema || return 1
+
+	[[ -d "$LAB_ROOT_DIR/artifacts/runs" ]] || {
+		printf 'ERROR: chưa có artifact campaign để tìm Schemathesis case %s\n' "$case_id" >&2
+		return 2
+	}
+	while IFS= read -r -d '' events_file; do
+		if match="$(jq -c --arg case_id "$case_id" --arg source "$events_file" '
+			def parent_chain($cases; $id):
+				if $id == null then []
+				elif ($cases[$id] == null) then error("missing parent case")
+				else parent_chain($cases; ($cases[$id].parent_id // null)) + [$id]
+				end;
+			select(.ScenarioFinished != null and .ScenarioFinished.recorder.cases[$case_id] != null)
+			| .ScenarioFinished as $scenario
+			| $scenario.recorder as $recorder
+			| (try parent_chain($recorder.cases; $case_id) catch [$case_id]) as $chain_ids
+			| {source:$source,case_id:$case_id,case:$recorder.cases[$case_id],checks:($recorder.checks[$case_id] // []),interaction:($recorder.interactions[$case_id] // null),chain_ids:$chain_ids,chain:(reduce $chain_ids[] as $chain_id ({}; .[$chain_id]={case:$recorder.cases[$chain_id],interaction:($recorder.interactions[$chain_id] // null)}))}
+			| select(.interaction != null)
+		' "$events_file" | sed -n '1p')"; then
+			if [[ -n "$match" ]]; then
+				case_json="$match"
+				break
+			fi
+		fi
+	done < <(find "$LAB_ROOT_DIR/artifacts/runs" -type f -name 'schemathesis-events.ndjson' -print0)
+
+	[[ -n "$case_json" ]] || {
+		printf 'ERROR: không tìm thấy Schemathesis case-id %s trong artifacts/runs\n' "$case_id" >&2
+		return 2
+	}
+	replay_schema_path="$(dirname "$events_file")/schema-raw.json"
+	[[ -f "$replay_schema_path" ]] || replay_schema_path="$(dirname "$events_file")/schema-guided.json"
+	if [[ -f "$replay_schema_path" ]]; then
+		replay_schema_hash="$(sha256sum "$replay_schema_path" | awk '{print $1}')"
+	else
+		replay_schema_hash="$(sha256sum "$source_schema" | awk '{print $1}')"
+	fi
+	printf '%s\n' "$case_json" > "$source_file"
+
+	request_method="$(jq -r '.interaction.request.method // empty' <<< "$case_json")"
+	request_uri="$(jq -r '.interaction.request.uri // empty' <<< "$case_json")"
+	request_body_b64="$(jq -r '.interaction.request.body["$base64"] // empty' <<< "$case_json")"
+	sequence_ids_json="$(jq -c '.chain_ids // []' <<< "$case_json")"
+	sequence_length="$(jq -r 'length' <<< "$sequence_ids_json")"
+	transition_applied="$(jq -r '.case.is_transition_applied // false' <<< "$case_json")"
+	stateful_phase="$(jq -r '.case.value.meta.phase.name == "stateful"' <<< "$case_json")"
+	if [[ "$transition_applied" == true || "$stateful_phase" == true ]]; then
+		sequence_replayed='false'
+		replay_scope='final_interaction_only'
+	fi
+	case "$request_method" in
+		GET|POST|PATCH|DELETE|TRACE) ;;
+		*) printf 'ERROR: method trong Schemathesis case không nằm trong replay allowlist: %s\n' "$request_method" >&2; return 2 ;;
+	esac
+	request_path="$(replay_path_from_uri "$request_uri")" || return 2
+	[[ "$request_path" == /items/qa_articles* || "$request_path" == /items/qa_categories* ]] || {
+		printf 'ERROR: chỉ replay case trên qa_articles/qa_categories; nhận %s\n' "$request_path" >&2
+		return 2
+	}
+	expected_status="$(jq -r '
+		([.checks[] | select(.status == "failure") | .failure_info.failure.message // ""]
+		| map(try capture("(?<status>[0-9]{3})").status catch null)
+		| map(select(. != null))
+		| .[0]) // (.interaction.response.status_code // empty)
+	' <<< "$case_json")"
+	source_status="$(jq -r '.interaction.response.status_code // empty' <<< "$case_json")"
+
+	campaign_snapshot || return 1
+	printf '[]\n' > "$sequence_report_file"
+	if [[ "$stateful_phase" == true || "$transition_applied" == true ]] && (( sequence_length > 1 )); then
+		sequence_replayed='true'
+		replay_scope='full_transition_chain'
+		chain_index=0
+		while (( chain_index < sequence_length - 1 )); do
+			chain_id="$(jq -r --argjson ids "$sequence_ids_json" --argjson index "$chain_index" '$ids[$index]' <<< '{}')"
+			next_chain_id="$(jq -r --argjson ids "$sequence_ids_json" --argjson index "$((chain_index + 1))" '$ids[$index]' <<< '{}')"
+			chain_method="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.method // empty' <<< "$case_json")"
+			chain_uri="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.uri // empty' <<< "$case_json")"
+			chain_path="$(replay_path_from_uri "$chain_uri")" || { sequence_setup_rc=1; break; }
+			chain_body_b64="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.body["$base64"] // empty' <<< "$case_json")"
+			case "$chain_method" in
+				GET|POST|PATCH|DELETE) ;;
+				*) printf 'ERROR: method parent stateful không nằm trong replay allowlist: %s\n' "$chain_method" >&2; sequence_setup_rc=1; break ;;
+			esac
+			[[ "$chain_path" == /items/qa_articles* || "$chain_path" == /items/qa_categories* ]] || {
+				printf 'ERROR: parent stateful path ngoài allowlist: %s\n' "$chain_path" >&2
+				sequence_setup_rc=1
+				break
+			}
+			while IFS=$'\t' read -r generated_id actual_id; do
+				[[ -n "$generated_id" && -n "$actual_id" ]] || continue
+				chain_path="${chain_path//$generated_id/$actual_id}"
+			done < <(jq -r 'to_entries[] | [.key, (.value|tostring)] | @tsv' <<< "$id_map")
+			chain_body_file=''
+			if [[ -n "$chain_body_b64" ]]; then
+				chain_body_file="$RUN_DIR/replay-sequence-$chain_index-body.bin"
+				if ! printf '%s' "$chain_body_b64" | base64 --decode > "$chain_body_file"; then
+					printf 'ERROR: không decode được parent request body %s\n' "$chain_id" >&2
+					sequence_setup_rc=1
+					break
+				fi
+				if [[ "$id_map" != '{}' ]]; then
+					mapped_body_file="$RUN_DIR/replay-sequence-$chain_index-body-mapped.bin"
+					if ! jq --argjson id_map "$id_map" 'walk(if type == "number" and ($id_map[(tostring)] != null) then $id_map[(tostring)] else . end)' "$chain_body_file" > "$mapped_body_file"; then
+						printf 'ERROR: không áp dụng được ID mapping cho parent %s\n' "$chain_id" >&2
+						sequence_setup_rc=1
+						break
+					fi
+					chain_body_file="$mapped_body_file"
+				fi
+			fi
+			printf 'Schemathesis stateful parent %s: %s %s\n' "$chain_id" "$chain_method" "$chain_path"
+			if [[ -n "$chain_body_file" ]]; then
+				if ! api_request_file "$chain_method" "$chain_path" "$EDITOR_TOKEN" "$chain_body_file"; then
+					chain_request_rc=1
+				else
+					chain_request_rc=0
+				fi
+			else
+				if ! api_request "$chain_method" "$chain_path" "$EDITOR_TOKEN"; then
+					chain_request_rc=1
+				else
+					chain_request_rc=0
+				fi
+			fi
+			chain_status="${API_STATUS:-network-error}"
+			jq --arg id "$chain_id" --arg method "$chain_method" --arg path "$chain_path" --arg status "$chain_status" --argjson request_rc "$chain_request_rc" \
+				'. + [{case_id:$id,method:$method,path:$path,status:(if ($status|test("^[0-9]+$")) then ($status|tonumber) else $status end),request_exit_code:$request_rc}]' \
+				"$sequence_report_file" > "$sequence_report_file.tmp"
+			mv -- "$sequence_report_file.tmp" "$sequence_report_file"
+			if (( chain_request_rc != 0 )) || ! valid_http_success "$chain_status"; then
+				printf 'ERROR: parent stateful %s không đạt 2xx (HTTP %s)\n' "$chain_id" "$chain_status" >&2
+				sequence_setup_rc=1
+				break
+			fi
+			actual_ids_json="$(jq -c 'if (.data|type) == "array" then [.data[]?.id] elif (.data|type) == "object" then [.data.id] else [] end' "$API_BODY" 2>/dev/null || printf '[]')"
+			generated_ids_json="$(jq -c --arg id "$next_chain_id" '.chain[$id].case.transition.parameters.path_parameters // {} | to_entries | sort_by(.key) | map(.value.value.values // []) | add // []' <<< "$case_json")"
+			if [[ "$(jq -r 'length' <<< "$generated_ids_json")" -gt 0 ]]; then
+				if [[ "$(jq -r 'length' <<< "$generated_ids_json")" -ne "$(jq -r 'length' <<< "$actual_ids_json")" ]]; then
+					printf 'ERROR: parent %s trả số ID khác transition mapping\n' "$chain_id" >&2
+					sequence_setup_rc=1
+					break
+				fi
+				step_map="$(jq -n --argjson generated "$generated_ids_json" --argjson actual "$actual_ids_json" 'reduce range(0; ($generated|length)) as $index ({}; . + {($generated[$index]|tostring):$actual[$index]})')"
+				id_map="$(jq -n --argjson old "$id_map" --argjson new "$step_map" '$old + $new')"
+			fi
+			chain_index=$((chain_index + 1))
+		done
+	fi
+	if (( sequence_setup_rc == 0 )); then
+		while IFS=$'\t' read -r generated_id actual_id; do
+			[[ -n "$generated_id" && -n "$actual_id" ]] || continue
+			request_path="${request_path//$generated_id/$actual_id}"
+		done < <(jq -r 'to_entries[] | [.key, (.value|tostring)] | @tsv' <<< "$id_map")
+		if [[ -n "$request_body_b64" ]]; then
+			request_body_file="$RUN_DIR/replay-request-body.bin"
+			if ! printf '%s' "$request_body_b64" | base64 --decode > "$request_body_file"; then
+				printf 'ERROR: không decode được request body case %s\n' "$case_id" >&2
+				sequence_setup_rc=1
+			elif [[ "$id_map" != '{}' ]]; then
+				mapped_body_file="$RUN_DIR/replay-request-body-mapped.bin"
+				if ! jq --argjson id_map "$id_map" 'walk(if type == "number" and ($id_map[(tostring)] != null) then $id_map[(tostring)] else . end)' "$request_body_file" > "$mapped_body_file"; then
+					printf 'ERROR: không áp dụng được ID mapping cho case %s\n' "$case_id" >&2
+					sequence_setup_rc=1
+				else
+					request_body_file="$mapped_body_file"
+				fi
+			fi
+		fi
+	fi
+	if (( sequence_setup_rc != 0 )); then
+		sequence_replayed='false'
+		replay_scope='stateful_sequence_setup_failed'
+	fi
+	printf 'Schemathesis replay %s: %s %s\n' "$case_id" "$request_method" "$request_path"
+	if (( sequence_setup_rc != 0 )); then
+		request_rc=1
+		actual_status='not-sent'
+		actual_summary='{"reason":"stateful_sequence_setup_failed"}'
+	elif [[ -n "$request_body_file" ]]; then
+		if ! api_request_file "$request_method" "$request_path" "$EDITOR_TOKEN" "$request_body_file"; then
+			request_rc=1
+		fi
+	else
+		if ! api_request "$request_method" "$request_path" "$EDITOR_TOKEN"; then
+			request_rc=1
+		fi
+	fi
+	if (( sequence_setup_rc == 0 )); then
+		actual_status="${API_STATUS:-network-error}"
+		if [[ -f "$API_BODY" ]]; then
+			cp -- "$API_BODY" "$response_file"
+			actual_summary="$(http_summary "$API_BODY")"
+		fi
+	fi
+	set +e
+	campaign_restore
+	restore_rc=$?
+	set -e
+
+	if (( sequence_setup_rc != 0 )); then
+		replay_status='stateful_sequence_failed'
+	elif (( request_rc == 0 && restore_rc == 0 )); then
+		if [[ -z "$expected_status" || "$actual_status" == "$expected_status" ]]; then
+			if [[ "$sequence_replayed" == false ]]; then
+				replay_status='reproduced_request_only'
+			else
+				replay_status='reproduced'
+			fi
+		else
+			replay_status='mismatch'
+		fi
+	fi
+	local sequence_steps
+	sequence_steps="$(jq -c '.' "$sequence_report_file")"
+	jq -n --arg schema_version "$FIXTURE_VERSION" --arg case_id "$case_id" --arg source "$events_file" \
+		--arg method "$request_method" --arg path "$request_path" --arg expected_status "$expected_status" \
+		--arg source_status "$source_status" --arg actual_status "$actual_status" --arg status "$replay_status" --arg actor editor \
+		--arg replay_scope "$replay_scope" --argjson transition_applied "$transition_applied" --argjson stateful_phase "$stateful_phase" --argjson sequence_replayed "$sequence_replayed" \
+		--argjson sequence_case_ids "$sequence_ids_json" --argjson sequence_steps "$sequence_steps" \
+		--arg schema_hash "$replay_schema_hash" \
+		--argjson case "$case_json" --argjson actual "$actual_summary" --argjson request_rc "$request_rc" --argjson restore_rc "$restore_rc" \
+		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",replay_scope:$replay_scope,stateful_transition_applied:$transition_applied,stateful_phase:$stateful_phase,sequence_replayed:$sequence_replayed,sequence_case_ids:$sequence_case_ids,sequence_steps:$sequence_steps,request:{method:$method,path:$path},source_status:($source_status|if . == "" then null else tonumber end),expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
+		> "$reproducer_file"
+	printf 'Schemathesis replay report: %s (status=%s restore=%s)\n' "$reproducer_file" "$replay_status" "$restore_rc"
+	[[ "$replay_status" == reproduced ]]
+}
+
+campaign_inventory() {
+	local report_file="$RUN_DIR/schemathesis-report.json"
+	local coverage_file="$RUN_DIR/schemathesis-coverage.json"
+	local coverage='{}'
+	if [[ -f "$coverage_file" ]]; then
+		coverage="$(cat "$coverage_file")"
+	fi
+	jq -n --arg profile "$1" --arg seed "$2" --argjson expected "$TARGET_OPERATIONS_JSON" --argjson coverage "$coverage" '
+		[ $expected[] as $op
+		| (($coverage.operations // []) | map(select(.method == $op.method and .path == $op.path)) | .[0] // {}) as $hit
+		| $op + {hits:($hit.hits // null),covered:(($hit.hits // 0) > 0)}
+		] as $rows
+		| {schema:1,profile:$profile,seed:($seed|tonumber),expected_operation_count:($rows|length),
+		   covered_operation_count:([$rows[]|select(.covered)]|length),operations:$rows}
+	' > "$RUN_DIR/operation-inventory.json"
+	if [[ -f "$report_file" ]]; then
+		jq -n --arg profile "$1" --arg seed "$2" --slurpfile report "$report_file" --slurpfile inventory "$RUN_DIR/operation-inventory.json" \
+			'{schema:1,profile:$profile,seed:($seed|tonumber),operation_inventory:$inventory[0],schemathesis:{operations:($report[0].operations // null),test_cases:($report[0].test_cases // null),failures:($report[0].failures // []),warnings:($report[0].warnings // {})}}' \
+			> "$RUN_DIR/metrics.json"
+	else
+		jq -n --arg profile "$1" --arg seed "$2" --slurpfile inventory "$RUN_DIR/operation-inventory.json" \
+			'{schema:1,profile:$profile,seed:($seed|tonumber),operation_inventory:$inventory[0],schemathesis:null}' \
+			> "$RUN_DIR/metrics.json"
+	fi
+}
+
+campaign_one() {
+	local profile="$1"
+	local seed="$2"
+	local base_dir="$CAMPAIGN_BASE_RUN_DIR"
+	local runner_rc=1
+	local restore_rc=1
+	local report_present=false
+	local coverage_present=false
+	local termination='not_started'
+	local status='failed'
+	local report_summary='null'
+	local campaign_dir="$base_dir/$profile/seed-$seed"
+	local schema_file
+	mkdir -p "$campaign_dir"
+	RUN_DIR="$campaign_dir"
+	if ! campaign_refresh_tokens; then
+		printf 'ERROR: không refresh được token trước campaign %s seed=%s\n' "$profile" "$seed" >&2
+		RUN_DIR="$base_dir"
+		return 1
+	fi
+	if ! campaign_snapshot; then
+		printf 'ERROR: không snapshot được baseline cho %s seed=%s\n' "$profile" "$seed" >&2
+		RUN_DIR="$base_dir"
+		return 1
+	fi
+	if ! campaign_build_schema "$profile"; then
+		RUN_DIR="$base_dir"
+		return 1
+	fi
+	schema_file="$RUN_DIR/schema-$profile.json"
+	printf 'Schemathesis %s: 10 operation, max-examples=%s, seed=%s, max-time=%ss\n' "$profile" "$CAMPAIGN_MAX_EXAMPLES" "$seed" "$CAMPAIGN_MAX_TIME"
+	set +e
+	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+		-e SCHEMA_TOKEN="$EDITOR_TOKEN" \
+		-e RUNNER_API_URL="$RUNNER_API_URL" \
+		-e LAB_WORKERS="$CAMPAIGN_WORKERS" \
+		-e LAB_MAX_EXAMPLES="$CAMPAIGN_MAX_EXAMPLES" \
+		-e LAB_SEED="$seed" \
+		-e LAB_REQUEST_TIMEOUT="$CAMPAIGN_REQUEST_TIMEOUT" \
+		-e LAB_RATE_LIMIT="$CAMPAIGN_RATE_LIMIT" \
+		-e LAB_MAX_TIME="$CAMPAIGN_MAX_TIME" \
+		-e LAB_PHASES="$(if [[ "$profile" == guided ]]; then printf '%s' 'examples,coverage,fuzzing,stateful'; else printf '%s' 'examples,coverage,fuzzing'; fi)" \
+		--mount "type=bind,src=$schema_file,dst=/work/schema.json,readonly" \
+		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
+		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
+		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"'
+	runner_rc=$?
+	set -e
+	if [[ -f "$RUN_DIR/schemathesis-report.json" ]]; then
+		report_present=true
+		termination="$(jq -r '.stop_reason // "unknown"' "$RUN_DIR/schemathesis-report.json")"
+		report_summary="$(jq -c '{operations,test_cases,failures,errors,stop_reason,complete,exit_code,running_time}' "$RUN_DIR/schemathesis-report.json")"
+	fi
+	[[ -f "$RUN_DIR/schemathesis-coverage.json" ]] && coverage_present=true
+	set +e
+	if campaign_refresh_tokens; then
+		campaign_restore
+		restore_rc=$?
+	else
+		printf 'ERROR: không refresh được token trước restore %s seed=%s\n' "$profile" "$seed" >&2
+		restore_rc=1
+	fi
+	set -e
+	campaign_inventory "$profile" "$seed"
+	if (( runner_rc == 0 && restore_rc == 0 )) && [[ "$report_present" == true && "$coverage_present" == true ]]; then
+		if [[ "$termination" == max_time ]]; then
+			status='incomplete'
+		else
+			status='passed'
+		fi
+	fi
+	if [[ "$status" == passed ]]; then
+		printf 'Campaign %s seed=%s: PASS\n' "$profile" "$seed"
+	else
+		printf 'Campaign %s seed=%s: %s (runner=%s restore=%s termination=%s)\n' "$profile" "$seed" "$status" "$runner_rc" "$restore_rc" "$termination"
+	fi
+	jq -n --arg profile "$profile" --arg seed "$seed" --arg status "$status" --arg termination "$termination" \
+		--arg schema_sha "$(sha256sum "$schema_file" | awk '{print $1}')" \
+		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" \
+		--argjson report_present "$report_present" --argjson coverage_present "$coverage_present" \
+		--argjson report "$report_summary" \
+		--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
+		'{schema:1,profile:$profile,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
+		> "$RUN_DIR/campaign-summary.json"
+	CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$RUN_DIR/campaign-summary.json" '$current + [$next[0]]')"
+	RUN_DIR="$base_dir"
+	[[ "$status" == passed ]] || return 1
+}
+
+campaign() {
+	local profile="$1"
+	local seed
+	local overall=0
+	local halted=0
+	local stop_reason=''
+	local base_dir="$RUN_DIR"
+	local -a seeds
+	case "$profile" in
+		raw|guided) ;;
+		*) printf 'ERROR: campaign profile phải là raw hoặc guided\n' >&2; return 2 ;;
+	esac
+	campaign_require_inputs || return 1
+	CAMPAIGN_BASE_RUN_DIR="$base_dir"
+	CAMPAIGN_SUMMARIES='[]'
+	IFS=',' read -r -a seeds <<< "$CAMPAIGN_SEEDS"
+	[[ "${#seeds[@]}" -gt 0 ]] || {
+		printf 'ERROR: LAB_CAMPAIGN_SEEDS rỗng\n' >&2
+		return 1
+	}
+	for seed in "${seeds[@]}"; do
+		[[ "$seed" =~ ^[0-9]+$ ]] || {
+			printf 'ERROR: seed không hợp lệ: %s\n' "$seed" >&2
+			return 1
+		}
+		if (( halted != 0 )); then
+			mkdir -p "$base_dir/$profile/seed-$seed"
+			jq -n --arg profile "$profile" --arg seed "$seed" --arg reason "$stop_reason" \
+				--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
+				'{schema:1,profile:$profile,seed:($seed|tonumber),status:"blocked",termination:"not_started",runner_exit_code:null,restore_exit_code:null,report_present:false,coverage_present:false,blocked_by:$reason,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)}}' \
+				> "$base_dir/$profile/seed-$seed/campaign-summary.json"
+			CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$base_dir/$profile/seed-$seed/campaign-summary.json" '$current + [$next[0]]')"
+			continue
+		fi
+		local campaign_rc=0
+		if campaign_one "$profile" "$seed"; then
+			campaign_rc=0
+		else
+			campaign_rc=$?
+		fi
+		if (( campaign_rc != 0 )); then
+			overall=1
+			local summary_file="$base_dir/$profile/seed-$seed/campaign-summary.json"
+			local restore_status='1'
+			if [[ -f "$summary_file" ]]; then
+				restore_status="$(jq -r '.restore_exit_code // 1' "$summary_file" 2>/dev/null || printf '1')"
+			fi
+			if [[ "$restore_status" != 0 ]]; then
+				halted=1
+				stop_reason="restore/setup thất bại ở seed $seed; dừng các seed kế tiếp để bảo vệ fixture"
+				printf 'ERROR: %s\n' "$stop_reason" >&2
+			fi
+		fi
+	done
+	RUN_DIR="$base_dir"
+	jq -n --arg profile "$profile" --arg fixture "$FIXTURE_VERSION" --arg seeds "$CAMPAIGN_SEEDS" --argjson campaigns "$CAMPAIGN_SUMMARIES" \
+		--argjson expected_seed_count "${#seeds[@]}" \
+		'{schema:1,profile:$profile,fixture_version:$fixture,seeds:($seeds|split(",")|map(tonumber)),operation_count:10,campaigns:$campaigns,status:(if (($campaigns|length) == $expected_seed_count and all($campaigns[];.status == "passed")) then "passed" else "failed_or_incomplete" end)}' \
+		> "$base_dir/campaign-index.json"
+	printf 'Campaign index: %s\n' "$base_dir/campaign-index.json"
+	return "$overall"
+}
+
+invariants() {
+	local harness_sha
+	require_tools
+	[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
+		printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
+		return 1
+	}
+	docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
+		printf 'ERROR: runner image chưa có trên máy\n' >&2
+		return 1
+	}
+	[[ -f "$LAB_ROOT_DIR/scripts/invariants.py" && -d "$RUNTIME_ROOT" ]] || {
+		printf 'ERROR: thiếu invariant script hoặc runtime mount\n' >&2
+		return 1
+	}
+	harness_sha="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf 'no_commit')"
+	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+		-e PYTHONDONTWRITEBYTECODE=1 \
+		-e LAB_ROOT_DIR=/work \
+		-e LAB_RUN_DIR=/work/run \
+		-e LAB_RUNTIME_ROOT=/work/runtime \
+		-e LAB_API_URL="$RUNNER_API_URL" \
+		-e LAB_RUN_ID="$RUN_ID" \
+		-e LAB_HARNESS_SHA="$harness_sha" \
+		-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" \
+		-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" \
+		-e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
+		-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" \
+		-e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
+		-e LAB_READER_EMAIL="$READER_EMAIL" \
+		-e LAB_READER_PASSWORD="$READER_PASSWORD" \
+		--mount "type=bind,src=$LAB_ROOT_DIR/scripts/invariants.py,dst=/work/invariants.py,readonly" \
+		--mount "type=bind,src=$RUNTIME_ROOT,dst=/work/runtime,readonly" \
+		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
+		--entrypoint python3 "$SCHEMATHESIS_IMAGE" /work/invariants.py --case all
+}
+
+replay_case() {
+	local case_id="$1"
+	case "$case_id" in
+		auth-invalid-token|anonymous-denied|editor-crud|positive-operations|query-fixture|aggregate-query-robustness|contract-schema-candidates|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
+			local harness_sha
+			require_tools
+			[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
+				printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
+				return 1
+			}
+			docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
+				printf 'ERROR: runner image chưa có trên máy\n' >&2
+				return 1
+			}
+			harness_sha="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf 'no_commit')"
+			docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+				-e PYTHONDONTWRITEBYTECODE=1 \
+				-e LAB_ROOT_DIR=/work \
+				-e LAB_RUN_DIR=/work/run \
+				-e LAB_RUNTIME_ROOT=/work/runtime \
+				-e LAB_API_URL="$RUNNER_API_URL" \
+				-e LAB_RUN_ID="$RUN_ID" \
+				-e LAB_HARNESS_SHA="$harness_sha" \
+				-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" \
+				-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" \
+				-e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
+				-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" \
+				-e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
+				-e LAB_READER_EMAIL="$READER_EMAIL" \
+				-e LAB_READER_PASSWORD="$READER_PASSWORD" \
+				--mount "type=bind,src=$LAB_ROOT_DIR/scripts/invariants.py,dst=/work/invariants.py,readonly" \
+				--mount "type=bind,src=$RUNTIME_ROOT,dst=/work/runtime,readonly" \
+				--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
+				--entrypoint python3 "$SCHEMATHESIS_IMAGE" /work/invariants.py --case "$case_id"
+			;;
+		*)
+			replay_schemathesis_case "$case_id"
+			;;
+	esac
+}
+
 schema_smoke() {
 	local schema_file="$SCHEMA_ROOT/editor.json"
 	local pilot_schema="$RUN_DIR/editor-pilot-schema.json"
@@ -1313,7 +2178,7 @@ schema_smoke() {
 		--mount "type=bind,src=$pilot_schema,dst=/work/schema.json,readonly" \
 		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
 		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
-		-c 'exec schemathesis run "$1" --url "$RUNNER_API_URL" --include-path-regex "^/items/qa_articles(/\\{id\\})?$" --workers 1 --max-examples 20 --seed 101 --request-timeout 10 --rate-limit 5/s --max-time 300 --phases examples,fuzzing --checks all --report json --report-json-path /work/run/schemathesis-report.json --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --output-sanitize true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"' \
+		-c 'exec schemathesis run "$1" --url "$RUNNER_API_URL" --include-path-regex "^/items/qa_articles(/\\{id\\})?$" --workers 1 --max-examples 20 --seed 101 --request-timeout 10 --rate-limit 5/s --max-time 300 --phases examples,fuzzing --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json --report-json-path /work/run/schemathesis-report.json --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --output-sanitize true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"' \
 		sh /work/schema.json
 	runner_rc=$?
 	set -e
@@ -1342,7 +2207,14 @@ main() {
 		smoke) smoke ;;
 		export-schema) export_schema ;;
 		scenarios) scenarios ;;
+		invariants) invariants ;;
 		schema-smoke) schema_smoke ;;
+		raw) campaign raw ;;
+		guided) campaign guided ;;
+		replay)
+			[[ "$#" -eq 2 ]] || { printf 'ERROR: replay cần một case-id\n' >&2; return 2; }
+			replay_case "$2"
+			;;
 		*) printf 'ERROR: component không hỗ trợ profile %s\n' "$command_name" >&2; return 2 ;;
 	esac
 }
