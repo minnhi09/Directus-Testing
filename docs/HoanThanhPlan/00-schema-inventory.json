@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "scope": "qa_* operation count, not all system endpoints",
+  "snapshots": [
+    {
+      "path": "runtime/profiles/windows-20261013/schemas/r06-k05-v2/admin.json",
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+      "qa_operation_count": 14
+    },
+    {
+      "path": "runtime/profiles/windows-20261013/schemas/r06-k05-v2/anonymous.json",
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3",
+      "qa_operation_count": 0
+    },
+    {
+      "path": "runtime/profiles/windows-20261013/schemas/r06-k05-v2/editor.json",
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "qa_operation_count": 14
+    },
+    {
+      "path": "runtime/profiles/windows-20261013/schemas/r06-k05-v2/reader.json",
+      "sha256": "20fbfe9a517710ac73d05622f4b158bab4ccbcd96da51ec61363268ed92683cb",
+      "qa_operation_count": 2
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/admin.json",
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+      "qa_operation_count": 14
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/anonymous.json",
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3",
+      "qa_operation_count": 0
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/editor.json",
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "qa_operation_count": 14
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/reader.json",
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8",
+      "qa_operation_count": 6
+    },
+    {
+      "path": "runtime/schemas/r06-k05-v2/admin.json",
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+      "qa_operation_count": 14
+    },
+    {
+      "path": "runtime/schemas/r06-k05-v2/anonymous.json",
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3",
+      "qa_operation_count": 0
+    },
+    {
+      "path": "runtime/schemas/r06-k05-v2/editor.json",
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "qa_operation_count": 14
+    },
+    {
+      "path": "runtime/schemas/r06-k05-v2/reader.json",
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8",
+      "qa_operation_count": 6
+    }
+  ]
+}

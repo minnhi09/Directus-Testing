@@ -1,0 +1,504 @@
+{
+  "schema": 1,
+  "client_date": "2026-10-18",
+  "kind": "documentation_consolidation_not_test_execution",
+  "destination": "DAMH/docs/HoanThanhPlan",
+  "moved": [
+    {
+      "source": "DAMH/docs/hoan-thien/00-bo-demo-tham-chieu.md",
+      "target": "DAMH/docs/HoanThanhPlan/00-bo-demo-tham-chieu.md",
+      "sha256_before": "21d844f1341f88bd5e1503e0e472027724b8242b8cb3d481b857b6bec0df98b2",
+      "sha256_after": "21d844f1341f88bd5e1503e0e472027724b8242b8cb3d481b857b6bec0df98b2"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-campaign-index.csv",
+      "target": "DAMH/docs/HoanThanhPlan/00-campaign-index.csv",
+      "sha256_before": "3e4de8f47b68d8f2b8bdb6b9c2877e51c016442f2c068c766fd60e0de52da306",
+      "sha256_after": "3e4de8f47b68d8f2b8bdb6b9c2877e51c016442f2c068c766fd60e0de52da306"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-evidence-hashes.json",
+      "target": "DAMH/docs/HoanThanhPlan/00-evidence-hashes.json",
+      "sha256_before": "c98cf4ce535587f8d90596f925d539246603ca3502fab51dca54cf420d8b3dd5",
+      "sha256_after": "c98cf4ce535587f8d90596f925d539246603ca3502fab51dca54cf420d8b3dd5"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-evidence-index.csv",
+      "target": "DAMH/docs/HoanThanhPlan/00-evidence-index.csv",
+      "sha256_before": "25a42537678016b434a917cba46bcef3491c0b1c5a5fa349c31dd034151f92d4",
+      "sha256_after": "25a42537678016b434a917cba46bcef3491c0b1c5a5fa349c31dd034151f92d4"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-hien-trang-va-baseline.md",
+      "target": "DAMH/docs/HoanThanhPlan/00-hien-trang-va-baseline.md",
+      "sha256_before": "e9b2c09a68ecc28ee6f75c05b9902cbba28dcc43e0f99f8141f6cef7d5b5ed4f",
+      "sha256_after": "4dcb9406640cb061842c1b2cb0a29434913fa7c28f86df22ff8d5fbedfc7ead9"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-inventory-summary.json",
+      "target": "DAMH/docs/HoanThanhPlan/00-inventory-summary.json",
+      "sha256_before": "d7022fef7aad5d3ab91e54e01a02f2edd79ae3191bfc4aac6214f7d9ea8dccdb",
+      "sha256_after": "d7022fef7aad5d3ab91e54e01a02f2edd79ae3191bfc4aac6214f7d9ea8dccdb"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-quyet-dinh-va-phu-thuoc.md",
+      "target": "DAMH/docs/HoanThanhPlan/00-quyet-dinh-va-phu-thuoc.md",
+      "sha256_before": "00d91e0a73b4b94e8fa9afd1d731e74db29d09ff71433d30952a8adba26cacef",
+      "sha256_after": "00d91e0a73b4b94e8fa9afd1d731e74db29d09ff71433d30952a8adba26cacef"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-schema-inventory.json",
+      "target": "DAMH/docs/HoanThanhPlan/00-schema-inventory.json",
+      "sha256_before": "5e267230ed829bbe909e01d46e725929c4049fba409fe8e5f7354d23dfb89a1a",
+      "sha256_after": "5e267230ed829bbe909e01d46e725929c4049fba409fe8e5f7354d23dfb89a1a"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/00-selected-evidence.json",
+      "target": "DAMH/docs/HoanThanhPlan/00-selected-evidence.json",
+      "sha256_before": "e72a2d5056d538f1d2551c9edbd6dcbc6ca1fd8d7c512afac62d78f229267630",
+      "sha256_after": "e72a2d5056d538f1d2551c9edbd6dcbc6ca1fd8d7c512afac62d78f229267630"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/01-doi-chieu-baseline-p1-05.md",
+      "target": "DAMH/docs/HoanThanhPlan/01-doi-chieu-baseline-p1-05.md",
+      "sha256_before": "2aa5f4dd4edfeeb32475c0f61199482e45c2bd1743739f44b81325f71ad3d1c4",
+      "sha256_after": "dfd5e273577d08a983ebc30ea03c5c27f423d9b21ad25da1b29725685d2bb633"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/01-review-dac-ta.md",
+      "target": "DAMH/docs/HoanThanhPlan/01-review-dac-ta.md",
+      "sha256_before": "c84860f0fb95d351c8ceb6a725f597457518d7d74fe6cca1c8c6c13af1b28545",
+      "sha256_after": "6eef3831bc6d642661da2d7e438d086bf1edb7cea1f35720f02867aad85f5204"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/01-traceability.csv",
+      "target": "DAMH/docs/HoanThanhPlan/01-traceability.csv",
+      "sha256_before": "d84b10381a45405c305185f386ed08b761532854e324c9dbb8b4ef5efe04ba89",
+      "sha256_after": "ffb2bd68e9983a150f2ce898fc630d368b9a39f2e762dfcb58f6f6c7a78e59a5"
+    },
+    {
+      "source": "DAMH/docs/hoan-thien/01-yeu-cau-va-dac-ta.md",
+      "target": "DAMH/docs/HoanThanhPlan/01-yeu-cau-va-dac-ta.md",
+      "sha256_before": "3ba998955a4d4b9edec8e5fe4ba8ddce7b4b2438cc85cf4078dddee1939180d9",
+      "sha256_after": "51343fc4c2de6304020a660df887e7693a0b8bc325a7ef0cd32ec7ec8c5446e1"
+    },
+    {
+      "source": "DAMH/docs/Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "target": "DAMH/docs/HoanThanhPlan/Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "sha256_before": "a3f21dacf8a0bebcc518a98b65712e3e6d49bef181c5596f6d1f253179b475eb",
+      "sha256_after": "e25e5605f85d1ff36a852852b6eb9f905e18b5a7aebcfb42187918d25bf4d27a"
+    }
+  ],
+  "supporting_copies": [
+    {
+      "source": "output/phase0-20261018/checkpoint-manifest.json",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/checkpoint-manifest.json",
+      "sha256": "96a43db2a40ddf11a1f8eae31a46295c73d21b825c894a2c576442d22d10c8b8"
+    },
+    {
+      "source": "output/phase0-20261018/checkpoint.zip",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/checkpoint.zip",
+      "sha256": "5ee3e1c64812f41610dd1065a451389d6e3cba604a23f706f27552ec55a02126"
+    },
+    {
+      "source": "output/phase0-20261018/git-state-before.json",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/git-state-before.json",
+      "sha256": "3a2ed867db04e5918e6a1c7a5a154c9294af1be2db38512caf2389c1544285be"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source-manifest.json",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source-manifest.json",
+      "sha256": "f4fd709330939f0832809534ad499ef159a1a0d079878ff63d9d4546594abf92"
+    },
+    {
+      "source": "output/phase1-20261018/source-manifest-before.json",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/source-manifest-before.json",
+      "sha256": "3c84fa4313523eb5a85e78f2e7ee0f5ede9841c42e4b38338a51ff82fc7ca6e7"
+    },
+    {
+      "source": "output/phase1-20261018/traceability-before.md",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/traceability-before.md",
+      "sha256": "133231918a443c2059373de1b2ad0a176f97106462bc29c70a7b5c4b7648bb77"
+    },
+    {
+      "source": "output/phase1-20261018/validation-baseline-update.json",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/validation-baseline-update.json",
+      "sha256": "2c8d456a65f02db823a836fb6c36b2acbd1ec188d9217fac0da8111de42493f6"
+    },
+    {
+      "source": "output/phase1-20261018/validation.json",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/validation.json",
+      "sha256": "a44d5ff2a44e2907bc4e0bc1018b64109d4fdd853aa1e5dc35cedd71005f18fc"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/validation/src/errors/failed-validation.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/validation/src/errors/failed-validation.ts",
+      "sha256": "351e2b441b7aa79bc8b821141320fe5e831fa2266f612ce67bad74abbdde7c7d"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/utils/shared/generate-joi.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/utils/shared/generate-joi.ts",
+      "sha256": "98158e3a31e84aac61c5be7912162a62d3a70737f47f9739c40f515f9000477a"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/utils/shared/validate-payload.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/utils/shared/validate-payload.ts",
+      "sha256": "5be6ff866a491ab7b9fd5645d74db9e12bd0bc9d13567aabc18cac700436c0c8"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/errors/src/errors/forbidden.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/forbidden.ts",
+      "sha256": "9440d635cd7ede2a51d00a4b33e4f0f68478aefc94b2acdb6a3251675b6fe578"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-credentials.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-credentials.ts",
+      "sha256": "0f4c6b272b15dd8e5abb7faaf4a3477fd1761bfa88bb094d7a552b4024af6a77"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-query.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-query.ts",
+      "sha256": "cea641bea12881927298e5b0e402ed1d026d71cc6d0a77ed44b29ac8fae58b7d"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-token.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-token.ts",
+      "sha256": "19e645fd6c48806673866acc41b5fb0dea1b739df8bcbabc28e9db1948e7efa7"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/controllers/items.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/controllers/items.ts",
+      "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/middleware/error-handler.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/middleware/error-handler.ts",
+      "sha256": "ebbffe7d276b99bf81b6cba4bb52d0a67b0b99f8cbc2151adb4623d77f7fecc6"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/middleware/respond.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/middleware/respond.ts",
+      "sha256": "fd39a4e33d7c69100f070222b705ea27dbec45df290fb5e66be83fc5a8f3700e"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/services/items.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/services/items.ts",
+      "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/services/payload.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/services/payload.ts",
+      "sha256": "4b533902a23b64ff2210742bcd424a0780352be90c8bfbced44992b3dd5e311b"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/utils/sanitize-query.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/utils/sanitize-query.ts",
+      "sha256": "2af1f89ef063556315f13d167ef3e6bdb839f434af652d35fd2551b490c53614"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/utils/validate-query.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/utils/validate-query.ts",
+      "sha256": "9db40b0118ec522c347c7fca6787fb38f3dd7fddc7a0dfe468e558e65e96438e"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/process-payload.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/process-payload.ts",
+      "sha256": "e4d50f47d3e939adeac99f5a36914f07b82920116c32622270c62fccb10d4440"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/lib/is-field-nullable.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/lib/is-field-nullable.ts",
+      "sha256": "6df276ca57e0dfcf41adf476747caf65a676f4e157d488587557ccbefa945aac"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/database/errors/translate.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/errors/translate.ts",
+      "sha256": "b1f023bf6cddad8c00109def226f8b8f2bef619e217e4082f1da92a894cd6aa8"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/database/run-ast/lib/apply-query/search.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/run-ast/lib/apply-query/search.ts",
+      "sha256": "752956e043ed66b8c0daf675fcbb36918d1b54eaed1ee6e529423e4b49350d8d"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/database/helpers/date/index.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/index.ts",
+      "sha256": "b5030ced6d43a5e51950c6a13597fe8136200d3bd6d1330188901899399dd94a"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/database/helpers/date/types.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/types.ts",
+      "sha256": "34eafe675c81ce60d9c1294b2a9b7599545d38c18f667e8b385a7a62d6d7b2e1"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/database/helpers/date/dialects/default.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/dialects/default.ts",
+      "sha256": "2d7042e48ce856a1bde2e939c111a1f113550b5886936d9b8651e9e1ed481e0a"
+    },
+    {
+      "source": "output/phase1-20261018/baseline-source/api/src/database/errors/dialects/postgres.ts",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/errors/dialects/postgres.ts",
+      "sha256": "285171ebb1ef3c89bd8ffe28e481535bf0bdcc1cf3084e99fce96238d1aa4600"
+    },
+    {
+      "source": "tmp/phase0_inventory_20261018.py",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/cong-cu-kiem-ke/phase0_inventory_20261018.py",
+      "sha256": "b55902d24ab72261b541f155d5c2a6a6866ff6d2ac3e1c3f5c2de162b0aa72aa"
+    },
+    {
+      "source": "tmp/phase1_traceability_20261018.py",
+      "target": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/cong-cu-kiem-ke/phase1_traceability_20261018.py",
+      "sha256": "9ad59d1dc21da26314dd4f9aa95274424f25e491216e1005034e1b8504e361cc"
+    }
+  ],
+  "extracted_business_traceability": "DAMH/docs/HoanThanhPlan/01-truy-vet-nghiep-vu.md",
+  "original_artifacts_and_supporting_output_directories": "unchanged",
+  "historical_manifest_paths": "preserved; use supporting_copies mapping for local copies",
+  "current_files": [
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-bo-demo-tham-chieu.md",
+      "bytes": 7336,
+      "sha256": "21d844f1341f88bd5e1503e0e472027724b8242b8cb3d481b857b6bec0df98b2"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-campaign-index.csv",
+      "bytes": 16480,
+      "sha256": "3e4de8f47b68d8f2b8bdb6b9c2877e51c016442f2c068c766fd60e0de52da306"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-evidence-hashes.json",
+      "bytes": 37148,
+      "sha256": "c98cf4ce535587f8d90596f925d539246603ca3502fab51dca54cf420d8b3dd5"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-evidence-index.csv",
+      "bytes": 226443,
+      "sha256": "25a42537678016b434a917cba46bcef3491c0b1c5a5fa349c31dd034151f92d4"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-hien-trang-va-baseline.md",
+      "bytes": 19770,
+      "sha256": "4dcb9406640cb061842c1b2cb0a29434913fa7c28f86df22ff8d5fbedfc7ead9"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-inventory-summary.json",
+      "bytes": 1430,
+      "sha256": "d7022fef7aad5d3ab91e54e01a02f2edd79ae3191bfc4aac6214f7d9ea8dccdb"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-quyet-dinh-va-phu-thuoc.md",
+      "bytes": 8582,
+      "sha256": "00d91e0a73b4b94e8fa9afd1d731e74db29d09ff71433d30952a8adba26cacef"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-schema-inventory.json",
+      "bytes": 2598,
+      "sha256": "5e267230ed829bbe909e01d46e725929c4049fba409fe8e5f7354d23dfb89a1a"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/00-selected-evidence.json",
+      "bytes": 61000,
+      "sha256": "e72a2d5056d538f1d2551c9edbd6dcbc6ca1fd8d7c512afac62d78f229267630"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/01-doi-chieu-baseline-p1-05.md",
+      "bytes": 14619,
+      "sha256": "dfd5e273577d08a983ebc30ea03c5c27f423d9b21ad25da1b29725685d2bb633"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/01-review-dac-ta.md",
+      "bytes": 15154,
+      "sha256": "6eef3831bc6d642661da2d7e438d086bf1edb7cea1f35720f02867aad85f5204"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/01-traceability.csv",
+      "bytes": 11557,
+      "sha256": "ffb2bd68e9983a150f2ce898fc630d368b9a39f2e762dfcb58f6f6c7a78e59a5"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/01-truy-vet-nghiep-vu.md",
+      "bytes": 16085,
+      "sha256": "e2b523643351e2abe5a410eb9b215669b20ee7fe61c1892fdf2b6ba35c9580fd"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/01-yeu-cau-va-dac-ta.md",
+      "bytes": 38979,
+      "sha256": "51343fc4c2de6304020a660df887e7693a0b8bc325a7ef0cd32ec7ec8c5446e1"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "bytes": 51090,
+      "sha256": "e25e5605f85d1ff36a852852b6eb9f905e18b5a7aebcfb42187918d25bf4d27a"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/README.md",
+      "bytes": 5521,
+      "sha256": "dd6264cef6b02669de5a264339084bdd2e01286fc68081346fc2d8d096cc2c98"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/cong-cu-kiem-ke/phase0_inventory_20261018.py",
+      "bytes": 14049,
+      "sha256": "b55902d24ab72261b541f155d5c2a6a6866ff6d2ac3e1c3f5c2de162b0aa72aa"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/cong-cu-kiem-ke/phase1_traceability_20261018.py",
+      "bytes": 15650,
+      "sha256": "9ad59d1dc21da26314dd4f9aa95274424f25e491216e1005034e1b8504e361cc"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/checkpoint-manifest.json",
+      "bytes": 18475,
+      "sha256": "96a43db2a40ddf11a1f8eae31a46295c73d21b825c894a2c576442d22d10c8b8"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/checkpoint.zip",
+      "bytes": 12609381,
+      "sha256": "5ee3e1c64812f41610dd1065a451389d6e3cba604a23f706f27552ec55a02126"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/git-state-before.json",
+      "bytes": 3239,
+      "sha256": "3a2ed867db04e5918e6a1c7a5a154c9294af1be2db38512caf2389c1544285be"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/controllers/items.ts",
+      "bytes": 6581,
+      "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/errors/dialects/postgres.ts",
+      "bytes": 3399,
+      "sha256": "285171ebb1ef3c89bd8ffe28e481535bf0bdcc1cf3084e99fce96238d1aa4600"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/errors/translate.ts",
+      "bytes": 1483,
+      "sha256": "b1f023bf6cddad8c00109def226f8b8f2bef619e217e4082f1da92a894cd6aa8"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/dialects/default.ts",
+      "bytes": 96,
+      "sha256": "2d7042e48ce856a1bde2e939c111a1f113550b5886936d9b8651e9e1ed481e0a"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/index.ts",
+      "bytes": 478,
+      "sha256": "b5030ced6d43a5e51950c6a13597fe8136200d3bd6d1330188901899399dd94a"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/types.ts",
+      "bytes": 540,
+      "sha256": "34eafe675c81ce60d9c1294b2a9b7599545d38c18f667e8b385a7a62d6d7b2e1"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/run-ast/lib/apply-query/search.ts",
+      "bytes": 3603,
+      "sha256": "752956e043ed66b8c0daf675fcbb36918d1b54eaed1ee6e529423e4b49350d8d"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/middleware/error-handler.ts",
+      "bytes": 4691,
+      "sha256": "ebbffe7d276b99bf81b6cba4bb52d0a67b0b99f8cbc2151adb4623d77f7fecc6"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/middleware/respond.ts",
+      "bytes": 4771,
+      "sha256": "fd39a4e33d7c69100f070222b705ea27dbec45df290fb5e66be83fc5a8f3700e"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/lib/is-field-nullable.ts",
+      "bytes": 426,
+      "sha256": "6df276ca57e0dfcf41adf476747caf65a676f4e157d488587557ccbefa945aac"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/process-payload.ts",
+      "bytes": 4254,
+      "sha256": "e4d50f47d3e939adeac99f5a36914f07b82920116c32622270c62fccb10d4440"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/services/items.ts",
+      "bytes": 40020,
+      "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/services/payload.ts",
+      "bytes": 36265,
+      "sha256": "4b533902a23b64ff2210742bcd424a0780352be90c8bfbced44992b3dd5e311b"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/utils/sanitize-query.ts",
+      "bytes": 8204,
+      "sha256": "2af1f89ef063556315f13d167ef3e6bdb839f434af652d35fd2551b490c53614"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/utils/validate-query.ts",
+      "bytes": 9272,
+      "sha256": "9db40b0118ec522c347c7fca6787fb38f3dd7fddc7a0dfe468e558e65e96438e"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/forbidden.ts",
+      "bytes": 478,
+      "sha256": "9440d635cd7ede2a51d00a4b33e4f0f68478aefc94b2acdb6a3251675b6fe578"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-credentials.ts",
+      "bytes": 240,
+      "sha256": "0f4c6b272b15dd8e5abb7faaf4a3477fd1761bfa88bb094d7a552b4024af6a77"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-query.ts",
+      "bytes": 442,
+      "sha256": "cea641bea12881927298e5b0e402ed1d026d71cc6d0a77ed44b29ac8fae58b7d"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-token.ts",
+      "bytes": 217,
+      "sha256": "19e645fd6c48806673866acc41b5fb0dea1b739df8bcbabc28e9db1948e7efa7"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/utils/shared/generate-joi.ts",
+      "bytes": 11694,
+      "sha256": "98158e3a31e84aac61c5be7912162a62d3a70737f47f9739c40f515f9000477a"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/utils/shared/validate-payload.ts",
+      "bytes": 1962,
+      "sha256": "5be6ff866a491ab7b9fd5645d74db9e12bd0bc9d13567aabc18cac700436c0c8"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/validation/src/errors/failed-validation.ts",
+      "bytes": 3019,
+      "sha256": "351e2b441b7aa79bc8b821141320fe5e831fa2266f612ce67bad74abbdde7c7d"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/baseline-source-manifest.json",
+      "bytes": 7816,
+      "sha256": "f4fd709330939f0832809534ad499ef159a1a0d079878ff63d9d4546594abf92"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/source-manifest-before.json",
+      "bytes": 3718,
+      "sha256": "3c84fa4313523eb5a85e78f2e7ee0f5ede9841c42e4b38338a51ff82fc7ca6e7"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/traceability-before.md",
+      "bytes": 8626,
+      "sha256": "133231918a443c2059373de1b2ad0a176f97106462bc29c70a7b5c4b7648bb77"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/validation-baseline-update.json",
+      "bytes": 531,
+      "sha256": "2c8d456a65f02db823a836fb6c36b2acbd1ec188d9217fac0da8111de42493f6"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase1-20261018/validation.json",
+      "bytes": 748,
+      "sha256": "a44d5ff2a44e2907bc4e0bc1018b64109d4fdd853aa1e5dc35cedd71005f18fc"
+    },
+    {
+      "path": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/README.md",
+      "bytes": 1426,
+      "sha256": "47d25067a67830a673bd2f082e8d7446221d8ce7dbc47ea0787d2cc0a27389b9"
+    }
+  ]
+}

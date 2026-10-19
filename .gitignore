@@ -10,5 +10,12 @@
 /artifacts/runs/
 /runtime/
 
-# Khong commit tai lieu trong docs theo yeu cau
-/docs/
+# Chi dua tai lieu va bang chung da chon loc len Git
+/docs/slide_bai_giang/
+/docs/**/*.zip
+/docs/**/*.docx
+/docs/**/*.pptx
+/docs/**/*.pdf
+!/docs/yeu_cau.pdf
+/docs/**/*.log
+/docs/**/*.ndjson
