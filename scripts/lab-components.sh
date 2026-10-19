@@ -31,6 +31,35 @@ ADMIN_TOKEN=''
 EDITOR_TOKEN=''
 READER_TOKEN=''
 
+docker_run() {
+	# The unprivileged runner must store Hypothesis examples in its writable mount.
+	local -a storage_args=(-e HYPOTHESIS_STORAGE_DIRECTORY=/work/run/hypothesis)
+	case "$(uname -s)" in
+		MINGW*|MSYS*|CYGWIN*)
+			# Convert host mount sources, preserving Linux paths and container env.
+			local -a args=()
+			local mount source
+			while (( $# > 0 )); do
+				if [[ "$1" == --mount && $# -ge 2 ]]; then
+					mount="$2"
+					if [[ "$mount" == type=bind,src=* ]]; then
+						source="${mount#*src=}"
+						source="${source%%,*}"
+						mount="${mount/"src=$source"/"src=$(cygpath -m "$source")"}"
+					fi
+					args+=(--mount "$mount")
+					shift 2
+				else
+					args+=("$1")
+					shift
+				fi
+			done
+			MSYS_NO_PATHCONV=1 command docker run "${storage_args[@]}" "${args[@]}"
+			;;
+		*) command docker run "${storage_args[@]}" "$@" ;;
+	esac
+}
+
 fail() {
 	printf 'ERROR: %s\n' "$*" >&2
 	return 1
@@ -59,6 +88,13 @@ http_summary() {
 	fi
 }
 
+# Only P6 enables this meter. Count attempts, including auth; no headers or bodies.
+http_meter_note() {
+    [[ "${LAB_HTTP_METER:-}" == 1 ]] || return 0
+    jq -cn --arg phase "${LAB_HTTP_STAGE:-setup}" --arg method "$1" --arg path "${2%%\?*}" \
+        '{source:"shell",phase:$phase,method:$method,path:$path,event:"attempt"}' >> "$RUN_DIR/shell-http.ndjson"
+}
+
 api_request() {
 	local method="$1"
 	local path="$2"
@@ -70,17 +106,23 @@ api_request() {
 	[[ "$#" -ge 3 ]] && token="$3"
 	[[ "$#" -ge 4 ]] && body="$4"
 
+	http_meter_note "$method" "$path"
 	HTTP_COUNTER=$((HTTP_COUNTER + 1))
 	response_file="$RUN_DIR/http-$HTTP_COUNTER.json"
 	local -a args
 	args=(-sS --globoff --max-time 10 -o "$response_file" -w '%{http_code}' -X "$method")
 	[[ -n "$token" ]] && args+=(-H "Authorization: Bearer $token")
 	if [[ -n "$body" ]]; then
-		args+=(-H 'Content-Type: application/json' --data-binary "$body")
+		args+=(-H 'Content-Type: application/json' --data-binary @-)
 	fi
 
 	set +e
-	http_status="$(curl "${args[@]}" "$API_URL$path")"
+	if [[ -n "$body" ]]; then
+		# stdin preserves UTF-8; Windows native argv can lose Unicode bytes.
+		http_status="$(printf '%s' "$body" | curl "${args[@]}" "$API_URL$path")"
+	else
+		http_status="$(curl "${args[@]}" "$API_URL$path")"
+	fi
 	curl_rc=$?
 	set -e
 	API_STATUS="$http_status"
@@ -106,6 +148,7 @@ api_request_file() {
 		printf 'API request body file không tồn tại: %s\n' "$body_file" >&2
 		return 1
 	}
+	http_meter_note "$method" "$path"
 	HTTP_COUNTER=$((HTTP_COUNTER + 1))
 	response_file="$RUN_DIR/http-$HTTP_COUNTER.json"
 	local -a args
@@ -147,6 +190,7 @@ login() {
 	local response
 	local token
 	[[ -n "$email" && -n "$password" ]] || return 1
+	http_meter_note POST /auth/login
 	response="$(
 		jq -n --arg email "$email" --arg password "$password" '{email:$email,password:$password}' |
 			curl -fsS --max-time 10 -H 'Content-Type: application/json' --data-binary @- "$API_URL/auth/login"
@@ -794,6 +838,11 @@ load_fixture_map() {
 	ARTICLE_MAP_JSON="$(jq -c '.fixtures.qa_articles' "$FIXTURE_MAP")"
 }
 
+api_is_error() {
+	local expected_status="$1" expected_code="$2"
+	[[ "$API_STATUS" == "$expected_status" ]] && jq -e --arg code "$expected_code" '.errors | type == "array" and length > 0 and all(.[]; .extensions.code == $code)' "$API_BODY" >/dev/null 2>&1
+}
+
 check_field_validation() {
 	local category_id
 	local body
@@ -811,6 +860,7 @@ check_field_validation() {
 		printf 'ERROR: score=-1 đã được chấp nhận\n' >&2
 		return 1
 	fi
+	api_is_error 400 FAILED_VALIDATION || { printf 'ERROR: invalid score requires 400/FAILED_VALIDATION, got %s\n' "$API_STATUS" >&2; return 1; }
 	checks="$(jq -cn --argjson rows "$checks" --arg status "$invalid_score" '$rows + [{rule:"score 0..5",status:$status,accepted:false}]')"
 	body="$(jq -cn --arg category "$category_id" '{title:"Validation probe",status:"archived",score:3,published_at:null,metadata:null,internal_notes:"validation probe",category:($category|tonumber)}')"
 	api_request POST '/items/qa_articles' "$EDITOR_TOKEN" "$body" || return 1
@@ -821,6 +871,7 @@ check_field_validation() {
 		printf 'ERROR: status=archived đã được chấp nhận\n' >&2
 		return 1
 	fi
+	api_is_error 400 FAILED_VALIDATION || { printf 'ERROR: invalid status requires 400/FAILED_VALIDATION, got %s\n' "$API_STATUS" >&2; return 1; }
 	checks="$(jq -cn --argjson rows "$checks" --arg status "$invalid_status" '$rows + [{rule:"status draft|published",status:$status,accepted:false}]')"
 	printf '%s\n' "$(jq -cn --argjson checks "$checks" '{schema:1,checks:$checks}')" > "$RUN_DIR/contract-validation.json"
 	printf 'Field validation: PASS (score=%s,status=%s)\n' "$invalid_score" "$invalid_status"
@@ -883,7 +934,7 @@ seed() {
 	printf 'Seed: PASS (3 categories, 12 articles, 6 draft, 6 published)\n'
 }
 
-smoke() {
+smoke_checks() {
 	require_tools
 	require_admin_login
 	require_actor_logins
@@ -902,6 +953,21 @@ smoke() {
 		return 1
 	}
 	printf 'Smoke: PASS (actor login, category read, reader published filter)\n'
+}
+
+smoke() {
+	local runner_rc=0 restore_rc=0
+	require_tools
+	require_admin_login || return 1
+	require_actor_logins || return 1
+	load_fixture_map || return 1
+	campaign_snapshot || return 1
+	if smoke_checks; then runner_rc=0; else runner_rc=$?; fi
+	if campaign_refresh_tokens && campaign_restore; then restore_rc=0; else restore_rc=$?; fi
+	jq -n --argjson runner "$runner_rc" --argjson restore "$restore_rc" \
+		'{runner_exit_code:$runner,restore_exit_code:$restore}' > "$RUN_DIR/component-outcomes.json"
+	(( restore_rc == 0 )) || return "$restore_rc"
+	return "$runner_rc"
 }
 
 schema_operations_json() {
@@ -1057,13 +1123,13 @@ scenario_editor_crud() {
 		scenario_record S1 'Editor CRUD' failed 'response contains positive id' 'missing id' 'create response malformed'
 		return 1
 	fi
-	api_expect_2xx 'CRUD read detail' GET "/items/qa_articles/$item_id?fields=id,title,status,score,category" "$EDITOR_TOKEN" || {
+	api_expect_2xx 'CRUD read detail' GET "/items/qa_articles/$item_id?fields=id,title,status,score,published_at,metadata,internal_notes,category" "$EDITOR_TOKEN" || {
 		cleanup_item "$item_id"
 		scenario_record S1 'Editor CRUD' failed 'created item readable by editor' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
 		return 1
 	}
 	before_title="$(jq -r '.data.title // empty' "$API_BODY")"
-	[[ "$before_title" == "$title" ]] || {
+	jq -e --argjson body "$body" --argjson id "$item_id" '.data == ($body + {id:$id})' "$API_BODY" >/dev/null || {
 		cleanup_item "$item_id"
 		scenario_record S1 'Editor CRUD' failed 'title preserved after create' "$before_title" 'read-back title mismatch'
 		return 1
@@ -1073,14 +1139,14 @@ scenario_editor_crud() {
 		scenario_record S1 'Editor CRUD' failed 'PATCH detail 2xx' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
 		return 1
 	}
-	api_expect_2xx 'CRUD read patched detail' GET "/items/qa_articles/$item_id?fields=id,title,score" "$EDITOR_TOKEN" || {
+	api_expect_2xx 'CRUD read patched detail' GET "/items/qa_articles/$item_id?fields=id,title,status,score,published_at,metadata,internal_notes,category" "$EDITOR_TOKEN" || {
 		cleanup_item "$item_id"
 		scenario_record S1 'Editor CRUD' failed 'read-back PATCH 2xx' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
 		return 1
 	}
 	score="$(jq -r '.data.score // empty' "$API_BODY")"
 	before_title="$(jq -r '.data.title // empty' "$API_BODY")"
-	[[ "$score" == 5 && "$before_title" == "$title" ]] || {
+	jq -e --argjson body "$body" --argjson id "$item_id" '.data == ($body + {id:$id,score:5})' "$API_BODY" >/dev/null || {
 		cleanup_item "$item_id"
 		scenario_record S1 'Editor CRUD' failed 'PATCH changes score and keeps title' "score=$score,title=$before_title" 'field preservation failed'
 		return 1
@@ -1098,7 +1164,7 @@ scenario_editor_crud() {
 		scenario_record S1 'Editor CRUD' failed 'post-delete read returns an HTTP response' 'network error' 'read-back request failed'
 		return 1
 	}
-	if valid_http_success "$API_STATUS" && jq -e '.data != null' "$API_BODY" >/dev/null 2>&1; then
+	if ! api_is_error 403 FORBIDDEN; then
 		scenario_record S1 'Editor CRUD' failed 'deleted item is unavailable' "HTTP $API_STATUS" 'item still returned'
 		return 1
 	fi
@@ -1122,51 +1188,40 @@ scenario_filter_status() {
 }
 
 scenario_sort_pagination() {
-	local all_rows page_one page_two expected_one expected_two
-	api_expect_2xx 'sorted article list' GET '/items/qa_articles?sort=title,id&limit=-1&fields=id,title' "$EDITOR_TOKEN" || {
-		scenario_record S3 'Sort/pagination' failed 'sorted list returns 2xx' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
+	local all_rows page_one page_two expected_one expected_two expected_ids
+	all_rows="$(jq -cn --slurpfile spec "$LAB_ROOT_DIR/scripts/data/fixture-oracle.json" --slurpfile map "$FIXTURE_MAP" '$spec[0] as $s | $map[0].fixtures.qa_articles as $m | [$s.title_order_keys[] as $k | $s.articles[] | select(.fixture_key == $k) | {id:$m[$k],title:.title}]')"
+	expected_ids="$(jq -c '[.[].id]' <<< "$all_rows")"
+	if ! capture_database_oracle || ! jq -e --argjson expected "$expected_ids" '.title_ids == $expected' "$RUN_DIR/database-oracle.json" >/dev/null; then
+		scenario_record S3 'Sort/pagination' blocked 'independent DB order matches seed title order' 'DB oracle unavailable/different' 'no target response used as expected'
 		return 1
-	}
-	all_rows="$(jq -c '.data' "$API_BODY")"
-	[[ "$(jq -r 'length' <<< "$all_rows")" -ge 12 ]] || {
-		scenario_record S3 'Sort/pagination' failed 'at least twelve fixture rows' "$(jq -r 'length' <<< "$all_rows")" 'fixture rows missing'
-		return 1
-	}
-	api_expect_2xx 'pagination page one' GET '/items/qa_articles?sort=title,id&limit=3&offset=0&fields=id,title' "$EDITOR_TOKEN" || {
-		scenario_record S3 'Sort/pagination' failed 'page one returns 2xx' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
-		return 1
-	}
+	fi
+	api_expect_2xx 'pagination page one' GET '/items/qa_articles?sort=title,id&limit=3&offset=0&fields=id,title' "$EDITOR_TOKEN" || return 1
 	page_one="$(jq -c '.data' "$API_BODY")"
-	api_expect_2xx 'pagination page two' GET '/items/qa_articles?sort=title,id&limit=3&offset=3&fields=id,title' "$EDITOR_TOKEN" || {
-		scenario_record S3 'Sort/pagination' failed 'page two returns 2xx' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
-		return 1
-	}
+	api_expect_2xx 'pagination page two' GET '/items/qa_articles?sort=title,id&limit=3&offset=3&fields=id,title' "$EDITOR_TOKEN" || return 1
 	page_two="$(jq -c '.data' "$API_BODY")"
 	expected_one="$(jq -c '.[0:3]' <<< "$all_rows")"
 	expected_two="$(jq -c '.[3:6]' <<< "$all_rows")"
 	if [[ "$page_one" != "$expected_one" || "$page_two" != "$expected_two" ]]; then
-		scenario_record S3 'Sort/pagination' failed 'offset pages match deterministic title,id order' "page1=$page_one page2=$page_two" 'page result mismatch'
+		scenario_record S3 'Sort/pagination' failed 'pages equal independent seed/map oracle' "page1=$page_one page2=$page_two" 'page result mismatch'
 		return 1
 	fi
-	scenario_record S3 'Sort/pagination' passed 'sort=title,id with limit/offset' 'pages 0..2 and 3..5' 'matches full sorted list'
+	scenario_record S3 'Sort/pagination' passed 'sort=title,id with limit/offset' 'pages 0..2 and 3..5' 'independent seed/map plus DB collation proof'
 }
 
 scenario_reader_no_draft() {
-	local draft_id
+	local draft_id published_id
 	draft_id="$(fixture_article_id article_alpha_draft_1)"
-	if ! schema_has_operation reader GET '/items/qa_articles/{id}'; then
-		scenario_record S4 'Reader không đọc draft' blocked 'reader detail GET must be present before negative request' 'operation absent from reader schema' 'permission operation filtered; request not sent'
+	published_id="$(fixture_article_id article_alpha_published_1)"
+	api_expect_2xx 'Reader published positive control' GET "/items/qa_articles/$published_id?fields=id,title,status" "$READER_TOKEN" || return 1
+	jq -e '.data.status == "published"' "$API_BODY" >/dev/null || return 1
+	api_expect_2xx 'Editor draft positive control' GET "/items/qa_articles/$draft_id?fields=id,title,status" "$EDITOR_TOKEN" || return 1
+	jq -e '.data.status == "draft"' "$API_BODY" >/dev/null || return 1
+	api_request GET "/items/qa_articles/$draft_id?fields=id,title,status" "$READER_TOKEN" || return 1
+	if ! api_is_error 403 FORBIDDEN; then
+		scenario_record S4 'Reader không đọc draft' failed '403/FORBIDDEN with positive controls' "HTTP $API_STATUS" 'unexpected denial or disclosure'
 		return 1
 	fi
-	api_request GET "/items/qa_articles/$draft_id?fields=id,title,status,internal_notes" "$READER_TOKEN" || {
-		scenario_record S4 'Reader không đọc draft' failed 'request reaches API' 'network error' 'request failed'
-		return 1
-	}
-	if valid_http_success "$API_STATUS" && jq -e '.data != null' "$API_BODY" >/dev/null 2>&1; then
-		scenario_record S4 'Reader không đọc draft' failed 'draft data not exposed' "HTTP $API_STATUS" 'reader received draft data'
-		return 1
-	fi
-	scenario_record S4 'Reader không đọc draft' passed 'draft detail is rejected or empty' "HTTP $API_STATUS" 'no draft payload returned'
+	scenario_record S4 'Reader không đọc draft' passed '403/FORBIDDEN with positive controls' "HTTP $API_STATUS" 'public fields; no private projection confound'
 }
 
 scenario_reader_hidden_field() {
@@ -1184,7 +1239,7 @@ scenario_reader_hidden_field() {
 		scenario_record S5 'Reader không lộ internal_notes' failed 'request reaches API' 'network error' 'request failed'
 		return 1
 	}
-	if valid_http_success "$API_STATUS" && ! jq -e '.data | has("internal_notes") | not' "$API_BODY" >/dev/null 2>&1; then
+	if ! api_is_error 403 FORBIDDEN && ! { valid_http_success "$API_STATUS" && jq -e '.data | type == "object" and (has("internal_notes") | not)' "$API_BODY" >/dev/null 2>&1; }; then
 		scenario_record S5 'Reader không lộ internal_notes' failed 'internal_notes absent from response' "HTTP $API_STATUS" 'private field returned'
 		return 1
 	fi
@@ -1194,11 +1249,7 @@ scenario_reader_hidden_field() {
 scenario_reader_write() {
 	local published_id before before_score new_score denied_status after
 	published_id="$(fixture_article_id article_alpha_published_1)"
-	if ! schema_has_operation reader PATCH '/items/qa_articles/{id}'; then
-		scenario_record S6 'Reader ghi bị từ chối' blocked 'reader PATCH must be present before intentional negative request' 'operation absent from reader schema' 'permission operation filtered; request not sent'
-		return 1
-	fi
-	api_expect_2xx 'reader write precondition' GET "/items/qa_articles/$published_id?fields=id,title,status,score" "$EDITOR_TOKEN" || {
+	api_expect_2xx 'reader write precondition' GET "/items/qa_articles/$published_id?fields=id,title,status,score,published_at,metadata,internal_notes,category" "$EDITOR_TOKEN" || {
 		scenario_record S6 'Reader ghi bị từ chối' failed 'editor precondition read succeeds' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
 		return 1
 	}
@@ -1211,11 +1262,11 @@ scenario_reader_write() {
 		return 1
 	fi
 	denied_status="$API_STATUS"
-	if valid_http_success "$API_STATUS"; then
+	if ! api_is_error 403 FORBIDDEN; then
 		scenario_record S6 'Reader ghi bị từ chối' failed 'reader PATCH is rejected' "HTTP $API_STATUS" 'write request accepted'
 		return 1
 	fi
-	api_expect_2xx 'reader write unchanged check' GET "/items/qa_articles/$published_id?fields=id,title,status,score" "$EDITOR_TOKEN" || {
+	api_expect_2xx 'reader write unchanged check' GET "/items/qa_articles/$published_id?fields=id,title,status,score,published_at,metadata,internal_notes,category" "$EDITOR_TOKEN" || {
 		scenario_record S6 'Reader ghi bị từ chối' failed 'post-denial read succeeds' "HTTP $API_STATUS" "$(http_summary "$API_BODY")"
 		return 1
 	}
@@ -1234,6 +1285,7 @@ scenarios() {
 	require_actor_logins
 	load_fixture_map
 	ensure_reader_schema || return 1
+	campaign_snapshot || return 1
 	SCENARIO_REPORT="$RUN_DIR/scenario-report.json"
 	jq -n --arg version "$FIXTURE_VERSION" '{schema:1,fixture_version:$version,scenarios:[]}' > "$SCENARIO_REPORT"
 	scenario_editor_crud || overall=1
@@ -1242,6 +1294,12 @@ scenarios() {
 	scenario_reader_no_draft || overall=1
 	scenario_reader_hidden_field || overall=1
 	scenario_reader_write || overall=1
+	if campaign_refresh_tokens && campaign_restore; then
+		printf '{"restore_exit_code":0}\n' > "$RUN_DIR/scenario-outcomes.json"
+	else
+		printf '{"restore_exit_code":1}\n' > "$RUN_DIR/scenario-outcomes.json"
+		return 1
+	fi
 	printf 'Scenario report: %s\n' "$SCENARIO_REPORT"
 	jq -c '{passed:([.scenarios[]|select(.status=="passed")]|length),failed:([.scenarios[]|select(.status=="failed")]|length),blocked:([.scenarios[]|select(.status=="blocked")]|length)}' "$SCENARIO_REPORT"
 	if (( overall != 0 || SCENARIO_FAILURES != 0 || SCENARIO_BLOCKED != 0 )); then
@@ -1571,298 +1629,20 @@ replay_path_from_uri() {
 }
 
 replay_schemathesis_case() {
-	local case_id="$1"
-	local events_file
-	local match
-	local case_json=''
-	local request_method
-	local request_uri
-	local request_path
-	local request_body_b64
-	local request_body_file=''
-	local expected_status
-	local source_status
-	local transition_applied='false'
-	local stateful_phase='false'
-	local sequence_replayed='true'
-	local replay_scope='single_request'
-	local actual_status='network-error'
-	local actual_summary='{}'
-	local request_rc=0
-	local restore_rc=1
-	local sequence_setup_rc=0
-	local sequence_ids_json='[]'
-	local sequence_length=1
-	local sequence_report_file="$RUN_DIR/replay-sequence.json"
-	local id_map='{}'
-	local chain_id
-	local next_chain_id
-	local chain_index
-	local chain_method
-	local chain_uri
-	local chain_path
-	local chain_body_b64
-	local chain_body_file
-	local mapped_body_file
-	local chain_request_rc
-	local chain_status
-	local generated_ids_json
-	local actual_ids_json
-	local step_map
-	local replay_status='not_reproduced'
-	local source_schema="$SCHEMA_ROOT/editor.json"
-	local replay_schema_path
-	local replay_schema_hash
-	local source_file="$RUN_DIR/schemathesis-case.json"
-	local response_file="$RUN_DIR/schemathesis-replay-response.json"
-	local reproducer_file="$RUN_DIR/reproducer-schemathesis-$case_id.json"
-	[[ "$case_id" =~ ^[A-Za-z0-9._-]{1,64}$ ]] || {
-		printf 'ERROR: Schemathesis case-id chỉ được chứa chữ, số, ., _ hoặc - (tối đa 64 ký tự)\n' >&2
-		return 2
-	}
-
-	require_tools
-	require_admin_login
-	require_actor_logins
-	load_fixture_map
-	[[ -f "$source_schema" ]] || export_schema || return 1
-
-	[[ -d "$LAB_ROOT_DIR/artifacts/runs" ]] || {
-		printf 'ERROR: chưa có artifact campaign để tìm Schemathesis case %s\n' "$case_id" >&2
-		return 2
-	}
-	while IFS= read -r -d '' events_file; do
-		if match="$(jq -c --arg case_id "$case_id" --arg source "$events_file" '
-			def parent_chain($cases; $id):
-				if $id == null then []
-				elif ($cases[$id] == null) then error("missing parent case")
-				else parent_chain($cases; ($cases[$id].parent_id // null)) + [$id]
-				end;
-			select(.ScenarioFinished != null and .ScenarioFinished.recorder.cases[$case_id] != null)
-			| .ScenarioFinished as $scenario
-			| $scenario.recorder as $recorder
-			| (try parent_chain($recorder.cases; $case_id) catch [$case_id]) as $chain_ids
-			| {source:$source,case_id:$case_id,case:$recorder.cases[$case_id],checks:($recorder.checks[$case_id] // []),interaction:($recorder.interactions[$case_id] // null),chain_ids:$chain_ids,chain:(reduce $chain_ids[] as $chain_id ({}; .[$chain_id]={case:$recorder.cases[$chain_id],interaction:($recorder.interactions[$chain_id] // null)}))}
-			| select(.interaction != null)
-		' "$events_file" | sed -n '1p')"; then
-			if [[ -n "$match" ]]; then
-				case_json="$match"
-				break
-			fi
-		fi
-	done < <(find "$LAB_ROOT_DIR/artifacts/runs" -type f -name 'schemathesis-events.ndjson' -print0)
-
-	[[ -n "$case_json" ]] || {
-		printf 'ERROR: không tìm thấy Schemathesis case-id %s trong artifacts/runs\n' "$case_id" >&2
-		return 2
-	}
-	replay_schema_path="$(dirname "$events_file")/schema-raw.json"
-	[[ -f "$replay_schema_path" ]] || replay_schema_path="$(dirname "$events_file")/schema-guided.json"
-	if [[ -f "$replay_schema_path" ]]; then
-		replay_schema_hash="$(sha256sum "$replay_schema_path" | awk '{print $1}')"
-	else
-		replay_schema_hash="$(sha256sum "$source_schema" | awk '{print $1}')"
-	fi
-	printf '%s\n' "$case_json" > "$source_file"
-
-	request_method="$(jq -r '.interaction.request.method // empty' <<< "$case_json")"
-	request_uri="$(jq -r '.interaction.request.uri // empty' <<< "$case_json")"
-	request_body_b64="$(jq -r '.interaction.request.body["$base64"] // empty' <<< "$case_json")"
-	sequence_ids_json="$(jq -c '.chain_ids // []' <<< "$case_json")"
-	sequence_length="$(jq -r 'length' <<< "$sequence_ids_json")"
-	transition_applied="$(jq -r '.case.is_transition_applied // false' <<< "$case_json")"
-	stateful_phase="$(jq -r '.case.value.meta.phase.name == "stateful"' <<< "$case_json")"
-	if [[ "$transition_applied" == true || "$stateful_phase" == true ]]; then
-		sequence_replayed='false'
-		replay_scope='final_interaction_only'
-	fi
-	case "$request_method" in
-		GET|POST|PATCH|DELETE|TRACE) ;;
-		*) printf 'ERROR: method trong Schemathesis case không nằm trong replay allowlist: %s\n' "$request_method" >&2; return 2 ;;
-	esac
-	request_path="$(replay_path_from_uri "$request_uri")" || return 2
-	[[ "$request_path" == /items/qa_articles* || "$request_path" == /items/qa_categories* ]] || {
-		printf 'ERROR: chỉ replay case trên qa_articles/qa_categories; nhận %s\n' "$request_path" >&2
-		return 2
-	}
-	expected_status="$(jq -r '
-		([.checks[] | select(.status == "failure") | .failure_info.failure.message // ""]
-		| map(try capture("(?<status>[0-9]{3})").status catch null)
-		| map(select(. != null))
-		| .[0]) // (.interaction.response.status_code // empty)
-	' <<< "$case_json")"
-	source_status="$(jq -r '.interaction.response.status_code // empty' <<< "$case_json")"
-
-	campaign_snapshot || return 1
-	printf '[]\n' > "$sequence_report_file"
-	if [[ "$stateful_phase" == true || "$transition_applied" == true ]] && (( sequence_length > 1 )); then
-		sequence_replayed='true'
-		replay_scope='full_transition_chain'
-		chain_index=0
-		while (( chain_index < sequence_length - 1 )); do
-			chain_id="$(jq -r --argjson ids "$sequence_ids_json" --argjson index "$chain_index" '$ids[$index]' <<< '{}')"
-			next_chain_id="$(jq -r --argjson ids "$sequence_ids_json" --argjson index "$((chain_index + 1))" '$ids[$index]' <<< '{}')"
-			chain_method="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.method // empty' <<< "$case_json")"
-			chain_uri="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.uri // empty' <<< "$case_json")"
-			chain_path="$(replay_path_from_uri "$chain_uri")" || { sequence_setup_rc=1; break; }
-			chain_body_b64="$(jq -r --arg id "$chain_id" '.chain[$id].interaction.request.body["$base64"] // empty' <<< "$case_json")"
-			case "$chain_method" in
-				GET|POST|PATCH|DELETE) ;;
-				*) printf 'ERROR: method parent stateful không nằm trong replay allowlist: %s\n' "$chain_method" >&2; sequence_setup_rc=1; break ;;
-			esac
-			[[ "$chain_path" == /items/qa_articles* || "$chain_path" == /items/qa_categories* ]] || {
-				printf 'ERROR: parent stateful path ngoài allowlist: %s\n' "$chain_path" >&2
-				sequence_setup_rc=1
-				break
-			}
-			while IFS=$'\t' read -r generated_id actual_id; do
-				[[ -n "$generated_id" && -n "$actual_id" ]] || continue
-				chain_path="${chain_path//$generated_id/$actual_id}"
-			done < <(jq -r 'to_entries[] | [.key, (.value|tostring)] | @tsv' <<< "$id_map")
-			chain_body_file=''
-			if [[ -n "$chain_body_b64" ]]; then
-				chain_body_file="$RUN_DIR/replay-sequence-$chain_index-body.bin"
-				if ! printf '%s' "$chain_body_b64" | base64 --decode > "$chain_body_file"; then
-					printf 'ERROR: không decode được parent request body %s\n' "$chain_id" >&2
-					sequence_setup_rc=1
-					break
-				fi
-				if [[ "$id_map" != '{}' ]]; then
-					mapped_body_file="$RUN_DIR/replay-sequence-$chain_index-body-mapped.bin"
-					if ! jq --argjson id_map "$id_map" 'walk(if type == "number" and ($id_map[(tostring)] != null) then $id_map[(tostring)] else . end)' "$chain_body_file" > "$mapped_body_file"; then
-						printf 'ERROR: không áp dụng được ID mapping cho parent %s\n' "$chain_id" >&2
-						sequence_setup_rc=1
-						break
-					fi
-					chain_body_file="$mapped_body_file"
-				fi
-			fi
-			printf 'Schemathesis stateful parent %s: %s %s\n' "$chain_id" "$chain_method" "$chain_path"
-			if [[ -n "$chain_body_file" ]]; then
-				if ! api_request_file "$chain_method" "$chain_path" "$EDITOR_TOKEN" "$chain_body_file"; then
-					chain_request_rc=1
-				else
-					chain_request_rc=0
-				fi
-			else
-				if ! api_request "$chain_method" "$chain_path" "$EDITOR_TOKEN"; then
-					chain_request_rc=1
-				else
-					chain_request_rc=0
-				fi
-			fi
-			chain_status="${API_STATUS:-network-error}"
-			jq --arg id "$chain_id" --arg method "$chain_method" --arg path "$chain_path" --arg status "$chain_status" --argjson request_rc "$chain_request_rc" \
-				'. + [{case_id:$id,method:$method,path:$path,status:(if ($status|test("^[0-9]+$")) then ($status|tonumber) else $status end),request_exit_code:$request_rc}]' \
-				"$sequence_report_file" > "$sequence_report_file.tmp"
-			mv -- "$sequence_report_file.tmp" "$sequence_report_file"
-			if (( chain_request_rc != 0 )) || ! valid_http_success "$chain_status"; then
-				printf 'ERROR: parent stateful %s không đạt 2xx (HTTP %s)\n' "$chain_id" "$chain_status" >&2
-				sequence_setup_rc=1
-				break
-			fi
-			actual_ids_json="$(jq -c 'if (.data|type) == "array" then [.data[]?.id] elif (.data|type) == "object" then [.data.id] else [] end' "$API_BODY" 2>/dev/null || printf '[]')"
-			generated_ids_json="$(jq -c --arg id "$next_chain_id" '.chain[$id].case.transition.parameters.path_parameters // {} | to_entries | sort_by(.key) | map(.value.value.values // []) | add // []' <<< "$case_json")"
-			if [[ "$(jq -r 'length' <<< "$generated_ids_json")" -gt 0 ]]; then
-				if [[ "$(jq -r 'length' <<< "$generated_ids_json")" -ne "$(jq -r 'length' <<< "$actual_ids_json")" ]]; then
-					printf 'ERROR: parent %s trả số ID khác transition mapping\n' "$chain_id" >&2
-					sequence_setup_rc=1
-					break
-				fi
-				step_map="$(jq -n --argjson generated "$generated_ids_json" --argjson actual "$actual_ids_json" 'reduce range(0; ($generated|length)) as $index ({}; . + {($generated[$index]|tostring):$actual[$index]})')"
-				id_map="$(jq -n --argjson old "$id_map" --argjson new "$step_map" '$old + $new')"
-			fi
-			chain_index=$((chain_index + 1))
-		done
-	fi
-	if (( sequence_setup_rc == 0 )); then
-		while IFS=$'\t' read -r generated_id actual_id; do
-			[[ -n "$generated_id" && -n "$actual_id" ]] || continue
-			request_path="${request_path//$generated_id/$actual_id}"
-		done < <(jq -r 'to_entries[] | [.key, (.value|tostring)] | @tsv' <<< "$id_map")
-		if [[ -n "$request_body_b64" ]]; then
-			request_body_file="$RUN_DIR/replay-request-body.bin"
-			if ! printf '%s' "$request_body_b64" | base64 --decode > "$request_body_file"; then
-				printf 'ERROR: không decode được request body case %s\n' "$case_id" >&2
-				sequence_setup_rc=1
-			elif [[ "$id_map" != '{}' ]]; then
-				mapped_body_file="$RUN_DIR/replay-request-body-mapped.bin"
-				if ! jq --argjson id_map "$id_map" 'walk(if type == "number" and ($id_map[(tostring)] != null) then $id_map[(tostring)] else . end)' "$request_body_file" > "$mapped_body_file"; then
-					printf 'ERROR: không áp dụng được ID mapping cho case %s\n' "$case_id" >&2
-					sequence_setup_rc=1
-				else
-					request_body_file="$mapped_body_file"
-				fi
-			fi
-		fi
-	fi
-	if (( sequence_setup_rc != 0 )); then
-		sequence_replayed='false'
-		replay_scope='stateful_sequence_setup_failed'
-	fi
-	printf 'Schemathesis replay %s: %s %s\n' "$case_id" "$request_method" "$request_path"
-	if (( sequence_setup_rc != 0 )); then
-		request_rc=1
-		actual_status='not-sent'
-		actual_summary='{"reason":"stateful_sequence_setup_failed"}'
-	elif [[ -n "$request_body_file" ]]; then
-		if ! api_request_file "$request_method" "$request_path" "$EDITOR_TOKEN" "$request_body_file"; then
-			request_rc=1
-		fi
-	else
-		if ! api_request "$request_method" "$request_path" "$EDITOR_TOKEN"; then
-			request_rc=1
-		fi
-	fi
-	if (( sequence_setup_rc == 0 )); then
-		actual_status="${API_STATUS:-network-error}"
-		if [[ -f "$API_BODY" ]]; then
-			cp -- "$API_BODY" "$response_file"
-			actual_summary="$(http_summary "$API_BODY")"
-		fi
-	fi
-	set +e
-	campaign_restore
-	restore_rc=$?
-	set -e
-
-	if (( sequence_setup_rc != 0 )); then
-		replay_status='stateful_sequence_failed'
-	elif (( request_rc == 0 && restore_rc == 0 )); then
-		if [[ -z "$expected_status" || "$actual_status" == "$expected_status" ]]; then
-			if [[ "$sequence_replayed" == false ]]; then
-				replay_status='reproduced_request_only'
-			else
-				replay_status='reproduced'
-			fi
-		else
-			replay_status='mismatch'
-		fi
-	fi
-	local sequence_steps
-	sequence_steps="$(jq -c '.' "$sequence_report_file")"
-	jq -n --arg schema_version "$FIXTURE_VERSION" --arg case_id "$case_id" --arg source "$events_file" \
-		--arg method "$request_method" --arg path "$request_path" --arg expected_status "$expected_status" \
-		--arg source_status "$source_status" --arg actual_status "$actual_status" --arg status "$replay_status" --arg actor editor \
-		--arg replay_scope "$replay_scope" --argjson transition_applied "$transition_applied" --argjson stateful_phase "$stateful_phase" --argjson sequence_replayed "$sequence_replayed" \
-		--argjson sequence_case_ids "$sequence_ids_json" --argjson sequence_steps "$sequence_steps" \
-		--arg schema_hash "$replay_schema_hash" \
-		--argjson case "$case_json" --argjson actual "$actual_summary" --argjson request_rc "$request_rc" --argjson restore_rc "$restore_rc" \
-		'{schema:1,case_id:$case_id,source_events:$source,fixture_version:$schema_version,actor:$actor,schema_hash:$schema_hash,precondition:"fixture snapshot captured before request; current editor token from config/lab.env",replay_scope:$replay_scope,stateful_transition_applied:$transition_applied,stateful_phase:$stateful_phase,sequence_replayed:$sequence_replayed,sequence_case_ids:$sequence_case_ids,sequence_steps:$sequence_steps,request:{method:$method,path:$path},source_status:($source_status|if . == "" then null else tonumber end),expected_status:($expected_status|if . == "" then null else tonumber end),actual_status:($actual_status|if test("^[0-9]+$") then tonumber else . end),status:$status,request_exit_code:$request_rc,restore_exit_code:$restore_rc,expected_checks:$case.checks,schemathesis_case:$case,actual_summary:$actual}' \
-		> "$reproducer_file"
-	printf 'Schemathesis replay report: %s (status=%s restore=%s)\n' "$reproducer_file" "$replay_status" "$restore_rc"
-	[[ "$replay_status" == reproduced ]]
+	python_suite replay_cases.py "$1"
 }
 
 campaign_inventory() {
 	local report_file="$RUN_DIR/schemathesis-report.json"
 	local coverage_file="$RUN_DIR/schemathesis-coverage.json"
-	local coverage='{}'
-	if [[ -f "$coverage_file" ]]; then
-		coverage="$(cat "$coverage_file")"
+	local coverage_source="$coverage_file"
+	if [[ ! -f "$coverage_file" ]]; then
+		coverage_source="$RUN_DIR/.empty-coverage.json"
+		printf '{}\n' > "$coverage_source"
 	fi
-	jq -n --arg profile "$1" --arg seed "$2" --argjson expected "$TARGET_OPERATIONS_JSON" --argjson coverage "$coverage" '
-		[ $expected[] as $op
+	jq -n --arg profile "$1" --arg seed "$2" --argjson expected "$TARGET_OPERATIONS_JSON" --slurpfile coverage "$coverage_source" '
+		($coverage[0] // {}) as $coverage
+		| [ $expected[] as $op
 		| (($coverage.operations // []) | map(select(.method == $op.method and .path == $op.path)) | .[0] // {}) as $hit
 		| $op + {hits:($hit.hits // null),covered:(($hit.hits // 0) > 0)}
 		] as $rows
@@ -1912,7 +1692,7 @@ campaign_one() {
 	schema_file="$RUN_DIR/schema-$profile.json"
 	printf 'Schemathesis %s: 10 operation, max-examples=%s, seed=%s, max-time=%ss\n' "$profile" "$CAMPAIGN_MAX_EXAMPLES" "$seed" "$CAMPAIGN_MAX_TIME"
 	set +e
-	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+	docker_run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
 		-e SCHEMA_TOKEN="$EDITOR_TOKEN" \
 		-e RUNNER_API_URL="$RUNNER_API_URL" \
 		-e LAB_WORKERS="$CAMPAIGN_WORKERS" \
@@ -2033,80 +1813,94 @@ campaign() {
 }
 
 invariants() {
-	local harness_sha
+	python_suite invariants.py --case all
+}
+
+capture_database_oracle() {
+	printf '%s\n' "SELECT json_build_object('server_version',current_setting('server_version'),'collation',(SELECT datcollate FROM pg_database WHERE datname=current_database()),'title_ids',(SELECT json_agg(id ORDER BY title,id) FROM qa_articles));" | \
+		docker compose --project-name "$PROJECT_NAME" --env-file "$LAB_ROOT_DIR/config/lab.env" --file "$LAB_ROOT_DIR/compose.yaml" \
+			exec -T database sh -c 'exec psql -X -U "$POSTGRES_USER" -d "$POSTGRES_DB" -At -v ON_ERROR_STOP=1' \
+			> "$RUN_DIR/database-oracle.json" 2> "$RUN_DIR/database-oracle-error.log"
+}
+
+python_suite() {
+	local script="$1"
+	shift
+	local runner_rc=0 restore_rc=0
+	if [[ -n "${LAB_REPLAY_EVENTS:-}" ]]; then
+		[[ "$LAB_REPLAY_EVENTS" =~ ^[A-Za-z0-9._/-]+$ && "$LAB_REPLAY_EVENTS" != /* && "$LAB_REPLAY_EVENTS" != *..* ]] || fail 'LAB_REPLAY_EVENTS cần đường dẫn tương đối trong artifacts/runs, không có ..' || return 1
+	fi
 	require_tools
-	[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
-		printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
-		return 1
-	}
-	docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
-		printf 'ERROR: runner image chưa có trên máy\n' >&2
-		return 1
-	}
-	[[ -f "$LAB_ROOT_DIR/scripts/invariants.py" && -d "$RUNTIME_ROOT" ]] || {
-		printf 'ERROR: thiếu invariant script hoặc runtime mount\n' >&2
-		return 1
-	}
-	harness_sha="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf 'no_commit')"
-	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
-		-e PYTHONDONTWRITEBYTECODE=1 \
-		-e LAB_ROOT_DIR=/work \
-		-e LAB_RUN_DIR=/work/run \
-		-e LAB_RUNTIME_ROOT=/work/runtime \
-		-e LAB_API_URL="$RUNNER_API_URL" \
-		-e LAB_RUN_ID="$RUN_ID" \
-		-e LAB_HARNESS_SHA="$harness_sha" \
-		-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" \
-		-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" \
-		-e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
-		-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" \
-		-e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
-		-e LAB_READER_EMAIL="$READER_EMAIL" \
-		-e LAB_READER_PASSWORD="$READER_PASSWORD" \
-		--mount "type=bind,src=$LAB_ROOT_DIR/scripts/invariants.py,dst=/work/invariants.py,readonly" \
+	[[ "$API_URL" == http://127.0.0.1:8055 || "$API_URL" == http://localhost:8055 ]] || fail 'Host API URL ngoài lab loopback:8055' || return 1
+	[[ "$RUNNER_API_URL" == http://directus:8055 ]] || fail 'Runner URL phải là http://directus:8055' || return 1
+	[[ "$PROJECT_NAME" == r06-k05 ]] || fail 'Sai Compose project' || return 1
+	require_admin_login || return 1
+	require_actor_logins || return 1
+	load_fixture_map || return 1
+	[[ -f "$SCHEMA_ROOT/editor.json" && -f "$SCHEMA_ROOT/reader.json" ]] || fail 'Cần export-schema trước test designed' || return 1
+	[[ "$SCHEMATHESIS_IMAGE" == docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5 ]] || fail 'Runner image khác baseline pin' || return 1
+	campaign_snapshot || return 1
+	cp -- "$FIXTURE_MAP" "$RUN_DIR/fixture-ids-input.json"
+	cp -- "$SCHEMA_ROOT/editor.json" "$RUN_DIR/schema-editor-input.json"
+	cp -- "$SCHEMA_ROOT/reader.json" "$RUN_DIR/schema-reader-input.json"
+	jq -n --arg max_time "${LAB_DETERMINISTIC_MAX_TIME:-600}" --arg rate "${LAB_RATE_LIMIT:-5/s}" \
+		--arg timeout "${LAB_REQUEST_TIMEOUT:-10}" --arg runner_image "$SCHEMATHESIS_IMAGE" \
+		--arg map_hash "$(sha256sum "$RUN_DIR/fixture-ids-input.json" | awk '{print $1}')" \
+		--arg editor_hash "$(sha256sum "$RUN_DIR/schema-editor-input.json" | awk '{print $1}')" \
+		--arg reader_hash "$(sha256sum "$RUN_DIR/schema-reader-input.json" | awk '{print $1}')" \
+		--args '{schema:1,command:$ARGS.positional,actors:["editor","reader","anonymous"],admin_usage:"preflight, control reads and restore; never fuzz actor",workers:1,budget:{max_time_seconds:($max_time|tonumber),rate_limit:$rate,request_timeout_seconds:($timeout|tonumber),cleanup_outside_max_time:true},runner_image:$runner_image,fixture_map_sha256:$map_hash,schema_sha256:{editor:$editor_hash,reader:$reader_hash}}' \
+		-- "$script" "$@" > "$RUN_DIR/execution-config.json"
+	if capture_database_oracle; then
+		printf 'Independent database oracle captured\n'
+	else
+		printf 'INFO: database oracle unavailable; conditional title-order cases remain blocked\n'
+	fi
+	# The runner owns per-case cleanup; the shared restore is a final guard even
+	# after exceptions, timeout, or an unsuccessful individual cleanup.
+	if docker_run --rm --init --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+		-e PYTHONDONTWRITEBYTECODE=1 -e LAB_ROOT_DIR=/work -e LAB_RUN_DIR=/work/run \
+		-e LAB_HARNESS_SHA="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf uncommitted)" \
+		-e LAB_RUNTIME_ROOT=/work/runtime -e LAB_API_URL="$RUNNER_API_URL" -e LAB_RUN_ID="$RUN_ID" \
+		-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" -e LAB_RATE_LIMIT="${LAB_RATE_LIMIT:-5/s}" \
+		-e LAB_DETERMINISTIC_MAX_TIME="${LAB_DETERMINISTIC_MAX_TIME:-600}" \
+		-e LAB_DB_COLLATION="${LAB_DB_COLLATION:-}" -e LAB_TITLE_ORDER_VERIFIED="${LAB_TITLE_ORDER_VERIFIED:-}" \
+		-e LAB_DESIGNED_REPLAY="${LAB_DESIGNED_REPLAY:-}" \
+		-e LAB_ARTIFACT_ROOT=/work/artifacts -e LAB_REPLAY_EVENTS="${LAB_REPLAY_EVENTS:+/work/artifacts/$LAB_REPLAY_EVENTS}" \
+		-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" -e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
+		-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" -e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
+		-e LAB_READER_EMAIL="$READER_EMAIL" -e LAB_READER_PASSWORD="$READER_PASSWORD" \
+		--mount "type=bind,src=$LAB_ROOT_DIR/scripts,dst=/work/scripts,readonly" \
 		--mount "type=bind,src=$RUNTIME_ROOT,dst=/work/runtime,readonly" \
 		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
-		--entrypoint python3 "$SCHEMATHESIS_IMAGE" /work/invariants.py --case all
+		--mount "type=bind,src=$LAB_ROOT_DIR/artifacts/runs,dst=/work/artifacts,readonly" \
+		--entrypoint python3 "$SCHEMATHESIS_IMAGE" "/work/scripts/$script" "$@"; then
+		runner_rc=0
+	else
+		runner_rc=$?
+	fi
+	LAB_HTTP_STAGE=restore
+	if campaign_refresh_tokens && campaign_restore; then restore_rc=0; else restore_rc=$?; fi
+	jq -n --argjson runner "$runner_rc" --argjson restore "$restore_rc" \
+		'{runner_exit_code:$runner,restore_exit_code:$restore,status:(if $restore != 0 then "restore_failed" elif $runner != 0 then "runner_failed" else "passed" end)}' > "$RUN_DIR/component-outcomes.json"
+	(( restore_rc == 0 )) || return "$restore_rc"
+	return "$runner_rc"
+}
+
+cost_query() {
+	LAB_HTTP_METER=1 LAB_HTTP_STAGE=setup python_suite cost_query.py "$@"
+}
+
+designed() {
+	python_suite designed_cases.py "$@"
 }
 
 replay_case() {
 	local case_id="$1"
 	case "$case_id" in
+		P3-*) LAB_DESIGNED_REPLAY=regenerated_full_designed_case designed --case "$case_id" ;;
 		auth-invalid-token|anonymous-denied|editor-crud|positive-operations|query-fixture|aggregate-query-robustness|contract-schema-candidates|relation-nullification|invalid-field-rejection|reader-visibility|reader-write)
-			local harness_sha
-			require_tools
-			[[ -n "$SCHEMATHESIS_IMAGE" && "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
-				printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
-				return 1
-			}
-			docker image inspect "$SCHEMATHESIS_IMAGE" >/dev/null 2>&1 || {
-				printf 'ERROR: runner image chưa có trên máy\n' >&2
-				return 1
-			}
-			harness_sha="$(git -C "$LAB_ROOT_DIR" rev-parse HEAD 2>/dev/null || printf 'no_commit')"
-			docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
-				-e PYTHONDONTWRITEBYTECODE=1 \
-				-e LAB_ROOT_DIR=/work \
-				-e LAB_RUN_DIR=/work/run \
-				-e LAB_RUNTIME_ROOT=/work/runtime \
-				-e LAB_API_URL="$RUNNER_API_URL" \
-				-e LAB_RUN_ID="$RUN_ID" \
-				-e LAB_HARNESS_SHA="$harness_sha" \
-				-e LAB_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}" \
-				-e LAB_ADMIN_EMAIL="$ADMIN_EMAIL" \
-				-e LAB_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
-				-e LAB_EDITOR_EMAIL="$EDITOR_EMAIL" \
-				-e LAB_EDITOR_PASSWORD="$EDITOR_PASSWORD" \
-				-e LAB_READER_EMAIL="$READER_EMAIL" \
-				-e LAB_READER_PASSWORD="$READER_PASSWORD" \
-				--mount "type=bind,src=$LAB_ROOT_DIR/scripts/invariants.py,dst=/work/invariants.py,readonly" \
-				--mount "type=bind,src=$RUNTIME_ROOT,dst=/work/runtime,readonly" \
-				--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
-				--entrypoint python3 "$SCHEMATHESIS_IMAGE" /work/invariants.py --case "$case_id"
-			;;
-		*)
-			replay_schemathesis_case "$case_id"
-			;;
+			python_suite invariants.py --case "$case_id" ;;
+		*) replay_schemathesis_case "$case_id" ;;
 	esac
 }
 
@@ -2172,7 +1966,7 @@ schema_smoke() {
 	snapshot_fixture_articles || return 1
 	printf 'Schemathesis pilot: 5 operation, max-examples=20, seed=101, max-time=300s\n'
 	set +e
-	docker run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
+	docker_run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
 		-e SCHEMA_TOKEN="$EDITOR_TOKEN" \
 		-e RUNNER_API_URL="$RUNNER_API_URL" \
 		--mount "type=bind,src=$pilot_schema,dst=/work/schema.json,readonly" \
@@ -2208,6 +2002,8 @@ main() {
 		export-schema) export_schema ;;
 		scenarios) scenarios ;;
 		invariants) invariants ;;
+		designed) shift; designed "$@" ;;
+		cost-query) shift; cost_query "$@" ;;
 		schema-smoke) schema_smoke ;;
 		raw) campaign raw ;;
 		guided) campaign guided ;;

@@ -9,10 +9,12 @@ triage, but never records login responses (which contain access tokens).
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -31,6 +33,16 @@ def env_required(name: str) -> str:
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def short_run_id() -> str:
+    return hashlib.sha256(os.environ.get("LAB_RUN_ID", "local").encode()).hexdigest()[:24]
+
+
+def invalid_directus_jwt() -> str:
+    # Synthetic public test value: iss=directus, deliberately invalid signature.
+    # A plain random string takes the static-token INVALID_CREDENTIALS branch.
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaXJlY3R1cyJ9.aW52YWxpZA"
 
 
 def json_summary(body: Any) -> dict[str, Any]:
@@ -60,15 +72,45 @@ class ApiResponse:
     raw: bytes
     content_type: str = ""
     error: str | None = None
+    headers: dict[str, list[str]] = field(default_factory=dict)
+    elapsed: float = 0.0
+    artifact: str | None = None
+
+
+def error_codes(response: ApiResponse) -> set[str]:
+    errors = response.body.get("errors", []) if isinstance(response.body, dict) else []
+    return {str(e.get("extensions", {}).get("code", e.get("code", ""))) for e in errors if isinstance(e, dict)}
+
+
+def rejected(response: ApiResponse, status: int, codes: set[str]) -> bool:
+    actual = error_codes(response)
+    return response.status == status and bool(actual) and actual.issubset(codes)
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req: Any, fp: Any, code: int, msg: str, headers: Any, newurl: str) -> None:
+        return None
 
 
 class Api:
     def __init__(self, base_url: str, run_dir: Path, timeout: float = 10.0) -> None:
+        parsed = urllib.parse.urlsplit(base_url)
+        if (parsed.scheme != "http" or parsed.hostname not in {"directus", "localhost", "127.0.0.1"}
+                or parsed.port != 8055 or parsed.username or parsed.password or parsed.path not in {"", "/"}
+                or parsed.query or parsed.fragment):
+            raise RuntimeError("API URL phải là lab loopback:8055 hoặc directus:8055")
         self.base_url = base_url.rstrip("/")
         self.run_dir = run_dir
         self.timeout = timeout
         self.counter = 0
+        self.trace: list[dict[str, Any]] = []
+        self.secrets: list[str] = []
+        self.token_roles: dict[str, str] = {"": "anonymous"}
+        self.before_request: Callable[[], None] | None = None
+        self.opener = urllib.request.build_opener(NoRedirect())
         self.run_dir.mkdir(parents=True, exist_ok=True)
+        self.response_dir = self.run_dir / "python-http"
+        self.response_dir.mkdir(exist_ok=True)
 
     def request(
         self,
@@ -78,25 +120,40 @@ class Api:
         body: Any | None = None,
         *,
         record: bool = True,
+        raw_body: bytes | None = None,
+        media_type: str = "application/json",
     ) -> ApiResponse:
-        payload = None if body is None else json.dumps(body, ensure_ascii=False).encode("utf-8")
+        parsed_path = urllib.parse.urlsplit(path)
+        route = parsed_path.path
+        item_route = any(route == "/items/" + c or route.startswith("/items/" + c + "/")
+                         for c in ("qa_articles", "qa_categories"))
+        system_read = route in {"/users/me", "/server/ping", "/server/health", "/fields/qa_articles", "/fields/qa_categories", "/relations/qa_articles"}
+        if (parsed_path.scheme or parsed_path.netloc or not path.startswith("/") or path.startswith("//")
+                or ".." in route or not (item_route or (system_read and method.upper() == "GET")
+                                         or (route == "/auth/login" and method.upper() == "POST"))):
+            raise RuntimeError("API path/method ngoài allowlist lab")
+        if self.before_request is not None:
+            self.before_request()
+        payload = raw_body if raw_body is not None else None if body is None else json.dumps(body, ensure_ascii=False).encode("utf-8")
         headers = {"Accept": "application/json"}
         if token:
             headers["Authorization"] = f"Bearer {token}"
         if payload is not None:
-            headers["Content-Type"] = "application/json"
+            headers["Content-Type"] = media_type
         request = urllib.request.Request(
             f"{self.base_url}{path}", data=payload, headers=headers, method=method.upper()
         )
         response: ApiResponse
+        started = time.monotonic()
         try:
-            with urllib.request.urlopen(request, timeout=self.timeout) as raw_response:
+            with self.opener.open(request, timeout=self.timeout) as raw_response:
                 raw = raw_response.read()
                 response = ApiResponse(
                     raw_response.status,
                     self._decode(raw),
                     raw,
                     raw_response.headers.get("Content-Type", ""),
+                    headers={k.lower(): raw_response.headers.get_all(k) for k in raw_response.headers},
                 )
         except urllib.error.HTTPError as error:
             raw = error.read()
@@ -105,17 +162,41 @@ class Api:
                 self._decode(raw),
                 raw,
                 error.headers.get("Content-Type", "") if error.headers else "",
+                headers={k.lower(): error.headers.get_all(k) for k in error.headers} if error.headers else {},
             )
         except (urllib.error.URLError, TimeoutError, OSError) as error:
             response = ApiResponse(0, {}, b"", error=str(error))
+        response.elapsed = time.monotonic() - started
 
         if record:
             self.counter += 1
-            target = self.run_dir / f"http-{self.counter}.json"
-            target.write_bytes(response.raw if response.raw else b"{}")
+            target = self.response_dir / f"response-{self.counter}.json"
+            safe_raw = response.raw if response.raw else b"{}"
+            for secret in self.secrets:
+                if secret:
+                    safe_raw = safe_raw.replace(secret.encode("utf-8"), b"[REDACTED]")
+            target.write_bytes(safe_raw)
+            response.artifact = target.relative_to(self.run_dir).as_posix()
+            self.trace.append({"method": method.upper(), "path": path, "actor": self.token_roles.get(token, "invalid-token"), "body": self.scrub(body),
+                               "raw_body_sha256": hashlib.sha256(payload).hexdigest() if payload is not None else None,
+                               "status": response.status, "error": response.error,
+                               "content_type": response.content_type, "elapsed": response.elapsed,
+                               "response_artifact": response.artifact})
         status_text = str(response.status) if response.status else "network-error"
         print(f"API {method.upper()} {path} -> {status_text}")
         return response
+
+    def scrub(self, value: Any) -> Any:
+        if isinstance(value, dict):
+            return {k: "[REDACTED]" if k.lower() in {"authorization", "cookie", "password", "token", "access_token", "refresh_token", "secret"}
+                    else self.scrub(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [self.scrub(v) for v in value]
+        if isinstance(value, str):
+            for secret in self.secrets:
+                if secret:
+                    value = value.replace(secret, "[REDACTED]")
+        return value
 
     @staticmethod
     def _decode(raw: bytes) -> Any:
@@ -136,6 +217,8 @@ class Case:
     actual: str = ""
     details: str = ""
     steps: list[dict[str, Any]] = field(default_factory=list)
+    cleanup_status: str = "not_run"
+    http_trace: list[dict[str, Any]] = field(default_factory=list)
 
     def step(self, method: str, path: str, response: ApiResponse, expected: str) -> None:
         self.steps.append(
@@ -145,6 +228,7 @@ class Case:
                 "status": response.status,
                 "expected": expected,
                 "actual": json_summary(response.body),
+                "response_artifact": response.artifact,
             }
         )
 
@@ -169,6 +253,8 @@ class Case:
             "actual": self.actual,
             "details": self.details,
             "steps": self.steps,
+            "cleanup_status": self.cleanup_status,
+            "http_trace": self.http_trace,
         }
 
 
@@ -195,6 +281,8 @@ class Lab:
         self.fixture_map: dict[str, Any] = {}
         self.editor_schema: dict[str, Any] = {}
         self.reader_schema: dict[str, Any] = {}
+        self.expected_fixture: dict[str, list[dict[str, Any]]] = {}
+        self.title_order_verified = False
 
     def login(self, email: str, password: str) -> str:
         response = self.api.request(
@@ -212,6 +300,9 @@ class Lab:
         self.admin_token = self.login(self.admin_email, self.admin_password)
         self.editor_token = self.login(self.editor_email, self.editor_password)
         self.reader_token = self.login(self.reader_email, self.reader_password)
+        self.api.secrets = [self.admin_password, self.editor_password, self.reader_password,
+                            self.admin_token, self.editor_token, self.reader_token]
+        self.api.token_roles.update({self.admin_token: "admin", self.editor_token: "editor", self.reader_token: "reader"})
 
     def load_fixture(self) -> None:
         path = self.runtime_root / "fixture-ids.json"
@@ -222,7 +313,7 @@ class Lab:
             rows = self.fixture_map.get("fixtures", {}).get(collection)
             if not isinstance(rows, dict) or not rows:
                 raise RuntimeError(f"fixture map thiếu {collection}")
-            if not all(isinstance(value, int) and value > 0 for value in rows.values()):
+            if not all(type(value) is int and value > 0 for value in rows.values()):
                 raise RuntimeError(f"fixture map {collection} có ID không hợp lệ")
         schema_root = self.runtime_root / "schemas" / self.fixture_map["fixture_version"]
         editor_path = schema_root / "editor.json"
@@ -296,16 +387,21 @@ class Lab:
 
     def case_auth_invalid_token(self) -> Case:
         case = Case("auth-invalid-token", "Đăng nhập và token không hợp lệ")
-        response = self.api.request("GET", "/users/me", "not-a-valid-lab-token")
+        control = self.api.request("GET", "/users/me?fields=id", self.editor_token)
+        case.step("GET", "/users/me?fields=id", control, "2xx valid Editor token control")
+        if not 200 <= control.status < 300 or not isinstance(control.body, dict) or not isinstance(control.body.get("data"), dict) or not control.body["data"].get("id"):
+            case.block("valid token users/me control", str(control.status), "auth precondition failed")
+            return case
+        response = self.api.request("GET", "/users/me?fields=id", invalid_directus_jwt())
         case.step("GET", "/users/me", response, "request bị từ chối; status thực tế được giữ nguyên")
         if response.status == 0:
             case.fail("API trả response HTTP không thành công", "network error", response.error or "network error")
-        elif 200 <= response.status < 300:
-            case.fail("token không hợp lệ bị từ chối", str(response.status), "API chấp nhận token giả")
+        elif not rejected(response, 403, {"INVALID_TOKEN"}):
+            case.fail("403/INVALID_TOKEN đúng baseline", str(response.status), "không phải từ chối token theo nguồn; 5xx không PASS")
         else:
             case.expected = "token không hợp lệ bị từ chối"
             case.actual = str(response.status)
-            case.details = "Không hard-code 401; giữ status thực tế của baseline."
+            case.details = "Expected theo InvalidTokenError đúng pin; không nhận mọi non-2xx."
         return case
 
     def case_anonymous_denied(self) -> Case:
@@ -320,18 +416,18 @@ class Lab:
             if response.status == 0:
                 case.fail("anonymous request có HTTP response", "network error", response.error or "network error")
                 return case
-            if 200 <= response.status < 300:
-                case.fail("anonymous không đọc được collection", str(response.status), f"API cho phép {path}")
+            if not rejected(response, 403, {"FORBIDDEN"}):
+                case.fail("403/FORBIDDEN theo permission branch", str(response.status), f"Không đúng từ chối quyền cho {path}")
                 return case
         case.expected = "anonymous bị từ chối trên qa_categories và qa_articles"
-        case.actual = "cả hai request đều non-2xx"
-        case.details = "Không gán cứng status 401/403; giữ status thực tế của baseline."
+        case.actual = "cả hai request đều 403/FORBIDDEN"
+        case.details = "Status/error dựa source baseline; lỗi 5xx/network không thể PASS."
         return case
 
     def case_editor_crud(self) -> Case:
         case = Case("editor-crud", "Editor CRUD article và invariant read-back/delete")
         item_id: int | None = None
-        title = f"Replay editor CRUD {os.environ.get('LAB_RUN_ID', 'local')}"
+        title = f"Replay editor CRUD {short_run_id()}"
         body = {
             "title": title,
             "status": "draft",
@@ -381,7 +477,7 @@ class Lab:
             item_id = None
             response = self.api.request("GET", f"{path}?fields=id", self.editor_token)
             case.step("GET", f"{path}?fields=id", response, "resource không còn data")
-            if 200 <= response.status < 300 and isinstance(response.body, dict) and response.body.get("data"):
+            if not rejected(response, 403, {"FORBIDDEN"}):
                 case.fail("resource sau DELETE không còn truy cập được", str(response.status), "resource vẫn trả về")
                 return case
             case.expected = "create/read/PATCH/delete invariants đạt"
@@ -390,15 +486,15 @@ class Lab:
             return case
         finally:
             if item_id is not None:
-                cleanup = self.api.request("DELETE", f"/items/qa_articles/{item_id}", self.editor_token, record=False)
-                if cleanup.status and not (200 <= cleanup.status < 300):
-                    print(f"WARN cleanup editor-crud thất bại HTTP {cleanup.status}")
+                cleanup = self.api.request("DELETE", f"/items/qa_articles/{item_id}", self.editor_token)
+                if not (200 <= cleanup.status < 300):
+                    case.fail("cleanup DELETE 2xx", str(cleanup.status), "cleanup editor-crud thất bại")
 
     def case_positive_operations(self) -> Case:
         case = Case("positive-operations", "Positive acceptance cho đủ 10 operation campaign")
         category_id: int | None = None
         article_id: int | None = None
-        run_id = os.environ.get("LAB_RUN_ID", "local")
+        run_id = short_run_id()
         category_name = f"Positive category {run_id}"
         article_title = f"Positive article {run_id}"
 
@@ -512,7 +608,7 @@ class Lab:
             article_id = None
             response = self.api.request("GET", f"{article_path}?fields=id", self.editor_token)
             case.step("GET", f"{article_path}?fields=id", response, "resource article không còn data")
-            if response.status == 0 or (200 <= response.status < 300 and response.body.get("data")):
+            if not rejected(response, 403, {"FORBIDDEN"}):
                 case.fail("article sau DELETE không còn truy cập được", str(response.status), "article vẫn trả về")
                 return case
 
@@ -523,7 +619,7 @@ class Lab:
             category_id = None
             response = self.api.request("GET", f"{category_path}?fields=id", self.editor_token)
             case.step("GET", f"{category_path}?fields=id", response, "resource category không còn data")
-            if response.status == 0 or (200 <= response.status < 300 and response.body.get("data")):
+            if not rejected(response, 403, {"FORBIDDEN"}):
                 case.fail("category sau DELETE không còn truy cập được", str(response.status), "category vẫn trả về")
                 return case
 
@@ -533,13 +629,13 @@ class Lab:
             return case
         finally:
             if article_id is not None:
-                cleanup = self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token, record=False)
-                if cleanup.status and not (200 <= cleanup.status < 300):
-                    print(f"WARN cleanup positive article thất bại HTTP {cleanup.status}")
+                cleanup = self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token)
+                if not (200 <= cleanup.status < 300):
+                    case.fail("cleanup article 2xx", str(cleanup.status), "cleanup positive article thất bại")
             if category_id is not None:
-                cleanup = self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token, record=False)
-                if cleanup.status and not (200 <= cleanup.status < 300):
-                    print(f"WARN cleanup positive category thất bại HTTP {cleanup.status}")
+                cleanup = self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token)
+                if not (200 <= cleanup.status < 300):
+                    case.fail("cleanup category 2xx", str(cleanup.status), "cleanup positive category thất bại")
 
     def case_query_fixture(self) -> Case:
         case = Case("query-fixture", "Filter, sort, pagination, search và projection trên fixture")
@@ -550,7 +646,10 @@ class Lab:
             return case
         rows = response.body.get("data", []) if isinstance(response.body, dict) else []
         fixture_ids = set(self.fixture_map["fixtures"]["qa_articles"].values())
-        by_id = {row.get("id"): row for row in rows if isinstance(row, dict)}
+        if not self.expected_fixture or not self.title_order_verified:
+            case.block("oracle seed độc lập và title order DB đã xác minh", "missing oracle", "không dùng sorted GET làm expected")
+            return case
+        by_id = {row["id"]: row for row in self.expected_fixture["qa_articles"]}
         if not fixture_ids.issubset(by_id):
             case.fail("fixture map IDs tồn tại", repr(sorted(by_id)), "fixture map không khớp database hiện tại")
             return case
@@ -602,7 +701,7 @@ class Lab:
 
         search_term = "spéciale"
         expected_search = [
-            row for row in all_fixture if search_term.casefold() in str(row.get("title", "")).casefold()
+            row for row in all_fixture if any(search_term.lower() in str(row.get(field, "")).lower() for field in ("title", "status", "internal_notes"))
         ]
         search_query = "/items/qa_articles" + self.path_params(
             {"search": search_term, "sort": "title,id", "limit": "-1", "fields": "id,title"}
@@ -676,7 +775,7 @@ class Lab:
         category_id: int | None = None
         article_id: int | None = None
         delete_category_id: int | None = None
-        run_id = os.environ.get("LAB_RUN_ID", "local")
+        run_id = short_run_id()
 
         try:
             category = self.api.request(
@@ -810,11 +909,11 @@ class Lab:
             return case
         finally:
             if article_id is not None:
-                self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token, record=False)
+                self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token)
             if category_id is not None:
-                self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token, record=False)
+                self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token)
             if delete_category_id is not None:
-                self.api.request("DELETE", f"/items/qa_categories/{delete_category_id}", self.editor_token, record=False)
+                self.api.request("DELETE", f"/items/qa_categories/{delete_category_id}", self.editor_token)
 
     def case_relation_nullification(self) -> Case:
         case = Case("relation-nullification", "Quan hệ article.category đặt NULL khi xóa category")
@@ -863,13 +962,13 @@ class Lab:
             return case
         finally:
             if article_id is not None:
-                self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token, record=False)
+                self.api.request("DELETE", f"/items/qa_articles/{article_id}", self.editor_token)
             if category_id is not None:
-                self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token, record=False)
+                self.api.request("DELETE", f"/items/qa_categories/{category_id}", self.editor_token)
 
     def case_invalid_field_rejection(self) -> Case:
         case = Case("invalid-field-rejection", "Dữ liệu score/status không hợp lệ bị từ chối")
-        title = f"Invalid field probe {os.environ.get('LAB_RUN_ID', 'local')}"
+        title = f"Invalid field probe {short_run_id()}"
         body = {
             "title": title,
             "status": "archived",
@@ -880,15 +979,18 @@ class Lab:
             "category": self.fixture_category_id("category_alpha"),
         }
         response = self.api.request("POST", "/items/qa_articles", self.editor_token, body)
-        case.step("POST", "/items/qa_articles", response, "non-2xx")
+        case.step("POST", "/items/qa_articles", response, "400/FAILED_VALIDATION; 5xx không PASS")
         if response.status == 0:
             case.fail("validation response non-2xx", "network error", response.error or "network error")
             return case
         if 200 <= response.status < 300:
             created_id = response.body.get("data", {}).get("id") if isinstance(response.body, dict) else None
             if created_id:
-                self.api.request("DELETE", f"/items/qa_articles/{created_id}", self.editor_token, record=False)
+                self.api.request("DELETE", f"/items/qa_articles/{created_id}", self.editor_token)
             case.fail("score/status invalid bị từ chối", str(response.status), "validation probe được chấp nhận")
+            return case
+        if not rejected(response, 400, {"FAILED_VALIDATION"}):
+            case.fail("400/FAILED_VALIDATION", str(response.status), "negative validation không đúng nhánh nguồn")
             return case
         query = "/items/qa_articles" + self.path_params({"filter[title][_eq]": title, "limit": "-1", "fields": "id,title"})
         read_back = self.api.request("GET", query, self.admin_token)
@@ -950,6 +1052,8 @@ class Lab:
         restricted_rows = restricted.body.get("data", []) if isinstance(restricted.body, dict) else []
         if restricted.status == 0:
             case.fail("projection private field có response HTTP", "network error", restricted.error or "network error")
+        elif restricted.status >= 300 and not rejected(restricted, 403, {"FORBIDDEN"}):
+            case.fail("403/FORBIDDEN hoặc 2xx không lộ field", str(restricted.status), "không coi mọi non-2xx là permission PASS")
         elif 200 <= restricted.status < 300 and any(
             "internal_notes" in row for row in restricted_rows if isinstance(row, dict)
         ):
@@ -969,11 +1073,8 @@ class Lab:
         if not self.reader_schema:
             case.block("reader schema đã export", "thiếu reader.json", "chạy ./lab.sh export-schema trước")
             return case
-        if not self.has_operation("PATCH", path):
-            case.block("reader PATCH xuất hiện trong schema", "operation absent", "không gửi request quyền bị cấm")
-            return case
         item_id = self.fixture_article_id("article_alpha_published_1")
-        read_path = f"/items/qa_articles/{item_id}?fields=id,title,status,score"
+        read_path = f"/items/qa_articles/{item_id}?fields=id,title,status,score,published_at,metadata,internal_notes,category"
         before = self.api.request("GET", read_path, self.editor_token)
         case.step("GET", read_path, before, "2xx precondition")
         if before.status < 200 or before.status >= 300:
@@ -984,7 +1085,7 @@ class Lab:
         patch_path = f"/items/qa_articles/{item_id}"
         denied = self.api.request("PATCH", patch_path, self.reader_token, {"score": new_score})
         case.step("PATCH", patch_path, denied, "non-2xx")
-        if denied.status == 0 or 200 <= denied.status < 300:
+        if not rejected(denied, 403, {"FORBIDDEN"}):
             case.fail("reader PATCH bị từ chối", str(denied.status), "negative write được chấp nhận")
             return case
         after = self.api.request("GET", read_path, self.editor_token)
@@ -1008,91 +1109,95 @@ def git_head(root: Path) -> str:
 
 
 def run() -> int:
+    # Alias the entry module so the shared designed runner imports the same Lab.
+    sys.modules.setdefault("invariants", sys.modules[__name__])
+    from designed_cases import Runner, PreconditionError
+
     parser = argparse.ArgumentParser(description="Run deterministic Directus invariants")
-    parser.add_argument("--case", default="all", help="all or one of the stable replay/regression case IDs")
+    parser.add_argument("--case", default="all")
     args = parser.parse_args()
+    methods = {
+        "auth-invalid-token": "case_auth_invalid_token",
+        "anonymous-denied": "case_anonymous_denied",
+        "editor-crud": "case_editor_crud",
+        "positive-operations": "case_positive_operations",
+        "query-fixture": "case_query_fixture",
+        "aggregate-query-robustness": "case_aggregate_query_robustness",
+        "contract-schema-candidates": "case_contract_schema_candidates",
+        "relation-nullification": "case_relation_nullification",
+        "invalid-field-rejection": "case_invalid_field_rejection",
+        "reader-visibility": "case_reader_visibility",
+        "reader-write": "case_reader_write",
+    }
+    if args.case != "all" and args.case not in methods:
+        parser.error("unknown invariant case")
+    selected = list(methods) if args.case == "all" else [args.case]
     run_dir = Path(env_required("LAB_RUN_DIR"))
     run_dir.mkdir(parents=True, exist_ok=True)
-    started_at = utc_now()
-    lab = Lab(run_dir)
-    lab.authenticate()
-    lab.load_fixture()
-
-    cases: dict[str, Callable[[], Case]] = {
-        "auth-invalid-token": lab.case_auth_invalid_token,
-        "anonymous-denied": lab.case_anonymous_denied,
-        "editor-crud": lab.case_editor_crud,
-        "positive-operations": lab.case_positive_operations,
-        "query-fixture": lab.case_query_fixture,
-        "aggregate-query-robustness": lab.case_aggregate_query_robustness,
-        "contract-schema-candidates": lab.case_contract_schema_candidates,
-        "relation-nullification": lab.case_relation_nullification,
-        "invalid-field-rejection": lab.case_invalid_field_rejection,
-        "reader-visibility": lab.case_reader_visibility,
-        "reader-write": lab.case_reader_write,
-    }
-    if args.case == "all":
-        selected = list(cases)
-    elif args.case in cases:
-        selected = [args.case]
-    else:
-        print(f"ERROR: case không hỗ trợ: {args.case}", file=sys.stderr)
-        print("Case IDs: " + ", ".join(cases), file=sys.stderr)
-        return 2
-
-    results: list[Case] = []
-    for case_id in selected:
-        try:
-            result = cases[case_id]()
-        except (KeyError, RuntimeError, OSError, ValueError) as error:
+    report = {"schema": 2, "run_id": os.environ.get("LAB_RUN_ID"), "started_at": utc_now(),
+              "harness_sha": git_head(Path(env_required("LAB_ROOT_DIR"))), "setup_status": "running",
+              "selected": selected, "cases": [], "stop_reason": None, "replay_scope": "regenerated_invariant"}
+    code = 1
+    try:
+        lab = Lab(run_dir)
+        lab.authenticate()
+        lab.load_fixture()
+        guard = Runner(lab, run_dir, float(os.environ.get("LAB_DETERMINISTIC_MAX_TIME", "600")))
+        guard.preflight()
+        lab.expected_fixture = guard.expected
+        lab.title_order_verified = guard.title_order_verified
+        report.update(setup_status="passed", fixture_version=lab.fixture_map["fixture_version"])
+        for case_id in selected:
             result = Case(case_id, case_id)
-            result.fail("case chạy không phát sinh exception", "exception", str(error))
-        results.append(result)
-        print(f"Invariant {case_id}: {result.status}")
-        if result.status in {"failed", "blocked"}:
-            (run_dir / f"reproducer-{case_id}.json").write_text(
-                json.dumps(
-                    {
-                        "schema": 1,
-                        "case_id": result.case_id,
-                        "precondition": "lab đã up, seed đã chạy, credential lấy từ config/lab.env",
-                        "case": result.as_dict(),
-                        "created_at": utc_now(),
-                    },
-                    ensure_ascii=False,
-                    indent=2,
-                )
-                + "\n",
-                encoding="utf-8",
-            )
-
-    report = {
-        "schema": 1,
-        "run_id": os.environ.get("LAB_RUN_ID", "unknown"),
-        "harness_sha": git_head(Path(env_required("LAB_ROOT_DIR"))),
-        "fixture_version": lab.fixture_map.get("fixture_version"),
-        "started_at": started_at,
-        "finished_at": utc_now(),
-        "cases": [case.as_dict() for case in results],
-        "summary": {
-            "passed": sum(case.status == "passed" for case in results),
-            "failed": sum(case.status == "failed" for case in results),
-            "blocked": sum(case.status == "blocked" for case in results),
-            "total": len(results),
-        },
-    }
-    (run_dir / "invariant-report.json").write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    summary = report["summary"]
-    print(f"Invariant report: {run_dir / 'invariant-report.json'}")
-    print(f"Summary: passed={summary['passed']} failed={summary['failed']} blocked={summary['blocked']}")
-    return 1 if summary["failed"] or summary["blocked"] else 0
+            before = None
+            trace_start = len(lab.api.trace)
+            try:
+                guard.stage = "precondition"
+                before = guard.snapshot()
+                try:
+                    guard.assert_snapshot(before, guard.expected)
+                except AssertionError as error:
+                    raise PreconditionError(str(error)) from error
+                guard.stage = "target"
+                result = getattr(lab, methods[case_id])()
+            except (KeyError, RuntimeError, OSError, ValueError, TypeError, AssertionError) as error:
+                result.fail("case có precondition và oracle hợp lệ", type(error).__name__, lab.api.scrub(str(error)))
+            finally:
+                if before is not None:
+                    try:
+                        guard.cleanup(before)
+                        result.cleanup_status = "passed"
+                    except (RuntimeError, AssertionError, KeyError, ValueError, TypeError) as error:
+                        result.cleanup_status = "failed"
+                        result.fail("cleanup bảo toàn fixture", type(error).__name__, lab.api.scrub(str(error)))
+                result.http_trace = lab.api.scrub(lab.api.trace[trace_start:])
+                report["cases"].append(result.as_dict())
+                (run_dir / "invariant-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            print(f"Invariant {case_id}: {result.status}")
+            if result.status in {"failed", "blocked"}:
+                (run_dir / f"reproducer-{case_id}.json").write_text(json.dumps({"schema": 2, "case_id": case_id,
+                    "replay_scope": "regenerated_invariant", "precondition": "pinned lab, verified seed/map/schema; fresh credentials", "case": result.as_dict()},
+                    ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            if result.cleanup_status == "failed":
+                report["stop_reason"] = "cleanup_failed"
+                break
+            if result.status == "blocked" or result.actual in {"BudgetExpired", "PreconditionError"}:
+                report["stop_reason"] = result.actual
+                break
+        code = 0 if len(report["cases"]) == len(selected) and all(c["status"] == "passed" for c in report["cases"]) else 1
+    except (RuntimeError, OSError, KeyError, ValueError, AssertionError, KeyboardInterrupt) as error:
+        report.update(setup_status="failed" if report["setup_status"] != "passed" else report["setup_status"],
+                      stop_reason="setup_or_runner_error", error_type=type(error).__name__, error=str(error))
+    finally:
+        report["finished_at"] = utc_now()
+        report["runner_exit_code"] = code
+        report["summary"] = {key: sum(c["status"] == key for c in report["cases"]) for key in ["passed", "failed", "blocked"]}
+        report["summary"]["total"] = len(report["cases"])
+        report["selected_not_run"] = [key for key in selected if key not in {c["id"] for c in report["cases"]}]
+        (run_dir / "invariant-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print("Invariant summary:", json.dumps(report["summary"]))
+    return code
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(run())
-    except (RuntimeError, OSError, json.JSONDecodeError) as error:
-        print(f"ERROR: invariant runner: {error}", file=sys.stderr)
-        raise SystemExit(1)
+    raise SystemExit(run())

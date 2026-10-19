@@ -1,0 +1,651 @@
+{
+  "model_id": "QRY-PW-v1",
+  "factors": [
+    {
+      "name": "filter",
+      "values": [
+        "none",
+        "draft",
+        "published"
+      ]
+    },
+    {
+      "name": "sort",
+      "values": [
+        "id",
+        "title,id",
+        "-score,id"
+      ]
+    },
+    {
+      "name": "fields",
+      "values": [
+        "id,title",
+        "id,title,status,score"
+      ]
+    },
+    {
+      "name": "pagination",
+      "values": [
+        "limit3-offset3",
+        "limit3-page2"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "P3-PW-01",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "offset": 3
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-02",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-03",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-04",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-05",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "offset": 3
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-06",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-07",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-08",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-09",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-10",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-11",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-12",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "page": 2
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-13",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-14",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-15",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-16",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-17",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-18",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-19",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-20",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-21",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-22",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-23",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-24",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-25",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-26",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-27",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-28",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-29",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-30",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-31",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-32",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-33",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "pairwise": true
+    },
+    {
+      "id": "P3-PW-34",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-35",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "pairwise": false
+    },
+    {
+      "id": "P3-PW-36",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "pairwise": false
+    }
+  ],
+  "source_files": [
+    {
+      "path": "docs/HoanThanhPlan/03-query-exhaustive-36.csv",
+      "sha256": "be3e3e2bc9bb0b1661199699b8df318dc63ac4bada388892b594387ac8ac070d"
+    },
+    {
+      "path": "docs/HoanThanhPlan/03-query-pairwise.csv",
+      "sha256": "561e7a586ef032fb55d8f8b1045ad4cfbedcc91678e34a13dc690a743ec2222f"
+    },
+    {
+      "path": "docs/HoanThanhPlan/tai-lieu-bo-tro/phase3-20261018/pairwise-model-and-coverage.json",
+      "sha256": "f853d0b8295d3f9d042334fd02f8d31e1c55c0ea0aa0975024d1ce765fddc870"
+    }
+  ]
+}

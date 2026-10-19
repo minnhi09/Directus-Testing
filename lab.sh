@@ -13,6 +13,14 @@ RUNNER_API_URL="$DEFAULT_RUNNER_API_URL"
 
 ARTIFACT_ROOT="$ROOT_DIR/artifacts/runs"
 RUNTIME_ROOT="$ROOT_DIR/runtime"
+RUNTIME_PROFILE="${LAB_RUNTIME_PROFILE:-}"
+if [[ -n "$RUNTIME_PROFILE" ]]; then
+	[[ "$RUNTIME_PROFILE" =~ ^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$ ]] || {
+		printf 'ERROR: LAB_RUNTIME_PROFILE chỉ được chứa chữ, số, gạch ngang và gạch dưới.\n' >&2
+		exit 1
+	}
+	RUNTIME_ROOT="$RUNTIME_ROOT/profiles/$RUNTIME_PROFILE"
+fi
 RUN_DIR=""
 RUN_LOG=""
 RUN_METADATA=""
@@ -34,7 +42,10 @@ Usage:
   ./lab.sh doctor
   ./lab.sh up|down
   ./lab.sh seed|smoke|export-schema
-  ./lab.sh test smoke|schema-smoke|scenarios|invariants|raw|guided
+  ./lab.sh test smoke|schema-smoke|scenarios|invariants|designed|cost-query|raw|guided
+  ./lab.sh test cost-query --set exhaustive|pairwise
+  ./lab.sh test designed [--case ID|--selection course|short|all|assertable|--group GROUP]
+  Course suite: test scenarios (6) + test designed --selection course (7)
   ./lab.sh replay <case-id>
   ./lab.sh reset
   ./lab.sh help
@@ -104,9 +115,30 @@ configure_urls() {
 	RUNNER_API_URL="${LAB_RUNNER_API_URL:-$(config_value_or_default RUNNER_API_URL "$DEFAULT_RUNNER_API_URL")}"
 }
 
+config_permissions_safe() {
+	case "$(uname -s)" in
+		MINGW*|MSYS*|CYGWIN*)
+			# NTFS permissions are ACLs; Git Bash's mode bits do not reflect them.
+			LAB_CONFIG_ACL_PATH="$(cygpath -w "$ENV_FILE")" powershell.exe -NoProfile -NonInteractive -Command '
+				$ErrorActionPreference = "Stop"
+				$acl = [System.IO.File]::GetAccessControl($env:LAB_CONFIG_ACL_PATH)
+				$sid = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+				$allowed = @($sid, "S-1-5-18", "S-1-5-32-544")
+				foreach ($rule in $acl.GetAccessRules($true, $true, [System.Security.Principal.SecurityIdentifier])) {
+					if ($rule.AccessControlType -eq "Allow" -and $rule.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -notin $allowed) { exit 1 }
+				}
+				exit 0
+			' >/dev/null 2>&1
+			;;
+		*)
+			[[ "$(stat -c '%a' "$ENV_FILE" 2>/dev/null || stat -f '%Lp' "$ENV_FILE")" =~ ^6?00$|^400$|^600$ ]]
+			;;
+	esac
+}
+
 require_config() {
 	[[ -f "$ENV_FILE" ]] || die "Thiếu $ENV_FILE. Sao chép config/lab.env.example và điền giá trị cục bộ."
-	[[ "$(stat -c '%a' "$ENV_FILE" 2>/dev/null || stat -f '%Lp' "$ENV_FILE")" =~ ^6?00$|^400$|^600$ ]] || die "$ENV_FILE phải chỉ cho owner đọc/ghi (chmod 600)."
+	config_permissions_safe || die "$ENV_FILE phải có quyền riêng tư (chmod 600 trên Unix hoặc ACL riêng trên Windows)."
 }
 
 check_command() {
@@ -123,6 +155,48 @@ require_docker() {
 	command -v docker >/dev/null 2>&1 || die 'Không tìm thấy Docker CLI trong PATH của phiên shell này.'
 	docker info >/dev/null 2>&1 || die 'Docker CLI có nhưng Docker daemon không khả dụng trong phiên shell này.'
 	docker compose version >/dev/null 2>&1 || die 'Docker Compose plugin không khả dụng trong phiên shell này.'
+}
+
+verify_compose_target() {
+	[[ "$API_URL" == http://127.0.0.1:8055 || "$API_URL" == http://localhost:8055 ]] || die 'Host API URL ngoài baseline loopback:8055.'
+	[[ "$RUNNER_API_URL" == http://directus:8055 ]] || die 'Runner URL ngoài baseline directus:8055.'
+	local service container_id configured_image actual_image expected_image
+	for service in directus database; do
+		container_id="$(compose ps -q "$service")"
+		[[ -n "$container_id" ]] || die "Service $service chưa chạy; dùng up trước test."
+		[[ "$(docker inspect --format '{{index .Config.Labels "com.docker.compose.project"}}' "$container_id")" == r06-k05 ]] || die 'Container không thuộc project lab.'
+		if [[ "$service" == directus ]]; then
+			configured_image="$(config_value DIRECTUS_IMAGE)"
+			[[ "$(docker inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' "$container_id")" == 4f77933bf9551cac6b289576078783e189b8f4e3 ]] || die 'Directus revision không đúng source pin.'
+			docker inspect --format '{{json .HostConfig.PortBindings}}' "$container_id" | jq -e '."8055/tcp" | length == 1 and .[0].HostIp == "127.0.0.1" and .[0].HostPort == "8055"' >/dev/null || die 'Directus port binding khác lab loopback.'
+		else
+			configured_image="$(config_value POSTGRES_IMAGE)"
+		fi
+		[[ "$configured_image" == *@sha256:* ]] || die 'Image cần digest pin.'
+		expected_image="$(docker image inspect --format '{{.Id}}' "$configured_image")"
+		actual_image="$(docker inspect --format '{{.Image}}' "$container_id")"
+		[[ "$expected_image" == "$actual_image" ]] || die "Service $service không dùng image cấu hình."
+	done
+	jq -n --arg project r06-k05 --arg revision 4f77933bf9551cac6b289576078783e189b8f4e3 \
+		'{project:$project,directus_revision:$revision,container_images_match_config:true,loopback_binding_verified:true}' > "$RUN_DIR/target-verification.json"
+}
+
+snapshot_run_inputs() {
+	command -v jq >/dev/null 2>&1 || return 0
+	local file
+	{
+		for file in lab.sh compose.yaml manifest/baseline.yaml README.md config/lab.env.example scripts/*.py scripts/*.sh scripts/*.ps1 scripts/data/*.json scripts/windows/jq tests/*.py; do
+			[[ -f "$ROOT_DIR/$file" ]] || continue
+			printf '%s\t%s\n' "$file" "$(sha256sum "$ROOT_DIR/$file" | awk '{print $1}')"
+		done
+	} | jq -Rn '{files:[inputs | split("\t") | {path:.[0],sha256:.[1]}]}' > "$RUN_DIR/harness-inputs.json"
+	if [[ -f "$RUNTIME_ROOT/fixture-ids.json" ]]; then cp -- "$RUNTIME_ROOT/fixture-ids.json" "$RUN_DIR/fixture-ids-input.json"; fi
+	local version="${LAB_FIXTURE_VERSION:-$(config_value_or_default LAB_FIXTURE_VERSION r06-k05-v2)}"
+	for file in admin editor reader anonymous; do
+		if [[ -f "$RUNTIME_ROOT/schemas/$version/$file.json" ]]; then
+			cp -- "$RUNTIME_ROOT/schemas/$version/$file.json" "$RUN_DIR/input-schema-$file.json"
+		fi
+	done
 }
 
 working_tree_state() {
@@ -165,7 +239,7 @@ load_redaction_values() {
 	local value
 	REDACTION_VALUES=()
 
-	for key in DB_PASSWORD DIRECTUS_KEY DIRECTUS_SECRET ADMIN_PASSWORD EDITOR_PASSWORD READER_PASSWORD; do
+	for key in DB_PASSWORD DIRECTUS_KEY DIRECTUS_SECRET ADMIN_PASSWORD EDITOR_PASSWORD READER_PASSWORD LICENSE_KEY; do
 		value="$(config_value "$key" 2>/dev/null || true)"
 		case "$value" in
 			''|REPLACE_*)
@@ -195,6 +269,10 @@ admin_authenticated_health() {
 	local login_response
 	local access_token
 	local health_status
+	local null_output='/dev/null'
+	case "$(uname -s)" in
+		MINGW*|MSYS*|CYGWIN*) null_output='NUL' ;;
+	esac
 
 	admin_email="$(config_value ADMIN_EMAIL 2>/dev/null || true)"
 	admin_password="$(config_value ADMIN_PASSWORD 2>/dev/null || true)"
@@ -218,7 +296,7 @@ admin_authenticated_health() {
 		{
 			printf 'url = "%s/server/health"\n' "$API_URL"
 			printf 'header = "Authorization: Bearer %s"\n' "$access_token"
-			printf 'output = "/dev/null"\n'
+			printf 'output = "%s"\n' "$null_output"
 			printf 'write-out = "%%{http_code}"\n'
 			printf 'silent\nshow-error\nfail\nmax-time = 5\n'
 		} | curl --config - 2>/dev/null
@@ -277,8 +355,12 @@ write_run_metadata() {
 	local postgres_image
 	local schemathesis_image
 	local metadata_tmp="$RUN_METADATA.tmp"
+	local execution='null'
 
 	[[ -n "$RUN_METADATA" ]] || return 0
+	if [[ -f "$RUN_DIR/execution-config.json" ]]; then
+		execution="$(jq -c . "$RUN_DIR/execution-config.json")"
+	fi
 	directus_image="$(config_value_or_default DIRECTUS_IMAGE '')"
 	postgres_image="$(config_value_or_default POSTGRES_IMAGE '')"
 	schemathesis_image="$(config_value_or_default SCHEMATHESIS_IMAGE '')"
@@ -328,7 +410,10 @@ write_run_metadata() {
 		printf '  "duration_seconds": %s,\n' "$duration_seconds"
 		printf '  "harness_sha": %s,\n' "$(json_escape "$(harness_sha)")"
 		printf '  "working_tree": %s,\n' "$(json_escape "$(working_tree_state)")"
+		printf '  "harness_inputs": %s,\n' "$(json_escape "$RUN_DIR/harness-inputs.json")"
+		printf '  "fixture_map_input": %s,\n' "$(json_escape "$RUN_DIR/fixture-ids-input.json")"
 		printf '  "project": %s,\n' "$(json_escape "$PROJECT_NAME")"
+		printf '  "runtime_profile": %s,\n' "$(json_or_null "$RUNTIME_PROFILE")"
 		printf '  "api_url": %s,\n' "$(json_escape "$API_URL")"
 		printf '  "runner_api_url": %s,\n' "$(json_escape "$RUNNER_API_URL")"
 		printf '  "actor": %s,\n' "$(json_escape "$actor")"
@@ -336,6 +421,7 @@ write_run_metadata() {
 		printf '  "schema_hash": %s,\n' "$(json_or_null "$schema_hash")"
 		printf '  "seed": %s,\n' "$(json_or_null "$seed")"
 		printf '  "budget": %s,\n' "$(json_or_null "$budget")"
+		printf '  "execution": %s,\n' "$execution"
 		printf '  "baseline": {\n'
 		printf '    "directus_image": %s,\n' "$(json_or_null "$directus_image")"
 		printf '    "postgres_image": %s,\n' "$(json_or_null "$postgres_image")"
@@ -379,6 +465,7 @@ begin_run() {
 	# terminal and the local log. Generated tokens must still never be printed
 	# by a seed or test implementation.
 	exec > >(redact_stream | tee "$RUN_LOG") 2>&1
+	snapshot_run_inputs
 	write_run_metadata running null ''
 	printf 'Run: %s\n' "$RUN_ID"
 	printf 'Artefact directory: %s\n' "$RUN_DIR"
@@ -391,11 +478,27 @@ finish_run() {
 	[[ "$exit_code" -eq 0 ]] || status='failed'
 	if [[ "$RUN_FINALIZED" -eq 0 && -n "$RUN_METADATA" ]]; then
 		RUN_FINALIZED=1
+		if [[ -f "$RUNTIME_ROOT/fixture-ids.json" ]]; then cp -- "$RUNTIME_ROOT/fixture-ids.json" "$RUN_DIR/fixture-ids-output.json"; fi
 		if ! write_run_metadata "$status" "$exit_code" "$(date -u +%Y-%m-%dT%H:%M:%SZ)"; then
 			printf 'ERROR: không ghi được metadata cho run %s\n' "$RUN_ID" >&2
 		fi
 		printf 'Run status: %s (exit %s)\n' "$status" "$exit_code"
 	fi
+	if [[ "${LAB_LOCK_OWNER:-}" == "$RUN_ID" && -f "$ROOT_DIR/runtime/.mutation-lock/owner" ]] &&
+		[[ "$(cat "$ROOT_DIR/runtime/.mutation-lock/owner")" == "$RUN_ID" ]]; then
+		rm -- "$ROOT_DIR/runtime/.mutation-lock/owner"
+		rmdir -- "$ROOT_DIR/runtime/.mutation-lock"
+	fi
+}
+
+acquire_lab_lock() {
+	mkdir -p "$ROOT_DIR/runtime"
+	if ! mkdir "$ROOT_DIR/runtime/.mutation-lock" 2>/dev/null; then
+		printf 'ERROR: lab đang bị khóa; xem runtime/.mutation-lock/owner. Không chạy hai suite ghi đồng thời.\n' >&2
+		return 1
+	fi
+	printf '%s\n' "$RUN_ID" > "$ROOT_DIR/runtime/.mutation-lock/owner"
+	LAB_LOCK_OWNER="$RUN_ID"
 }
 
 doctor() {
@@ -449,10 +552,10 @@ doctor() {
 		failures=$((failures + 1))
 	else
 		printf 'OK   config exists: %s\n' "$ENV_FILE"
-		if [[ "$(stat -c '%a' "$ENV_FILE" 2>/dev/null || stat -f '%Lp' "$ENV_FILE")" =~ ^6?00$|^400$|^600$ ]]; then
+		if config_permissions_safe; then
 			printf 'OK   config permissions\n'
 		else
-			printf 'FAIL config permissions; use chmod 600 %s\n' "$ENV_FILE"
+			printf 'FAIL config permissions; restrict Unix mode or Windows ACL: %s\n' "$ENV_FILE"
 			failures=$((failures + 1))
 		fi
 
@@ -674,6 +777,7 @@ run_component() {
 
 	require_config
 	require_docker
+	verify_compose_target
 	[[ -f "$component_script" ]] || die "Thiếu component script: $component_script"
 	admin_email="$(config_value ADMIN_EMAIL 2>/dev/null || true)"
 	admin_password="$(config_value ADMIN_PASSWORD 2>/dev/null || true)"
@@ -745,7 +849,7 @@ dispatch() {
 	local command_name="$1"
 	shift
 	case "$command_name" in
-		seed|smoke|export-schema|schema-smoke|scenarios|invariants|raw|guided)
+		seed|smoke|export-schema|schema-smoke|scenarios|invariants|designed|cost-query|raw|guided)
 			run_component "$command_name" "$@"
 			;;
 		replay)
@@ -779,7 +883,8 @@ main() {
 				usage
 				return 0
 			fi
-			[[ $# -eq 2 ]] || die 'test cần một profile.'
+			[[ $# -ge 2 ]] || die 'test cần một profile.'
+			[[ $# -eq 2 || "$2" == designed || "$2" == cost-query ]] || die 'Chỉ test designed/cost-query nhận tùy chọn bổ sung.'
 			run_command="test $2"
 			;;
 		replay)
@@ -798,7 +903,7 @@ main() {
 
 	# The pilot always uses the editor token. Record that actor in run metadata
 	# instead of leaving a successful component invocation as "unspecified".
-	if [[ "$run_command" == 'test schema-smoke' || "$run_command" == 'test raw' || "$run_command" == 'test guided' ]]; then
+	if [[ "$run_command" == 'test schema-smoke' || "$run_command" == 'test raw' || "$run_command" == 'test guided' || "$run_command" == 'test cost-query' ]]; then
 		case "${LAB_ACTOR:-unspecified}" in
 			unspecified|editor) LAB_ACTOR=editor ;;
 			*) die 'test schema-smoke/raw/guided cố định actor editor; không được gắn actor khác vào metadata.' ;;
@@ -807,6 +912,7 @@ main() {
 
 	begin_run "$run_command"
 	trap 'finish_run "$?"' EXIT
+	if [[ "$command_name" != doctor ]]; then acquire_lab_lock || return 1; fi
 
 	case "$command_name" in
 		doctor)
@@ -822,7 +928,8 @@ main() {
 			dispatch "$command_name"
 			;;
 		test)
-			dispatch "$2"
+			shift
+			dispatch "$@"
 			;;
 		replay)
 			dispatch replay "$2"
