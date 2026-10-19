@@ -40,6 +40,11 @@ services:
       LICENSE_KEY: ${LICENSE_KEY:-}
       ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-2h}
       PUBLIC_URL: http://127.0.0.1:8055
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: http://127.0.0.1:8086
+      CORS_METHODS: GET,POST,PATCH,DELETE,OPTIONS
+      CORS_ALLOWED_HEADERS: Content-Type,Authorization
+      CORS_CREDENTIALS: "false"
       TELEMETRY: "false"
       CACHE_ENABLED: "false"
       RATE_LIMITER_ENABLED: "false"
@@ -85,6 +90,28 @@ services:
       retries: 5
     networks:
       - lab
+
+  swagger-ui:
+    profiles:
+      - docs
+    image: docker.swagger.io/swaggerapi/swagger-ui:v5.32.15@sha256:9ae209e3791e6fa78e1426769bf54562a043caa969287bfd3779428ece4930e5
+    environment:
+      URLS: '[{"url":"/specs/editor.json","name":"Editor"},{"url":"/specs/reader.json","name":"Reader"}]'
+      URLS_PRIMARY_NAME: Editor
+      VALIDATOR_URL: none
+      PERSIST_AUTHORIZATION: "false"
+      QUERY_CONFIG_ENABLED: "false"
+      WITH_CREDENTIALS: "false"
+      CORS: "false"
+    volumes:
+      - type: bind
+        source: ${SWAGGER_SPEC_DIR:-./runtime/swagger/r06-k05-v2}
+        target: /usr/share/nginx/html/specs
+        read_only: true
+    networks:
+      - lab
+    ports:
+      - 127.0.0.1:8086:8080
 
 networks:
   lab:
