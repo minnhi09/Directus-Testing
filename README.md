@@ -28,6 +28,10 @@ Máy mới: chuẩn bị jq bằng `.\scripts\setup-windows.ps1`, sao chép `con
 
 Trên lab đã sẵn sàng, chỉ cần kiểm môi trường trước khi chạy. Không reset DB để demo; chạy các suite tuần tự. Linux/Git Bash dùng `./lab.sh` với cùng tham số.
 
+## Xem OpenAPI bằng Swagger UI
+
+Sau `seed` và `export-schema`, chạy `./lab.sh swagger up` rồi mở `http://127.0.0.1:8086`. Chọn Editor hoặc Reader, gọi `/auth/login` bằng tài khoản tương ứng, sau đó nhập `Bearer <access_token>` trong **Authorize**. Dùng `./lab.sh swagger down` để chỉ dừng giao diện. Schema gốc của Schemathesis không bị sửa. Xem [hướng dẫn Swagger UI](docs/swagger-ui.md) và [bằng chứng tích hợp](evidence/swagger-ui-integration-2026-10-19.md).
+
 ## Chạy bộ đại diện
 
 ```powershell
