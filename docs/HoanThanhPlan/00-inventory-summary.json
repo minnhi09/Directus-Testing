@@ -1,0 +1,49 @@
+{
+  "client_date": "2026-10-18",
+  "timezone": "Asia/Bangkok",
+  "run_directories": 302,
+  "with_metadata": 301,
+  "groups": {
+    "interface_environment_or_unspecified_fixture": 30,
+    "historical_fixture_v1": 107,
+    "historical_fixture_v2_no_runtime_profile": 130,
+    "windows_pre_oig": 9,
+    "manual_repair_without_run_metadata": 1,
+    "windows_post_oig": 25
+  },
+  "statuses": {
+    "failed": 143,
+    "passed": 158,
+    "no_metadata": 1
+  },
+  "campaign_seed_rows": 37,
+  "selected_runs": 18,
+  "selected_evidence_files_hashed": 177,
+  "schema_snapshots": 12,
+  "snapshot_files": 99,
+  "archive_bytes": 12609381,
+  "original_untracked_files": 49,
+  "live_runtime_check": {
+    "status": "not_verified",
+    "method": "docker ps --filter label=com.docker.compose.project=r06-k05",
+    "observation": "Docker config access denied and docker_engine named pipe unavailable in this execution context; not proof that the user machine daemon is stopped."
+  },
+  "legacy_format_notes": [
+    {
+      "run_id": "20261010T062453Z-61302",
+      "note": "legacy_text_budget_not_json"
+    },
+    {
+      "run_id": "20261010T084748Z-98189",
+      "note": "legacy_text_budget_not_json"
+    },
+    {
+      "run_id": "final-schema-smoke",
+      "note": "legacy_text_budget_not_json"
+    },
+    {
+      "run_id": "interface-check",
+      "note": "legacy_text_budget_not_json"
+    }
+  ]
+}

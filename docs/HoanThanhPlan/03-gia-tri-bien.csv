@@ -1,0 +1,35 @@
+﻿boundary_id,field,operation,value,measure,expectation,case_id
+P3-NAME-POST-79,name,POST,79,ASCII characters = bytes = code points,ACCEPT,P3-NAME-POST-79
+P3-NAME-POST-80,name,POST,80,ASCII characters = bytes = code points,ACCEPT,P3-NAME-POST-80
+P3-NAME-POST-81,name,POST,81,ASCII characters = bytes = code points,REJECT,P3-NAME-POST-81
+P3-NAME-PATCH-79,name,PATCH,79,ASCII characters = bytes = code points,ACCEPT,P3-NAME-PATCH-79
+P3-NAME-PATCH-80,name,PATCH,80,ASCII characters = bytes = code points,ACCEPT,P3-NAME-PATCH-80
+P3-NAME-PATCH-81,name,PATCH,81,ASCII characters = bytes = code points,REJECT,P3-NAME-PATCH-81
+P3-TITLE-POST-119,title,POST,119,ASCII characters = bytes = code points,ACCEPT,P3-TITLE-POST-119
+P3-TITLE-POST-120,title,POST,120,ASCII characters = bytes = code points,ACCEPT,P3-TITLE-POST-120
+P3-TITLE-POST-121,title,POST,121,ASCII characters = bytes = code points,REJECT,P3-TITLE-POST-121
+P3-TITLE-PATCH-119,title,PATCH,119,ASCII characters = bytes = code points,ACCEPT,P3-TITLE-PATCH-119
+P3-TITLE-PATCH-120,title,PATCH,120,ASCII characters = bytes = code points,ACCEPT,P3-TITLE-PATCH-120
+P3-TITLE-PATCH-121,title,PATCH,121,ASCII characters = bytes = code points,REJECT,P3-TITLE-PATCH-121
+P3-SCORE-POST-MINUS1,score,POST,-1,integer,REJECT,P3-SCORE-POST-MINUS1
+P3-SCORE-POST-0,score,POST,0,integer,ACCEPT,P3-SCORE-POST-0
+P3-SCORE-POST-1,score,POST,1,integer,ACCEPT,P3-SCORE-POST-1
+P3-SCORE-POST-4,score,POST,4,integer,ACCEPT,P3-SCORE-POST-4
+P3-SCORE-POST-5,score,POST,5,integer,ACCEPT,P3-SCORE-POST-5
+P3-SCORE-POST-6,score,POST,6,integer,REJECT,P3-SCORE-POST-6
+P3-SCORE-PATCH-MINUS1,score,PATCH,-1,integer,REJECT,P3-SCORE-PATCH-MINUS1
+P3-SCORE-PATCH-0,score,PATCH,0,integer,ACCEPT,P3-SCORE-PATCH-0
+P3-SCORE-PATCH-1,score,PATCH,1,integer,ACCEPT,P3-SCORE-PATCH-1
+P3-SCORE-PATCH-4,score,PATCH,4,integer,ACCEPT,P3-SCORE-PATCH-4
+P3-SCORE-PATCH-5,score,PATCH,5,integer,ACCEPT,P3-SCORE-PATCH-5
+P3-SCORE-PATCH-6,score,PATCH,6,integer,REJECT,P3-SCORE-PATCH-6
+P3-QUERY-LIMIT-MINUS2,limit,GET,-2,integer query; form encoded by harness,REJECT,P3-QUERY-LIMIT-MINUS2
+P3-QUERY-LIMIT-MINUS1,limit,GET,-1,integer query; form encoded by harness,ACCEPT,P3-QUERY-LIMIT-MINUS1
+P3-QUERY-LIMIT-0,limit,GET,0,integer query; form encoded by harness,ACCEPT,P3-QUERY-LIMIT-0
+P3-QUERY-LIMIT-1,limit,GET,1,integer query; form encoded by harness,ACCEPT,P3-QUERY-LIMIT-1
+P3-QUERY-OFFSET-MINUS1,offset,GET,-1,integer query; form encoded by harness,REJECT,P3-QUERY-OFFSET-MINUS1
+P3-QUERY-OFFSET-0,offset,GET,0,integer query; form encoded by harness,ACCEPT,P3-QUERY-OFFSET-0
+P3-QUERY-OFFSET-1,offset,GET,1,integer query; form encoded by harness,ACCEPT,P3-QUERY-OFFSET-1
+P3-QUERY-PAGE-MINUS1,page,GET,-1,integer query; form encoded by harness,REJECT,P3-QUERY-PAGE-MINUS1
+P3-QUERY-PAGE-0,page,GET,0,integer query; form encoded by harness,OPEN,P3-QUERY-PAGE-0
+P3-QUERY-PAGE-1,page,GET,1,integer query; form encoded by harness,ACCEPT,P3-QUERY-PAGE-1
