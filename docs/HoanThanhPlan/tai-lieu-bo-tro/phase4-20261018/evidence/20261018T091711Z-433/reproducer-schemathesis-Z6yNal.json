@@ -1,0 +1,124 @@
+{
+  "schema": 2,
+  "case_id": "Z6yNal",
+  "started_at": "2026-10-18T09:17:20Z",
+  "status": "reproduced",
+  "target_sent": true,
+  "sequence_replayed": true,
+  "replay_scope": "full_recorded_parent_chain",
+  "steps": [
+    {
+      "case_id": "MsrYGI",
+      "parent_id": null,
+      "method": "GET",
+      "path": "/items/qa_articles?deep=%7B%7D",
+      "status": 200,
+      "response_artifact": "python-http/response-10.json",
+      "transition": null,
+      "is_transition_applied": false
+    },
+    {
+      "case_id": "Z6yNal",
+      "parent_id": "MsrYGI",
+      "method": "DELETE",
+      "path": "/items/qa_articles/7",
+      "status": 204,
+      "response_artifact": "python-http/response-11.json",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+        "parent_id": "MsrYGI",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "is_transition_applied": true
+    }
+  ],
+  "id_mapping": {
+    "qa_articles": {
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12
+    },
+    "qa_categories": {}
+  },
+  "source_events": "/work/artifacts/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+  "source_line": 162,
+  "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+  "schema_hash": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+  "sequence_case_ids": [
+    "MsrYGI",
+    "Z6yNal"
+  ],
+  "source_status": 204,
+  "actual_status": 204,
+  "actual_checks": [
+    {
+      "name": "not_a_server_error",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "status_code_conformance",
+      "status": "failed",
+      "failures": [
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code"
+        }
+      ]
+    },
+    {
+      "name": "content_type_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "response_schema_conformance",
+      "status": "passed",
+      "failures": []
+    }
+  ],
+  "reproduced": true,
+  "matched_checks": [
+    {
+      "name": "status_code_conformance",
+      "failure_type": "UndefinedStatusCode"
+    }
+  ],
+  "missing_checks": [],
+  "unsupported_checks": [],
+  "source_had_failures": true,
+  "status_equal": true,
+  "finished_at": "2026-10-18T09:17:26Z",
+  "runner_exit_code": 0
+}

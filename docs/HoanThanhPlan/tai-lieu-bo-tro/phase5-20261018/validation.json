@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "date": "2026-10-18",
+  "status": "passed",
+  "scope": "Phase 5 reduced report and pinned-source/evidence audit",
+  "new_runtime_runs": 0,
+  "source_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "checks": {
+    "document_backups_preserved": 5,
+    "pinned_source_sha256_and_git_blobs_verified": 10,
+    "existing_evidence_copies_byte_identical": 25,
+    "finding_audit": "passed: status/shape/media/grouping/raw-guided fragment/replay-restore assertions verified against existing records",
+    "raw_editor_schema_hash": "passed",
+    "harness_and_public_config_unchanged": 17,
+    "historical_evidence_unchanged": 177,
+    "selected_evidence_bearer_scan": "passed; no credential-like bearer values found",
+    "phase5_completed_tasks": 6,
+    "phase7_remains_removed": true,
+    "active_document_links": "passed",
+    "git_diff_check": "passed"
+  },
+  "documents_after": [
+    {
+      "path": "docs/HoanThanhPlan/05-finding-register.md",
+      "sha256": "e35aee4a8742cd8f6e9f613c7512181b96a6dc5942179a5feb471fa0f679b586"
+    },
+    {
+      "path": "docs/HoanThanhPlan/Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "sha256": "859d3244940f2a0d1178e2f589a234b4ab7d0a7eb026696ea0b163829e5a0178"
+    },
+    {
+      "path": "docs/HoanThanhPlan/README.md",
+      "sha256": "1036c428acdba459d07b8711bac1143244524cfab01409c0612bd573c19f3fcd"
+    },
+    {
+      "path": "docs/HoanThanhPlan/dieu-chinh-pham-vi-phase5-phase7.md",
+      "sha256": "b3fca2144afbabf8675e9da869ade905464018f0c99f83e70c9db3b369026a1e"
+    },
+    {
+      "path": "docs/HoanThanhPlan/04-automation-va-tai-lap.md",
+      "sha256": "66d752ad0bf322fcc8b1a516c69b6a731412a317713b7ac4b5dc3d75a8db5fd4"
+    },
+    {
+      "path": "docs/HoanThanhPlan/tai-lieu-bo-tro/README.md",
+      "sha256": "2d517144456df6c6d655e43006b25195060bb1e90ba231805c4d08738b4ddbd1"
+    }
+  ],
+  "limitations": [
+    "No server stack newly captured for aggregate run of 18 October; exact first throw remains unverified.",
+    "Existing historical candidates are not counted as newly confirmed business defects.",
+    "Report completion does not close four OPEN SUT groups or establish final course acceptance."
+  ]
+}

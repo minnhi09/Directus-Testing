@@ -1,0 +1,601 @@
+{
+  "probes": [
+    {
+      "profile": "raw",
+      "run_id": "p8-20261018-probe-raw",
+      "summary": {
+        "schema": 1,
+        "profile": "raw",
+        "seed": 101,
+        "status": "failed",
+        "termination": "max_time",
+        "schema_sha256": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "report_present": true,
+        "coverage_present": true,
+        "budget": {
+          "max_time_seconds": 60,
+          "max_examples_per_operation": 10,
+          "workers": 1,
+          "rate_limit": "5/s",
+          "request_timeout_seconds": 10
+        },
+        "schemathesis": {
+          "operations": {
+            "total": 10,
+            "selected": 10,
+            "tested": 10,
+            "errored": 0,
+            "skipped": 0,
+            "skip_reasons": []
+          },
+          "test_cases": {
+            "generated": 61,
+            "with_failures": 20,
+            "unique_failures": 22,
+            "without_checks": 0,
+            "errored": 0
+          },
+          "failures": [
+            {
+              "type": "RejectedPositiveData",
+              "title": "API rejected schema-compliant request",
+              "severity": "medium",
+              "count": 2,
+              "operations": [
+                "GET /items/qa_articles",
+                "GET /items/qa_articles/{id}"
+              ]
+            },
+            {
+              "type": "UndefinedStatusCode",
+              "title": "Undocumented HTTP status code",
+              "severity": "medium",
+              "count": 18,
+              "operations": [
+                "DELETE /items/qa_articles/{id}",
+                "DELETE /items/qa_categories/{id}",
+                "GET /items/qa_articles",
+                "GET /items/qa_articles/{id}",
+                "GET /items/qa_categories",
+                "GET /items/qa_categories/{id}",
+                "PATCH /items/qa_articles/{id}",
+                "PATCH /items/qa_categories/{id}",
+                "POST /items/qa_articles",
+                "POST /items/qa_categories"
+              ]
+            },
+            {
+              "type": "UnsupportedMethodResponse",
+              "title": "Unsupported methods",
+              "severity": "medium",
+              "count": 2,
+              "operations": [
+                "TRACE /items/qa_articles",
+                "TRACE /items/qa_categories"
+              ]
+            }
+          ],
+          "errors": [],
+          "stop_reason": "max_time",
+          "complete": true,
+          "exit_code": 1,
+          "running_time": 60.0665855999996
+        }
+      },
+      "coverage": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 29,
+          "partial": 19,
+          "total": 48,
+          "percent": 60.416666666666664
+        },
+        "keywords": {
+          "covered": 68,
+          "partial": 100,
+          "total": 226,
+          "percent": 30.088495575221238
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 110,
+          "violated": 6,
+          "total": 386,
+          "percent": 28.497409326424872
+        }
+      },
+      "failure_types": [
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 18,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "search_status": "INCOMPLETE: max_time",
+      "purpose": "short current-checkpoint compatibility probe, not new main campaign",
+      "schema_matches_historical": true
+    },
+    {
+      "profile": "guided",
+      "run_id": "p8-20261018-probe-guided",
+      "summary": {
+        "schema": 1,
+        "profile": "guided",
+        "seed": 101,
+        "status": "failed",
+        "termination": "max_time",
+        "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "report_present": true,
+        "coverage_present": true,
+        "budget": {
+          "max_time_seconds": 60,
+          "max_examples_per_operation": 10,
+          "workers": 1,
+          "rate_limit": "5/s",
+          "request_timeout_seconds": 10
+        },
+        "schemathesis": {
+          "operations": {
+            "total": 10,
+            "selected": 10,
+            "tested": 10,
+            "errored": 0,
+            "skipped": 0,
+            "skip_reasons": []
+          },
+          "test_cases": {
+            "generated": 278,
+            "with_failures": 29,
+            "unique_failures": 32,
+            "without_checks": 0,
+            "errored": 2
+          },
+          "failures": [
+            {
+              "type": "ServerError",
+              "title": "Server error",
+              "severity": "critical",
+              "count": 2,
+              "operations": [
+                "Stateful tests"
+              ]
+            },
+            {
+              "type": "JsonSchemaError",
+              "title": "Response violates schema",
+              "severity": "high",
+              "count": 2,
+              "operations": [
+                "POST /items/qa_articles",
+                "POST /items/qa_categories"
+              ]
+            },
+            {
+              "type": "RejectedPositiveData",
+              "title": "API rejected schema-compliant request",
+              "severity": "medium",
+              "count": 5,
+              "operations": [
+                "GET /items/qa_articles",
+                "Stateful tests"
+              ]
+            },
+            {
+              "type": "UndefinedContentType",
+              "title": "Undocumented Content-Type",
+              "severity": "medium",
+              "count": 2,
+              "operations": [
+                "Stateful tests"
+              ]
+            },
+            {
+              "type": "UndefinedStatusCode",
+              "title": "Undocumented HTTP status code",
+              "severity": "medium",
+              "count": 19,
+              "operations": [
+                "DELETE /items/qa_articles/{id}",
+                "DELETE /items/qa_categories/{id}",
+                "GET /items/qa_articles",
+                "GET /items/qa_articles/{id}",
+                "GET /items/qa_categories",
+                "GET /items/qa_categories/{id}",
+                "PATCH /items/qa_articles/{id}",
+                "PATCH /items/qa_categories/{id}",
+                "POST /items/qa_articles",
+                "POST /items/qa_categories",
+                "Stateful tests"
+              ]
+            },
+            {
+              "type": "UnsupportedMethodResponse",
+              "title": "Unsupported methods",
+              "severity": "medium",
+              "count": 2,
+              "operations": [
+                "TRACE /items/qa_articles",
+                "TRACE /items/qa_categories"
+              ]
+            }
+          ],
+          "errors": [],
+          "stop_reason": "max_time",
+          "complete": true,
+          "exit_code": 1,
+          "running_time": 60.02624858600029
+        }
+      },
+      "coverage": {
+        "operations": {
+          "covered": 10,
+          "total": 10,
+          "percent": 100.0
+        },
+        "parameters": {
+          "covered": 30,
+          "partial": 18,
+          "total": 48,
+          "percent": 62.5
+        },
+        "keywords": {
+          "covered": 125,
+          "partial": 97,
+          "total": 226,
+          "percent": 55.309734513274336
+        },
+        "examples": {
+          "covered": 12,
+          "total": 16,
+          "percent": 75.0
+        },
+        "responses": {
+          "covered": 8,
+          "total": 26,
+          "percent": 30.76923076923077
+        },
+        "response_keywords": {
+          "reached": 128,
+          "violated": 15,
+          "total": 386,
+          "percent": 33.16062176165803
+        }
+      },
+      "failure_types": [
+        {
+          "type": "ServerError",
+          "title": "Server error",
+          "severity": "critical",
+          "count": 2,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema",
+          "severity": "high",
+          "count": 2,
+          "operations": [
+            "POST /items/qa_articles",
+            "POST /items/qa_categories"
+          ]
+        },
+        {
+          "type": "RejectedPositiveData",
+          "title": "API rejected schema-compliant request",
+          "severity": "medium",
+          "count": 5,
+          "operations": [
+            "GET /items/qa_articles",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedContentType",
+          "title": "Undocumented Content-Type",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code",
+          "severity": "medium",
+          "count": 19,
+          "operations": [
+            "DELETE /items/qa_articles/{id}",
+            "DELETE /items/qa_categories/{id}",
+            "GET /items/qa_articles",
+            "GET /items/qa_articles/{id}",
+            "GET /items/qa_categories",
+            "GET /items/qa_categories/{id}",
+            "PATCH /items/qa_articles/{id}",
+            "PATCH /items/qa_categories/{id}",
+            "POST /items/qa_articles",
+            "POST /items/qa_categories",
+            "Stateful tests"
+          ]
+        },
+        {
+          "type": "UnsupportedMethodResponse",
+          "title": "Unsupported methods",
+          "severity": "medium",
+          "count": 2,
+          "operations": [
+            "TRACE /items/qa_articles",
+            "TRACE /items/qa_categories"
+          ]
+        }
+      ],
+      "valid_rates_tool_only": {
+        "POST /items/qa_articles": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "POST /items/qa_categories": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "PATCH /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_articles/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "DELETE /items/qa_categories/{id}": {
+          "examples": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          },
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 1
+          }
+        },
+        "GET /items/qa_categories": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_articles/{id}": {
+          "fuzzing": {
+            "accepted": 2,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        },
+        "GET /items/qa_categories/{id}": {
+          "fuzzing": {
+            "accepted": 1,
+            "unreachable": 0,
+            "conflicts": 0,
+            "rejected": 0
+          }
+        }
+      },
+      "search_status": "INCOMPLETE: max_time",
+      "purpose": "short current-checkpoint compatibility probe, not new main campaign",
+      "schema_matches_historical": true
+    }
+  ],
+  "main_campaign_reuse": "Explicitly approved by user; preserve P6 historical cohort audit, no re-execution or relabeling as P8 runs."
+}

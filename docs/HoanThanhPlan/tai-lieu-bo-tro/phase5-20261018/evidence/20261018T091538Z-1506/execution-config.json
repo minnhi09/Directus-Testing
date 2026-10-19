@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "command": [
+    "invariants.py",
+    "--case",
+    "all"
+  ],
+  "actors": [
+    "editor",
+    "reader",
+    "anonymous"
+  ],
+  "admin_usage": "preflight and restore only",
+  "workers": 1,
+  "budget": {
+    "max_time_seconds": 600,
+    "rate_limit": "5/s",
+    "request_timeout_seconds": 10,
+    "cleanup_outside_max_time": true
+  },
+  "runner_image": "docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5",
+  "fixture_map_sha256": "a2145eada7b0a1c4c23661e169aeab44d2c0465ac364e5e4e7c9e99b814bb752",
+  "schema_sha256": {
+    "editor": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+    "reader": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8"
+  }
+}

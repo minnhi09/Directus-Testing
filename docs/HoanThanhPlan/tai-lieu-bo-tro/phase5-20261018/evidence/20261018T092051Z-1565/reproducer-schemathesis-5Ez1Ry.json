@@ -1,0 +1,103 @@
+{
+  "schema": 2,
+  "case_id": "5Ez1Ry",
+  "started_at": "2026-10-18T09:20:59Z",
+  "status": "no_source_failure",
+  "target_sent": true,
+  "sequence_replayed": true,
+  "replay_scope": "full_recorded_parent_chain",
+  "steps": [
+    {
+      "case_id": "EerNvl",
+      "parent_id": null,
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 200,
+      "response_artifact": "python-http/response-10.json",
+      "transition": null,
+      "is_transition_applied": false
+    },
+    {
+      "case_id": "5Ez1Ry",
+      "parent_id": "EerNvl",
+      "method": "DELETE",
+      "path": "/items/qa_categories/6545",
+      "status": 204,
+      "response_artifact": "python-http/response-11.json",
+      "transition": {
+        "id": "POST /items/qa_categories -> [200] DeleteItemsQaCategories -> DELETE /items/qa_categories/{id}",
+        "parent_id": "EerNvl",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  6545,
+                  43173286,
+                  43173287
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "is_transition_applied": true
+    }
+  ],
+  "id_mapping": {
+    "qa_articles": {},
+    "qa_categories": {
+      "6545": 6545,
+      "43173286": 73,
+      "43173287": 74
+    }
+  },
+  "source_events": "/work/artifacts/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+  "source_line": 180,
+  "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+  "schema_hash": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+  "sequence_case_ids": [
+    "EerNvl",
+    "5Ez1Ry"
+  ],
+  "source_status": 204,
+  "actual_status": 204,
+  "actual_checks": [
+    {
+      "name": "not_a_server_error",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "status_code_conformance",
+      "status": "failed",
+      "failures": [
+        {
+          "type": "UndefinedStatusCode",
+          "title": "Undocumented HTTP status code"
+        }
+      ]
+    },
+    {
+      "name": "content_type_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "response_schema_conformance",
+      "status": "passed",
+      "failures": []
+    }
+  ],
+  "reproduced": false,
+  "matched_checks": [],
+  "missing_checks": [],
+  "unsupported_checks": [],
+  "source_had_failures": false,
+  "status_equal": true,
+  "finished_at": "2026-10-18T09:21:04Z",
+  "runner_exit_code": 1
+}

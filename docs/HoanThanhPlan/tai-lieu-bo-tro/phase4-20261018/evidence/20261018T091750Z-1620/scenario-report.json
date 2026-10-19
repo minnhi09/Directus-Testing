@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "fixture_version": "r06-k05-v2",
+  "scenarios": [
+    {
+      "id": "S1",
+      "name": "Editor CRUD",
+      "status": "passed",
+      "expected": "create/read/PATCH/delete with field preservation",
+      "actual": "create=2xx,patch=2xx,delete=204",
+      "details": "temporary item removed"
+    },
+    {
+      "id": "S2",
+      "name": "Filter status",
+      "status": "passed",
+      "expected": "published filter returns six fixture rows",
+      "actual": "[3,4,7,8,11,12]",
+      "details": "editor query"
+    },
+    {
+      "id": "S3",
+      "name": "Sort/pagination",
+      "status": "passed",
+      "expected": "sort=title,id with limit/offset",
+      "actual": "pages 0..2 and 3..5",
+      "details": "independent seed/map plus DB collation proof"
+    },
+    {
+      "id": "S4",
+      "name": "Reader không đọc draft",
+      "status": "passed",
+      "expected": "403/FORBIDDEN with positive controls",
+      "actual": "HTTP 403",
+      "details": "public fields; no private projection confound"
+    },
+    {
+      "id": "S5",
+      "name": "Reader không lộ internal_notes",
+      "status": "passed",
+      "expected": "private field is omitted or request rejected",
+      "actual": "HTTP 403",
+      "details": "no internal_notes value exposed"
+    },
+    {
+      "id": "S6",
+      "name": "Reader ghi bị từ chối",
+      "status": "passed",
+      "expected": "reader PATCH rejected and target unchanged",
+      "actual": "HTTP 403",
+      "details": "editor read-back equals precondition"
+    }
+  ]
+}

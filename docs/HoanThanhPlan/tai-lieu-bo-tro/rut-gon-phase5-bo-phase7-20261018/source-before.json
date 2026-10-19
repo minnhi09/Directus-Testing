@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-18",
+  "scope": "Documentation-only: shorten Phase 5, remove Phase 7 per user instruction",
+  "files": [
+    {
+      "path": "Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "sha256": "82d8ac1af404e451096fff961eaf392fc14eaef4d538fc2ef622eb2522f2649d",
+      "backup": "truoc-dieu-chinh/Ke_hoach_hoan_thien_R06_K05_theo_phase.md"
+    },
+    {
+      "path": "README.md",
+      "sha256": "d6e96c8a17f3bca10f55b9f1c04fbe53f6046813ab664a069fa2169b0ca44ae3",
+      "backup": "truoc-dieu-chinh/README.md"
+    },
+    {
+      "path": "00-quyet-dinh-va-phu-thuoc.md",
+      "sha256": "00d91e0a73b4b94e8fa9afd1d731e74db29d09ff71433d30952a8adba26cacef",
+      "backup": "truoc-dieu-chinh/00-quyet-dinh-va-phu-thuoc.md"
+    },
+    {
+      "path": "04-automation-va-tai-lap.md",
+      "sha256": "a5bfc9572fa3c1a89a8d21902782ea1e183ef8ebd066691babe6748f506be78f",
+      "backup": "truoc-dieu-chinh/04-automation-va-tai-lap.md"
+    },
+    {
+      "path": "tai-lieu-bo-tro/README.md",
+      "sha256": "1cf3edd3f13848e619c951fb5add17b6ecefae03a053dba05576fd204cb02b87",
+      "backup": "truoc-dieu-chinh/tai-lieu-bo-tro/README.md"
+    }
+  ]
+}

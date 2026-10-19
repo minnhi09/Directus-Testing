@@ -1,0 +1,111 @@
+{
+  "compared_to": "Phase 4 source-before checkpoint, not a reconstruction of every dirty historical source byte",
+  "functions": [
+    {
+      "function": "target_operations_json",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "14ba199d3f307f4335d4722630d9da5dac5e822ef47b7da47afce0a0f2d697b2"
+    },
+    {
+      "function": "campaign_validate_config",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "b536a58c4e14b76933a4bb1663d9f00ca6e7d3cc71aec539e5b9978ce7865d2e"
+    },
+    {
+      "function": "campaign_require_inputs",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "d04564a78063c56359a787bd5b82fb7031ca49a873bc605a1d688d2137b31356"
+    },
+    {
+      "function": "campaign_build_schema",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "cff4a60910513635cce5bc5791688fdc897848905f4ca3a3d40d6951d815d851"
+    },
+    {
+      "function": "campaign_snapshot",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "5d40432494a83a6912883ed8787a4a4338752e9a97f3400f729676e6f04e0e2b"
+    },
+    {
+      "function": "campaign_delete_extras",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "ab75a7994e6897a88a7f85fa3189fe3002963fa2c8361b7bd551cf21918ce2c3"
+    },
+    {
+      "function": "campaign_restore_collection",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "6a9a633b6e6370ffaf9cf25650c5f30b1eb7c30418647b8ecbb2f069cb973eed"
+    },
+    {
+      "function": "campaign_restore",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "6888260fc26d919940aa3196a8ecee79f34b234114e081f3aeeb2ffa9c26ec7a"
+    },
+    {
+      "function": "campaign_refresh_tokens",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "233de36855f3c5b770db0685df2cbb5d37d96383934a9bad0b41c53bb286a6db"
+    },
+    {
+      "function": "campaign_inventory",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "1143eab455a2eb3523aca0115e3ae9c6c535367616ff539ff99d9f1d123a8d82"
+    },
+    {
+      "function": "campaign_one",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "c11ffa5079206ce260c6ad36921f93fa5df798d9df2820b2f9c1cce63b9e5dc0"
+    },
+    {
+      "function": "campaign",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "c3b95de52cf17f03ef3d6494545912ef43ef2cafd5855b615f5a4fcf36f543d9"
+    },
+    {
+      "function": "docker_run",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "b7def77646017fdfd125c1d6389c84026bc2d2d15f6fdbf9262ede16953df7b2"
+    },
+    {
+      "function": "require_tools",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "e675787e77b73af4e66887414e04f07bad5e4beaec2bd48152f99bd8f68e1688"
+    },
+    {
+      "function": "load_fixture_map",
+      "unchanged_from_phase4_input": true,
+      "current_sha256": "f05982f2a7d2ba1376245b40e454e29b912287e38a8bc8590904521e739b0093"
+    }
+  ],
+  "helpers": [
+    {
+      "function": "api_request",
+      "same_after_removing_disabled_P6_meter": true
+    },
+    {
+      "function": "api_request_file",
+      "same_after_removing_disabled_P6_meter": true
+    },
+    {
+      "function": "login",
+      "same_after_removing_disabled_P6_meter": true
+    }
+  ],
+  "public_config": [
+    {
+      "path": "compose.yaml",
+      "byte_identical_to_phase4_input": true
+    },
+    {
+      "path": "manifest/baseline.yaml",
+      "byte_identical_to_phase4_input": true
+    },
+    {
+      "path": "config/lab.env.example",
+      "byte_identical_to_phase4_input": true
+    }
+  ],
+  "P6_meter": "off for campaign calls, returns 0 before request preparation",
+  "new_target_checks": "loopback/project/image/revision guard + global mutation lock; does not widen operation allowlist or alter generation parameters",
+  "reuse_limit": "Nominal target/schema/config compatibility; historical source byte provenance remains limited, no causal identity claim."
+}

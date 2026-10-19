@@ -1,0 +1,8 @@
+{
+  "recorded_at": "2026-10-18T11:03:49.216586+00:00",
+  "source": "User screenshot in current conversation",
+  "visible_message": "This content can’t be shown; We take extra care with some cybersecurity requests.",
+  "scope": "UI content restriction; exact refused operation is not identified by the screenshot",
+  "tool_status": "No tool-level approval rejection in the visible execution results. Prior pipeline probe session exited 1 after both reports and successful restores; exit 1 is a recorded test result, not a diagnosed policy denial.",
+  "response": "Audit saved artifacts; do not repeat campaigns. Record unresolved evidence and any actual tool denial separately; no bypass or disabling safety controls."
+}

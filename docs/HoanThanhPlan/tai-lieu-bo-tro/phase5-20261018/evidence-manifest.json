@@ -1,0 +1,130 @@
+{
+  "scope": "selected existing Phase 4 evidence, copied byte-for-byte; no new runtime run",
+  "files": [
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/metadata.json",
+      "copy": "evidence/20261018T091538Z-1506/metadata.json",
+      "sha256": "31a117dc0c2fa1299131a953aad8a19bcaa19247695d4cb68dfbe94b2dd784ba"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/target-verification.json",
+      "copy": "evidence/20261018T091538Z-1506/target-verification.json",
+      "sha256": "c2ad157fe9eab0993c0447999aaa08380b2f746087ea412a87356195949e8ad1"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/execution-config.json",
+      "copy": "evidence/20261018T091538Z-1506/execution-config.json",
+      "sha256": "d74667bf228fea0b6436af30b1858e0fd7372bb851ea3fe77dde2cedfda2607d"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/component-outcomes.json",
+      "copy": "evidence/20261018T091538Z-1506/component-outcomes.json",
+      "sha256": "72910c606ae7f83f69b371ea3084a555045fc148b01050177bafebbd2aff1894"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/fixture-ids-input.json",
+      "copy": "evidence/20261018T091538Z-1506/fixture-ids-input.json",
+      "sha256": "a2145eada7b0a1c4c23661e169aeab44d2c0465ac364e5e4e7c9e99b814bb752"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/schema-editor-input.json",
+      "copy": "evidence/20261018T091538Z-1506/schema-editor-input.json",
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/reproducer-aggregate-query-robustness.json",
+      "copy": "evidence/20261018T091538Z-1506/reproducer-aggregate-query-robustness.json",
+      "sha256": "e49ee77ae4194c76a7e259e5f496edc920600a00d43e54a3816e0859163b056a"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/reproducer-contract-schema-candidates.json",
+      "copy": "evidence/20261018T091538Z-1506/reproducer-contract-schema-candidates.json",
+      "sha256": "7c0e987a9662380be5f861c960daae1fee341a5c20c05bf5a91aa5184069dfdc"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-72.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-72.json",
+      "sha256": "fc818a93701e85bb846430ab6935269ef8ec449c1a0d1c02eed58431365bb9d2"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-73.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-73.json",
+      "sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-74.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-74.json",
+      "sha256": "bf8fd34d3546696f67aaa594a2d04de9ea9d1e5224d4940ac62b33592247957b"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-81.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-81.json",
+      "sha256": "645fcf082efbf8fb37ffbed0cf490f8fec043904dd8c2f3b77827594fd0267d8"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-82.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-82.json",
+      "sha256": "e8dc46c7fba77fb5ac787ff4c3b2bd7982842050bca4af54dbc5b5afd6bad82d"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-83.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-83.json",
+      "sha256": "5f5e2ca1b1fa9f8202ab45c12b183e053b37af0617df398a1528bcb947b34afc"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-84.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-84.json",
+      "sha256": "d8d352f01830a13aa0fc931b6cdb05d901fb34faede1e8af38a19919a76115a5"
+    },
+    {
+      "original": "artifacts/runs/20261018T091538Z-1506/python-http/response-85.json",
+      "copy": "evidence/20261018T091538Z-1506/python-http/response-85.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "original": "artifacts/runs/20261018T091638Z-1712/reproducer-schemathesis-qfqspn.json",
+      "copy": "evidence/20261018T091638Z-1712/reproducer-schemathesis-qfqspn.json",
+      "sha256": "c815472e8aef64f4786f4d3460ce21a87e73afe58b7182d1692bfb2e8f103814"
+    },
+    {
+      "original": "artifacts/runs/20261018T091638Z-1712/component-outcomes.json",
+      "copy": "evidence/20261018T091638Z-1712/component-outcomes.json",
+      "sha256": "8f6ee498e07848b1132b47cb65ccadda6918f0c9d70d7488b509ec84c3536ae6"
+    },
+    {
+      "original": "artifacts/runs/20261018T091638Z-1712/metadata.json",
+      "copy": "evidence/20261018T091638Z-1712/metadata.json",
+      "sha256": "bc0d05eca81cdd494084db70f78f790a80b36e28fef332a1eba1675f145729ad"
+    },
+    {
+      "original": "artifacts/runs/20261018T091711Z-433/reproducer-schemathesis-Z6yNal.json",
+      "copy": "evidence/20261018T091711Z-433/reproducer-schemathesis-Z6yNal.json",
+      "sha256": "d21c9075c53e0bd0369ebca24e89cfc5bbdbec2eef78aedbda61800695819794"
+    },
+    {
+      "original": "artifacts/runs/20261018T091711Z-433/component-outcomes.json",
+      "copy": "evidence/20261018T091711Z-433/component-outcomes.json",
+      "sha256": "8f6ee498e07848b1132b47cb65ccadda6918f0c9d70d7488b509ec84c3536ae6"
+    },
+    {
+      "original": "artifacts/runs/20261018T091711Z-433/metadata.json",
+      "copy": "evidence/20261018T091711Z-433/metadata.json",
+      "sha256": "dc4f0b72716a1104575967ee34f4987143e777dec1860f21dd5d34e6e5e5414e"
+    },
+    {
+      "original": "artifacts/runs/20261018T092051Z-1565/reproducer-schemathesis-5Ez1Ry.json",
+      "copy": "evidence/20261018T092051Z-1565/reproducer-schemathesis-5Ez1Ry.json",
+      "sha256": "6382d8bd971c98e5d4f11ce0e97c6f5eba77de8541bde676af72414a706d9286"
+    },
+    {
+      "original": "artifacts/runs/20261018T092051Z-1565/component-outcomes.json",
+      "copy": "evidence/20261018T092051Z-1565/component-outcomes.json",
+      "sha256": "72910c606ae7f83f69b371ea3084a555045fc148b01050177bafebbd2aff1894"
+    },
+    {
+      "original": "artifacts/runs/20261018T092051Z-1565/metadata.json",
+      "copy": "evidence/20261018T092051Z-1565/metadata.json",
+      "sha256": "7cc2319e2579b558eb49b9ab81590f7bc946db11054f752d348f3e88156c1436"
+    }
+  ]
+}

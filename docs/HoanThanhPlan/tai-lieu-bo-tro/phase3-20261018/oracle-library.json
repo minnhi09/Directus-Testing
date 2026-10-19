@@ -1,0 +1,74 @@
+{
+  "O-CREATE": {
+    "expected_response": "2xx + JSON data object có ID integer dương và field nghiệp vụ đúng",
+    "expected_state": "GET bằng ID trả đúng payload đã định; ID lấy từ response, không yêu cầu liên tục"
+  },
+  "O-READ": {
+    "expected_response": "2xx + JSON data đúng ID/set/field đã định",
+    "expected_state": "Không đổi dữ liệu; ID/value expected từ seed spec + map mới hoặc producer"
+  },
+  "O-PATCH": {
+    "expected_response": "2xx; với projection đầy đủ phải có data object đúng target",
+    "expected_state": "GET đủ field nghiệp vụ: chỉ field gửi thay đổi; field không gửi bằng expected trước, không áp default lại"
+  },
+  "O-DELETE": {
+    "expected_response": "2xx; contract status theo raw ghi riêng nếu 204 khác 200",
+    "expected_state": "GET target sau xóa theo nhánh readOne 403/FORBIDDEN; list Editor xác minh ID không còn, article khác giữ nguyên"
+  },
+  "O-VALIDATION": {
+    "expected_response": "400 + errors[].extensions.code=FAILED_VALIDATION; field/path/type khớp rule đang thử khi có nguồn",
+    "expected_state": "POST không thêm ID; PATCH target và mọi field nghiệp vụ không đổi; không nhận 5xx/auth lỗi làm PASS"
+  },
+  "O-LENGTH": {
+    "expected_response": "Mục tiêu: từ chối vì vượt max length; nhánh PG 22001→ValueTooLong là 400/VALUE_TOO_LONG nếu translator nhận diện",
+    "expected_state": "Không truncate âm thầm; không tạo/sửa row. Nếu translator không ánh xạ và phát sinh 5xx: FAIL robustness, không đổi expected thành 500"
+  },
+  "O-FK": {
+    "expected_response": "400 + INVALID_FOREIGN_KEY khi constraint FK được chạm với target/reference đúng tiền đề",
+    "expected_state": "Không thêm/sửa article hoặc category, không orphan; so đủ field trước/sau"
+  },
+  "O-DENY": {
+    "expected_response": "403 + FORBIDDEN theo permission/readOne branch đúng pin; phải có control actor/endpoint/input hợp lệ",
+    "expected_state": "GET không data lab; POST không thêm ID; PATCH/DELETE không đổi target đủ field. Lỗi auth khác nhánh/setup phải BLOCKED/triage, không PASS"
+  },
+  "O-FIELD": {
+    "expected_response": "Không lộ giá trị/private field; 403/FORBIDDEN hoặc 2xx loại field chỉ dùng sau khi đã có căn cứ cho từng dạng projection",
+    "expected_state": "Nếu 2xx: đúng published set/ID, không có internal_notes ở mọi article object; field công khai đúng. Không dùng OR hai nhánh tùy tiện để che thiếu nguồn"
+  },
+  "O-QUERY": {
+    "expected_response": "2xx + data đúng thứ tự/set/lát cắt/projection từ fixture oracle",
+    "expected_state": "Không dùng sorted/filtered GET target làm expected; numeric ID từ map; sort title phải qua điều kiện collation"
+  },
+  "O-QUERY-INVALID": {
+    "expected_response": "400 + INVALID_QUERY đúng nhánh validateQuery của pin",
+    "expected_state": "Dữ liệu không đổi; không coi mọi non-2xx là đúng"
+  },
+  "O-ROUNDTRIP": {
+    "expected_response": "2xx và đọc lại đúng ý nghĩa JSON/null/text đã chọn",
+    "expected_state": "So deep equality cho JSON; không tự thêm key hoặc trim text; mọi field khác giữ nguyên khi PATCH"
+  },
+  "O-TIME": {
+    "expected_response": "2xx cho null/ISO chuẩn có offset; GET có null hoặc cùng instant theo parseISO/ISO source",
+    "expected_state": "So instant cho giá trị giây nguyên; không so byte string, không tự áp published phải có timestamp"
+  },
+  "O-ROBUST": {
+    "expected_response": "Có HTTP response không 5xx; control hợp lệ phải 2xx",
+    "expected_state": "Business acceptance còn OPEN nếu chưa chốt input. 2xx không tự thành business PASS; ghi và kiểm dữ liệu phát sinh/cleanup"
+  },
+  "O-CONTRACT": {
+    "expected_response": "Đối chiếu đúng raw snapshot status/content/schema, giữ mismatch khi có",
+    "expected_state": "Business/read-back ghi riêng; JSON contract success không thay full field/data presence assertion; không đổi raw/disable check"
+  },
+  "O-AUTH": {
+    "expected_response": "Token sai: 403/INVALID_TOKEN nếu đã xác định nhánh InvalidToken; valid control truy cập được users/me",
+    "expected_state": "Không suy hết auth subsystem đã được kiểm; network/5xx không là PASS"
+  },
+  "O-CHAIN": {
+    "expected_response": "Mỗi bước có response/check và parent/ID động, theo chuỗi ghi trong case",
+    "expected_state": "So toàn bộ field trước/sau; giữ article khi SET NULL; đủ cleanup/restore; không reset giữa bước"
+  },
+  "O-OPEN": {
+    "expected_response": "Business verdict giữ OPEN; kiểm riêng có response, không 5xx và bảo toàn dữ liệu theo BR áp dụng",
+    "expected_state": "Ghi actual/snapshot/error để đối chiếu đúng source; không suy 2xx/4xx tự là bug hoặc tự làm expected"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "finding_id": "P8-F05",
+  "status": "OPEN",
+  "kind": "schema/contract mismatch, distinct from POST envelope mismatch P5-F02",
+  "observed_at": "2026-10-18T10:42:53.897250+00:00",
+  "run_id": "p8-20261018-assertable",
+  "case_id": "P3-CONTRACT-PROJECTION",
+  "actor": "editor",
+  "method": "GET",
+  "path": "/items/qa_articles/3?fields=title",
+  "actual_status": 200,
+  "actual_body": {
+    "data": {
+      "title": "Alpha 03 — đã xuất bản"
+    }
+  },
+  "native_check": [
+    {
+      "name": "not_a_server_error",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "status_code_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "content_type_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "response_schema_conformance",
+      "status": "failed",
+      "failures": [
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema"
+        }
+      ]
+    }
+  ],
+  "raw_response_schema": {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "$ref": "#/components/schemas/ItemsQaArticles"
+      }
+    }
+  },
+  "required_item_fields": [
+    "title",
+    "score"
+  ],
+  "missing_required_in_projection": [
+    "score"
+  ],
+  "business_verdict": "passed: expected title projection returned; not missing a requested score",
+  "source_pin": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "source_file": "DAMH/docs/HoanThanhPlan/tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/services/specifications.ts",
+  "source_sha256": "b8ebc8278ce0ce1526c7da90cce15ee4fea955696e0911575622a1e3487e9a81",
+  "source_lines": [
+    411,
+    418,
+    420,
+    426
+  ],
+  "source_explanation": "generateComponents marks non-null fields with no default and not generated as required on a shared item schema. GET detail references that schema without a projection-specific response variant. The projection legitimately excludes score, so native required-property validation fails.",
+  "impact": "Valid projected reads produce contract false alarms; does not by itself show missing persisted data or broken field permissions.",
+  "replay_plan_before_execution": {
+    "label": "projection-replay",
+    "arguments": [
+      "replay",
+      "P3-CONTRACT-PROJECTION"
+    ],
+    "scope": "regenerate full existing designed case; not claim replay of a shrunk fuzz record; shared guards/restore unchanged"
+  }
+}

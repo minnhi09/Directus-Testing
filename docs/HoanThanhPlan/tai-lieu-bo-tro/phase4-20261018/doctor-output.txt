@@ -1,0 +1,43 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/traceability.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/lab-components.sh', LF will be replaced by CRLF the next time Git touches it
+Run: 20261018T092140Z-1392
+Artefact directory: /d/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T092140Z-1392
+Lab: r06-k05
+Root: /d/DAMH-full-recovery-2026-10-12/DAMH
+OK   command docker       /c/Program Files/Docker/Docker/resources/bin/docker
+OK   command curl         /mingw64/bin/curl
+OK   command jq           /d/DAMH-full-recovery-2026-10-12/DAMH/scripts/windows/jq
+OK   Docker daemon
+OK   Docker Compose
+OK   config exists: /d/DAMH-full-recovery-2026-10-12/DAMH/config/lab.env
+OK   config permissions
+OK   config key DIRECTUS_IMAGE     present
+OK   config key POSTGRES_IMAGE     present
+OK   config key SCHEMATHESIS_IMAGE present
+OK   config key DB_DATABASE        present
+OK   config key DB_USER            present
+OK   config key DB_PASSWORD        present
+OK   config key DIRECTUS_KEY       present
+OK   config key DIRECTUS_SECRET    present
+OK   config key ADMIN_EMAIL        present
+OK   config key ADMIN_PASSWORD     present
+OK   actor key EDITOR_EMAIL       present
+OK   actor key EDITOR_PASSWORD    present
+OK   actor key READER_EMAIL       present
+OK   actor key READER_PASSWORD    present
+OK   license key configured (value redacted)
+OK   compose config
+OK   image present: docker.io/library/postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+OK   image present: docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331
+OK   image present: docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5
+OK   runner image present
+OK   fixture ID map
+INFO API liveness already responds 200 from r06-k05
+OK   Directus authenticated health
+INFO Directus license {"source":"env","status":"active","custom_permission_rules_enabled":true}
+Doctor: PASS
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/traceability.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/lab-components.sh', LF will be replaced by CRLF the next time Git touches it
+Run status: passed (exit 0)

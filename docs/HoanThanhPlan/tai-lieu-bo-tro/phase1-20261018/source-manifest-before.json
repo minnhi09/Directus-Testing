@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "client_date": "2026-10-18",
+  "kind": "phase1_read_only_source_inventory",
+  "harness_head": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 24245,
+      "sha256": "b91a0e05289ddf8e44f1644be83272997762ed1543bdfc44b068f6c0dfeee845"
+    },
+    {
+      "path": "docs/g0-quyet-dinh-ky-thuat.md",
+      "bytes": 8065,
+      "sha256": "1a7713e49e09dd0ebcfe32774342f1dd6cb1770064a0c8cea4bde2bf20e9e4dd"
+    },
+    {
+      "path": "docs/permissions.md",
+      "bytes": 5390,
+      "sha256": "0eb70e4bafa7d294170d9c8edd582d490e6a061d1aa7bba075152719e19b867c"
+    },
+    {
+      "path": "docs/test-matrix.md",
+      "bytes": 10754,
+      "sha256": "9abc8915e8c3e1d894ffb63a4d314f19f5c646a30644ade80643dbfb1a96f7f8"
+    },
+    {
+      "path": "docs/traceability.md",
+      "bytes": 8626,
+      "sha256": "133231918a443c2059373de1b2ad0a176f97106462bc29c70a7b5c4b7648bb77"
+    },
+    {
+      "path": "scripts/lab-components.sh",
+      "bytes": 98963,
+      "sha256": "de5cde0e09c7e88261f30d197081d3a86ff76bc25837ea2e3ff7d5c3d84b40e6"
+    },
+    {
+      "path": "scripts/invariants.py",
+      "bytes": 57767,
+      "sha256": "caf2db35746680776832f8b86318852b4d73372ea1ee270ac827fec626d83cfe"
+    },
+    {
+      "path": "lab.sh",
+      "bytes": 27806,
+      "sha256": "472a32052c9a774fffd0157ce7e3ea5155124e905e5790781b6205130750264d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 19587,
+      "sha256": "ef9872a8099f5e85c3f97b9c6613203a3ae01016337d15128d121e225a01856c"
+    },
+    {
+      "path": "manifest/baseline.yaml",
+      "bytes": 19935,
+      "sha256": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee"
+    },
+    {
+      "path": "docs/Ke_hoach_hoan_thien_R06_K05_theo_phase.md",
+      "bytes": 49601,
+      "sha256": "a7230ce15b522c28848717e8b53cd345a32b95eb3b8495c425bb121672b4f497"
+    },
+    {
+      "path": "docs/hoan-thien/00-hien-trang-va-baseline.md",
+      "bytes": 19578,
+      "sha256": "e9b2c09a68ecc28ee6f75c05b9902cbba28dcc43e0f99f8141f6cef7d5b5ed4f"
+    },
+    {
+      "path": "docs/hoan-thien/00-quyet-dinh-va-phu-thuoc.md",
+      "bytes": 8582,
+      "sha256": "00d91e0a73b4b94e8fa9afd1d731e74db29d09ff71433d30952a8adba26cacef"
+    },
+    {
+      "path": "docs/hoan-thien/00-selected-evidence.json",
+      "bytes": 61000,
+      "sha256": "e72a2d5056d538f1d2551c9edbd6dcbc6ca1fd8d7c512afac62d78f229267630"
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/fixture-ids.json",
+      "bytes": 705,
+      "sha256": "df6a38444e4d8ea6bd2f9a4bdd31772d3889b6c06316d3cbea17902b51743673"
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/editor.json",
+      "bytes": 48325,
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26"
+    },
+    {
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/reader.json",
+      "bytes": 43137,
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8"
+    },
+    {
+      "path": "artifacts/runs/20261012T185934Z-1453/invariant-report.json",
+      "bytes": 20967,
+      "sha256": "1c1eb3c6811d9e689f10d03a7b63355bb2ccfed47c28603295f788afaa1cf4e2"
+    },
+    {
+      "path": "artifacts/runs/20261012T222311Z-1412/scenario-report.json",
+      "bytes": 1499,
+      "sha256": "79b9447fb4d7e75980146f34c4ce83208716fac02b668097cfcd8f55f8c07cc9"
+    },
+    {
+      "path": "artifacts/runs/20261012T222250Z-1431/contract-validation.json",
+      "bytes": 144,
+      "sha256": "ec6a0a4689e7cc386adc515fc3b36fbc6939a4e3be619fa4adbb8508641da559"
+    }
+  ]
+}

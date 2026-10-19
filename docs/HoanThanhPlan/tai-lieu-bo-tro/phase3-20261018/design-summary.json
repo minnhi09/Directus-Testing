@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-18",
+  "design_only": true,
+  "case_count": 257,
+  "core_case_count": 221,
+  "pairwise_reference_case_count": 36,
+  "pairwise_subset_count": 9,
+  "groups": {
+    "field-name": 18,
+    "field-title": 18,
+    "field-score": 22,
+    "field-status": 14,
+    "field-published_at": 12,
+    "field-metadata": 12,
+    "field-internal_notes": 4,
+    "field-category": 10,
+    "positive-operations": 10,
+    "authorization": 59,
+    "authentication": 2,
+    "query": 16,
+    "query-boundary": 10,
+    "stateful": 3,
+    "robustness": 3,
+    "contract": 8,
+    "pairwise-reference": 36
+  },
+  "oracle_readiness": {
+    "ASSERTABLE": 142,
+    "OPEN": 47,
+    "CONDITIONAL": 68
+  },
+  "core_oracle_readiness": {
+    "ASSERTABLE": 118,
+    "OPEN": 47,
+    "CONDITIONAL": 56
+  },
+  "priority": {
+    "P1": 151,
+    "P0": 106
+  },
+  "partition_count": 48,
+  "boundary_point_count": 34,
+  "decision_rule_count": 69,
+  "existing_inventory_items": 20,
+  "BR_designed": 26,
+  "BR_executed_new": 0,
+  "API_requests_executed_new": 0,
+  "pair_coverage_structural": "37/37",
+  "runtime_cost_measured": false
+}

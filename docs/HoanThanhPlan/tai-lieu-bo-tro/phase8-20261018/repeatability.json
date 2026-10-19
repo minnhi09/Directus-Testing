@@ -1,0 +1,11 @@
+{
+  "ordered_case_ids_equal": true,
+  "verdicts_equal": true,
+  "fixture-ids-input.json_equal": true,
+  "schema-editor-input.json_equal": true,
+  "schema-reader-input.json_equal": true,
+  "execution-config.json_equal": true,
+  "baseline-articles.json_equal": true,
+  "baseline-categories.json_equal": true,
+  "note": "Same code/templates/order/budget/fixture; temporary probe text and generated IDs may differ by run ID."
+}

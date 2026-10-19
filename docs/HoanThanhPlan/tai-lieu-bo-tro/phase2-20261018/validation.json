@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-18",
+  "scope": "documentation/static review; no lab/test execution",
+  "checks": {
+    "all_review_inputs_unchanged": {
+      "passed": true,
+      "details": {
+        "file_count": 31,
+        "changed": []
+      }
+    },
+    "phase0_selected_original_evidence_unchanged": {
+      "passed": true,
+      "details": {
+        "file_count": 177,
+        "changed": []
+      }
+    },
+    "all_26_br_have_generator_oracle_and_source": {
+      "passed": true
+    },
+    "ur_ac_gap_question_test_ids_preserved": {
+      "passed": true
+    },
+    "actor_inventory_34_and_editor_campaign_10": {
+      "passed": true
+    },
+    "all_actor_refs_resolve": {
+      "passed": true
+    },
+    "raw_scope_only_guided_11_annotations": {
+      "passed": true
+    },
+    "stateful_has_actual_parent_transition_evidence": {
+      "passed": true
+    },
+    "seven_cases_match_original_events_hash_seed_version_and_checks": {
+      "passed": true,
+      "details": {
+        "case_count": 7,
+        "errors": []
+      }
+    },
+    "gen07_positive_timestamp_empty_observation": {
+      "passed": true
+    },
+    "selected_case_extract_has_no_credential_header_or_secret_key": {
+      "passed": true,
+      "details": []
+    },
+    "phase1_and_phase2_documentation_checklists_updated": {
+      "passed": true
+    },
+    "current_document_local_links_exist": {
+      "passed": true,
+      "details": {
+        "documents": 11,
+        "links": 224,
+        "broken": []
+      }
+    },
+    "new_markdown_table_columns_consistent": {
+      "passed": true,
+      "details": []
+    }
+  },
+  "output_sha256": {
+    "02-case-sinh-dai-dien.md": "686b8b4a148608aa63b3c434ee14f5a5b334c54c1af27a6ae51bcdd0e1504b22",
+    "02-danh-gia-openapi-va-sinh-test.md": "c182789f5ad47a139b2e6afeffbaea57eb6981db1ea5580347a899e669dada25",
+    "02-ma-tran-rang-buoc.csv": "70a95417a5acb1afe91cbca5c82b3796e30d55861c7b43e43a2c1bf00a1aecab",
+    "02-ma-tran-rang-buoc.md": "54412417f3f9137eac90e1dee9776500787c7747e6e3aacffba06ac05499647b",
+    "02-operation-inventory.csv": "bc8400492439ef22555e19bc0da62dc143c1691321cd709d537816401c16ea66",
+    "02-quy-tac-overlay.md": "c903812c3c617356b0087cdbc83faf940ad12af65167dd4b754eebb6035478de",
+    "tai-lieu-bo-tro/phase2-20261018/baseline-source/api/src/services/specifications.ts": "b8ebc8278ce0ce1526c7da90cce15ee4fea955696e0911575622a1e3487e9a81",
+    "tai-lieu-bo-tro/phase2-20261018/baseline-source-manifest.json": "44c044fd6f0bf1f3a0198d5914dfc5762e4cb8cd25e3028f0f95be113ac40ed7",
+    "tai-lieu-bo-tro/phase2-20261018/raw-guided-diff.json": "4705804941f6eef7221d4a0f21b5ad30f948b565039f9358f45c81bad94a9887",
+    "tai-lieu-bo-tro/phase2-20261018/schema-review.json": "408a1f3b4de788b5829c802f85fcd8d5bef733e3a464714cd747065a9d8b6c62",
+    "tai-lieu-bo-tro/phase2-20261018/selected-generated-cases.json": "add31c44b14d12af1d5faa8e1f60b4fc1b5eb356cd34f4297807e8bc09e14494",
+    "tai-lieu-bo-tro/phase2-20261018/source-manifest-before.json": "497a79272d3102586e1500338be48d48b4d0d0e17c0045639594d2f82eff30dd"
+  },
+  "all_passed": true
+}

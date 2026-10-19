@@ -1,0 +1,403 @@
+{
+  "model_id": "QRY-PW-v1",
+  "actor": "editor",
+  "path": "GET /items/qa_articles",
+  "factors": [
+    {
+      "name": "filter",
+      "values": [
+        "none",
+        "draft",
+        "published"
+      ]
+    },
+    {
+      "name": "sort",
+      "values": [
+        "id",
+        "title,id",
+        "-score,id"
+      ]
+    },
+    {
+      "name": "fields",
+      "values": [
+        "id,title",
+        "id,title,status,score"
+      ]
+    },
+    {
+      "name": "pagination",
+      "values": [
+        "limit3-offset3",
+        "limit3-page2"
+      ]
+    }
+  ],
+  "constraints": [
+    "Pagination encoded as one mutually exclusive bundle; no simultaneous page+offset in model",
+    "Fixed clean seeded dataset, actor Editor, query positive only; no other excluded Cartesian rows"
+  ],
+  "exhaustive_count": 36,
+  "pairwise_count": 9,
+  "feasible_pair_count": 37,
+  "covered_pair_count": 37,
+  "missing_pairs": [],
+  "pairs": [
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "sort",
+      "value_b": "-score,id",
+      "covered_by": [
+        "P3-PW-23"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "sort",
+      "value_b": "id",
+      "covered_by": [
+        "P3-PW-13"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "sort",
+      "value_b": "title,id",
+      "covered_by": [
+        "P3-PW-18"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "fields",
+      "value_b": "id,title",
+      "covered_by": [
+        "P3-PW-13",
+        "P3-PW-18"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "fields",
+      "value_b": "id,title,status,score",
+      "covered_by": [
+        "P3-PW-23"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-13",
+        "P3-PW-23"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "draft",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-18"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "sort",
+      "value_b": "-score,id",
+      "covered_by": [
+        "P3-PW-12"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "sort",
+      "value_b": "id",
+      "covered_by": [
+        "P3-PW-01"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "sort",
+      "value_b": "title,id",
+      "covered_by": [
+        "P3-PW-05"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "fields",
+      "value_b": "id,title",
+      "covered_by": [
+        "P3-PW-01",
+        "P3-PW-05"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "fields",
+      "value_b": "id,title,status,score",
+      "covered_by": [
+        "P3-PW-12"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-01",
+        "P3-PW-05"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "none",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-12"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "sort",
+      "value_b": "-score,id",
+      "covered_by": [
+        "P3-PW-33"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "sort",
+      "value_b": "id",
+      "covered_by": [
+        "P3-PW-28"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "sort",
+      "value_b": "title,id",
+      "covered_by": [
+        "P3-PW-31"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "fields",
+      "value_b": "id,title",
+      "covered_by": [
+        "P3-PW-33"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "fields",
+      "value_b": "id,title,status,score",
+      "covered_by": [
+        "P3-PW-28",
+        "P3-PW-31"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-31",
+        "P3-PW-33"
+      ]
+    },
+    {
+      "factor_a": "filter",
+      "value_a": "published",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-28"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "-score,id",
+      "factor_b": "fields",
+      "value_b": "id,title",
+      "covered_by": [
+        "P3-PW-33"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "-score,id",
+      "factor_b": "fields",
+      "value_b": "id,title,status,score",
+      "covered_by": [
+        "P3-PW-12",
+        "P3-PW-23"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "-score,id",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-23",
+        "P3-PW-33"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "-score,id",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-12"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "id",
+      "factor_b": "fields",
+      "value_b": "id,title",
+      "covered_by": [
+        "P3-PW-01",
+        "P3-PW-13"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "id",
+      "factor_b": "fields",
+      "value_b": "id,title,status,score",
+      "covered_by": [
+        "P3-PW-28"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "id",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-01",
+        "P3-PW-13"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "id",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-28"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "title,id",
+      "factor_b": "fields",
+      "value_b": "id,title",
+      "covered_by": [
+        "P3-PW-05",
+        "P3-PW-18"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "title,id",
+      "factor_b": "fields",
+      "value_b": "id,title,status,score",
+      "covered_by": [
+        "P3-PW-31"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "title,id",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-05",
+        "P3-PW-31"
+      ]
+    },
+    {
+      "factor_a": "sort",
+      "value_a": "title,id",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-18"
+      ]
+    },
+    {
+      "factor_a": "fields",
+      "value_a": "id,title",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-01",
+        "P3-PW-05",
+        "P3-PW-13",
+        "P3-PW-33"
+      ]
+    },
+    {
+      "factor_a": "fields",
+      "value_a": "id,title",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-18"
+      ]
+    },
+    {
+      "factor_a": "fields",
+      "value_a": "id,title,status,score",
+      "factor_b": "pagination",
+      "value_b": "limit3-offset3",
+      "covered_by": [
+        "P3-PW-23",
+        "P3-PW-31"
+      ]
+    },
+    {
+      "factor_a": "fields",
+      "value_a": "id,title,status,score",
+      "factor_b": "pagination",
+      "value_b": "limit3-page2",
+      "covered_by": [
+        "P3-PW-12",
+        "P3-PW-28"
+      ]
+    }
+  ],
+  "lower_bound": 9,
+  "lower_bound_reason": "filter x sort has9 combinations; each row covers only one of these9 pairs; constructed subset has9 rows",
+  "structural_case_reduction_percent": 75,
+  "runtime_measured": false,
+  "no_claim_about_defect_detection_rate": true
+}

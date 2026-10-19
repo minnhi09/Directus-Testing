@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "date": "2026-10-18",
+  "status": "passed",
+  "checks": {
+    "python_ast": {
+      "status": "passed",
+      "files": 6
+    },
+    "bash_syntax": "passed",
+    "powershell_syntax": "passed: setup-windows.ps1 and run-lab.ps1 parsed with PowerShell Language.Parser",
+    "offline_unit_tests": {
+      "host": 13,
+      "host_exit_code": 0,
+      "pinned_runner": 13,
+      "pinned_runner_exit_code": 0,
+      "evidence": [
+        "unit-test-output.txt",
+        "unit-test-pinned-output.txt"
+      ]
+    },
+    "pinned_contract_probe": "passed; network disabled",
+    "git_diff_check": "passed",
+    "source_checkpoint_files": 17,
+    "source_zip": "passed; file hashes match checkout",
+    "runtime_report_copies": {
+      "count": 178,
+      "hashes_match_originals": true
+    },
+    "repeatability": {
+      "runs": [
+        "20261018T090954Z-1705",
+        "20261018T091253Z-1524"
+      ],
+      "same_harness_inputs": true,
+      "same_execution_config": true,
+      "same_baseline_snapshot": true,
+      "same_order_and_verdicts": true,
+      "different_generated_probe_ids_expected": true,
+      "scope": "two sequential runs on this Windows machine; does not establish statistical flake rate"
+    },
+    "case_table": {
+      "total": 257,
+      "passed": 58,
+      "not_run": 199
+    },
+    "catalog_errata": "passed; 4 projection corrections; source design and oracle preserved",
+    "historical_evidence_files_unchanged": 177,
+    "mutation_lock": "released",
+    "runtime_zip": {
+      "entries": 3470,
+      "integrity": "passed",
+      "bearer_scan": "no credential-like bearer values found; login responses not recorded by Python code"
+    },
+    "active_document_links": "passed",
+    "phase4_checklist_items": 9,
+    "portable_replay_source": "3 derived recorder chains, sanitized headers, original schema hash; static checks only"
+  },
+  "limits": [
+    "No second-machine installation or full campaign.",
+    "After repeat: smoke guard tested separately, admin_usage descriptive label clarified.",
+    "Cleanup-failure stop is regression-tested with mocks; real budget cleanup/restore were verified.",
+    "Four export catalog cases lack full row parser oracle and remain NOT_RUN in the short suite."
+  ]
+}

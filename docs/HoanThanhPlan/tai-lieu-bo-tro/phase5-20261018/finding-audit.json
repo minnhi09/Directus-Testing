@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "audit_scope": "existing Phase 4 records, no new network/runtime execution",
+  "runtime_source": "20261018T091538Z-1506",
+  "invariant_summary": {
+    "passed": 9,
+    "failed": 2,
+    "blocked": 0,
+    "total": 11
+  },
+  "groups": [
+    {
+      "id": "P5-F01",
+      "type": "robustness_candidate",
+      "state": "OPEN",
+      "statuses": [
+        500,
+        200,
+        200
+      ],
+      "root_cause_level": "static validation/type gap supported; exact throw in 18 October run not stack-verified"
+    },
+    {
+      "id": "P5-F02",
+      "type": "schema_response_shape",
+      "state": "OPEN",
+      "root_cause_level": "runtime controller and generator branch directly compared",
+      "instances": [
+        {
+          "collection": "qa_categories",
+          "observed_data_type": "object",
+          "raw_schema_data_type": "array",
+          "guided_schema_data_type": "array",
+          "response_artifact": "20261018T091538Z-1506/python-http/response-81.json"
+        },
+        {
+          "collection": "qa_articles",
+          "observed_data_type": "object",
+          "raw_schema_data_type": "array",
+          "guided_schema_data_type": "array",
+          "response_artifact": "20261018T091538Z-1506/python-http/response-82.json"
+        }
+      ]
+    },
+    {
+      "id": "P5-F03",
+      "type": "schema_status",
+      "state": "OPEN",
+      "observed_status": 204,
+      "documented_statuses": [
+        "200",
+        "401",
+        "404"
+      ]
+    },
+    {
+      "id": "P5-F04",
+      "type": "schema_media_type",
+      "state": "OPEN",
+      "observed_type": "text/csv",
+      "documented_types": [
+        "application/json"
+      ]
+    }
+  ],
+  "counting": {
+    "sut_groups": 4,
+    "open_groups": 4,
+    "robustness_candidates": 1,
+    "contract_groups": 3,
+    "confirmed_business_defects": 0,
+    "all_campaign_defects_counted": false
+  },
+  "aggregate_schema": {
+    "properties": [
+      "count",
+      "countDistinct",
+      "sum",
+      "sumDistinct",
+      "avg",
+      "avgDistinct",
+      "min",
+      "max"
+    ],
+    "additional_properties_explicitly_closed": false
+  },
+  "replays": [
+    {
+      "run_id": "20261018T091638Z-1712",
+      "case_id": "qfqspn",
+      "status": "reproduced",
+      "scope": "single_request",
+      "source_status": 200,
+      "actual_status": 200,
+      "checks": [
+        {
+          "name": "response_schema_conformance",
+          "failure_type": "JsonSchemaError"
+        }
+      ]
+    },
+    {
+      "run_id": "20261018T091711Z-433",
+      "case_id": "Z6yNal",
+      "status": "reproduced",
+      "scope": "full_recorded_parent_chain",
+      "source_status": 204,
+      "actual_status": 204,
+      "checks": [
+        {
+          "name": "status_code_conformance",
+          "failure_type": "UndefinedStatusCode"
+        }
+      ]
+    },
+    {
+      "run_id": "20261018T092051Z-1565",
+      "case_id": "5Ez1Ry",
+      "status": "no_source_failure",
+      "scope": "full_recorded_parent_chain",
+      "source_status": 204,
+      "actual_status": 204,
+      "checks": []
+    }
+  ]
+}

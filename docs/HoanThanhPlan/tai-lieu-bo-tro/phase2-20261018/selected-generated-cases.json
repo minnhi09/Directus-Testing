@@ -1,0 +1,991 @@
+[
+  {
+    "id": "GEN-01",
+    "kind": "positive",
+    "case_id": "MsrYGI",
+    "seed": 101,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+    "source_line": 162,
+    "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+    "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+    "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+    "request": {
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query": {
+        "deep": "{}"
+      }
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.002530163999836077,
+        "mode": "positive"
+      },
+      "components": {
+        "query": {
+          "mode": "positive"
+        }
+      },
+      "phase": {
+        "name": "stateful",
+        "data": {
+          "description": "Positive test case"
+        }
+      }
+    },
+    "parent_id": null,
+    "is_transition_applied": false,
+    "transition": null,
+    "actual_status": 200,
+    "content_type": [
+      "application/json; charset=utf-8"
+    ],
+    "response_summary": {
+      "body_sha256": "a705ff8af0339fbbc671398e29020024410242f00013e375d1c3f81aa3fcf62d",
+      "body_bytes": 3160,
+      "data_type": "list",
+      "data_count": 11,
+      "data_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "positive_data_acceptance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ]
+  },
+  {
+    "id": "GEN-02",
+    "kind": "negative",
+    "case_id": "vMx2xh",
+    "seed": 101,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+    "source_line": 62,
+    "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+    "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+    "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+    "request": {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "body": {
+        "$base64": "AA=="
+      },
+      "media_type": "application/json"
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.0106619079997472,
+        "mode": "negative"
+      },
+      "components": {
+        "body": {
+          "mode": "negative"
+        }
+      },
+      "phase": {
+        "name": "fuzzing",
+        "data": {
+          "description": "Invalid syntax: random bytes",
+          "parameter_location": "body",
+          "mutations": [
+            {
+              "parameter_location": "body",
+              "schema_pointer": "",
+              "channel": "schema",
+              "operator": "syntax_fuzzing"
+            }
+          ]
+        }
+      }
+    },
+    "parent_id": null,
+    "is_transition_applied": false,
+    "transition": null,
+    "actual_status": 400,
+    "content_type": [
+      "application/json; charset=utf-8"
+    ],
+    "response_summary": {
+      "body_sha256": "f58497b768f8a5419c5d8b1d55a05b92f453b0420e38c1241d4ca8a35f156027",
+      "body_bytes": 207,
+      "data_type": "NoneType"
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "failure",
+        "failure_type": "UndefinedStatusCode",
+        "failure_title": "Undocumented HTTP status code"
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "positive_data_acceptance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ]
+  },
+  {
+    "id": "GEN-03",
+    "kind": "boundary-containing",
+    "case_id": "pL46PA",
+    "seed": 303,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T185958Z-355/raw/seed-303/schemathesis-events.ndjson",
+    "source_line": 692,
+    "source_sha256": "40edf9778ec7eecfadc504112439c5ec33d7eade2b5e071d7d308eb24250b5d2",
+    "schema_path": "artifacts/runs/20261012T185958Z-355/raw/seed-303/schema-raw.json",
+    "schema_sha256": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+    "request": {
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "query": {
+        "export": "yaml",
+        "backlink": "false",
+        "limit": -1,
+        "meta": "*"
+      }
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.0034879350005212473,
+        "mode": "positive"
+      },
+      "components": {
+        "query": {
+          "mode": "positive"
+        }
+      },
+      "phase": {
+        "name": "fuzzing",
+        "data": {
+          "description": "Positive test case"
+        }
+      }
+    },
+    "parent_id": null,
+    "is_transition_applied": false,
+    "transition": null,
+    "actual_status": 200,
+    "content_type": [
+      "text/yaml; charset=utf-8"
+    ],
+    "response_summary": {
+      "body_sha256": "b78f9580466abac68201c1cf0f607ea99843bc093590a3954aeaaad5f02d61a0",
+      "body_bytes": 1942,
+      "json_decodable": false
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "failure",
+        "failure_type": "UndefinedContentType",
+        "failure_title": "Undocumented Content-Type"
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "positive_data_acceptance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ]
+  },
+  {
+    "id": "GEN-04",
+    "kind": "response-mismatch",
+    "case_id": "qfqspn",
+    "seed": 101,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+    "source_line": 14,
+    "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+    "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+    "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+    "request": {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "body": {
+        "title": "Guided Schemathesis article",
+        "status": "draft",
+        "score": 3,
+        "published_at": null,
+        "metadata": {
+          "source": "guided",
+          "fixture_version": "r06-k05-v2"
+        },
+        "internal_notes": "guided probe",
+        "category": 1
+      },
+      "media_type": "application/json"
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.0006192050004756311,
+        "mode": "positive"
+      },
+      "phase": {
+        "name": "examples",
+        "data": {
+          "description": "Positive test case"
+        }
+      }
+    },
+    "parent_id": null,
+    "is_transition_applied": false,
+    "transition": null,
+    "actual_status": 200,
+    "content_type": [
+      "application/json; charset=utf-8"
+    ],
+    "response_summary": {
+      "body_sha256": "42b7d92e8c77a41deecb870edde00537f47cb9c9ddbba3bc5190a255f6d82ce1",
+      "body_bytes": 210,
+      "data_type": "dict",
+      "data_fields": [
+        "category",
+        "id",
+        "internal_notes",
+        "metadata",
+        "published_at",
+        "score",
+        "status",
+        "title"
+      ],
+      "data_id": 13
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "failure",
+        "failure_type": "JsonSchemaError",
+        "failure_title": "Response violates schema"
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "positive_data_acceptance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ]
+  },
+  {
+    "id": "GEN-05",
+    "kind": "stateful-consumer",
+    "case_id": "Z6yNal",
+    "seed": 101,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+    "source_line": 162,
+    "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+    "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+    "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+    "request": {
+      "method": "DELETE",
+      "path": "/items/qa_articles/{id}",
+      "path_parameters": {
+        "id": 7
+      }
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.0009674240000094869,
+        "mode": "positive"
+      },
+      "phase": {
+        "name": "stateful",
+        "data": {
+          "description": "Positive test case"
+        }
+      }
+    },
+    "parent_id": "MsrYGI",
+    "is_transition_applied": true,
+    "transition": {
+      "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+      "parent_id": "MsrYGI",
+      "is_inferred": true,
+      "parameters": {
+        "path_parameters": {
+          "id": {
+            "definition": "$response.body#/data/*/id",
+            "value": {
+              "values": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ]
+            },
+            "is_required": true
+          }
+        }
+      }
+    },
+    "actual_status": 204,
+    "content_type": null,
+    "response_summary": {
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_bytes": 0,
+      "json_decodable": false
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "failure",
+        "failure_type": "UndefinedStatusCode",
+        "failure_title": "Undocumented HTTP status code"
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "positive_data_acceptance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ],
+    "parent": {
+      "id": "GEN-05-PARENT",
+      "kind": "producer",
+      "case_id": "MsrYGI",
+      "seed": 101,
+      "actor": "editor",
+      "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+      "source_line": 162,
+      "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+      "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+      "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+      "request": {
+        "method": "GET",
+        "path": "/items/qa_articles",
+        "query": {
+          "deep": "{}"
+        }
+      },
+      "generation_meta": {
+        "generation": {
+          "time": 0.002530163999836077,
+          "mode": "positive"
+        },
+        "components": {
+          "query": {
+            "mode": "positive"
+          }
+        },
+        "phase": {
+          "name": "stateful",
+          "data": {
+            "description": "Positive test case"
+          }
+        }
+      },
+      "parent_id": null,
+      "is_transition_applied": false,
+      "transition": null,
+      "actual_status": 200,
+      "content_type": [
+        "application/json; charset=utf-8"
+      ],
+      "response_summary": {
+        "body_sha256": "a705ff8af0339fbbc671398e29020024410242f00013e375d1c3f81aa3fcf62d",
+        "body_bytes": 3160,
+        "data_type": "list",
+        "data_count": 11,
+        "data_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "negative_data_rejection",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "positive_data_acceptance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "unsupported_method",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "GEN-06",
+    "kind": "stateful-post-array-consumer",
+    "case_id": "5Ez1Ry",
+    "seed": 101,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+    "source_line": 180,
+    "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+    "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+    "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+    "request": {
+      "method": "DELETE",
+      "path": "/items/qa_categories/{id}",
+      "path_parameters": {
+        "id": 6545
+      }
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.0006409979996533366,
+        "mode": "positive"
+      },
+      "phase": {
+        "name": "stateful",
+        "data": {
+          "description": "Positive test case"
+        }
+      }
+    },
+    "parent_id": "EerNvl",
+    "is_transition_applied": true,
+    "transition": {
+      "id": "POST /items/qa_categories -> [200] DeleteItemsQaCategories -> DELETE /items/qa_categories/{id}",
+      "parent_id": "EerNvl",
+      "is_inferred": true,
+      "parameters": {
+        "path_parameters": {
+          "id": {
+            "definition": "$response.body#/data/*/id",
+            "value": {
+              "values": [
+                6545,
+                43173286,
+                43173287
+              ]
+            },
+            "is_required": true
+          }
+        }
+      }
+    },
+    "actual_status": 204,
+    "content_type": null,
+    "response_summary": {
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_bytes": 0,
+      "json_decodable": false
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "positive_data_acceptance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ],
+    "parent": {
+      "id": "GEN-06-PARENT",
+      "kind": "producer",
+      "case_id": "EerNvl",
+      "seed": 101,
+      "actor": "editor",
+      "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+      "source_line": 180,
+      "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+      "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schema-guided.json",
+      "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+      "request": {
+        "method": "POST",
+        "path": "/items/qa_categories",
+        "body": [
+          {
+            "\ud9f7\udee8\"\udb33\udf31\uda66\udeac\u007f": {
+              "\u36d0_\ud82e\udf09": false,
+              "\ud8bf\udd40:^A\u00c4\u00cc\udb15\udddc\ud9f5\uddb2\u0000\u00afF\u00a9Go": "\uda90\udd53\ud839\udd5aX\ud962\udf51\u00e2\u00a1\u68a8\u00dc\u007f",
+              "\u009a": [
+                null,
+                null,
+                false
+              ]
+            },
+            "\u001a \udbfc\udebb": {
+              "&\n": "",
+              "\u008c$": true,
+              "'\u00cd\u007f\uda26\udd29T\udb79\udd9c\u00a5|/\u00c2\u008f\u007f": true
+            },
+            "\u00c3\u00fc": {},
+            "": null,
+            "name": "\udb9c\udc65\u000bW5\u0097"
+          },
+          {
+            "\ud931\udee0": [
+              {
+                "\u000f": 277316831889,
+                "\u0093\u00c3\uda3c\uddeci\u001c\u00bb\u00cc": 7.98187774714204e-307,
+                "\ud889\udc98\u0081\u00f2\u0012\u31f6\u00ac\u00ee+s": 5.5966098245635496e+16
+              },
+              {},
+              [
+                -2797,
+                false
+              ]
+            ],
+            "": {},
+            "\u00f9\ud99f\ude25P\u0099\u00c4": {},
+            "\u0096\u00f9a&\"\u00da\u00fe0\u0014\u00e9\u00ce7": [
+              "\u00b2\udadc\udfe9\udb91\udee0\u0087\ud925\udd72\udbef\uddef",
+              -1.1754943508222875e-38,
+              null
+            ],
+            "\u00907": {
+              "": null,
+              "\u0012\uda1f\udc05\udb3f\udf6c1": null,
+              ")]\u00ee\u00f5\u000f\ud961\udc42": -2111155641885
+            },
+            "name": "\u00b5"
+          },
+          {
+            "\uda35\udcedr": [],
+            "\u00e8": {
+              "\u0088$\b\u00eb\ud931\udee4s\u0014pR\u000e\u00f6\u00d2\u00a9!^\u008aB\u00fd": {},
+              "\ud863\udcd2\uda45\udc8foe\u001ejE\ud995\udf2d": null,
+              "": null
+            },
+            "#\u0087\t0\ud8e1\udfae\u0082L\u00ee\u001f\u00e4<\u00e3\u00b29~\u00c7\u00f0'": {
+              "\u00b8X\uda8b\udc9a\u0091\u00fa{:A~\u001f\t\uda94\udfb6\udb95\udd6e\u0088\u00ad": [],
+              "\u00b2": 17841461553531,
+              "H\uda6c\udd3e\u00a8\u00a5\u00f0\u00f0\u0017q\u00b3\uda2e\udcbe\u00fe": 4.578922224931463e+16
+            },
+            "": true,
+            "Z": {},
+            "name": "\ud955\udf79",
+            "id": 6545
+          }
+        ],
+        "media_type": "application/json"
+      },
+      "generation_meta": {
+        "generation": {
+          "time": 0.03560989800007519,
+          "mode": "positive"
+        },
+        "components": {
+          "body": {
+            "mode": "positive"
+          }
+        },
+        "phase": {
+          "name": "stateful",
+          "data": {
+            "description": "Positive test case"
+          }
+        }
+      },
+      "parent_id": null,
+      "is_transition_applied": false,
+      "transition": null,
+      "actual_status": 200,
+      "content_type": [
+        "application/json; charset=utf-8"
+      ],
+      "response_summary": {
+        "body_sha256": "d97a42c1f78934725e54cd097e335a1731340aaafbc15c27675db1c2db232687",
+        "body_bytes": 104,
+        "data_type": "list",
+        "data_count": 3,
+        "data_ids": [
+          6545,
+          43173286,
+          43173287
+        ]
+      },
+      "checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "negative_data_rejection",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "positive_data_acceptance",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        },
+        {
+          "name": "unsupported_method",
+          "status": "success",
+          "failure_type": null,
+          "failure_title": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "GEN-07",
+    "kind": "timestamp-format-observation",
+    "case_id": "mmMmLr",
+    "seed": 303,
+    "actor": "editor",
+    "source_events": "artifacts/runs/20261012T190350Z-1047/guided/seed-303/schemathesis-events.ndjson",
+    "source_line": 122,
+    "source_sha256": "81d5178857642eddcaa37c4d155113cd698b627c9d0cf50fc862e4de941f9bae",
+    "schema_path": "artifacts/runs/20261012T190350Z-1047/guided/seed-303/schema-guided.json",
+    "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+    "request": {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "body": [
+        {
+          "\u00d03": {},
+          "1e100": [],
+          "internal_notes": null,
+          "status": "E\u008a\u009b\u008e",
+          "score": 63733878662,
+          "published_at": "",
+          "title": "\u00c8\n\udade\udf39?\u00f0\uda9e\udc55v\u001c",
+          "id": 59902
+        },
+        {
+          "": [
+            []
+          ],
+          "\u00db)\u00ff~\u00a3V": [],
+          "\u0004A\u00fe": [],
+          "\u00d4\uda35\udded\u00a6\u00e0": null,
+          "\u00c0\ud9cc\udd77\ud843\uddec\ud973\udd1a|": -39861759673,
+          "score": -21649,
+          "title": ""
+        }
+      ],
+      "media_type": "application/json"
+    },
+    "generation_meta": {
+      "generation": {
+        "time": 0.008872583000083978,
+        "mode": "positive"
+      },
+      "components": {
+        "body": {
+          "mode": "positive"
+        }
+      },
+      "phase": {
+        "name": "stateful",
+        "data": {
+          "description": "Positive test case"
+        }
+      }
+    },
+    "parent_id": null,
+    "is_transition_applied": false,
+    "transition": null,
+    "actual_status": 400,
+    "content_type": [
+      "application/json; charset=utf-8"
+    ],
+    "response_summary": {
+      "body_sha256": "435b2d8194ac72f8cd61028bf91f3068bdffd5b3753193c7dc863da035863f76",
+      "body_bytes": 415,
+      "data_type": "NoneType"
+    },
+    "checks": [
+      {
+        "name": "not_a_server_error",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "negative_data_rejection",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      },
+      {
+        "name": "unsupported_method",
+        "status": "success",
+        "failure_type": null,
+        "failure_title": null
+      }
+    ]
+  }
+]

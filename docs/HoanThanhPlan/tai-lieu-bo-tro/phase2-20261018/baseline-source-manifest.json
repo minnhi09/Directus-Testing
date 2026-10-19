@@ -1,0 +1,10 @@
+{
+  "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "files": [
+    {
+      "path": "api/src/services/specifications.ts",
+      "git_blob": "6854b8a2ddc41a0dfc4d4866df9876e816d0aa46",
+      "sha256": "b8ebc8278ce0ce1526c7da90cce15ee4fea955696e0911575622a1e3487e9a81"
+    }
+  ]
+}

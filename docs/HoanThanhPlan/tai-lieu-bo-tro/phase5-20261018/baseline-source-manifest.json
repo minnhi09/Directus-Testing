@@ -1,0 +1,76 @@
+{
+  "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "acquisition": "git show <pinned SHA>:<path>; no checkout or upstream changes",
+  "files": [
+    {
+      "path": "api/src/controllers/items.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "e62c1f231c2f262b0c5830c2d1140b372a0725d7",
+      "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+      "lines": 253
+    },
+    {
+      "path": "api/src/services/specifications.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "6854b8a2ddc41a0dfc4d4866df9876e816d0aa46",
+      "sha256": "b8ebc8278ce0ce1526c7da90cce15ee4fea955696e0911575622a1e3487e9a81",
+      "lines": 660
+    },
+    {
+      "path": "api/src/middleware/respond.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "c3a3d2a57c515479857551fab655d9e6856eeff7",
+      "sha256": "fd39a4e33d7c69100f070222b705ea27dbec45df290fb5e66be83fc5a8f3700e",
+      "lines": 127
+    },
+    {
+      "path": "api/src/utils/sanitize-query.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "46ea80b4e89773b5dba43b3fc468a1f8b2b12ffa",
+      "sha256": "2af1f89ef063556315f13d167ef3e6bdb839f434af652d35fd2551b490c53614",
+      "lines": 303
+    },
+    {
+      "path": "api/src/utils/validate-query.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "11b3656572ed831a4993040b9892c2244a92a986",
+      "sha256": "9db40b0118ec522c347c7fca6787fb38f3dd7fddc7a0dfe468e558e65e96438e",
+      "lines": 325
+    },
+    {
+      "path": "api/src/database/run-ast/lib/apply-query/aggregate.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "3fa2f4a91797187803ffcecae182183aa2a6feed",
+      "sha256": "d4f02007da25e9cf8aa2a68c3f176bc1774fe9f1aee56a58717b59361e0fbc9d",
+      "lines": 65
+    },
+    {
+      "path": "api/src/middleware/error-handler.ts",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "97dcb8c09ae671937c29953ca6dc569e872c7aac",
+      "sha256": "ebbffe7d276b99bf81b6cba4bb52d0a67b0b99f8cbc2151adb4623d77f7fecc6",
+      "lines": 148
+    },
+    {
+      "path": "packages/specs/src/parameters/aggregate.yaml",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "68b8d33cd5372e15188ee9d2bae390c1c6de2821",
+      "sha256": "dca47d959ed25aa5bb96ee2bdc22975ab744544d60689b07df3aad2f28eb666d",
+      "lines": 68
+    },
+    {
+      "path": "packages/specs/src/paths/items/item.yaml",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "7c11c2fbf1015155e34571d5c150c31e445a0cc6",
+      "sha256": "785a5b37410a158b7548c3974ec000592c42c7e5511923fcf6cc5ff8264040a9",
+      "lines": 80
+    },
+    {
+      "path": "packages/specs/src/paths/items/items.yaml",
+      "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "git_blob": "1f3a74ef2b0ad5c412926fac4c30291fb7e3ec14",
+      "sha256": "b8ad11c563ce2bcbc7f02740db730e2fdfc3b67b55adc00de5e0791148fd1d81",
+      "lines": 104
+    }
+  ]
+}

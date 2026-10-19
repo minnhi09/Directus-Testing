@@ -1,0 +1,25 @@
+{
+  "commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "files": [
+    {
+      "path": "packages/errors/src/errors/value-too-long.ts",
+      "sha256": "316c563f930f2787e6074a7ab9745eb84262a6426fa76219605fe161938ace35",
+      "git_blob": "3a99b51217b1ed6c2f91f633e79165eee01619b8"
+    },
+    {
+      "path": "packages/errors/src/errors/invalid-foreign-key.ts",
+      "sha256": "b744f06139bd045762af10ec433729fbcc3ba6e9d592ab1f37608711a1cba5d9",
+      "git_blob": "c1c1b60bc358534bde92bc179b7e67162b9eb359"
+    },
+    {
+      "path": "packages/errors/src/errors/not-null-violation.ts",
+      "sha256": "9a46ae8362a977ba054d711c9bc61778275878d982fdc14acf45c2bde5052de2",
+      "git_blob": "e6bed561a9f49f0d227b94f2623bda3f71ed3dde"
+    },
+    {
+      "path": "packages/errors/src/errors/invalid-payload.ts",
+      "sha256": "76294d7e69bc3b5e466118cf057ab90b56b4b9ff7f1d72b051ea3870e221c640",
+      "git_blob": "11edbdcd4d4a74ded3d90beb4ad0baaa37592bd3"
+    }
+  ]
+}

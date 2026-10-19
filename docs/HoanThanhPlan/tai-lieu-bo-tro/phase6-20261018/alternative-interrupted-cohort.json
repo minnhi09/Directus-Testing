@@ -1,0 +1,28 @@
+{
+  "run_id": "20261012T122826Z-22781",
+  "included_in_primary": false,
+  "reason": "seed 202 interrupted, budget not executed equally",
+  "campaigns": [
+    {
+      "seed": 101,
+      "termination": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "runner_seconds": 1200.140601867999
+    },
+    {
+      "seed": 202,
+      "termination": "interrupted",
+      "runner_exit_code": 130,
+      "restore_exit_code": 0,
+      "runner_seconds": 645.0462647740005
+    },
+    {
+      "seed": 303,
+      "termination": "max_time",
+      "runner_exit_code": 1,
+      "restore_exit_code": 0,
+      "runner_seconds": 1200.054941759001
+    }
+  ]
+}

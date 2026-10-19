@@ -1,0 +1,11 @@
+id,method,path_template,status,cleanup,run_id,artifact,qualification
+P3-OP-01,GET,/items/qa_articles,passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-01.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-02,POST,/items/qa_articles,passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-02.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-03,GET,/items/qa_articles/${target_id},passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-03.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-04,PATCH,/items/qa_articles/${target_id},passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-04.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-05,DELETE,/items/qa_articles/${target_id},passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-05.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-06,GET,/items/qa_categories,passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-06.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-07,POST,/items/qa_categories,passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-07.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-08,GET,/items/qa_categories/${target_id},passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-08.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-09,PATCH,/items/qa_categories/${target_id},passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-09.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"
+P3-OP-10,DELETE,/items/qa_categories/${target_id},passed,passed,p8-20261018-assertable,artifacts/runs/p8-20261018-assertable/case-P3-OP-10.json,"business positive/read-back per designed oracle, not blanket raw-contract PASS"

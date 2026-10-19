@@ -1,0 +1,35 @@
+{
+  "source_sha256": "7c5c6f09181a81e37e6abc143e66eb2107bc6baa0f1965f1ef2bbd7c2e1fa80f",
+  "runtime_catalog_sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+  "changes": [
+    {
+      "case_id": "P3-AUTHZ-DR-042",
+      "field": "request_template.query.fields",
+      "before": "id,title,status,score,published_at,metadata,category",
+      "after": "id,name",
+      "reason": "Projection public của qa_categories phải dùng id,name theo BR-02; tên field article làm hỏng positive control."
+    },
+    {
+      "case_id": "P3-AUTHZ-DR-043",
+      "field": "request_template.query.fields",
+      "before": "id,title,status,score,published_at,metadata,category",
+      "after": "id,name",
+      "reason": "Projection public của qa_categories phải dùng id,name theo BR-02; tên field article làm hỏng positive control."
+    },
+    {
+      "case_id": "P3-AUTHZ-DR-065",
+      "field": "request_template.query.fields",
+      "before": "id,title,status,score,published_at,metadata,category",
+      "after": "id,name",
+      "reason": "Projection public của qa_categories phải dùng id,name theo BR-02; tên field article làm hỏng positive control."
+    },
+    {
+      "case_id": "P3-AUTHZ-DR-066",
+      "field": "request_template.query.fields",
+      "before": "id,title,status,score,published_at,metadata,category",
+      "after": "id,name",
+      "reason": "Projection public của qa_categories phải dùng id,name theo BR-02; tên field article làm hỏng positive control."
+    }
+  ],
+  "source_phase3_preserved": true
+}

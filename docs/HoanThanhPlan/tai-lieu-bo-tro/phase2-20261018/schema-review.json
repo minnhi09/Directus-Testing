@@ -1,0 +1,687 @@
+{
+  "date": "2026-10-18",
+  "method": "static inspection only; no runtime or full OAS validator",
+  "directus_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "actors": [
+    {
+      "actor": "admin",
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/admin.json",
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+      "openapi": "3.0.1",
+      "all_operation_count": 143,
+      "qa_operation_count": 14,
+      "internal_reference_count": 762,
+      "unresolved_references": []
+    },
+    {
+      "actor": "editor",
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/editor.json",
+      "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "openapi": "3.0.1",
+      "all_operation_count": 30,
+      "qa_operation_count": 14,
+      "internal_reference_count": 119,
+      "unresolved_references": []
+    },
+    {
+      "actor": "reader",
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/reader.json",
+      "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8",
+      "openapi": "3.0.1",
+      "all_operation_count": 22,
+      "qa_operation_count": 6,
+      "internal_reference_count": 89,
+      "unresolved_references": []
+    },
+    {
+      "actor": "anonymous",
+      "path": "runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/anonymous.json",
+      "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3",
+      "openapi": "3.0.1",
+      "all_operation_count": 10,
+      "qa_operation_count": 0,
+      "internal_reference_count": 13,
+      "unresolved_references": []
+    }
+  ],
+  "fixture_version": "r06-k05-v2",
+  "fixture_seed_run_id": "20261012T191100Z-757",
+  "fixture_map_sha256": "df6a38444e4d8ea6bd2f9a4bdd31772d3889b6c06316d3cbea17902b51743673",
+  "export_run_id": "20261012T185734Z-1667",
+  "export_manifest": {
+    "schema": 1,
+    "fixture_version": "r06-k05-v2",
+    "actors": {
+      "admin": {
+        "file": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/admin.json",
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "operation_count": 14,
+        "operations": [
+          {
+            "method": "DELETE",
+            "path": "/items/qa_articles",
+            "operation_id": "deleteItemsQaArticles"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_articles",
+            "operation_id": "readItemsQaArticles"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_articles",
+            "operation_id": "updateItemsQaArticles"
+          },
+          {
+            "method": "POST",
+            "path": "/items/qa_articles",
+            "operation_id": "createItemsQaArticles"
+          },
+          {
+            "method": "DELETE",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "deleteSingleItemsQaArticles"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "readSingleItemsQaArticles"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "updateSingleItemsQaArticles"
+          },
+          {
+            "method": "DELETE",
+            "path": "/items/qa_categories",
+            "operation_id": "deleteItemsQaCategories"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_categories",
+            "operation_id": "readItemsQaCategories"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_categories",
+            "operation_id": "updateItemsQaCategories"
+          },
+          {
+            "method": "POST",
+            "path": "/items/qa_categories",
+            "operation_id": "createItemsQaCategories"
+          },
+          {
+            "method": "DELETE",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "deleteSingleItemsQaCategories"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "readSingleItemsQaCategories"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "updateSingleItemsQaCategories"
+          }
+        ]
+      },
+      "editor": {
+        "file": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/editor.json",
+        "sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+        "operation_count": 14,
+        "operations": [
+          {
+            "method": "DELETE",
+            "path": "/items/qa_articles",
+            "operation_id": "deleteItemsQaArticles"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_articles",
+            "operation_id": "readItemsQaArticles"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_articles",
+            "operation_id": "updateItemsQaArticles"
+          },
+          {
+            "method": "POST",
+            "path": "/items/qa_articles",
+            "operation_id": "createItemsQaArticles"
+          },
+          {
+            "method": "DELETE",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "deleteSingleItemsQaArticles"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "readSingleItemsQaArticles"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "updateSingleItemsQaArticles"
+          },
+          {
+            "method": "DELETE",
+            "path": "/items/qa_categories",
+            "operation_id": "deleteItemsQaCategories"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_categories",
+            "operation_id": "readItemsQaCategories"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_categories",
+            "operation_id": "updateItemsQaCategories"
+          },
+          {
+            "method": "POST",
+            "path": "/items/qa_categories",
+            "operation_id": "createItemsQaCategories"
+          },
+          {
+            "method": "DELETE",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "deleteSingleItemsQaCategories"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "readSingleItemsQaCategories"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "updateSingleItemsQaCategories"
+          }
+        ]
+      },
+      "reader": {
+        "file": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/reader.json",
+        "sha256": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8",
+        "operation_count": 6,
+        "operations": [
+          {
+            "method": "GET",
+            "path": "/items/qa_articles",
+            "operation_id": "readItemsQaArticles"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_articles",
+            "operation_id": "updateItemsQaArticles"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "readSingleItemsQaArticles"
+          },
+          {
+            "method": "PATCH",
+            "path": "/items/qa_articles/{id}",
+            "operation_id": "updateSingleItemsQaArticles"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_categories",
+            "operation_id": "readItemsQaCategories"
+          },
+          {
+            "method": "GET",
+            "path": "/items/qa_categories/{id}",
+            "operation_id": "readSingleItemsQaCategories"
+          }
+        ]
+      },
+      "anonymous": {
+        "file": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/anonymous.json",
+        "sha256": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3",
+        "operation_count": 0,
+        "operations": []
+      }
+    }
+  },
+  "baseline_images": {
+    "directus_image": "docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+    "postgres_image": "docker.io/library/postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+    "schemathesis_image": "docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5"
+  },
+  "raw_exactly_scope_only": true,
+  "raw_hash": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+  "guided_hash": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+  "raw_guided_diff_count": 11,
+  "raw_guided_annotation_additions_only": true,
+  "explicit_links_in_guided_paths": 0,
+  "guided_seed101_case_occurrences_by_phase_mode": [
+    {
+      "phase": "examples",
+      "mode": "positive",
+      "case_occurrences": 10
+    },
+    {
+      "phase": "coverage",
+      "mode": "negative",
+      "case_occurrences": 4
+    },
+    {
+      "phase": "coverage",
+      "mode": "positive",
+      "case_occurrences": 6
+    },
+    {
+      "phase": "fuzzing",
+      "mode": "positive",
+      "case_occurrences": 15
+    },
+    {
+      "phase": "fuzzing",
+      "mode": "negative",
+      "case_occurrences": 6
+    },
+    {
+      "phase": "stateful",
+      "mode": "positive",
+      "case_occurrences": 230
+    },
+    {
+      "phase": "stateful",
+      "mode": "negative",
+      "case_occurrences": 5
+    }
+  ],
+  "guided_seed101_applied_transition_count": 8,
+  "guided_seed101_applied_transitions": [
+    {
+      "line": 162,
+      "case_id": "Z6yNal",
+      "parent_id": "MsrYGI",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+        "parent_id": "MsrYGI",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 204
+    },
+    {
+      "line": 166,
+      "case_id": "zDIYQV",
+      "parent_id": "xxq0p4",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+        "parent_id": "xxq0p4",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 204
+    },
+    {
+      "line": 166,
+      "case_id": "FB2hAq",
+      "parent_id": "xxq0p4",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+        "parent_id": "xxq0p4",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 204
+    },
+    {
+      "line": 180,
+      "case_id": "5Ez1Ry",
+      "parent_id": "EerNvl",
+      "transition": {
+        "id": "POST /items/qa_categories -> [200] DeleteItemsQaCategories -> DELETE /items/qa_categories/{id}",
+        "parent_id": "EerNvl",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  6545,
+                  43173286,
+                  43173287
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 204
+    },
+    {
+      "line": 182,
+      "case_id": "zO4fgY",
+      "parent_id": "pDV1VU",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] GetItemsQaArticles -> GET /items/qa_articles/{id}",
+        "parent_id": "pDV1VU",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  6,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 403
+    },
+    {
+      "line": 186,
+      "case_id": "RGYxIm",
+      "parent_id": "TlfPLr",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] GetItemsQaArticles -> GET /items/qa_articles/{id}",
+        "parent_id": "TlfPLr",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  6,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 403
+    },
+    {
+      "line": 186,
+      "case_id": "uBRVOd",
+      "parent_id": "TlfPLr",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+        "parent_id": "TlfPLr",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  6,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": 204
+    },
+    {
+      "line": 186,
+      "case_id": "fEvb62",
+      "parent_id": "TlfPLr",
+      "transition": {
+        "id": "GET /items/qa_articles -> [200] DeleteItemsQaArticles -> DELETE /items/qa_articles/{id}",
+        "parent_id": "TlfPLr",
+        "is_inferred": true,
+        "parameters": {
+          "path_parameters": {
+            "id": {
+              "definition": "$response.body#/data/*/id",
+              "value": {
+                "values": [
+                  2,
+                  3,
+                  4,
+                  6,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "is_required": true
+            }
+          }
+        }
+      },
+      "actual_status": null
+    }
+  ],
+  "editor_collection_schemas": {
+    "ItemsQaArticles": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "nullable": false,
+          "type": "integer"
+        },
+        "title": {
+          "nullable": false,
+          "type": "string"
+        },
+        "status": {
+          "nullable": false,
+          "type": "string"
+        },
+        "score": {
+          "nullable": false,
+          "type": "integer"
+        },
+        "published_at": {
+          "nullable": true,
+          "type": "string",
+          "format": "timestamp"
+        },
+        "metadata": {
+          "nullable": true
+        },
+        "internal_notes": {
+          "nullable": true,
+          "type": "string"
+        },
+        "category": {
+          "nullable": true,
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/components/schemas/ItemsQaCategories"
+            }
+          ]
+        }
+      },
+      "x-collection": "qa_articles",
+      "required": [
+        "title",
+        "score"
+      ]
+    },
+    "ItemsQaCategories": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "nullable": false,
+          "type": "integer"
+        },
+        "name": {
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "x-collection": "qa_categories",
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "reader_collection_schemas": {
+    "ItemsQaCategories": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "nullable": false,
+          "type": "integer"
+        },
+        "name": {
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "x-collection": "qa_categories",
+      "required": [
+        "name"
+      ]
+    },
+    "ItemsQaArticles": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "nullable": false,
+          "type": "integer"
+        },
+        "title": {
+          "nullable": false,
+          "type": "string"
+        },
+        "status": {
+          "nullable": false,
+          "type": "string"
+        },
+        "score": {
+          "nullable": false,
+          "type": "integer"
+        },
+        "published_at": {
+          "nullable": true,
+          "type": "string",
+          "format": "timestamp"
+        },
+        "metadata": {
+          "nullable": true
+        },
+        "category": {
+          "nullable": true,
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/components/schemas/ItemsQaCategories"
+            }
+          ]
+        }
+      },
+      "x-collection": "qa_articles",
+      "required": [
+        "title",
+        "score"
+      ]
+    }
+  }
+}
