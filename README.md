@@ -36,6 +36,8 @@ Image Schemathesis được dùng sau khi exporter và schema đã sẵn sàng; 
 ./lab.sh seed
 ./lab.sh smoke
 ./lab.sh export-schema
+./lab.sh swagger up
+./lab.sh swagger down
 ./lab.sh test schema-smoke
 ./lab.sh test scenarios
 ./lab.sh test invariants
@@ -47,6 +49,8 @@ Image Schemathesis được dùng sau khi exporter và schema đã sẵn sàng; 
 ```
 
 `./lab.sh test smoke` là alias tương đương `./lab.sh smoke`. `raw` và `guided` mặc định chạy ba seed `101,202,303`; dùng biến môi trường để pilot ngắn, ví dụ `LAB_CAMPAIGN_SEEDS=101 LAB_MAX_EXAMPLES=1 LAB_MAX_TIME=30 ./lab.sh test raw`. Không fuzz URL ngoài lab.
+
+Swagger UI tùy chọn mở tại `http://127.0.0.1:8086` sau khi đã seed và export schema. Chọn Editor hoặc Reader, gọi `/auth/login` bằng tài khoản tương ứng rồi nhập `Bearer <access_token>` trong **Authorize**. `swagger down` chỉ dừng giao diện; schema gốc của campaign không bị sửa. Xem [hướng dẫn Swagger UI](docs/swagger-ui.md).
 
 Mỗi lệnh được nhận diện tạo một thư mục `artifacts/runs/<run_id>/` bị Git ignore, gồm `metadata.json` và `run.log`. Metadata ghi command, mã thoát, SHA harness, trạng thái working tree, baseline image, actor nếu được truyền qua `LAB_ACTOR` (`admin`, `editor`, `reader`, `anonymous` hoặc `unspecified`), fixture/schema/seed/budget nếu có và đường dẫn ID map. `test schema-smoke` luôn dùng actor `editor` và tự ghi actor này; truyền actor khác là lỗi để tránh provenance sai. Token và password không được ghi vào đó. Có thể đặt `LAB_RUN_ID` để chọn ID ổn định cho một lệnh; ID phải chưa tồn tại, chỉ gồm chữ, số, `.`, `-`, `_` và tối đa 64 ký tự.
 
@@ -67,6 +71,7 @@ Trạng thái lệnh trên máy hiện tại:
 - `replay <case-id>`: chạy lại case ổn định từ fixture map hiện tại; `editor-crud`, `positive-operations` và `anonymous-denied` đã có run pass. `aggregate-query-robustness` là reproducer deterministic cho candidate 500; run lịch sử `20261011T134519Z-160153` và targeted recheck gần nhất `20261011T163231Z-213262` dưới `3c40339` đều ghi unknown `500`, hai control `200`, giữ exit `1`. `contract-schema-candidates` có run lịch sử `20261011T130227Z-139257` và targeted recheck gần nhất `20261011T163234Z-213685` dưới `3c40339`, cùng ghi bốn schema candidate và cleanup PASS, giữ exit `1` có chủ đích. Các replay stateful/semantic khác được giữ nguyên trong [`docs/replay-cases.md`](docs/replay-cases.md) và không tự đếm mỗi check failure thành một defect.
 - `reset`: kiểm tra đúng project/volume label rồi mới dừng stack, xóa đúng volume `r06-k05_db_data` và runtime children; safety reset đã được thực thi ở run `20261011T050050Z-26220`, sau đó stack được dựng và seed lại.
 - `test schema-smoke`: pilot legacy 5 operation vẫn có thể chạy để đối chiếu; campaign chính là `raw`/`guided` 10 operation.
+- `swagger up|down`: Swagger UI Editor/Reader đã được tích hợp và kiểm tra trên lab hiện tại ngày 19/10/2026; lần bật lại gần nhất `20261019T144703Z-44143`, trang tại `http://127.0.0.1:8086`. Hash schema nguồn giữ nguyên. Bằng chứng ở [`evidence/swagger-ui-integration-2026-10-19.md`](evidence/swagger-ui-integration-2026-10-19.md).
 
 Khi `custom_permission_rules_enabled` chưa bật, không được tự thêm license key vào repository, sửa trực tiếp DB hoặc nới assertion để biến blocker thành pass. `seed` sẽ chạy tiếp được phần policy Reader sau khi license hợp lệ được cấu hình cục bộ và người dùng xác nhận xử lý snapshot schema cũ.
 
