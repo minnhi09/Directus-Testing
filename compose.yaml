@@ -36,6 +36,9 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in config/lab.env}
       ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL must be set in config/lab.env}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD must be set in config/lab.env}
+      # Optional local Directus license; the real value stays in config/lab.env.
+      LICENSE_KEY: ${LICENSE_KEY:-}
+      ACCESS_TOKEN_TTL: ${ACCESS_TOKEN_TTL:-2h}
       PUBLIC_URL: http://127.0.0.1:8055
       TELEMETRY: "false"
       CACHE_ENABLED: "false"
@@ -61,6 +64,27 @@ services:
       - lab
     ports:
       - 127.0.0.1:8055:8055
+
+  runner:
+    image: ${SCHEMATHESIS_IMAGE:?SCHEMATHESIS_IMAGE must be set in config/lab.env}
+    depends_on:
+      directus:
+        condition: service_healthy
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - 'trap : TERM INT; while :; do sleep 3600; done'
+    healthcheck:
+      test:
+        - CMD
+        - schemathesis
+        - --version
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - lab
 
 networks:
   lab:
