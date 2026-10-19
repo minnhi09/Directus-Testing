@@ -9,3 +9,6 @@
 /config/lab.env
 /artifacts/runs/
 /runtime/
+
+# Khong commit tai lieu trong docs theo yeu cau
+/docs/
