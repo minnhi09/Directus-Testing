@@ -542,7 +542,7 @@ class Lab:
                     print(f"WARN cleanup positive category thất bại HTTP {cleanup.status}")
 
     def case_query_fixture(self) -> Case:
-        case = Case("query-fixture", "Filter, sort, pagination và projection trên fixture")
+        case = Case("query-fixture", "Filter, sort, pagination, search và projection trên fixture")
         response = self.all_articles(self.editor_token)
         case.step("GET", "/items/qa_articles?limit=-1&fields=...", response, "2xx và đủ fixture")
         if response.status < 200 or response.status >= 300:
@@ -589,8 +589,33 @@ class Lab:
             if response.status < 200 or response.status >= 300 or [row.get("id") for row in actual_page] != [row["id"] for row in expected_page]:
                 case.fail("pagination khớp sorted fixture", repr(actual_page), f"offset={offset} không khớp")
                 return case
-        case.expected = "filter status, sort title/id, offset pages và fields projection đúng"
-        case.actual = f"published={len(actual_ids)}, pages=2"
+
+        page_query = "/items/qa_articles" + self.path_params(
+            {"sort": "title,id", "page": "2", "limit": "3", "fields": "id,title"}
+        )
+        response = self.api.request("GET", page_query, self.editor_token)
+        case.step("GET", page_query, response, "2xx và page=2 khớp offset tương đương")
+        actual_page = response.body.get("data", []) if isinstance(response.body, dict) else []
+        if response.status < 200 or response.status >= 300 or [row.get("id") for row in actual_page] != [row["id"] for row in all_fixture[3:6]]:
+            case.fail("page=2 khớp sorted fixture", repr(actual_page), "page không tương đương offset=3")
+            return case
+
+        search_term = "spéciale"
+        expected_search = [
+            row for row in all_fixture if search_term.casefold() in str(row.get("title", "")).casefold()
+        ]
+        search_query = "/items/qa_articles" + self.path_params(
+            {"search": search_term, "sort": "title,id", "limit": "-1", "fields": "id,title"}
+        )
+        response = self.api.request("GET", search_query, self.editor_token)
+        case.step("GET", search_query, response, "2xx và chỉ trả fixture chứa search term")
+        actual_search = response.body.get("data", []) if isinstance(response.body, dict) else []
+        if response.status < 200 or response.status >= 300 or [row.get("id") for row in actual_search] != [row["id"] for row in expected_search]:
+            case.fail("search khớp title fixture", repr(actual_search), "search result khác oracle fixture")
+            return case
+
+        case.expected = "filter status, sort title/id, offset/page, search và fields projection đúng"
+        case.actual = f"published={len(actual_ids)}, pages=2, page=2=ok, search={len(actual_search)}"
         case.details = "Expected được tính từ fixture IDs và dữ liệu seed, không từ response của query đang kiểm tra."
         return case
 

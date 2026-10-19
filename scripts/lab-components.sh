@@ -1973,6 +1973,8 @@ campaign() {
 	local profile="$1"
 	local seed
 	local overall=0
+	local halted=0
+	local stop_reason=''
 	local base_dir="$RUN_DIR"
 	local -a seeds
 	case "$profile" in
@@ -1992,7 +1994,34 @@ campaign() {
 			printf 'ERROR: seed không hợp lệ: %s\n' "$seed" >&2
 			return 1
 		}
-		campaign_one "$profile" "$seed" || overall=1
+		if (( halted != 0 )); then
+			mkdir -p "$base_dir/$profile/seed-$seed"
+			jq -n --arg profile "$profile" --arg seed "$seed" --arg reason "$stop_reason" \
+				--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
+				'{schema:1,profile:$profile,seed:($seed|tonumber),status:"blocked",termination:"not_started",runner_exit_code:null,restore_exit_code:null,report_present:false,coverage_present:false,blocked_by:$reason,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)}}' \
+				> "$base_dir/$profile/seed-$seed/campaign-summary.json"
+			CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$base_dir/$profile/seed-$seed/campaign-summary.json" '$current + [$next[0]]')"
+			continue
+		fi
+		local campaign_rc=0
+		if campaign_one "$profile" "$seed"; then
+			campaign_rc=0
+		else
+			campaign_rc=$?
+		fi
+		if (( campaign_rc != 0 )); then
+			overall=1
+			local summary_file="$base_dir/$profile/seed-$seed/campaign-summary.json"
+			local restore_status='1'
+			if [[ -f "$summary_file" ]]; then
+				restore_status="$(jq -r '.restore_exit_code // 1' "$summary_file" 2>/dev/null || printf '1')"
+			fi
+			if [[ "$restore_status" != 0 ]]; then
+				halted=1
+				stop_reason="restore/setup thất bại ở seed $seed; dừng các seed kế tiếp để bảo vệ fixture"
+				printf 'ERROR: %s\n' "$stop_reason" >&2
+			fi
+		fi
 	done
 	RUN_DIR="$base_dir"
 	jq -n --arg profile "$profile" --arg fixture "$FIXTURE_VERSION" --arg seeds "$CAMPAIGN_SEEDS" --argjson campaigns "$CAMPAIGN_SUMMARIES" \
