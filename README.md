@@ -50,3 +50,5 @@ Bộ 13 được chọn từ kết quả đã lưu ngày 18/10; thay đổi lự
 Campaign raw/guided lịch sử, schema, report và reproducer đã có; dùng chúng để giải thích cách sinh test và phát hiện sai lệch. Không cần chạy lại campaign dài. Chỉ xem 1–2 finding đại diện và bảng 36/9 khi báo cáo chi phí; những vấn đề chưa xác minh vẫn giữ OPEN.
 
 Gói nộp gồm báo cáo, slide/demo, mã kiểm thử và dependency/config mẫu, schema/report/reproducer chọn lọc, cùng đánh giá đóng góp thật. Hồ sơ chi tiết nằm trong [mục lục](docs/HoanThanhPlan/README.md); các bản lưu không phải checklist phải làm tiếp. Không bổ sung CI/CD, quét lỗ hổng, load test hoặc điều tra mọi bất thường chỉ để hoàn thiện môn học.
+
+Hồ sơ tích hợp P00–P15, danh sách bàn giao, archive và CI: [integration review](docs/coverage/reviews/integration-20261116/README.md).
