@@ -1,0 +1,184 @@
+{
+  "created_at": "2026-11-16T01:21:37.698437+00:00",
+  "task_status": "COMPLETE_TRACE_AND_ACTOR_SCHEMA",
+  "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "worktree": "DIRTY",
+  "scenario_run": {
+    "S1_to_S6": "PASS_6",
+    "scenario_HTTP_records": 17,
+    "runner_exit_code": 0,
+    "source_oracle_changes": false,
+    "cleanup": "FULL_BASELINE_MATCH_NO_BROAD_RESTORE"
+  },
+  "anonymous_OAS": {
+    "status": 200,
+    "Authorization_sent": false,
+    "item_operation": "ABSENT",
+    "contract": "NOT_MEASURED",
+    "schema_fallback": false
+  },
+  "coverage": {
+    "R": 13,
+    "D": 13,
+    "E": 13,
+    "V": 12,
+    "hit_templates": "5/5",
+    "positive_templates": "5/5",
+    "template_binding": "qa_articles only; not10concrete or whole system"
+  },
+  "TC13": "P10_FAIL_PRESERVED_NOT_RERUN",
+  "tests": {
+    "trace_unit": 8,
+    "P09_isolation": 10,
+    "static_groups": 8
+  },
+  "checks": [
+    {
+      "name": "TRACE_UNIT",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_scenario_trace.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "P09_UNIT",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_p09*.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "VALIDATE",
+      "command": [
+        "python",
+        "-B",
+        "scripts/coverage_offline.py",
+        "validate",
+        "D:\\DAMH-full-recovery-2026-10-12\\DAMH\\docs\\coverage\\acceptance\\P15-TRACE-20261116-01\\bundle"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "CALCULATE",
+      "command": [
+        "python",
+        "-B",
+        "scripts/coverage_offline.py",
+        "calculate",
+        "D:\\DAMH-full-recovery-2026-10-12\\DAMH\\docs\\coverage\\acceptance\\P15-TRACE-20261116-01\\bundle"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "DIFF",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "protected_old_P10_P14_M2coverage_artifacts": "HASHES_UNCHANGED",
+  "new_canonical_tests": 0,
+  "new_execution_ids": 6,
+  "secret_scan": "PASS_EXACT_VALUES_AND_BEARER_PATTERN",
+  "raw_schemas_P10_byte_equal": {
+    "admin": true,
+    "editor": true,
+    "reader": true
+  },
+  "remaining": [
+    "remote CI NOT_RUN",
+    "anonymous protected operation contract absent",
+    "scenario Content-Type not captured; no contract PASS inferred"
+  ],
+  "changed_files_sha256": {
+    "scripts/lab-components.sh": "982f48a8bc0ec60cee11af06bfc902917b08851fed598cbd46b0d3d69c3d6eee",
+    "scripts/p09_runtime.py": "f3710fe67ed5fa88e47f2ab3a6234cde373e5979ba7033b0fb9ad7e3715a67e5",
+    "scripts/scenario_trace.py": "2635186d7c083c36e07de570fb0d9cb993ff0c9097fe0ee41d5af2c21e9180e5",
+    "tests/test_scenario_trace.py": "280e6d634f397c1fe1b9bc17fcf29f458fa19eb48d379b6ca726055c53704916",
+    "docs/coverage/handoffs/P15.md": "ad23061a5ba0ad9d0af8d9b13ed1c5bc8c6aff4ef9d73df52f9ba6b04ea4e297",
+    "evidence/progress-2026-11-16.md": "ba348b8b23b7896838f959907a66068ed71ca5a6c0e66cc6ceefa338309beb84"
+  },
+  "evidence_sha256": {
+    "anonymous-contract-evidence.json": "d175e08884948be48f7f3d508910281347f8ef95ae416e6e94f56339a3128f78",
+    "baseline-articles.json": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986",
+    "baseline-categories.json": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507",
+    "calculate-check.txt": "89c8815e685e8ac72044c8dafd5a7da91a00a0e3f97b4fa5b41094b6510c1021",
+    "coverage-summary.json": "89c8815e685e8ac72044c8dafd5a7da91a00a0e3f97b4fa5b41094b6510c1021",
+    "database-oracle.json": "dfcb3eda836a35c9476991db7e3c0b4b006d8f0f71a887e096d37cfb9ebcb3d9",
+    "diff-check.txt": "47b6ebb8e47507e9e4fe839d62d12e537b30ff5d931e7c25ce7f217493e89359",
+    "lineage.json": "670840c381bbb33704270ab6a4f816a32bdf0dad49587c8221a8e7ea00c04590",
+    "old-lab-state.json": "0c76699a9ad3d35a6a588caf0b2bbc7e397c9f0a6935ff09a338ea3d62e5d048",
+    "p09_unit-check.txt": "b5da4758751a63e775eccc4024b0a5b63982d84ed7357fd3d5a8a1167b74addf",
+    "preflight-after.json": "96de747b4e53f7e4389a477c3ee0afdf285c7e012d68a86d01b924f283153a8c",
+    "preflight-before.json": "96de747b4e53f7e4389a477c3ee0afdf285c7e012d68a86d01b924f283153a8c",
+    "README.md": "9237e5e05ce3a24de6b338cd39eed9140a282cff056b388f47a5f4476153e358",
+    "runner-outcome.json": "0e689f617e747929745243e7219104a209e3932c713429c425d8da7ee4d3e0ab",
+    "scenario-outcomes.json": "e9a4d42e79430190ccae0c80138e9e40b9a1cdd250cba14fe28ed23651654b7c",
+    "scenario-report.json": "f48906a7ad80f57eec9da1d5503abbcfcac304367acb75e4d6fefc9a00757929",
+    "schema-comparison-to-P10.json": "3f33f42d3e640826d900c1576bd6f2e80a6d99fb7bea37de8c988fab1ee1c37d",
+    "schema-metadata.json": "129137ef6a6e722636351bf5c80e298480a437d9cf380e2c6650703541a743f0",
+    "selection-manifest.json": "324f83ce834ab18b63836461703373ab7835639cd4ced4255246ab3ad92d2d90",
+    "source-hashes.json": "45bf5d96e41abe3431fd70aacf449b42e6559e2fb3b44cce598c421bef3a24c7",
+    "static-summary.json": "3423ab56581920d7c8acde5744036432da13b67948a38fa96f012902fee98c57",
+    "trace.json": "4374d9a5963a082eae7b564378e610a229db86d97992f21f6532d32062950654",
+    "trace_unit-check.txt": "6d349e45e01a2312136812a41f77e00ce5bd9e7b2c8f79a12823054ff8628141",
+    "validate-check.txt": "d52981b1655503387dcba6162e8d16303c4ac8093e159de7ea41bb0eb0dbfa98",
+    "validation.json": "d52981b1655503387dcba6162e8d16303c4ac8093e159de7ea41bb0eb0dbfa98",
+    "verification-trace.json": "89926f2642b23937667a2f11e922b7b933a2fbc277c698066287a258fb280b3d",
+    "bundle/assertion-scopes.json": "c7a60509314acf799111bd64953d167036a909e00c726043869561f9d9c0537e",
+    "bundle/baseline-manifest.json": "5f9c57dd85b390fbe59daf2026c07503b89bcd32d38a5b6cfb8c1485182e0cfe",
+    "bundle/decisions.jsonl": "6d43070be0704d656c1827abde01829219061826982ed3e8cefad1a0dfa701de",
+    "bundle/executions.jsonl": "765c32ecb8ed20c126b75f876e241da3aa11071e3a9b4f6f0a70cd08e46047c2",
+    "bundle/gaps.jsonl": "f0fdc5221f8fa40c60d830c31c4d00f31b4a34996e67ac5998beb0e1eeb71514",
+    "bundle/reference-registry.json": "767281856228b2777836dcae6a802316da9a9bd4bebc103113248c8deca0b65a",
+    "bundle/requirements.jsonl": "41a0c6475961d1fd67c74e4c5c71fb851cf342e38dfc0a8f94d36f2abd4fb90a",
+    "bundle/rtm-links.jsonl": "2ce77eb33ab63380d3a585e39d08d14746509334f383a139073288e51c62b1e5",
+    "bundle/selection-manifest.json": "324f83ce834ab18b63836461703373ab7835639cd4ced4255246ab3ad92d2d90",
+    "bundle/system-inventory.jsonl": "8e38364c8dd8dc952f9e756397c17d9e2a6261f97c80e846d5a3fd721b74c241",
+    "bundle/test-catalog.jsonl": "5534b83df4d714fb2a08e573876a2846b0168bebc1a4c554d70ae0579f40ce7b",
+    "http/http-10.json": "a200fe5a1978ebb97777660a8fd3e2f6c050624f47e002245f9167e75566f2cb",
+    "http/http-11.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "http/http-12.json": "362f5e1afe2d05073cab786ab6c9892d65423c7f21877c0d1ea76148ac648b7f",
+    "http/http-13.json": "cdf7e549752dcc0298c2e42cd1a6344c61343267ad6c311a286550b64ea1ac5c",
+    "http/http-14.json": "30a8248208741a9c2cb2454720a0a94b2699e8a830cc031743f38c5b5b66311b",
+    "http/http-15.json": "52914880f161eb74a5f40af8c1d613e9fc7bdaf3f0983a62a627fe32c1b91c99",
+    "http/http-16.json": "6add1ceec561d89629436591a3ee24733352e622603f2f15b20357088cfe66e1",
+    "http/http-17.json": "ca1a198f8fad1d5fc4ce0b52e115078d8d786cdd274764d435810f21797cf4a0",
+    "http/http-18.json": "362f5e1afe2d05073cab786ab6c9892d65423c7f21877c0d1ea76148ac648b7f",
+    "http/http-19.json": "6add1ceec561d89629436591a3ee24733352e622603f2f15b20357088cfe66e1",
+    "http/http-20.json": "66e54c255c57b374d102b2d4f628af4e04e890b145676db20cb9fb00bd399936",
+    "http/http-21.json": "8a555907c31aa3de031a4c4fd572f1d822c9c9cccc55fb74ffafbac3719f6662",
+    "http/http-22.json": "44e935d73254fab2bf29f2e50fe5c1df295a60d48de650db6efb79b568bee719",
+    "http/http-23.json": "8a555907c31aa3de031a4c4fd572f1d822c9c9cccc55fb74ffafbac3719f6662",
+    "http/http-24.json": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986",
+    "http/http-25.json": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507",
+    "http/http-7.json": "11225df1d30563be67f96b54d883ca342fd48d5d284cf111fefaf29666636425",
+    "http/http-8.json": "11225df1d30563be67f96b54d883ca342fd48d5d284cf111fefaf29666636425",
+    "http/http-9.json": "a200fe5a1978ebb97777660a8fd3e2f6c050624f47e002245f9167e75566f2cb",
+    "raw-oas/admin.json": "10c95c0ef5d87d3f3afd0411de37c7a4aa9ae26fc10155861dd721e7dd6cab0a",
+    "raw-oas/anonymous.json": "54341032780dc740fee2fd320d8a3d5549ab316468bca8e06dd26ea6a2828c1a",
+    "raw-oas/editor.json": "21d95d5dbd85a4b934ec1f0d0073fb7350f975993a45987e98a90c524d1aa7f4",
+    "raw-oas/reader.json": "6bd64c3d1651d7b55e7a59dfbc3846ffb14d9689742d1fcc642d6918cf8a0c8b"
+  }
+}

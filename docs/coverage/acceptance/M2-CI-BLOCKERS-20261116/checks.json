@@ -1,0 +1,33 @@
+{
+  "workspace_static": "workspace-static-summary.json",
+  "clean_index_checkout_static": "clean-static-summary.json",
+  "groups_PASS_each": 8,
+  "offline_unit_tests_each": 136,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "added_checks": {
+    "archive_tamper_identity_pointer_private_path": 11,
+    "offline_IO_guard": 4,
+    "CI_private_ACL_ordering_and_tracked_profile": 3
+  },
+  "coverage_workspace": {
+    "validate_exit": 0,
+    "calculate_exit": 0,
+    "source": "coverage-summary.json"
+  },
+  "coverage_clean_checkout": {
+    "validate_exit": 0,
+    "calculate_exit": 0,
+    "source": "clean-coverage-summary.json",
+    "identical_to_workspace_output": true
+  },
+  "ACL_before": "acl-before.json",
+  "ACL_after": "acl-after.json",
+  "ACL_synthetic_restore": "acl-restore-fixture.json",
+  "live_CI_permission_gate": "ci-profile-gate.json",
+  "remote_CI": "NOT_RUN",
+  "API_regression_fuzz_campaign": "NOT_RUN",
+  "product_test_result_changes": false,
+  "full_input_archive_identities_verified": 115
+}

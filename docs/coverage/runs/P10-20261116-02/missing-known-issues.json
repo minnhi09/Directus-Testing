@@ -1,0 +1,41 @@
+[
+  {
+    "id": "GAP-P10-ENGINE",
+    "status": "RESOLVED",
+    "evidence": "runtime-metadata.json; preflight-before.json"
+  },
+  {
+    "id": "GAP-P10-ADAPTER",
+    "status": "RESOLVED",
+    "evidence": "run-report.json; scripts/p10_regression.py; tests/test_p10_runtime.py"
+  },
+  {
+    "id": "GAP-P10-SCHEMA-ORDER",
+    "status": "RESOLVED",
+    "evidence": "raw-oas/; database-oracle.json; scenario-report.json#S3"
+  },
+  {
+    "id": "KNOWN-TC13-CONTRACT",
+    "status": "OPEN",
+    "classification": "SCHEMA_CONTRACT_MISMATCH",
+    "canonical_test_id": "P3-CONTRACT-QA_ARTICLES-OBJECT",
+    "business": "PASS",
+    "contract": "FAIL",
+    "expected": "POST response200 data array in raw editor OAS",
+    "actual": "POST response200 data object",
+    "check": "response_schema_conformance",
+    "evidence": "case-P3-CONTRACT-QA_ARTICLES-OBJECT.json; python-http/; raw-oas/editor.json",
+    "waiver": false
+  },
+  {
+    "id": "GAP-P10-REMOTE-CI",
+    "status": "NOT_RUN",
+    "evidence": ".github/workflows/p10-integration-preflight.yml",
+    "reason": "No push; self-hosted runner registration NOT_VERIFIED; readiness and smoke implemented, no Actions URL"
+  },
+  {
+    "id": "GAP-P10-FORMAL-COVERAGE",
+    "status": "NOT_MEASURED",
+    "reason": "Actual case reports available; no P01 execution bundle/calculator import in P10"
+  }
+]

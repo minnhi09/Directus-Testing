@@ -1,0 +1,10 @@
+test_alias_duplicate_rejected (test_p10_selection.SelectionTests.test_alias_duplicate_rejected) ... ok
+test_contract_case_cannot_be_dropped (test_p10_selection.SelectionTests.test_contract_case_cannot_be_dropped) ... ok
+test_duplicate_execution_rejected (test_p10_selection.SelectionTests.test_duplicate_execution_rejected) ... ok
+test_exact_selection (test_p10_selection.SelectionTests.test_exact_selection) ... ok
+test_mandatory_or_denominator_cannot_be_relaxed (test_p10_selection.SelectionTests.test_mandatory_or_denominator_cannot_be_relaxed) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

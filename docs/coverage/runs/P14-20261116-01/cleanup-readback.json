@@ -1,0 +1,61 @@
+[
+  {
+    "kind": "users",
+    "id": "5ec09303-2a46-4285-af98-2598aea16e65",
+    "status": 403
+  },
+  {
+    "kind": "permissions",
+    "deleted_id": 19,
+    "status": 200,
+    "returned_collection": "directus_collections",
+    "note": "Admin synthesized permission response, not persisted P14 record; SQL count required"
+  },
+  {
+    "kind": "permissions",
+    "deleted_id": 18,
+    "status": 200,
+    "returned_collection": "directus_collections",
+    "note": "Admin synthesized permission response, not persisted P14 record; SQL count required"
+  },
+  {
+    "kind": "permissions",
+    "deleted_id": 17,
+    "status": 200,
+    "returned_collection": "directus_collections",
+    "note": "Admin synthesized permission response, not persisted P14 record; SQL count required"
+  },
+  {
+    "kind": "permissions",
+    "deleted_id": 16,
+    "status": 200,
+    "returned_collection": "directus_collections",
+    "note": "Admin synthesized permission response, not persisted P14 record; SQL count required"
+  },
+  {
+    "kind": "access",
+    "id": "014edaa9-0350-44fb-a73b-2821e2978177",
+    "status": 403
+  },
+  {
+    "kind": "policies",
+    "id": "c3cbe17e-1a21-47da-afb9-0996b44b4082",
+    "status": 403
+  },
+  {
+    "kind": "roles",
+    "id": "9fe0b16e-6695-41c4-8305-0d2ce9ff00f7",
+    "status": 403
+  },
+  {
+    "kind": "collections",
+    "id": "qa_sys_categories_p14_20261116_01",
+    "status": 403
+  },
+  {
+    "kind": "persisted_permissions",
+    "SQL": "SELECT count(*) FROM directus_permissions WHERE collection = 'qa_sys_categories_p14_20261116_01'",
+    "count": 0,
+    "exit_code": 0
+  }
+]

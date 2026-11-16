@@ -1,0 +1,43 @@
+{
+  "kind": "P09_LICENSE_INVESTIGATION_AUDIT",
+  "created_at": "2026-11-15T15:52:46.574632+00:00",
+  "status": "BLOCKED_LICENSE",
+  "existing_key_preview": "HTTP200_READ_ONLY_NO_ACTIVATION",
+  "source_core_active_without_grant_confirmed": true,
+  "binding_safety_for_second_project": "CHƯA XÁC MINH",
+  "old_lab_actions": [
+    "inspect",
+    "logs only"
+  ],
+  "old_lab_state_preserved": "exited",
+  "P09_LICENSE_KEY_still_empty": true,
+  "license_token_copied": false,
+  "project_binding_changed": false,
+  "source_code_modified": false,
+  "runtime_manager_sha256": "4acc9a41f6679b2057326dd8bb2d56c22dd56f1e16d86d228821e247f89868ce",
+  "runtime_manager_lines": "212-222 activation project/public_url/new_project_id",
+  "independent_checks": {
+    "P09_isolation_unit_tests": 4,
+    "coverage_offline_unit_tests": 26,
+    "unit_exit_codes": [
+      0,
+      0
+    ],
+    "admin_health_HTTP": 200,
+    "admin_license_HTTP": 200,
+    "admin_policy_present": true
+  },
+  "historical_report_OAS_hashes_preserved": 10,
+  "P10": "NOT_STARTED",
+  "fixture_seed": "BLOCKED",
+  "campaign": "NOT_RUN",
+  "coverage": "NOT_MEASURED",
+  "output_sha256": {
+    "docs/coverage/preflight/P09-20261115/license-investigation/grant-preview.json": "4365f250d9d1051d85d4af25016e13bf1af224dbee584dd602e1ebeb4b965994",
+    "docs/coverage/preflight/P09-20261115/license-investigation/README.md": "91940d313e5207814fdfeec114a5823ac28a073ccb0703efc6c053451bc36113",
+    "docs/coverage/preflight/P09-20261115/license-investigation/report.json": "5c6af75bc5cc6740313f3128fcc944b00461b44ae41917fa4b9456c36bb6e4d3",
+    "docs/coverage/preflight/P09-20261115/license-investigation/source-index.json": "577430542ba6654dbf7e212aa164aa3041f91ecb5b0be5d771ae12f7d0916807",
+    "docs/coverage/handoffs/P09.md": "55abff88cd4148886ddb6b5b637b901630c07fca91faabcc5b0ad88d09f64476",
+    "evidence/progress-2026-11-15.md": "0a3091ca5c6ea1c8e12ed2051734a0c6c544d90d53c4e4ae39457893cc2952c9"
+  }
+}

@@ -1,0 +1,52 @@
+--- raw
++++ guided
+@@ -36,6 +36,9 @@
+                     "$ref": "#/components/schemas/ItemsQaSysCategoriesP142026111601"
+                   }
+                 ]
++              },
++              "example": {
++                "name": "P14 valid category"
+               }
+             }
+           }
+@@ -191,7 +194,8 @@
+                   "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                 }
+               ]
+-            }
++            },
++            "example": 1
+           }
+         ],
+         "responses": {
+@@ -249,7 +253,8 @@
+                   "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                 }
+               ]
+-            }
++            },
++            "example": 1
+           }
+         ],
+         "requestBody": {
+@@ -258,6 +263,9 @@
+               "schema": {
+                 "type": "object",
+                 "$ref": "#/components/schemas/ItemsQaSysCategoriesP142026111601"
++              },
++              "example": {
++                "name": "P14 valid category"
+               }
+             }
+           }
+@@ -325,7 +333,8 @@
+                   "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                 }
+               ]
+-            }
++            },
++            "example": 1
+           }
+         ]
+       }

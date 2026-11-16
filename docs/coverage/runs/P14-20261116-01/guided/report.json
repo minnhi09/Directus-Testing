@@ -1,0 +1,157 @@
+{
+  "schemathesis_version": "4.30.0",
+  "command": "st run /work/schema.json --url http://directus:8055 --workers 1 --max-examples 10 --seed 101 --request-timeout 10 --rate-limit 2/s --max-time 60 --phases examples,fuzzing --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/report.json --report-ndjson-path /work/run/events.ndjson --coverage-format json --coverage-report-json-path /work/run/coverage.json --output-sanitize true --no-color -H Authorization: [Filtered]",
+  "seed": 101,
+  "started_at": "2026-11-15T23:54:47.670274+00:00",
+  "running_time": 60.014717679000114,
+  "stop_reason": "max_time",
+  "complete": true,
+  "exit_code": 1,
+  "operations": {
+    "total": 5,
+    "selected": 5,
+    "tested": 5,
+    "errored": 0,
+    "skipped": 0,
+    "skip_reasons": []
+  },
+  "phases": {
+    "examples": {
+      "status": "failure",
+      "skip_reason": null
+    },
+    "coverage": {
+      "status": "skip",
+      "skip_reason": "disabled"
+    },
+    "fuzzing": {
+      "status": "failure",
+      "skip_reason": null
+    },
+    "stateful": {
+      "status": "skip",
+      "skip_reason": "disabled"
+    }
+  },
+  "test_cases": {
+    "generated": 113,
+    "with_failures": 9,
+    "unique_failures": 10,
+    "without_checks": 0,
+    "errored": 0
+  },
+  "failures": [
+    {
+      "type": "JsonSchemaError",
+      "title": "Response violates schema",
+      "severity": "high",
+      "count": 1,
+      "operations": [
+        "POST /items/qa_sys_categories_p14_20261116_01"
+      ]
+    },
+    {
+      "type": "RejectedPositiveData",
+      "title": "API rejected schema-compliant request",
+      "severity": "medium",
+      "count": 1,
+      "operations": [
+        "GET /items/qa_sys_categories_p14_20261116_01/{id}"
+      ]
+    },
+    {
+      "type": "UndefinedStatusCode",
+      "title": "Undocumented HTTP status code",
+      "severity": "medium",
+      "count": 8,
+      "operations": [
+        "DELETE /items/qa_sys_categories_p14_20261116_01/{id}",
+        "GET /items/qa_sys_categories_p14_20261116_01",
+        "GET /items/qa_sys_categories_p14_20261116_01/{id}",
+        "PATCH /items/qa_sys_categories_p14_20261116_01/{id}",
+        "POST /items/qa_sys_categories_p14_20261116_01"
+      ]
+    }
+  ],
+  "errors": [],
+  "baseline": null,
+  "filtered": 0,
+  "warnings": {
+    "missing_auth": [],
+    "base_url_mismatch": [],
+    "missing_test_data": [],
+    "validation_mismatch": [],
+    "missing_deserializer": [],
+    "unused_openapi_auth": [],
+    "unsupported_regex": [],
+    "method_not_allowed": [],
+    "constants_extraction": [],
+    "unmatched_filter": [],
+    "unresolvable_reference": [],
+    "low_valid_rate": []
+  },
+  "valid_rates": {
+    "POST /items/qa_sys_categories_p14_20261116_01": {
+      "examples": {
+        "accepted": 1,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      },
+      "fuzzing": {
+        "accepted": 1,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      }
+    },
+    "PATCH /items/qa_sys_categories_p14_20261116_01/{id}": {
+      "examples": {
+        "accepted": 1,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      },
+      "fuzzing": {
+        "accepted": 4,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      }
+    },
+    "DELETE /items/qa_sys_categories_p14_20261116_01/{id}": {
+      "examples": {
+        "accepted": 1,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      },
+      "fuzzing": {
+        "accepted": 1,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      }
+    },
+    "GET /items/qa_sys_categories_p14_20261116_01": {
+      "fuzzing": {
+        "accepted": 2,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      }
+    },
+    "GET /items/qa_sys_categories_p14_20261116_01/{id}": {
+      "fuzzing": {
+        "accepted": 2,
+        "unreachable": 0,
+        "conflicts": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "auth": {
+    "reauth_count": 0,
+    "reauth_broke": false
+  }
+}

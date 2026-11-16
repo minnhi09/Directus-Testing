@@ -1,0 +1,40 @@
+609: 	async readOne(key: PrimaryKey, query: Query = {}, opts?: QueryOptions): Promise<Item> {
+610: 		const primaryKeyField = getCollectionFromSchema(this.schema, this.collection).primary;
+611: 
+612: 		validateKeys(this.schema, this.collection, primaryKeyField, key);
+613: 
+614: 		const filterWithKey = assign({}, query.filter, { [primaryKeyField]: { _eq: key } });
+615: 		const queryWithKey = assign({}, query, { filter: filterWithKey });
+616: 
+617: 		const results: Item[] = await this.readByQuery(queryWithKey, { ...opts, key });
+618: 
+619: 		if (results.length === 0) {
+620: 			throw new ForbiddenError();
+621: 		}
+622: 
+623: 		return results[0]!;
+624: 	}
+625: 
+626: 	/**
+627: 	 * Get multiple items by primary keys.
+628: 	 *
+629: 	 * Uses `this.readByQuery` under the hood.
+630: 	 */
+631: 	async readMany(keys: PrimaryKey[], query: Query = {}, opts?: QueryOptions): Promise<Item[]> {
+632: 		const primaryKeyField = getCollectionFromSchema(this.schema, this.collection).primary;
+633: 		validateKeys(this.schema, this.collection, primaryKeyField, keys);
+634: 
+635: 		const filterWithKey = { _and: [{ [primaryKeyField]: { _in: keys } }, query.filter ?? {}] };
+636: 		const queryWithKey = assign({}, query, { filter: filterWithKey });
+637: 
+638: 		// Set query limit as the number of keys
+639: 		if (Array.isArray(keys) && keys.length > 0 && !queryWithKey.limit) {
+640: 			queryWithKey.limit = keys.length;
+641: 		}
+642: 
+643: 		return await this.readByQuery(queryWithKey, opts);
+644: 	}
+645: 
+646: 	/**
+647: 	 * Update multiple items by query.
+648: 	 *

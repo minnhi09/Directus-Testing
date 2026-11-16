@@ -1,0 +1,42 @@
+{
+  "resources": {
+    "directus": {
+      "id": "eccfeb6ebb57347a8be9bac3399ddd05d7fcf45ef0e25a285e25742b099fd8b7",
+      "image": "docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+      "image_id": "sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331"
+    },
+    "database": {
+      "id": "764549664e70c3fe02319750ca7809052fe13d58a9c325c27d4ee928041bfd0e",
+      "image": "docker.io/library/postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+      "image_id": "sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea"
+    }
+  },
+  "old_lab": [
+    {
+      "id": "70debbaa2aa370ffceed4cfe657596821d4fd2fd716ff37af4c26b4583f64ab4",
+      "status": "exited",
+      "started_at": "2026-10-20T01:14:45.049981946Z",
+      "finished_at": "2026-10-21T01:40:03.136497501Z"
+    },
+    {
+      "id": "25f020a8835fda9ebaf10d7fe2b306bcbe4563375d06b45eb515242ed0333c82",
+      "status": "exited",
+      "started_at": "2026-10-20T01:15:00.737997293Z",
+      "finished_at": "2026-10-21T01:40:03.137468316Z"
+    },
+    {
+      "id": "78130ae72c1486bec6e2e8afe31007bb178764c90b903af1c588bfba249d6e00",
+      "status": "exited",
+      "started_at": "2026-10-20T01:14:39.33652077Z",
+      "finished_at": "2026-10-21T01:40:03.136581334Z"
+    }
+  ],
+  "source_version": "12.5.0",
+  "runner_image": "docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5",
+  "workers": 1,
+  "max_time_seconds": 600,
+  "rate": "5/s",
+  "timeout_seconds": 10,
+  "seed": "NOT_APPLICABLE_DETERMINISTIC",
+  "environment_credentials": "PRIVATE_ENV_ONLY"
+}

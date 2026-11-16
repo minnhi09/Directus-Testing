@@ -1,0 +1,15 @@
+test_component_allowlist_before_resource_lookup (test_p10_runtime.ProjectGuardTests.test_component_allowlist_before_resource_lookup) ... ok
+test_explicit_p09_reaches_schema_gate_without_aliasing_project (test_p10_runtime.ProjectGuardTests.test_explicit_p09_reaches_schema_gate_without_aliasing_project) ... ok
+test_foreign_project_rejected (test_p10_runtime.ProjectGuardTests.test_foreign_project_rejected) ... ok
+test_resume_completed_run_cannot_overwrite_report (test_p10_runtime.ProjectGuardTests.test_resume_completed_run_cannot_overwrite_report) ... ok
+test_wrong_map_project_stops_before_schema_or_network (test_p10_runtime.ProjectGuardTests.test_wrong_map_project_stops_before_schema_or_network) ... ok
+test_alias_duplicate_rejected (test_p10_selection.SelectionTests.test_alias_duplicate_rejected) ... ok
+test_contract_case_cannot_be_dropped (test_p10_selection.SelectionTests.test_contract_case_cannot_be_dropped) ... ok
+test_duplicate_execution_rejected (test_p10_selection.SelectionTests.test_duplicate_execution_rejected) ... ok
+test_exact_selection (test_p10_selection.SelectionTests.test_exact_selection) ... ok
+test_mandatory_or_denominator_cannot_be_relaxed (test_p10_selection.SelectionTests.test_mandatory_or_denominator_cannot_be_relaxed) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.011s
+
+OK

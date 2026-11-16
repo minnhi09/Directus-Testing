@@ -1,0 +1,6 @@
+{
+  "admin": true,
+  "editor": true,
+  "reader": true,
+  "anonymous": true
+}

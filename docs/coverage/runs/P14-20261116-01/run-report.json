@@ -1,0 +1,169 @@
+{
+  "run_id": "P14-20261116-01",
+  "module": "ITEM/category",
+  "selection_basis": "P07 regression13 category binding; P10 P3-ST-01; approved 10 item CRUD pairs",
+  "collection": "qa_sys_categories_p14_20261116_01",
+  "namespace": "r06-k05-p09-20261115-audit01",
+  "baseline": "M1-REGRESSION-13-v1",
+  "sut_version": "12.5.0",
+  "source_pin": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "budget": {
+    "source": "plan9.3",
+    "seed": 101,
+    "max_examples_per_operation": 10,
+    "max_time_seconds_per_profile": 60,
+    "workers": 1,
+    "rate": "2/s",
+    "request_timeout": 10
+  },
+  "actor": "run-owned editor-equivalent category CRUD",
+  "allowlist": [
+    [
+      "GET",
+      "/items/qa_sys_categories_p14_20261116_01"
+    ],
+    [
+      "POST",
+      "/items/qa_sys_categories_p14_20261116_01"
+    ],
+    [
+      "GET",
+      "/items/qa_sys_categories_p14_20261116_01/{id}"
+    ],
+    [
+      "PATCH",
+      "/items/qa_sys_categories_p14_20261116_01/{id}"
+    ],
+    [
+      "DELETE",
+      "/items/qa_sys_categories_p14_20261116_01/{id}"
+    ]
+  ],
+  "started_at": "2026-11-15T23:54:39.159847+00:00",
+  "profiles": [
+    {
+      "profile": "raw",
+      "exit_code": 1,
+      "reports_present": true,
+      "restore": "PASS"
+    },
+    {
+      "profile": "guided",
+      "exit_code": 1,
+      "reports_present": true,
+      "restore": "PASS"
+    }
+  ],
+  "status": "RUNS_FINISHED",
+  "keyword_coverage": "NOT_MEASURED",
+  "remote_ci": "NOT_RUN",
+  "resume_reason": "TypeError serializing restore filename after verified raw restore; raw not rerun",
+  "raw_sha256": {
+    "actor-resume.json": "45f6c39f900a7784dcf93046d1b63be3b29e32a94dd79f2f3af85be4f406d76c",
+    "actor.json": "45f6c39f900a7784dcf93046d1b63be3b29e32a94dd79f2f3af85be4f406d76c",
+    "admin-resume.json": "65600d157a859c73739f03e5f54ddb553d1918d8eac139a35b020aac324bc435",
+    "admin.json": "c6048301caa5d97660c397b1581612212f851c380bf36507e4ed98651d5e20dd"
+  },
+  "cleanup": [
+    {
+      "kind": "users",
+      "id": "5ec09303-2a46-4285-af98-2598aea16e65",
+      "status": "PASS"
+    },
+    {
+      "kind": "permissions",
+      "id": 19,
+      "status": "PASS"
+    },
+    {
+      "kind": "permissions",
+      "id": 18,
+      "status": "PASS"
+    },
+    {
+      "kind": "permissions",
+      "id": 17,
+      "status": "PASS"
+    },
+    {
+      "kind": "permissions",
+      "id": 16,
+      "status": "PASS"
+    },
+    {
+      "kind": "access",
+      "id": "014edaa9-0350-44fb-a73b-2821e2978177",
+      "status": "PASS"
+    },
+    {
+      "kind": "policies",
+      "id": "c3cbe17e-1a21-47da-afb9-0996b44b4082",
+      "status": "PASS"
+    },
+    {
+      "kind": "roles",
+      "id": "9fe0b16e-6695-41c4-8305-0d2ce9ff00f7",
+      "status": "PASS"
+    },
+    {
+      "kind": "collections",
+      "id": "qa_sys_categories_p14_20261116_01",
+      "status": "PASS"
+    }
+  ],
+  "finished_at": "2026-11-15T23:55:48.508192+00:00",
+  "phase_status": "COMPLETE",
+  "metrics": [
+    {
+      "profile": "raw",
+      "stop_reason": "max_time",
+      "complete": true,
+      "exit_code": 1,
+      "operations": {
+        "total": 5,
+        "selected": 5,
+        "tested": 5,
+        "errored": 0,
+        "skipped": 0,
+        "skip_reasons": []
+      },
+      "test_cases": {
+        "generated": 115,
+        "with_failures": 7,
+        "unique_failures": 7,
+        "without_checks": 0,
+        "errored": 0
+      },
+      "running_time": 60.92001196800015,
+      "completion_interpretation": "INCOMPLETE_BUDGET",
+      "verdict": "FAIL"
+    },
+    {
+      "profile": "guided",
+      "stop_reason": "max_time",
+      "complete": true,
+      "exit_code": 1,
+      "operations": {
+        "total": 5,
+        "selected": 5,
+        "tested": 5,
+        "errored": 0,
+        "skipped": 0,
+        "skip_reasons": []
+      },
+      "test_cases": {
+        "generated": 113,
+        "with_failures": 9,
+        "unique_failures": 10,
+        "without_checks": 0,
+        "errored": 0
+      },
+      "running_time": 60.014717679000114,
+      "completion_interpretation": "INCOMPLETE_BUDGET",
+      "verdict": "FAIL"
+    }
+  ],
+  "suite_verdict": "FAIL",
+  "completion": "INCOMPLETE_BUDGET",
+  "replay": "FAIL_REPRODUCED_REGENERATED_REPRESENTATIVE"
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "P09_LICENSE_RETRY_1",
+  "created_at": "2026-11-15T16:12:36.157983+00:00",
+  "namespace": "r06-k05-p09-20261115-audit01",
+  "authorization": "User replaced LICENSE_KEY and requested P09 retry; apply only to isolated P09",
+  "key_comparison": {
+    "new_config_key_present": true,
+    "P09_matches_new_config_key": true,
+    "differs_from_stopped_old_container_key": true
+  },
+  "activation": {
+    "preview_http_status": 200,
+    "compose_up_directus_no_deps_wait_exit_code": 0,
+    "license_source": "env",
+    "license_status": "active",
+    "invalid_reason": null,
+    "effective_custom_permission_rules_enabled": true,
+    "project_id_present": true,
+    "project_id": "01a1dfd9-ad75-72ce-b838-51db3487017e",
+    "project_id_manually_changed": false,
+    "provider_binding_accepted": "Effective env grant active after normal Directus activation; no old grant or token copied"
+  },
+  "log_probe": {
+    "command_exit_code": 0,
+    "lines_limit": 300,
+    "raw_log_published": false,
+    "category_counts": {
+      "activation": 0,
+      "binding_error": 0,
+      "invalid_license": 0,
+      "refresh_failure": 0
+    }
+  },
+  "old_lab": {
+    "runtime_changes": false,
+    "api_called": false,
+    "DB_read_or_written": false,
+    "current_provider_binding": "NOT_QUERIED",
+    "containers": [
+      {
+        "id": "70debbaa2aa370ffceed4cfe657596821d4fd2fd716ff37af4c26b4583f64ab4",
+        "status": "exited",
+        "started_at": "2026-10-20T01:14:45.049981946Z",
+        "finished_at": "2026-10-21T01:40:03.136497501Z"
+      },
+      {
+        "id": "25f020a8835fda9ebaf10d7fe2b306bcbe4563375d06b45eb515242ed0333c82",
+        "status": "exited",
+        "started_at": "2026-10-20T01:15:00.737997293Z",
+        "finished_at": "2026-10-21T01:40:03.137468316Z"
+      },
+      {
+        "id": "78130ae72c1486bec6e2e8afe31007bb178764c90b903af1c588bfba249d6e00",
+        "status": "exited",
+        "started_at": "2026-10-20T01:14:39.33652077Z",
+        "finished_at": "2026-10-21T01:40:03.136581334Z"
+      }
+    ]
+  },
+  "P09_DB_container_preserved": true,
+  "Directus_only_recreated": true,
+  "raw_OpenAPI_modified": false,
+  "campaign": "NOT_RUN"
+}

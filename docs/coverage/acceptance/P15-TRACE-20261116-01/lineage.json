@@ -1,0 +1,18 @@
+{
+  "prior_bundle": "docs/coverage/acceptance/M2-COVERAGE-20261116/bundle",
+  "new_selected_scenarios": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6"
+  ],
+  "kept_selected_P10_cases": 7,
+  "new_test_ids": 0,
+  "new_execution_ids": 6,
+  "run_selection": "PREDECLARED_EXECUTIONS before scenario run",
+  "operation_metric_unit": "5 generic method/path templates; positive evidence bound to qa_articles only; NOT 10 concrete pairs",
+  "TC13": "P10 FAIL unchanged",
+  "anonymous_schema_backfill_to_old_P10": false
+}

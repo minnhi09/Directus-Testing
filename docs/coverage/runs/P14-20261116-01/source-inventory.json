@@ -1,0 +1,697 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "data_origin": "DERIVED",
+    "inventory_id": "INV-ITEM-DELETE-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "inventory_revision": "REG13-INVENTORY-v1",
+    "module_id": "ITEM",
+    "capability_id": "CAP-ITEM-ITEMS",
+    "transport": "REST",
+    "method": "DELETE",
+    "path_template": "/items/{collection}/{pk}",
+    "protocol_operation": null,
+    "operation_key": "REST|DELETE|/items/{collection}/{pk}|DEFAULT|BASELINE_UNVERIFIED",
+    "route_variant": "DEFAULT",
+    "feature_profile": "BASELINE_UNVERIFIED",
+    "feature_flag": "!LicenseManager.isLocked() (router guard, not mount flag)",
+    "deployed_state": "UNKNOWN",
+    "scope_tier": "CORE",
+    "applicability": "APPLICABLE",
+    "decision_id": "DEC-G11-M1-REGRESSION-20261115",
+    "source_refs": [
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L369",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L235-L237",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L1-L253",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L329-L342",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/sources/plan-da96feb6774e.md",
+        "revision": null,
+        "sha256": "da96feb6774e4f06de1c4241dba3f5606e88b72bc36c64549337ea0a09919882",
+        "pointer": "#L113-L127",
+        "certainty": "PROPOSED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/README.md",
+        "revision": null,
+        "sha256": "efb7e2f9a68379791330688448a0885a5169c2d0df8f54246db44a42e662e52d",
+        "pointer": "#path-provider-v\u00e0-oas",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/services/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+        "pointer": "#L1-L40",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/is-locked.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2",
+        "pointer": "#L7-L19",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-exists.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9",
+        "pointer": "#L8-L27",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-active.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94",
+        "pointer": "#L10-L24",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    ],
+    "gap_ids": [
+      "GAP-P04-RUNTIME",
+      "GAP-P04-OAS",
+      "GAP-P04-SCOPE",
+      "GAP-P04-ACTOR"
+    ],
+    "oas_state": "UNKNOWN",
+    "oas_refs": [
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_categories~1{id}/delete",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_articles~1{id}/delete",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      }
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "data_origin": "DERIVED",
+    "inventory_id": "INV-ITEM-GET-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "inventory_revision": "REG13-INVENTORY-v1",
+    "module_id": "ITEM",
+    "capability_id": "CAP-ITEM-ITEMS",
+    "transport": "REST",
+    "method": "GET",
+    "path_template": "/items/{collection}/{pk}",
+    "protocol_operation": null,
+    "operation_key": "REST|GET|/items/{collection}/{pk}|DEFAULT|BASELINE_UNVERIFIED",
+    "route_variant": "DEFAULT",
+    "feature_profile": "BASELINE_UNVERIFIED",
+    "feature_flag": "!LicenseManager.isLocked() (router guard, not mount flag)",
+    "deployed_state": "UNKNOWN",
+    "scope_tier": "CORE",
+    "applicability": "APPLICABLE",
+    "decision_id": "DEC-G11-M1-REGRESSION-20261115",
+    "source_refs": [
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L369",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L103-L105",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L1-L253",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L329-L342",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/sources/plan-da96feb6774e.md",
+        "revision": null,
+        "sha256": "da96feb6774e4f06de1c4241dba3f5606e88b72bc36c64549337ea0a09919882",
+        "pointer": "#L113-L127",
+        "certainty": "PROPOSED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/README.md",
+        "revision": null,
+        "sha256": "efb7e2f9a68379791330688448a0885a5169c2d0df8f54246db44a42e662e52d",
+        "pointer": "#path-provider-v\u00e0-oas",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/services/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+        "pointer": "#L1-L40",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/is-locked.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2",
+        "pointer": "#L7-L19",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-exists.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9",
+        "pointer": "#L8-L27",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-active.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94",
+        "pointer": "#L10-L24",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    ],
+    "gap_ids": [
+      "GAP-P04-RUNTIME",
+      "GAP-P04-OAS",
+      "GAP-P04-SCOPE",
+      "GAP-P04-ACTOR"
+    ],
+    "oas_state": "UNKNOWN",
+    "oas_refs": [
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_categories~1{id}/get",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_articles~1{id}/get",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      }
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "data_origin": "DERIVED",
+    "inventory_id": "INV-ITEM-GET-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+    "inventory_revision": "REG13-INVENTORY-v1",
+    "module_id": "ITEM",
+    "capability_id": "CAP-ITEM-ITEMS",
+    "transport": "REST",
+    "method": "GET",
+    "path_template": "/items/{collection}",
+    "protocol_operation": null,
+    "operation_key": "REST|GET|/items/{collection}|DEFAULT|BASELINE_UNVERIFIED",
+    "route_variant": "DEFAULT",
+    "feature_profile": "BASELINE_UNVERIFIED",
+    "feature_flag": "!LicenseManager.isLocked() (router guard, not mount flag)",
+    "deployed_state": "UNKNOWN",
+    "scope_tier": "CORE",
+    "applicability": "APPLICABLE",
+    "decision_id": "DEC-G11-M1-REGRESSION-20261115",
+    "source_refs": [
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L369",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L101-L103",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L1-L253",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L329-L342",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/sources/plan-da96feb6774e.md",
+        "revision": null,
+        "sha256": "da96feb6774e4f06de1c4241dba3f5606e88b72bc36c64549337ea0a09919882",
+        "pointer": "#L113-L127",
+        "certainty": "PROPOSED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/README.md",
+        "revision": null,
+        "sha256": "efb7e2f9a68379791330688448a0885a5169c2d0df8f54246db44a42e662e52d",
+        "pointer": "#path-provider-v\u00e0-oas",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/services/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+        "pointer": "#L1-L40",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/is-locked.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2",
+        "pointer": "#L7-L19",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-exists.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9",
+        "pointer": "#L8-L27",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-active.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94",
+        "pointer": "#L10-L24",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    ],
+    "gap_ids": [
+      "GAP-P04-RUNTIME",
+      "GAP-P04-OAS",
+      "GAP-P04-SCOPE",
+      "GAP-P04-ACTOR"
+    ],
+    "oas_state": "UNKNOWN",
+    "oas_refs": [
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_categories/get",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_articles/get",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      }
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "data_origin": "DERIVED",
+    "inventory_id": "INV-ITEM-PATCH-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "inventory_revision": "REG13-INVENTORY-v1",
+    "module_id": "ITEM",
+    "capability_id": "CAP-ITEM-ITEMS",
+    "transport": "REST",
+    "method": "PATCH",
+    "path_template": "/items/{collection}/{pk}",
+    "protocol_operation": null,
+    "operation_key": "REST|PATCH|/items/{collection}/{pk}|DEFAULT|BASELINE_UNVERIFIED",
+    "route_variant": "DEFAULT",
+    "feature_profile": "BASELINE_UNVERIFIED",
+    "feature_flag": "!LicenseManager.isLocked() (router guard, not mount flag)",
+    "deployed_state": "UNKNOWN",
+    "scope_tier": "CORE",
+    "applicability": "APPLICABLE",
+    "decision_id": "DEC-G11-M1-REGRESSION-20261115",
+    "source_refs": [
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L369",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L174-L176",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L1-L253",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L329-L342",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/sources/plan-da96feb6774e.md",
+        "revision": null,
+        "sha256": "da96feb6774e4f06de1c4241dba3f5606e88b72bc36c64549337ea0a09919882",
+        "pointer": "#L113-L127",
+        "certainty": "PROPOSED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/README.md",
+        "revision": null,
+        "sha256": "efb7e2f9a68379791330688448a0885a5169c2d0df8f54246db44a42e662e52d",
+        "pointer": "#path-provider-v\u00e0-oas",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/services/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+        "pointer": "#L1-L40",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/is-locked.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2",
+        "pointer": "#L7-L19",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-exists.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9",
+        "pointer": "#L8-L27",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-active.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94",
+        "pointer": "#L10-L24",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    ],
+    "gap_ids": [
+      "GAP-P04-RUNTIME",
+      "GAP-P04-OAS",
+      "GAP-P04-SCOPE",
+      "GAP-P04-ACTOR"
+    ],
+    "oas_state": "UNKNOWN",
+    "oas_refs": [
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_categories~1{id}/patch",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_articles~1{id}/patch",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      }
+    ]
+  },
+  {
+    "schema_version": "1.0.0",
+    "data_origin": "DERIVED",
+    "inventory_id": "INV-ITEM-POST-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+    "inventory_revision": "REG13-INVENTORY-v1",
+    "module_id": "ITEM",
+    "capability_id": "CAP-ITEM-ITEMS",
+    "transport": "REST",
+    "method": "POST",
+    "path_template": "/items/{collection}",
+    "protocol_operation": null,
+    "operation_key": "REST|POST|/items/{collection}|DEFAULT|BASELINE_UNVERIFIED",
+    "route_variant": "DEFAULT",
+    "feature_profile": "BASELINE_UNVERIFIED",
+    "feature_flag": "!LicenseManager.isLocked() (router guard, not mount flag)",
+    "deployed_state": "UNKNOWN",
+    "scope_tier": "CORE",
+    "applicability": "APPLICABLE",
+    "decision_id": "DEC-G11-M1-REGRESSION-20261115",
+    "source_refs": [
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L369",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L19-L21",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/controllers/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+        "pointer": "#L1-L253",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/app.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+        "pointer": "#L329-L342",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/sources/plan-da96feb6774e.md",
+        "revision": null,
+        "sha256": "da96feb6774e4f06de1c4241dba3f5606e88b72bc36c64549337ea0a09919882",
+        "pointer": "#L113-L127",
+        "certainty": "PROPOSED",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/README.md",
+        "revision": null,
+        "sha256": "efb7e2f9a68379791330688448a0885a5169c2d0df8f54246db44a42e662e52d",
+        "pointer": "#path-provider-v\u00e0-oas",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/services/items.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+        "pointer": "#L1-L40",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/is-locked.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2",
+        "pointer": "#L7-L19",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-exists.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9",
+        "pointer": "#L8-L27",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      },
+      {
+        "kind": "GIT_FILE",
+        "path": "../directus/api/src/middleware/collection-active.ts",
+        "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+        "sha256": "a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94",
+        "pointer": "#L10-L24",
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    ],
+    "gap_ids": [
+      "GAP-P04-RUNTIME",
+      "GAP-P04-OAS",
+      "GAP-P04-SCOPE",
+      "GAP-P04-ACTOR"
+    ],
+    "oas_state": "UNKNOWN",
+    "oas_refs": [
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_categories/post",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      },
+      {
+        "kind": "ARTIFACT",
+        "path": "runtime/schemas/r06-k05-v2/admin.json",
+        "revision": null,
+        "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+        "pointer": "#/paths/~1items~1qa_articles/post",
+        "certainty": "HISTORICAL",
+        "gap_ids": []
+      }
+    ]
+  }
+]
