@@ -9,3 +9,10 @@
 /config/lab.env
 /artifacts/runs/
 /runtime/
+
+# Local caches and temporary renderings; retain user documents for review
+__pycache__/
+*.py[cod]
+/tmp/
+# Public course input: exact duplicate of docs/yeu_cau.pdf, needed by original refs
+!/yeu_cau.pdf
