@@ -1,0 +1,22 @@
+[
+  {
+    "command": [
+      "python",
+      "-B",
+      "scripts/coverage_offline.py",
+      "validate",
+      "docs\\coverage\\acceptance\\M2-COVERAGE-20261116\\bundle"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python",
+      "-B",
+      "scripts/coverage_offline.py",
+      "calculate",
+      "docs\\coverage\\acceptance\\M2-COVERAGE-20261116\\bundle"
+    ],
+    "exit_code": 0
+  }
+]

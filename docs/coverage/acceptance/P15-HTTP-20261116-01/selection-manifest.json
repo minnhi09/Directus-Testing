@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "data_origin": "DERIVED",
+  "selection_id": "P15-HTTP-20261116-01",
+  "baseline_id": "M1-REGRESSION-13-v1",
+  "denominator_revision": "G11-REG13-R13-v1",
+  "state": "LOCKED",
+  "unit": "REQUIREMENT",
+  "scope_tiers": [
+    "CORE"
+  ],
+  "transports": [
+    "REST"
+  ],
+  "requirement_ids": [
+    "LEGACY-TC01",
+    "LEGACY-TC02",
+    "LEGACY-TC03",
+    "LEGACY-TC04",
+    "LEGACY-TC05",
+    "LEGACY-TC06",
+    "LEGACY-TC07",
+    "LEGACY-TC08",
+    "LEGACY-TC09",
+    "LEGACY-TC10",
+    "LEGACY-TC11",
+    "LEGACY-TC12",
+    "LEGACY-TC13"
+  ],
+  "inventory_ids": [
+    "INV-ITEM-DELETE-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-GET-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-GET-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-PATCH-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-POST-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED"
+  ],
+  "module_ids": [
+    "LEGACY"
+  ],
+  "tests": [
+    {
+      "canonical_test_id": "S1",
+      "test_version": "legacy-scenario-source-v1",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "S2",
+      "test_version": "legacy-scenario-source-v1",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "S3",
+      "test_version": "legacy-scenario-source-v1",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "S4",
+      "test_version": "legacy-scenario-source-v1",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "S5",
+      "test_version": "legacy-scenario-source-v1",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "S6",
+      "test_version": "legacy-scenario-source-v1",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-ST-01",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-AUTHZ-DR-047",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-SCORE-POST-MINUS1",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-SCORE-POST-0",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-SCORE-POST-5",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-SCORE-POST-6",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "P3-CONTRACT-QA_ARTICLES-OBJECT",
+      "test_version": "catalog-v1-19fdf06d",
+      "mandatory": true
+    }
+  ],
+  "run_ids": [
+    "P15-HTTP-20261116-01",
+    "P10-20261116-02"
+  ],
+  "execution_ids": [
+    "P15-HTTP-20261116-01-S1",
+    "P15-HTTP-20261116-01-S2",
+    "P15-HTTP-20261116-01-S3",
+    "P15-HTTP-20261116-01-S4",
+    "P15-HTTP-20261116-01-S5",
+    "P15-HTTP-20261116-01-S6",
+    "P10-20261116-02-P3-ST-01",
+    "P10-20261116-02-P3-AUTHZ-DR-047",
+    "P10-20261116-02-P3-SCORE-POST-MINUS1",
+    "P10-20261116-02-P3-SCORE-POST-0",
+    "P10-20261116-02-P3-SCORE-POST-5",
+    "P10-20261116-02-P3-SCORE-POST-6",
+    "P10-20261116-02-P3-CONTRACT-QA_ARTICLES-OBJECT"
+  ],
+  "run_selection_policy": "PREDECLARED_EXECUTIONS",
+  "retry_policy": "KEEP_ALL_REPORT_FLAKY",
+  "locked_at": "2026-11-15T23:38:56.628399+00:00",
+  "decision_id": "DEC-G11-M1-REGRESSION-20261115",
+  "source_refs": [
+    {
+      "kind": "ARTIFACT",
+      "path": "docs/coverage/sources/plan-72d6707cd28a.md",
+      "revision": null,
+      "sha256": "72d6707cd28a6bd438e074ae6877cf48825fa852b25eff1577885dfef41d2c00",
+      "pointer": "#L169-L193",
+      "certainty": "VERIFIED",
+      "gap_ids": []
+    },
+    {
+      "kind": "ARTIFACT",
+      "path": "docs/coverage/decisions/G11-M1-regression-20261115.md",
+      "revision": null,
+      "sha256": "e23e96bfc37a0c274eb749f3ea71878b142618d7a01166fff328b210fdcce1aa",
+      "pointer": null,
+      "certainty": "VERIFIED",
+      "gap_ids": []
+    }
+  ],
+  "gap_ids": [
+    "GAP-P07-SCOPE",
+    "GAP-P07-RUNTIME",
+    "GAP-P07-BINDING"
+  ]
+}

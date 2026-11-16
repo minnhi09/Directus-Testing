@@ -1,0 +1,22 @@
+[
+  {
+    "command": [
+      "python",
+      "-B",
+      "scripts/coverage_offline.py",
+      "validate",
+      "D:\\DAMH-full-recovery-2026-10-12\\DAMH\\docs\\coverage\\acceptance\\P15-HTTP-20261116-01\\bundle"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "python",
+      "-B",
+      "scripts/coverage_offline.py",
+      "calculate",
+      "D:\\DAMH-full-recovery-2026-10-12\\DAMH\\docs\\coverage\\acceptance\\P15-HTTP-20261116-01\\bundle"
+    ],
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "kind": "P05_STATIC_INVENTORY_AUDIT",
+  "created_at": "2026-11-15T14:15:38.934778+00:00",
+  "source_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "revision": "P05-NON-REST-CONDITIONAL-4f77933-v1",
+  "schema_validation": {
+    "tool": "PowerShell 7 Test-Json, common defs resolved locally",
+    "exit_code": 0,
+    "inventory": 52,
+    "gaps": 6,
+    "decisions": 1
+  },
+  "source_index_files": 36,
+  "git_citation_occurrences_verified": 362,
+  "http_declarations": 43,
+  "rest_records": 34,
+  "protocol_capability_groups": 18,
+  "unresolved_declarations": 9,
+  "duplicate_P03_P04_ids_or_keys": 0,
+  "preserved_input_hashes": 72,
+  "test_execution": "NOT_RUN",
+  "remote_CI": "NOT_RUN",
+  "api_coverage": "NOT_MEASURED",
+  "code_coverage": "NOT_MEASURED",
+  "applicable_denominator": null,
+  "system_inventory_complete": false,
+  "runtime": "UNKNOWN",
+  "shard_sha256": {
+    "capabilities.jsonl": "cc23fa5bfb5533425787c92a3349cf67934df93fc82baf291875306cda529db0",
+    "conditional-dependencies.jsonl": "cb7beb322698d755bcb3f8e0103a16f10598e68cbffdb1d2d0eb5cff4729258a",
+    "decisions.jsonl": "ecdb7fd2f8c08b7dc905a86fdff079fa636351ea0781cb5322e405f898d50c42",
+    "gaps.jsonl": "5110032d94bb167050ab0258bf4f2b86db0269b19c25423bdf9d4cb087728359",
+    "input-fingerprints.json": "1061fc3781eb2cf8966e9a8dc84b87c4965e39274355bf088d21ef4c6907ea76",
+    "integration-crossrefs.json": "9424b1c15cd5e2bc567b5911bedf985d55af31f26a35e20b1ee4cc1d191d6c3d",
+    "README.md": "9a7c22a2075556a946c770a38380a3cecace818bf5ba06fecb08e656519b990e",
+    "route-evidence.jsonl": "468c30e5499bb94c2d573ba16c887403d6744306d544b02dd5f3d11c0ed43294",
+    "source-index.json": "3f07cd2835cbaf7a13a2b6c5122f6bd566bba2ac21f4d0932a5c3225363e2af6",
+    "system-inventory.jsonl": "6564eace3ac3d459724a98ccf3a54c5e3ea5dd1cb8337a92a54118e8a95ebfd4",
+    "unresolved-routes.jsonl": "3315c0edc4d5a3deb9a2a5c2ed94eaa21bf81339632738841df25a36ca27023d"
+  }
+}

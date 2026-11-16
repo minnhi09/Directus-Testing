@@ -1,0 +1,46 @@
+{
+  "name": "Static / offline",
+  "on": {
+    "push": {},
+    "pull_request": {},
+    "workflow_dispatch": {}
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "${{ github.workflow }}-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "static-offline": {
+      "name": "Static and offline harness (no API)",
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 10,
+      "steps": [
+        {
+          "name": "Checkout",
+          "uses": "actions/checkout@v6",
+          "with": {
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Static syntax, data, selectors and unit harness",
+          "run": "python3 scripts/check_offline.py --output-dir artifacts/runs/p02-static"
+        },
+        {
+          "name": "Upload offline summary",
+          "if": "always()",
+          "uses": "actions/upload-artifact@v6",
+          "with": {
+            "name": "p02-static-${{ github.run_id }}-${{ github.run_attempt }}",
+            "path": "artifacts/runs/p02-static/offline-summary.json",
+            "if-no-files-found": "error",
+            "retention-days": 14
+          }
+        }
+      ]
+    }
+  }
+}

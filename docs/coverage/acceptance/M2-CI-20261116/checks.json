@@ -1,0 +1,52 @@
+{
+  "CI_unit_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_ci_m2.py -v",
+    "passed": 17,
+    "mode": "OFFLINE_FIXTURE",
+    "final_execution": "static-offline-final-summary.json#unit_harness"
+  },
+  "runtime_guard_tests": {
+    "test_p10_runtime": 5,
+    "test_p09_runtime": 6,
+    "test_http_contract_metadata": 10,
+    "test_scenario_trace": 8,
+    "passed": 29
+  },
+  "coverage_tests": {
+    "command": "python -B -m unittest discover -s tests -p 'test_coverage*.py' -v",
+    "passed": 39
+  },
+  "static_checks": {
+    "groups_passed": 8,
+    "source": "static-offline-final-summary.json",
+    "CI_unit_tests_included": true,
+    "all_offline_unit_tests_in_static_group": 37
+  },
+  "jq_metadata_probe": {
+    "mode": "LOCAL_PINNED_NATIVE_JQ",
+    "exit_code": 0,
+    "actual": "/server/specs/oas",
+    "bash_syntax_exit_code": 0
+  },
+  "local_rehearsal": {
+    "first_attempt": "local-20261116-ci01-summary.json",
+    "second_attempt": "local-20261116-ci02-summary.json",
+    "evidence_resume": "local-evidence-final/ci-summary.json",
+    "regression_attempts": 2,
+    "resume_SUT_regression_reruns": 0,
+    "regression_exit_code": 1,
+    "diagnostic_process_exit_code": 0,
+    "combined_exit_code": 1,
+    "finalizer_exit_code": 0,
+    "finalizer_source": "local-evidence-final/workflow-finalizer.json"
+  },
+  "remote_CI": "NOT_RUN",
+  "post_rehearsal_changes": {
+    "scope": [
+      "publication error summary",
+      "remote source SHA/clean authoritative input guards",
+      "artifact index excludes itself"
+    ],
+    "verification": "17 offline CI tests in final static check; no additional SUT regression"
+  }
+}

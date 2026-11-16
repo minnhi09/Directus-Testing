@@ -1,0 +1,5 @@
+{
+  "audit_source": "docs/coverage/reviews/2026-11-15-R06-K05/audit-evidence.json",
+  "audit_sha256": "13841d3a8ba298a67b8bd06851b35f995d9250a53b41c74fe9548ecd7526eb3a",
+  "scope_note": "Shared audit; source-design scope only, no new SUT execution."
+}

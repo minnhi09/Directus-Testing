@@ -1,0 +1,17 @@
+{
+  "git_attribute_output": [
+    "docs/coverage/catalog/canonical-catalog.jsonl: text: unset",
+    "docs/coverage/catalog/canonical-catalog.jsonl: eol: unspecified",
+    "scripts/lab-components.sh: text: set",
+    "scripts/lab-components.sh: eol: lf",
+    "lab.sh: text: set",
+    "lab.sh: eol: lf"
+  ],
+  "secret_paths_still_ignored": [
+    "runtime/profiles/r06-k05-p09-20261115-audit01/p09.env",
+    "config/lab.env"
+  ],
+  "P14_events_explicitly_includable": true,
+  "CRLF_evidence_byte_hash_preserved": true,
+  "source_git_config_changed": false
+}

@@ -20,7 +20,7 @@ Hai lượt suite ngắn đều **58/58 PASS**, cleanup và restore PASS, cùng 
 | P4-08 | Chạy hai lượt ngắn tuần tự, đối chiếu dữ liệu/source/config/thứ tự/verdict | Các cờ so sánh trong `repeatability.json` đều true |
 | P4-09 | Kiểm cú pháp Python/Bash/PowerShell, diff, regression offline trên host và runner pin; chạy integration liên quan | [validation](tai-lieu-bo-tro/phase4-20261018/validation.json), [unit trên host](tai-lieu-bo-tro/phase4-20261018/unit-test-output.txt), [unit trong runner](tai-lieu-bo-tro/phase4-20261018/unit-test-pinned-output.txt) |
 
-Không nâng version, đổi schema/policy/fixture nghiệp vụ, reset volume hoặc sửa checkout Directus. Chưa commit/push. Các tệp đã dirty trước Phase 4 có [checkpoint riêng](tai-lieu-bo-tro/phase4-20261018/source-manifest-before.json); nguồn bàn giao có [manifest sau sửa](tai-lieu-bo-tro/phase4-20261018/source-manifest-after.json) và [gói source không chứa credential](tai-lieu-bo-tro/phase4-20261018/phase4-source.zip).
+Không nâng version, đổi schema/policy/fixture nghiệp vụ, reset volume hoặc sửa checkout Directus. Chưa commit/push. Các tệp đã dirty trước Phase 4 có [checkpoint riêng](tai-lieu-bo-tro/phase4-20261018/source-manifest-before.json); nguồn bàn giao có [manifest sau sửa](tai-lieu-bo-tro/phase4-20261018/source-manifest-after.json) và [gói source không chứa credential](../ARCHIVES.md).
 
 ## 2. Nền tảng và precondition thật
 
@@ -34,7 +34,7 @@ Doctor cuối [`20261018T092140Z-1392`](tai-lieu-bo-tro/phase4-20261018/doctor-o
 
 ## 3. Kết quả chạy mới
 
-Các đường dẫn dưới đây dẫn tới bản sao report trong hồ sơ. Raw response cần thiết nằm trong [gói runtime evidence](tai-lieu-bo-tro/phase4-20261018/selected-runtime-evidence.zip); artefact gốc vẫn ở `artifacts/runs/<run_id>/`.
+Các đường dẫn dưới đây dẫn tới bản sao report trong hồ sơ. Raw response cần thiết nằm trong [gói runtime evidence](../ARCHIVES.md); artefact gốc vẫn ở `artifacts/runs/<run_id>/`.
 
 | Run / lệnh | Kết quả | Exit / restore |
 |---|---|---|

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "764549664e70c3fe02319750ca7809052fe13d58a9c325c27d4ee928041bfd0e",
+    "name": "/r06-k05-p09-20261115-audit01-database-1",
+    "image_id": "sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+    "image_ref": "docker.io/library/postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+    "health": "healthy",
+    "mounts": [
+      {
+        "name": "r06-k05-p09-20261115-audit01_db_data",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ],
+    "ports": {
+      "5432/tcp": null
+    }
+  },
+  {
+    "id": "9f44eeacf03dcf163aa15f9b691e1619dfb28bb809e92fcc28ca58c3d84a03bc",
+    "name": "/r06-k05-p09-20261115-audit01-directus-1",
+    "image_id": "sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+    "image_ref": "docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+    "health": "healthy",
+    "mounts": [
+      {
+        "name": "r06-k05-p09-20261115-audit01_uploads",
+        "destination": "/directus/uploads"
+      },
+      {
+        "name": "r06-k05-p09-20261115-audit01_extensions",
+        "destination": "/directus/extensions"
+      }
+    ],
+    "ports": {
+      "8055/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "18055"
+        }
+      ]
+    }
+  }
+]

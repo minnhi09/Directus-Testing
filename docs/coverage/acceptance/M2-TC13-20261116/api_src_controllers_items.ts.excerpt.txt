@@ -1,0 +1,45 @@
+19: router.post(
+20: 	'/:collection',
+21: 	collectionExists,
+22: 	collectionActive(),
+23: 	asyncHandler(async (req, res, next) => {
+24: 		if (isSystemCollection(req.params['collection']!)) throw new ForbiddenError();
+25: 
+26: 		if (req.singleton) {
+27: 			throw new RouteNotFoundError({ path: req.path });
+28: 		}
+29: 
+30: 		const service = new ItemsService(req.collection, {
+31: 			accountability: req.accountability,
+32: 			schema: req.schema,
+33: 		});
+34: 
+35: 		const savedKeys: PrimaryKey[] = [];
+36: 
+37: 		if (Array.isArray(req.body)) {
+38: 			const keys = await service.createMany(req.body);
+39: 			savedKeys.push(...keys);
+40: 		} else {
+41: 			const key = await service.createOne(req.body);
+42: 			savedKeys.push(key);
+43: 		}
+44: 
+45: 		try {
+46: 			if (Array.isArray(req.body)) {
+47: 				const result = await service.readMany(savedKeys, req.sanitizedQuery);
+48: 				res.locals['payload'] = { data: result || null };
+49: 			} else {
+50: 				const result = await service.readOne(savedKeys[0]!, req.sanitizedQuery);
+51: 				res.locals['payload'] = { data: result || null };
+52: 			}
+53: 		} catch (error: any) {
+54: 			if (isDirectusError(error, ErrorCode.Forbidden)) {
+55: 				return next();
+56: 			}
+57: 
+58: 			throw error;
+59: 		}
+60: 
+61: 		return next();
+62: 	}),
+63: 	respond,

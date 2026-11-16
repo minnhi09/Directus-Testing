@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "data_origin": "DERIVED",
+  "baseline_id": "M1-P07-v1",
+  "inventory_revision": "P07-INVENTORY-v1",
+  "catalog_revision": "P07-CATALOG-v1",
+  "review_state": "DRAFT",
+  "sut_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "sut_version": "12.5.0",
+  "image_digest": "sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+  "actor_schema_hashes": {},
+  "harness_commit": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "harness_worktree": "DIRTY",
+  "run_ids": [],
+  "source_refs": [
+    {
+      "kind": "ARTIFACT",
+      "path": "manifest/baseline.yaml",
+      "revision": null,
+      "sha256": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee",
+      "pointer": null,
+      "certainty": "VERIFIED",
+      "gap_ids": []
+    }
+  ],
+  "generated_at": "2026-11-15T14:33:26.851977+00:00",
+  "gap_ids": [
+    "GAP-P07-RUNTIME",
+    "GAP-P07-SCOPE"
+  ],
+  "unresolved_fields": {
+    "/image_id": [
+      "GAP-P07-RUNTIME"
+    ],
+    "/architecture": [
+      "GAP-P07-RUNTIME"
+    ],
+    "/config_profile": [
+      "GAP-P07-RUNTIME"
+    ],
+    "/config_hash_sanitized": [
+      "GAP-P07-RUNTIME"
+    ],
+    "/fixture_profile": [
+      "GAP-P07-RUNTIME"
+    ],
+    "/fixture_hash": [
+      "GAP-P07-RUNTIME"
+    ],
+    "/environment_id": [
+      "GAP-P07-RUNTIME"
+    ]
+  },
+  "image_id": null,
+  "architecture": null,
+  "config_profile": null,
+  "config_hash_sanitized": null,
+  "fixture_profile": null,
+  "fixture_hash": null,
+  "environment_id": null
+}

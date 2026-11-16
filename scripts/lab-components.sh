@@ -110,7 +110,11 @@ api_request() {
 	HTTP_COUNTER=$((HTTP_COUNTER + 1))
 	response_file="$RUN_DIR/http-$HTTP_COUNTER.json"
 	local -a args
-	args=(-sS --globoff --max-time 10 -o "$response_file" -w '%{http_code}' -X "$method")
+	local write_out='%{http_code}'
+	if [[ "${LAB_TRACE_SCENARIOS:-}" == 1 ]]; then
+		write_out='%{http_code}|%{content_type}|%{time_total}|%{http_version}|%{url_effective}'
+	fi
+	args=(-sS --globoff --max-time 10 -o "$response_file" -w "$write_out" -X "$method")
 	[[ -n "$token" ]] && args+=(-H "Authorization: Bearer $token")
 	if [[ -n "$body" ]]; then
 		args+=(-H 'Content-Type: application/json' --data-binary @-)
@@ -125,9 +129,24 @@ api_request() {
 	fi
 	curl_rc=$?
 	set -e
+	local trace_content_type='' trace_elapsed=0 trace_http_version='' trace_effective_url=''
+	if [[ "${LAB_TRACE_SCENARIOS:-}" == 1 ]]; then
+		IFS='|' read -r http_status trace_content_type trace_elapsed trace_http_version trace_effective_url <<< "$http_status"
+	fi
 	API_STATUS="$http_status"
 	API_BODY="$response_file"
 	API_CURL_RC="$curl_rc"
+	if [[ "${LAB_TRACE_SCENARIOS:-}" == 1 ]]; then
+		local trace_actor=UNKNOWN
+		if [[ -z "$token" ]]; then trace_actor=anonymous
+		elif [[ "$token" == "$ADMIN_TOKEN" ]]; then trace_actor=admin
+		elif [[ "$token" == "$EDITOR_TOKEN" ]]; then trace_actor=editor
+		elif [[ "$token" == "$READER_TOKEN" ]]; then trace_actor=reader; fi
+		jq -cn --arg scenario "${TRACE_SCENARIO_ID:-SETUP}" --arg method "$method" --arg path "$path" \
+			--arg actor "$trace_actor" --arg body "$body" --arg status "$http_status" --arg response "http-$HTTP_COUNTER.json" --argjson curl_rc "$curl_rc" \
+			--arg content_type "$trace_content_type" --arg elapsed "$trace_elapsed" --arg http_version "$trace_http_version" --arg effective_url "$trace_effective_url" \
+			'{trace_version:2,scenario:$scenario,method:$method,path:$path,actor:$actor,request_body:(if $body == "" then null else ($body|fromjson) end),status:($status|tonumber),curl_exit_code:$curl_rc,response_ref:$response,content_type:$content_type,elapsed_seconds:($elapsed|tonumber),http_version:$http_version,effective_url:$effective_url,recorded_at:(now|todateiso8601)}' >> "$RUN_DIR/scenario-trace.ndjson"
+	fi
 	if (( curl_rc != 0 )); then
 		printf 'API request failed: %s %s (curl=%s)\n' "$method" "$path" "$curl_rc" >&2
 		return 1
@@ -1818,7 +1837,7 @@ invariants() {
 
 capture_database_oracle() {
 	printf '%s\n' "SELECT json_build_object('server_version',current_setting('server_version'),'collation',(SELECT datcollate FROM pg_database WHERE datname=current_database()),'title_ids',(SELECT json_agg(id ORDER BY title,id) FROM qa_articles));" | \
-		docker compose --project-name "$PROJECT_NAME" --env-file "$LAB_ROOT_DIR/config/lab.env" --file "$LAB_ROOT_DIR/compose.yaml" \
+		docker compose --project-name "$PROJECT_NAME" --env-file "${LAB_COMPOSE_ENV_FILE:-$LAB_ROOT_DIR/config/lab.env}" --file "${LAB_COMPOSE_FILE:-$LAB_ROOT_DIR/compose.yaml}" \
 			exec -T database sh -c 'exec psql -X -U "$POSTGRES_USER" -d "$POSTGRES_DB" -At -v ON_ERROR_STOP=1' \
 			> "$RUN_DIR/database-oracle.json" 2> "$RUN_DIR/database-oracle-error.log"
 }
@@ -1994,10 +2013,45 @@ schema_smoke() {
 	[[ "$report_present" == true && "$coverage_present" == true ]] || return 1
 }
 
+p10_scenarios() {
+	[[ "$PROJECT_NAME" == r06-k05-p09-* && "$API_URL" == http://127.0.0.1:18055 ]] || return 1
+	require_tools
+	require_admin_login || return 1
+	require_actor_logins || return 1
+	load_fixture_map || return 1
+	ensure_reader_schema || return 1
+	campaign_snapshot || return 1
+	SCENARIO_REPORT="$RUN_DIR/scenario-report.json"
+	jq -n --arg version "$FIXTURE_VERSION" '{schema:1,fixture_version:$version,scenarios:[]}' > "$SCENARIO_REPORT"
+	local overall=0
+	TRACE_SCENARIO_ID=S1
+	scenario_editor_crud || overall=1
+	TRACE_SCENARIO_ID=S2
+	scenario_filter_status || overall=1
+	TRACE_SCENARIO_ID=S3
+	scenario_sort_pagination || overall=1
+	TRACE_SCENARIO_ID=S4
+	scenario_reader_no_draft || overall=1
+	TRACE_SCENARIO_ID=S5
+	scenario_reader_hidden_field || overall=1
+	TRACE_SCENARIO_ID=S6
+	scenario_reader_write || overall=1
+	TRACE_SCENARIO_ID=VERIFY
+	# Do not invoke the broad legacy restore, which PATCHes baseline rows.
+	local collection
+	for collection in qa_articles qa_categories; do
+		api_expect_2xx 'verify unchanged baseline' GET "/items/$collection?limit=-1&sort=id" "$ADMIN_TOKEN" || return 1
+		jq -e --slurpfile before "$RUN_DIR/baseline-${collection#qa_}.json" '.data|sort_by(.id) == ($before[0].data|sort_by(.id))' "$API_BODY" >/dev/null || return 1
+	done
+	printf '{"restore_exit_code":0,"cleanup":"baseline_unchanged_no_broad_restore"}\n' > "$RUN_DIR/scenario-outcomes.json"
+	return "$overall"
+}
+
 main() {
 	local command_name="$1"
 	case "$command_name" in
 		seed) seed ;;
+		p10-scenarios) p10_scenarios ;;
 		smoke) smoke ;;
 		export-schema) export_schema ;;
 		scenarios) scenarios ;;

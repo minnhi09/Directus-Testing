@@ -1,0 +1,139 @@
+{
+  "format": "R06_K05_PHASE_REVIEW_1",
+  "source_pdf": "yeu_cau.pdf",
+  "source_sha256": "b032a7a78a6ea02bb6f5bf52f037c2e06f80cba18bbffef02c2fce39c56cd405",
+  "source_pages": [
+    1,
+    2,
+    3,
+    6,
+    8
+  ],
+  "requested_filename": "yeu_cau(9).pdf",
+  "requested_binary_located": false,
+  "source_text_and_render_reviewed": true,
+  "instructor_specific_subset_approval": false,
+  "internal_regression_approval": "docs/coverage/decisions/G11-M1-regression-20261115.md",
+  "phases": [
+    {
+      "phase_id": "P00",
+      "classification": "Tái dùng",
+      "effective_work": "Giữ snapshot Git/source/image/artifact; không audit lại toàn repo.",
+      "gate": "P00 hiện có; ghi delta Git và runtime khi có run mới."
+    },
+    {
+      "phase_id": "P01",
+      "classification": "Tái dùng",
+      "effective_work": "Giữ schema/ID/alias/null/NOT_MEASURED; không đổi interface để né lỗi.",
+      "gate": "P01 1.0.0; registry sidecar có bằng chứng, không nhận ID tùy ý."
+    },
+    {
+      "phase_id": "P02",
+      "classification": "Tái dùng, duy trì",
+      "effective_work": "Static/offline và unit độc lập lab; CI là lựa chọn kỹ thuật hỗ trợ tái lập.",
+      "gate": "Chỉ ghi remote CI khi có run thật; không biến local PASS thành API PASS."
+    },
+    {
+      "phase_id": "P03",
+      "classification": "Tham khảo đã có",
+      "effective_work": "Giữ inventory auth/system; dùng phần auth/policy/OAS hỗ trợ API đã chọn.",
+      "gate": "Không buộc triển khai mọi admin/license/permissions endpoint."
+    },
+    {
+      "phase_id": "P04",
+      "classification": "Tham khảo đã có",
+      "effective_work": "Giữ inventory content/native; dùng Items/query/validation/M2O cho K05.",
+      "gate": "Files/flows/history/insight không tự thành test bắt buộc."
+    },
+    {
+      "phase_id": "P05",
+      "classification": "Tham khảo, mở rộng tùy chọn",
+      "effective_work": "Giữ GraphQL/Studio/Realtime/extensions/SDK/AI/MCP/deployment UNKNOWN có nguồn.",
+      "gate": "Không cần chạy mọi giao thức để nghiệm thu R06–K05 đã giới hạn scope."
+    },
+    {
+      "phase_id": "P06",
+      "classification": "Tái dùng",
+      "effective_work": "Giữ 257 ID, 13 alias, lineage và oracle/report; chọn ca ASSERTABLE phù hợp.",
+      "gate": "Không cộng 257+13+49 hoặc ép giải mọi OPEN chưa được chọn."
+    },
+    {
+      "phase_id": "P07",
+      "classification": "Cần cho subset đã chọn",
+      "effective_work": "Khóa scope/RTM/denominator regression13 theo quyết định nhóm 11; inventory rộng là tham khảo.",
+      "gate": "M1-REGRESSION-13-v1 khóa thiết kế; không ghi giảng viên duyệt subset hoặc toàn M1 LOCKED."
+    },
+    {
+      "phase_id": "P08",
+      "classification": "Tái dùng và kiểm lại",
+      "effective_work": "Validator/calculator offline, alias/D/E/V/O, FAIL/BLOCKED/retry, missing IDs.",
+      "gate": "26 unit tests; real bundle hợp lệ, no execution vẫn NOT_MEASURED."
+    },
+    {
+      "phase_id": "P09",
+      "classification": "Bước thực thi tiếp theo khi được giao",
+      "effective_work": "Preflight đúng lab pin/local URL/actors/license/fixture/OAS/CLI; cách ly/restore.",
+      "gate": "Cần được giao triển khai môi trường; chưa chạy trong lượt review. Tracecov chưa rõ chỉ chặn metric liên quan."
+    },
+    {
+      "phase_id": "P10",
+      "classification": "Cần cho K05 khả thi",
+      "effective_work": "Chạy regression13 và schema smoke trên hai collection; giữ contract FAIL và cleanup.",
+      "gate": "P09 đạt điều kiện; evidence mới không gắn ngược vào report lịch sử."
+    },
+    {
+      "phase_id": "P11",
+      "classification": "Tùy chọn theo rủi ro",
+      "effective_work": "Auth/session/multi-policy delta chỉ triển khai nếu nhóm chọn thêm.",
+      "gate": "Auth bootstrap và quyền Reader/Editor cũ vẫn hỗ trợ K05; không bắt lifecycle mới vì tên Core."
+    },
+    {
+      "phase_id": "P12",
+      "classification": "Tùy chọn theo rủi ro",
+      "effective_work": "Schema/model CRUD quản trị là mở rộng riêng, không prerequisite mặc định của item fuzz.",
+      "gate": "Không sửa fixture qa_articles/qa_categories để tăng số module."
+    },
+    {
+      "phase_id": "P13",
+      "classification": "Tùy chọn theo rủi ro",
+      "effective_work": "File/asset privacy chỉ vào automation khi có scope/fixture/oracle/storage riêng.",
+      "gate": "Không bắt upload/provider nếu K05 chọn item/query/validation."
+    },
+    {
+      "phase_id": "P14",
+      "classification": "Trọng tâm bắt buộc của K05 đã chọn",
+      "effective_work": "Raw schema tests → guided overlay tách biệt → reproducer/shrink/replay → metrics/failure analysis.",
+      "gate": "Dependency hiệu lực: P07 subset+P09+P10+fixture được chọn; không chờ toàn P11–P13."
+    },
+    {
+      "phase_id": "P15",
+      "classification": "Cần cho tích hợp kết quả",
+      "effective_work": "Tổng hợp automation/reproducibility và CI nếu nhóm đã chọn; kiểm missing/cleanup/known FAIL.",
+      "gate": "Không cần mọi Core module cũ; không gọi mandatory FAIL là acceptance PASS."
+    },
+    {
+      "phase_id": "P16",
+      "classification": "Mở rộng tùy chọn",
+      "effective_work": "Chỉ thêm một module/giao thức khi có lợi ích/rủi ro cụ thể và thời gian.",
+      "gate": "Không là gate K05 mặc định; không N/A toàn GraphQL/UI chỉ vì chưa chọn."
+    },
+    {
+      "phase_id": "P17",
+      "classification": "Mở rộng tùy chọn",
+      "effective_work": "Provider/Realtime/SDK/instrumented source cần quyết định và profile riêng.",
+      "gate": "Code/keyword coverage thiếu công cụ giữ NOT_MEASURED, không thay bằng 100% từ request."
+    },
+    {
+      "phase_id": "P18",
+      "classification": "Cần cho chiến dịch subset",
+      "effective_work": "Chạy chiến dịch scope đã khóa, budget/seed cố định, restore và replay đại diện.",
+      "gate": "Chỉ phụ thuộc P16/P17 nếu đã thêm vào selection; giữ MAX_TIME/FAIL/INCOMPLETE."
+    },
+    {
+      "phase_id": "P19",
+      "classification": "Cần cho báo cáo A–H",
+      "effective_work": "Báo cáo evidence của scope đã chọn, reproducer/log/metrics/root cause/limitations và đóng góp thật.",
+      "gate": "Full-scope nghĩa scope nhóm công bố có căn cứ; không phải mọi module Directus hoặc thầy duyệt subset."
+    }
+  ]
+}

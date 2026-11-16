@@ -1,0 +1,183 @@
+{
+  "format": "P08_OFFLINE_SET_REPORT_1",
+  "data_origin": "DESIGN_EXAMPLE",
+  "synthetic": true,
+  "baseline_id": "EXAMPLE-BASELINE",
+  "selection_id": "EXAMPLE-SELECTION",
+  "sets": {
+    "R": [
+      "EXAMPLE-REQ-A",
+      "EXAMPLE-REQ-B",
+      "EXAMPLE-REQ-C"
+    ],
+    "D": [
+      "EXAMPLE-REQ-A",
+      "EXAMPLE-REQ-B",
+      "EXAMPLE-REQ-C"
+    ],
+    "E": [
+      "EXAMPLE-REQ-A",
+      "EXAMPLE-REQ-B"
+    ],
+    "V": [
+      "EXAMPLE-REQ-B"
+    ],
+    "O": [
+      "EXAMPLE-OP-DETAIL",
+      "EXAMPLE-OP-LIST"
+    ]
+  },
+  "metrics": {
+    "requirement_design": {
+      "measurement_status": "MEASURED",
+      "numerator_ids": [
+        "EXAMPLE-REQ-A",
+        "EXAMPLE-REQ-B",
+        "EXAMPLE-REQ-C"
+      ],
+      "denominator_ids": [
+        "EXAMPLE-REQ-A",
+        "EXAMPLE-REQ-B",
+        "EXAMPLE-REQ-C"
+      ],
+      "missing_ids": [],
+      "numerator_count": 3,
+      "denominator_count": 3,
+      "percentage": 100.0,
+      "reason": null
+    },
+    "requirement_execution": {
+      "measurement_status": "MEASURED",
+      "numerator_ids": [
+        "EXAMPLE-REQ-A",
+        "EXAMPLE-REQ-B"
+      ],
+      "denominator_ids": [
+        "EXAMPLE-REQ-A",
+        "EXAMPLE-REQ-B",
+        "EXAMPLE-REQ-C"
+      ],
+      "missing_ids": [
+        "EXAMPLE-REQ-C"
+      ],
+      "numerator_count": 2,
+      "denominator_count": 3,
+      "percentage": 66.66666666666667,
+      "reason": null
+    },
+    "requirement_verified": {
+      "measurement_status": "MEASURED",
+      "numerator_ids": [
+        "EXAMPLE-REQ-B"
+      ],
+      "denominator_ids": [
+        "EXAMPLE-REQ-A",
+        "EXAMPLE-REQ-B",
+        "EXAMPLE-REQ-C"
+      ],
+      "missing_ids": [
+        "EXAMPLE-REQ-A",
+        "EXAMPLE-REQ-C"
+      ],
+      "numerator_count": 1,
+      "denominator_count": 3,
+      "percentage": 33.333333333333336,
+      "reason": null
+    },
+    "hit_coverage": {
+      "measurement_status": "MEASURED",
+      "numerator_ids": [
+        "EXAMPLE-OP-LIST"
+      ],
+      "denominator_ids": [
+        "EXAMPLE-OP-DETAIL",
+        "EXAMPLE-OP-LIST"
+      ],
+      "missing_ids": [
+        "EXAMPLE-OP-DETAIL"
+      ],
+      "numerator_count": 1,
+      "denominator_count": 2,
+      "percentage": 50.0,
+      "reason": null
+    },
+    "positive_acceptance": {
+      "measurement_status": "MEASURED",
+      "numerator_ids": [
+        "EXAMPLE-OP-LIST"
+      ],
+      "denominator_ids": [
+        "EXAMPLE-OP-DETAIL",
+        "EXAMPLE-OP-LIST"
+      ],
+      "missing_ids": [
+        "EXAMPLE-OP-DETAIL"
+      ],
+      "numerator_count": 1,
+      "denominator_count": 2,
+      "percentage": 50.0,
+      "reason": null
+    }
+  },
+  "missing_requirement_ids": [
+    "EXAMPLE-REQ-C"
+  ],
+  "missing_operation_ids": [
+    "EXAMPLE-OP-DETAIL"
+  ],
+  "source_only_ids": [
+    "EXAMPLE-OP-DETAIL"
+  ],
+  "oas_only_ids": [],
+  "selected_execution_ids": [
+    "SAMPLE-A",
+    "SAMPLE-B",
+    "SAMPLE-C"
+  ],
+  "flaky_or_disagreeing_test_versions": [],
+  "observed_execution_dimensions": {
+    "execution_status": {
+      "BLOCKED": 1,
+      "INCOMPLETE": 1,
+      "PASS": 1
+    },
+    "business_verdict": {
+      "BLOCKED": 1,
+      "FAIL": 1,
+      "PASS": 1
+    },
+    "contract_verdict": {
+      "BLOCKED": 1,
+      "FAIL": 1,
+      "PASS": 1
+    },
+    "cleanup_status": {
+      "FAIL": 1,
+      "NOT_RUN": 1,
+      "PASS": 1
+    },
+    "infrastructure_status": {
+      "HEALTHY": 2,
+      "UNKNOWN": 1
+    }
+  },
+  "unsupported_metrics": {
+    "specification": "NOT_MEASURED",
+    "negative_authorization": "NOT_MEASURED",
+    "module_mapped": "NOT_MEASURED",
+    "module_touched": "NOT_MEASURED",
+    "module_qualified": "NOT_MEASURED",
+    "code_statement": "NOT_MEASURED",
+    "code_line": "NOT_MEASURED",
+    "code_function": "NOT_MEASURED",
+    "code_branch": "NOT_MEASURED",
+    "schema_parameter": "NOT_MEASURED",
+    "schema_keyword": "NOT_MEASURED",
+    "schema_response": "NOT_MEASURED"
+  },
+  "notes": [
+    "No denominator inferred from aliases/request counts.",
+    "Schema partial/violated is never promoted to PASS.",
+    "Specification usability, authorization-rule matrix, module DoD and code/schema traces require separate reviewed inputs."
+  ]
+}

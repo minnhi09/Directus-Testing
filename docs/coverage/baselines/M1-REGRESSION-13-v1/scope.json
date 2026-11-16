@@ -1,0 +1,38 @@
+{
+  "scope": "Internal group11 regression requirement subset only",
+  "requirement_ids": [
+    "LEGACY-TC01",
+    "LEGACY-TC02",
+    "LEGACY-TC03",
+    "LEGACY-TC04",
+    "LEGACY-TC05",
+    "LEGACY-TC06",
+    "LEGACY-TC07",
+    "LEGACY-TC08",
+    "LEGACY-TC09",
+    "LEGACY-TC10",
+    "LEGACY-TC11",
+    "LEGACY-TC12",
+    "LEGACY-TC13"
+  ],
+  "collections": [
+    "qa_articles",
+    "qa_categories"
+  ],
+  "denominator_unit": "REQUIREMENT",
+  "requirement_denominator": 13,
+  "route_template_count": 5,
+  "whole_system_scope_locked": false,
+  "other_requirements_excluded": false,
+  "scope_source": {
+    "kind": "ARTIFACT",
+    "path": "docs/coverage/decisions/G11-M1-regression-20261115.md",
+    "revision": null,
+    "sha256": "e23e96bfc37a0c274eb749f3ea71878b142618d7a01166fff328b210fdcce1aa",
+    "pointer": null,
+    "certainty": "VERIFIED",
+    "gap_ids": []
+  },
+  "runtime_and_execution": "NOT_VERIFIED",
+  "next_execution_selection": "Declare execution IDs in new version before campaign; do not choose historical passes."
+}

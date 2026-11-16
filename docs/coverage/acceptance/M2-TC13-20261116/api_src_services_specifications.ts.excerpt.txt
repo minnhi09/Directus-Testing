@@ -1,0 +1,78 @@
+216: 				const listBase = cloneDeep(spec.paths['/items/{collection}']);
+217: 				const detailBase = cloneDeep(spec.paths['/items/{collection}/{id}']);
+218: 				const collection = tag['x-collection'];
+219: 
+220: 				const methods: (keyof PathItemObject)[] = ['post', 'get', 'patch', 'delete'];
+221: 
+222: 				for (const method of methods) {
+223: 					const hasPermission =
+224: 						this.accountability?.admin === true ||
+225: 						!!permissions.find(
+226: 							(permission) =>
+227: 								permission.collection === collection && permission.action === this.getActionForMethod(method),
+228: 						);
+229: 
+230: 					if (hasPermission) {
+231: 						if (!paths[`/items/${collection}`]) paths[`/items/${collection}`] = {};
+232: 						if (!paths[`/items/${collection}/{id}`]) paths[`/items/${collection}/{id}`] = {};
+233: 
+234: 						if (listBase?.[method]) {
+235: 							paths[`/items/${collection}`]![method] = mergeWith(
+236: 								cloneDeep(listBase[method]),
+237: 								{
+238: 									description: listBase[method].description.replace('item', collection + ' item'),
+239: 									tags: [tag.name],
+240: 									parameters: 'parameters' in listBase ? this.filterCollectionFromParams(listBase.parameters) : [],
+241: 									operationId: `${this.getActionForMethod(method)}${tag.name}`,
+242: 									requestBody: ['get', 'delete'].includes(method)
+243: 										? undefined
+244: 										: {
+245: 												content: {
+246: 													'application/json': {
+247: 														schema: {
+248: 															oneOf: [
+249: 																{
+250: 																	type: 'array',
+251: 																	items: {
+252: 																		$ref: `#/components/schemas/${tag.name}`,
+253: 																	},
+254: 																},
+255: 																{
+256: 																	$ref: `#/components/schemas/${tag.name}`,
+257: 																},
+258: 															],
+259: 														},
+260: 													},
+261: 												},
+262: 											},
+263: 									responses: {
+264: 										'200': {
+265: 											description: 'Successful request',
+266: 											content:
+267: 												method === 'delete'
+268: 													? undefined
+269: 													: {
+270: 															'application/json': {
+271: 																schema: {
+272: 																	properties: {
+273: 																		data: schema.collections[collection]?.singleton
+274: 																			? {
+275: 																					$ref: `#/components/schemas/${tag.name}`,
+276: 																				}
+277: 																			: {
+278: 																					type: 'array',
+279: 																					items: {
+280: 																						$ref: `#/components/schemas/${tag.name}`,
+281: 																					},
+282: 																				},
+283: 																	},
+284: 																},
+285: 															},
+286: 														},
+287: 										},
+288: 									},
+289: 								},
+290: 								(obj, src) => {
+291: 									if (Array.isArray(obj)) return obj.concat(src);
+292: 									return undefined;
+293: 								},

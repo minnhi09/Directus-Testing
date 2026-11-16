@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "data_origin": "DESIGN_EXAMPLE",
+  "selection_id": "EXAMPLE-SELECTION",
+  "baseline_id": "EXAMPLE-BASELINE",
+  "denominator_revision": "SAMPLE-DENOMINATOR",
+  "state": "LOCKED",
+  "unit": "REQUIREMENT",
+  "scope_tiers": [
+    "CORE"
+  ],
+  "transports": [
+    "REST"
+  ],
+  "requirement_ids": [
+    "EXAMPLE-REQ-A",
+    "EXAMPLE-REQ-B",
+    "EXAMPLE-REQ-C"
+  ],
+  "inventory_ids": [
+    "EXAMPLE-OP-LIST",
+    "EXAMPLE-OP-DETAIL"
+  ],
+  "module_ids": [
+    "EXAMPLE-MODULE"
+  ],
+  "tests": [
+    {
+      "canonical_test_id": "EXAMPLE-CANONICAL-A",
+      "test_version": "1.0.0",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "EXAMPLE-CANONICAL-B",
+      "test_version": "1.0.0",
+      "mandatory": true
+    },
+    {
+      "canonical_test_id": "EXAMPLE-CANONICAL-C",
+      "test_version": "1.0.0",
+      "mandatory": true
+    }
+  ],
+  "run_ids": [
+    "SAMPLE-RUN"
+  ],
+  "execution_ids": [],
+  "run_selection_policy": "LATEST_ATTEMPT_IN_PREDECLARED_RUNS",
+  "retry_policy": "KEEP_ALL_REPORT_FLAKY",
+  "locked_at": "2026-01-01T00:00:00Z",
+  "decision_id": "EXAMPLE-DECISION",
+  "source_refs": [
+    {
+      "kind": "DESIGN",
+      "path": "tests/fixtures/coverage-offline/README.md",
+      "revision": null,
+      "sha256": null,
+      "pointer": null,
+      "certainty": "PROPOSED",
+      "gap_ids": []
+    }
+  ],
+  "gap_ids": [
+    "EXAMPLE-GAP-UNVERIFIED"
+  ]
+}

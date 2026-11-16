@@ -1,0 +1,36 @@
+[
+  {
+    "trace_version": 2,
+    "scenario": "VERIFY",
+    "method": "GET",
+    "path": "/items/qa_articles?limit=-1&sort=id",
+    "actor": "admin",
+    "request_body": null,
+    "status": 200,
+    "curl_exit_code": 0,
+    "response_ref": "http/http-20.json",
+    "content_type": "application/json; charset=utf-8",
+    "elapsed_seconds": 0.006553,
+    "http_version": "1.1",
+    "effective_url": "http://127.0.0.1:18055/items/qa_articles?limit=-1&sort=id",
+    "recorded_at": "2026-11-16T02:08:28Z",
+    "response_sha256": "bf31502b907ac724ba448d14e54870c23ea015a2f63f835c6863f5202efb8986"
+  },
+  {
+    "trace_version": 2,
+    "scenario": "VERIFY",
+    "method": "GET",
+    "path": "/items/qa_categories?limit=-1&sort=id",
+    "actor": "admin",
+    "request_body": null,
+    "status": 200,
+    "curl_exit_code": 0,
+    "response_ref": "http/http-21.json",
+    "content_type": "application/json; charset=utf-8",
+    "elapsed_seconds": 0.005586,
+    "http_version": "1.1",
+    "effective_url": "http://127.0.0.1:18055/items/qa_categories?limit=-1&sort=id",
+    "recorded_at": "2026-11-16T02:08:29Z",
+    "response_sha256": "7a8a94405c67ca8eb31f6fce38b850eb657650f01faefc917685d1e322ddc507"
+  }
+]

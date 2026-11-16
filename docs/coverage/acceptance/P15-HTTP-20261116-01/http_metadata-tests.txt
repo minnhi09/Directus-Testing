@@ -1,0 +1,15 @@
+test_absent_operation_is_not_contract_pass (test_http_contract_metadata.ContractMetadataTests.test_absent_operation_is_not_contract_pass) ... ok
+test_empty_captured_content_type_is_known_absence_not_fabricated_json (test_http_contract_metadata.ContractMetadataTests.test_empty_captured_content_type_is_known_absence_not_fabricated_json) ... ok
+test_hash_mismatch_fails_closed (test_http_contract_metadata.ContractMetadataTests.test_hash_mismatch_fails_closed) ... ok
+test_invalid_timing_or_content_type_rejected (test_http_contract_metadata.ContractMetadataTests.test_invalid_timing_or_content_type_rejected) ... ok
+test_missing_content_type_never_assumed_json (test_http_contract_metadata.ContractMetadataTests.test_missing_content_type_never_assumed_json) ... ok
+test_null_content_type_is_unknown_not_observed_absence (test_http_contract_metadata.ContractMetadataTests.test_null_content_type_is_unknown_not_observed_absence) ... ok
+test_reader_or_anonymous_cannot_use_editor_schema (test_http_contract_metadata.ContractMetadataTests.test_reader_or_anonymous_cannot_use_editor_schema) ... ok
+test_real_capture_has_observed_headers_and_no_silent_contract_pass (test_http_contract_metadata.ContractMetadataTests.test_real_capture_has_observed_headers_and_no_silent_contract_pass) ... ok
+test_real_reader_steps_are_bound_to_reader_schema_hash (test_http_contract_metadata.ContractMetadataTests.test_real_reader_steps_are_bound_to_reader_schema_hash) ... ok
+test_v1_metadata_and_wrong_target_rejected_for_new_capture (test_http_contract_metadata.ContractMetadataTests.test_v1_metadata_and_wrong_target_rejected_for_new_capture) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.006s
+
+OK

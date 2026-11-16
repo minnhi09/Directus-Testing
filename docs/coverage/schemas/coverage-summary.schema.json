@@ -1,0 +1,407 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://damh.invalid/coverage/1.0.0/coverage-summary.schema.json",
+  "title": "One coverage unit and selection summary",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "data_origin": {
+      "enum": [
+        "DESIGN_EXAMPLE",
+        "OBSERVATION",
+        "DERIVED"
+      ]
+    },
+    "baseline_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "selection_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "inventory_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "catalog_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "denominator_revision": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "denominator_state": {
+      "enum": [
+        "UNLOCKED",
+        "LOCKED"
+      ]
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "module_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "actor_policy_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "test_types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "module_ids",
+        "actor_policy_ids",
+        "test_types",
+        "tags"
+      ],
+      "additionalProperties": false
+    },
+    "unit": {
+      "$ref": "common.schema.json#/$defs/unit"
+    },
+    "scope_tiers": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/scope"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "transports": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/transport"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "discovered_count": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "applicable_count": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "unknown_count": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "not_applicable_count": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "applicable_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "unknown_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "excluded_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "exclusion_decision_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "numerator_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "missing_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "missing_reasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gap_ids": {
+            "type": "array",
+            "items": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "target_id",
+          "reason",
+          "gap_ids"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "source_only_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "oas_only_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "metrics": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "enum": [
+          "requirement_design",
+          "requirement_execution",
+          "requirement_verified",
+          "specification",
+          "hit_coverage",
+          "positive_acceptance",
+          "negative_authorization",
+          "module_mapped",
+          "module_touched",
+          "module_qualified",
+          "code_statement",
+          "code_line",
+          "code_function",
+          "code_branch",
+          "schema_covered",
+          "schema_partial",
+          "schema_miss",
+          "response_keyword_reached",
+          "response_keyword_violated"
+        ]
+      },
+      "additionalProperties": {
+        "$ref": "common.schema.json#/$defs/metric"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/sourceRef"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "gap_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_origin",
+    "baseline_id",
+    "selection_id",
+    "inventory_revision",
+    "catalog_revision",
+    "denominator_revision",
+    "denominator_state",
+    "filters",
+    "unit",
+    "scope_tiers",
+    "transports",
+    "discovered_count",
+    "applicable_count",
+    "unknown_count",
+    "not_applicable_count",
+    "applicable_ids",
+    "unknown_ids",
+    "excluded_ids",
+    "exclusion_decision_ids",
+    "numerator_ids",
+    "missing_ids",
+    "missing_reasons",
+    "source_only_ids",
+    "oas_only_ids",
+    "metrics",
+    "evidence_refs",
+    "gap_ids"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "denominator_state": {
+            "const": "UNLOCKED"
+          }
+        },
+        "required": [
+          "denominator_state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "denominator_revision": {
+            "type": "null"
+          },
+          "discovered_count": {
+            "type": "null"
+          },
+          "applicable_count": {
+            "type": "null"
+          },
+          "unknown_count": {
+            "type": "null"
+          },
+          "not_applicable_count": {
+            "type": "null"
+          },
+          "metrics": {
+            "additionalProperties": {
+              "properties": {
+                "measurement_status": {
+                  "const": "NOT_MEASURED"
+                }
+              }
+            }
+          },
+          "gap_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "denominator_state": {
+            "const": "LOCKED"
+          }
+        },
+        "required": [
+          "denominator_state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "denominator_revision": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "discovered_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "applicable_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "unknown_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "not_applicable_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  ]
+}

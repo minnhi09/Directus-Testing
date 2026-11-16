@@ -1,0 +1,32 @@
+[
+  {
+    "path": "../directus/api/src/license/manager.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "386ebc07c82bb7aeec460bff977dac0e7c7b53cacb83df6ed90ca428b9156b81"
+  },
+  {
+    "path": "../directus/api/src/license/utils/compute-license-status.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "2140730572a4fd6b790e3a05b978df08e6308d24980e2938081fa73d741b03e5"
+  },
+  {
+    "path": "../directus/api/src/license/utils/get-license-key.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "0a92080a8172ca32f3ddabe40097b969e0aa05e676b5749d99913a8b9898ccda"
+  },
+  {
+    "path": "../directus/api/src/license/utils/compute-license-action.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "bf98054c637526b75c43d12ef14fd1b385139df99eb0492c4087a36778e55cae"
+  },
+  {
+    "path": "../directus/api/src/license/entitlements/lib/custom-permission-rules-enabled.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "b71e4fb0e3e864e224fc3e154223520fe31781dcbd379bcc1ad5c45d1ed852b2"
+  },
+  {
+    "path": "../directus/api/src/controllers/license.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "420aaaba93c4c35f3060b530ac30df120e3c3dd2c72e4a16b3c5df4878eb336e"
+  }
+]

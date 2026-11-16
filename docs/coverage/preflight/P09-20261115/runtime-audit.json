@@ -1,0 +1,33 @@
+{
+  "kind": "P09_RUNTIME_RESUME_AUDIT",
+  "created_at": "2026-11-15T15:38:33.462325+00:00",
+  "namespace": "r06-k05-p09-20261115-audit01",
+  "pinned_pull_exit_code": 0,
+  "compose_up_wait_exit_code": 0,
+  "health": "PASS",
+  "runtime_version": "12.5.0",
+  "runtime_status": "BLOCKED_LICENSE",
+  "unit_tests": 4,
+  "CLI_version": "4.30.0",
+  "tracecov_version": "0.25.2",
+  "tracecov_metric_semantics": "NOT_VERIFIED",
+  "policy_fixture_gate": "BLOCKED_ENTITLEMENT_FALSE",
+  "old_container_ids_preserved": 38,
+  "old_env_read": false,
+  "old_license_copied": false,
+  "seed": false,
+  "campaign": "NOT_RUN",
+  "runtime_coverage": "NOT_MEASURED",
+  "outputs_sha256": {
+    "docs/coverage/preflight/P09-20261115/runtime-preflight-report.json": "9c3ce7cd247e0bfef83750b7e86fdf52d93e795a4930e7f5a94275162816aefd",
+    "docs/coverage/preflight/P09-20261115/runtime-resources.json": "d8aed76ee09eb96891f2a4583b7485769e6ec5dc46ea3c4d6b6083c5cc3e97ef",
+    "docs/coverage/preflight/P09-20261115/runner-version.txt": "5c048d7f73d0087f6589aab093bc2f4b6981cf71293b845c7b8e4c919ce7ab7e",
+    "docs/coverage/preflight/P09-20261115/runner-help.txt": "6f22ccf2442bed470c1509843a1055320744cbd479e470f6f1844224394aaab0",
+    "docs/coverage/preflight/P09-20261115/runner-packages.json": "b9358d29d3ad041e82859598438af9daeeec7b18094eea01db0c241d69e19e81",
+    "docs/coverage/preflight/P09-20261115/README.md": "cbb14b440f9d5fbf332fdfbf53a507c73029ed16a9b2edf1419dbd14e29443b4",
+    "scripts/p09_preflight.py": "2a1e7b44f21647569b06f8861cba51f084aa540e76b28228fb791d3084bb32d9",
+    "profiles/p09/compose.json": "837dd7cc7179baedf94e62022efe9e8e9922ec4e00a6285177ee35d712ebdd7c",
+    "docs/coverage/handoffs/P09.md": "0e82a751661d855ba12ba5b22c25900879ed251679fe31564b59eaf53f8628ae",
+    "evidence/progress-2026-11-15.md": "640712ea470eb67b3229536f4f71b6605d600b4981c49967084bc3c5ca63221f"
+  }
+}

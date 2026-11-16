@@ -1,0 +1,23 @@
+[
+  {
+    "path": "../directus/api/src/controllers/items.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+    "pointer": "#L19-L63",
+    "excerpt": "api_src_controllers_items.ts.excerpt.txt"
+  },
+  {
+    "path": "../directus/api/src/services/specifications.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "b8ebc8278ce0ce1526c7da90cce15ee4fea955696e0911575622a1e3487e9a81",
+    "pointer": "#L216-L293",
+    "excerpt": "api_src_services_specifications.ts.excerpt.txt"
+  },
+  {
+    "path": "../directus/api/src/services/items.ts",
+    "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+    "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+    "pointer": "#L609-L648",
+    "excerpt": "api_src_services_items.ts.excerpt.txt"
+  }
+]

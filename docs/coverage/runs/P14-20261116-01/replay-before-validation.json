@@ -1,0 +1,14 @@
+{
+  "method": "POST",
+  "path": "/items/qa_sys_categories_p14_20261116_01",
+  "body": {
+    "name": "P14 representative replay"
+  },
+  "status": 200,
+  "response_file": "replay-response.json",
+  "readback_equal": true,
+  "expected_raw_data_type": "array",
+  "actual_data_type": "object",
+  "classification": "SCHEMA_CONTRACT_CANDIDATE",
+  "replay_scope": "deterministic representative, recorded-event linkage pending"
+}

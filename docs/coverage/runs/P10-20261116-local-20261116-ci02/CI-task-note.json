@@ -1,0 +1,7 @@
+{
+  "task": "M2-CI-20261116",
+  "original_run_report_untouched": true,
+  "known_TC13_FAIL_preserved": true,
+  "CI_rehearsal": "LOCAL_NOT_GITHUB_ACTIONS",
+  "diagnostic_continuation": "docs/coverage/acceptance/M2-CI-20261116/local-evidence-final/ci-summary.json"
+}
