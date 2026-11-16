@@ -1,0 +1,221 @@
+{
+  "schemathesis": "4.30.0",
+  "formats_module": "/opt/venv/lib/python3.14t/site-packages/schemathesis/specs/openapi/formats.py",
+  "formats_source_sha256": "4bed4f5b74beeba820f4f9d551a0778b8c5ff763ad25e934743cb2e885e12590",
+  "default_generation_formats": [
+    "_basic_auth",
+    "_bearer_auth",
+    "_header_name",
+    "_header_value",
+    "binary",
+    "byte",
+    "color",
+    "date",
+    "date-fullyear",
+    "date-mday",
+    "date-month",
+    "date-time",
+    "duration",
+    "email",
+    "full-date",
+    "full-time",
+    "hostname",
+    "idn-email",
+    "idn-hostname",
+    "ipv4",
+    "ipv6",
+    "iri",
+    "iri-reference",
+    "partial-time",
+    "time",
+    "time-hour",
+    "time-minute",
+    "time-numoffset",
+    "time-offset",
+    "time-secfrac",
+    "time-second",
+    "uri",
+    "uri-reference",
+    "uri-template",
+    "uuid"
+  ],
+  "timestamp_registered": false,
+  "observations": {
+    "timestamp_arbitrary_string": [
+      {
+        "name": "not_a_server_error",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "nullable_integer_null": [
+      {
+        "name": "not_a_server_error",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "nonnullable_integer_null": [
+      {
+        "name": "not_a_server_error",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "failed",
+        "failures": [
+          {
+            "type": "JsonSchemaError",
+            "title": "Response violates schema"
+          }
+        ]
+      }
+    ],
+    "typeless_nullable_scalar": [
+      {
+        "name": "not_a_server_error",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "oneof_nullable_null": [
+      {
+        "name": "not_a_server_error",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "unexpected_204": [
+      {
+        "name": "not_a_server_error",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "failed",
+        "failures": [
+          {
+            "type": "UndefinedStatusCode",
+            "title": "Undocumented HTTP status code"
+          }
+        ]
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "server_500": [
+      {
+        "name": "not_a_server_error",
+        "status": "failed",
+        "failures": [
+          {
+            "type": "ServerError",
+            "title": "Server error"
+          }
+        ]
+      },
+      {
+        "name": "status_code_conformance",
+        "status": "failed",
+        "failures": [
+          {
+            "type": "UndefinedStatusCode",
+            "title": "Undocumented HTTP status code"
+          }
+        ]
+      },
+      {
+        "name": "content_type_conformance",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "name": "response_schema_conformance",
+        "status": "passed",
+        "failures": []
+      }
+    ]
+  },
+  "assertions": "passed",
+  "network": "disabled"
+}

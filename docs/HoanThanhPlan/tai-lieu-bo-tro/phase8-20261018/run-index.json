@@ -1,0 +1,530 @@
+{
+  "scope": "New Phase 8 runs only; historical main campaigns listed separately",
+  "runs": [
+    {
+      "run_id": "p8-20261018-assertable",
+      "command": "test designed",
+      "status": "failed",
+      "exit_code": 1,
+      "started_at": "2026-10-18T10:36:13Z",
+      "finished_at": "2026-10-18T10:40:28Z",
+      "duration_seconds": 255,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "status": "runner_failed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-fk-patch",
+      "command": "test designed",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:42:03Z",
+      "finished_at": "2026-10-18T10:42:23Z",
+      "duration_seconds": 20,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-fk-post",
+      "command": "test designed",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:41:43Z",
+      "finished_at": "2026-10-18T10:42:02Z",
+      "duration_seconds": 19,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-invariants",
+      "command": "test invariants",
+      "status": "failed",
+      "exit_code": 1,
+      "started_at": "2026-10-18T10:45:15Z",
+      "finished_at": "2026-10-18T10:45:55Z",
+      "duration_seconds": 40,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "status": "runner_failed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-probe-guided",
+      "command": "test guided",
+      "status": "failed",
+      "exit_code": 1,
+      "started_at": "2026-10-18T10:48:48Z",
+      "finished_at": "2026-10-18T10:50:07Z",
+      "duration_seconds": 80,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "editor",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+      "campaign-index.json": {
+        "schema": 1,
+        "profile": "guided",
+        "fixture_version": "r06-k05-v2",
+        "seeds": [
+          101
+        ],
+        "operation_count": 10,
+        "campaigns": [
+          {
+            "schema": 1,
+            "profile": "guided",
+            "seed": 101,
+            "status": "failed",
+            "termination": "max_time",
+            "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+            "runner_exit_code": 1,
+            "restore_exit_code": 0,
+            "report_present": true,
+            "coverage_present": true,
+            "budget": {
+              "max_time_seconds": 60,
+              "max_examples_per_operation": 10,
+              "workers": 1,
+              "rate_limit": "5/s",
+              "request_timeout_seconds": 10
+            },
+            "schemathesis": {
+              "operations": {
+                "total": 10,
+                "selected": 10,
+                "tested": 10,
+                "errored": 0,
+                "skipped": 0,
+                "skip_reasons": []
+              },
+              "test_cases": {
+                "generated": 278,
+                "with_failures": 29,
+                "unique_failures": 32,
+                "without_checks": 0,
+                "errored": 2
+              },
+              "failures": [
+                {
+                  "type": "ServerError",
+                  "title": "Server error",
+                  "severity": "critical",
+                  "count": 2,
+                  "operations": [
+                    "Stateful tests"
+                  ]
+                },
+                {
+                  "type": "JsonSchemaError",
+                  "title": "Response violates schema",
+                  "severity": "high",
+                  "count": 2,
+                  "operations": [
+                    "POST /items/qa_articles",
+                    "POST /items/qa_categories"
+                  ]
+                },
+                {
+                  "type": "RejectedPositiveData",
+                  "title": "API rejected schema-compliant request",
+                  "severity": "medium",
+                  "count": 5,
+                  "operations": [
+                    "GET /items/qa_articles",
+                    "Stateful tests"
+                  ]
+                },
+                {
+                  "type": "UndefinedContentType",
+                  "title": "Undocumented Content-Type",
+                  "severity": "medium",
+                  "count": 2,
+                  "operations": [
+                    "Stateful tests"
+                  ]
+                },
+                {
+                  "type": "UndefinedStatusCode",
+                  "title": "Undocumented HTTP status code",
+                  "severity": "medium",
+                  "count": 19,
+                  "operations": [
+                    "DELETE /items/qa_articles/{id}",
+                    "DELETE /items/qa_categories/{id}",
+                    "GET /items/qa_articles",
+                    "GET /items/qa_articles/{id}",
+                    "GET /items/qa_categories",
+                    "GET /items/qa_categories/{id}",
+                    "PATCH /items/qa_articles/{id}",
+                    "PATCH /items/qa_categories/{id}",
+                    "POST /items/qa_articles",
+                    "POST /items/qa_categories",
+                    "Stateful tests"
+                  ]
+                },
+                {
+                  "type": "UnsupportedMethodResponse",
+                  "title": "Unsupported methods",
+                  "severity": "medium",
+                  "count": 2,
+                  "operations": [
+                    "TRACE /items/qa_articles",
+                    "TRACE /items/qa_categories"
+                  ]
+                }
+              ],
+              "errors": [],
+              "stop_reason": "max_time",
+              "complete": true,
+              "exit_code": 1,
+              "running_time": 60.02624858600029
+            }
+          }
+        ],
+        "status": "failed_or_incomplete"
+      }
+    },
+    {
+      "run_id": "p8-20261018-probe-raw",
+      "command": "test raw",
+      "status": "failed",
+      "exit_code": 1,
+      "started_at": "2026-10-18T10:47:27Z",
+      "finished_at": "2026-10-18T10:48:46Z",
+      "duration_seconds": 79,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "editor",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+      "campaign-index.json": {
+        "schema": 1,
+        "profile": "raw",
+        "fixture_version": "r06-k05-v2",
+        "seeds": [
+          101
+        ],
+        "operation_count": 10,
+        "campaigns": [
+          {
+            "schema": 1,
+            "profile": "raw",
+            "seed": 101,
+            "status": "failed",
+            "termination": "max_time",
+            "schema_sha256": "433cb61a51957e7852374f058b7c9ca79325e65ac898e1f071abfbe4afbe474e",
+            "runner_exit_code": 1,
+            "restore_exit_code": 0,
+            "report_present": true,
+            "coverage_present": true,
+            "budget": {
+              "max_time_seconds": 60,
+              "max_examples_per_operation": 10,
+              "workers": 1,
+              "rate_limit": "5/s",
+              "request_timeout_seconds": 10
+            },
+            "schemathesis": {
+              "operations": {
+                "total": 10,
+                "selected": 10,
+                "tested": 10,
+                "errored": 0,
+                "skipped": 0,
+                "skip_reasons": []
+              },
+              "test_cases": {
+                "generated": 61,
+                "with_failures": 20,
+                "unique_failures": 22,
+                "without_checks": 0,
+                "errored": 0
+              },
+              "failures": [
+                {
+                  "type": "RejectedPositiveData",
+                  "title": "API rejected schema-compliant request",
+                  "severity": "medium",
+                  "count": 2,
+                  "operations": [
+                    "GET /items/qa_articles",
+                    "GET /items/qa_articles/{id}"
+                  ]
+                },
+                {
+                  "type": "UndefinedStatusCode",
+                  "title": "Undocumented HTTP status code",
+                  "severity": "medium",
+                  "count": 18,
+                  "operations": [
+                    "DELETE /items/qa_articles/{id}",
+                    "DELETE /items/qa_categories/{id}",
+                    "GET /items/qa_articles",
+                    "GET /items/qa_articles/{id}",
+                    "GET /items/qa_categories",
+                    "GET /items/qa_categories/{id}",
+                    "PATCH /items/qa_articles/{id}",
+                    "PATCH /items/qa_categories/{id}",
+                    "POST /items/qa_articles",
+                    "POST /items/qa_categories"
+                  ]
+                },
+                {
+                  "type": "UnsupportedMethodResponse",
+                  "title": "Unsupported methods",
+                  "severity": "medium",
+                  "count": 2,
+                  "operations": [
+                    "TRACE /items/qa_articles",
+                    "TRACE /items/qa_categories"
+                  ]
+                }
+              ],
+              "errors": [],
+              "stop_reason": "max_time",
+              "complete": true,
+              "exit_code": 1,
+              "running_time": 60.0665855999996
+            }
+          }
+        ],
+        "status": "failed_or_incomplete"
+      }
+    },
+    {
+      "run_id": "p8-20261018-projection-replay",
+      "command": "replay P3-CONTRACT-PROJECTION",
+      "status": "failed",
+      "exit_code": 1,
+      "started_at": "2026-10-18T10:46:38Z",
+      "finished_at": "2026-10-18T10:46:58Z",
+      "duration_seconds": 20,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "status": "runner_failed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-query-extra",
+      "command": "test designed",
+      "status": "failed",
+      "exit_code": 1,
+      "started_at": "2026-10-18T10:40:52Z",
+      "finished_at": "2026-10-18T10:41:31Z",
+      "duration_seconds": 40,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "status": "runner_failed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-query-full",
+      "command": "test cost-query",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:44:16Z",
+      "finished_at": "2026-10-18T10:44:41Z",
+      "duration_seconds": 26,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "editor",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-replay-qfqspn",
+      "command": "replay qfqspn",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:45:56Z",
+      "finished_at": "2026-10-18T10:46:15Z",
+      "duration_seconds": 20,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-replay-z6ynal",
+      "command": "replay Z6yNal",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:46:17Z",
+      "finished_at": "2026-10-18T10:46:36Z",
+      "duration_seconds": 20,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-scenarios",
+      "command": "test scenarios",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:44:43Z",
+      "finished_at": "2026-10-18T10:44:57Z",
+      "duration_seconds": 14,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "scenario-outcomes.json": {
+        "restore_exit_code": 0
+      }
+    },
+    {
+      "run_id": "p8-20261018-short-r1",
+      "command": "test designed",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:30:45Z",
+      "finished_at": "2026-10-18T10:33:21Z",
+      "duration_seconds": 156,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-short-r2",
+      "command": "test designed",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:33:22Z",
+      "finished_at": "2026-10-18T10:35:59Z",
+      "duration_seconds": 157,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-smoke",
+      "command": "smoke",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:44:59Z",
+      "finished_at": "2026-10-18T10:45:13Z",
+      "duration_seconds": 15,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0
+      }
+    },
+    {
+      "run_id": "p8-20261018-time-offset",
+      "command": "test designed",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:42:45Z",
+      "finished_at": "2026-10-18T10:43:04Z",
+      "duration_seconds": 19,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    },
+    {
+      "run_id": "p8-20261018-time-utc",
+      "command": "test designed",
+      "status": "passed",
+      "exit_code": 0,
+      "started_at": "2026-10-18T10:42:24Z",
+      "finished_at": "2026-10-18T10:42:43Z",
+      "duration_seconds": 20,
+      "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+      "working_tree": "dirty",
+      "actor": "unspecified",
+      "runtime_profile": "phase8-20261018",
+      "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+      "component-outcomes.json": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      }
+    }
+  ]
+}

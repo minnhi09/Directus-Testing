@@ -1,0 +1,524 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://damh.invalid/coverage/1.0.0/baseline-manifest.schema.json",
+  "title": "Coverage baseline manifest",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "data_origin": {
+      "enum": [
+        "DESIGN_EXAMPLE",
+        "OBSERVATION",
+        "DERIVED"
+      ]
+    },
+    "baseline_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "inventory_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "catalog_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "review_state": {
+      "enum": [
+        "DRAFT",
+        "REVIEWED",
+        "LOCKED"
+      ]
+    },
+    "sut_commit": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/sha"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sut_version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "image_digest": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "image_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "architecture": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "config_profile": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "config_hash_sanitized": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/hash"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fixture_profile": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fixture_hash": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/hash"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "actor_schema_hashes": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "common.schema.json#/$defs/hash"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "harness_commit": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/sha"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "harness_worktree": {
+      "enum": [
+        "CLEAN",
+        "DIRTY",
+        "UNKNOWN"
+      ]
+    },
+    "environment_id": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "run_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/sourceRef"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "generated_at": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "gap_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "unresolved_fields": {
+      "$ref": "common.schema.json#/$defs/gapMap"
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_origin",
+    "baseline_id",
+    "inventory_revision",
+    "catalog_revision",
+    "review_state",
+    "sut_commit",
+    "sut_version",
+    "image_digest",
+    "image_id",
+    "architecture",
+    "config_profile",
+    "config_hash_sanitized",
+    "fixture_profile",
+    "fixture_hash",
+    "actor_schema_hashes",
+    "harness_commit",
+    "harness_worktree",
+    "environment_id",
+    "run_ids",
+    "source_refs",
+    "generated_at",
+    "gap_ids",
+    "unresolved_fields"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "sut_commit": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "sut_commit"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/sut_commit"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sut_version": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "sut_version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/sut_version"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "image_digest": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "image_digest"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/image_digest"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "image_id": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "image_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/image_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "architecture": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "architecture"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/architecture"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "config_profile": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "config_profile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/config_profile"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "config_hash_sanitized": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "config_hash_sanitized"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/config_hash_sanitized"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "fixture_profile": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "fixture_profile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/fixture_profile"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "fixture_hash": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "fixture_hash"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/fixture_hash"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "harness_commit": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "harness_commit"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/harness_commit"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "environment_id": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "environment_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/environment_id"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "generated_at": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "generated_at"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          },
+          "unresolved_fields": {
+            "required": [
+              "/generated_at"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

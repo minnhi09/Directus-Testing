@@ -1,0 +1,5061 @@
+{
+  "revision": "P06-CANONICAL-v1",
+  "total": 257,
+  "groups": [
+    {
+      "group": "field-name",
+      "expected": 18,
+      "mapped": 18,
+      "unmapped": 0,
+      "ids": [
+        "P3-NAME-POST-79",
+        "P3-NAME-POST-80",
+        "P3-NAME-POST-81",
+        "P3-NAME-POST-NULL",
+        "P3-NAME-POST-EMPTY",
+        "P3-NAME-POST-BLANK",
+        "P3-NAME-POST-NUMBER",
+        "P3-NAME-POST-UNICODE",
+        "P3-NAME-PATCH-79",
+        "P3-NAME-PATCH-80",
+        "P3-NAME-PATCH-81",
+        "P3-NAME-PATCH-NULL",
+        "P3-NAME-PATCH-EMPTY",
+        "P3-NAME-PATCH-BLANK",
+        "P3-NAME-PATCH-NUMBER",
+        "P3-NAME-PATCH-UNICODE",
+        "P3-NAME-POST-MISSING",
+        "P3-NAME-PATCH-OMITTED"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-title",
+      "expected": 18,
+      "mapped": 18,
+      "unmapped": 0,
+      "ids": [
+        "P3-TITLE-POST-119",
+        "P3-TITLE-POST-120",
+        "P3-TITLE-POST-121",
+        "P3-TITLE-POST-NULL",
+        "P3-TITLE-POST-EMPTY",
+        "P3-TITLE-POST-BLANK",
+        "P3-TITLE-POST-NUMBER",
+        "P3-TITLE-POST-UNICODE",
+        "P3-TITLE-PATCH-119",
+        "P3-TITLE-PATCH-120",
+        "P3-TITLE-PATCH-121",
+        "P3-TITLE-PATCH-NULL",
+        "P3-TITLE-PATCH-EMPTY",
+        "P3-TITLE-PATCH-BLANK",
+        "P3-TITLE-PATCH-NUMBER",
+        "P3-TITLE-PATCH-UNICODE",
+        "P3-TITLE-POST-MISSING",
+        "P3-TITLE-PATCH-OMITTED"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-score",
+      "expected": 22,
+      "mapped": 22,
+      "unmapped": 0,
+      "ids": [
+        "P3-SCORE-POST-MINUS1",
+        "P3-SCORE-POST-0",
+        "P3-SCORE-POST-1",
+        "P3-SCORE-POST-4",
+        "P3-SCORE-POST-5",
+        "P3-SCORE-POST-6",
+        "P3-SCORE-POST-NULL",
+        "P3-SCORE-POST-DECIMAL",
+        "P3-SCORE-POST-STRING",
+        "P3-SCORE-POST-BOOL",
+        "P3-SCORE-PATCH-MINUS1",
+        "P3-SCORE-PATCH-0",
+        "P3-SCORE-PATCH-1",
+        "P3-SCORE-PATCH-4",
+        "P3-SCORE-PATCH-5",
+        "P3-SCORE-PATCH-6",
+        "P3-SCORE-PATCH-NULL",
+        "P3-SCORE-PATCH-DECIMAL",
+        "P3-SCORE-PATCH-STRING",
+        "P3-SCORE-PATCH-BOOL",
+        "P3-SCORE-POST-MISSING",
+        "P3-SCORE-PATCH-OMITTED"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-status",
+      "expected": 14,
+      "mapped": 14,
+      "unmapped": 0,
+      "ids": [
+        "P3-STATUS-POST-DRAFT",
+        "P3-STATUS-POST-PUBLISHED",
+        "P3-STATUS-POST-ARCHIVED",
+        "P3-STATUS-POST-NULL",
+        "P3-STATUS-POST-EMPTY",
+        "P3-STATUS-POST-BOOL",
+        "P3-STATUS-PATCH-DRAFT",
+        "P3-STATUS-PATCH-PUBLISHED",
+        "P3-STATUS-PATCH-ARCHIVED",
+        "P3-STATUS-PATCH-NULL",
+        "P3-STATUS-PATCH-EMPTY",
+        "P3-STATUS-PATCH-BOOL",
+        "P3-STATUS-POST-DEFAULT",
+        "P3-STATUS-PATCH-OMITTED"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-published_at",
+      "expected": 12,
+      "mapped": 12,
+      "unmapped": 0,
+      "ids": [
+        "P3-PUBLISHED_AT-POST-NULL",
+        "P3-PUBLISHED_AT-PATCH-NULL",
+        "P3-PUBLISHED_AT-POST-UTC",
+        "P3-PUBLISHED_AT-PATCH-UTC",
+        "P3-PUBLISHED_AT-POST-OFFSET",
+        "P3-PUBLISHED_AT-PATCH-OFFSET",
+        "P3-PUBLISHED_AT-POST-EMPTY",
+        "P3-PUBLISHED_AT-PATCH-EMPTY",
+        "P3-PUBLISHED_AT-POST-MALFORMED",
+        "P3-PUBLISHED_AT-PATCH-MALFORMED",
+        "P3-PUBLISHED_AT-POST-NO-OFFSET",
+        "P3-PUBLISHED_AT-PATCH-NO-OFFSET"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-metadata",
+      "expected": 12,
+      "mapped": 12,
+      "unmapped": 0,
+      "ids": [
+        "P3-METADATA-POST-NULL",
+        "P3-METADATA-PATCH-NULL",
+        "P3-METADATA-POST-OBJECT",
+        "P3-METADATA-PATCH-OBJECT",
+        "P3-METADATA-POST-ARRAY",
+        "P3-METADATA-PATCH-ARRAY",
+        "P3-METADATA-POST-NUMBER",
+        "P3-METADATA-PATCH-NUMBER",
+        "P3-METADATA-POST-STRING",
+        "P3-METADATA-PATCH-STRING",
+        "P3-METADATA-POST-BOOL",
+        "P3-METADATA-PATCH-BOOL"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-internal_notes",
+      "expected": 4,
+      "mapped": 4,
+      "unmapped": 0,
+      "ids": [
+        "P3-INTERNAL_NOTES-POST-NULL",
+        "P3-INTERNAL_NOTES-PATCH-NULL",
+        "P3-INTERNAL_NOTES-POST-TEXT",
+        "P3-INTERNAL_NOTES-PATCH-TEXT"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "field-category",
+      "expected": 10,
+      "mapped": 10,
+      "unmapped": 0,
+      "ids": [
+        "P3-CATEGORY-POST-VALID",
+        "P3-CATEGORY-PATCH-VALID",
+        "P3-CATEGORY-POST-NULL",
+        "P3-CATEGORY-PATCH-NULL",
+        "P3-CATEGORY-POST-INVALID",
+        "P3-CATEGORY-PATCH-INVALID",
+        "P3-CATEGORY-POST-NESTED-EXISTING",
+        "P3-CATEGORY-PATCH-NESTED-EXISTING",
+        "P3-CATEGORY-POST-NESTED-CREATE",
+        "P3-CATEGORY-PATCH-NESTED-CREATE"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "positive-operations",
+      "expected": 10,
+      "mapped": 10,
+      "unmapped": 0,
+      "ids": [
+        "P3-OP-01",
+        "P3-OP-02",
+        "P3-OP-03",
+        "P3-OP-04",
+        "P3-OP-05",
+        "P3-OP-06",
+        "P3-OP-07",
+        "P3-OP-08",
+        "P3-OP-09",
+        "P3-OP-10"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "authorization",
+      "expected": 59,
+      "mapped": 59,
+      "unmapped": 0,
+      "ids": [
+        "P3-AUTHZ-DR-002",
+        "P3-AUTHZ-DR-003",
+        "P3-AUTHZ-DR-004",
+        "P3-AUTHZ-DR-005",
+        "P3-AUTHZ-DR-006",
+        "P3-AUTHZ-DR-007",
+        "P3-AUTHZ-DR-008",
+        "P3-AUTHZ-DR-010",
+        "P3-AUTHZ-DR-011",
+        "P3-AUTHZ-DR-012",
+        "P3-AUTHZ-DR-014",
+        "P3-AUTHZ-DR-015",
+        "P3-AUTHZ-DR-017",
+        "P3-AUTHZ-DR-024",
+        "P3-AUTHZ-DR-025",
+        "P3-AUTHZ-DR-026",
+        "P3-AUTHZ-DR-027",
+        "P3-AUTHZ-DR-028",
+        "P3-AUTHZ-DR-029",
+        "P3-AUTHZ-DR-030",
+        "P3-AUTHZ-DR-031",
+        "P3-AUTHZ-DR-032",
+        "P3-AUTHZ-DR-033",
+        "P3-AUTHZ-DR-034",
+        "P3-AUTHZ-DR-035",
+        "P3-AUTHZ-DR-036",
+        "P3-AUTHZ-DR-037",
+        "P3-AUTHZ-DR-038",
+        "P3-AUTHZ-DR-039",
+        "P3-AUTHZ-DR-040",
+        "P3-AUTHZ-DR-041",
+        "P3-AUTHZ-DR-042",
+        "P3-AUTHZ-DR-043",
+        "P3-AUTHZ-DR-044",
+        "P3-AUTHZ-DR-045",
+        "P3-AUTHZ-DR-046",
+        "P3-AUTHZ-DR-047",
+        "P3-AUTHZ-DR-048",
+        "P3-AUTHZ-DR-049",
+        "P3-AUTHZ-DR-050",
+        "P3-AUTHZ-DR-051",
+        "P3-AUTHZ-DR-052",
+        "P3-AUTHZ-DR-053",
+        "P3-AUTHZ-DR-054",
+        "P3-AUTHZ-DR-055",
+        "P3-AUTHZ-DR-056",
+        "P3-AUTHZ-DR-057",
+        "P3-AUTHZ-DR-058",
+        "P3-AUTHZ-DR-059",
+        "P3-AUTHZ-DR-060",
+        "P3-AUTHZ-DR-061",
+        "P3-AUTHZ-DR-062",
+        "P3-AUTHZ-DR-063",
+        "P3-AUTHZ-DR-064",
+        "P3-AUTHZ-DR-065",
+        "P3-AUTHZ-DR-066",
+        "P3-AUTHZ-DR-067",
+        "P3-AUTHZ-DR-068",
+        "P3-AUTHZ-DR-069"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "authentication",
+      "expected": 2,
+      "mapped": 2,
+      "unmapped": 0,
+      "ids": [
+        "P3-AUTH-CONTROL",
+        "P3-AUTH-INVALID"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "query",
+      "expected": 16,
+      "mapped": 16,
+      "unmapped": 0,
+      "ids": [
+        "P3-QUERY-ALL",
+        "P3-QUERY-DRAFT",
+        "P3-QUERY-PUBLISHED",
+        "P3-QUERY-SORT-ID",
+        "P3-QUERY-SORT-TITLE",
+        "P3-QUERY-SORT-SCORE",
+        "P3-QUERY-OFFSET3",
+        "P3-QUERY-PAGE2",
+        "P3-QUERY-PRECEDENCE",
+        "P3-QUERY-PROJECTION2",
+        "P3-QUERY-PROJECTION4",
+        "P3-QUERY-NESTED",
+        "P3-QUERY-SEARCH-SPECIALE",
+        "P3-QUERY-SEARCH-ABSENT",
+        "P3-QUERY-SEARCH-BLANK",
+        "P3-QUERY-READER-FILTER-DRAFT"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "query-boundary",
+      "expected": 10,
+      "mapped": 10,
+      "unmapped": 0,
+      "ids": [
+        "P3-QUERY-LIMIT-MINUS2",
+        "P3-QUERY-LIMIT-MINUS1",
+        "P3-QUERY-LIMIT-0",
+        "P3-QUERY-LIMIT-1",
+        "P3-QUERY-OFFSET-MINUS1",
+        "P3-QUERY-OFFSET-0",
+        "P3-QUERY-OFFSET-1",
+        "P3-QUERY-PAGE-MINUS1",
+        "P3-QUERY-PAGE-0",
+        "P3-QUERY-PAGE-1"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "stateful",
+      "expected": 3,
+      "mapped": 3,
+      "unmapped": 0,
+      "ids": [
+        "P3-ST-01",
+        "P3-ST-02",
+        "P3-ST-03"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "robustness",
+      "expected": 3,
+      "mapped": 3,
+      "unmapped": 0,
+      "ids": [
+        "P3-ROBUST-AGG-FOO",
+        "P3-ROBUST-AGG-EMPTY",
+        "P3-ROBUST-AGG-COUNT"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "contract",
+      "expected": 8,
+      "mapped": 8,
+      "unmapped": 0,
+      "ids": [
+        "P3-CONTRACT-QA_ARTICLES-OBJECT",
+        "P3-CONTRACT-QA_ARTICLES-ARRAY",
+        "P3-CONTRACT-QA_CATEGORIES-OBJECT",
+        "P3-CONTRACT-QA_CATEGORIES-ARRAY",
+        "P3-CONTRACT-EXPORT-CSV",
+        "P3-CONTRACT-EXPORT-XML",
+        "P3-CONTRACT-EXPORT-YAML",
+        "P3-CONTRACT-PROJECTION"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    },
+    {
+      "group": "pairwise-reference",
+      "expected": 36,
+      "mapped": 36,
+      "unmapped": 0,
+      "ids": [
+        "P3-PW-01",
+        "P3-PW-02",
+        "P3-PW-03",
+        "P3-PW-04",
+        "P3-PW-05",
+        "P3-PW-06",
+        "P3-PW-07",
+        "P3-PW-08",
+        "P3-PW-09",
+        "P3-PW-10",
+        "P3-PW-11",
+        "P3-PW-12",
+        "P3-PW-13",
+        "P3-PW-14",
+        "P3-PW-15",
+        "P3-PW-16",
+        "P3-PW-17",
+        "P3-PW-18",
+        "P3-PW-19",
+        "P3-PW-20",
+        "P3-PW-21",
+        "P3-PW-22",
+        "P3-PW-23",
+        "P3-PW-24",
+        "P3-PW-25",
+        "P3-PW-26",
+        "P3-PW-27",
+        "P3-PW-28",
+        "P3-PW-29",
+        "P3-PW-30",
+        "P3-PW-31",
+        "P3-PW-32",
+        "P3-PW-33",
+        "P3-PW-34",
+        "P3-PW-35",
+        "P3-PW-36"
+      ],
+      "audit_status": "SOURCE_FIELDS_ORACLE_COMPARED",
+      "execution_status": "NOT_RUN"
+    }
+  ],
+  "records": [
+    {
+      "source_id": "P3-NAME-POST-79",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-79",
+      "status": "MAPPED",
+      "comparison_key_sha256": "55267c3275028aee12f286d5002a71d2eaf2f7f5de3e98f57c3e4210a65b0101",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/0",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-80",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-80",
+      "status": "MAPPED",
+      "comparison_key_sha256": "46aa013932ef5551862959c48fc7fed358cfeedc50bbbecbd03c348b1faae7ae",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/1",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-81",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-81",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1e1e7d2d246774d3513ba5ec8da9a539aa3de97fa78e82cae375cd1d3f0261c7",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/2",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-NULL",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c198e24507482a313295a3daf6e0c52cef31e470a309d8df7fbfb81d0162c4c7",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/3",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-EMPTY",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "eaba66b3f15f86ccdbf5d0837859192279effc63611bfe81158a52e40ae89050",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/4",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-BLANK",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-BLANK",
+      "status": "MAPPED",
+      "comparison_key_sha256": "dc07018dbf74fe0c08bec26fb9cccd1e5cf80d6cb537e7ce1ef45c9f0feae277",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/5",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-NUMBER",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-NUMBER",
+      "status": "MAPPED",
+      "comparison_key_sha256": "05c1f172c43bf04f56c113ee440762c0f951c2be63ce3c202416d1852a7c4dcd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/6",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-UNICODE",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-UNICODE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "2752c05c21071f586b377544900351e49ab45c76118296783f70ef9142b03aaf",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/7",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-79",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-79",
+      "status": "MAPPED",
+      "comparison_key_sha256": "37f70ce2497df93c0a08c79ee2a862844ff913480b00836a1a5bdc515c41f0de",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/8",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-80",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-80",
+      "status": "MAPPED",
+      "comparison_key_sha256": "df70a12619f0ab8d598a0a13b148c94c0752bcf9243bb8cc2ce6dd34082ed7c5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/9",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-81",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-81",
+      "status": "MAPPED",
+      "comparison_key_sha256": "660d41e297ea5a597080dc52eca9686147e724d4c27ef599ee025009dc0fe4c6",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/10",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-NULL",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b0a17daf080611ac4dfcf3580d36e0207c5b9965b6d425d43ca92a9ff7c18cc8",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/11",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-EMPTY",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "558f06d337102f6daefa69a1ab7191d0586118b768ca4d67664801b9f703fff7",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/12",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-BLANK",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-BLANK",
+      "status": "MAPPED",
+      "comparison_key_sha256": "275f5621b50bae8e02e46f55feb2babfac4a64de91f3470397f6d45688125cb4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/13",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-NUMBER",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-NUMBER",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f95e6374b010566861f7fc821fbc22679a93a8c80225d54f1fb75c1ab139fc94",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/14",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-UNICODE",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-UNICODE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "dd32b87b34e870d6d61d2352af281f639708e271eb0337fc8a97ac3f3f2e7f7c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/15",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-POST-MISSING",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-POST-MISSING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "25a8a757eccb72a101c5b06e5c95336813f1a9b89815dafe99d24f1b20fa7a29",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/16",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-NAME-PATCH-OMITTED",
+      "group": "field-name",
+      "canonical_test_id": "P3-NAME-PATCH-OMITTED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5a77d1e8bea9a623ff2d5d6e65b2727a713a2d343aab5094329fb89b5c4b1969",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/17",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-119",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-119",
+      "status": "MAPPED",
+      "comparison_key_sha256": "bb2338508549dc972cd66df3758946cc1db63bfc4a3f66c72862977031ca2602",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/18",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-120",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-120",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8e9cf9f7fcf87b77171bb55bc93316bba8e337a45d7cd55ae6a6a2ea615f47b5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/19",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-121",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-121",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8adea60813a256bb238f6b14e3dce8aa6425618e8a60ced0aa67e775bed862a0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/20",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-NULL",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "391bc0b1f2d1c059c6ace2ace1d6f002a455a89e6c4b2341fe00a6dce2e34294",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/21",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-EMPTY",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "d5212ef72a60b15e0936a4831dbc62b81805d28309f43d87e406fc7f72786070",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/22",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-BLANK",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-BLANK",
+      "status": "MAPPED",
+      "comparison_key_sha256": "d9899e2c41f421611aabfb3fbc47900c7c2351620689afae7d803da2b6fc3cbc",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/23",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-NUMBER",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-NUMBER",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1917b1bf97e66a120a517f3566badbf63d4d670aee5190e4de08d6ca6fa247db",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/24",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-UNICODE",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-UNICODE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "600c95486dd67fe341109cd5e3c571401d8acf501e5b97e2c2a850a92abe694e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/25",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-119",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-119",
+      "status": "MAPPED",
+      "comparison_key_sha256": "97277a50d4d5ecfcd02a2ed90730c87dedac2009d1663058efa622b2e245b48e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/26",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-120",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-120",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5e8ec9c08c051e152b51b4916740dcabbdb158a83e1ccffd864de1c510d65d6b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/27",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-121",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-121",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ea6af66540da1ded8c761b3ff07849db12c02352e2413d846f3474f3b4e1fbd4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/28",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-NULL",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "aba1fe4298fad04ab04d102646cfc8989f4498439af8aa1d8d59e33ac00c871e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/29",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-EMPTY",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "bf4761a7c76a85c2171311ca974e897d53f5727c14c9db3245c92ef613f21e5a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/30",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-BLANK",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-BLANK",
+      "status": "MAPPED",
+      "comparison_key_sha256": "4594437077f68b7b03fe2a6af46ff59d566d4d9ab4425e1d0920eba09ab67618",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/31",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-NUMBER",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-NUMBER",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6f1afcb899c3d99729494926bef9dbd36303c4f758162ccc281d1299ed5768b4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/32",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-UNICODE",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-UNICODE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1d26b393f5d60a226ee892c14c0ff02ad502b1dae8bfc25b3e8b465d342a351b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/33",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-POST-MISSING",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-POST-MISSING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7fe4f399d67fd47dee43bbb6fd0fc61ad963cc9de46fe7e67af15e6d6c148d43",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/34",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-TITLE-PATCH-OMITTED",
+      "group": "field-title",
+      "canonical_test_id": "P3-TITLE-PATCH-OMITTED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "17f059186cbde0dae4e20697bb0329eb303e8be28c1a8c453857f7e69702005a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/35",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-MINUS1",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-MINUS1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "d7ca840df5769145c010d10a7a9660a321ff502f48541d7a55241168848de807",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/36",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-0",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-0",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5477b894a1afb1c7caf0eb38f48a2a26993f9c52a2a1ad1d10f4a2208652e9b3",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/37",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-1",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "595eac01fc2859ca2d340db94202752fe76d554cdbf40e2cfa93966a986603e5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/38",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-4",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-4",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c79fcfecaaca96cf20f66ac4135112d7b57a40724e60b642eac82857c0a4ea26",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/39",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-5",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-5",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6c957daa7bf3640128cf200dd1f0b1f8f89809e2351c65ab3b6a8265e6ca0d56",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/40",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-6",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-6",
+      "status": "MAPPED",
+      "comparison_key_sha256": "97c456a7ec2f4a6774cbe00175a4af64ddbf78c834a9b4316686954a22fd2864",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/41",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-NULL",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f0572cc530082574279274e9e931d034bc573c960faac9aa1d0947fc41b22c66",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/42",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-DECIMAL",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-DECIMAL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "57f9715cdd6b95882f8b88891ad7b2a8798d7207c7984f700e5c7dbddab59935",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/43",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-STRING",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-STRING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6f23f75b9b4f57cebcba7a231bada278c5be28689dde76661011457408f261bc",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/44",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-BOOL",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-BOOL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e85a708ce5a2882a93bbe40538ecca6b821a3267ddd817e6b30d840491123130",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/45",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-MINUS1",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-MINUS1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f93d5e25702b45d783d5bc8674efcf62989490dedcfab709cb26ea80c6fcf32b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/46",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-0",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-0",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c8edd2cd52fa28379e0f996ca0444285f79fdecd25d52b04f0615e265d400b25",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/47",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-1",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "127e79348ae473df672b4573e18b24f35a16020fd420c5c151642f4ec292add6",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/48",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-4",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-4",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e2677cdbe4c0a9bc9a8b16a24d01e7dfbeaba76b604f155f1256e2443aed06ec",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/49",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-5",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-5",
+      "status": "MAPPED",
+      "comparison_key_sha256": "4ddb3fafa0af5da00f2e28cf5e433fff60448d8f9339b8ee45cc5048fe402928",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/50",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-6",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-6",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f59a244b71b06d5687f4cb83430419fcce3901def47408ddafc81c53aeaf7d09",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/51",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-NULL",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "799e814e6559196c580355b7b29aa9c5f2f605023bd3aa8b5742d177e3700a7c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/52",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-DECIMAL",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-DECIMAL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7bfbf0e78fd0d48f8440665a7f7d135496cb213e6dc7581f443a50f83310a76e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/53",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-STRING",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-STRING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ea0c46c0212a3aea56166f30d680a9e1ad66214525be2b3d2e06b2d65ca4769d",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/54",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-BOOL",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-BOOL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ef34bef35a65449c15f3d288baf05dc4c8c7b3f1d2990b3f63a85cc802e28940",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/55",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-POST-MISSING",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-POST-MISSING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f3d07e9daf2f0407b75e68e3fb5b38bddd8a38ed5ac6dbb261297d5779056b19",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/56",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-SCORE-PATCH-OMITTED",
+      "group": "field-score",
+      "canonical_test_id": "P3-SCORE-PATCH-OMITTED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "03976956ca7af4d4d4c06f4ea49d545bba6981314fdb85d0a0151b48e562bac3",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/57",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-DRAFT",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-DRAFT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f48b75a74c5cd9b33cfb2d1466232b38c10b32c206a422869c8bb4098a89e7a5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/58",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-PUBLISHED",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-PUBLISHED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "9f6c9d3f9b3fe44e245700d8ed415a52dd1d31e3b3e28ecd217faeb17ecd282c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/59",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-ARCHIVED",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-ARCHIVED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "2c4cec6b0d2c038c262bc1ca483a7a5104c1f59755a40b9e9bcf3e219e9e60f5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/60",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-NULL",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f8fd457b0cf3c381a48c2d4f025dc6ef33d6d1dbea21445f40c426eb851a8370",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/61",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-EMPTY",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "9a2d45433c14e90875be9fa8d8efa7abbb1f0d949bea2733b488a24391349d24",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/62",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-BOOL",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-BOOL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "3e36e8d9647bc71b148df8987823138e5c1be67b6e4fb343937190c81f55b576",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/63",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-DRAFT",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-DRAFT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1c2366bf7ddc9454f1e6f3918435d89c706b20249ce56fb4db5a715e911dbe2b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/64",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-PUBLISHED",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-PUBLISHED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "936e49c300926866b5532341fe47099ede09dc011f8313f48e232e8b0b9fd363",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/65",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-ARCHIVED",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-ARCHIVED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "397d112d2c03c5053c56534007698ae73d0554b0237a062678345097829acc56",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/66",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-NULL",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "3314498a60b4c950d753c2e2cbeee7790dd9cad1654806fb235c23836ad29541",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/67",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-EMPTY",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "fc960f2c45824aa7c48f0f58a512ff0136465eb1150e4742c8a57e696b6eb3cb",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/68",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-BOOL",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-BOOL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1ee7682703d62f2604c85608ca318bd999d465358c316242a607a69d2567abe9",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/69",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-POST-DEFAULT",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-POST-DEFAULT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b27c7e7fb8a2ba8c685131474dde9fc8fb6b81909a0750241d73bb5a39b2eb58",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/70",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-STATUS-PATCH-OMITTED",
+      "group": "field-status",
+      "canonical_test_id": "P3-STATUS-PATCH-OMITTED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "00bb47f78f636ccb4a9a09941e9ea7ae484f4273db3f8aa285dfb680627fb254",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/71",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-POST-NULL",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5f97058316bc060e41a80b1ce7810d277fe166b71c2495f2b5da5d174c4e9ad3",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/72",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-PATCH-NULL",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "daf70d237808db932f00fa9ec70056c442c3751da8ceb965a9336726b9a9bd85",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/73",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-POST-UTC",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-POST-UTC",
+      "status": "MAPPED",
+      "comparison_key_sha256": "14570bd65da03980a968c79d73a76bbe6bd03b7403031712e1c7ad1affff99d0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/74",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-PATCH-UTC",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-PATCH-UTC",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f2eb06710c079c8192b39a74bdbdf0aceb916bd3c906cde29bcb58e48f475497",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/75",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-POST-OFFSET",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-POST-OFFSET",
+      "status": "MAPPED",
+      "comparison_key_sha256": "569c2e4d8ef1f174a6f7bce118b67f4cff221c1a887f36bd825a6a7e4e8f9f03",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/76",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-PATCH-OFFSET",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-PATCH-OFFSET",
+      "status": "MAPPED",
+      "comparison_key_sha256": "737affcafe62a6007f1b9c1d81687ab8e9fb51edb6a89b7e54ab29bd16c7a393",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/77",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-POST-EMPTY",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-POST-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f30a8cca6b0c171394b383b7665650d2aa0e7173d5944af465663d179df9f047",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/78",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-PATCH-EMPTY",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-PATCH-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "531f84ef7ca4973f093b9102df61cadd2c57149f9b72bd6d7065c8a6490be1a5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/79",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-POST-MALFORMED",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-POST-MALFORMED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "2b38687a8f15dd1f25a284a99573de5e3f6e17c494acc1e12d4fd45abde7c9e0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/80",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-PATCH-MALFORMED",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-PATCH-MALFORMED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "0f0d05f761b861701bb9be9fc5835dcdaefdd08be73bfe893c14af53075d81cd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/81",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-POST-NO-OFFSET",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-POST-NO-OFFSET",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1da0822de38285fa6b55387d8e300b992637677d9a962c700018645798a66231",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/82",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PUBLISHED_AT-PATCH-NO-OFFSET",
+      "group": "field-published_at",
+      "canonical_test_id": "P3-PUBLISHED_AT-PATCH-NO-OFFSET",
+      "status": "MAPPED",
+      "comparison_key_sha256": "728046c0a4824ccee31b2f7b6b4bbfd558b20fdc1a92ad9708d7828ce4dc43f6",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/83",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-POST-NULL",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "01feaee4d1eb939490f8ea3f84e87fdbac5b5dd23858f44f7fb7121f0b3a20b4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/84",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-PATCH-NULL",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7bce0b489ac77ccb991d9790b0f8b0883d785a4f4bf1fe0fc68a955f391f7284",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/85",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-POST-OBJECT",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-POST-OBJECT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "15bbbcf1bd0b48ae94c2488fccb134a7bd08a34a96da348f9f7cc04929d6a503",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/86",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-PATCH-OBJECT",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-PATCH-OBJECT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8bb2f2f64d5daab9f5b5bee1832b5b7181c6043bf21ee9496dd8b7c0fdb9ec29",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/87",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-POST-ARRAY",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-POST-ARRAY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c8d9a9bf554871930f70800dedba9133d1a530e524c636794f3f42ba07ab203a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/88",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-PATCH-ARRAY",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-PATCH-ARRAY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e58ab20305dfabe8f644dedd43a54eaaff352195ec91648d8d53b1d093e6ff4f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/89",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-POST-NUMBER",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-POST-NUMBER",
+      "status": "MAPPED",
+      "comparison_key_sha256": "33d17f2ece036f0a82ba6a9cc48a713e2487fe9bd9dd975bedfb566b74f10375",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/90",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-PATCH-NUMBER",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-PATCH-NUMBER",
+      "status": "MAPPED",
+      "comparison_key_sha256": "a387d8b563d5b1b8d5c0b47db7eb04d4b7e51cb6ca36d84205da410b9647f26f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/91",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-POST-STRING",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-POST-STRING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "20b1bfb41fdcfd165f2174576701b8891e5be4f0c3991d4c9007835b30aba5f5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/92",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-PATCH-STRING",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-PATCH-STRING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "0a799a37c2273535cbdc316fe1458e3d93f7ca14cb6a9a8f6e90d9965fbc8387",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/93",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-POST-BOOL",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-POST-BOOL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6064a10395fcbea36114881796fcfffe9f7a07a6bd95e28bcb0a9db769283b1f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/94",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-METADATA-PATCH-BOOL",
+      "group": "field-metadata",
+      "canonical_test_id": "P3-METADATA-PATCH-BOOL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e8874db58812c500fefbcf14c250c9633e0aa4b3379137a9729739b39cf4a58b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/95",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-INTERNAL_NOTES-POST-NULL",
+      "group": "field-internal_notes",
+      "canonical_test_id": "P3-INTERNAL_NOTES-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "354fa0e68cf6e55ac58edfe315c2b6b1148a0c9ed55e52c4d8e22146b87a6bcb",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/96",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-INTERNAL_NOTES-PATCH-NULL",
+      "group": "field-internal_notes",
+      "canonical_test_id": "P3-INTERNAL_NOTES-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "4ce0f4273df28421d49663269cafebda0411f52348486665e23f85a897b2033d",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/97",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-INTERNAL_NOTES-POST-TEXT",
+      "group": "field-internal_notes",
+      "canonical_test_id": "P3-INTERNAL_NOTES-POST-TEXT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "9ad56a24bd20d48bc4299077b51da3e5996a83419a17993b270f61a6d42dfecb",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/98",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-INTERNAL_NOTES-PATCH-TEXT",
+      "group": "field-internal_notes",
+      "canonical_test_id": "P3-INTERNAL_NOTES-PATCH-TEXT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "61cea846e1837d2107cd96c322c93cab5f0f1b02ebdccb0a94e8f0538f630943",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/99",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-POST-VALID",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-POST-VALID",
+      "status": "MAPPED",
+      "comparison_key_sha256": "4b82cdf5876e90de32139166c37f818c34d33a0ffdd9a7fd80b982f94553a9ac",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/100",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-PATCH-VALID",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-PATCH-VALID",
+      "status": "MAPPED",
+      "comparison_key_sha256": "9c8fa5b0372630997b243ee34967e52df53056baf0aaf9e8b2a7393e13af0f51",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/101",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-POST-NULL",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-POST-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f321c6f4a3a9040662725824328836801adb46319ad78656fedc2c4a3154da7f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/102",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-PATCH-NULL",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-PATCH-NULL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "61a11e502c1fd34402d0526638adf8d33e3167a0abb579f5647d591b7328c605",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/103",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-POST-INVALID",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-POST-INVALID",
+      "status": "MAPPED",
+      "comparison_key_sha256": "17b9694ca9f14f4ce1f39bc2bcdf6aaee57faa5006d1c3ee7849091e8a6073ca",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/104",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-PATCH-INVALID",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-PATCH-INVALID",
+      "status": "MAPPED",
+      "comparison_key_sha256": "368dc09accbeb0a8bade6d102b862cc6d915c002f33d638496586d7a6fd03ba0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/105",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-POST-NESTED-EXISTING",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-POST-NESTED-EXISTING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "2c1e5d3da2addf90427a68cab5181ef588c1a150a0b87676c5d9819424d870aa",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/106",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-PATCH-NESTED-EXISTING",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-PATCH-NESTED-EXISTING",
+      "status": "MAPPED",
+      "comparison_key_sha256": "9d44c41fc49c33c24cacfdc22b38c7ca8a07972e6ef227c53de23518c25df5fe",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/107",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-POST-NESTED-CREATE",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-POST-NESTED-CREATE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f41c38a4182e8016dcf2a936bb3853c038563d23bc39163cd988bdc2db61b5a2",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/108",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CATEGORY-PATCH-NESTED-CREATE",
+      "group": "field-category",
+      "canonical_test_id": "P3-CATEGORY-PATCH-NESTED-CREATE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "829acb47a029794049f45e61174bdcee6cb452dad7646d438f616524e7e02b41",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/109",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-01",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-01",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8c741286bed87a83a540615e295f640cf392e8f25d6a1f13fafde18d6f31e6b9",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/110",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-02",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-02",
+      "status": "MAPPED",
+      "comparison_key_sha256": "cb23060f51cc16e20dff542f1ca8b333b8169026534143da48c3dcf34c965f1d",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/111",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-03",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-03",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ed884458f69e29b05634ab2814a8320f2434a6bc3686a6c9d2aac110087d6880",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/112",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-04",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-04",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7fb58a7a14c9be3c07ddfb7d9d01ddc8e896425d0a23355ee41f34cdd2672931",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/113",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-05",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-05",
+      "status": "MAPPED",
+      "comparison_key_sha256": "87b92a5452aeb625cf2f924c4618ede3e8b6cdc1fa2cf9197a3469ef9a9567e5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/114",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-06",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-06",
+      "status": "MAPPED",
+      "comparison_key_sha256": "98d8c241d5259a490e1af2f43cf748f817a8f375f12d6a0e81a841f1de51fc03",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/115",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-07",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-07",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5918817239d6e6be927780cdf5710e7c8a0f31189afe740d419ed7b970a58e16",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/116",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-08",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-08",
+      "status": "MAPPED",
+      "comparison_key_sha256": "771e6c82f7e47eccbfd03f6897e453f1aee28208e8a9ed814547d33f875fc614",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/117",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-09",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-09",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b2d090b72f58d730b5b2c3e397e428106bfd26e3ba639ec62ea6b5d636a87ca4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/118",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-OP-10",
+      "group": "positive-operations",
+      "canonical_test_id": "P3-OP-10",
+      "status": "MAPPED",
+      "comparison_key_sha256": "33f2963130249b2f853ca0b5343c49ff03ffe67850a0fde44965774bd0584515",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/119",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-002",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-002",
+      "status": "MAPPED",
+      "comparison_key_sha256": "cb97f095ab86a18745d59c97b28e94ac926ddf22d1a645bd6334e8f25ad981f2",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/120",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-003",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-003",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5a00dd6b20e831e0ece4c12a6878ae8dc35acd1c163c3192afe68294c73a77dc",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/121",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-004",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-004",
+      "status": "MAPPED",
+      "comparison_key_sha256": "3151d333105848b937bef5cd3149067b7eb06d95dfb53e98118f7b69519ec618",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/122",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-005",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-005",
+      "status": "MAPPED",
+      "comparison_key_sha256": "acbf60129c2b5201b62543784e3abccd7622df48e2dfb646a7a6c06eaa9fdf4e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/123",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-006",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-006",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e4e391b853bd9fec01bf68dd1553df2b7fd1b7ca9e3620dd8816fd9a6aa29054",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/124",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-007",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-007",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b32baa86692da36f846f613bdf8538325cd17ffaa43944bb9899521b815844cf",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/125",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-008",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-008",
+      "status": "MAPPED",
+      "comparison_key_sha256": "dd24e1ebb08c84aef82d7e46f4beec78c7c94e0069208c60cc11d4a775744fd6",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/126",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-010",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-010",
+      "status": "MAPPED",
+      "comparison_key_sha256": "3a76b8dd6b50158e606cfab8b5abe8be96d8ca08a6004bb0e55096f3901543fb",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/127",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-011",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-011",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6706dd9c3eff541d03c4a3f3d870d58ae3e7430b6e329dde8654e183e06b8067",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/128",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-012",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-012",
+      "status": "MAPPED",
+      "comparison_key_sha256": "83145315e9245a276217425cfbff48104c776ce2cc38e062cb37644112ec8e97",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/129",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-014",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-014",
+      "status": "MAPPED",
+      "comparison_key_sha256": "53ea2f5da0128643c4ad7a10b14049a9dec551ff220e3bf9c0343e8fa41464b1",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/130",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-015",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-015",
+      "status": "MAPPED",
+      "comparison_key_sha256": "21a489bf8491cf6d7799e8fafc9ac1e1ed2689a441a688131bc1baed33234521",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/131",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-017",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-017",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b8f55dc42abb4520dbf63544e10aab592077a00f0ebd6cabab47da77748ce170",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/132",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-024",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-024",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5c14666523b641b57db8867d1c7d9a0c2ef30c03b364caf654221a61587c7e1a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/133",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-025",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-025",
+      "status": "MAPPED",
+      "comparison_key_sha256": "068fe917588da4f7f521c182c2449b3764dda6c6eafeafe28d1e223b24b6df18",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/134",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-026",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-026",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f153da8667ea6e5e4d625b57c528373f063c419540275ac556f8de01ad73403f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/135",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-027",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-027",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8b4ced9d0f04f4390a569ec547b62d591cbaaa86eee44eba79f6c02e5d25514e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/136",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-028",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-028",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b7b8e0aeb1f93c2b76ab14cfa9f301a011ffc33634d1f4fe80ab1573033e9d9b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/137",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-029",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-029",
+      "status": "MAPPED",
+      "comparison_key_sha256": "fb427a171e03ec2d3ac2880d0e252ad47cdc21b7410a1f3dc729e616bb9a8001",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/138",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-030",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-030",
+      "status": "MAPPED",
+      "comparison_key_sha256": "15cb8cc6ae1f2abe291827062370e7f4b2a3be08e8973a062af21071f64335f0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/139",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-031",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-031",
+      "status": "MAPPED",
+      "comparison_key_sha256": "0a41bb4ce6050c7ed6e7fa538c92810172aa9f9601d845e24b45dffe3559aab7",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/140",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-032",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-032",
+      "status": "MAPPED",
+      "comparison_key_sha256": "3f9e866cf97153c88a8c9dac153e376cb9e65df189c36ddf94970022ccc727e4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/141",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-033",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-033",
+      "status": "MAPPED",
+      "comparison_key_sha256": "806aa7d3a80a9b892c3f03f6e77bc3644797ff7707aeeb6b5d8f897884e611e3",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/142",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-034",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-034",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ae623765075b267c1a870a61acde5bbd34824832d53577057dc9b4f97f87bbb4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/143",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-035",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-035",
+      "status": "MAPPED",
+      "comparison_key_sha256": "91435c245de6b325528fc49284898d7f7de20e19a599b98720aa984a1f3d05ba",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/144",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-036",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-036",
+      "status": "MAPPED",
+      "comparison_key_sha256": "113977e3697d76ec5b0ab82302e82f0fe2d33c17f3e657be678b808859e0788c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/145",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-037",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-037",
+      "status": "MAPPED",
+      "comparison_key_sha256": "d0470582e7aecc649bf7200aec3437e17f640dc67309c4366a302aa7c82d36e5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/146",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-038",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-038",
+      "status": "MAPPED",
+      "comparison_key_sha256": "46a1b5c0bd9dafb4b8c13a29a1e4bd193355dba0c5c60eac783679a344140095",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/147",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-039",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-039",
+      "status": "MAPPED",
+      "comparison_key_sha256": "290078d2af008480f54aeee779f8a3b90bf197f025f7745823be2945d2e72685",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/148",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-040",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-040",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8c0883c42a50fdfd8c0fb11918f6021e58ddd68751467bfc11639cfbcc7cb037",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/149",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-041",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-041",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b6c355497dc8de5f3c9988e00d51164c12a0a6138dcd508216f92d4bf7877f23",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/150",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-042",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-042",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7ef99141c558e1c5eb1b498fa668b1fce9562fe2ed0f4044de2f1dc242540648",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/151",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-043",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-043",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b446ca0f519823edf4d7c706ef257b655f0521bd7b41d5100a459fb1fdd1fa06",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/152",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-044",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-044",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8dc9da0578e88219890b54f9cd932616d765d56bed0351d6f61c8cd85bd057fe",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/153",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-045",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-045",
+      "status": "MAPPED",
+      "comparison_key_sha256": "4b6d6b258e7d9664b32b0d0ecb8d3e77a597cc9460592dfc35d6641118821e16",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/154",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-046",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-046",
+      "status": "MAPPED",
+      "comparison_key_sha256": "2fa15723babc2a41bf6285272d3ab19c302e8dd0b23d31622e3fde7a6eda055f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/155",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-047",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-047",
+      "status": "MAPPED",
+      "comparison_key_sha256": "55b8e57a629dea14b1fd0272ee79269750d9da5061fd033668134e81e4ff973f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/156",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-048",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-048",
+      "status": "MAPPED",
+      "comparison_key_sha256": "205d4597dc52d9fe7b52801c5aee2b70791610754b3958f1a72ae2c403d6d948",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/157",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-049",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-049",
+      "status": "MAPPED",
+      "comparison_key_sha256": "63d660c1ccfda3d70e988a7d18235b5c3659782927268371ebd1729a5221606b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/158",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-050",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-050",
+      "status": "MAPPED",
+      "comparison_key_sha256": "cba8c3793aaa8d8ae8d747cac7eb74f5f00ea51b4cddcd8e8c2b4857814c9b01",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/159",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-051",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-051",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f83db64368ab00dad805f32023326b54541cd2590ef8d6d386b34f22f3d7a93b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/160",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-052",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-052",
+      "status": "MAPPED",
+      "comparison_key_sha256": "1cddd4b203784ae534bbff161eec77d274785217856ba4c9b4c68a01e20ba23e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/161",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-053",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-053",
+      "status": "MAPPED",
+      "comparison_key_sha256": "35bc422e24b3a2e8d13ad83d6f5b4258bd75a1d817f0c7d530d6a41200b237ab",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/162",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-054",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-054",
+      "status": "MAPPED",
+      "comparison_key_sha256": "0f0ee7a45a85edeaf8fc13288c64c3bbdba6f2c8ec9b1737e1d39a96638f1506",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/163",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-055",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-055",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ed9dc64967788c1e40c6758172dfa1b93f005eb58d972736c22fb5692553fb82",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/164",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-056",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-056",
+      "status": "MAPPED",
+      "comparison_key_sha256": "04a2007d4725838ae3f15d3b3dea3eefda0240d0903aadbfd9e81b85b2376c37",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/165",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-057",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-057",
+      "status": "MAPPED",
+      "comparison_key_sha256": "27288b1ecc64b922005d6335f7a0148fe58fb275edf8a2b18be81f0ae83cb3c4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/166",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-058",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-058",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6a079a05759accac6b7f71b28c0f5472ce24d34698571bbbeb3f32c177b5bc5e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/167",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-059",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-059",
+      "status": "MAPPED",
+      "comparison_key_sha256": "650b034f3551285e7799e0df812cae3f73e001593ee10e1cb54e686643c075dd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/168",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-060",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-060",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c8c8515f4772906e9b4bbb7453f5b8c266ecc917fd16b3ed5f874ed7e6e7f23f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/169",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-061",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-061",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8819313cf11a01a025a389396f7034ad036c83c0b99adcb3cbf07028c675375f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/170",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-062",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-062",
+      "status": "MAPPED",
+      "comparison_key_sha256": "59e466390594a3637071b1fbafbe7e6b3f2dbf7da4b16cf2c9cae49c8c941dfd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/171",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-063",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-063",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8f9ecba70d1776a8069def80485c2b5c09f40400faa3ea4c2db543826d9a724e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/172",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-064",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-064",
+      "status": "MAPPED",
+      "comparison_key_sha256": "03e8e8d83b5bca4d27cdf8c33764cbd8e9932031607c2e1c7fc7da6e43387398",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/173",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-065",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-065",
+      "status": "MAPPED",
+      "comparison_key_sha256": "531082304400921c5564aa8c891565684a0f5b72eaecad9d351701e1264ed670",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/174",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-066",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-066",
+      "status": "MAPPED",
+      "comparison_key_sha256": "aba55ff90955380f71c27fb91844afb8271f278462498fc60bb09aa2cf73cada",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/175",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-067",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-067",
+      "status": "MAPPED",
+      "comparison_key_sha256": "77e64aad39f70b6c30c2d5219a714cc932b60ec68e942cd717b8e5c9920cf458",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/176",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-068",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-068",
+      "status": "MAPPED",
+      "comparison_key_sha256": "4ecf8ff9f75212a183ad0401e180a83d61d44fc4c84c4cfee4531cf6448dfb14",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/177",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTHZ-DR-069",
+      "group": "authorization",
+      "canonical_test_id": "P3-AUTHZ-DR-069",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c93677d95851082d3ff2bab3fea746ff8d64a61c6a06e0c18226934bb1a2a59d",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/178",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTH-CONTROL",
+      "group": "authentication",
+      "canonical_test_id": "P3-AUTH-CONTROL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "15fae5491787a00671d98c72bfb58444d5bb3d05130cf2bf2d3eeacb7de89dea",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/179",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-AUTH-INVALID",
+      "group": "authentication",
+      "canonical_test_id": "P3-AUTH-INVALID",
+      "status": "MAPPED",
+      "comparison_key_sha256": "39a2c29cd6a796d82dd9697f732d8ef0e24bde871f7edaea673b2c82637c676d",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/180",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-ALL",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-ALL",
+      "status": "MAPPED",
+      "comparison_key_sha256": "29511df7326c1646ffaf63642d85bc1919a4e47a01b53d854e58033fe536a68b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/181",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-DRAFT",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-DRAFT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e2ded04f401fa3eff1dda5a03b6ed7cff433749f865e6655272615732cefe983",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/182",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PUBLISHED",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-PUBLISHED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "23de9d4a88a7ea8d39884c54bb6e4ab7643b307d148625eba8f7b2ffc76a33eb",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/183",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-SORT-ID",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-SORT-ID",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8d6004646044131d38a3d4ece7ed14a2a85f96759a1e8871d8e93a19c8605962",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/184",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-SORT-TITLE",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-SORT-TITLE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7dfcbaa887fba1e8a9ce9beccd4cbeb9ff6529bddc43544519832615e4fdba53",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/185",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-SORT-SCORE",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-SORT-SCORE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "74302649d83ac9ca24debe0d42f0107d60f0bfa497060ac6a21388bf4830171e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/186",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-OFFSET3",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-OFFSET3",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f607e0fb3db9527f91183981c119bbf653ea0ad73c3dd1cf0227c5084107becf",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/187",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PAGE2",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-PAGE2",
+      "status": "MAPPED",
+      "comparison_key_sha256": "06cc6f1f48853c60805d7a28279d46a4acecdb62f55cce58dc012ce2e6f5ccce",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/188",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PRECEDENCE",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-PRECEDENCE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ad44f6f7b570d620b2d28cee98cb3b34f3c6faee0a12dc88a461cb07cfd62b65",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/189",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PROJECTION2",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-PROJECTION2",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6dfaf38bbae2edc2ab3c4cf436fc1744460c871f744338d5fad91f746e96a34e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/190",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PROJECTION4",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-PROJECTION4",
+      "status": "MAPPED",
+      "comparison_key_sha256": "21eefb1bd60fabc8d1eac7d0e2a4cc27c520a926fa2bd185b6381f4ce1c220a8",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/191",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-NESTED",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-NESTED",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e849addef98ce021833383cd14b487307968d42f9723393c7a7df8f656a368d4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/192",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-SEARCH-SPECIALE",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-SEARCH-SPECIALE",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c6e79d9987d08336a6d6a39564c01fb4108a381b94158c69dc95fbae3601c013",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/193",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-SEARCH-ABSENT",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-SEARCH-ABSENT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8101fea94bd0c02eb5aeb7262fa42232ca40ed7bb744998c39d2951eed2fddec",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/194",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-SEARCH-BLANK",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-SEARCH-BLANK",
+      "status": "MAPPED",
+      "comparison_key_sha256": "37a7ac3f329eaabb549cc20dbdf0454e829ba6f18174c8a37d0ed5d0e16dafda",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/195",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-READER-FILTER-DRAFT",
+      "group": "query",
+      "canonical_test_id": "P3-QUERY-READER-FILTER-DRAFT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "0b96bf863d406a4cd81268b7f0270adb2e1edff7971e1c54c4fe988dc2fe7341",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/196",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-LIMIT-MINUS2",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-LIMIT-MINUS2",
+      "status": "MAPPED",
+      "comparison_key_sha256": "52701a4bd7166ef2f3bfa88a3ffe34fca235a4376849339b5a449ea5aa05457a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/197",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-LIMIT-MINUS1",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-LIMIT-MINUS1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "21ae96f5f8ea4e2b48e777e5aebff1eb45472cd393a8766d64dc3901d830c086",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/198",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-LIMIT-0",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-LIMIT-0",
+      "status": "MAPPED",
+      "comparison_key_sha256": "cb6fb8cec3596925b7c787234df9f8065c3ac931c5fefa15021c76c067a321e5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/199",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-LIMIT-1",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-LIMIT-1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "46a2797207d55ce8c514f5e66b937ea818e7226bcdd18f6b5efc495f57883772",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/200",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-OFFSET-MINUS1",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-OFFSET-MINUS1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "bb6dcdec76a3ff1acd00873399b73d0884efaddbea13db7a965fce98fe44dc3b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/201",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-OFFSET-0",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-OFFSET-0",
+      "status": "MAPPED",
+      "comparison_key_sha256": "a7bd0b19bbe520c977cba05ceb9b47d570e55e99288f71123534e5c1686872b6",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/202",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-OFFSET-1",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-OFFSET-1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "14ec85e648d6ec0f34954c79ef83f4f9eb17c3a8c1ba85af7afd00698d77c35b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/203",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PAGE-MINUS1",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-PAGE-MINUS1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8b1ee6f523aba6f6bbcf95810fd5a4b5e234e767106e1ae79813b7bd9b7774fd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/204",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PAGE-0",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-PAGE-0",
+      "status": "MAPPED",
+      "comparison_key_sha256": "77f35e3108103e519095bfbc12aee06b528b487c437c1de83f2bf1d4dfe6e0bd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/205",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-QUERY-PAGE-1",
+      "group": "query-boundary",
+      "canonical_test_id": "P3-QUERY-PAGE-1",
+      "status": "MAPPED",
+      "comparison_key_sha256": "a52082fe9b1c109cfdd741baf43e1420b7ef12a146ee0012684cd12eff699cc8",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/206",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-ST-01",
+      "group": "stateful",
+      "canonical_test_id": "P3-ST-01",
+      "status": "MAPPED",
+      "comparison_key_sha256": "d2e6b2db83c0d61a7ce36fb240ab55fd0423e72ff30776f5b018bbedf4735f61",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/207",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-ST-02",
+      "group": "stateful",
+      "canonical_test_id": "P3-ST-02",
+      "status": "MAPPED",
+      "comparison_key_sha256": "3038975f4a79624ed2e426a1dc4e3a26f432ac92e65b581b95220cdec39eeb11",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/208",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-ST-03",
+      "group": "stateful",
+      "canonical_test_id": "P3-ST-03",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b6696aa734ba660b0d3a4fa66643c985a317176671c1c4fa945820ecd67e10fa",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/209",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-ROBUST-AGG-FOO",
+      "group": "robustness",
+      "canonical_test_id": "P3-ROBUST-AGG-FOO",
+      "status": "MAPPED",
+      "comparison_key_sha256": "643c340d901e0bdae68a7546da14e317ace11caa98a0a4da382976d25eef2e6f",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/210",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-ROBUST-AGG-EMPTY",
+      "group": "robustness",
+      "canonical_test_id": "P3-ROBUST-AGG-EMPTY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ce5ff7335d6e5d30ab96f2bb24d3f2c2865b5aa2a97c5faf5e05978e6f8700b3",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/211",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-ROBUST-AGG-COUNT",
+      "group": "robustness",
+      "canonical_test_id": "P3-ROBUST-AGG-COUNT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "992e040d98acd06a88fd722f017333c6c4cf733292080a011d87b290b6e38a23",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/212",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-QA_ARTICLES-OBJECT",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-QA_ARTICLES-OBJECT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "83a923995502426bf7ecdb2aa4022164f28cb982ea7b96af1bfccb3c608723e0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/213",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-QA_ARTICLES-ARRAY",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-QA_ARTICLES-ARRAY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "80c9eaf8f4fa6f63e6efb77f302465a6847f26041072ed20357deb206adadf88",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/214",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-QA_CATEGORIES-OBJECT",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-QA_CATEGORIES-OBJECT",
+      "status": "MAPPED",
+      "comparison_key_sha256": "a1f20214d294f53b00338ec9265b8a86c11b1908e191b4014e8e96ef89e08237",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/215",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-QA_CATEGORIES-ARRAY",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-QA_CATEGORIES-ARRAY",
+      "status": "MAPPED",
+      "comparison_key_sha256": "fe842efacd6a1817e0634d166c4d89fedd75f47ca70f17b870b43b65df2d11f4",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/216",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-EXPORT-CSV",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-EXPORT-CSV",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c1619992b687bf5b2f5041894fa7e5bc3dafa3fca3cdeea581e88aea1e60f85a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/217",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-EXPORT-XML",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-EXPORT-XML",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8cc5fa8a2ed4c66faf9c25357cf041ce44bc15720f8d942e5dc28d1e20d50144",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/218",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-EXPORT-YAML",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-EXPORT-YAML",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7cce54a9b5849fbf86dee1958fcea1ff545d4aca77e9179ffbc501ab6e59864c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/219",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-CONTRACT-PROJECTION",
+      "group": "contract",
+      "canonical_test_id": "P3-CONTRACT-PROJECTION",
+      "status": "MAPPED",
+      "comparison_key_sha256": "25e041691137c4b19e171b8d91dd85568fecbe8da9bf36ace419ecdeffd442f8",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/220",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-01",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-01",
+      "status": "MAPPED",
+      "comparison_key_sha256": "37ab22e43d0c30dae6d9946288553bae664ee497713d1e3939229dccc593e185",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/221",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-02",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-02",
+      "status": "MAPPED",
+      "comparison_key_sha256": "ecee39e912a9cbfa4e876f5ff81e287c94dd2b4390b2392e40c17cbf58b6a57c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/222",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-03",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-03",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6051b6e441a9b096e7fcb0cef71d728488c60a4adec9f71e74633c212f17b1e5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/223",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-04",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-04",
+      "status": "MAPPED",
+      "comparison_key_sha256": "9737ae2416af4805f0e0fc1024ddf03c39ad076408868e4f69a0ef1f1022b104",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/224",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-05",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-05",
+      "status": "MAPPED",
+      "comparison_key_sha256": "fcc31626aaa0ed2c34ee071885b9f369d6f2b1b47faa7237ca9a89cf980c7bfb",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/225",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-06",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-06",
+      "status": "MAPPED",
+      "comparison_key_sha256": "574048b30bbb0e0a6294648dde6397da802551e0df9b646919d88481a0a6ba7a",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/226",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-07",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-07",
+      "status": "MAPPED",
+      "comparison_key_sha256": "a1c9e3ff305b39daf9b2e98c8a643b90709aed241284c3de9a0a85f9e9f353cd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/227",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-08",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-08",
+      "status": "MAPPED",
+      "comparison_key_sha256": "58b40f8a784261e218936f4f69e8fbf7eeae629534138e11cec5184e8e675394",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/228",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-09",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-09",
+      "status": "MAPPED",
+      "comparison_key_sha256": "d419da7dc9542709626f39e0ef16d14a282fe75d99cef51a9d40b35acebb3d46",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/229",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-10",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-10",
+      "status": "MAPPED",
+      "comparison_key_sha256": "78d0184c01d43d24b75948681fc116f03376e27ff9a15015ec80a10f0c20a700",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/230",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-11",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-11",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b2a751c35a01e5603bf7f8b8c596e372cf3746a38e5c6328d306b70fe1cb79a3",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/231",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-12",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-12",
+      "status": "MAPPED",
+      "comparison_key_sha256": "b10b20368a2a09b4f6a3ad2d9117b9b3161adf03d507d2448f359afd594201c0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/232",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-13",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-13",
+      "status": "MAPPED",
+      "comparison_key_sha256": "da4853d1fd0229197442877cbd4de49e97daa45bc4c292e4e708dcdc38ab60a5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/233",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-14",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-14",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7c3a5716098cb3d206783668db183bab1fd82aec6416e6804ff69bd7458fb5b0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/234",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-15",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-15",
+      "status": "MAPPED",
+      "comparison_key_sha256": "2b80bcfe89dee481621cd8a5b2e924049c6e4cc5c28d8b9fe7c3f02078d09dc5",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/235",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-16",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-16",
+      "status": "MAPPED",
+      "comparison_key_sha256": "6dac43c7416ee88cdde0fd4c439e996129e462b7bb50ac735d6ee0e7b2a0de8d",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/236",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-17",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-17",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e03706d2c17c0486831f657f791f9eac93809ffb75df383a18f77977b94d5558",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/237",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-18",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-18",
+      "status": "MAPPED",
+      "comparison_key_sha256": "26e0c4067663692d7440565b113db3c113df08de92de848721e7df23687dc50c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/238",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-19",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-19",
+      "status": "MAPPED",
+      "comparison_key_sha256": "e3a6e0c8ec8f46a86cd0ef51f7d944b576ba1da5a9ae07f776c3a2a4fc44f260",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/239",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-20",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-20",
+      "status": "MAPPED",
+      "comparison_key_sha256": "51e71de9631f661bdb2348930a76bf287bfa258bba23f5e90ccff4c70544b0ed",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/240",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-21",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-21",
+      "status": "MAPPED",
+      "comparison_key_sha256": "8cfc92a52fd1c791190cee259fbf8814000ef16bc955ab866c4f080c78b83378",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/241",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-22",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-22",
+      "status": "MAPPED",
+      "comparison_key_sha256": "31632ce7f2f10b507d92a48dc225a93916914c42703b01a8d3254417b1af6cf0",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/242",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-23",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-23",
+      "status": "MAPPED",
+      "comparison_key_sha256": "cbff0371747364b1183052b27583e7ec6143a8a8ae9a0d3cb607e0c900018cdd",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/243",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-24",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-24",
+      "status": "MAPPED",
+      "comparison_key_sha256": "27ec8d2656c4fed17fc98b0081765a09b8b9ea9d5f2cbfc2f8879fb0401828c6",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/244",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-25",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-25",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7bca4bc8617fe3f7009a04683eb3a880a180d40b9a86109b0097f7dddae2297e",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/245",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-26",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-26",
+      "status": "MAPPED",
+      "comparison_key_sha256": "247dfa66da6f8e863630253b5c141a9dc76bb83cf3209c08ca606d704ab62863",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/246",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-27",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-27",
+      "status": "MAPPED",
+      "comparison_key_sha256": "7003040e4e6afa0fd4b50788420926a2a39e8d5a6fee562faf0c7f429ab039ca",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/247",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-28",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-28",
+      "status": "MAPPED",
+      "comparison_key_sha256": "105c4fe61b0793024742f48f37f037c2908462e747201f2f5a4aaf5abd89cb88",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/248",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-29",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-29",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c607eaf7e1c2732a398414424872b779313a6d4f9fadc7c9b2014aaf3efbf947",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/249",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-30",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-30",
+      "status": "MAPPED",
+      "comparison_key_sha256": "40d37e0e71ad0b70e66eca327b1746ed1ab558e39b773725259a4333a0600dda",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/250",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-31",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-31",
+      "status": "MAPPED",
+      "comparison_key_sha256": "c5ba9c3efc22533a9a1a260ac46db2c18459b5ba76703ec7f73a8c37f421bd48",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/251",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-32",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-32",
+      "status": "MAPPED",
+      "comparison_key_sha256": "89b5e3e34e3a00348101a5ab4ff8dd61d8794495500e268e245c68c898a8ace2",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/252",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-33",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-33",
+      "status": "MAPPED",
+      "comparison_key_sha256": "a2f6e6dddfa82a30efc7e790eee71e59af47c814b93a195005b021dad077fa69",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/253",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-34",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-34",
+      "status": "MAPPED",
+      "comparison_key_sha256": "85e5558aabb767413e85dc76703327f65f6f43bca7be068b75b52441a18a0c77",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/254",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-35",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-35",
+      "status": "MAPPED",
+      "comparison_key_sha256": "f1d4a309e6303f2ad5b6c4bb616e76da9a9b6d74cf9c9dd2c3aeef5209a6842c",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/255",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    },
+    {
+      "source_id": "P3-PW-36",
+      "group": "pairwise-reference",
+      "canonical_test_id": "P3-PW-36",
+      "status": "MAPPED",
+      "comparison_key_sha256": "5a4b6dea3d8cc25977259e3e8b8cb4aa1fd1f8eec50aa19efdc5a0a0f1e1b82b",
+      "source_refs": [
+        {
+          "kind": "ARTIFACT",
+          "path": "scripts/data/test-catalog-v1.json",
+          "revision": null,
+          "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+          "pointer": "#/256",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ]
+    }
+  ]
+}

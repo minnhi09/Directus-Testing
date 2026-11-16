@@ -1,0 +1,90 @@
+[
+  {
+    "path": "/paths/~1items~1qa_articles/post/requestBody/content/application~1json/example",
+    "action": "add",
+    "after": {
+      "title": "Guided Schemathesis article",
+      "status": "draft",
+      "score": 3,
+      "published_at": null,
+      "metadata": {
+        "source": "guided",
+        "fixture_version": "r06-k05-v2"
+      },
+      "internal_notes": "guided probe",
+      "category": 1
+    }
+  },
+  {
+    "path": "/paths/~1items~1qa_articles~1{id}/delete/parameters/0/example",
+    "action": "add",
+    "after": 3
+  },
+  {
+    "path": "/paths/~1items~1qa_articles~1{id}/get/parameters/3/example",
+    "action": "add",
+    "after": 3
+  },
+  {
+    "path": "/paths/~1items~1qa_articles~1{id}/patch/parameters/1/example",
+    "action": "add",
+    "after": 3
+  },
+  {
+    "path": "/paths/~1items~1qa_articles~1{id}/patch/requestBody/content/application~1json/example",
+    "action": "add",
+    "after": {
+      "score": 4
+    }
+  },
+  {
+    "path": "/paths/~1items~1qa_categories/post/requestBody/content/application~1json/example",
+    "action": "add",
+    "after": {
+      "name": "Guided Schemathesis category"
+    }
+  },
+  {
+    "path": "/paths/~1items~1qa_categories~1{id}/delete/parameters/0/example",
+    "action": "add",
+    "after": 1
+  },
+  {
+    "path": "/paths/~1items~1qa_categories~1{id}/get/parameters/3/example",
+    "action": "add",
+    "after": 1
+  },
+  {
+    "path": "/paths/~1items~1qa_categories~1{id}/patch/parameters/1/example",
+    "action": "add",
+    "after": 1
+  },
+  {
+    "path": "/paths/~1items~1qa_categories~1{id}/patch/requestBody/content/application~1json/example",
+    "action": "add",
+    "after": {
+      "name": "Guided category update"
+    }
+  },
+  {
+    "path": "/x-r06-k05-guidance",
+    "action": "add",
+    "after": {
+      "profile": "guided",
+      "reason": "fixture IDs and valid request examples improve reachability; raw schema remains unchanged",
+      "fixture_ids": {
+        "article": 3,
+        "category": 1
+      },
+      "query_focus": [
+        "fields",
+        "filter",
+        "sort",
+        "limit",
+        "offset",
+        "page",
+        "search"
+      ]
+    }
+  }
+]

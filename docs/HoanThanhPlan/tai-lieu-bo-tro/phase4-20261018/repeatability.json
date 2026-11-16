@@ -1,0 +1,12 @@
+{
+  "runs": [
+    "20261018T090954Z-1705",
+    "20261018T091253Z-1524"
+  ],
+  "same_harness_inputs": true,
+  "same_execution_config": true,
+  "same_baseline_snapshot": true,
+  "same_order_and_verdicts": true,
+  "different_generated_probe_ids_expected": true,
+  "scope": "two sequential runs on this Windows machine; does not establish statistical flake rate"
+}

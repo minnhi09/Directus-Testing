@@ -1,0 +1,925 @@
+{
+  "format": "P08_INPUT_ARCHIVE_1",
+  "entries": [
+    {
+      "source_kind": "ARTIFACT",
+      "source_path": "manifest/baseline.yaml",
+      "revision": null,
+      "sha256": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee.txt",
+      "bytes": 19935
+    },
+    {
+      "source_kind": "ARTIFACT",
+      "source_path": "runtime/schemas/r06-k05-v2/admin.json",
+      "revision": null,
+      "sha256": "993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/993a95d245eedb6c7991bf646aac6f6ad3169f0a3c0846ea808d96d8203b017e.txt",
+      "bytes": 175679
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/ai/chat/middleware/load-settings.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2b17c1f15139d3c11110defef6b62190993259be14d24d5e96d51a26722c0ad8",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/2b17c1f15139d3c11110defef6b62190993259be14d24d5e96d51a26722c0ad8.txt",
+      "bytes": 1785
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/ai/chat/router.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0a34dca1c57ad8108e0400b033fd7500eb03afd215519c131d62a33274a6c1d3",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/0a34dca1c57ad8108e0400b033fd7500eb03afd215519c131d62a33274a6c1d3.txt",
+      "bytes": 478
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/ai/files/router.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e4a7ea8c7ab6589fd37acd90352737dee76b48812437cf5e59417d46dd37812c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e4a7ea8c7ab6589fd37acd90352737dee76b48812437cf5e59417d46dd37812c.txt",
+      "bytes": 335
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/ai/mcp/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "827fed71c248fd418be382b80a7dfd6a276e08b723441b1dc0538c04cefb8c1c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/827fed71c248fd418be382b80a7dfd6a276e08b723441b1dc0538c04cefb8c1c.txt",
+      "bytes": 11963
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/app.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf.txt",
+      "bytes": 14065
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/drivers/ldap.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "3eb4d4f984f9d47c9aefd6bf022582c8f345e2103a3526c552652a334b57f252",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/3eb4d4f984f9d47c9aefd6bf022582c8f345e2103a3526c552652a334b57f252.txt",
+      "bytes": 13290
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/drivers/local.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "19a919306dc0cb6339d64ce1663529209a5d2a7f7cfcb0d8ee1c33723565ca61",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/19a919306dc0cb6339d64ce1663529209a5d2a7f7cfcb0d8ee1c33723565ca61.txt",
+      "bytes": 3742
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/drivers/oauth2.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "93da4f4ca25a5899f6c1d477a9f06e2add98a26200ac41f38788fe4a92a01106",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/93da4f4ca25a5899f6c1d477a9f06e2add98a26200ac41f38788fe4a92a01106.txt",
+      "bytes": 15747
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/drivers/openid.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0ada6b25ef678868494d2b3e0f7f1857a9e5d3fe66de2b0b6ca9689c390daa10",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/0ada6b25ef678868494d2b3e0f7f1857a9e5d3fe66de2b0b6ca9689c390daa10.txt",
+      "bytes": 18371
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/drivers/saml.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "8583b495cac52e5ac7995e52e603187cf356a47d0b7cd69d6bf2b3c2f54e180e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/8583b495cac52e5ac7995e52e603187cf356a47d0b7cd69d6bf2b3c2f54e180e.txt",
+      "bytes": 7709
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/utils/check-local-disabled.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "fdfedc62d28bdb3f6c51e5b105633533722d8b1cf8c7faf3a7b7fa2e7150e5d1",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/fdfedc62d28bdb3f6c51e5b105633533722d8b1cf8c7faf3a7b7fa2e7150e5d1.txt",
+      "bytes": 605
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/auth/utils/check-sso-enabled.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "c654725a9729f3537cb9e437a039805c835d7e6987a1c6fae7a71fd5f33c70ec",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/c654725a9729f3537cb9e437a039805c835d7e6987a1c6fae7a71fd5f33c70ec.txt",
+      "bytes": 600
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/constants.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "72a088254680840fe5f5cb62cfb481a9c0bfdcd9a9e0f8015d679679ba8979d1",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/72a088254680840fe5f5cb62cfb481a9c0bfdcd9a9e0f8015d679679ba8979d1.txt",
+      "bytes": 4046
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/access.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "756bf09747283059c16676d35db066b5452365bd339c99aca54021922d3c227e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/756bf09747283059c16676d35db066b5452365bd339c99aca54021922d3c227e.txt",
+      "bytes": 4826
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/activity.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "d811b6e191e963f940065fafd36e9420aac0b0d4985da21a7b12860481cce4fd",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/d811b6e191e963f940065fafd36e9420aac0b0d4985da21a7b12860481cce4fd.txt",
+      "bytes": 1707
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/assets.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "4dad9f4b35bce5a746648ebf58b6aaa3ad6eea887b89596279aac2e454908f06",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/4dad9f4b35bce5a746648ebf58b6aaa3ad6eea887b89596279aac2e454908f06.txt",
+      "bytes": 13546
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/auth.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "35ec4e4c726b81cc836a8a54db77a882a61e5abc1bfb3249d7059598853e6c1c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/35ec4e4c726b81cc836a8a54db77a882a61e5abc1bfb3249d7059598853e6c1c.txt",
+      "bytes": 8143
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/collections.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "18bb33e803178569c65638578dda83743680949b8ba301a0d63dc6f1a990fe8c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/18bb33e803178569c65638578dda83743680949b8ba301a0d63dc6f1a990fe8c.txt",
+      "bytes": 3883
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/comments.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "4d95be1eddb35934fc0e88d88027d84736e954e27e26b8bd01701c1b70e2b965",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/4d95be1eddb35934fc0e88d88027d84736e954e27e26b8bd01701c1b70e2b965.txt",
+      "bytes": 4813
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/dashboards.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2828a478f44fb12255f7bb3bf3ab8259a3da98dee38f1dde5874b03591e727ae",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/2828a478f44fb12255f7bb3bf3ab8259a3da98dee38f1dde5874b03591e727ae.txt",
+      "bytes": 4693
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/deployment-webhooks.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e083c4fd4bee9fecbac860fd3dfe38152c3be5bac370a0d5c7110726d1fa9503",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e083c4fd4bee9fecbac860fd3dfe38152c3be5bac370a0d5c7110726d1fa9503.txt",
+      "bytes": 3683
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9.txt",
+      "bytes": 14686
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649.txt",
+      "bytes": 7904
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/fields.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ebf17726a6a781760e9718fc23478915a9c0c4f25ef6e2940aafdf17cf3d694d",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ebf17726a6a781760e9718fc23478915a9c0c4f25ef6e2940aafdf17cf3d694d.txt",
+      "bytes": 6413
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/files.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "de8b3fe8416ad3bfa74b1c77007382f4458a07e11e7400276ea19d9418fbeee9",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/de8b3fe8416ad3bfa74b1c77007382f4458a07e11e7400276ea19d9418fbeee9.txt",
+      "bytes": 9075
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/flows.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "3e0431e6fd17da32042cb74a8cb93d7386e324bebad1896158e9286c6394b619",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/3e0431e6fd17da32042cb74a8cb93d7386e324bebad1896158e9286c6394b619.txt",
+      "bytes": 5503
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/folders.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e700b8ed8b1dcec2c64e02a1219a6701db504c64f3dcba7d058647e08f41b4a3",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e700b8ed8b1dcec2c64e02a1219a6701db504c64f3dcba7d058647e08f41b4a3.txt",
+      "bytes": 4921
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/graphql.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "98320104c3fc9ad3337a44b4b9e7e13d43b0ff82331b433e3d2eb88d07dac162",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/98320104c3fc9ad3337a44b4b9e7e13d43b0ff82331b433e3d2eb88d07dac162.txt",
+      "bytes": 1222
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/items.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/0fe51f3d8d5cb7d1a6f1c845b96d1a100e4b603a55313268484c3beedf2172c3.txt",
+      "bytes": 6581
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/license.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "420aaaba93c4c35f3060b530ac30df120e3c3dd2c72e4a16b3c5df4878eb336e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/420aaaba93c4c35f3060b530ac30df120e3c3dd2c72e4a16b3c5df4878eb336e.txt",
+      "bytes": 5968
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/mcp/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0c768e175a8d2917f6db96aafa1028122505671ce3743ca00e550aedfb7f1806",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/0c768e175a8d2917f6db96aafa1028122505671ce3743ca00e550aedfb7f1806.txt",
+      "bytes": 1575
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef.txt",
+      "bytes": 2820
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97.txt",
+      "bytes": 19613
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/metrics.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ac496a464cc7489243b22897a0463077f4e2b064da656e326f2626cd36a5dfcb",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ac496a464cc7489243b22897a0463077f4e2b064da656e326f2626cd36a5dfcb.txt",
+      "bytes": 1240
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/notifications.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "5fb8c2c8a206b0a3d60f67c6aac2b23d84884dd4d70acc0443436c5bf2fcc510",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/5fb8c2c8a206b0a3d60f67c6aac2b23d84884dd4d70acc0443436c5bf2fcc510.txt",
+      "bytes": 4957
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/operations.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "bccde5002fd28430207f01cf93558d4ecdffa4ce4e5ec40a7c6938d4f581d1c5",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/bccde5002fd28430207f01cf93558d4ecdffa4ce4e5ec40a7c6938d4f581d1c5.txt",
+      "bytes": 4693
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/panels.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0c5b235273c6b078005a61e0fe6568bc14afe4dca3269033dac2f5c90b086359",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/0c5b235273c6b078005a61e0fe6568bc14afe4dca3269033dac2f5c90b086359.txt",
+      "bytes": 4653
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/permissions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2329016d728328b5aed4bc64ad0dbb950f0b42548be1144af64e8e3b66b044f1",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/2329016d728328b5aed4bc64ad0dbb950f0b42548be1144af64e8e3b66b044f1.txt",
+      "bytes": 6173
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/policies.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "cc6fba3356654fa85865d0722940e207ae8d52538cafe51ac4ae23cf0676fd9a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/cc6fba3356654fa85865d0722940e207ae8d52538cafe51ac4ae23cf0676fd9a.txt",
+      "bytes": 5635
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/presets.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "abd619dd38205b4d4799f53150d4a382df8caf22e5a00ae1977e22d5ed9c56f2",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/abd619dd38205b4d4799f53150d4a382df8caf22e5a00ae1977e22d5ed9c56f2.txt",
+      "bytes": 4891
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/relations.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f7d6e86bdce475c63681f554d792b56ef76c6e7463973cf2bcd58a1686c05e37",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/f7d6e86bdce475c63681f554d792b56ef76c6e7463973cf2bcd58a1686c05e37.txt",
+      "bytes": 4072
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/revisions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "35ff22a8e8feca95b045082eb5f1a7509db07509f213889704928867423611dd",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/35ff22a8e8feca95b045082eb5f1a7509db07509f213889704928867423611dd.txt",
+      "bytes": 1529
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/roles.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "d6460f66357f75caba550016b776b81ad829069de6b979f98275ec0ace64d31b",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/d6460f66357f75caba550016b776b81ad829069de6b979f98275ec0ace64d31b.txt",
+      "bytes": 5383
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/schema.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "b3eff9b8a64108438b92b6c1c696f77b539ca198b315cc8804e7539b60110185",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/b3eff9b8a64108438b92b6c1c696f77b539ca198b315cc8804e7539b60110185.txt",
+      "bytes": 3312
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f4a5ce2b554710834ac619b8f8eb5e008c26f2eab9943b55f10c649649d95c8a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/f4a5ce2b554710834ac619b8f8eb5e008c26f2eab9943b55f10c649649d95c8a.txt",
+      "bytes": 4285
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/settings.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "4b57e0c022bead896559937aee316ab8268322b4ab54e699e705017364449e6f",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/4b57e0c022bead896559937aee316ab8268322b4ab54e699e705017364449e6f.txt",
+      "bytes": 1505
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/shares.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "c97e9c2fe7f0aadb713b2e6dabde2a14112cdc0cbd7ec0229848f8d3e7999a83",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/c97e9c2fe7f0aadb713b2e6dabde2a14112cdc0cbd7ec0229848f8d3e7999a83.txt",
+      "bytes": 7380
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/translations.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "45fd895d5188aeab93b9197cd8ed4574a81d062e0a4f069dbfcbb575df060056",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/45fd895d5188aeab93b9197cd8ed4574a81d062e0a4f069dbfcbb575df060056.txt",
+      "bytes": 4976
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/tus.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "27c133e8bac1bc174a9d5d98882247d43b47ec8f3eaabb2f4503a85acc2d3a81",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/27c133e8bac1bc174a9d5d98882247d43b47ec8f3eaabb2f4503a85acc2d3a81.txt",
+      "bytes": 2599
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/users.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "b3b3f1c9fc6e2131a712e19cef5da148be71920cc1e09c206b63fd93bce611bb",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/b3b3f1c9fc6e2131a712e19cef5da148be71920cc1e09c206b63fd93bce611bb.txt",
+      "bytes": 11952
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/utils.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "9ef073e8c48d340486a27f1364dfdd72d05410b06389dae7ef54d51af3b50c80",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/9ef073e8c48d340486a27f1364dfdd72d05410b06389dae7ef54d51af3b50c80.txt",
+      "bytes": 6908
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/controllers/versions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "971685e3fdb97e051a77d4e68352dcb0781fec6eb88c7f62a6209b18749a1dd8",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/971685e3fdb97e051a77d4e68352dcb0781fec6eb88c7f62a6209b18749a1dd8.txt",
+      "bytes": 6929
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/deployment.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "705f96d3b838c067caa23dfca429238d7d9307a09f8152444067b7bd66423511",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/705f96d3b838c067caa23dfca429238d7d9307a09f8152444067b7bd66423511.txt",
+      "bytes": 2703
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/extensions/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "af1dbf759f44938aba246da6aa2d0bf3d56c3ea706dab141faf9996eae5bfe1c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/af1dbf759f44938aba246da6aa2d0bf3d56c3ea706dab141faf9996eae5bfe1c.txt",
+      "bytes": 290
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/extensions/manager.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "66526792c62eaa4c44779674712fc0f00f4a92f589737f43d2aae131c550f1eb",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/66526792c62eaa4c44779674712fc0f00f4a92f589737f43d2aae131c550f1eb.txt",
+      "bytes": 31006
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/flows.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "6b0a09d44603b2084e38932cbeeef9164f4698bfede4d1943093bb75644f269e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/6b0a09d44603b2084e38932cbeeef9164f4698bfede4d1943093bb75644f269e.txt",
+      "bytes": 18268
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/authenticate.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "207a21697eb5b4e04a7816839ad52bf506839c74f3bc0ac06b333fc674f48472",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/207a21697eb5b4e04a7816839ad52bf506839c74f3bc0ac06b333fc674f48472.txt",
+      "bytes": 2109
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/collection-active.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/a43aed08e10498a69f2851234a7a405ff37fc5066c633491a21183d4c26e3a94.txt",
+      "bytes": 1139
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/collection-exists.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/14eb7fc9f3c6cdbf3408625b0f4bd66db8c8ce512269d19ea75e785c20cedfa9.txt",
+      "bytes": 991
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/extract-token.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "8d8226e63141183d77b566851ee3b8e8c21c322370c0b15106befe2daec6d098",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/8d8226e63141183d77b566851ee3b8e8c21c322370c0b15106befe2daec6d098.txt",
+      "bytes": 1804
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/graphql.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "a3ceeaf08e1547e3136134cb608ae9da84d4f020a22a3af1ef9e8f472cd29ad6",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/a3ceeaf08e1547e3136134cb608ae9da84d4f020a22a3af1ef9e8f472cd29ad6.txt",
+      "bytes": 2390
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/is-admin.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "99ace123d38bb9eed95d19b31e92fb1a1e9f5c5d24bf3a65543ac358ae60cb49",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/99ace123d38bb9eed95d19b31e92fb1a1e9f5c5d24bf3a65543ac358ae60cb49.txt",
+      "bytes": 494
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/is-locked.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/cbed49ce42c5ce6eae0828b2e1eef6a307e0347734aa9781cd33edb71b8573c2.txt",
+      "bytes": 672
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/middleware/mcp-oauth-guard.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "243f1d7b71bd486b98df6975d35e04effba6767b280832e9a5d2552edfa146a3",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/243f1d7b71bd486b98df6975d35e04effba6767b280832e9a5d2552edfa146a3.txt",
+      "bytes": 658
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/permissions/modules/process-payload/process-payload.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e4d50f47d3e939adeac99f5a36914f07b82920116c32622270c62fccb10d4440",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e4d50f47d3e939adeac99f5a36914f07b82920116c32622270c62fccb10d4440.txt",
+      "bytes": 4254
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "22c482dac808d5fc7182552e44975d5d985b102d0ff7509327fe92eabb9ef899",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/22c482dac808d5fc7182552e44975d5d985b102d0ff7509327fe92eabb9ef899.txt",
+      "bytes": 5728
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/access.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f2ebb517b3399613130708094b19ee7a4d6d0b1ac400c59644554e88cdc88430",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/f2ebb517b3399613130708094b19ee7a4d6d0b1ac400c59644554e88cdc88430.txt",
+      "bytes": 2317
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/activity.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2f0469aebe661f61fbb8750720a12eab651044d7fc09a3c099c5777de3a65d07",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/2f0469aebe661f61fbb8750720a12eab651044d7fc09a3c099c5777de3a65d07.txt",
+      "bytes": 1016
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/assets.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ec3cf236434de54a66b954943d174dd31a085f89a50c119e4f1e9ac52819889a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ec3cf236434de54a66b954943d174dd31a085f89a50c119e4f1e9ac52819889a.txt",
+      "bytes": 15203
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/collections.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ceb636a1a657539640c769cfc1facee38e315c8a0752f218055362093a3a4d38",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ceb636a1a657539640c769cfc1facee38e315c8a0752f218055362093a3a4d38.txt",
+      "bytes": 28130
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/comments.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f097d9f28ec6aac250f2c842d1c4c8a303f955a3f8d2cc442e12f8a0bd912e21",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/f097d9f28ec6aac250f2c842d1c4c8a303f955a3f8d2cc442e12f8a0bd912e21.txt",
+      "bytes": 6537
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/dashboards.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "8240a72100dd04f109e1e6c0dca5570bd7572a40ecfec311ab1fa65f930cdc2a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/8240a72100dd04f109e1e6c0dca5570bd7572a40ecfec311ab1fa65f930cdc2a.txt",
+      "bytes": 255
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/export.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "6281753e4e850c7e52a976ef0e33ed8995315902d3ecda20f7fa5a4e1afe5826",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/6281753e4e850c7e52a976ef0e33ed8995315902d3ecda20f7fa5a4e1afe5826.txt",
+      "bytes": 9144
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/fields.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "7d9cd36b0e3eff84035b6eef9b384968da63840dfc313aa4766a9c1183e11d31",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/7d9cd36b0e3eff84035b6eef9b384968da63840dfc313aa4766a9c1183e11d31.txt",
+      "bytes": 32821
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/files.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "c9e90e19ec3f73f1f4e084f554a6754c749737d0c377d3e7753771e1847a231e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/c9e90e19ec3f73f1f4e084f554a6754c749737d0c377d3e7753771e1847a231e.txt",
+      "bytes": 19533
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/flows.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "21e0f53a453096d6c49d1afd9932d68d5c0aae9e617689d5a3e3b16471746cf1",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/21e0f53a453096d6c49d1afd9932d68d5c0aae9e617689d5a3e3b16471746cf1.txt",
+      "bytes": 2085
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/folders.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "60ba4ae81f56e5c4a777269b9698f6da6d76dbfca2b5f6d9032696704764909f",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/60ba4ae81f56e5c4a777269b9698f6da6d76dbfca2b5f6d9032696704764909f.txt",
+      "bytes": 5945
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/graphql/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "730ddff866001827d92e3e11f3ddbaf3d33d284c16c3fc16662ddd775a4f67a7",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/730ddff866001827d92e3e11f3ddbaf3d33d284c16c3fc16662ddd775a4f67a7.txt",
+      "bytes": 3924
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/import/import.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e8f835db249be6704acafc255b598667c3a25b6e4abe897ec551861309b33e86",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e8f835db249be6704acafc255b598667c3a25b6e4abe897ec551861309b33e86.txt",
+      "bytes": 27860
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/items.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ff2f56e859ddc627b2858b6fd41708e238aefdb470caabb5f26f67d16fa75c98.txt",
+      "bytes": 40020
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/notifications.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ee145f0e697045f562e0d8778dfed3293a7bcff0cd657fae31db74b5da06b8d0",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ee145f0e697045f562e0d8778dfed3293a7bcff0cd657fae31db74b5da06b8d0.txt",
+      "bytes": 2347
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/operations.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e506ce46c778b8f7c7b19a64d628e54fff8f6416fcea11971eb3e3507c8f4b26",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/e506ce46c778b8f7c7b19a64d628e54fff8f6416fcea11971eb3e3507c8f4b26.txt",
+      "bytes": 1114
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/panels.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "20dffb277a4f7d08278b70e9fa493f4e3f86824ec3af823f0458665862cb280e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/20dffb277a4f7d08278b70e9fa493f4e3f86824ec3af823f0458665862cb280e.txt",
+      "bytes": 247
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/permissions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "944bcc7d68bf2037b14a2838bf390178af9c3e3ea5b35a8c9bec3d26d12c575c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/944bcc7d68bf2037b14a2838bf390178af9c3e3ea5b35a8c9bec3d26d12c575c.txt",
+      "bytes": 6576
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/policies.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "686657dfbd47b9d73720e7045644e58bdbea1893a2b53f1b13143c4615329209",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/686657dfbd47b9d73720e7045644e58bdbea1893a2b53f1b13143c4615329209.txt",
+      "bytes": 3518
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/presets.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "264574ea19bae22f14db299564b52deb7770a36c55ee304f3d72f8b1ea3207b0",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/264574ea19bae22f14db299564b52deb7770a36c55ee304f3d72f8b1ea3207b0.txt",
+      "bytes": 249
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/relations.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "3fc45eeb66f458e24c93ff5cbec6e810412a7c017ed3754e88f83ba4e752e3e2",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/3fc45eeb66f458e24c93ff5cbec6e810412a7c017ed3754e88f83ba4e752e3e2.txt",
+      "bytes": 20839
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/revisions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "794da99b1ff4a9287fa721da5e53998d6cdcfcb9a1c897534ee4ccc30944f938",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/794da99b1ff4a9287fa721da5e53998d6cdcfcb9a1c897534ee4ccc30944f938.txt",
+      "bytes": 2630
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/roles.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "5169d53b85d399c7739f8d89a49c562421b6826f8fe577a8cb931b9ccb74ef4b",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/5169d53b85d399c7739f8d89a49c562421b6826f8fe577a8cb931b9ccb74ef4b.txt",
+      "bytes": 4352
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "104ae9decda035c359558acda6a20d79752e9fedefcf4107ea19715fa1b3ef6d",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/104ae9decda035c359558acda6a20d79752e9fedefcf4107ea19715fa1b3ef6d.txt",
+      "bytes": 14311
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/settings.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "67f95214e0614aacba5b39a2a7510fc3acdeda1b184f0d05a97a681788cf2b6c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/67f95214e0614aacba5b39a2a7510fc3acdeda1b184f0d05a97a681788cf2b6c.txt",
+      "bytes": 3479
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/shares.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "cdb055e4f21e677f77e8c68090dfce078b7e84f33e494308075a4d25443f0efd",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/cdb055e4f21e677f77e8c68090dfce078b7e84f33e494308075a4d25443f0efd.txt",
+      "bytes": 6578
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/translations.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f6923542be37a2181d17b66c2ae3c4a6e4d7c26f250ac87d45c58cd9f6a34391",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/f6923542be37a2181d17b66c2ae3c4a6e4d7c26f250ac87d45c58cd9f6a34391.txt",
+      "bytes": 2456
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/tus/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "8c5439d97d8178240d7a1bedc8d380b16b5680a30afee8c5c47d5611b4478484",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/8c5439d97d8178240d7a1bedc8d380b16b5680a30afee8c5c47d5611b4478484.txt",
+      "bytes": 4010
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/users.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "a35e8a5eca41650c3731097a67547220c8e3571c5ca9165fbcf49cc957dfcf54",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/a35e8a5eca41650c3731097a67547220c8e3571c5ca9165fbcf49cc957dfcf54.txt",
+      "bytes": 21472
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/utils.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "1064d8937e25c6125f4a15ceda467d6f765aeaceaff5a4640dafd5a2cdc5f73f",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/1064d8937e25c6125f4a15ceda467d6f765aeaceaff5a4640dafd5a2cdc5f73f.txt",
+      "bytes": 5402
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/services/versions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "9c008e2e9f41ae90d6e1b0a0553b83b262fa5786eeae720b24b3aa9c7d06e7af",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/9c008e2e9f41ae90d6e1b0a0553b83b262fa5786eeae720b24b3aa9c7d06e7af.txt",
+      "bytes": 18958
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/utils/get-auth-providers.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "faadab3ca5d124966d2b1ba80adbda17c037c5da96fbc5817ffb925ca2634346",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/faadab3ca5d124966d2b1ba80adbda17c037c5da96fbc5817ffb925ca2634346.txt",
+      "bytes": 1162
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/utils/get-history-filter-query.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "29e29007dd5c1cfbe45c66d0a28f2b53fe3179055fd5ebb6747f6c17e325bff1",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/29e29007dd5c1cfbe45c66d0a28f2b53fe3179055fd5ebb6747f6c17e325bff1.txt",
+      "bytes": 911
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/utils/is-admin.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "1e9513a0c29cd0cc6b3b1d46e8cc40181bfa56c2cb4212ab44a6415a9e72250e",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/1e9513a0c29cd0cc6b3b1d46e8cc40181bfa56c2cb4212ab44a6415a9e72250e.txt",
+      "bytes": 533
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/utils/is-unauthenticated.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "cdab184da4a93e813e54deb09eecbd4db493a09bf7fab578c69a0a4dafef361a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/cdab184da4a93e813e54deb09eecbd4db493a09bf7fab578c69a0a4dafef361a.txt",
+      "bytes": 562
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/websocket/controllers/base.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "cb52d5bc27edf7f8de9103cca12dd8fb4489e8747cc988635bf144aab4200810",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/cb52d5bc27edf7f8de9103cca12dd8fb4489e8747cc988635bf144aab4200810.txt",
+      "bytes": 15132
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/websocket/controllers/graphql.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "daa64b09399db1cf3fb9c8d505c44d03621856ddd3c47e7f99925015d67132c2",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/daa64b09399db1cf3fb9c8d505c44d03621856ddd3c47e7f99925015d67132c2.txt",
+      "bytes": 5931
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/websocket/controllers/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "5be42864e4d513e2ac5130e294ab6230c1b53b826a00e9a0defc894f26cb5b8c",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/5be42864e4d513e2ac5130e294ab6230c1b53b826a00e9a0defc894f26cb5b8c.txt",
+      "bytes": 1381
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/websocket/controllers/logs.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "7331da55b053b66c5ae4b80d590764cfbefccf8392997d1ae7cc9f80a99caaa6",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/7331da55b053b66c5ae4b80d590764cfbefccf8392997d1ae7cc9f80a99caaa6.txt",
+      "bytes": 2245
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/websocket/controllers/rest.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "3caa88123eb546cd893a02628123a1603123df8fc71e129e593816ec0f86a316",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/3caa88123eb546cd893a02628123a1603123df8fc71e129e593816ec0f86a316.txt",
+      "bytes": 1975
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/api/src/websocket/handlers/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0e44c8466bb2f65da6433a1b5d3439f72beac8d54481069d6a287a3310cc9265",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/0e44c8466bb2f65da6433a1b5d3439f72beac8d54481069d6a287a3310cc9265.txt",
+      "bytes": 1258
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/app/src/router.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "363ff81e34170a5ad8fb5c53ecd12dbef8d0dc6ccc6d9ed1ec34f41388f0af6b",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/363ff81e34170a5ad8fb5c53ecd12dbef8d0dc6ccc6d9ed1ec34f41388f0af6b.txt",
+      "bytes": 6206
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/sdk/src/auth/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "c574688b7012887bfeea84e3fe13e4c0b7917979dbab12c02dee9b4686012608",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/c574688b7012887bfeea84e3fe13e4c0b7917979dbab12c02dee9b4686012608.txt",
+      "bytes": 5864
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/sdk/src/client.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "9dd8de0032fd65e67cb1d5140e15d72d040e3da5b5788bead5b67ed0ca0b0f5a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/9dd8de0032fd65e67cb1d5140e15d72d040e3da5b5788bead5b67ed0ca0b0f5a.txt",
+      "bytes": 893
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/sdk/src/graphql/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "1326fe265b1a69e7008a7883751712dc89e6a12ac816ee05e3561aca8d7b738a",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/1326fe265b1a69e7008a7883751712dc89e6a12ac816ee05e3561aca8d7b738a.txt",
+      "bytes": 1710
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/sdk/src/realtime/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ab4bf8da1f92f2028fa945cf2a48ac744253c8da779b3d68a8fab5f2ac7ee758",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/ab4bf8da1f92f2028fa945cf2a48ac744253c8da779b3d68a8fab5f2ac7ee758.txt",
+      "bytes": 13700
+    },
+    {
+      "source_kind": "GIT_FILE",
+      "source_path": "../directus/sdk/src/rest/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "19d40d1988b899c5f8b3a6608352700092ae6d67cb9fd484b2f6f2864c2da7f3",
+      "snapshot_path": "docs/coverage/sources/immutable-inputs-v1/19d40d1988b899c5f8b3a6608352700092ae6d67cb9fd484b2f6f2864c2da7f3.txt",
+      "bytes": 2616
+    }
+  ]
+}

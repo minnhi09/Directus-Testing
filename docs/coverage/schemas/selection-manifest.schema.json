@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://damh.invalid/coverage/1.0.0/selection-manifest.schema.json",
+  "title": "Coverage selection and run selection policy",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "data_origin": {
+      "enum": [
+        "DESIGN_EXAMPLE",
+        "OBSERVATION",
+        "DERIVED"
+      ]
+    },
+    "selection_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "baseline_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "denominator_revision": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "state": {
+      "enum": [
+        "DRAFT",
+        "LOCKED"
+      ]
+    },
+    "unit": {
+      "$ref": "common.schema.json#/$defs/unit"
+    },
+    "scope_tiers": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/scope"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "transports": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/transport"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "requirement_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "inventory_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "module_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "canonical_test_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "test_version": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "mandatory": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "canonical_test_id",
+          "test_version",
+          "mandatory"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "run_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "execution_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "run_selection_policy": {
+      "enum": [
+        "UNDECIDED",
+        "PREDECLARED_EXECUTIONS",
+        "LATEST_ATTEMPT_IN_PREDECLARED_RUNS"
+      ]
+    },
+    "retry_policy": {
+      "enum": [
+        "UNDECIDED",
+        "KEEP_ALL_REPORT_FLAKY"
+      ]
+    },
+    "locked_at": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decision_id": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/sourceRef"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "gap_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_origin",
+    "selection_id",
+    "baseline_id",
+    "denominator_revision",
+    "state",
+    "unit",
+    "scope_tiers",
+    "transports",
+    "requirement_ids",
+    "inventory_ids",
+    "module_ids",
+    "tests",
+    "run_ids",
+    "execution_ids",
+    "run_selection_policy",
+    "retry_policy",
+    "locked_at",
+    "decision_id",
+    "source_refs",
+    "gap_ids"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "LOCKED"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "denominator_revision": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "run_selection_policy": {
+            "not": {
+              "const": "UNDECIDED"
+            }
+          },
+          "retry_policy": {
+            "const": "KEEP_ALL_REPORT_FLAKY"
+          },
+          "locked_at": {
+            "$ref": "common.schema.json#/$defs/timestamp"
+          },
+          "decision_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "preparation": [
+    {
+      "run_id": "20261018T100800Z-1497",
+      "command": "doctor",
+      "metadata_seconds": 5,
+      "exit_code": 0
+    },
+    {
+      "run_id": "20261018T101221Z-1064",
+      "command": "seed",
+      "metadata_seconds": 16,
+      "exit_code": 0
+    },
+    {
+      "run_id": "20261018T101238Z-42",
+      "command": "export-schema",
+      "metadata_seconds": 8,
+      "exit_code": 0
+    }
+  ],
+  "offline_tests": [
+    {
+      "environment": "host Python 3.13",
+      "command": "python -X utf8 -m unittest discover -s DAMH/tests -p 'test_*.py'",
+      "tests": 18,
+      "passed": 18,
+      "seconds": 0.106
+    },
+    {
+      "environment": "pinned Schemathesis Docker Python 3.14t, --network none",
+      "command": "python3 -m unittest discover -s /work/tests -p 'test_*.py'",
+      "tests": 18,
+      "passed": 18,
+      "seconds": 0.074,
+      "non_failing_warning": "ResourceWarning from fake HTTPError in test fixture"
+    }
+  ],
+  "bash_syntax": {
+    "lab.sh": "PASS",
+    "scripts/lab-components.sh": "PASS"
+  },
+  "human_effort_seconds": null,
+  "human_design_implementation_triage_maintenance": "not measured; session timestamps are not person-hours"
+}

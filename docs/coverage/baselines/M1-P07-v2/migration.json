@@ -1,0 +1,19 @@
+{
+  "previous_baseline": "M1-P07-v1",
+  "baseline_id": "M1-P07-v2",
+  "scope_approval_changed": false,
+  "historical_execution_changed": false,
+  "source_archive": {
+    "kind": "ARTIFACT",
+    "path": "docs/coverage/sources/plan-da96feb6774e.md",
+    "revision": null,
+    "sha256": "da96feb6774e4f06de1c4241dba3f5606e88b72bc36c64549337ea0a09919882",
+    "pointer": null,
+    "certainty": "VERIFIED",
+    "gap_ids": []
+  },
+  "precondition_records": 257,
+  "lineage_parent_versions_added": 3,
+  "external_ids": 51,
+  "note": "Lineage records are not selected independent tests. Scope/applicability remain DRAFT/UNKNOWN."
+}

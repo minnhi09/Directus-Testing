@@ -1,0 +1,16 @@
+{
+  "sha256": {
+    "README.md": "ef9872a8099f5e85c3f97b9c6613203a3ae01016337d15128d121e225a01856c",
+    "lab.sh": "472a32052c9a774fffd0157ce7e3ea5155124e905e5790781b6205130750264d",
+    "scripts/invariants.py": "caf2db35746680776832f8b86318852b4d73372ea1ee270ac827fec626d83cfe",
+    "scripts/lab-components.sh": "de5cde0e09c7e88261f30d197081d3a86ff76bc25837ea2e3ff7d5c3d84b40e6",
+    "compose.yaml": "181241bdf99db9591ea27b1cfb26cab6cbe50f4500a3a8f141fabf55b2f36276",
+    "manifest/baseline.yaml": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee",
+    "config/lab.env.example": "b485602ce6aef27ad7c826abbc24bf45f9f2479ac281b21d845712059fac0fed"
+  },
+  "git": {
+    "status": " M README.md\n M docs/traceability.md\n M lab.sh\n M scripts/invariants.py\n M scripts/lab-components.sh\n?? 01_ke_hoach_trien_khai_R06_K05.md\n?? AGENTS.md\n?? docs/Bao_cao_Huong_dan_chay_du_an.md\n?? docs/Bao_cao_Thiet_ke_kich_ban_kiem_thu.md\n?? docs/Bao_cao_giua_ky_R06_K05.md\n?? docs/Bao_cao_giua_ky_R06_K05_hoan_thien_v2.pdf\n?? docs/Bao_cao_giua_ky_R06_K05_hoan_thien_v2.pptx\n?? docs/Bao_cao_giua_ky_R06_K05_phan_tich_thiet_ke_trang_den_hoan_thien.pdf\n?? docs/Bao_cao_giua_ky_R06_K05_phan_tich_thiet_ke_trang_den_hoan_thien.pptx\n?? docs/HoanThanhPlan/\n?? docs/Huong_dan_chay_Directus_Windows.md\n?? docs/Ke_hoach_hoan_thien_R06_K05_theo_phase.md\n?? docs/Mo_ta_he_thong_actor_module_dependency_luong_du_lieu.md\n?? docs/hoc-tap-r06-k05/\n?? docs/images/\n?? docs/phan1/\n?? docs/phan2/\n?? docs/slide_bai_giang/\n?? docs/yeu_cau.pdf\n?? evidence/local-startup-2026-10-13.md\n?? evidence/pilot-triage-2026-10-11.md\n?? evidence/progress-2026-10-11.md\n?? evidence/windows-recheck-2026-10-13.md\n",
+    "head": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72\n",
+    "branch": "feat/g1-shared-interface\n"
+  }
+}

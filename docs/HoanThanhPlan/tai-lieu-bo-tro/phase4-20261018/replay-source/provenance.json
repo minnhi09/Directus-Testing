@@ -1,0 +1,11 @@
+{
+  "source": "artifacts/runs/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+  "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+  "derived_events_sha256": "1b03d39cfa7eeb5d7cb8e2a24c01a4f7daaf1444938358196bae5161d3d713d3",
+  "targets": [
+    "5Ez1Ry",
+    "Z6yNal",
+    "qfqspn"
+  ],
+  "derivation": "Only recorded target/parent chains retained. Headers removed and credential-like strings redacted. Original raw events unchanged. Schema byte-identical. This derived copy was not the source of the recorded Phase 4 runtime replays."
+}

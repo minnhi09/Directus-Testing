@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://damh.invalid/coverage/1.0.0/rtm-links.schema.json",
+  "title": "One many-to-many RTM edge JSONL record",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "data_origin": {
+      "enum": [
+        "DESIGN_EXAMPLE",
+        "OBSERVATION",
+        "DERIVED"
+      ]
+    },
+    "requirement_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "canonical_test_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "test_version": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "inventory_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "catalog_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "coverage_role": {
+      "enum": [
+        "DIRECT",
+        "SUPPORTING"
+      ]
+    },
+    "mandatory_for_requirement": {
+      "type": "boolean"
+    },
+    "mapping_rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/sourceRef"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_origin",
+    "requirement_id",
+    "canonical_test_id",
+    "test_version",
+    "inventory_revision",
+    "catalog_revision",
+    "coverage_role",
+    "mandatory_for_requirement",
+    "mapping_rationale",
+    "source_refs"
+  ],
+  "additionalProperties": false
+}
