@@ -1,0 +1,21 @@
+{
+  "phase_product": "TECHNICALLY_VALIDATED_DRAFT",
+  "lock_status": "DRAFT_REFERENCE_INVENTORY",
+  "M1_acceptance": "NOT_LOCKED",
+  "instructor_scope": "CHƯA XÁC MINH",
+  "baseline_id": "M1-P07-v2",
+  "P09": "READY_FOR_SCOPED_ASSIGNMENT_NOT_STARTED",
+  "coverage": "NOT_MEASURED",
+  "runtime": "CHƯA XÁC MINH",
+  "selection_requirement_count": 13,
+  "inventory_records": 287,
+  "canonical_ids": 312,
+  "catalog_versions": 315,
+  "technical_validator_exit_code": 0,
+  "unit_tests_passed": 26,
+  "unresolved_scope_not_excluded": true,
+  "internal_regression_scope": "LOCKED_IN_CHILD_BASELINE",
+  "regression_child_baseline": "M1-REGRESSION-13-v1",
+  "whole_system_implementation_mandatory": false,
+  "written_requirements": "R06-K05 bounded core/risk scope; no specific instructor approval"
+}

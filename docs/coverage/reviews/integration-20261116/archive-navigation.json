@@ -1,0 +1,44 @@
+{
+  "originals": [
+    {
+      "source": "docs/HoanThanhPlan/00-hien-trang-va-baseline.md",
+      "original_sha256": "4dcb9406640cb061842c1b2cb0a29434913fa7c28f86df22ff8d5fbedfc7ead9",
+      "immutable_copy": "docs/coverage/reviews/integration-20261116/original-docs/00-hien-trang-va-baseline.md.bin",
+      "change": "Only archive navigation links; original bytes retained"
+    },
+    {
+      "source": "docs/HoanThanhPlan/03-thiet-ke-test-va-coverage.md",
+      "original_sha256": "dce9f8a0faa934b88dd7b4f18dac4726b6f6d8587c57e301fe414c397e879ec2",
+      "immutable_copy": "docs/coverage/reviews/integration-20261116/original-docs/03-thiet-ke-test-va-coverage.md.bin",
+      "change": "Only archive navigation links; original bytes retained"
+    },
+    {
+      "source": "docs/HoanThanhPlan/04-automation-va-tai-lap.md",
+      "original_sha256": "ed4be0fa3916b206234958624b6842c472a6932f8a51674b756cb4254fcaf3cf",
+      "immutable_copy": "docs/coverage/reviews/integration-20261116/original-docs/04-automation-va-tai-lap.md.bin",
+      "change": "Only archive navigation links; original bytes retained"
+    },
+    {
+      "source": "docs/HoanThanhPlan/06-toi-uu-chi-phi.md",
+      "original_sha256": "b2855121d7c3bcce95d715d16392115d3b5c7dd8ea51c55ef114f136213a9291",
+      "immutable_copy": "docs/coverage/reviews/integration-20261116/original-docs/06-toi-uu-chi-phi.md.bin",
+      "change": "Only archive navigation links; original bytes retained"
+    },
+    {
+      "source": "docs/HoanThanhPlan/08-bao-cao-nghiem-thu.md",
+      "original_sha256": "50f5729f07626c805516f4aece20349074089bdf93cad5976f5827909a6fc33c",
+      "immutable_copy": "docs/coverage/reviews/integration-20261116/original-docs/08-bao-cao-nghiem-thu.md.bin",
+      "change": "Only archive navigation links; original bytes retained"
+    }
+  ],
+  "external_archive_paths": [
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase0-20261018/checkpoint.zip",
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase4-20261018/phase4-source.zip",
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase4-20261018/selected-runtime-evidence.zip",
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase6-20261018/evidence-selected.zip",
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase6-20261018/source-after.zip",
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase8-20261018/acceptance-checkpoint.zip",
+    "docs/HoanThanhPlan/tai-lieu-bo-tro/phase8-20261018/evidence-selected.zip",
+    "docs/slide_bai_giang/2-kiem-thu-hop-den-0.pdf"
+  ]
+}

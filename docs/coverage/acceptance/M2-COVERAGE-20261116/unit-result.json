@@ -1,0 +1,10 @@
+{
+  "command": "python -B -m unittest discover -s tests -p test_coverage*.py -v",
+  "exit_code": 0,
+  "tests": 39,
+  "legacy_tests_unchanged": 26,
+  "new_negative_and_compatibility_tests": 13,
+  "elapsed_seconds": 25.041,
+  "source": "Observed unittest output from this task; summarized, not a fabricated raw log",
+  "API_calls": 0
+}

@@ -1,0 +1,237 @@
+{
+  "format": "P08_OFFLINE_SET_REPORT_1",
+  "data_origin": "DERIVED",
+  "synthetic": false,
+  "baseline_id": "M1-REGRESSION-13-v1",
+  "selection_id": "G11-REG13-REQUIREMENTS-v1",
+  "sets": {
+    "R": [
+      "LEGACY-TC01",
+      "LEGACY-TC02",
+      "LEGACY-TC03",
+      "LEGACY-TC04",
+      "LEGACY-TC05",
+      "LEGACY-TC06",
+      "LEGACY-TC07",
+      "LEGACY-TC08",
+      "LEGACY-TC09",
+      "LEGACY-TC10",
+      "LEGACY-TC11",
+      "LEGACY-TC12",
+      "LEGACY-TC13"
+    ],
+    "D": [
+      "LEGACY-TC01",
+      "LEGACY-TC02",
+      "LEGACY-TC03",
+      "LEGACY-TC04",
+      "LEGACY-TC05",
+      "LEGACY-TC06",
+      "LEGACY-TC07",
+      "LEGACY-TC08",
+      "LEGACY-TC09",
+      "LEGACY-TC10",
+      "LEGACY-TC11",
+      "LEGACY-TC12",
+      "LEGACY-TC13"
+    ],
+    "E": [],
+    "V": [],
+    "O": [
+      "INV-ITEM-DELETE-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+      "INV-ITEM-GET-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+      "INV-ITEM-GET-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+      "INV-ITEM-PATCH-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+      "INV-ITEM-POST-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED"
+    ]
+  },
+  "metrics": {
+    "requirement_design": {
+      "measurement_status": "MEASURED",
+      "numerator_ids": [
+        "LEGACY-TC01",
+        "LEGACY-TC02",
+        "LEGACY-TC03",
+        "LEGACY-TC04",
+        "LEGACY-TC05",
+        "LEGACY-TC06",
+        "LEGACY-TC07",
+        "LEGACY-TC08",
+        "LEGACY-TC09",
+        "LEGACY-TC10",
+        "LEGACY-TC11",
+        "LEGACY-TC12",
+        "LEGACY-TC13"
+      ],
+      "denominator_ids": [
+        "LEGACY-TC01",
+        "LEGACY-TC02",
+        "LEGACY-TC03",
+        "LEGACY-TC04",
+        "LEGACY-TC05",
+        "LEGACY-TC06",
+        "LEGACY-TC07",
+        "LEGACY-TC08",
+        "LEGACY-TC09",
+        "LEGACY-TC10",
+        "LEGACY-TC11",
+        "LEGACY-TC12",
+        "LEGACY-TC13"
+      ],
+      "missing_ids": [],
+      "numerator_count": 13,
+      "denominator_count": 13,
+      "percentage": 100.0,
+      "reason": null
+    },
+    "requirement_execution": {
+      "measurement_status": "NOT_MEASURED",
+      "numerator_ids": [],
+      "denominator_ids": [],
+      "missing_ids": [
+        "LEGACY-TC01",
+        "LEGACY-TC02",
+        "LEGACY-TC03",
+        "LEGACY-TC04",
+        "LEGACY-TC05",
+        "LEGACY-TC06",
+        "LEGACY-TC07",
+        "LEGACY-TC08",
+        "LEGACY-TC09",
+        "LEGACY-TC10",
+        "LEGACY-TC11",
+        "LEGACY-TC12",
+        "LEGACY-TC13"
+      ],
+      "numerator_count": null,
+      "denominator_count": null,
+      "percentage": null,
+      "reason": "NO_SELECTED_EXECUTION_OR_UNLOCKED"
+    },
+    "requirement_verified": {
+      "measurement_status": "NOT_MEASURED",
+      "numerator_ids": [],
+      "denominator_ids": [],
+      "missing_ids": [
+        "LEGACY-TC01",
+        "LEGACY-TC02",
+        "LEGACY-TC03",
+        "LEGACY-TC04",
+        "LEGACY-TC05",
+        "LEGACY-TC06",
+        "LEGACY-TC07",
+        "LEGACY-TC08",
+        "LEGACY-TC09",
+        "LEGACY-TC10",
+        "LEGACY-TC11",
+        "LEGACY-TC12",
+        "LEGACY-TC13"
+      ],
+      "numerator_count": null,
+      "denominator_count": null,
+      "percentage": null,
+      "reason": "NO_SELECTED_EXECUTION_OR_UNLOCKED"
+    },
+    "hit_coverage": {
+      "measurement_status": "NOT_MEASURED",
+      "numerator_ids": [],
+      "denominator_ids": [],
+      "missing_ids": [
+        "INV-ITEM-DELETE-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-GET-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-GET-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-PATCH-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-POST-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED"
+      ],
+      "numerator_count": null,
+      "denominator_count": null,
+      "percentage": null,
+      "reason": "NO_EXECUTION_OR_OPERATION_SCOPE_UNLOCKED"
+    },
+    "positive_acceptance": {
+      "measurement_status": "NOT_MEASURED",
+      "numerator_ids": [],
+      "denominator_ids": [],
+      "missing_ids": [
+        "INV-ITEM-DELETE-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-GET-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-GET-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-PATCH-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+        "INV-ITEM-POST-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED"
+      ],
+      "numerator_count": null,
+      "denominator_count": null,
+      "percentage": null,
+      "reason": "NO_EXECUTION_OR_OPERATION_SCOPE_UNLOCKED"
+    }
+  },
+  "missing_requirement_ids": [
+    "LEGACY-TC01",
+    "LEGACY-TC02",
+    "LEGACY-TC03",
+    "LEGACY-TC04",
+    "LEGACY-TC05",
+    "LEGACY-TC06",
+    "LEGACY-TC07",
+    "LEGACY-TC08",
+    "LEGACY-TC09",
+    "LEGACY-TC10",
+    "LEGACY-TC11",
+    "LEGACY-TC12",
+    "LEGACY-TC13"
+  ],
+  "missing_operation_ids": [
+    "INV-ITEM-DELETE-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-GET-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-GET-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-PATCH-ITEMS.COLLECTION.PK-DEFAULT-BASELINE_UNVERIFIED",
+    "INV-ITEM-POST-ITEMS.COLLECTION-DEFAULT-BASELINE_UNVERIFIED"
+  ],
+  "unknown_requirement_ids": [],
+  "pending_selection_requirement_ids": [
+    "LEGACY-TC01",
+    "LEGACY-TC02",
+    "LEGACY-TC03",
+    "LEGACY-TC04",
+    "LEGACY-TC05",
+    "LEGACY-TC06",
+    "LEGACY-TC07",
+    "LEGACY-TC08",
+    "LEGACY-TC09",
+    "LEGACY-TC10",
+    "LEGACY-TC11",
+    "LEGACY-TC12",
+    "LEGACY-TC13"
+  ],
+  "unknown_inventory_ids": [],
+  "source_only_ids": [],
+  "oas_only_ids": [],
+  "selected_execution_ids": [],
+  "flaky_or_disagreeing_test_versions": [],
+  "observed_execution_dimensions": {
+    "execution_status": {},
+    "business_verdict": {},
+    "contract_verdict": {},
+    "cleanup_status": {},
+    "infrastructure_status": {}
+  },
+  "unsupported_metrics": {
+    "specification": "NOT_MEASURED",
+    "negative_authorization": "NOT_MEASURED",
+    "module_mapped": "NOT_MEASURED",
+    "module_touched": "NOT_MEASURED",
+    "module_qualified": "NOT_MEASURED",
+    "code_statement": "NOT_MEASURED",
+    "code_line": "NOT_MEASURED",
+    "code_function": "NOT_MEASURED",
+    "code_branch": "NOT_MEASURED",
+    "schema_parameter": "NOT_MEASURED",
+    "schema_keyword": "NOT_MEASURED",
+    "schema_response": "NOT_MEASURED"
+  },
+  "notes": [
+    "No denominator inferred from aliases/request counts.",
+    "Schema partial/violated is never promoted to PASS.",
+    "Specification usability, authorization-rule matrix, module DoD and code/schema traces require separate reviewed inputs."
+  ]
+}

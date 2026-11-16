@@ -1,0 +1,44 @@
+{
+  "kind": "P06_STATIC_CANONICAL_AUDIT",
+  "created_at": "2026-11-15T14:23:54.112092+00:00",
+  "schema_validation": {
+    "tool": "PowerShell7 Test-Json with locally bundled P01 common refs",
+    "exit_code": 0,
+    "canonical_catalog": 312,
+    "rtm_links": 132,
+    "gaps": 5
+  },
+  "original_ids_mapped": 257,
+  "groups": 17,
+  "legacy_aliases": 13,
+  "current_designs": 49,
+  "registry_records": 312,
+  "registry_is_test_denominator": false,
+  "reuse_comparisons": 83,
+  "artifact_citations_verified": 2428,
+  "historical_observations": 182,
+  "TC13_business_pass_contract_fail_preserved": true,
+  "preserved_input_files": 86,
+  "intentionally_updated": [
+    "docs/KE_HOACH_KIEM_THU_DIRECTUS_TOAN_HE_THONG.md"
+  ],
+  "test_execution": "NOT_RUN",
+  "api_coverage": "NOT_MEASURED",
+  "code_coverage": "NOT_MEASURED",
+  "acceptance": "CHƯA XÁC MINH",
+  "canonical_independent_denominator": null,
+  "files_sha256": {
+    "alias-reuse-mapping.jsonl": "75997a2707d9ff1b0fe53a04aa7c282be690742c25c976971dddce5d6eeef4b6",
+    "canonical-catalog.jsonl": "5d5ebdf8fa65d5fd91f9367ca71aa210e66d60393b6ce118b7772621d1469fb9",
+    "catalog-257-checklist.json": "337b255ef642c10bc3204d1b59f9b9116830dabaa85418d921dce0cdd7f4101e",
+    "design-assessments.json": "ff03d7170778da02951541a0bc82f5dd1b53befa90b099109d4f709e60ac2c58",
+    "discrepancies.md": "6e758293053e29abe01dec963b656e2dcf2cddc56874119041f99ea52223b2cf",
+    "gaps.jsonl": "f8bb1a92fa3c91fdbdabe4d918ff5fa1b1be8249649aebc8dd36c64269e09e88",
+    "historical-observations.jsonl": "924c7c9addcb23cf99b10a8c735942fce049e4ccf33fd2a96d63155a87e42e56",
+    "input-fingerprints.json": "28968ee1211e7f25072b5c8759b0b1b9de60a7b276ebd541fc08ce6c07fe549d",
+    "lineage-parents.json": "125f3f9c09c5b26204d203882b3eb73b42d97ba7e332abf42eea95935e49bd8b",
+    "README.md": "183c146581334e394cc9fd8b6405c9e2733d1b5888df313a7bcd7b789194476a",
+    "reuse-comparisons.jsonl": "d8f0679fdf85bc0b527e1905e6cd83f7d08b5585f699f00a769d118d2cef8ddc",
+    "rtm-links.jsonl": "cf51b73618c6f2752df1929e6372a01107729bf79d4f03f6148090c9c8b8fe1b"
+  }
+}

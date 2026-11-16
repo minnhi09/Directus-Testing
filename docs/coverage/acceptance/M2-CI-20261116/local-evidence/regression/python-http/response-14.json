@@ -1,0 +1,1 @@
+{"errors":[{"message":"Validation failed for field \"score\". Value has to be greater than or equal to \"0\".","extensions":{"field":"score","path":[],"type":"gte","valid":0,"code":"FAILED_VALIDATION"}}]}

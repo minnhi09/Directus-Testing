@@ -1,0 +1,34 @@
+{
+  "kind": "P09_PREFLIGHT_AUDIT",
+  "created_at": "2026-11-15T15:33:47.068391+00:00",
+  "phase_status": "BLOCKED_RUNTIME",
+  "unit_checks": 4,
+  "unit_exit_code": 0,
+  "preflight_exit_code": 2,
+  "compose_config_exit_code": 0,
+  "engine_probe_exit_code": 1,
+  "created_resources": [],
+  "old_input_hashes_preserved": 180,
+  "inputs_sha256": {
+    "AGENTS.md": "b91a0e05289ddf8e44f1644be83272997762ed1543bdfc44b068f6c0dfeee845",
+    "compose.yaml": "181241bdf99db9591ea27b1cfb26cab6cbe50f4500a3a8f141fabf55b2f36276",
+    "config/lab.env.example": "b485602ce6aef27ad7c826abbc24bf45f9f2479ac281b21d845712059fac0fed",
+    "manifest/baseline.yaml": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee",
+    "lab.sh": "8fa065942a9d1c4aec59b642a8c319db84eba9f65aaeeae9ddda427191e531c8",
+    "scripts/run-lab.ps1": "e635f5a6eb7cec50f042187286d859310428a98a398f43c3963a0d7241eb803b",
+    "scripts/lab-components.sh": "b9f9f92b77cb75d9ca9f931a2c1da8a4e178b6efdc8f4f21cdb3737b7496f8ef",
+    "docs/coverage/handoffs/P00.md": "632a88997b9567945f39e214ef167051246a819b426f8248ea82321b6506e5c1",
+    "docs/coverage/baselines/M1-REGRESSION-13-v1/baseline-manifest.json": "9087b074561b3e8369b1fc899c812d4897da76daecc4867bfe6f0e14caba7353",
+    "docs/coverage/baselines/M1-REGRESSION-13-v1/selection-manifest.json": "2506e9743de3ccbdeadf8162ee708809dec0b14179456123829bf7c76c36335f"
+  },
+  "outputs_sha256": {
+    "profiles/p09/compose.json": "837dd7cc7179baedf94e62022efe9e8e9922ec4e00a6285177ee35d712ebdd7c",
+    "scripts/p09_preflight.py": "c610239018a11aee6279032727b65e30ead6b1a2addba74f87a0d9b23627915c",
+    "tests/test_p09_preflight.py": "cfb4b179d4a2dca70289d28be5242f4dbd4173e67016f0da5b26194ded4f5ce9",
+    "docs\\coverage\\preflight\\P09-20261115\\preflight-report.json": "3a45107a9867dad4b47b60a20e8b080e62fccb6b522991caed654ab0b7fb048f",
+    "docs\\coverage\\preflight\\P09-20261115\\README.md": "233280e595256c3963e0dbba20bc30810a8975e607805f166e006d0be18f6d22",
+    "docs/coverage/handoffs/P09.md": "292bb2fdde365f5c2679abcb0b0f2cf01996200f2e801850cb5d3e882d33690a"
+  },
+  "campaign": "NOT_RUN",
+  "coverage": "NOT_MEASURED"
+}

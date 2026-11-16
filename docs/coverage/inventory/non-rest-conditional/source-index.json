@@ -1,0 +1,1601 @@
+{
+  "format": "P05_SOURCE_INDEX_1",
+  "revision": "P05-NON-REST-CONDITIONAL-4f77933-v1",
+  "source_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "files": [
+    {
+      "path": "../directus/AGENTS.md",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "84d43964619c614bd3820a56bfcfc245f576091652a2f92304b7f29d817c1b18",
+      "blob_oid": "4b7abc81c7cd563b048bac29b734552a6010288d",
+      "line_count": 239
+    },
+    {
+      "path": "../directus/api/src/controllers/graphql.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "98320104c3fc9ad3337a44b4b9e7e13d43b0ff82331b433e3d2eb88d07dac162",
+      "blob_oid": "40b5f8a8b57620bc523c426d2ef728aa644994a5",
+      "line_count": 54
+    },
+    {
+      "path": "../directus/api/src/middleware/graphql.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "a3ceeaf08e1547e3136134cb608ae9da84d4f020a22a3af1ef9e8f472cd29ad6",
+      "blob_oid": "840bb0951bc3992ac78857f8dc3a56f61033b943",
+      "line_count": 82
+    },
+    {
+      "path": "../directus/api/src/websocket/controllers/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "5be42864e4d513e2ac5130e294ab6230c1b53b826a00e9a0defc894f26cb5b8c",
+      "blob_oid": "c03576e9cac83078affd96d5b5004b1d5ca5dc14",
+      "line_count": 50
+    },
+    {
+      "path": "../directus/api/src/websocket/controllers/rest.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "3caa88123eb546cd893a02628123a1603123df8fc71e129e593816ec0f86a316",
+      "blob_oid": "f2daa6bf446f8fcbd52cc5c3a9ef0ac27f4375e9",
+      "line_count": 60
+    },
+    {
+      "path": "../directus/api/src/websocket/controllers/graphql.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "daa64b09399db1cf3fb9c8d505c44d03621856ddd3c47e7f99925015d67132c2",
+      "blob_oid": "04dfce7a86e6046430ab6a9d7d3cfb68505d1e7c",
+      "line_count": 175
+    },
+    {
+      "path": "../directus/api/src/controllers/extensions.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+      "blob_oid": "bd251a6b19679e80b2fb15c630573fece963a5be",
+      "line_count": 350
+    },
+    {
+      "path": "../directus/api/src/extensions/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "af1dbf759f44938aba246da6aa2d0bf3d56c3ea706dab141faf9996eae5bfe1c",
+      "blob_oid": "a5a25fda3fc7632475ededee8814e8b9b8fc26cc",
+      "line_count": 13
+    },
+    {
+      "path": "../directus/api/src/ai/chat/router.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0a34dca1c57ad8108e0400b033fd7500eb03afd215519c131d62a33274a6c1d3",
+      "blob_oid": "27fb27f082ce808b2043dc60b7636c53d605b9dd",
+      "line_count": 9
+    },
+    {
+      "path": "../directus/api/src/ai/files/router.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e4a7ea8c7ab6589fd37acd90352737dee76b48812437cf5e59417d46dd37812c",
+      "blob_oid": "d51112a2cec4dd2f5852eee99eef0f24af578b7a",
+      "line_count": 6
+    },
+    {
+      "path": "../directus/api/src/controllers/mcp/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0c768e175a8d2917f6db96aafa1028122505671ce3743ca00e550aedfb7f1806",
+      "blob_oid": "3decc29a6df53450fe83fdb347057b686dcb7c30",
+      "line_count": 64
+    },
+    {
+      "path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+      "blob_oid": "660b9a908e042c979859e0d89146ecf22b22c4c2",
+      "line_count": 606
+    },
+    {
+      "path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+      "blob_oid": "b6ad6212baed64f7ce59932e08eb0ead6cbff350",
+      "line_count": 100
+    },
+    {
+      "path": "../directus/api/src/controllers/deployment.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+      "blob_oid": "a40f7e86cf01225fed266be40a592aa0b84638e7",
+      "line_count": 551
+    },
+    {
+      "path": "../directus/api/src/controllers/deployment-webhooks.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "e083c4fd4bee9fecbac860fd3dfe38152c3be5bac370a0d5c7110726d1fa9503",
+      "blob_oid": "d5e7da9af411a3bd1e3b2aa11ce301a82d5eb015",
+      "line_count": 122
+    },
+    {
+      "path": "../directus/api/src/deployment.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "705f96d3b838c067caa23dfca429238d7d9307a09f8152444067b7bd66423511",
+      "blob_oid": "dc63b2bb8a0e699944bdeda1ff05e79f16e8af0f",
+      "line_count": 95
+    },
+    {
+      "path": "../directus/sdk/src/client.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "9dd8de0032fd65e67cb1d5140e15d72d040e3da5b5788bead5b67ed0ca0b0f5a",
+      "blob_oid": "092625f9ac490a32b6fce97b30f6bc9269a7a6cb",
+      "line_count": 33
+    },
+    {
+      "path": "../directus/sdk/src/graphql/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "5ccb546000b3f10f153bdd1bc703f39532091a1ad349e98c7779a5485ccdd2b3",
+      "blob_oid": "dbdb6460eb309caa1c4532abd7b965824e382a6f",
+      "line_count": 2
+    },
+    {
+      "path": "../directus/sdk/src/realtime/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "9507eec023f81a06487ed01fc1753e0dc200c0f41b5c51d502fea4e7a898e6cb",
+      "blob_oid": "f5891813c263c4bc91c2607dd326f116e484743a",
+      "line_count": 4
+    },
+    {
+      "path": "../directus/sdk/src/auth/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0c70f960a775c9b05bee71e67861520f53cba85d3cf4ba6352c148fb80b4b0ab",
+      "blob_oid": "adc9995a1d156df2b1e503688d96056827e983a7",
+      "line_count": 4
+    },
+    {
+      "path": "../directus/sdk/src/rest/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "b79c5411f5626d84d5c71330df084b62bc90510305129eb14febd1f1d2cd01f2",
+      "blob_oid": "b1cd5bcfeaec7994e131f1149b584fea5a44b840",
+      "line_count": 5
+    },
+    {
+      "path": "../directus/app/src/router.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "363ff81e34170a5ad8fb5c53ecd12dbef8d0dc6ccc6d9ed1ec34f41388f0af6b",
+      "blob_oid": "4b72847989635b0c1156404ccd5d85cc98ee1d83",
+      "line_count": 256
+    },
+    {
+      "path": "../directus/api/src/app.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+      "blob_oid": "987cc0dbc8173db957d16abb73eaaf5fe0bd8555",
+      "line_count": 434
+    },
+    {
+      "path": "../directus/api/src/websocket/controllers/base.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "cb52d5bc27edf7f8de9103cca12dd8fb4489e8747cc988635bf144aab4200810",
+      "blob_oid": "d7127828967a1295867096df92b645d3f6a2cdda",
+      "line_count": 476
+    },
+    {
+      "path": "../directus/api/src/websocket/controllers/logs.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "7331da55b053b66c5ae4b80d590764cfbefccf8392997d1ae7cc9f80a99caaa6",
+      "blob_oid": "c8bbd0c0e1df9a1d7f9ab3b4bdd2b3a88fc0140e",
+      "line_count": 73
+    },
+    {
+      "path": "../directus/api/src/websocket/handlers/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "0e44c8466bb2f65da6433a1b5d3439f72beac8d54481069d6a287a3310cc9265",
+      "blob_oid": "9778832cf70978564adca02fe537657715f8a818",
+      "line_count": 48
+    },
+    {
+      "path": "../directus/api/src/extensions/manager.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "66526792c62eaa4c44779674712fc0f00f4a92f589737f43d2aae131c550f1eb",
+      "blob_oid": "1bef8f7bbb4d4f5e2c7e6883c1c72dd346ad1212",
+      "line_count": 1045
+    },
+    {
+      "path": "../directus/api/src/ai/chat/middleware/load-settings.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "2b17c1f15139d3c11110defef6b62190993259be14d24d5e96d51a26722c0ad8",
+      "blob_oid": "d75a4673edf5cbf01f732e18a4cd0066d8020006",
+      "line_count": 49
+    },
+    {
+      "path": "../directus/api/src/ai/mcp/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "fa5cfc8c9b25da81e26350a8ad3b78861d78cb5fa56c321176a154f6f5b9d142",
+      "blob_oid": "3693f485d46852e2422179780e1bb99df7edc7fa",
+      "line_count": 1
+    },
+    {
+      "path": "../directus/api/src/ai/mcp/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "827fed71c248fd418be382b80a7dfd6a276e08b723441b1dc0538c04cefb8c1c",
+      "blob_oid": "bad99e8fa3a6db3630c2fda55066e480ac06e188",
+      "line_count": 417
+    },
+    {
+      "path": "../directus/api/src/services/graphql/index.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "730ddff866001827d92e3e11f3ddbaf3d33d284c16c3fc16662ddd775a4f67a7",
+      "blob_oid": "dc01ca7fc1ca8b4d2bb6fffd1cb55bb65dca85e9",
+      "line_count": 139
+    },
+    {
+      "path": "../directus/api/src/server.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "22c482dac808d5fc7182552e44975d5d985b102d0ff7509327fe92eabb9ef899",
+      "blob_oid": "9b2523982fa73bcf529fc2f3f494e7ac2060c810",
+      "line_count": 212
+    },
+    {
+      "path": "../directus/sdk/src/graphql/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "1326fe265b1a69e7008a7883751712dc89e6a12ac816ee05e3561aca8d7b738a",
+      "blob_oid": "75f2745157c0958650c6e1a150a145ba33e91f57",
+      "line_count": 54
+    },
+    {
+      "path": "../directus/sdk/src/realtime/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "ab4bf8da1f92f2028fa945cf2a48ac744253c8da779b3d68a8fab5f2ac7ee758",
+      "blob_oid": "7574d7852b743ff480af4e30c43b3d4571e97afd",
+      "line_count": 481
+    },
+    {
+      "path": "../directus/sdk/src/auth/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "c574688b7012887bfeea84e3fe13e4c0b7917979dbab12c02dee9b4686012608",
+      "blob_oid": "76915a37e24c2e078eb65431704a9b69d346a70b",
+      "line_count": 213
+    },
+    {
+      "path": "../directus/sdk/src/rest/composable.ts",
+      "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+      "sha256": "19d40d1988b899c5f8b3a6608352700092ae6d67cb9fd484b2f6f2864c2da7f3",
+      "blob_oid": "fbf5b45f3eb4352a9599e9dc1926ade9e5e9e04f",
+      "line_count": 83
+    }
+  ],
+  "missing_guessed_paths": [
+    {
+      "path": "api/src/websocket.ts",
+      "reason": "Guessed path absent; real entrypoints resolved from imports, not proof feature absent."
+    }
+  ],
+  "route_declarations": [
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 33,
+      "method": "GET",
+      "local_path": "/",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L33-L35",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-1"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 48,
+      "method": "GET",
+      "local_path": "/registry",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L48-L50",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-2"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 122,
+      "method": "GET",
+      "local_path": "/registry/account/:pk(${UUID_REGEX})",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L122-L124",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-3"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 153,
+      "method": "GET",
+      "local_path": "/registry/extension/:pk(${UUID_REGEX})",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L153-L155",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-4"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 184,
+      "method": "POST",
+      "local_path": "/registry/install",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L184-L186",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-5"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 208,
+      "method": "POST",
+      "local_path": "/registry/reinstall",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L208-L210",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-6"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 232,
+      "method": "DELETE",
+      "local_path": "/registry/uninstall/:pk(${UUID_REGEX})",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L232-L234",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-7"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 256,
+      "method": "PATCH",
+      "local_path": "/:pk(${UUID_REGEX})",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L256-L258",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-8"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 294,
+      "method": "DELETE",
+      "local_path": "/:pk(${UUID_REGEX})",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L294-L296",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-9"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/extensions.ts",
+      "line": 319,
+      "method": "GET",
+      "local_path": "/sources/:chunk",
+      "mount": "/extensions",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/extensions.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "4e8e8083f8105e8fbb097072aaa6f9e46aa44d68e2b5964d256de134eff12649",
+          "pointer": "#L319-L321",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-10"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/ai/chat/router.ts",
+      "line": 8,
+      "method": "POST",
+      "local_path": "/chat",
+      "mount": "/ai",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/ai/chat/router.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "0a34dca1c57ad8108e0400b033fd7500eb03afd215519c131d62a33274a6c1d3",
+          "pointer": "#L8-L9",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-11"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/ai/chat/router.ts",
+      "line": 9,
+      "method": "POST",
+      "local_path": "/object",
+      "mount": "/ai",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/ai/chat/router.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "0a34dca1c57ad8108e0400b033fd7500eb03afd215519c131d62a33274a6c1d3",
+          "pointer": "#L9-L9",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-12"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/ai/files/router.ts",
+      "line": 6,
+      "method": "POST",
+      "local_path": "/",
+      "mount": "/ai/files",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/ai/files/router.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e4a7ea8c7ab6589fd37acd90352737dee76b48812437cf5e59417d46dd37812c",
+          "pointer": "#L6-L6",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-13"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/index.ts",
+      "line": 60,
+      "method": "GET",
+      "local_path": "/",
+      "mount": "/mcp",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/index.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "0c768e175a8d2917f6db96aafa1028122505671ce3743ca00e550aedfb7f1806",
+          "pointer": "#L60-L62",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-14"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/index.ts",
+      "line": 62,
+      "method": "POST",
+      "local_path": "/",
+      "mount": "/mcp",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/index.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "0c768e175a8d2917f6db96aafa1028122505671ce3743ca00e550aedfb7f1806",
+          "pointer": "#L62-L64",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-15"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 331,
+      "method": "GET",
+      "local_path": "/.well-known/oauth-protected-resource*",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L331-L333",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-16"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 342,
+      "method": "GET",
+      "local_path": "/.well-known/oauth-authorization-server*",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L342-L344",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-17"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 353,
+      "method": "GET",
+      "local_path": "/mcp-oauth/authorize",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L353-L355",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-18"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 465,
+      "method": "POST",
+      "local_path": "/mcp-oauth/register",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L465-L467",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-19"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 521,
+      "method": "POST",
+      "local_path": "/mcp-oauth/token",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L521-L523",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-20"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 558,
+      "method": "POST",
+      "local_path": "/mcp-oauth/revoke",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L558-L560",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-21"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth.ts",
+      "line": 590,
+      "method": "POST",
+      "local_path": "/mcp-oauth/authorize/decision",
+      "mount": "",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "2eba1e771b415a64bb28d2a6b956b1ad095b1231cd7ea737599c8e1c3c488f97",
+          "pointer": "#L590-L592",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-22"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "line": 42,
+      "method": "GET",
+      "local_path": "/",
+      "mount": "/mcp-oauth/clients",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+          "pointer": "#L42-L44",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-23"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "line": 43,
+      "method": "SEARCH",
+      "local_path": "/",
+      "mount": "/mcp-oauth/clients",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+          "pointer": "#L43-L45",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-24"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "line": 46,
+      "method": "GET",
+      "local_path": "/:id",
+      "mount": "/mcp-oauth/clients",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+          "pointer": "#L46-L48",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-25"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "line": 62,
+      "method": "DELETE",
+      "local_path": "/",
+      "mount": "/mcp-oauth/clients",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+          "pointer": "#L62-L64",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-26"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+      "line": 86,
+      "method": "DELETE",
+      "local_path": "/:id",
+      "mount": "/mcp-oauth/clients",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/mcp/oauth-clients.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "f20c8bd2de21ccc40e256545b4aa7ad3e8bfaef7a2be0d378a6bbc9718d3d7ef",
+          "pointer": "#L86-L88",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-27"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 42,
+      "method": "POST",
+      "local_path": "/",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L42-L44",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-28"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 96,
+      "method": "GET",
+      "local_path": "/",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L96-L98",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-29"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 97,
+      "method": "SEARCH",
+      "local_path": "/",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L97-L99",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [],
+      "unresolved_ids": [
+        "UNRESOLVED-P05-30"
+      ]
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 100,
+      "method": "GET",
+      "local_path": "/:provider",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L100-L102",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-31"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 122,
+      "method": "GET",
+      "local_path": "/:provider/projects",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L122-L124",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-32"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 155,
+      "method": "GET",
+      "local_path": "/:provider/projects/:id",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L155-L157",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-33"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 211,
+      "method": "PATCH",
+      "local_path": "/:provider/projects",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L211-L213",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-34"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 262,
+      "method": "GET",
+      "local_path": "/:provider/dashboard",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L262-L264",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-35"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 300,
+      "method": "POST",
+      "local_path": "/:provider/projects/:id/deploy",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L300-L302",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-36"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 334,
+      "method": "PATCH",
+      "local_path": "/:provider",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L334-L336",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-37"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 378,
+      "method": "DELETE",
+      "local_path": "/:provider",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L378-L380",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-38"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 400,
+      "method": "GET",
+      "local_path": "/:provider/projects/:id/runs",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L400-L402",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-39"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 448,
+      "method": "GET",
+      "local_path": "/:provider/projects/:id/runs/stats",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L448-L450",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-40"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 495,
+      "method": "GET",
+      "local_path": "/:provider/runs/:id",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L495-L497",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-41"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment.ts",
+      "line": 527,
+      "method": "POST",
+      "local_path": "/:provider/runs/:id/cancel",
+      "mount": "/deployments",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e2b99997f72b849e10ed92aab52e07ab8535e1253739617646e946bc83b8e3c9",
+          "pointer": "#L527-L529",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-42"
+      ],
+      "unresolved_ids": []
+    },
+    {
+      "source_path": "../directus/api/src/controllers/deployment-webhooks.ts",
+      "line": 15,
+      "method": "POST",
+      "local_path": "/:provider",
+      "mount": "/deployments/webhooks",
+      "source_refs": [
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/controllers/deployment-webhooks.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "e083c4fd4bee9fecbac860fd3dfe38152c3be5bac370a0d5c7110726d1fa9503",
+          "pointer": "#L15-L17",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        },
+        {
+          "kind": "GIT_FILE",
+          "path": "../directus/api/src/app.ts",
+          "revision": "4f77933bf9551cac6b289576078783e189b8f4e3",
+          "sha256": "6b1f325d250b82f8177371e71509cbdcbc521c9126b50377354f6b7212ae3daf",
+          "pointer": "#L323-L412",
+          "certainty": "VERIFIED",
+          "gap_ids": []
+        }
+      ],
+      "inventory_ids": [
+        "INV-P05-REST-43"
+      ],
+      "unresolved_ids": []
+    }
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "run_id": "P15-HTTP-20261116-01",
+  "scenario_records": 17,
+  "trace_version": 2,
+  "runner_exit_code": 0,
+  "cleanup": "PASS",
+  "historical_reports_modified": false,
+  "new_canonical_tests": 0,
+  "new_selected_execution_ids": 6
+}

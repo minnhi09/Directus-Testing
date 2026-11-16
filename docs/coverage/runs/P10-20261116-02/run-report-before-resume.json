@@ -1,0 +1,15 @@
+{
+  "run_id": "P10-20261116-02",
+  "baseline_id": "M1-REGRESSION-13-v1",
+  "source_pin": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "image_digest": "docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+  "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "worktree": "DIRTY",
+  "namespace": "r06-k05-p09-20261115-audit01",
+  "host_url": "http://127.0.0.1:18055",
+  "remote_ci": "NOT_RUN",
+  "coverage": "NOT_MEASURED",
+  "started_at": "2026-11-15T23:38:56.828958+00:00",
+  "cases": [],
+  "status": "BLOCKED"
+}

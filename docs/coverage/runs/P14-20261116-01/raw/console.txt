@@ -1,0 +1,187 @@
+Schemathesis v4.30.0
+━━━━━━━━━━━━━━━━━━━━
+
+
+ ✅  Loaded specification from /work/schema.json (in 1.22s)                     
+
+     Base URL:         http://directus:8055                                     
+     Specification:    Open API 3.0.1                                           
+     Operations:       5 selected / 5 total                                     
+
+
+ ✅  API capabilities:                                                          
+
+     Supports NULL byte in headers:                            ✘                
+     Accepts backslash and control characters in URL paths:    ✓                
+
+ ❌  Examples (in 2.00s)                                                        
+                                                                                
+     ❌ 4 failed  ⏭  1 skipped                                                  
+
+ ❌  Fuzzing (in 58.82s)                                                        
+                                                                                
+     ❌ 5 failed                                                                
+
+=================================== FAILURES ===================================
+_____________ DELETE /items/qa_sys_categories_p14_20261116_01/{id} _____________
+1. Test Case ID: ZaFA2W
+
+- Undocumented HTTP status code
+
+    Received: 403
+    Documented: 200, 401, 404
+
+[403] Forbidden:
+
+    `{"errors":[{"message":"You don't have permission to access this.","extensions":{"code":"FORBIDDEN"}}]}`
+
+Reproduce with:
+
+    curl -X DELETE -H 'Authorization: [Filtered]' http://directus:8055/items/qa_sys_categories_p14_20261116_01/8cbb43fe-4cdf-4991-8352-c461779cec02
+    
+    st replay ZaFA2W
+
+2. Test Case ID: Fq250o
+
+- Undocumented HTTP status code
+
+    Received: 204
+    Documented: 200, 401, 404
+
+[204] No Content:
+
+    <EMPTY>
+
+Reproduce with:
+
+    curl -X DELETE -H 'Authorization: [Filtered]' http://directus:8055/items/qa_sys_categories_p14_20261116_01/2
+    
+    st replay Fq250o
+
+_________________ GET /items/qa_sys_categories_p14_20261116_01 _________________
+1. Test Case ID: PrRT11
+
+- Undocumented HTTP status code
+
+    Received: 403
+    Documented: 200, 401
+
+[403] Forbidden:
+
+    `{"errors":[{"message":"You don't have permission to access collection \"directus_versions\" or it does not exist. Queried in root.","extensions":{"reason":"You don't have permission to access collection \"directus_versions\" or it does not exist. Queried in root.","code":"FORBIDDEN"}}]}`
+
+Reproduce with:
+
+    curl -X GET -H 'Authorization: [Filtered]' 'http://directus:8055/items/qa_sys_categories_p14_20261116_01?fields=sections.item%3Aheadings.title&sort=year%28date_created%29&backlink=true&search=Directus&limit=50&offset=100&page=2&version=site-redesign-2027&meta=%2A'
+    
+    st replay PrRT11
+
+______________ GET /items/qa_sys_categories_p14_20261116_01/{id} _______________
+1. Test Case ID: XOqSdC
+
+- Undocumented HTTP status code
+
+    Received: 403
+    Documented: 200, 401, 404
+
+[403] Forbidden:
+
+    `{"errors":[{"message":"You don't have permission to access collection \"directus_versions\" or it does not exist. Queried in root.","extensions":{"reason":"You don't have permission to access collection \"directus_versions\" or it does not exist. Queried in root.","code":"FORBIDDEN"}}]}`
+
+Reproduce with:
+
+    curl -X GET -H 'Authorization: [Filtered]' 'http://directus:8055/items/qa_sys_categories_p14_20261116_01/1?fields=year%28date_published%29&versionRaw=false&version=site-redesign-2027'
+    
+    st replay XOqSdC
+
+_____________ PATCH /items/qa_sys_categories_p14_20261116_01/{id} ______________
+1. Test Case ID: 31gfuU
+
+- Undocumented HTTP status code
+
+    Received: 204
+    Documented: 200, 401, 404
+
+[204] No Content:
+
+    <EMPTY>
+
+Reproduce with:
+
+    curl -X PATCH -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{"name": ""}' 'http://directus:8055/items/qa_sys_categories_p14_20261116_01/1?fields=year%28date_published%29'
+    
+    st replay 31gfuU
+
+2. Test Case ID: QTbNFq
+
+- Undocumented HTTP status code
+
+    Received: 403
+    Documented: 200, 401, 404
+
+[403] Forbidden:
+
+    `{"errors":[{"message":"You don't have permission to access fields \"\", \"TPÔ\" in collection \"qa_sys_categories_p14_20261116_01\" or they do not exist. Queried in root.","extensions":{"reason":"You don't have permission to access fields \"\", \"TPÔ\" in collection \"qa_sys_categories_p14_20261116_01\" or they do not exist. Queried in root.","code":"FORBIDDEN"}}]}`
+
+Reproduce with:
+
+    curl -X PATCH -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d '{"": 9.348222568460598e-25, "T\u0093P\u008c\u00d4\r": [true, -3.45087396535753e+147, "t9\udb78\uddf5"], "name": "\u00ef/\u00cf\u00a8d\u00e8\u00ac\u009a\u00df\u0013\u00b0"}' 'http://directus:8055/items/qa_sys_categories_p14_20261116_01/1?%F3%88%8C%9DcT=%C2%AC%C3%85'
+    
+    st replay QTbNFq
+
+________________ POST /items/qa_sys_categories_p14_20261116_01 _________________
+1. Test Case ID: 4StMIw
+
+- Undocumented HTTP status code
+
+    Received: 400
+    Documented: 200, 401
+
+[400] Bad Request:
+
+    `{"errors":[{"message":"Invalid payload. Unexpected token '\u0000', \"\u0000\" is not valid JSON.","extensions":{"reason":"Unexpected token '\u0000', \"\u0000\" is not valid JSON","code":"INVALID_PAYLOAD"}}]}`
+
+Reproduce with:
+
+    curl -X POST -H 'Authorization: [Filtered]' -H 'Content-Type: application/json' -d $'\x00' http://directus:8055/items/qa_sys_categories_p14_20261116_01
+    
+    ⚠️  Request body contains non-printable characters. Actual value: b'\x00'
+    
+    st replay 4StMIw
+
+=================================== SUMMARY ====================================
+
+API Operations:
+  Selected: 5/5
+  Tested: 5
+
+Test Phases:
+  ❌ Examples
+  ⏭  Coverage (disabled)
+  ❌ Fuzzing
+  ⏭  Stateful (disabled)
+
+Failures:
+  ❌ Undocumented HTTP status code: 7
+
+_______________________________ Schema Coverage ________________________________
+
+Operations            5/5    100.0%
+Parameters           10/24    41.6%  (9 partial)
+Keywords             25/92    27.1%  (31 partial)
+Examples              5/8     62.5%
+Responses             4/13    30.7%
+Response Keywords    34/151   22.5%
+
+JSON report         /work/run/coverage.json
+
+Test cases:
+  115 generated, 7 found 7 unique failures
+
+Reports:
+  - NDJSON: /work/run/events.ndjson
+  - JSON: /work/run/report.json
+
+Seed: 101
+
+============================= 7 failures in 60.92s =============================

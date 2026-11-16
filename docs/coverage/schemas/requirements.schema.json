@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://damh.invalid/coverage/1.0.0/requirements.schema.json",
+  "title": "One requirement JSONL record",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "data_origin": {
+      "enum": [
+        "DESIGN_EXAMPLE",
+        "OBSERVATION",
+        "DERIVED"
+      ]
+    },
+    "requirement_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "inventory_revision": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "module_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "inventory_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor_policy": {
+      "$ref": "common.schema.json#/$defs/actor"
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "oracle_ref": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/sourceRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mandatory": {
+      "type": "boolean"
+    },
+    "risk_impact": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "risk_likelihood": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "risk_criticality": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "risk_scale_ref": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/sourceRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "priority": {
+      "enum": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "UNKNOWN"
+      ]
+    },
+    "scope_tier": {
+      "$ref": "common.schema.json#/$defs/scope"
+    },
+    "applicability": {
+      "$ref": "common.schema.json#/$defs/applicability"
+    },
+    "review_state": {
+      "enum": [
+        "DRAFT",
+        "REVIEWED",
+        "LOCKED"
+      ]
+    },
+    "decision_id": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/sourceRef"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "gap_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "data_origin",
+    "requirement_id",
+    "inventory_revision",
+    "module_id",
+    "inventory_ids",
+    "statement",
+    "actor_policy",
+    "preconditions",
+    "oracle_ref",
+    "mandatory",
+    "risk_impact",
+    "risk_likelihood",
+    "risk_criticality",
+    "risk_scale_ref",
+    "priority",
+    "scope_tier",
+    "applicability",
+    "review_state",
+    "decision_id",
+    "source_refs",
+    "gap_ids"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "applicability": {
+            "const": "NOT_APPLICABLE"
+          }
+        },
+        "required": [
+          "applicability"
+        ]
+      },
+      "then": {
+        "properties": {
+          "decision_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "applicability": {
+            "const": "UNKNOWN"
+          }
+        },
+        "required": [
+          "applicability"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "oracle_ref": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "oracle_ref"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source_refs": {
+            "maxItems": 0
+          }
+        },
+        "required": [
+          "source_refs"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "priority": {
+            "const": "UNKNOWN"
+          }
+        },
+        "required": [
+          "priority"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "risk_impact": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "risk_impact"
+            ]
+          },
+          {
+            "properties": {
+              "risk_likelihood": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "risk_likelihood"
+            ]
+          },
+          {
+            "properties": {
+              "risk_criticality": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "risk_criticality"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "gap_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "risk_impact": {
+            "type": "integer"
+          },
+          "risk_likelihood": {
+            "type": "integer"
+          },
+          "risk_criticality": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "risk_impact",
+          "risk_likelihood",
+          "risk_criticality"
+        ]
+      },
+      "then": {
+        "properties": {
+          "risk_scale_ref": {
+            "$ref": "common.schema.json#/$defs/sourceRef"
+          }
+        }
+      }
+    }
+  ]
+}

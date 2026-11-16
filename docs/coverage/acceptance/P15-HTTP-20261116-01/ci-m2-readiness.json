@@ -1,0 +1,45 @@
+{
+  "task_HTTP_evidence": "COMPLETE",
+  "M2_testing_work": "PENDING_CI_AND_EVIDENCE_INTEGRATION",
+  "SUT_contract_conformance": "FAIL_PRESERVED",
+  "all_tests_PASS_required_for_QA_completion": false,
+  "CI_remote": "NOT_RUN",
+  "requirements": [
+    {
+      "id": "CI-REF",
+      "state": "NOT_VERIFIED",
+      "needs": "Trusted remote revision containing reviewed harness/workflow and fingerprint; no push in current task"
+    },
+    {
+      "id": "CI-RUNNER",
+      "state": "NOT_VERIFIED",
+      "needs": "Registered online self-hosted Windows X64 damh-p09 runner with isolated lab ownership"
+    },
+    {
+      "id": "CI-PROFILE",
+      "state": "NOT_VERIFIED_ON_REMOTE",
+      "needs": "Docker/pinned images/local URL/license/actor/fixture/private credentials valid at actual runner; no demo DB/shared volume"
+    },
+    {
+      "id": "CI-HTTP-CHECK",
+      "state": "NOT_IN_CURRENT_WORKFLOW",
+      "needs": "Capture and offline contract diagnostic step must be integrated if this evidence is claimed as checked on CI"
+    },
+    {
+      "id": "CI-ARTIFACT",
+      "state": "NO_REAL_RUN_EVIDENCE",
+      "needs": "URL/run/ref/attempt/runner, real exit codes, sanitized request-response/schema/hash/cleanup and always upload, including FAIL"
+    },
+    {
+      "id": "M2-REPORT",
+      "state": "LOCAL_EVIDENCE_READY_FOR_REVIEW",
+      "needs": "Report selected scope, mandatory oracle verification, all defect diagnostics/reproducer and limits; no zeroFAIL/SUT repair requirement"
+    }
+  ],
+  "workflow_source": ".github\\workflows\\p10-integration-preflight.yml",
+  "workflow_sha256": "a61925679e770e5c65190b4d139fb3c33863c84836575ddfa78cac9f66ad82d3",
+  "workflow_triggers": [
+    "workflow_dispatch"
+  ],
+  "new_phase_started": false
+}

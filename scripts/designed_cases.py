@@ -217,7 +217,10 @@ class Runner:
                 raise AssertionError("Business fields / ID set changed: " + coll)
 
     def preflight(self) -> None:
-        if self.lab.fixture_map.get("project") != "r06-k05" or self.lab.fixture_map.get("fixture_version") != "r06-k05-v2":
+        expected_project = os.environ.get('LAB_PROJECT_NAME', 'r06-k05')
+        if expected_project != 'r06-k05' and not re.fullmatch(r'r06-k05-p09-[a-z0-9][a-z0-9-]{0,35}', expected_project):
+            raise PreconditionError('Unsupported lab project')
+        if self.lab.fixture_map.get("project") != expected_project or self.lab.fixture_map.get("fixture_version") != "r06-k05-v2":
             raise PreconditionError("Wrong fixture map project/version")
         if not self.lab.editor_schema or not self.lab.reader_schema:
             raise PreconditionError("Export Editor and Reader schemas before running tests")

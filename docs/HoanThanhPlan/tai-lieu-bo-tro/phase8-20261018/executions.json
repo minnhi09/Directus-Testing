@@ -1,0 +1,4421 @@
+{
+  "runs": [
+    {
+      "run_id": "p8-20261018-short-r1",
+      "type": "designed",
+      "selection": "short-r1",
+      "summary": {
+        "passed": 58,
+        "failed": 0,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      },
+      "seconds": 156
+    },
+    {
+      "run_id": "p8-20261018-short-r2",
+      "type": "designed",
+      "selection": "short-r2",
+      "summary": {
+        "passed": 58,
+        "failed": 0,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      },
+      "seconds": 157
+    },
+    {
+      "run_id": "p8-20261018-assertable",
+      "type": "designed",
+      "selection": "assertable",
+      "summary": {
+        "passed": 111,
+        "failed": 7,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "status": "runner_failed"
+      },
+      "seconds": 255
+    },
+    {
+      "run_id": "p8-20261018-query-extra",
+      "type": "designed",
+      "selection": "query-extra",
+      "summary": {
+        "passed": 15,
+        "failed": 0,
+        "blocked": 0,
+        "open": 1,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 1,
+        "restore_exit_code": 0,
+        "status": "runner_failed"
+      },
+      "seconds": 40
+    },
+    {
+      "run_id": "p8-20261018-fk-post",
+      "type": "designed",
+      "selection": "fk-post",
+      "summary": {
+        "passed": 1,
+        "failed": 0,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      },
+      "seconds": 19
+    },
+    {
+      "run_id": "p8-20261018-fk-patch",
+      "type": "designed",
+      "selection": "fk-patch",
+      "summary": {
+        "passed": 1,
+        "failed": 0,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      },
+      "seconds": 20
+    },
+    {
+      "run_id": "p8-20261018-time-utc",
+      "type": "designed",
+      "selection": "time-utc",
+      "summary": {
+        "passed": 1,
+        "failed": 0,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      },
+      "seconds": 20
+    },
+    {
+      "run_id": "p8-20261018-time-offset",
+      "type": "designed",
+      "selection": "time-offset",
+      "summary": {
+        "passed": 1,
+        "failed": 0,
+        "blocked": 0,
+        "open": 0,
+        "incomplete": 0
+      },
+      "outcomes": {
+        "runner_exit_code": 0,
+        "restore_exit_code": 0,
+        "status": "passed"
+      },
+      "seconds": 19
+    }
+  ],
+  "individual_executions_including_repeats": [
+    {
+      "id": "P3-NAME-POST-80",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-NAME-POST-80.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-POST-120",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-TITLE-POST-120.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-SCORE-POST-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-0",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-SCORE-POST-0.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-5",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-SCORE-POST-5.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-6",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-SCORE-PATCH-6.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-ARCHIVED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-STATUS-POST-ARCHIVED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-OMITTED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-STATUS-PATCH-OMITTED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-01",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-01.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-02",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-02.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-03",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-03.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-04",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-04.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-05",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-05.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-06",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-06.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-07",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-07.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-08",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-08.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-09",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-09.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-10",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-OP-10.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-024",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-024.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-028",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-028.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-029",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-029.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-030",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-030.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-031",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-031.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-032",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-032.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-036",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-036.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-037",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-037.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-038",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-038.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-039",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-039.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-040",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-040.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-041",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-041.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-042",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-042.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-043",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-043.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-044",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-044.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-045",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-045.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-046",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-046.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-047",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-047.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-051",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-051.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-055",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-055.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-059",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-059.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-060",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-060.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-061",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-061.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-062",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-062.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-063",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-063.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-064",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-064.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-065",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-065.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-066",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-066.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-067",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-067.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-068",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-068.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-069",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTHZ-DR-069.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTH-INVALID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-AUTH-INVALID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-QUERY-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PUBLISHED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-QUERY-PUBLISHED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-SCORE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-QUERY-SORT-SCORE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PROJECTION2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-QUERY-PROJECTION2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-READER-FILTER-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-QUERY-READER-FILTER-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-01",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-ST-01.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-02",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-ST-02.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-03",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r1",
+      "artifact": "artifacts/runs/p8-20261018-short-r1/case-P3-ST-03.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-POST-80",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-NAME-POST-80.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-POST-120",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-TITLE-POST-120.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-SCORE-POST-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-0",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-SCORE-POST-0.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-5",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-SCORE-POST-5.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-6",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-SCORE-PATCH-6.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-ARCHIVED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-STATUS-POST-ARCHIVED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-OMITTED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-STATUS-PATCH-OMITTED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-01",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-01.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-02",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-02.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-03",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-03.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-04",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-04.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-05",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-05.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-06",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-06.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-07",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-07.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-08",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-08.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-09",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-09.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-10",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-OP-10.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-024",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-024.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-028",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-028.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-029",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-029.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-030",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-030.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-031",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-031.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-032",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-032.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-036",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-036.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-037",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-037.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-038",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-038.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-039",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-039.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-040",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-040.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-041",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-041.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-042",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-042.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-043",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-043.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-044",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-044.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-045",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-045.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-046",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-046.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-047",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-047.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-051",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-051.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-055",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-055.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-059",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-059.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-060",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-060.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-061",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-061.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-062",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-062.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-063",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-063.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-064",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-064.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-065",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-065.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-066",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-066.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-067",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-067.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-068",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-068.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-069",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-069.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTH-INVALID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-AUTH-INVALID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "passed",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-QUERY-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PUBLISHED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-QUERY-PUBLISHED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-SCORE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-QUERY-SORT-SCORE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PROJECTION2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-QUERY-PROJECTION2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-READER-FILTER-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-QUERY-READER-FILTER-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-01",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-ST-01.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-02",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-ST-02.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-03",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-short-r2",
+      "artifact": "artifacts/runs/p8-20261018-short-r2/case-P3-ST-03.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-POST-79",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-POST-79.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-POST-80",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-POST-80.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-POST-81",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-POST-81.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-PATCH-79",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-PATCH-79.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-PATCH-80",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-PATCH-80.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-PATCH-81",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-PATCH-81.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-NAME-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-NAME-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-POST-119",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-POST-119.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-POST-120",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-POST-120.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-POST-121",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-POST-121.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-PATCH-119",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-PATCH-119.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-PATCH-120",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-PATCH-120.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-PATCH-121",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-PATCH-121.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-TITLE-PATCH-OMITTED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-TITLE-PATCH-OMITTED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-0",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-0.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-4",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-4.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-5",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-5.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-6",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-6.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-0",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-0.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-4",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-4.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-5",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-5.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-6",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-6.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-SCORE-PATCH-OMITTED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-SCORE-PATCH-OMITTED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-POST-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-PUBLISHED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-POST-PUBLISHED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-ARCHIVED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-POST-ARCHIVED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-POST-EMPTY",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-POST-EMPTY.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-PATCH-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-PUBLISHED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-PATCH-PUBLISHED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-ARCHIVED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-PATCH-ARCHIVED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-EMPTY",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-PATCH-EMPTY.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-STATUS-PATCH-OMITTED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-STATUS-PATCH-OMITTED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-PUBLISHED_AT-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-PUBLISHED_AT-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-PUBLISHED_AT-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-PUBLISHED_AT-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-METADATA-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-METADATA-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-METADATA-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-METADATA-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-METADATA-POST-OBJECT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-METADATA-POST-OBJECT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-METADATA-PATCH-OBJECT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-METADATA-PATCH-OBJECT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-INTERNAL_NOTES-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-INTERNAL_NOTES-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-INTERNAL_NOTES-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-INTERNAL_NOTES-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-INTERNAL_NOTES-POST-TEXT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-INTERNAL_NOTES-POST-TEXT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-INTERNAL_NOTES-PATCH-TEXT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-INTERNAL_NOTES-PATCH-TEXT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CATEGORY-POST-VALID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CATEGORY-POST-VALID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CATEGORY-PATCH-VALID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CATEGORY-PATCH-VALID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CATEGORY-POST-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CATEGORY-POST-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CATEGORY-PATCH-NULL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CATEGORY-PATCH-NULL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-01",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-01.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-02",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-02.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-03",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-03.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-04",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-04.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-05",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-05.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-06",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-06.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-07",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-07.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-08",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-08.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-09",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-09.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-OP-10",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-OP-10.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-002",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-002.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-003",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-003.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-004",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-004.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-005",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-005.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-006",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-006.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-007",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-007.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-008",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-008.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-010",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-010.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-011",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-011.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-012",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-012.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-014",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-014.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-015",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-015.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-017",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-017.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-024",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-024.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-032",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-032.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-042",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-042.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTHZ-DR-043",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTHZ-DR-043.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-AUTH-CONTROL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-AUTH-CONTROL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-ALL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-ALL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PUBLISHED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-PUBLISHED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-ID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-SORT-ID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-SCORE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-SORT-SCORE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-OFFSET3",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-OFFSET3.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PAGE2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-PAGE2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PROJECTION2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-PROJECTION2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PROJECTION4",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-PROJECTION4.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-READER-FILTER-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-READER-FILTER-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-LIMIT-MINUS2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-LIMIT-MINUS2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-LIMIT-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-LIMIT-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-LIMIT-0",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-LIMIT-0.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-LIMIT-1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-LIMIT-1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-OFFSET-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-OFFSET-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-OFFSET-0",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-OFFSET-0.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-OFFSET-1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-OFFSET-1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PAGE-MINUS1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-PAGE-MINUS1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PAGE-1",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-QUERY-PAGE-1.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-01",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-ST-01.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-02",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-ST-02.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ST-03",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-ST-03.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "not_run"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ROBUST-AGG-FOO",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-ROBUST-AGG-FOO.json",
+      "verdicts": {
+        "business": "failed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "failed"
+      },
+      "reason": "API returned 5xx, never a valid negative PASS",
+      "error_type": "AssertionError",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ROBUST-AGG-EMPTY",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-ROBUST-AGG-EMPTY.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-ROBUST-AGG-COUNT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-ROBUST-AGG-COUNT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CONTRACT-QA_ARTICLES-OBJECT",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-QA_ARTICLES-OBJECT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "failed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "failed",
+          "failures": [
+            {
+              "type": "JsonSchemaError",
+              "title": "Response violates schema"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-QA_ARTICLES-ARRAY",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-QA_ARTICLES-ARRAY.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "passed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-QA_CATEGORIES-OBJECT",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-QA_CATEGORIES-OBJECT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "failed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "failed",
+          "failures": [
+            {
+              "type": "JsonSchemaError",
+              "title": "Response violates schema"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-QA_CATEGORIES-ARRAY",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-QA_CATEGORIES-ARRAY.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "passed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-EXPORT-CSV",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-EXPORT-CSV.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "failed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "failed",
+          "failures": [
+            {
+              "type": "UndefinedContentType",
+              "title": "Undocumented Content-Type"
+            }
+          ]
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-EXPORT-XML",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-EXPORT-XML.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "failed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "failed",
+          "failures": [
+            {
+              "type": "UndefinedContentType",
+              "title": "Undocumented Content-Type"
+            }
+          ]
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-EXPORT-YAML",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-EXPORT-YAML.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "failed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "failed",
+          "failures": [
+            {
+              "type": "UndefinedContentType",
+              "title": "Undocumented Content-Type"
+            }
+          ]
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "passed",
+          "failures": []
+        }
+      ]
+    },
+    {
+      "id": "P3-CONTRACT-PROJECTION",
+      "status": "failed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-assertable",
+      "artifact": "artifacts/runs/p8-20261018-assertable/case-P3-CONTRACT-PROJECTION.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "failed",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": [
+        {
+          "name": "not_a_server_error",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "status_code_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "content_type_conformance",
+          "status": "passed",
+          "failures": []
+        },
+        {
+          "name": "response_schema_conformance",
+          "status": "failed",
+          "failures": [
+            {
+              "type": "JsonSchemaError",
+              "title": "Response violates schema"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P3-QUERY-ALL",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-ALL.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PUBLISHED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-PUBLISHED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-ID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-SORT-ID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-TITLE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-SORT-TITLE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SORT-SCORE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-SORT-SCORE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-OFFSET3",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-OFFSET3.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PAGE2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-PAGE2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PRECEDENCE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-PRECEDENCE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PROJECTION2",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-PROJECTION2.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-PROJECTION4",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-PROJECTION4.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-NESTED",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-NESTED.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SEARCH-SPECIALE",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-SEARCH-SPECIALE.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SEARCH-ABSENT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-SEARCH-ABSENT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-SEARCH-BLANK",
+      "status": "open",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-SEARCH-BLANK.json",
+      "verdicts": {
+        "business": "open",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-QUERY-READER-FILTER-DRAFT",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-query-extra",
+      "artifact": "artifacts/runs/p8-20261018-query-extra/case-P3-QUERY-READER-FILTER-DRAFT.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CATEGORY-POST-INVALID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-fk-post",
+      "artifact": "artifacts/runs/p8-20261018-fk-post/case-P3-CATEGORY-POST-INVALID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-CATEGORY-PATCH-INVALID",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-fk-patch",
+      "artifact": "artifacts/runs/p8-20261018-fk-patch/case-P3-CATEGORY-PATCH-INVALID.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-PUBLISHED_AT-POST-UTC",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-time-utc",
+      "artifact": "artifacts/runs/p8-20261018-time-utc/case-P3-PUBLISHED_AT-POST-UTC.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    },
+    {
+      "id": "P3-PUBLISHED_AT-PATCH-OFFSET",
+      "status": "passed",
+      "cleanup": "passed",
+      "run_id": "p8-20261018-time-offset",
+      "artifact": "artifacts/runs/p8-20261018-time-offset/case-P3-PUBLISHED_AT-PATCH-OFFSET.json",
+      "verdicts": {
+        "business": "passed",
+        "authorization": "not_applicable",
+        "contract": "not_run",
+        "robustness": "passed"
+      },
+      "reason": "",
+      "error_type": "",
+      "contract_checks": []
+    }
+  ],
+  "status_disagreements_across_overlapping_designs": {},
+  "latest_statuses": {
+    "passed": 184,
+    "NOT_RUN": 65,
+    "open": 1,
+    "failed": 7
+  },
+  "unique_executed": 192,
+  "catalog": 257
+}

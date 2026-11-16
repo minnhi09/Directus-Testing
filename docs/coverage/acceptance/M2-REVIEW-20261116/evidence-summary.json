@@ -1,0 +1,27 @@
+{
+  "stats": {
+    "checked_canonical_records": 6,
+    "response_steps": 23,
+    "check_results": 92,
+    "failed_check_results": 8
+  },
+  "TC13": "VERIFIED_OPEN_FAIL_UNCHANGED",
+  "acceptance_axes": {
+    "testing_work": "PENDING_EVIDENCE_RECONCILIATION",
+    "SUT": "KNOWN_CONTRACT_NONCONFORMANCE",
+    "coverage": "PLAN6_2_V12_OF13_P01_ENCODING_RECONCILIATION_PENDING",
+    "remote_CI": "NOT_RUN",
+    "fuzz_pilot": "DELIVERED_WITH_FAIL_AND_BUDGET_STOP"
+  },
+  "contract_diagnostics_missing": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "P3-AUTHZ-DR-047"
+  ],
+  "new_API_requests": 0,
+  "new_canonical_tests": 0
+}

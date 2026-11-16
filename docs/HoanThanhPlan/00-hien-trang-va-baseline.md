@@ -186,7 +186,7 @@ Bộ demo hiện sẵn sàng về evidence; live demo phải có preflight tại
 
 Checkpoint gốc được tạo **cục bộ ngoài repo DAMH**, trước khi cập nhật kế hoạch/tài liệu Phase 0. Các liên kết dưới đây trỏ tới bản sao đã được gom vào `HoanThanhPlan/tai-lieu-bo-tro/`; bản gốc tại `output/phase0-20261018/` vẫn được giữ nguyên:
 
-- [checkpoint.zip](tai-lieu-bo-tro/phase0-20261018/checkpoint.zip): 99 tệp, gồm tệp tracked/nonignored phù hợp, schema/fixture map và helper Windows chọn lọc.
+- [checkpoint.zip](../ARCHIVES.md): 99 tệp, gồm tệp tracked/nonignored phù hợp, schema/fixture map và helper Windows chọn lọc.
 - [checkpoint-manifest.json](tai-lieu-bo-tro/phase0-20261018/checkpoint-manifest.json): hash/size của từng tệp và hash archive.
 - [git-state-before.json](tai-lieu-bo-tro/phase0-20261018/git-state-before.json): Git state, diff summary và mode trước đầu ra Phase 0.
 

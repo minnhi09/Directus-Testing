@@ -1,0 +1,39 @@
+{
+  "kind": "P03_STATIC_SOURCE_INVENTORY_AUDIT",
+  "created_at": "2026-11-15T06:27:27.307837+00:00",
+  "source_commit": "4f77933bf9551cac6b289576078783e189b8f4e3",
+  "inventory_revision": "P03-AUTH-SYSTEM-4f77933-v1",
+  "record_schema_validation": {
+    "tool": "PowerShell Test-Json with local P01 common defs",
+    "exit_code": 0,
+    "system_inventory_records": 113,
+    "gap_records": 7,
+    "decision_records": 2
+  },
+  "source_files_reverified": 44,
+  "git_citation_ranges_verified": 2060,
+  "literal_declarations_reconciled": 115,
+  "search_entries_preserved": 6,
+  "inventory_records": 113,
+  "sidecar_records": 113,
+  "unique_inventory_ids_and_operation_keys": true,
+  "mount_path_shapes_and_direct_ping_checked": true,
+  "old_input_files_preserved": 38,
+  "historical_report_oas_hashes_preserved": 10,
+  "historical_admin_oas_operations": 143,
+  "current_oas_presence": "UNKNOWN",
+  "runtime": "UNKNOWN",
+  "applicability": "UNKNOWN",
+  "test_execution": "NOT_RUN",
+  "coverage": "NOT_MEASURED",
+  "shard_input_sha256": {
+    "decisions.jsonl": "1d33a3a20fa6c1937f19557033407b062ca3bbf8caa8bc8b5c384ba7cbcf8540",
+    "gaps.jsonl": "db87ab20d4d1e175da86bf10d37cb8f226094f29ebf3a03968f57cdb98c49ffb",
+    "README.md": "efb7e2f9a68379791330688448a0885a5169c2d0df8f54246db44a42e662e52d",
+    "route-evidence.jsonl": "77140bfda5ad5a24792b38123b0d6e03e393a2f963f5e6f024d77486d1947a39",
+    "source-index.json": "7437fd7a5bb0a8cbb2b6740cae3b3013306f377e3c478b9161a6467c26b41a01",
+    "system-inventory.jsonl": "3ddbed791d46c54380d657efb15412b07155c58ab085832610ae6fa9415b82f7",
+    "unresolved-routes.jsonl": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+    "unresolved-routes.md": "8c5cb177bd5bff989291bf1d7cbdb13aa98759181b72bcfa7c7bcf6c38d4b143"
+  }
+}

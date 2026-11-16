@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "phase": "P02",
+  "kind": "STATIC_OFFLINE_CHECKS",
+  "started_at": "2026-11-16T05:46:00.089605+00:00",
+  "run_id": "m2-blockers-workspace-20261116",
+  "python_version": "3.13.7",
+  "checks": [
+    {
+      "name": "python_syntax",
+      "status": "PASS",
+      "details": {
+        "files_parsed": 32,
+        "bytecode_written": false
+      }
+    },
+    {
+      "name": "json_syntax",
+      "status": "PASS",
+      "details": {
+        "json_files": 20,
+        "jsonl_records": 16
+      }
+    },
+    {
+      "name": "catalog_selectors",
+      "status": "PASS",
+      "details": {
+        "catalog_ids": 257,
+        "selector_sizes": {
+          "course": 7,
+          "short": 58,
+          "assertable": 118,
+          "all": 221
+        },
+        "meaning": "design/selection validation, not executed API cases"
+      }
+    },
+    {
+      "name": "bash_syntax",
+      "status": "PASS",
+      "details": {
+        "files_parsed": 2,
+        "bash_version": "GNU bash, version 5.2.37(1)-release (x86_64-pc-msys)",
+        "scripts_executed": false
+      }
+    },
+    {
+      "name": "powershell_and_examples",
+      "status": "PASS",
+      "details": {
+        "powershell_version": "7.6.10",
+        "powershell_files_parsed": 5,
+        "example_files": 10,
+        "design_records_validated": 19,
+        "scope": "P01 record structure only; no coverage calculation or live API"
+      }
+    },
+    {
+      "name": "markdown_links",
+      "status": "PASS",
+      "details": {
+        "markdown_files": 47,
+        "local_link_targets": 369,
+        "external_links_checked": false,
+        "fragments_checked": false
+      }
+    },
+    {
+      "name": "workflow_contract",
+      "status": "PASS",
+      "details": {
+        "format": "JSON-compatible YAML 1.2",
+        "remote_run_verified": false
+      }
+    },
+    {
+      "name": "unit_harness",
+      "status": "PASS",
+      "details": {
+        "tests_run": 136,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "network": "REFUSED",
+        "private_profiles": "REFUSED",
+        "real_child_allowlist": [
+          "PowerShell7 coverage_schema.ps1 -Payload local-json"
+        ],
+        "synthetic_unit_logs_are_not_SUT_runs": true,
+        "unsuccessful_tests": []
+      }
+    }
+  ],
+  "integration": {
+    "execution_status": "NOT_RUN",
+    "reason": "P02 static-only; no lab/license/environment gate verified"
+  },
+  "directus_code_coverage": "NOT_MEASURED",
+  "execution_context": "LOCAL",
+  "remote_ci": "NOT_RUN",
+  "github_run_id": null,
+  "github_run_attempt": null,
+  "workflow_conclusion": "NOT_RUN",
+  "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "working_tree": "DIRTY",
+  "exit_code": 0,
+  "finished_at": "2026-11-16T05:46:21.642001+00:00",
+  "input_sha256": {
+    ".github/workflows/static-offline.yml": "edd6619ae0df6688d62f957a6901453e7f03ab940e50c05c2596f758d6c7de9f",
+    "lab.sh": "8fa065942a9d1c4aec59b642a8c319db84eba9f65aaeeae9ddda427191e531c8",
+    "scripts/lab-components.sh": "4bae4a596cac2b22558dbad46ae4428551ca4ac75a9ee350cfa38d760d872f84",
+    "scripts/capture_scenario_http.py": "48ee75bbae407f30132e8c85065a51df5d51d4719d999f6ac78bf6bce3fb0286",
+    "scripts/check_offline.py": "c965145c48b95f05fc7e226758326b669f36f8bd5cb555ad3aa1bc4ed050baa3",
+    "scripts/check_scenario_contracts.py": "eb280a161052b0c1d94f82cce1944a0ab43bd9ef08bb3787e624c098bc6373fa",
+    "scripts/ci_m2.py": "4cbfb0cd29a92251a397af2a21d11d9b0e4992666b88c17125278f20f4fdd622",
+    "scripts/contract_checks.py": "66616c35d9c9619322dd793cd64623df07099f8acef38e2e2ec689569fec2cbb",
+    "scripts/cost_query.py": "97bb4a10c20811c265ee7e1a59c42796a4b965e9507cb276f6c19ec82d6acd88",
+    "scripts/coverage_offline.py": "dfc4c72840bfd8282afa2c06eccba200fba99ef34be02b809887f99949111de0",
+    "scripts/designed_cases.py": "1c2c04125b5c6b4d442e9c61cd26990705db4eb18246819a6d560160f6a8fbad",
+    "scripts/invariants.py": "a33781917c8a8be509ffd575daf4b8b9eb9e4617b940f3524b92bb77eb8094d1",
+    "scripts/offline_suite.py": "97e13abdcbd4ca35c93e02909749f2187253854524da110f3879d5b7cbb044d3",
+    "scripts/p09_preflight.py": "2a1e7b44f21647569b06f8861cba51f084aa540e76b28228fb791d3084bb32d9",
+    "scripts/p09_runtime.py": "53877898dc41feb0856ae1ba510c222a8c4ef5b50667dc00ecbe23de64c7e3af",
+    "scripts/p10_regression.py": "bb743ce335c23afc7c8c9517fd6faa15406115d78114fb5dd7f245ab81089ccb",
+    "scripts/p10_selection.py": "d2a9bf9911f556c5286d45c8ff444ce6027fa1b4d0a1906c715d48fc772feba7",
+    "scripts/p14_pilot.py": "4bef3d9929271edb38ba7524f4289566b631d9e26ca2beb67c5b1d08fdd4be16",
+    "scripts/replay_cases.py": "6893c89a5215078b51b994c4a5562b414730d4b90c9394aa60f0de4b9885ae13",
+    "scripts/scenario_trace.py": "57873ef055b38ea369464a3ed2181124db10263cfa38443bd30505a71ce8a141",
+    "scripts/check_coverage_examples.ps1": "10a9c09d906a014949e3c21edb0d1c2c9d66fce70b5baecf66b678ecb4c1a528",
+    "scripts/coverage_schema.ps1": "842ba1f435ab320d164b55af2aa6abfbdfcb021e9a2d5cc958b01431dab8a0c5",
+    "scripts/private_profile_acl.ps1": "cf87d99d0682461b6a35f1ce93bf5b641e44042d30488167bed8fc66d833544f",
+    "scripts/run-lab.ps1": "e635f5a6eb7cec50f042187286d859310428a98a398f43c3963a0d7241eb803b",
+    "scripts/setup-windows.ps1": "37340918f50e8a2aaf61fb9874fbb6a0ce586f1832382b0c20c8662b1ff8f5f2",
+    "tests/probe_pinned_contract.py": "387efe7d19dab26f8cfc50e2edbaeb4dbc81af1ec9b96d336027c33c26a11683",
+    "tests/test_ci_m2.py": "9a2b19771dd705ad009becb42c3704082a6155119f08658602325b0e9a0a89d1",
+    "tests/test_cost_query.py": "8c9a5a03d0ee5863020541ef8cd5590d8115f739b5216a05d69fb454326327ea",
+    "tests/test_coverage_archive.py": "df36f87518340ae7eab69545e829d2979575bb7b7c19b038d5113bb35fd7d258",
+    "tests/test_coverage_offline.py": "60e880cdcc026b667fc8f758ff04396bca7a355640e82d1c67751debf6da1ace",
+    "tests/test_coverage_scoped_assertions.py": "aba9ebc10814f3acdf2029a9ec42091e52ba751625f03e56873d5d23971e6752",
+    "tests/test_harness.py": "d0390cc3e0fd6ee6cc090d3a450a3370513412d10385f0ebc8507452279a1035",
+    "tests/test_http_contract_metadata.py": "1b56e3a260358424ee97dba06e7ce45e4cf4b82eeaca55c203b05c724a3de5c6",
+    "tests/test_offline_suite_gate.py": "a694b3205b30434cd57af7f1c8ed74f6dc91f44bf5c3280f607cd69ba701ed4d",
+    "tests/test_p09_preflight.py": "cfb4b179d4a2dca70289d28be5242f4dbd4173e67016f0da5b26194ded4f5ce9",
+    "tests/test_p09_runtime.py": "2e2bfa55095aead48889963d77ed6d971010a8d3c44ebadcf8ea94e3432b3cfa",
+    "tests/test_p10_runtime.py": "185d6279523f21db12abe26cabfcd3695cacef4452b6618a66f04ce47ba7f009",
+    "tests/test_p10_selection.py": "3ee42750a21364b4ae1fa51b9d25eb35eef3c541ab53d1ef85572bd1a9846685",
+    "tests/test_p14_pilot.py": "c76c0b7f762a4eed3168b8887bffcb18f68e23c9eee0c6cecc811d397ab5d2f9",
+    "tests/test_scenario_trace.py": "280e6d634f397c1fe1b9bc17fcf29f458fa19eb48d379b6ca726055c53704916",
+    "scripts/data/fixture-oracle.json": "8dc8fde62dcbcd73d9bdfe05cf0ed0df93bf4cec48d1cbf4e4e41fb238fb71e0",
+    "scripts/data/query-cost-model-v1.json": "b8384d7c7ecf9a864d871d2fa56cd94a6be55555ef4f5490e0d2f27d4402ad55",
+    "scripts/data/query-cost-protocol-v1.json": "02ac195775b34a57c3b69ca5ca9f66b34781ba65f2e67ba3e9fa1f867b8af682",
+    "scripts/data/test-catalog-v1.json": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58",
+    "docs/coverage/schemas/assertion-scopes.schema.json": "c63cee33f242132e714ea5b483a5630bb5bd3bf6e9c2137f7d9168bc42b77506",
+    "docs/coverage/schemas/baseline-manifest.schema.json": "7440cf7490c38efa9c68ab7430962370aacd5e51a0968201db85a9be639de8f2",
+    "docs/coverage/schemas/common.schema.json": "bf7653610e185c01cdd3e7c207500c408d921ce8b4e2be430cbff323799722b2",
+    "docs/coverage/schemas/coverage-summary.schema.json": "aedadc37d5518d5125a33740c6fdfb8e5a1f1a1f6e74f25008e81db0b7758ae3",
+    "docs/coverage/schemas/decisions.schema.json": "f8d4c5f76fe7914a31ecc74dd7eafc88f913e625dead91ced9e0f3cf08cb0217",
+    "docs/coverage/schemas/executions.schema.json": "f31485b8ea99ee2a1c78cde530c66fa7a4de4a18781a18afb87e91a6f93df614",
+    "docs/coverage/schemas/executions.v1.1.schema.json": "0d8303df4c055c601db4ce5ae0b50c26730367c104c640b7be4f349fdef26d3d",
+    "docs/coverage/schemas/gaps.schema.json": "0f00bcb4bd21519374033989426f0e82193b177053933335a786871a473b9c19",
+    "docs/coverage/schemas/requirements.schema.json": "c3e23f11e83ef67eadaa7d53670a4b3a3e8b6151586417a9a510b64b5981e65d",
+    "docs/coverage/schemas/rtm-links.schema.json": "7d312f0b63dce9358469336305bb003420d2ea29afecfac7a68dcc99b9f28a74",
+    "docs/coverage/schemas/selection-manifest.schema.json": "aca4a45ff75d56c98fe2ee5f96e7206747cdf6b4d7066832da052fcafa2645c6",
+    "docs/coverage/schemas/system-inventory.schema.json": "646355a3dd8f171e635f5340977c3f57a502667992def40d5ce4b642f1aa3f5d",
+    "docs/coverage/schemas/test-catalog.schema.json": "6c29acceece1788cdf1342296dd4b26276829b5a7e9b21930f72e87f9aaf8bbb",
+    "docs/coverage/examples/baseline-manifest.json": "f19f1b48ff9d246a4c783527c8dadf59b34dee18cceec990bf8dd5176f925217",
+    "docs/coverage/examples/coverage-summary.json": "8c00050d67635dcaf4d17b06fbb9be2505ed8f07b07139aad7b182fa0bfd210d",
+    "docs/coverage/examples/selection-manifest.json": "a9b2f268facabafec8ac2f787253cb50d79e044eef016bd2404b86ffed7df1e1",
+    "docs/coverage/examples/decisions.jsonl": "ce5b7c8ea4b446628941d3e3fb870d977c720b964041b2d143291fd9f2388d8c",
+    "docs/coverage/examples/executions.jsonl": "17a6ae86c8cac238dd1aee68d99050d5949abe5fc48e44e8ad463444e6c3454e",
+    "docs/coverage/examples/gaps.jsonl": "c9a0e55b88c79a2846da40b381cdf2ddd28c572236cac23a2279d936d49e96f1",
+    "docs/coverage/examples/requirements.jsonl": "bcb0073fb61e549d9cd793e9cb6a8dce82b7eaba992a7acd837b51bcd78a6bd0",
+    "docs/coverage/examples/rtm-links.jsonl": "d298ff384a3bcc340685cd28f7f709a250fa6d664bd973fb3684cb2b4ebda337",
+    "docs/coverage/examples/system-inventory.jsonl": "e50856f79dc905ff1ae58852043a7e54f4913c54d1dc822fd756b9b41ed78f03",
+    "docs/coverage/examples/test-catalog.jsonl": "4eac61007b09068512f87ad69ce25da5cef1dd3517ce651f27dd86c1b543b353"
+  }
+}

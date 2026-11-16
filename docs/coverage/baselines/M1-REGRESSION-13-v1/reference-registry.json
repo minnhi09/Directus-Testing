@@ -1,0 +1,668 @@
+{
+  "format": "P08_REFERENCE_REGISTRY_1",
+  "records": [
+    {
+      "id": "CAP-COLLAB-COMMENT-MENTIONS",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-COLLAB-EMAIL-SIDE-EFFECTS",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-COLLAB-LOCALES",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FILES-ASSET-TRANSFORM-RANGE",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FILES-MULTIPART",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FILES-STORAGE-BACKENDS",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FILES-TUS-PROTOCOL",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FILES-URL-IMPORT",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FILES-ZIP",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FLOW-EVENT-TRIGGER",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FLOW-HTTP-TRIGGER",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FLOW-OPERATION-DISPATCH",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-FLOW-SCHEDULE-TRIGGER",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-HISTORY-AUTO-TRACKING",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-HISTORY-RETENTION",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-HISTORY-VERSION-LIFECYCLE",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-HISTORY-VERSION-QUERY",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-IMPORT-ASYNC-EXPORT",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-IMPORT-QUERY-EXPORT",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-IMPORT-SORT-REVERT",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-IMPORT-STREAM-BATCH",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-IMPORT-UTILITY-MISC",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-ITEM-BULK",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-ITEM-NESTED-ATOMIC",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-ITEM-QUERY",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-ITEM-SINGLETON",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-ITEM-VALIDATION",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "CAP-SHARE-AUTH-STATE",
+      "kind": "CAPABILITY",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/capabilities.jsonl",
+        "revision": null,
+        "sha256": "995ca0f6e004ea31c37f9e092268a7507f6d8459fadeba8a124867c3dbd15632",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-HISTORICAL--AUTH-OAUTH",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-HISTORICAL--AUTH-OAUTH--PROVIDER-",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-ACTIVITY",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-COMMENTS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-DASHBOARDS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-FILES",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-FLOWS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-FOLDERS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-ITEMS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-NOTIFICATIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-OPERATIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-PANELS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-PRESETS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-REVISIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-SHARES",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-TRANSLATIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-P04-SEARCH-VERSIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/content-native/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "ffe58cff24c382d5f647fcf8a738fd483c52a3b1d88c5ed3447450ed06bc6eff",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-SEARCH-ACCESS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-SEARCH-COLLECTIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-SEARCH-PERMISSIONS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-SEARCH-POLICIES",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-SEARCH-ROLES",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    },
+    {
+      "id": "UNRESOLVED-SEARCH-USERS",
+      "kind": "UNRESOLVED",
+      "source_ref": {
+        "kind": "ARTIFACT",
+        "path": "docs/coverage/inventory/auth-system/unresolved-routes.jsonl",
+        "revision": null,
+        "sha256": "4b1e39c268cafce02e99da026221dc76a6db76069f6d1c851954d49a3cdd1652",
+        "pointer": null,
+        "certainty": "VERIFIED",
+        "gap_ids": []
+      }
+    }
+  ]
+}

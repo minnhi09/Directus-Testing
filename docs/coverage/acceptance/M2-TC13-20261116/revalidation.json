@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "name": "not_a_server_error",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "status_code_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "content_type_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "response_schema_conformance",
+      "status": "failed",
+      "failures": [
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema"
+        }
+      ]
+    }
+  ],
+  "mode": "OFFLINE_CAPTURED_RESPONSE_REVALIDATION",
+  "new_HTTP_requests": 0
+}

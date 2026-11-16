@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "data_origin": "DESIGN_EXAMPLE",
+  "baseline_id": "EXAMPLE-BASELINE",
+  "inventory_revision": "EXAMPLE-INVENTORY-DRAFT",
+  "catalog_revision": "EXAMPLE-CATALOG-DRAFT",
+  "review_state": "DRAFT",
+  "sut_commit": null,
+  "sut_version": null,
+  "image_digest": null,
+  "image_id": null,
+  "architecture": null,
+  "config_profile": null,
+  "config_hash_sanitized": null,
+  "fixture_profile": null,
+  "fixture_hash": null,
+  "harness_commit": null,
+  "environment_id": null,
+  "generated_at": null,
+  "actor_schema_hashes": {
+    "EXAMPLE-ACTOR": null
+  },
+  "harness_worktree": "UNKNOWN",
+  "run_ids": [],
+  "source_refs": [
+    {
+      "kind": "DESIGN",
+      "path": "docs/coverage/examples/README.md",
+      "revision": null,
+      "sha256": null,
+      "pointer": "#scope",
+      "certainty": "PROPOSED",
+      "gap_ids": []
+    }
+  ],
+  "gap_ids": [
+    "EXAMPLE-GAP-UNVERIFIED"
+  ],
+  "unresolved_fields": {
+    "/sut_commit": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/sut_version": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/image_digest": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/image_id": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/architecture": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/config_profile": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/config_hash_sanitized": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/fixture_profile": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/fixture_hash": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/harness_commit": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/environment_id": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/generated_at": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/actor_schema_hashes/EXAMPLE-ACTOR": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ],
+    "/harness_worktree": [
+      "EXAMPLE-GAP-UNVERIFIED"
+    ]
+  }
+}

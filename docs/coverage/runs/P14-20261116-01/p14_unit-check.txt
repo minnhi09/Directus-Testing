@@ -1,0 +1,9 @@
+test_completed_guided_resume_stops_before_credentials_or_mutation (test_p14_pilot.PilotScopeTests.test_completed_guided_resume_stops_before_credentials_or_mutation) ... ok
+test_missing_actor_operation_fails_before_run (test_p14_pilot.PilotScopeTests.test_missing_actor_operation_fails_before_run) ... ok
+test_overlay_does_not_mutate_raw_or_response_contract (test_p14_pilot.PilotScopeTests.test_overlay_does_not_mutate_raw_or_response_contract) ... ok
+test_scope_exactly_five_without_admin_routes_or_bulk (test_p14_pilot.PilotScopeTests.test_scope_exactly_five_without_admin_routes_or_bulk) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+OK
