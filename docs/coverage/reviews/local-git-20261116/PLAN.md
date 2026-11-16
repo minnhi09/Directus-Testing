@@ -16,7 +16,7 @@ Người dùng đã cho phép commit local, không push/merge/PR. Giữ cấu h�
 | 08 | test(contract): capture and diagnose actor-scoped HTTP evidence | 3,5,6,7 | 6 |
 | 09 | test(rest): add bounded raw and guided contract pilot tooling | 5,8 | 2 |
 | 10 | ci: gate private profiles and publish complete M2 diagnostics | 5,6,7,8,9 | 5 |
-| 11 | docs: record local commit provenance and verification | 1,2,3,4,5,6,7,8,9,10 | 4 |
+| 11 | docs: record local commit provenance and verification | 1,2,3,4,5,6,7,8,9,10 | 6 |
 
 Helper/dataset nằm ở nhóm trước; từng nhóm có check phù hợp. Tài liệu lịch sử có link tới sản phẩm nhóm sau, nên chỉ cây cuối được gọi là đầy đủ cho static/CI. Commit không đồng nghĩa phase COMPLETE hoặc acceptance PASS.
 
