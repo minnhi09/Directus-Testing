@@ -251,6 +251,14 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 - `auth/logout`, `auth/refresh`, `utils/cache/clear`, `utils/import`: kiểm xem token tĩnh của actor có bị ảnh hưởng không (chưa xác minh), dùng tài khoản/token riêng cho nhóm này, restore sau mỗi seed, không reset giữa các bước của chuỗi stateful.
 - **DoD:** chạy nhóm này không làm hỏng token của các run khác; restore PASS.
 
+**Tiến độ WP4 (23/11/2026): xong.** Chi tiết, bằng chứng và giới hạn: [wp4/README.md](wp4/README.md).
+
+- **Token không bị hỏng:** `auth/logout` (giả hoặc thật) chỉ vô hiệu refresh token tương ứng; access token vẫn dùng được. `utils/cache/clear` bị chặn (403) với mọi actor không phải admin.
+- **Rủi ro tìm được:** 30 lần đăng nhập sai làm người dùng bị `suspended`, và email admin của lab trùng email mẫu trong OpenAPI của Directus nên profile raw có thể làm admin bị tạm ngưng. Không đổi cấu hình Directus; thay vào đó thêm bảo vệ.
+- **Bảo vệ trong `lab-components.sh`:** chụp trạng thái 21 nhóm ngoài `qa_*` trước và sau mỗi seed; tự đặt lại trạng thái tài khoản lab (API, hoặc SQL nếu admin không đăng nhập được); tự xóa thông báo do `utils/export` tạo; mọi thay đổi khác thì báo cáo, đánh dấu seed thất bại và dừng các seed sau.
+- **Kiểm chứng:** ba vòng đối chứng âm (chen role lạ và tạm ngưng reader giữa chừng) và hai run sạch (Editor 30 operation, Reader 22 operation) đều ra kết quả đúng sau khi sửa hai lỗi của chính bộ kiểm tra tìm thấy lúc thử. Phát hiện thêm: mỗi lần `POST /utils/export/{collection}` tạo một dòng trong `directus_notifications`.
+- Còn mở: ngưỡng khóa đăng nhập chính xác, `utils/import` ngoài `qa_categories`, và các thay đổi mức DB không đi qua API.
+
 ### WP5. Chiến dịch đầy đủ, chạy hết ngân sách
 
 - Ma trận: 3 actor × {raw, guided} × seed 101, 202, 303 = **18 run**. Mặc định `AGENTS.md`: một worker, ~5 req/s, timeout 10 giây, 100 ví dụ fuzz/operation. Các run cũ đều dừng ở `max_time` (20 phút), nên cần đo thời gian thực của 30 operation bằng một pilot nhỏ rồi đặt ngân sách đủ để hoàn tất. Mọi thay đổi ngân sách phải ghi lại.
@@ -336,7 +344,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [x] WP1: schema 3 actor export từ lab pin, CSV mẫu số cập nhật (xong 23/11/2026; hash trùng bản 11/10)
 - [x] WP2: `test raw|guided` chạy theo actor (xong 23/11/2026; quyết định của người dùng, không có xác nhận của Lành)
 - [ ] WP3: overlay guided cho assets, import, export, sort, auth (overlay và `k05_reach_report.py` xong 23/11/2026; **còn: bảng C2 chính thức từ run đầy đủ ở WP5**)
-- [ ] WP4: nhóm thao tác có tác dụng phụ chạy an toàn
+- [x] WP4: nhóm thao tác có tác dụng phụ chạy an toàn (xong 23/11/2026; xem `wp4/README.md`)
 - [ ] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET`
 - [ ] WP6: coverage tracecov hoặc `NOT_MEASURED`
 - [ ] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate
