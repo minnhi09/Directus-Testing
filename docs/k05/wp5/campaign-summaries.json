@@ -1,0 +1,3074 @@
+{
+ "schema": "k05-wp5-campaign-summaries/1",
+ "note": "Tom tat 18 seed cua WP5 (campaign-summary.json goc); artifacts/runs/ bi Git bo qua nen day la ban luu gon.",
+ "runs": [
+  {
+   "group": "editor-raw",
+   "run_id": "20261123T174529Z-808",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "editor",
+    "scope": "full",
+    "operation_count": 30,
+    "seed": 101,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "6d2848ec28a7ad6ab472865b3bb9cc8ea8d3127d5cba82863998226ea07cc038",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 30,
+      "selected": 30,
+      "tested": 30,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 117,
+      "with_failures": 53,
+      "unique_failures": 66,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 14,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_categories",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_categories",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 39,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_articles/{id}",
+        "DELETE /items/qa_categories",
+        "DELETE /items/qa_categories/{id}",
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "PATCH /items/qa_categories/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 12,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /items/qa_articles",
+        "TRACE /items/qa_categories",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 26.92272143899936
+    }
+   }
+  },
+  {
+   "group": "editor-raw",
+   "run_id": "20261123T174529Z-808",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "editor",
+    "scope": "full",
+    "operation_count": 30,
+    "seed": 202,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "6d2848ec28a7ad6ab472865b3bb9cc8ea8d3127d5cba82863998226ea07cc038",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 30,
+      "selected": 30,
+      "tested": 30,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 116,
+      "with_failures": 53,
+      "unique_failures": 64,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 13,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_categories",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 2,
+       "operations": [
+        "GET /items/qa_articles",
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 37,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_articles/{id}",
+        "DELETE /items/qa_categories",
+        "DELETE /items/qa_categories/{id}",
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "PATCH /items/qa_categories/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 12,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /items/qa_articles",
+        "TRACE /items/qa_categories",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 26.898065452000083
+    }
+   }
+  },
+  {
+   "group": "editor-raw",
+   "run_id": "20261123T174529Z-808",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "editor",
+    "scope": "full",
+    "operation_count": 30,
+    "seed": 303,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "6d2848ec28a7ad6ab472865b3bb9cc8ea8d3127d5cba82863998226ea07cc038",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 30,
+      "selected": 30,
+      "tested": 30,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 114,
+      "with_failures": 53,
+      "unique_failures": 65,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 13,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_categories",
+        "GET /items/qa_categories",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_categories",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 39,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_articles/{id}",
+        "DELETE /items/qa_categories",
+        "DELETE /items/qa_categories/{id}",
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "PATCH /items/qa_categories/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 12,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /items/qa_articles",
+        "TRACE /items/qa_categories",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 25.924504599999636
+    }
+   }
+  },
+  {
+   "group": "reader-raw",
+   "run_id": "20261123T174820Z-1596",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "reader",
+    "scope": "full",
+    "operation_count": 22,
+    "seed": 101,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "1e07e629472e2c354a862786f8c59b439e000b8e2ff1e389b29452895f4653b1",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 22,
+      "selected": 22,
+      "tested": 22,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 96,
+      "with_failures": 38,
+      "unique_failures": 48,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 11,
+       "operations": [
+        "GET /items/qa_articles",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 26,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 22.982991933999074
+    }
+   }
+  },
+  {
+   "group": "reader-raw",
+   "run_id": "20261123T174820Z-1596",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "reader",
+    "scope": "full",
+    "operation_count": 22,
+    "seed": 202,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "1e07e629472e2c354a862786f8c59b439e000b8e2ff1e389b29452895f4653b1",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 22,
+      "selected": 22,
+      "tested": 22,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 98,
+      "with_failures": 37,
+      "unique_failures": 45,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 9,
+       "operations": [
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 2,
+       "operations": [
+        "GET /items/qa_articles",
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 24,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 23.033147183001347
+    }
+   }
+  },
+  {
+   "group": "reader-raw",
+   "run_id": "20261123T174820Z-1596",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "reader",
+    "scope": "full",
+    "operation_count": 22,
+    "seed": 303,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "1e07e629472e2c354a862786f8c59b439e000b8e2ff1e389b29452895f4653b1",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 22,
+      "selected": 22,
+      "tested": 22,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 95,
+      "with_failures": 38,
+      "unique_failures": 48,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 11,
+       "operations": [
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 26,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 22.254861846000495
+    }
+   }
+  },
+  {
+   "group": "anonymous-raw",
+   "run_id": "20261123T175055Z-893",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "anonymous",
+    "scope": "full",
+    "operation_count": 10,
+    "seed": 101,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "f10ffa19bb6654cbb99ad01282dc0e9106b0f46b274d002cb2c0ca3d5e38d653",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 32,
+      "with_failures": 18,
+      "unique_failures": 21,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 3,
+       "operations": [
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 9,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 8,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 8.85901717500019
+    }
+   }
+  },
+  {
+   "group": "anonymous-raw",
+   "run_id": "20261123T175055Z-893",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "anonymous",
+    "scope": "full",
+    "operation_count": 10,
+    "seed": 202,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "f10ffa19bb6654cbb99ad01282dc0e9106b0f46b274d002cb2c0ca3d5e38d653",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 32,
+      "with_failures": 18,
+      "unique_failures": 21,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 3,
+       "operations": [
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 9,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 8,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 8.781052532998729
+    }
+   }
+  },
+  {
+   "group": "anonymous-raw",
+   "run_id": "20261123T175055Z-893",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "raw",
+    "actor": "anonymous",
+    "scope": "full",
+    "operation_count": 10,
+    "seed": 303,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "f10ffa19bb6654cbb99ad01282dc0e9106b0f46b274d002cb2c0ca3d5e38d653",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 32,
+      "with_failures": 18,
+      "unique_failures": 21,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 3,
+       "operations": [
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 9,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 8,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 8.728381383998567
+    }
+   }
+  },
+  {
+   "group": "anonymous-guided",
+   "run_id": "20261123T175314Z-1627",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "anonymous",
+    "scope": "full",
+    "operation_count": 10,
+    "seed": 101,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "3e1ad186931c6fdcce8bd8a0c835de3ffbb6c3f26c340c73aefe7a9448fb6a18",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 33,
+      "with_failures": 19,
+      "unique_failures": 22,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 3,
+       "operations": [
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 8,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 9.089475409000443
+    }
+   }
+  },
+  {
+   "group": "anonymous-guided",
+   "run_id": "20261123T175314Z-1627",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "anonymous",
+    "scope": "full",
+    "operation_count": 10,
+    "seed": 202,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "3e1ad186931c6fdcce8bd8a0c835de3ffbb6c3f26c340c73aefe7a9448fb6a18",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 33,
+      "with_failures": 19,
+      "unique_failures": 22,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 3,
+       "operations": [
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 8,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 9.00870735100034
+    }
+   }
+  },
+  {
+   "group": "anonymous-guided",
+   "run_id": "20261123T175314Z-1627",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "anonymous",
+    "scope": "full",
+    "operation_count": 10,
+    "seed": 303,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "3e1ad186931c6fdcce8bd8a0c835de3ffbb6c3f26c340c73aefe7a9448fb6a18",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 33,
+      "with_failures": 19,
+      "unique_failures": 22,
+      "without_checks": 0,
+      "errored": 0
+     },
+     "failures": [
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 3,
+       "operations": [
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 1,
+       "operations": [
+        "GET /server/ping"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 8,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 8.909176404000391
+    }
+   }
+  },
+  {
+   "group": "reader-guided",
+   "run_id": "20261123T175522Z-1525",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "reader",
+    "scope": "full",
+    "operation_count": 22,
+    "seed": 101,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "4846026d8114b5121a0b9cbee95b0096466818691e7d5087fed51dba56d272a2",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [
+      44
+     ],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 22,
+      "selected": 22,
+      "tested": 22,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 3722,
+      "with_failures": 57,
+      "unique_failures": 72,
+      "without_checks": 0,
+      "errored": 31
+     },
+     "failures": [
+      {
+       "type": "ServerError",
+       "title": "Server error",
+       "severity": "critical",
+       "count": 2,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "JsonSchemaError",
+       "title": "Response violates schema",
+       "severity": "high",
+       "count": 6,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 15,
+       "operations": [
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 6,
+       "operations": [
+        "GET /server/ping",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 33,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 778.1638372229991
+    }
+   }
+  },
+  {
+   "group": "reader-guided",
+   "run_id": "20261123T175522Z-1525",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "reader",
+    "scope": "full",
+    "operation_count": 22,
+    "seed": 202,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "4846026d8114b5121a0b9cbee95b0096466818691e7d5087fed51dba56d272a2",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [
+      45
+     ],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 22,
+      "selected": 22,
+      "tested": 22,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 1056,
+      "with_failures": 51,
+      "unique_failures": 65,
+      "without_checks": 0,
+      "errored": 13
+     },
+     "failures": [
+      {
+       "type": "ServerError",
+       "title": "Server error",
+       "severity": "critical",
+       "count": 2,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "JsonSchemaError",
+       "title": "Response violates schema",
+       "severity": "high",
+       "count": 2,
+       "operations": [
+        "GET /items/qa_articles/{id}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 15,
+       "operations": [
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 4,
+       "operations": [
+        "GET /items/qa_articles",
+        "GET /server/ping",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 32,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 221.29766059400026
+    }
+   }
+  },
+  {
+   "group": "reader-guided",
+   "run_id": "20261123T175522Z-1525",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "reader",
+    "scope": "full",
+    "operation_count": 22,
+    "seed": 303,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "4846026d8114b5121a0b9cbee95b0096466818691e7d5087fed51dba56d272a2",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [
+      46
+     ],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 22,
+      "selected": 22,
+      "tested": 22,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 1754,
+      "with_failures": 56,
+      "unique_failures": 72,
+      "without_checks": 0,
+      "errored": 12
+     },
+     "failures": [
+      {
+       "type": "ServerError",
+       "title": "Server error",
+       "severity": "critical",
+       "count": 3,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "JsonSchemaError",
+       "title": "Response violates schema",
+       "severity": "high",
+       "count": 5,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 15,
+       "operations": [
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 5,
+       "operations": [
+        "GET /server/ping",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 34,
+       "operations": [
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 10,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 368.0025484960006
+    }
+   }
+  },
+  {
+   "group": "editor-guided",
+   "run_id": "20261123T182014Z-67",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "editor",
+    "scope": "full",
+    "operation_count": 30,
+    "seed": 101,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "a51c25de8817c5fe051ac0c9fe7e4e61a939544c22d3471c2a2c406abab47377",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [
+      47
+     ],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 30,
+      "selected": 30,
+      "tested": 30,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 7831,
+      "with_failures": 92,
+      "unique_failures": 114,
+      "without_checks": 0,
+      "errored": 257
+     },
+     "failures": [
+      {
+       "type": "ServerError",
+       "title": "Server error",
+       "severity": "critical",
+       "count": 8,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "JsonSchemaError",
+       "title": "Response violates schema",
+       "severity": "high",
+       "count": 9,
+       "operations": [
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "AcceptedNegativeData",
+       "title": "API accepted schema-violating request",
+       "severity": "medium",
+       "count": 4,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 20,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_categories",
+        "GET /items/qa_articles",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 7,
+       "operations": [
+        "GET /server/ping",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 54,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_articles/{id}",
+        "DELETE /items/qa_categories",
+        "DELETE /items/qa_categories/{id}",
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "PATCH /items/qa_categories/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 12,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /items/qa_articles",
+        "TRACE /items/qa_categories",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 1594.2972993290005
+    }
+   }
+  },
+  {
+   "group": "editor-guided",
+   "run_id": "20261123T182014Z-67",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "editor",
+    "scope": "full",
+    "operation_count": 30,
+    "seed": 202,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "a51c25de8817c5fe051ac0c9fe7e4e61a939544c22d3471c2a2c406abab47377",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [
+      48
+     ],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 30,
+      "selected": 30,
+      "tested": 30,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 8383,
+      "with_failures": 91,
+      "unique_failures": 111,
+      "without_checks": 0,
+      "errored": 352
+     },
+     "failures": [
+      {
+       "type": "ServerError",
+       "title": "Server error",
+       "severity": "critical",
+       "count": 7,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "JsonSchemaError",
+       "title": "Response violates schema",
+       "severity": "high",
+       "count": 8,
+       "operations": [
+        "GET /items/qa_articles/{id}",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "AcceptedNegativeData",
+       "title": "API accepted schema-violating request",
+       "severity": "medium",
+       "count": 5,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 20,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 6,
+       "operations": [
+        "GET /items/qa_articles",
+        "GET /server/ping",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 53,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_articles/{id}",
+        "DELETE /items/qa_categories",
+        "DELETE /items/qa_categories/{id}",
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "PATCH /items/qa_categories/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 12,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /items/qa_articles",
+        "TRACE /items/qa_categories",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 1690.6802863390003
+    }
+   }
+  },
+  {
+   "group": "editor-guided",
+   "run_id": "20261123T182014Z-67",
+   "harness_sha": "c7b559faabff255dd1f993a2a0ec88ac6260acd6",
+   "working_tree": "dirty",
+   "summary": {
+    "schema": 1,
+    "profile": "guided",
+    "actor": "editor",
+    "scope": "full",
+    "operation_count": 30,
+    "seed": 303,
+    "status": "failed",
+    "termination": "completed",
+    "schema_sha256": "a51c25de8817c5fe051ac0c9fe7e4e61a939544c22d3471c2a2c406abab47377",
+    "runner_exit_code": 1,
+    "restore_exit_code": 0,
+    "side_effects_exit_code": 0,
+    "side_effects": {
+     "schema": 1,
+     "status": "clean",
+     "changed_groups": [],
+     "recovered_user_status": [],
+     "cleaned_notifications": [
+      49
+     ],
+     "checked": [
+      "roles",
+      "policies",
+      "permissions",
+      "access",
+      "files",
+      "folders",
+      "flows",
+      "operations",
+      "presets",
+      "dashboards",
+      "panels",
+      "shares",
+      "notifications",
+      "translations",
+      "versions",
+      "comments",
+      "users",
+      "collections",
+      "fields",
+      "relations",
+      "settings"
+     ],
+     "note": "qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"
+    },
+    "run_complete": true,
+    "report_present": true,
+    "coverage_present": true,
+    "budget": {
+     "max_time_seconds": 0,
+     "max_examples_per_operation": 100,
+     "workers": 1,
+     "rate_limit": "5/s",
+     "request_timeout_seconds": 10,
+     "phases": [
+      "examples",
+      "coverage",
+      "fuzzing",
+      "stateful"
+     ]
+    },
+    "schemathesis": {
+     "operations": {
+      "total": 30,
+      "selected": 30,
+      "tested": 30,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+     },
+     "test_cases": {
+      "generated": 8639,
+      "with_failures": 90,
+      "unique_failures": 112,
+      "without_checks": 0,
+      "errored": 404
+     },
+     "failures": [
+      {
+       "type": "ServerError",
+       "title": "Server error",
+       "severity": "critical",
+       "count": 9,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "JsonSchemaError",
+       "title": "Response violates schema",
+       "severity": "high",
+       "count": 7,
+       "operations": [
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "AcceptedNegativeData",
+       "title": "API accepted schema-violating request",
+       "severity": "medium",
+       "count": 2,
+       "operations": [
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "RejectedPositiveData",
+       "title": "API rejected schema-compliant request",
+       "severity": "medium",
+       "count": 20,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_categories",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/refresh",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedContentType",
+       "title": "Undocumented Content-Type",
+       "severity": "medium",
+       "count": 7,
+       "operations": [
+        "GET /server/ping",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UndefinedStatusCode",
+       "title": "Undocumented HTTP status code",
+       "severity": "medium",
+       "count": 55,
+       "operations": [
+        "DELETE /items/qa_articles",
+        "DELETE /items/qa_articles/{id}",
+        "DELETE /items/qa_categories",
+        "DELETE /items/qa_categories/{id}",
+        "GET /assets/{id}",
+        "GET /auth/oauth",
+        "GET /auth/oauth/{provider}",
+        "GET /items/qa_articles",
+        "GET /items/qa_articles/{id}",
+        "GET /items/qa_categories",
+        "GET /items/qa_categories/{id}",
+        "GET /utils/random/string",
+        "PATCH /items/qa_articles",
+        "PATCH /items/qa_articles/{id}",
+        "PATCH /items/qa_categories",
+        "PATCH /items/qa_categories/{id}",
+        "POST /auth/login",
+        "POST /auth/logout",
+        "POST /auth/password/request",
+        "POST /auth/password/reset",
+        "POST /auth/refresh",
+        "POST /items/qa_articles",
+        "POST /items/qa_categories",
+        "POST /utils/cache/clear",
+        "POST /utils/export/{collection}",
+        "POST /utils/import",
+        "POST /utils/import/{collection}",
+        "POST /utils/sort/{collection}",
+        "Stateful tests"
+       ]
+      },
+      {
+       "type": "UnsupportedMethodResponse",
+       "title": "Unsupported methods",
+       "severity": "medium",
+       "count": 12,
+       "operations": [
+        "TRACE /auth/login",
+        "TRACE /auth/logout",
+        "TRACE /auth/oauth",
+        "TRACE /auth/password/request",
+        "TRACE /auth/password/reset",
+        "TRACE /auth/refresh",
+        "TRACE /items/qa_articles",
+        "TRACE /items/qa_categories",
+        "TRACE /server/info",
+        "TRACE /server/ping",
+        "TRACE /utils/cache/clear",
+        "TRACE /utils/random/string"
+       ]
+      }
+     ],
+     "errors": [],
+     "stop_reason": "completed",
+     "complete": true,
+     "exit_code": 1,
+     "running_time": 1733.659361344
+    }
+   }
+  }
+ ]
+}
