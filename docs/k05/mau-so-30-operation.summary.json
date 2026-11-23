@@ -1,0 +1,30 @@
+{
+  "schema": "k05-denominator/1",
+  "approved_scope": "30 operation x actor co operation do trong schema (nguoi dung duyet 23/11/2026)",
+  "schema_dir": "runtime\\schemas\\r06-k05-v2-20261123",
+  "schema_sha256": {
+    "editor": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+    "reader": "d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8",
+    "anonymous": "2070c25c68193a4a42501935974bb3045697aceb1fe072bb3461f43c0a0342b3"
+  },
+  "schema_note": "export lai ngay 23/11/2026 tu lab da pin (Directus 12.5.0, commit 4f77933), run 20261123T111625Z-311; hash trung ban export 11/10/2026",
+  "pairs_total": 62,
+  "pairs_by_actor": {
+    "editor": 30,
+    "reader": 22,
+    "anonymous": 10
+  },
+  "unique_operations": 30,
+  "unique_by_scope_class": {
+    "MAIN_10": 10,
+    "BULK": 4,
+    "ADDED": 16
+  },
+  "unique_by_group": {
+    "assets": 1,
+    "auth": 7,
+    "items": 14,
+    "server": 2,
+    "utils": 6
+  }
+}

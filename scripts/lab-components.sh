@@ -1386,9 +1386,24 @@ CAMPAIGN_MAX_EXAMPLES="${LAB_MAX_EXAMPLES:-100}"
 CAMPAIGN_WORKERS="${LAB_WORKERS:-1}"
 CAMPAIGN_RATE_LIMIT="${LAB_RATE_LIMIT:-5/s}"
 CAMPAIGN_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}"
+# WP2: actor (editor|reader|anonymous) and scope (main10|full). Defaults keep the
+# historical behaviour: Editor, 10 method-path pairs of the two qa_* collections.
+CAMPAIGN_ACTOR="${LAB_ACTOR:-editor}"
+if [[ "$CAMPAIGN_ACTOR" == unspecified ]]; then CAMPAIGN_ACTOR=editor; fi
+CAMPAIGN_SCOPE="${LAB_CAMPAIGN_SCOPE:-main10}"
 TARGET_OPERATIONS_JSON=''
 
 target_operations_json() {
+	if [[ "$CAMPAIGN_SCOPE" == full ]]; then
+		# Every operation of the actor's OpenAPI schema (30 Editor, 22 Reader, 10 Anonymous).
+		jq -c '
+			[.paths // {} | to_entries[] | .key as $path | .value | to_entries[]
+			| select(.key | IN("get","post","put","patch","delete","search"))
+			| {method:(.key|ascii_upcase),path:$path}]
+			| sort_by(.path,.method)
+		' "$SCHEMA_ROOT/$CAMPAIGN_ACTOR.json"
+		return
+	fi
 	jq -cn '[
 		{method:"GET",path:"/items/qa_articles"},
 		{method:"POST",path:"/items/qa_articles"},
@@ -1415,6 +1430,18 @@ campaign_validate_config() {
 		printf 'ERROR: LAB_RATE_LIMIT phải có dạng 5/s, 100/m hoặc 1/h\n' >&2
 		return 1
 	}
+	case "$CAMPAIGN_ACTOR" in
+		editor|reader|anonymous) ;;
+		*) printf 'ERROR: LAB_ACTOR của campaign phải là editor, reader hoặc anonymous (không dùng admin để fuzz)\n' >&2; return 1 ;;
+	esac
+	case "$CAMPAIGN_SCOPE" in
+		main10|full) ;;
+		*) printf 'ERROR: LAB_CAMPAIGN_SCOPE phải là main10 hoặc full\n' >&2; return 1 ;;
+	esac
+	if [[ "$CAMPAIGN_ACTOR" != editor && "$CAMPAIGN_SCOPE" != full ]]; then
+		printf 'ERROR: actor %s chỉ chạy được với LAB_CAMPAIGN_SCOPE=full (10 operation chính là của Editor)\n' "$CAMPAIGN_ACTOR" >&2
+		return 1
+	fi
 }
 
 campaign_require_inputs() {
@@ -1428,25 +1455,40 @@ campaign_require_inputs() {
 	require_admin_login
 	require_actor_logins
 	load_fixture_map
-	TARGET_OPERATIONS_JSON="$(target_operations_json)"
-	source="$SCHEMA_ROOT/editor.json"
+	source="$SCHEMA_ROOT/$CAMPAIGN_ACTOR.json"
 	if [[ ! -f "$source" ]]; then
 		export_schema || return 1
 	fi
 	[[ -f "$source" ]] || {
-		printf 'ERROR: thiếu raw editor schema: %s\n' "$source" >&2
+		printf 'ERROR: thiếu raw %s schema: %s\n' "$CAMPAIGN_ACTOR" "$source" >&2
 		return 1
 	}
-	schema_operations="$(schema_operations_json "$source")"
+	TARGET_OPERATIONS_JSON="$(target_operations_json)"
 	expected_count="$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")"
-	jq -n -e --argjson expected "$TARGET_OPERATIONS_JSON" --argjson actual "$schema_operations" '
-		($actual | map({method,path}) | sort_by(.path,.method)) as $actual_ops
-		| ($expected | sort_by(.path,.method)) as $expected_ops
-		| (($expected_ops - $actual_ops) | length) == 0
-	' >/dev/null 2>/dev/null || {
-		printf 'ERROR: editor raw schema không có đủ inventory %s operation\n' "$expected_count" >&2
-		return 1
-	}
+	if [[ "$CAMPAIGN_SCOPE" == full ]]; then
+		# The denominator file is the contract: schema operations must equal its rows for this actor.
+		local denominator="$LAB_ROOT_DIR/docs/k05/mau-so-30-operation.csv"
+		local denominator_count
+		[[ -f "$denominator" ]] || {
+			printf 'ERROR: thiếu file mẫu số: %s\n' "$denominator" >&2
+			return 1
+		}
+		denominator_count="$(awk -F, -v actor="$CAMPAIGN_ACTOR" 'NR > 1 && $1 == actor {n++} END {print n + 0}' "$denominator")"
+		[[ "$denominator_count" == "$expected_count" ]] || {
+			printf 'ERROR: schema %s có %s operation nhưng mẫu số ghi %s; export lại schema và sinh lại mẫu số\n' "$CAMPAIGN_ACTOR" "$expected_count" "$denominator_count" >&2
+			return 1
+		}
+	else
+		schema_operations="$(schema_operations_json "$source")"
+		jq -n -e --argjson expected "$TARGET_OPERATIONS_JSON" --argjson actual "$schema_operations" '
+			($actual | map({method,path}) | sort_by(.path,.method)) as $actual_ops
+			| ($expected | sort_by(.path,.method)) as $expected_ops
+			| (($expected_ops - $actual_ops) | length) == 0
+		' >/dev/null 2>/dev/null || {
+			printf 'ERROR: editor raw schema không có đủ inventory %s operation\n' "$expected_count" >&2
+			return 1
+		}
+	fi
 	[[ "$SCHEMATHESIS_IMAGE" == *@sha256:* ]] || {
 		printf 'ERROR: SCHEMATHESIS_IMAGE chưa được digest-pin\n' >&2
 		return 1
@@ -1459,44 +1501,56 @@ campaign_require_inputs() {
 
 campaign_build_schema() {
 	local profile="$1"
-	local source="$SCHEMA_ROOT/editor.json"
+	local source="$SCHEMA_ROOT/$CAMPAIGN_ACTOR.json"
 	local target="$RUN_DIR/schema-$profile.json"
-	local source_copy="$RUN_DIR/source-editor.json"
+	local source_copy="$RUN_DIR/source-$CAMPAIGN_ACTOR.json"
 	local article_id
 	local category_id
 	local diff_status
+	local reason
 	cp -- "$source" "$source_copy"
 	article_id="$(jq -r '.fixtures.qa_articles.article_alpha_published_1' "$FIXTURE_MAP")"
 	category_id="$(jq -r '.fixtures.qa_categories.category_alpha' "$FIXTURE_MAP")"
-	jq --arg profile "$profile" --arg fixture_version "$FIXTURE_VERSION" --argjson article_id "$article_id" --argjson category_id "$category_id" '
-		.paths = (.paths | with_entries(
-			if .key == "/items/qa_articles" or .key == "/items/qa_categories" then
-				.value |= with_entries(select(.key == "get" or .key == "post"))
-			elif .key == "/items/qa_articles/{id}" or .key == "/items/qa_categories/{id}" then
-				.value |= with_entries(select(.key == "get" or .key == "patch" or .key == "delete"))
-			else empty
-			end
-		))
+	jq --arg profile "$profile" --arg scope "$CAMPAIGN_SCOPE" --arg actor "$CAMPAIGN_ACTOR" --arg fixture_version "$FIXTURE_VERSION" --argjson article_id "$article_id" --argjson category_id "$category_id" '
+		def has_op($p; $m): ((.paths[$p] // {}) | has($m));
+		def ex_param($p; $m; $name; $v):
+			if has_op($p; $m) then
+				.paths[$p][$m].parameters = ((.paths[$p][$m].parameters // []) | map(
+					if .name == $name then . + {example:$v} else . end
+				))
+			else . end;
+		def ex_prop($p; $m; $prop; $v):
+			if has_op($p; $m) and (.paths[$p][$m].requestBody.content["application/json"].schema.properties[$prop]? != null) then
+				.paths[$p][$m].requestBody.content["application/json"].schema.properties[$prop].example = $v
+			else . end;
+		def ex_id($p; $m; $v):
+			if has_op($p; $m) then
+				.paths[$p][$m].parameters = ((.paths[$p][$m].parameters // []) | map(
+					if .name == "id" then . + {example:$v} else . end
+				))
+			else . end;
+		def ex_body($p; $m; $v):
+			if has_op($p; $m) and (.paths[$p][$m].requestBody.content["application/json"] != null) then
+				.paths[$p][$m].requestBody.content["application/json"].example = $v
+			else . end;
+		(if $scope == "main10" then
+			.paths = (.paths | with_entries(
+				if .key == "/items/qa_articles" or .key == "/items/qa_categories" then
+					.value |= with_entries(select(.key == "get" or .key == "post"))
+				elif .key == "/items/qa_articles/{id}" or .key == "/items/qa_categories/{id}" then
+					.value |= with_entries(select(.key == "get" or .key == "patch" or .key == "delete"))
+				else empty
+				end
+			))
+		else . end)
 		| if $profile == "guided" then
-			.paths["/items/qa_articles/{id}"].get.parameters = ((.paths["/items/qa_articles/{id}"].get.parameters // []) | map(
-				if .name == "id" then . + {example:$article_id} else . end
-			))
-			| .paths["/items/qa_articles/{id}"].patch.parameters = ((.paths["/items/qa_articles/{id}"].patch.parameters // []) | map(
-				if .name == "id" then . + {example:$article_id} else . end
-			))
-			| .paths["/items/qa_articles/{id}"].delete.parameters = ((.paths["/items/qa_articles/{id}"].delete.parameters // []) | map(
-				if .name == "id" then . + {example:$article_id} else . end
-			))
-			| .paths["/items/qa_categories/{id}"].get.parameters = ((.paths["/items/qa_categories/{id}"].get.parameters // []) | map(
-				if .name == "id" then . + {example:$category_id} else . end
-			))
-			| .paths["/items/qa_categories/{id}"].patch.parameters = ((.paths["/items/qa_categories/{id}"].patch.parameters // []) | map(
-				if .name == "id" then . + {example:$category_id} else . end
-			))
-			| .paths["/items/qa_categories/{id}"].delete.parameters = ((.paths["/items/qa_categories/{id}"].delete.parameters // []) | map(
-				if .name == "id" then . + {example:$category_id} else . end
-			))
-			| .paths["/items/qa_articles"].post.requestBody.content["application/json"].example = {
+			ex_id("/items/qa_articles/{id}"; "get"; $article_id)
+			| ex_id("/items/qa_articles/{id}"; "patch"; $article_id)
+			| ex_id("/items/qa_articles/{id}"; "delete"; $article_id)
+			| ex_id("/items/qa_categories/{id}"; "get"; $category_id)
+			| ex_id("/items/qa_categories/{id}"; "patch"; $category_id)
+			| ex_id("/items/qa_categories/{id}"; "delete"; $category_id)
+			| ex_body("/items/qa_articles"; "post"; {
 				title:"Guided Schemathesis article",
 				status:"draft",
 				score:3,
@@ -1504,16 +1558,43 @@ campaign_build_schema() {
 				metadata:{source:"guided",fixture_version:$fixture_version},
 				internal_notes:"guided probe",
 				category:$category_id
-			}
-			| .paths["/items/qa_categories"].post.requestBody.content["application/json"].example = {name:"Guided Schemathesis category"}
-			| .paths["/items/qa_articles/{id}"].patch.requestBody.content["application/json"].example = {score:4}
-			| .paths["/items/qa_categories/{id}"].patch.requestBody.content["application/json"].example = {name:"Guided category update"}
-			| .["x-r06-k05-guidance"] = {
+			})
+			| ex_body("/items/qa_categories"; "post"; {name:"Guided Schemathesis category"})
+			| ex_body("/items/qa_articles/{id}"; "patch"; {score:4})
+			| ex_body("/items/qa_categories/{id}"; "patch"; {name:"Guided category update"})
+			| (if $scope == "full" then
+				# WP3: examples for operations outside the two qa_* collections. They only add `example`
+				# values to operations that already exist in the actor schema; every identity below is
+				# made-up and non-existent, so no real credential or secret is written to artifacts.
+				ex_param("/assets/{id}"; "get"; "id"; "7a3c9e52-4b1d-4f6a-9d28-0c5e1b8f3a47")
+				| ex_param("/utils/sort/{collection}"; "post"; "collection"; "qa_categories")
+				| ex_param("/utils/export/{collection}"; "post"; "collection"; "qa_articles")
+				| ex_param("/utils/import/{collection}"; "post"; "collection"; "qa_categories")
+				| ex_body("/utils/sort/{collection}"; "post"; {item:$category_id,to:($category_id + 1)})
+				| ex_body("/utils/export/{collection}"; "post"; {format:"json",query:{limit:1,fields:["id"]}})
+				| ex_body("/auth/login"; "post"; {email:"k05-probe@example.com",password:"k05-not-a-real-password",mode:"json"})
+				| ex_body("/auth/refresh"; "post"; {refresh_token:"k05-not-a-real-refresh-token",mode:"json"})
+				| ex_body("/auth/logout"; "post"; {refresh_token:"k05-not-a-real-refresh-token",mode:"json"})
+				| ex_body("/auth/password/request"; "post"; {email:"k05-probe@example.com"})
+				| ex_body("/auth/password/reset"; "post"; {token:"k05-not-a-real-reset-token",password:"k05-not-a-real-password"})
+				| ex_prop("/auth/login"; "post"; "email"; "k05-probe@example.com")
+				| ex_prop("/auth/login"; "post"; "password"; "k05-not-a-real-password")
+				| ex_prop("/auth/login"; "post"; "otp"; "000000")
+				| ex_prop("/auth/refresh"; "post"; "refresh_token"; "k05-not-a-real-refresh-token")
+				| ex_prop("/auth/logout"; "post"; "refresh_token"; "k05-not-a-real-refresh-token")
+				| ex_prop("/auth/password/request"; "post"; "email"; "k05-probe@example.com")
+				| ex_prop("/auth/password/reset"; "post"; "token"; "k05-not-a-real-reset-token")
+				| ex_prop("/auth/password/reset"; "post"; "password"; "k05-not-a-real-password")
+				| ex_body("/items/qa_articles"; "patch"; [{id:$article_id,score:4}])
+				| ex_body("/items/qa_categories"; "patch"; [{id:$category_id,name:"Guided category update"}])
+			else . end)
+			| .["x-r06-k05-guidance"] = ({
 				profile:"guided",
 				reason:"fixture IDs and valid request examples improve reachability; raw schema remains unchanged",
 				fixture_ids:{article:$article_id,category:$category_id},
 				query_focus:["fields","filter","sort","limit","offset","page","search"]
-			}
+			} + (if $scope == "main10" and $actor == "editor" then {} else {actor:$actor,scope:$scope} end)
+			  + (if $scope == "full" then {wp3_examples:"made-up non-secret values for assets, utils, auth and bulk PATCH; no real credential"} else {} end))
 		else .
 		end
 	' "$source" > "$target"
@@ -1529,14 +1610,31 @@ campaign_build_schema() {
 		printf 'ERROR: schema scope %s không hợp lệ\n' "$target" >&2
 		return 1
 	}
-	jq -n --arg profile "$profile" --arg source "$source" --arg target "$target" \
+	# Guard: the overlay must never add or drop operations relative to the intended scope.
+	jq -n -e --argjson operations "$TARGET_OPERATIONS_JSON" --slurpfile scoped "$target" '
+		[$scoped[0].paths | to_entries[] | .key as $path | .value | to_entries[]
+			| select(.key | IN("get","post","put","patch","delete","search"))
+			| {method:(.key|ascii_upcase),path:$path}] | sort_by(.path,.method)
+		== ($operations | sort_by(.path,.method))
+	' >/dev/null || {
+		printf 'ERROR: schema %s không khớp danh sách operation mục tiêu (overlay thêm hoặc làm mất operation)\n' "$target" >&2
+		return 1
+	}
+	if [[ "$profile" == guided ]]; then
+		reason='guided adds fixture ID examples and valid request examples in a separate overlay'
+	elif [[ "$CAMPAIGN_SCOPE" == full ]]; then
+		reason='raw uses every operation of the actor OpenAPI schema (approved 30-operation denominator); operation contracts are not edited'
+	else
+		reason='raw selects only the approved 10 method-path pairs; operation contracts are not edited'
+	fi
+	jq -n --arg profile "$profile" --arg actor "$CAMPAIGN_ACTOR" --arg scope "$CAMPAIGN_SCOPE" --arg source "$source" --arg target "$target" \
 		--arg source_sha "$(sha256sum "$source" | awk '{print $1}')" \
 		--arg target_sha "$(sha256sum "$target" | awk '{print $1}')" \
-		--arg reason "$(if [[ "$profile" == guided ]]; then printf '%s' 'guided adds fixture ID examples and valid request examples in a separate overlay'; else printf '%s' 'raw selects only the approved 10 method-path pairs; operation contracts are not edited'; fi)" \
+		--arg reason "$reason" \
 		--argjson operations "$TARGET_OPERATIONS_JSON" \
-		'{schema:1,profile:$profile,source_schema:$source,source_sha256:$source_sha,scoped_schema:$target,scoped_sha256:$target_sha,reason:$reason,operations:$operations}' \
+		'{schema:1,profile:$profile,actor:$actor,scope:$scope,source_schema:$source,source_sha256:$source_sha,scoped_schema:$target,scoped_sha256:$target_sha,reason:$reason,operations:$operations}' \
 		> "$RUN_DIR/schema-manifest.json"
-	printf 'Campaign schema %s: %s\n' "$profile" "$target"
+	printf 'Campaign schema %s (%s, %s): %s\n' "$profile" "$CAMPAIGN_ACTOR" "$CAMPAIGN_SCOPE" "$target"
 }
 
 campaign_snapshot() {
@@ -1692,6 +1790,8 @@ campaign_one() {
 	local report_summary='null'
 	local campaign_dir="$base_dir/$profile/seed-$seed"
 	local schema_file
+	local schema_token=''
+	local operation_count
 	mkdir -p "$campaign_dir"
 	RUN_DIR="$campaign_dir"
 	if ! campaign_refresh_tokens; then
@@ -1709,10 +1809,16 @@ campaign_one() {
 		return 1
 	fi
 	schema_file="$RUN_DIR/schema-$profile.json"
-	printf 'Schemathesis %s: 10 operation, max-examples=%s, seed=%s, max-time=%ss\n' "$profile" "$CAMPAIGN_MAX_EXAMPLES" "$seed" "$CAMPAIGN_MAX_TIME"
+	operation_count="$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")"
+	case "$CAMPAIGN_ACTOR" in
+		editor) schema_token="$EDITOR_TOKEN" ;;
+		reader) schema_token="$READER_TOKEN" ;;
+		anonymous) schema_token='' ;; # no Authorization header: the request is truly unauthenticated
+	esac
+	printf 'Schemathesis %s: actor=%s, %s operation (scope %s), max-examples=%s, seed=%s, max-time=%ss\n' "$profile" "$CAMPAIGN_ACTOR" "$operation_count" "$CAMPAIGN_SCOPE" "$CAMPAIGN_MAX_EXAMPLES" "$seed" "$CAMPAIGN_MAX_TIME"
 	set +e
 	docker_run --rm --user "$(id -u):$(id -g)" --network "$NETWORK_NAME" \
-		-e SCHEMA_TOKEN="$EDITOR_TOKEN" \
+		-e SCHEMA_TOKEN="$schema_token" \
 		-e RUNNER_API_URL="$RUNNER_API_URL" \
 		-e LAB_WORKERS="$CAMPAIGN_WORKERS" \
 		-e LAB_MAX_EXAMPLES="$CAMPAIGN_MAX_EXAMPLES" \
@@ -1724,7 +1830,7 @@ campaign_one() {
 		--mount "type=bind,src=$schema_file,dst=/work/schema.json,readonly" \
 		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
 		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
-		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color -H "Authorization: Bearer $SCHEMA_TOKEN"'
+		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color ${SCHEMA_TOKEN:+-H "Authorization: Bearer $SCHEMA_TOKEN"}'
 	runner_rc=$?
 	set -e
 	if [[ -f "$RUN_DIR/schemathesis-report.json" ]]; then
@@ -1756,12 +1862,13 @@ campaign_one() {
 		printf 'Campaign %s seed=%s: %s (runner=%s restore=%s termination=%s)\n' "$profile" "$seed" "$status" "$runner_rc" "$restore_rc" "$termination"
 	fi
 	jq -n --arg profile "$profile" --arg seed "$seed" --arg status "$status" --arg termination "$termination" \
+		--arg actor "$CAMPAIGN_ACTOR" --arg scope "$CAMPAIGN_SCOPE" --argjson operation_count "$operation_count" \
 		--arg schema_sha "$(sha256sum "$schema_file" | awk '{print $1}')" \
 		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" \
 		--argjson report_present "$report_present" --argjson coverage_present "$coverage_present" \
 		--argjson report "$report_summary" \
 		--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
-		'{schema:1,profile:$profile,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
+		'{schema:1,profile:$profile,actor:$actor,scope:$scope,operation_count:$operation_count,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
 		> "$RUN_DIR/campaign-summary.json"
 	CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$RUN_DIR/campaign-summary.json" '$current + [$next[0]]')"
 	RUN_DIR="$base_dir"
@@ -1824,8 +1931,9 @@ campaign() {
 	done
 	RUN_DIR="$base_dir"
 	jq -n --arg profile "$profile" --arg fixture "$FIXTURE_VERSION" --arg seeds "$CAMPAIGN_SEEDS" --argjson campaigns "$CAMPAIGN_SUMMARIES" \
+		--arg actor "$CAMPAIGN_ACTOR" --arg scope "$CAMPAIGN_SCOPE" --argjson operation_count "$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")" \
 		--argjson expected_seed_count "${#seeds[@]}" \
-		'{schema:1,profile:$profile,fixture_version:$fixture,seeds:($seeds|split(",")|map(tonumber)),operation_count:10,campaigns:$campaigns,status:(if (($campaigns|length) == $expected_seed_count and all($campaigns[];.status == "passed")) then "passed" else "failed_or_incomplete" end)}' \
+		'{schema:1,profile:$profile,actor:$actor,scope:$scope,fixture_version:$fixture,seeds:($seeds|split(",")|map(tonumber)),operation_count:$operation_count,campaigns:$campaigns,status:(if (($campaigns|length) == $expected_seed_count and all($campaigns[];.status == "passed")) then "passed" else "failed_or_incomplete" end)}' \
 		> "$base_dir/campaign-index.json"
 	printf 'Campaign index: %s\n' "$base_dir/campaign-index.json"
 	return "$overall"
@@ -1903,10 +2011,6 @@ python_suite() {
 		'{runner_exit_code:$runner,restore_exit_code:$restore,status:(if $restore != 0 then "restore_failed" elif $runner != 0 then "runner_failed" else "passed" end)}' > "$RUN_DIR/component-outcomes.json"
 	(( restore_rc == 0 )) || return "$restore_rc"
 	return "$runner_rc"
-}
-
-cost_query() {
-	LAB_HTTP_METER=1 LAB_HTTP_STAGE=setup python_suite cost_query.py "$@"
 }
 
 designed() {
@@ -2057,7 +2161,6 @@ main() {
 		scenarios) scenarios ;;
 		invariants) invariants ;;
 		designed) shift; designed "$@" ;;
-		cost-query) shift; cost_query "$@" ;;
 		schema-smoke) schema_smoke ;;
 		raw) campaign raw ;;
 		guided) campaign guided ;;

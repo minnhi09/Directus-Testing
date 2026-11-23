@@ -1,0 +1,1549 @@
+{
+  "schema": "oracle-v2-results/1",
+  "evaluated_at_utc": "2026-11-21T05:56:37Z",
+  "summary": {
+    "run_dirs": [
+      "step2-oracle-field-category",
+      "step2-oracle-field-metadata",
+      "step2-oracle-field-name",
+      "step2-oracle-field-published_at",
+      "step2-oracle-field-score",
+      "step2-oracle-field-status",
+      "step2-oracle-field-title",
+      "step2-oracle-p3-authz-dr-025",
+      "step2-oracle-p3-authz-dr-026",
+      "step2-oracle-p3-authz-dr-027",
+      "step2-oracle-p3-authz-dr-033",
+      "step2-oracle-p3-authz-dr-034",
+      "step2-oracle-p3-authz-dr-035",
+      "step2-oracle-p3-authz-dr-048",
+      "step2-oracle-p3-authz-dr-049",
+      "step2-oracle-p3-authz-dr-050",
+      "step2-oracle-p3-authz-dr-052",
+      "step2-oracle-p3-authz-dr-053",
+      "step2-oracle-p3-authz-dr-054",
+      "step2-oracle-p3-authz-dr-056",
+      "step2-oracle-p3-authz-dr-057",
+      "step2-oracle-p3-authz-dr-058",
+      "step2-oracle-p3-query-page-0",
+      "step2-oracle-p3-query-search-blank"
+    ],
+    "cases": 66,
+    "verdicts": {
+      "PASS": 58,
+      "FAIL": 8,
+      "NOT_RUN": 0
+    },
+    "prediction_matched": 66,
+    "prediction_missed": []
+  },
+  "results": [
+    {
+      "id": "P3-NAME-POST-EMPTY",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-POST-BLANK",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-POST-NUMBER",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-POST-UNICODE",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-PATCH-EMPTY",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-PATCH-BLANK",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-PATCH-NUMBER",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-PATCH-UNICODE",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-POST-MISSING",
+      "family": "missing-required",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "code": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-NAME-PATCH-OMITTED",
+      "family": "patch-empty",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-POST-EMPTY",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-POST-BLANK",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-POST-NUMBER",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-POST-UNICODE",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-PATCH-EMPTY",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-PATCH-BLANK",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-PATCH-NUMBER",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-PATCH-UNICODE",
+      "family": "text-value",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-TITLE-POST-MISSING",
+      "family": "missing-required",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "code": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-POST-DECIMAL",
+      "family": "score-type",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "client_error": false,
+        "no_change": true
+      },
+      "notes": [
+        "rejected branch: no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-POST-STRING",
+      "family": "score-type",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "integer_read_back": true
+      },
+      "notes": [
+        "accepted branch"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-POST-BOOL",
+      "family": "score-type",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION",
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-PATCH-DECIMAL",
+      "family": "score-type",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "client_error": false,
+        "no_change": true
+      },
+      "notes": [
+        "rejected branch: no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-PATCH-STRING",
+      "family": "score-type",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "integer_read_back": true
+      },
+      "notes": [
+        "accepted branch"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-PATCH-BOOL",
+      "family": "score-type",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION",
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-SCORE-POST-MISSING",
+      "family": "missing-required",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "code": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-STATUS-POST-BOOL",
+      "family": "status-type",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-STATUS-PATCH-BOOL",
+      "family": "status-type",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 400,
+      "error_codes": [
+        "FAILED_VALIDATION"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 400
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "tables unchanged"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-STATUS-POST-DEFAULT",
+      "family": "status-default",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-PATCH-UTC",
+      "family": "timestamp-valid",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_instant": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-POST-OFFSET",
+      "family": "timestamp-valid",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_instant": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-POST-EMPTY",
+      "family": "timestamp-invalid",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "status": false,
+        "no_change": true
+      },
+      "notes": [
+        "no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-PATCH-EMPTY",
+      "family": "timestamp-invalid",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "status": false,
+        "no_change": true
+      },
+      "notes": [
+        "no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-POST-MALFORMED",
+      "family": "timestamp-invalid",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "status": false,
+        "no_change": true
+      },
+      "notes": [
+        "no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-PATCH-MALFORMED",
+      "family": "timestamp-invalid",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "status": false,
+        "no_change": true
+      },
+      "notes": [
+        "no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-POST-NO-OFFSET",
+      "family": "timestamp-valid",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_instant": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-PUBLISHED_AT-PATCH-NO-OFFSET",
+      "family": "timestamp-valid",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_instant": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-POST-ARRAY",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-PATCH-ARRAY",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-POST-NUMBER",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-PATCH-NUMBER",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-POST-STRING",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "client_error": false,
+        "no_change": true
+      },
+      "notes": [
+        "rejected branch: no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-PATCH-STRING",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "FAIL",
+      "actual_status": 500,
+      "error_codes": [
+        "INTERNAL_SERVER_ERROR"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 500
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": false,
+        "client_error": false,
+        "no_change": true
+      },
+      "notes": [
+        "rejected branch: no snapshot pair recorded for qa_articles"
+      ],
+      "harness_status": "failed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-POST-BOOL",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-METADATA-PATCH-BOOL",
+      "family": "json-value",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "read_back_value": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-CATEGORY-POST-NESTED-EXISTING",
+      "family": "nested-m2o",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "category_is_existing": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-CATEGORY-PATCH-NESTED-EXISTING",
+      "family": "nested-m2o",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "category_is_existing": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-CATEGORY-POST-NESTED-CREATE",
+      "family": "nested-m2o",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "category_is_new_id": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-CATEGORY-PATCH-NESTED-CREATE",
+      "family": "nested-m2o",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status_class": "2xx"
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "category_is_new_id": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-025",
+      "family": "reader-private-field",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-026",
+      "family": "reader-allowed-read",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status": 200
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "status": true,
+        "no_internal_notes": true,
+        "only_published": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-027",
+      "family": "reader-allowed-read",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status": 200
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "status": true,
+        "no_internal_notes": true,
+        "only_published": true,
+        "nested_category": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-033",
+      "family": "reader-private-field",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-034",
+      "family": "reader-allowed-read",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status": 200
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "status": true,
+        "no_internal_notes": true,
+        "only_published": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-035",
+      "family": "reader-allowed-read",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status": 200
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "status": true,
+        "no_internal_notes": true,
+        "only_published": true,
+        "nested_category": true
+      },
+      "notes": [],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-048",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-049",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-050",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-052",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-053",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-054",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-056",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-057",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-AUTHZ-DR-058",
+      "family": "anonymous-deny",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 403,
+      "error_codes": [
+        "FORBIDDEN"
+      ],
+      "predicted": {
+        "outcome": "REJECT",
+        "status": 403
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "status": true,
+        "no_change": true
+      },
+      "notes": [
+        "read-only request, nothing to compare"
+      ],
+      "harness_status": "passed",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-QUERY-SEARCH-BLANK",
+      "family": "query-search-blank",
+      "confidence": "MEDIUM",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status": 200
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "empty": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    },
+    {
+      "id": "P3-QUERY-PAGE-0",
+      "family": "query-page-zero",
+      "confidence": "HIGH",
+      "verdict": "PASS",
+      "actual_status": 200,
+      "error_codes": [],
+      "predicted": {
+        "outcome": "ACCEPT",
+        "status": 200
+      },
+      "prediction_matched": true,
+      "checks": {
+        "never_5xx": true,
+        "accepted": true,
+        "first_three": true,
+        "equals_first_page": true
+      },
+      "notes": [],
+      "harness_status": "open",
+      "cleanup": "passed"
+    }
+  ]
+}

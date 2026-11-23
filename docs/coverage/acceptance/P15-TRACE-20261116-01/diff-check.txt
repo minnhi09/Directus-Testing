@@ -1,5 +1,0 @@
-warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'docs/traceability.md', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'scripts/lab-components.sh', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'lab.sh', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'scripts/invariants.py', LF will be replaced by CRLF the next time Git touches it

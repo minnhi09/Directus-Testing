@@ -43,8 +43,10 @@ Usage:
   ./lab.sh up|down
   ./lab.sh seed|smoke|export-schema
   ./lab.sh swagger up|down
-  ./lab.sh test smoke|schema-smoke|scenarios|invariants|designed|cost-query|raw|guided
-  ./lab.sh test cost-query --set exhaustive|pairwise
+  ./lab.sh test smoke|schema-smoke|scenarios|invariants|designed|raw|guided
+  LAB_ACTOR=editor|reader|anonymous LAB_CAMPAIGN_SCOPE=main10|full ./lab.sh test raw|guided
+    (mặc định editor + main10 = 10 operation; scope full = mọi operation trong schema của actor;
+     reader và anonymous chỉ chạy với scope full)
   ./lab.sh test designed [--case ID|--selection course|short|all|assertable|--group GROUP]
   Course suite: test scenarios (6) + test designed --selection course (7)
   ./lab.sh replay <case-id>
@@ -898,6 +900,8 @@ run_component() {
 			LAB_WORKERS="$workers" \
 			LAB_RATE_LIMIT="$rate_limit" \
 			LAB_REQUEST_TIMEOUT="$request_timeout" \
+			LAB_ACTOR="${LAB_ACTOR:-unspecified}" \
+			LAB_CAMPAIGN_SCOPE="${LAB_CAMPAIGN_SCOPE:-main10}" \
 		bash "$component_script" "$profile" "$@"
 }
 
@@ -931,7 +935,7 @@ dispatch() {
 	local command_name="$1"
 	shift
 	case "$command_name" in
-		seed|smoke|export-schema|schema-smoke|scenarios|invariants|designed|cost-query|raw|guided)
+		seed|smoke|export-schema|schema-smoke|scenarios|invariants|designed|raw|guided)
 			run_component "$command_name" "$@"
 			;;
 		replay)
@@ -970,7 +974,7 @@ main() {
 				return 0
 			fi
 			[[ $# -ge 2 ]] || die 'test cần một profile.'
-			[[ $# -eq 2 || "$2" == designed || "$2" == cost-query ]] || die 'Chỉ test designed/cost-query nhận tùy chọn bổ sung.'
+			[[ $# -eq 2 || "$2" == designed ]] || die 'Chỉ test designed nhận tùy chọn bổ sung.'
 			run_command="test $2"
 			;;
 		replay)
@@ -987,12 +991,26 @@ main() {
 			;;
 	esac
 
-	# The pilot always uses the editor token. Record that actor in run metadata
+	# schema-smoke always uses the editor token. Record that actor in run metadata
 	# instead of leaving a successful component invocation as "unspecified".
-	if [[ "$run_command" == 'test schema-smoke' || "$run_command" == 'test raw' || "$run_command" == 'test guided' || "$run_command" == 'test cost-query' ]]; then
+	if [[ "$run_command" == 'test schema-smoke' ]]; then
 		case "${LAB_ACTOR:-unspecified}" in
 			unspecified|editor) LAB_ACTOR=editor ;;
-			*) die 'test schema-smoke/raw/guided cố định actor editor; không được gắn actor khác vào metadata.' ;;
+			*) die 'test schema-smoke cố định actor editor; không được gắn actor khác vào metadata.' ;;
+		esac
+	fi
+	# raw/guided campaigns: the actor selects the schema and the token used by Schemathesis
+	# (anonymous sends no Authorization header). admin is never a fuzz actor.
+	if [[ "$run_command" == 'test raw' || "$run_command" == 'test guided' ]]; then
+		case "${LAB_ACTOR:-unspecified}" in
+			unspecified|editor) LAB_ACTOR=editor ;;
+			reader|anonymous) ;;
+			*) die 'test raw/guided chỉ nhận LAB_ACTOR=editor, reader hoặc anonymous.' ;;
+		esac
+		case "${LAB_CAMPAIGN_SCOPE:-main10}" in
+			main10) [[ "$LAB_ACTOR" == editor ]] || die "LAB_ACTOR=$LAB_ACTOR chỉ chạy với LAB_CAMPAIGN_SCOPE=full." ;;
+			full) ;;
+			*) die 'LAB_CAMPAIGN_SCOPE phải là main10 hoặc full.' ;;
 		esac
 	fi
 

@@ -1,9 +1,0 @@
-python_syntax: PASS
-json_syntax: PASS
-catalog_selectors: PASS
-bash_syntax: PASS
-powershell_and_examples: PASS
-markdown_links: PASS
-workflow_contract: PASS
-unit_harness: PASS
-Report: artifacts\runs\p14-static-20261116-audit\offline-summary.json
