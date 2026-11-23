@@ -1637,6 +1637,124 @@ campaign_build_schema() {
 	printf 'Campaign schema %s (%s, %s): %s\n' "$profile" "$CAMPAIGN_ACTOR" "$CAMPAIGN_SCOPE" "$target"
 }
 
+# WP4: side-effect guard. Campaigns fuzz operations that can change state outside qa_* (login attempts can
+# suspend an account, bulk and import write items, auth/logout touches sessions). campaign_restore only
+# repairs qa_*, so every seed fingerprints the rest of the lab before and after and reports any difference.
+# After a seed only the admin token is needed (restore and audit are admin-only). Do not require every
+# actor to log in: a suspended actor is exactly what the audit must detect and repair.
+campaign_refresh_admin() {
+	if require_admin_login; then
+		return 0
+	fi
+	campaign_unsuspend_lab_accounts && require_admin_login
+}
+
+campaign_state_entry() {
+	# Sets STATE_ENTRY instead of printing: no subshell, so API_STATUS, API_BODY and HTTP_COUNTER stay
+	# visible to the caller (users_status is read from the /users response right after this call).
+	local path="$1"
+	local expr="$2"
+	local items count sha
+	STATE_ENTRY='{"unavailable":"network"}'
+	api_request GET "$path" "$ADMIN_TOKEN" || return 0
+	if ! valid_http_success "$API_STATUS"; then
+		STATE_ENTRY="$(jq -cn --arg status "$API_STATUS" '{unavailable:$status}')"
+		return 0
+	fi
+	items="$(jq -c "$expr" "$API_BODY" 2>/dev/null)" || {
+		STATE_ENTRY='{"unavailable":"parse"}'
+		return 0
+	}
+	count="$(jq -r 'length' <<< "$items")"
+	sha="$(printf '%s' "$items" | sha256sum | awk '{print $1}')"
+	STATE_ENTRY="$(jq -cn --argjson count "$count" --arg sha "$sha" '{count:$count,sha256:$sha}')"
+}
+
+campaign_state_fingerprint() {
+	local out="$1"
+	local ep state='{}' users_status='{}' notification_ids='[]'
+	for ep in roles policies permissions access files folders flows operations presets dashboards panels shares notifications translations versions comments; do
+		campaign_state_entry "/$ep?limit=-1&fields=id" '[.data[]?.id|tostring]|sort'
+		state="$(jq -c --arg key "$ep" --argjson value "$STATE_ENTRY" '. + {($key):$value}' <<< "$state")"
+		if [[ "$ep" == notifications ]] && valid_http_success "$API_STATUS"; then
+			notification_ids="$(jq -c '[.data[]?.id]' "$API_BODY" 2>/dev/null || printf '[]')"
+		fi
+	done
+	campaign_state_entry '/users?limit=-1&fields=id,status' '[.data[]?|{id,status}]|sort_by(.id)'
+	state="$(jq -c --argjson value "$STATE_ENTRY" '. + {users:$value}' <<< "$state")"
+	if valid_http_success "$API_STATUS"; then
+		users_status="$(jq -c '[.data[]?|{(.id):.status}]|add // {}' "$API_BODY" 2>/dev/null || printf '{}')"
+	fi
+	campaign_state_entry '/collections' '[.data[]?.collection]|sort'
+	state="$(jq -c --argjson value "$STATE_ENTRY" '. + {collections:$value}' <<< "$state")"
+	campaign_state_entry '/fields' '[.data[]?|(.collection + "." + .field)]|sort'
+	state="$(jq -c --argjson value "$STATE_ENTRY" '. + {fields:$value}' <<< "$state")"
+	campaign_state_entry '/relations' '[.data[]?|(.collection + "." + .field)]|sort'
+	state="$(jq -c --argjson value "$STATE_ENTRY" '. + {relations:$value}' <<< "$state")"
+	campaign_state_entry '/settings' '[.data // {} | to_entries[] | {(.key):.value}] | sort_by(tojson)'
+	state="$(jq -c --argjson value "$STATE_ENTRY" '. + {settings:$value}' <<< "$state")"
+	jq -cn --argjson state "$state" --argjson users_status "$users_status" --argjson notification_ids "$notification_ids" '{schema:1,state:$state,users_status:$users_status,notification_ids:$notification_ids}' > "$out"
+}
+
+campaign_state_audit() {
+	local before="$1"
+	local after="$RUN_DIR/state-after.json"
+	local summary="$RUN_DIR/side-effects.json"
+	local fixed='[]' cleaned='[]' id wanted current changed rc=0
+	campaign_state_fingerprint "$after" || return 1
+	# Accounts of the lab fixture are part of the baseline: put back any status that changed.
+	while IFS=$'\t' read -r id wanted current; do
+		[[ -n "$id" ]] || continue
+		if api_request PATCH "/users/$id" "$ADMIN_TOKEN" "$(jq -cn --arg status "$wanted" '{status:$status}')" && valid_http_success "$API_STATUS"; then
+			fixed="$(jq -c --arg id "$id" --arg from "$current" --arg to "$wanted" '. + [{user:$id,from:$from,to:$to}]' <<< "$fixed")"
+		fi
+	done < <(jq -r --slurpfile before "$before" '. as $after | ($before[0].users_status | to_entries[])
+		| select(($after.users_status[.key] // "missing") != .value)
+		| [.key, .value, ($after.users_status[.key] // "missing")] | @tsv' "$after")
+	# utils/export writes a directus_notifications row per call: delete only the rows created during this seed.
+	while read -r id; do
+		[[ -n "$id" ]] || continue
+		if api_request DELETE "/notifications/$id" "$ADMIN_TOKEN" && valid_http_success "$API_STATUS"; then
+			cleaned="$(jq -c --argjson id "$id" '. + [$id]' <<< "$cleaned")"
+		fi
+	done < <(jq -r --slurpfile before "$before" '. as $after | ($after.notification_ids // [])[] | select(. as $n | (($before[0].notification_ids // []) | index($n)) == null)' "$after")
+	if [[ "$(jq -r 'length' <<< "$fixed")" != 0 || "$(jq -r 'length' <<< "$cleaned")" != 0 ]]; then
+		campaign_state_fingerprint "$after" || return 1
+	fi
+	changed="$(jq -c --slurpfile before "$before" '. as $after | [($before[0].state | keys[]) | select($before[0].state[.] != $after.state[.])]' "$after")"
+	[[ "$changed" == '[]' ]] || rc=1
+	jq -n --argjson changed "$changed" --argjson recovered "$fixed" --argjson cleaned "$cleaned" --argjson rc "$rc" \
+		'{schema:1,status:(if $rc == 0 then "clean" else "changed" end),changed_groups:$changed,recovered_user_status:$recovered,cleaned_notifications:$cleaned,
+		  checked:["roles","policies","permissions","access","files","folders","flows","operations","presets","dashboards","panels","shares","notifications","translations","versions","comments","users","collections","fields","relations","settings"],
+		  note:"qa_articles and qa_categories are restored separately; activity and revisions grow with every write and are not compared"}' > "$summary"
+	if [[ "$(jq -r 'length' <<< "$fixed")" != 0 ]]; then
+		printf 'Tác dụng phụ: đã đặt lại trạng thái %s tài khoản lab\n' "$(jq -r 'length' <<< "$fixed")"
+	fi
+	if [[ "$(jq -r 'length' <<< "$cleaned")" != 0 ]]; then
+		printf 'Tác dụng phụ: đã xóa %s thông báo do utils/export tạo trong seed\n' "$(jq -r 'length' <<< "$cleaned")"
+	fi
+	if (( rc != 0 )); then
+		printf 'ERROR: tác dụng phụ ngoài qa_* chưa khôi phục được: %s\n' "$changed" >&2
+	else
+		printf 'Tác dụng phụ ngoài qa_*: sạch\n'
+	fi
+	return "$rc"
+}
+
+campaign_unsuspend_lab_accounts() {
+	# Fallback used only when a login fails before a seed: repeated wrong passwords suspend a Directus
+	# account. Puts the three lab accounts (admin, editor, reader) back to active through SQL.
+	local out="$RUN_DIR/account-recovery.json"
+	local sql_out
+	sql_out="$(printf '%s\n' "UPDATE directus_users SET status='active' WHERE status='suspended' AND email IN (:'a',:'e',:'r') RETURNING id;" | \
+		docker compose --project-name "$PROJECT_NAME" --env-file "${LAB_COMPOSE_ENV_FILE:-$LAB_ROOT_DIR/config/lab.env}" --file "${LAB_COMPOSE_FILE:-$LAB_ROOT_DIR/compose.yaml}" \
+			exec -T -e A="$ADMIN_EMAIL" -e E="$EDITOR_EMAIL" -e R="$READER_EMAIL" database \
+			sh -c 'exec psql -X -q -U "$POSTGRES_USER" -d "$POSTGRES_DB" -At -v ON_ERROR_STOP=1 -v a="$A" -v e="$E" -v r="$R"' 2>&1)" || return 1
+	jq -cn --arg out "$sql_out" '{reason:"login failed before the seed; suspended lab accounts set back to active through SQL",updated_ids:($out|split("\n")|map(select(length > 0)))}' > "$out"
+	[[ -n "$sql_out" ]] || return 1
+	printf 'Đã đặt lại active cho %s tài khoản lab bị tạm ngưng (xem %s)\n' "$(jq -r '.updated_ids|length' "$out")" "$out"
+}
+
 campaign_snapshot() {
 	api_expect_2xx 'snapshot categories trước campaign' GET '/items/qa_categories?limit=-1&fields=id,name' "$ADMIN_TOKEN" || return 1
 	cp -- "$API_BODY" "$RUN_DIR/baseline-categories.json"
@@ -1792,17 +1910,26 @@ campaign_one() {
 	local schema_file
 	local schema_token=''
 	local operation_count
+	local side_rc=0
+	local side_effects_json='null'
 	mkdir -p "$campaign_dir"
 	RUN_DIR="$campaign_dir"
 	if ! campaign_refresh_tokens; then
-		printf 'ERROR: không refresh được token trước campaign %s seed=%s\n' "$profile" "$seed" >&2
-		RUN_DIR="$base_dir"
-		return 1
+		printf 'WARN: không đăng nhập được trước campaign %s seed=%s; thử đặt lại tài khoản lab bị tạm ngưng\n' "$profile" "$seed" >&2
+		if ! { campaign_unsuspend_lab_accounts && campaign_refresh_tokens; }; then
+			printf 'ERROR: không refresh được token trước campaign %s seed=%s (xem docs/k05/wp4)\n' "$profile" "$seed" >&2
+			RUN_DIR="$base_dir"
+			return 1
+		fi
 	fi
 	if ! campaign_snapshot; then
 		printf 'ERROR: không snapshot được baseline cho %s seed=%s\n' "$profile" "$seed" >&2
 		RUN_DIR="$base_dir"
 		return 1
+	fi
+	if ! campaign_state_fingerprint "$RUN_DIR/state-before.json"; then
+		printf 'WARN: không chụp được trạng thái ngoài qa_* trước campaign; bỏ qua kiểm tra tác dụng phụ\n' >&2
+		rm -f "$RUN_DIR/state-before.json"
 	fi
 	if ! campaign_build_schema "$profile"; then
 		RUN_DIR="$base_dir"
@@ -1840,7 +1967,7 @@ campaign_one() {
 	fi
 	[[ -f "$RUN_DIR/schemathesis-coverage.json" ]] && coverage_present=true
 	set +e
-	if campaign_refresh_tokens; then
+	if campaign_refresh_admin; then
 		campaign_restore
 		restore_rc=$?
 	else
@@ -1848,8 +1975,17 @@ campaign_one() {
 		restore_rc=1
 	fi
 	set -e
+	if [[ -f "$RUN_DIR/state-before.json" ]]; then
+		if campaign_refresh_admin; then
+			campaign_state_audit "$RUN_DIR/state-before.json" || side_rc=$?
+		else
+			printf 'ERROR: không đăng nhập lại được để kiểm tra tác dụng phụ sau seed %s\n' "$seed" >&2
+			side_rc=1
+		fi
+		[[ -f "$RUN_DIR/side-effects.json" ]] && side_effects_json="$(cat "$RUN_DIR/side-effects.json")"
+	fi
 	campaign_inventory "$profile" "$seed"
-	if (( runner_rc == 0 && restore_rc == 0 )) && [[ "$report_present" == true && "$coverage_present" == true ]]; then
+	if (( runner_rc == 0 && restore_rc == 0 && side_rc == 0 )) && [[ "$report_present" == true && "$coverage_present" == true ]]; then
 		if [[ "$termination" == max_time ]]; then
 			status='incomplete'
 		else
@@ -1864,11 +2000,11 @@ campaign_one() {
 	jq -n --arg profile "$profile" --arg seed "$seed" --arg status "$status" --arg termination "$termination" \
 		--arg actor "$CAMPAIGN_ACTOR" --arg scope "$CAMPAIGN_SCOPE" --argjson operation_count "$operation_count" \
 		--arg schema_sha "$(sha256sum "$schema_file" | awk '{print $1}')" \
-		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" \
+		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" --argjson side_rc "$side_rc" --argjson side_effects "$side_effects_json" \
 		--argjson report_present "$report_present" --argjson coverage_present "$coverage_present" \
 		--argjson report "$report_summary" \
 		--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
-		'{schema:1,profile:$profile,actor:$actor,scope:$scope,operation_count:$operation_count,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
+		'{schema:1,profile:$profile,actor:$actor,scope:$scope,operation_count:$operation_count,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,side_effects_exit_code:$side_rc,side_effects:$side_effects,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
 		> "$RUN_DIR/campaign-summary.json"
 	CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$RUN_DIR/campaign-summary.json" '$current + [$next[0]]')"
 	RUN_DIR="$base_dir"
@@ -1920,7 +2056,7 @@ campaign() {
 			local summary_file="$base_dir/$profile/seed-$seed/campaign-summary.json"
 			local restore_status='1'
 			if [[ -f "$summary_file" ]]; then
-				restore_status="$(jq -r '.restore_exit_code // 1' "$summary_file" 2>/dev/null || printf '1')"
+				restore_status="$(jq -r '(.restore_exit_code // 1) + (.side_effects_exit_code // 0)' "$summary_file" 2>/dev/null || printf '1')"
 			fi
 			if [[ "$restore_status" != 0 ]]; then
 				halted=1

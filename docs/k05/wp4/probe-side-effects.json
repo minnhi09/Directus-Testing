@@ -1,0 +1,64 @@
+{
+  "schema": "k05-side-effect-probe/1",
+  "api": "http://127.0.0.1:8055",
+  "probes": {
+    "A_logout_refresh": {
+      "logout_fake_refresh": 204,
+      "me_after_fake_logout": 200,
+      "refresh_fake": 401,
+      "logout_real_refresh": 204,
+      "me_after_real_logout_access_token_still_works": 200,
+      "refresh_with_logged_out_token": 401,
+      "editor_can_login_again": 200
+    },
+    "B_login_lockout": {
+      "create_temp_user": 200,
+      "wrong_login_status_runs": [
+        {
+          "status": 401,
+          "from_attempt": 1,
+          "to_attempt": 30
+        }
+      ],
+      "temp_user_status_after": "suspended",
+      "correct_login_after_wrong_attempts": 401,
+      "delete_temp_user": 204
+    },
+    "C_cache_clear": {
+      "editor": 403,
+      "reader": 403,
+      "anonymous": 403
+    },
+    "D_import_editor": {
+      "import_status": 200,
+      "delta": {
+        "categories": 1,
+        "articles": 0,
+        "users": 0,
+        "files": 0
+      },
+      "rows_created_in_qa_categories": 1,
+      "cleanup_deleted": [
+        204
+      ]
+    }
+  },
+  "state_before": {
+    "categories": 3,
+    "articles": 12,
+    "users": 3,
+    "files": 0
+  },
+  "state_after": {
+    "categories": 3,
+    "articles": 12,
+    "users": 3,
+    "files": 0
+  },
+  "state_unchanged": true,
+  "actor_logins_ok": {
+    "admin": 200,
+    "editor": 200,
+    "reader": 200
+  }
+}
