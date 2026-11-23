@@ -46,7 +46,7 @@
 - **Thứ tự xếp theo phụ thuộc** để snapshot từng commit càng ít gãy càng tốt. Tôi chưa kiểm tra từng snapshot trung gian bằng cách chạy lại test; chỉ kiểm tra trạng thái cuối (18 test đạt). Các lệnh `git add` đã được thử ở chế độ `-n` (không stage): bốn commit xóa (3, 4, 5, 6) gộp lại phủ đúng **1.088 file đã xóa**, không sót và không trùng.
 - Không commit rỗng, không đổi ngày, không đổi tác giả, không gộp thay đổi của người khác vào commit của mình (`AGENTS.md` mục 7).
 - Trước mỗi commit: `git diff --cached --stat` để đối chiếu danh sách file; sau mỗi nhóm xóa chạy `python -m unittest discover -s tests -p "test_*.py"`.
-- Commit do tôi tạo theo hệ thống sẽ kết thúc bằng dòng `Co-Authored-By: Claude …`. Nếu bạn không muốn dòng này trên GitHub của môn học, hãy tự commit bằng các lệnh bên dưới hoặc bảo tôi bỏ dòng đó.
+- **Cập nhật 23/11/2026:** người dùng yêu cầu không để Claude làm đồng tác giả. Từ nay mọi commit **không** có dòng `Co-Authored-By`. Các commit đã nằm trên `main` trước đó (16 commit của PR #21) vẫn có dòng này; sửa chúng cần viết lại lịch sử `main` bằng force-push nên không làm khi chưa có yêu cầu rõ.
 
 ## 3. Danh sách commit đề xuất
 
@@ -134,5 +134,5 @@ Không stage: `scripts/invariants.py` (chỉ đổi quyền), `docs/slide_bai_gi
 ## 6. Việc cần bạn quyết
 
 - Có commit nhóm 12 (`tai-lieu-bo-tro`, 1.879 file, 26,1 MB) không?
-- Dòng `Co-Authored-By: Claude` trong commit do tôi tạo: giữ hay bỏ?
+- ~~Dòng `Co-Authored-By: Claude`: giữ hay bỏ?~~ Đã quyết: bỏ (xem mục 2).
 - Tôi tạo các commit cục bộ (chưa push) theo từng bước, hay bạn tự chạy các lệnh trên?
