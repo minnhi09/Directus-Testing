@@ -27,6 +27,10 @@ Máy mới: chuẩn bị jq bằng `.\scripts\setup-windows.ps1`, sao chép `con
 
 Trên lab đã sẵn sàng, chỉ cần kiểm môi trường trước khi chạy. Không reset DB để demo; chạy các suite tuần tự. Linux/Git Bash dùng `./lab.sh` với cùng tham số.
 
+## Xem OpenAPI bằng Swagger UI
+
+Sau `seed` và `export-schema`, chạy `./lab.sh swagger up` rồi mở `http://127.0.0.1:8086`. Chọn Editor hoặc Reader, gọi `/auth/login` bằng tài khoản tương ứng, sau đó nhập `Bearer <access_token>` trong **Authorize**. Dùng `./lab.sh swagger down` để chỉ dừng giao diện. Schema gốc của Schemathesis không bị sửa. Xem [hướng dẫn Swagger UI](docs/swagger-ui.md) và [bằng chứng tích hợp](evidence/swagger-ui-integration-2026-10-19.md).
+
 ## Chạy bộ đại diện
 
 ```powershell
@@ -42,6 +46,6 @@ Bộ 13 được chọn từ kết quả đã lưu ngày 18/10; thay đổi lự
 
 ## K05, chi phí và bàn giao
 
-Campaign raw/guided lịch sử, schema, report và reproducer đã có; dùng chúng để giải thích cách sinh test và phát hiện sai lệch. Không cần chạy lại campaign dài. Chỉ xem 1–2 finding đại diện và bảng 36/9 khi báo cáo chi phí; những vấn đề chưa xác minh vẫn giữ OPEN.
+Campaign raw/guided lịch sử, schema, report và reproducer đã có; dùng chúng để giải thích cách sinh test và phát hiện sai lệch. Không cần chạy lại campaign dài. Chỉ xem 1–2 finding đại diện; những vấn đề chưa xác minh vẫn giữ OPEN. Phạm vi mở rộng sang 30 operation và 3 actor: xem [kế hoạch K05](docs/k05/KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md).
 
 Gói nộp gồm báo cáo, slide/demo, mã kiểm thử và dependency/config mẫu, schema/report/reproducer chọn lọc, cùng đánh giá đóng góp thật. Hồ sơ chi tiết nằm trong [mục lục](docs/HoanThanhPlan/README.md); các bản lưu không phải checklist phải làm tiếp. Không bổ sung CI/CD, quét lỗ hổng, load test hoặc điều tra mọi bất thường chỉ để hoàn thiện môn học.
