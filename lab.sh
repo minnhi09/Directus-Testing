@@ -902,6 +902,8 @@ run_component() {
 			LAB_REQUEST_TIMEOUT="$request_timeout" \
 			LAB_ACTOR="${LAB_ACTOR:-unspecified}" \
 			LAB_CAMPAIGN_SCOPE="${LAB_CAMPAIGN_SCOPE:-main10}" \
+			LAB_CAMPAIGN_PHASES="${LAB_CAMPAIGN_PHASES:-}" \
+			LAB_HARD_TIMEOUT="${LAB_HARD_TIMEOUT:-7200}" \
 		bash "$component_script" "$profile" "$@"
 }
 
