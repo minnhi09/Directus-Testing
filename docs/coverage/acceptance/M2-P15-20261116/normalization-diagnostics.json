@@ -1,8 +1,0 @@
-{
-  "initial_schema_validation": "SCHEMA_VALIDATION_FAILED_12_PASS_WITH_CONTRACT_NOT_RUN",
-  "action": "Retained NOT_RUN, conservative evidence INCOMPLETE; no schema or underlying report change",
-  "second_reference_validation": "FINDING_REGISTRY_NOT_SUPPLIED",
-  "action_2": "No finding FK imported; issues retained in sourced gap register",
-  "final_validation_exit_code": 0,
-  "final_calculate_exit_code": 0
-}
