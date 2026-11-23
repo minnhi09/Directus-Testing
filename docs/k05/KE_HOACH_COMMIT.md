@@ -1,6 +1,24 @@
 # Kế hoạch commit và đẩy lên GitHub (23/11/2026)
 
-**Trạng thái:** đề xuất. Chưa commit, chưa push. Số liệu lấy từ `git status` ngày 23/11/2026 bằng lệnh chỉ đọc.
+**Trạng thái (cập nhật 23/11/2026):** **13 commit cục bộ đã tạo** trên nhánh mới `feat/k05-scope-30op` (tách từ `feat/g1-shared-interface` tại `a718047`); **chưa push**. Các mục 1–4 dưới đây là kế hoạch ban đầu; số liệu ban đầu lấy từ `git status` bằng lệnh chỉ đọc.
+
+| # kế hoạch | Commit | Nội dung |
+|---|---|---|
+| 1 | `d216f26` | Mẫu số 62 cặp, script sinh, kế hoạch (5 file) |
+| 2 | `dd93d9e` | Actor và phạm vi campaign, overlay guided, `k05_reach_report.py` (3 file) |
+| 3 | `e069187` | Gỡ khung coverage/CI và chuỗi P09/P10/P14 (36 file) |
+| 4 | `61cc553` | Gỡ thí nghiệm pairwise 36/9 (12 file) |
+| 5 | `6195fc0` | Gỡ `docs/coverage`, giữ bằng chứng 13 TC (1.073 file; git nhận 34 cặp là đổi tên vì nội dung giống hệt) |
+| 6 | `e9de81a` | Gỡ hồ sơ rà soát 20 phase và kế hoạch toàn hệ thống (2 file) |
+| 7 | `efa0fcb` | README và truy vết (2 file) |
+| 8 | `1fc059a` | Phần 1 và Phần 2 (8 file) |
+| 9 | `91f835c` | Báo cáo giữa kỳ, hướng dẫn, mô tả hệ thống (14 file) |
+| 10 | `59a2240` | Tài liệu học tập (13 file) |
+| 11 | `a8b4437` | Báo cáo cuối kỳ hoàn chỉnh và README HoanThanhPlan (**3 file**, không phải 6 như dự kiến: chỉ có 3 file chưa theo dõi ngoài `tai-lieu-bo-tro`) |
+| 13 | `31c5101` | Oracle catalog v1 (5 file) |
+| 14 | `2801ad8` | Tiến độ và triage pilot tháng 10 (2 file) |
+
+**Không commit (theo kế hoạch):** commit 12 (`docs/HoanThanhPlan/tai-lieu-bo-tro/`, tùy chọn), `docs/slide_bai_giang/` (slide của giảng viên), `scripts/invariants.py` (chỉ đổi quyền file). Tất cả 13 commit mang tên tác giả `Trương Võ Trọng Nhân` và dòng `Co-Authored-By: Claude`. 18 unit test đạt trên cây làm việc cuối.
 
 ## 1. Hiện trạng
 
