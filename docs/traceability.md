@@ -1,5 +1,9 @@
 # Truy vết A–H và backlog checkpoint
 
+**Đường đọc hiện hành sau thu gọn 19/10:** yêu cầu → ca đại diện → kết quả được trình bày tại E/G của [báo cáo cuối kỳ](HoanThanhPlan/09-bao-cao-cuoi-ky.md). Các bảng chi tiết bên dưới giữ mốc lịch sử, không phải backlog bắt buộc phải làm tiếp.
+
+> Nội dung bổ sung khi thực hiện plan đã được tập hợp tại [HoanThanhPlan](HoanThanhPlan/README.md), gồm [truy vết nghiệp vụ Phase 1](HoanThanhPlan/01-truy-vet-nghiep-vu.md). Các bảng A-H dưới đây giữ nguyên nội dung và mốc lịch sử.
+
 Bảng này là backlog tích hợp ban đầu theo hai kế hoạch. “Đã có” chỉ nói về tệp hoặc kiểm tra đã tồn tại trong checkout hiện tại; tiêu chí nghiệm thu G1 hiện hành nằm tại [`docs/g1-acceptance.md`](g1-acceptance.md).
 
 Checkpoint hiện tại dùng baseline local `r06-k05-v2` sau khi license thật được
