@@ -9,7 +9,6 @@ Directus sinh API CRUD từ cơ sở dữ liệu. Nhóm dùng **Schemathesis và
 - 13 ca/kịch bản đại diện: 6 scenario hiện có và 7 ca bổ sung.
 - CRUD hai collection, lọc/sắp xếp/phân trang, quyền Reader/Anonymous và bốn giá trị biên score.
 - Một ca đối chiếu phản hồi POST với OpenAPI; bằng chứng Schemathesis sinh test và tái hiện sai lệch.
-- Thí nghiệm chi phí đã đo: 36 truy vấn so với 9 ca pairwise.
 
 Danh sách và kết quả gốc của 13 ca nằm ở **E.3/G.2 trong báo cáo**. Bảng 118/257 ca và ma trận chi tiết là hồ sơ mở rộng, không phải khối lượng cần hoàn thành thêm. Giữ riêng bằng chứng 10/10 thao tác API có ca nghiệp vụ thành công.
 
@@ -47,8 +46,6 @@ Bộ 13 được chọn từ kết quả đã lưu ngày 18/10; thay đổi lự
 
 ## K05, chi phí và bàn giao
 
-Campaign raw/guided lịch sử, schema, report và reproducer đã có; dùng chúng để giải thích cách sinh test và phát hiện sai lệch. Không cần chạy lại campaign dài. Chỉ xem 1–2 finding đại diện và bảng 36/9 khi báo cáo chi phí; những vấn đề chưa xác minh vẫn giữ OPEN.
+Campaign raw/guided lịch sử, schema, report và reproducer đã có; dùng chúng để giải thích cách sinh test và phát hiện sai lệch. Không cần chạy lại campaign dài. Chỉ xem 1–2 finding đại diện; những vấn đề chưa xác minh vẫn giữ OPEN. Phạm vi mở rộng sang 30 operation và 3 actor: xem [kế hoạch K05](docs/k05/KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md).
 
 Gói nộp gồm báo cáo, slide/demo, mã kiểm thử và dependency/config mẫu, schema/report/reproducer chọn lọc, cùng đánh giá đóng góp thật. Hồ sơ chi tiết nằm trong [mục lục](docs/HoanThanhPlan/README.md); các bản lưu không phải checklist phải làm tiếp. Không bổ sung CI/CD, quét lỗ hổng, load test hoặc điều tra mọi bất thường chỉ để hoàn thiện môn học.
-
-Hồ sơ tích hợp P00–P15, danh sách bàn giao, archive và CI: [integration review](docs/coverage/reviews/integration-20261116/README.md).
