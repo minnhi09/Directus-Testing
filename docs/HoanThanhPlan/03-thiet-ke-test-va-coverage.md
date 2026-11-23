@@ -227,7 +227,7 @@ Giữ riêng ngoài pairwise: token/quyền/row-field policy, null/missing/coerc
 
 ## 11. Nguồn kiến thức và điều kiện kết thúc phase thiết kế
 
-Đã đối chiếu nội dung [bài giảng hộp đen](../slide_bai_giang/2-kiem-thu-hop-den-0.pdf): trang PDF 13–17 về phân vùng, 28–29 về biên, 33–35/45 về quyết định, 46/49–56/59 về pairwise và giữ ca rủi ro cao. Trang PDF là chỉ số tệp, không dựa số trang tổng ghi trên slide. [Yêu cầu môn học](../yeu_cau.pdf), trang PDF 8, mô tả K05 là sinh request từ schema, kiểm invariant/status, lưu reproducer và thống kê lỗi. Ngưỡng số ca/coverage/budget của nhóm ở hồ sơ này không được ghi thành nguyên văn yêu cầu giảng viên; không lấy tỷ lệ tiết kiệm trong slide làm số đo của dự án.
+Đã đối chiếu nội dung [bài giảng hộp đen](../ARCHIVES.md): trang PDF 13–17 về phân vùng, 28–29 về biên, 33–35/45 về quyết định, 46/49–56/59 về pairwise và giữ ca rủi ro cao. Trang PDF là chỉ số tệp, không dựa số trang tổng ghi trên slide. [Yêu cầu môn học](../yeu_cau.pdf), trang PDF 8, mô tả K05 là sinh request từ schema, kiểm invariant/status, lưu reproducer và thống kê lỗi. Ngưỡng số ca/coverage/budget của nhóm ở hồ sơ này không được ghi thành nguyên văn yêu cầu giảng viên; không lấy tỷ lệ tiết kiệm trong slide làm số đo của dự án.
 
 P3-01…09 hoàn thành ở phạm vi thiết kế: inventory/trùng, phân vùng, biên, 69 luật quyền, ba chuỗi, oracle có nguồn, mô hình pairwise, tiêu chí kết thúc trước chạy và review bởi AI. [Tiêu chí kết thúc](03-tieu-chi-ket-thuc.md) phân biệt nghiệm thu tài liệu với kết quả test/campaign; [review](03-review-thiet-ke.md) nêu phần bàn giao Phase 4.
 
