@@ -3,6 +3,23 @@ status: g1-achieved-with-known-findings
 recorded_at: 2026-10-11
 project: r06-k05
 
+optional_documentation_ui:
+  configured_at: 2026-10-19
+  owner: 'Đinh Thị Mai Lành'
+  swagger_ui:
+    version: 5.32.15
+    image: docker.swagger.io/swaggerapi/swagger-ui:v5.32.15
+    image_digest: sha256:9ae209e3791e6fa78e1426769bf54562a043caa969287bfd3779428ece4930e5
+    digest_scope: multiarch_manifest
+  compose_profile: docs
+  host_url: http://127.0.0.1:8086
+  directus_cors_origin: http://127.0.0.1:8086
+  source_schema: runtime/schemas/<fixture_version>/<actor>.json
+  viewer_schema: runtime/swagger/<fixture_version>/<actor>.json
+  live_lab_validation: passed_run_20261019T144622Z-42257
+  final_ui_state: running_after_run_20261019T144703Z-44143
+  validation_note: evidence/swagger-ui-integration-2026-10-19.md
+
 baseline:
   directus:
     version: 12.5.0
