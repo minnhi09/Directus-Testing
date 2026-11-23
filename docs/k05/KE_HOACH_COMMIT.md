@@ -120,10 +120,16 @@ Không stage: `scripts/invariants.py` (chỉ đổi quyền), `docs/slide_bai_gi
 
 ## 5. Đẩy lên GitHub và mở PR
 
-1. **Kiểm tra quan hệ nhánh với `origin/main` trước** (cần `git fetch` qua SSH): nhánh hiện tại đã đi bao xa so với `origin/main`, và `main` trên GitHub chứa gì mà máy bạn chưa có (107 commit). Ghi chú cũ trong repo nhắc tới "blocker SSH", chưa biết còn hay không.
-2. Tạo nhánh mới từ nhánh hiện tại (ví dụ `feat/k05-scope-30op`) cho các commit của kế hoạch này; **không rebase, không force-push** (`AGENTS.md`).
-3. Push nhánh, mở PR vào `main`, merge bằng merge commit. Biểu đồ đóng góp và trang Insights của GitHub thường chỉ tính commit trên **nhánh mặc định**, nên cần merge.
-4. 11 commit cũ chưa push của `feat/g1-shared-interface` cũng cần lên GitHub; xử lý riêng và báo trước nếu cần merge với 1 commit phía sau.
+**Cập nhật 23/11/2026 (đã kiểm tra `origin/main` và gộp):**
+
+1. **SSH không dùng được trên máy này** (không có khóa SSH; `git fetch origin` báo `Permission denied (publickey)`). Cách đang dùng: HTTPS với đăng nhập của GitHub CLI (`gh`, tài khoản `Cookie1109`, có quyền push vào `minnhi09/Directus-Testing`), không đổi cấu hình remote:
+   ```
+   git -c credential.helper= -c "credential.helper=!gh auth git-credential" fetch https://github.com/minnhi09/Directus-Testing.git "+refs/heads/*:refs/remotes/origin/*"
+   git -c credential.helper= -c "credential.helper=!gh auth git-credential" push https://github.com/minnhi09/Directus-Testing.git feat/k05-scope-30op
+   ```
+2. **11 commit cũ của `feat/g1-shared-interface` đã nằm trong lịch sử `origin/main`** (qua merge `657df26`), không cần đẩy riêng. Đoạn "11 commit chưa push" trong bản kế hoạch ban đầu là sai.
+3. `origin/main` có 15 commit mà nhánh chưa có (Swagger UI của Lành, tài liệu 19/10, hai commit CI/bộ kiểm thử 16/11). Đã **gộp `origin/main` vào `feat/k05-scope-30op` bằng merge commit** (không rebase, không force-push) và giải 5 xung đột: `lab.sh` và `README.md` (giữ cả hai bên), ba file `main` sửa nhưng nhánh đã xóa (chấp nhận xóa). Cũng gỡ `docs/coverage/reviews/integration-20261116` do `main` thêm vì thuộc khung coverage/CI đã bỏ. Nhánh hiện **ahead 15, behind 0** so với `origin/main`.
+4. Bước còn lại: push nhánh bằng lệnh ở mục 1, mở PR vào `main`, merge bằng merge commit. Biểu đồ đóng góp và trang Insights của GitHub thường chỉ tính commit trên **nhánh mặc định**, nên cần merge. `main` có thể có bảo vệ nhánh (yêu cầu review); chưa biết vì tài khoản không có quyền admin để đọc cấu hình.
 
 ## 6. Việc cần bạn quyết
 
