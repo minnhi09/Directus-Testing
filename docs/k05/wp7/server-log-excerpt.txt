@@ -1,0 +1,165 @@
+[06:25:44.163] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles/2147483648 500 4ms
+[06:25:44.169] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles/9999999999 500 5ms
+[06:25:44.175] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles/-173822012232 500 5ms
+[06:25:44.196] ERROR: select 1 as "id" from "qa_articles" where ("qa_articles"."id" in ($1)) limit $2 - value "9999999999" is out of range for type integer
+      "type": "DatabaseError",
+[06:25:44] DELETE /items/qa_articles/9999999999 500 3ms
+[06:25:44.206] ERROR: select 1 as "title", 1 as "id" from "qa_articles" where ("qa_articles"."id" in ($1)) limit $2 - value "9999999999" is out of range for type integer
+      "type": "DatabaseError",
+[06:25:44] PATCH /items/qa_articles/9999999999 500 3ms
+[06:25:44.218] ERROR: select "qa_categories"."id", "qa_categories"."name" from "qa_categories" where ("qa_categories"."id" = $1) order by "qa_categories"."id" asc limit $2 - value "781590216
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_categories/78159021685995732992 500 5ms
+[06:25:44.225] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles/9999999999 500 4ms
+[06:25:44.240] ERROR: select (CASE WHEN ("qa_articles"."status" = $1) THEN "qa_articles"."id" END) AS "id", (CASE WHEN ("qa_articles"."status" = $2) THEN "qa_articles"."title" END) AS "title
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles/9999999999 500 7ms
+[06:25:44.247] ERROR: fields is not iterable
+      "type": "TypeError",
+              at extractPathsFromQuery (...))
+              at extractFieldsFromQuery (...))
+              at fieldMapFromAst (...))
+              at processAst (...))
+              at ItemsService.readByQuery (...))
+[06:25:44] GET /items/qa_articles?aggregate=%7B%22foo%22%3A1%7D 500 3ms
+[06:25:44.268] ERROR: Cannot assign to read only property '0' of string 'abc'
+      "type": "TypeError",
+              at sanitizeAggregate (...))
+              at sanitizeQuery (...))
+              at sanitizeQueryMiddleware (...))
+[06:25:44] GET /items/qa_articles?aggregate=abc 500 3ms
+[06:25:44.274] ERROR: fields is not iterable
+      "type": "TypeError",
+              at extractPathsFromQuery (...))
+              at extractFieldsFromQuery (...))
+              at fieldMapFromAst (...))
+              at processAst (...))
+              at ItemsService.readByQuery (...))
+[06:25:44] GET /items/qa_articles?aggregate=%7B%22foo%22%3A1%7D 500 3ms
+[06:25:44.280] ERROR: fields is not iterable
+      "type": "TypeError",
+              at extractPathsFromQuery (...))
+              at extractFieldsFromQuery (...))
+              at fieldMapFromAst (...))
+              at processAst (...))
+              at ItemsService.readByQuery (...))
+[06:25:44] GET /items/qa_categories?aggregate=%7B%22foo%22%3A1%7D 500 5ms
+[06:25:44.286] ERROR: fields is not iterable
+      "type": "TypeError",
+              at extractPathsFromQuery (...))
+              at extractFieldsFromQuery (...))
+              at fieldMapFromAst (...))
+              at processAst (...))
+              at ItemsService.readByQuery (...))
+[06:25:44] GET /items/qa_articles?aggregate=%7B%22foo%22%3A1%7D 500 3ms
+[06:25:44.416] ERROR: insert into "qa_articles" ("published_at", "score", "title") values ($1, $2, $3) returning "id" - invalid input syntax for type timestamp with time zone: "false"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 5ms
+[06:25:44.424] ERROR: insert into "qa_articles" ("published_at", "score", "title") values ($1, $2, $3) returning "id" - invalid input syntax for type timestamp with time zone: "true"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 7ms
+[06:25:44.431] ERROR: insert into "qa_articles" ("published_at", "score", "title") values ($1, $2, $3) returning "id" - invalid input syntax for type timestamp with time zone: "0NaN-NaN-NaNT
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 6ms
+[06:25:44.439] ERROR: insert into "qa_articles" ("published_at", "score", "title") values ($1, $2, $3) returning "id" - invalid input syntax for type timestamp with time zone: "123"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 5ms
+[06:25:44.463] ERROR: update "qa_articles" set "published_at" = $1 where "id" in ($2) - invalid input syntax for type timestamp with time zone: "false"
+      "type": "DatabaseError",
+[06:25:44] PATCH /items/qa_articles/1 500 7ms
+[06:25:44.470] ERROR: insert into "qa_categories" ("name") values ($1) returning "id" - invalid byte sequence for encoding "UTF8": 0x00
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 5ms
+[06:25:44.479] ERROR: insert into "qa_articles" ("score", "title") values ($1, $2) returning "id" - invalid byte sequence for encoding "UTF8": 0x00
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 6ms
+[06:25:44.539] ERROR: select "qa_categories"."id", "qa_categories"."name" from "qa_categories" where (LOWER("qa_categories"."name") LIKE $1) order by "qa_categories"."id" asc limit $2 - inva
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_categories?search=a%00b 500 6ms
+[06:25:44.551] ERROR: Cannot read properties of null (reading 'id')
+      "type": "TypeError",
+[06:25:44] POST /items/qa_categories 500 7ms
+[06:25:44.559] ERROR: insert into "qa_categories" ("id", "name") values ($1, $2) returning "id" - invalid input syntax for type integer: "true"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 6ms
+[06:25:44.566] ERROR: insert into "qa_categories" ("id", "name") values ($1, $2) returning "id" - invalid input syntax for type integer: ""
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 5ms
+[06:25:44.575] ERROR: insert into "qa_categories" ("id", "name") values ($1, $2) returning "id" - invalid input syntax for type integer: "1e+21"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 6ms
+[06:25:44.583] ERROR: select "id" from "qa_categories" where "id" = $1 limit $2 - invalid input syntax for type integer: "abc"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 6ms
+[06:25:44.596] ERROR: Data should not be empty or the "fields" option should be included
+      "type": "Error",
+[06:25:44] GET /items/qa_articles?fields=sections.item%3Aheadings.title&export=csv 500 4ms
+[06:25:44.611] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles?limit=897434&page=17592186044417 500 4ms
+[06:25:44.624] ERROR: Cannot read properties of null (reading '1')
+      "type": "TypeError",
+              at parseFields (...))
+[06:25:44] GET /items/qa_articles?groupBy=a%29b%28 500 5ms
+[06:25:44.716] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles/9999999999 500 10ms
+[06:25:44.725] ERROR: delete from "qa_articles" where "id" in ($1) - value "9999999999" is out of range for type integer
+      "type": "DatabaseError",
+[06:25:44] DELETE /items/qa_articles/9999999999 500 5ms
+[06:25:44.733] ERROR: fields is not iterable
+      "type": "TypeError",
+              at extractPathsFromQuery (...))
+              at extractFieldsFromQuery (...))
+              at fieldMapFromAst (...))
+              at processAst (...))
+              at ItemsService.readByQuery (...))
+[06:25:44] GET /items/qa_articles?aggregate=%7B%22foo%22%3A1%7D 500 5ms
+[06:25:44.739] ERROR: Cannot assign to read only property '0' of string 'abc'
+      "type": "TypeError",
+              at sanitizeAggregate (...))
+              at sanitizeQuery (...))
+              at sanitizeQueryMiddleware (...))
+[06:25:44] GET /items/qa_articles?aggregate=abc 500 2ms
+[06:25:44.747] ERROR: insert into "qa_articles" ("published_at", "score", "title") values ($1, $2, $3) returning "id" - invalid input syntax for type timestamp with time zone: "false"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 7ms
+[06:25:44.754] ERROR: insert into "qa_articles" ("published_at", "score", "title") values ($1, $2, $3) returning "id" - invalid input syntax for type timestamp with time zone: "0NaN-NaN-NaNT
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 5ms
+[06:25:44.761] ERROR: insert into "qa_categories" ("name") values ($1) returning "id" - invalid byte sequence for encoding "UTF8": 0x00
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 5ms
+[06:25:44.769] ERROR: select "qa_categories"."id", "qa_categories"."name" from "qa_categories" where (LOWER("qa_categories"."name") LIKE $1) order by "qa_categories"."id" asc limit $2 - inva
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_categories?search=a%00b 500 6ms
+[06:25:44.776] ERROR: Cannot read properties of null (reading 'id')
+      "type": "TypeError",
+[06:25:44] POST /items/qa_categories 500 4ms
+[06:25:44.783] ERROR: insert into "qa_categories" ("id", "name") values ($1, $2) returning "id" - invalid input syntax for type integer: "true"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 5ms
+[06:25:44.789] ERROR: insert into "qa_categories" ("id", "name") values ($1, $2) returning "id" - invalid input syntax for type integer: "1e+21"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_categories 500 4ms
+[06:25:44.797] ERROR: select "id" from "qa_categories" where "id" = $1 limit $2 - invalid input syntax for type integer: "abc"
+      "type": "DatabaseError",
+[06:25:44] POST /items/qa_articles 500 6ms
+[06:25:44.803] ERROR: Data should not be empty or the "fields" option should be included
+      "type": "Error",
+[06:25:44] GET /items/qa_articles?fields=sections.item%3Aheadings.title&export=csv 500 4ms
+[06:25:44.809] ERROR: select "qa_articles"."id", "qa_articles"."title", "qa_articles"."status", "qa_articles"."score", "qa_articles"."published_at", "qa_articles"."metadata", "qa_articles"."
+      "type": "DatabaseError",
+[06:25:44] GET /items/qa_articles?limit=897434&page=17592186044417 500 4ms
+[06:25:44.815] ERROR: Cannot read properties of null (reading '1')
+      "type": "TypeError",
+              at parseFields (...))
+[06:25:44] GET /items/qa_articles?groupBy=a%29b%28 500 3ms
