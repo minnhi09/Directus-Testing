@@ -331,7 +331,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 
 - Đã làm: thống kê đóng góp từ Git/GitHub kèm giới hạn ([dong-gop-tu-git.md](wp9/dong-gop-tu-git.md)); bảng Kanban và CSV nhập được vào GitHub Project/Trello ([bang-cong-viec.md](wp9/bang-cong-viec.md)); mẫu đánh giá chéo ([danh-gia-cheo-mau.md](wp9/danh-gia-cheo-mau.md)); dàn slide, slide nháp 16 trang, kịch bản demo và câu hỏi dự kiến ([ke-hoach-bao-ve.md](wp9/ke-hoach-bao-ve.md)); kiểm tra bản clone sạch ([xac-minh-clone-sach.md](wp9/xac-minh-clone-sach.md)).
 - Đã chạy thử demo bước Schemathesis (anonymous raw, một seed): 55 giây, 32 ca sinh ra, 21 failure duy nhất, restore PASS, tác dụng phụ sạch (run `20261124T072243Z-1585`).
-- Phát hiện: trong bản clone sạch có **144 liên kết hỏng** ở tài liệu cũ (110 trỏ tới `artifacts/` bị Git bỏ qua); báo cáo K05, README và `docs/k05/` có 0. Con số 18 ở WP8 chỉ đúng khi có `artifacts/` và thư mục không commit trên đĩa.
+- Phát hiện: trong bản clone sạch có **144 liên kết hỏng** ở tài liệu cũ (110 trỏ tới `artifacts/` bị Git bỏ qua); còn **123** (91) sau khi xóa hai báo cáo cũ ngày 24/11/2026; báo cáo K05, README và `docs/k05/` có 0. Con số 18 ở WP8 chỉ đúng khi có `artifacts/` và thư mục không commit trên đĩa.
 - **Chưa làm (cần nhóm):** Trâm mô tả và đưa vào repo phần việc của mình; từng người điền đánh giá chéo; tạo GitHub Project/Trello; xem và chỉnh slide, phân người trình bày; chốt ngày bảo vệ và hạn nộp; dựng lại trên máy thứ hai; quyết định cách nêu việc dùng công cụ AI.
 - Sự cố đã xử lý: PR #26 vô tình thêm 1.864 file của `tai-lieu-bo-tro/`; PR #27 gỡ khỏi cây theo dõi. Nội dung vẫn còn trong lịch sử Git (quyết định viết lại lịch sử còn mở).
 
