@@ -319,13 +319,21 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 
 | Việc | Hiện trạng |
 |---|---|
-| Công cụ quản lý (Trello/Jira/GitHub Projects) | Tài liệu nhóm ghi chưa thấy board, chỉ có 16 issue GitHub |
-| Lịch sử Git đóng góp đều | Git có 148 commit: `minnhi09` 110, Nhân 33, tên Lành khác 5; **chưa thấy commit nào mang tên Trâm** |
-| Peer evaluation | Chưa làm |
-| Slide, demo automation, gói nộp | Chưa xong |
+| Công cụ quản lý (Trello/Jira/GitHub Projects) | Có 16 GitHub Issue (tạo 10/10, đóng cùng lúc 26/10); chưa có Project/Trello; cần quyền `project` cho token `gh` (do chủ tài khoản cấp) |
+| Lịch sử Git đóng góp đều | Tại `9c4b6d8`: Lành 107 commit (09/10 đến 19/10), Nhân 50 (19/10 đến 24/11), **Trâm 0**; không có commit từ 20/10 đến 15/11 |
+| Peer evaluation | Có mẫu, chưa ai điền |
+| Slide, demo automation, gói nộp | Slide nháp và kịch bản demo có; cần nhóm xem và chỉnh; chưa phân người trình bày |
 | README chạy lại trên máy mới | Có; chưa có bằng chứng chạy trên máy thứ hai (PDF yêu cầu mô tả được, không bắt buộc đã chạy) |
 
 Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có thật.
+
+**Tiến độ WP9 (24/11/2026): phần tài liệu và dữ kiện xong; còn các việc chỉ nhóm làm được.** Chi tiết và bảng đối chiếu từng yêu cầu của PDF: [wp9/README.md](wp9/README.md).
+
+- Đã làm: thống kê đóng góp từ Git/GitHub kèm giới hạn ([dong-gop-tu-git.md](wp9/dong-gop-tu-git.md)); bảng Kanban và CSV nhập được vào GitHub Project/Trello ([bang-cong-viec.md](wp9/bang-cong-viec.md)); mẫu đánh giá chéo ([danh-gia-cheo-mau.md](wp9/danh-gia-cheo-mau.md)); dàn slide, slide nháp 16 trang, kịch bản demo và câu hỏi dự kiến ([ke-hoach-bao-ve.md](wp9/ke-hoach-bao-ve.md)); kiểm tra bản clone sạch ([xac-minh-clone-sach.md](wp9/xac-minh-clone-sach.md)).
+- Đã chạy thử demo bước Schemathesis (anonymous raw, một seed): 55 giây, 32 ca sinh ra, 21 failure duy nhất, restore PASS, tác dụng phụ sạch (run `20261124T072243Z-1585`).
+- Phát hiện: trong bản clone sạch có **144 liên kết hỏng** ở tài liệu cũ (110 trỏ tới `artifacts/` bị Git bỏ qua); báo cáo K05, README và `docs/k05/` có 0. Con số 18 ở WP8 chỉ đúng khi có `artifacts/` và thư mục không commit trên đĩa.
+- **Chưa làm (cần nhóm):** Trâm mô tả và đưa vào repo phần việc của mình; từng người điền đánh giá chéo; tạo GitHub Project/Trello; xem và chỉnh slide, phân người trình bày; chốt ngày bảo vệ và hạn nộp; dựng lại trên máy thứ hai; quyết định cách nêu việc dùng công cụ AI.
+- Sự cố đã xử lý: PR #26 vô tình thêm 1.864 file của `tai-lieu-bo-tro/`; PR #27 gỡ khỏi cây theo dõi. Nội dung vẫn còn trong lịch sử Git (quyết định viết lại lịch sử còn mở).
 
 ---
 
@@ -380,7 +388,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [x] WP6: coverage tracecov (đo được, tracecov 0.25.2; xem `docs/k05/wp6/`)
 - [x] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate (xem `docs/k05/wp7/`)
 - [x] WP8: báo cáo A–H viết lại (`docs/k05/BAO_CAO_CUOI_KY_K05.md`); liên kết hỏng còn lại chỉ ở bản sao nguyên văn và file riêng
-- [ ] WP9: board, đóng góp, peer evaluation, slide và demo
+- [ ] WP9: board, đóng góp, peer evaluation, slide và demo (tài liệu, dữ kiện, slide nháp và kịch bản demo xong 24/11/2026; **còn việc của nhóm**: bằng chứng của Trâm, điền đánh giá chéo, tạo Project, chỉnh slide; xem `wp9/README.md`)
 - [x] Xóa nhóm A, B, C, D (mục 4.2) sau khi trích bằng chứng 13 TC (xong 23/11/2026)
 - [x] Sáu tiêu chí C1–C6 (mục 3.2) đều có bằng chứng (xong 24/11/2026): C1, C2 (phần CRUD), C3, C4 ở `wp5/`; C5 ở `wp7/`; C6 ở `wp6/`; tổng hợp ở báo cáo, mục D.4 và G.3 đến G.6
 - [x] Mọi câu khẳng định "100%" đi kèm mẫu số (xong 24/11/2026): đã rà `docs/k05/` và README; "100%" chỉ còn xuất hiện cùng mẫu số (62/62 cặp; 30/30, 22/22, 10/10 operation) hoặc trong câu phủ định; các báo cáo cũ có ghi chú "bản lưu lịch sử"
