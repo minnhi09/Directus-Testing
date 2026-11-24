@@ -1,6 +1,6 @@
 # Oracle v2 cho 66 ca chưa có kết quả mong đợi — 21/11/2026
 
-Bước 2 của [kế hoạch rút gọn](../../../KE_HOACH_RUT_GON_R06_K05.md). Catalog v1 (`scripts/data/test-catalog-v1.json`) **không bị sửa**. 66 ca có `oracle_readiness` OPEN (47) hoặc CONDITIONAL (19) nay có oracle trong [oracle-v2.json](oracle-v2.json) và kết quả trong [results.json](results.json).
+Bước 2 của kế hoạch rút gọn *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*. Catalog v1 (`scripts/data/test-catalog-v1.json`) **không bị sửa**. 66 ca có `oracle_readiness` OPEN (47) hoặc CONDITIONAL (19) nay có oracle trong [oracle-v2.json](oracle-v2.json) và kết quả trong [results.json](results.json).
 
 **Trạng thái oracle: ĐÃ DUYỆT bởi Nhân (người chịu trách nhiệm dự án) ngày 21/11/2026**, sau khi xem kết quả chạy. Đây là quyết định của Nhân, không phải xác nhận của thầy hay của Lành. Quy tắc và dự đoán không bị đổi sau khi chạy (`generated_at_utc` giữ nguyên). Kể cả quy tắc coi tên rỗng và chỉ có khoảng trắng là hợp lệ.
 

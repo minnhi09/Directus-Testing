@@ -1,5 +1,7 @@
 # BÁO CÁO CUỐI KỲ MÔN KIỂM THỬ PHẦN MỀM
 
+> **Bản lưu lịch sử.** Tài liệu này được viết trước khi dự án thu nhỏ về đúng phạm vi K05 (23/11/2026) và còn nhắc tới nội dung đã bỏ (bộ 170 ca v2, thí nghiệm pairwise, khung coverage/CI nhóm tự đặt) cũng như cách hiểu `max_time` đã được đính chính. **Báo cáo hiện hành:** [BAO_CAO_CUOI_KY_K05.md](../k05/BAO_CAO_CUOI_KY_K05.md). Số liệu ở đây không được dùng thay cho báo cáo hiện hành.
+
 ## Kiểm thử API do Directus sinh ra bằng Schemathesis
 
 **Trường Đại học Đà Lạt — Khoa Công nghệ Thông tin**  

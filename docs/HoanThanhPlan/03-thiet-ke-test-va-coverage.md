@@ -18,7 +18,7 @@ Bộ thiết kế nối [đặc tả v0.2](01-yeu-cau-va-dac-ta.md) → [khoản
 | [Inventory test hiện có](03-inventory-test-hien-co.csv) | S1–S6, INV-01…11 và ba mục smoke; nhóm trùng mục tiêu và cách tái sử dụng |
 | [Phân vùng](03-phan-vung-tuong-duong.csv) / [Biên](03-gia-tri-bien.csv) | 48 lớp dữ liệu và 34 điểm biên theo operation |
 | [Bảng quyền](03-bang-quyet-dinh-quyen.csv) | 69 luật khả thi, mỗi luật gắn case cụ thể |
-| [36 query tham chiếu](03-query-exhaustive-36.csv) / [9 query pairwise](03-query-pairwise.csv) | Tập con trỏ lại cùng case ID; không tạo thêm chín case trùng |
+| 36 query tham chiếu *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* / 9 query pairwise *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* | Tập con trỏ lại cùng case ID; không tạo thêm chín case trùng |
 
 Chi tiết máy đọc được nằm trong [thư mục hỗ trợ Phase 3](tai-lieu-bo-tro/phase3-20261018/), đặc biệt [catalog JSON](tai-lieu-bo-tro/phase3-20261018/test-case-catalog.json), [fixture oracle](tai-lieu-bo-tro/phase3-20261018/fixture-oracle.json), [oracle library](tai-lieu-bo-tro/phase3-20261018/oracle-library.json) và [design summary](tai-lieu-bo-tro/phase3-20261018/design-summary.json).
 
