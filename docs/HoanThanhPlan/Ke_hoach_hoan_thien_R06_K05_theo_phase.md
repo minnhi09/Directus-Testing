@@ -1,6 +1,6 @@
 # Kế hoạch R06–K05 sau khi thu gọn
 
-**Phạm vi hiện hành ngày 19/10/2026:** thực hiện theo [lộ trình môn học](LO_TRINH_TOI_GIAN_R06_K05.md), dùng [báo cáo cuối kỳ](09-bao-cao-cuoi-ky.md) và [README chạy chương trình](../../README.md). Kế hoạch chi tiết trước điều chỉnh được giữ trong `tai-lieu-bo-tro/truoc-rut-gon-mon-hoc-20261019.zip`; không dùng các đầu việc mở rộng trong bản đó làm điều kiện bắt buộc mới.
+**Phạm vi hiện hành ngày 19/10/2026:** thực hiện theo [lộ trình môn học](LO_TRINH_TOI_GIAN_R06_K05.md), dùng [báo cáo cuối kỳ K05](../k05/BAO_CAO_CUOI_KY_K05.md) và [README chạy chương trình](../../README.md). Kế hoạch chi tiết trước điều chỉnh được giữ trong `tai-lieu-bo-tro/truoc-rut-gon-mon-hoc-20261019.zip`; không dùng các đầu việc mở rộng trong bản đó làm điều kiện bắt buộc mới.
 
 ## Công việc đã có bằng chứng
 

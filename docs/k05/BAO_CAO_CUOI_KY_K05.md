@@ -7,7 +7,7 @@
 **Kỹ thuật:** K05, Schemathesis `4.30.0`. Đúng một kỹ thuật theo [yêu cầu môn học](../yeu_cau.pdf).
 **Phạm vi:** REST API do Directus sinh ra cho hai collection thử nghiệm `qa_categories`, `qa_articles`, cùng các endpoint hệ thống xuất hiện trong OpenAPI của ba actor (Editor, Reader, Anonymous).
 
-> **Trạng thái tài liệu.** Đây là bản viết lại theo phạm vi K05 sau khi thu nhỏ dự án (kế hoạch: [KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md](KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md)). Báo cáo cuối kỳ cũ trong `docs/HoanThanhPlan/` được giữ để tra cứu lịch sử nhưng đã bị thay thế bởi tài liệu này. Phần quản lý nhóm (bảng đóng góp, đánh giá chéo, slide) thuộc WP9 và **chưa nằm trong bản này**.
+> **Trạng thái tài liệu.** Đây là bản viết lại theo phạm vi K05 sau khi thu nhỏ dự án (kế hoạch: [KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md](KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md)). Hai báo cáo cuối kỳ cũ trong `docs/HoanThanhPlan/` đã bị xóa ngày 24/11/2026 vì được tài liệu này thay thế (vẫn còn trong lịch sử Git và bản sao lưu ngoài repo). Phần quản lý nhóm (bảng đóng góp, đánh giá chéo, slide) thuộc WP9 và **chưa nằm trong bản này**.
 
 ---
 

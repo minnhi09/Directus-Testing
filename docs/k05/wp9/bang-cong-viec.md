@@ -22,6 +22,7 @@ Cập nhật 24/11/2026. Nguồn: [bang-cong-viec.csv](bang-cong-viec.csv) (nh�
 | WP7 | Gom nhóm failure, nguyên nhân gốc, reproducer | Cookie1109 (Nhân) | PR #25; docs/k05/wp7/ | 16 nguyên nhân gốc |
 | WP8 | Báo cáo cuối kỳ K05 phần A–H | Cookie1109 (Nhân) | PR #26; docs/k05/BAO_CAO_CUOI_KY_K05.md |  |
 | FIX | Gỡ 1.864 file thêm nhầm ở PR #26 | Cookie1109 (Nhân) | PR #27 | Nội dung vẫn còn trong lịch sử Git |
+| B07 | Xóa hai báo cáo cuối kỳ cũ (09-bao-cao-cuoi-ky, BAO_CAO_..._HOAN_CHINH) | Cookie1109 (Nhân), theo lệnh của người dùng | PR xóa hai báo cáo cũ (24/11/2026) | Còn trong lịch sử Git |
 
 ## 3. Đang làm (Doing)
 
@@ -39,7 +40,6 @@ Cập nhật 24/11/2026. Nguồn: [bang-cong-viec.csv](bang-cong-viec.csv) (nh�
 | B04 | Tập demo (bộ 13 ca, replay, một run Schemathesis ngắn) | Cả nhóm | docs/k05/wp9/ke-hoach-bao-ve.md, mục 3 |  |
 | B05 | Dựng lại từ đầu trên máy thứ hai (đủ Docker, license) và ghi kết quả | Chưa phân công | docs/k05/wp9/xac-minh-clone-sach.md | Mới kiểm tra được phần không cần Docker |
 | B06 | Tạo GitHub Project (hoặc Trello) và nhập danh sách này | Chủ repo | bang-cong-viec.csv | Cần quyền project cho token gh; xem README của wp9 |
-| B07 | Quyết định xóa hai báo cáo cũ (09-bao-cao-cuoi-ky, BAO_CAO_..._HOAN_CHINH) | Nhân quyết định | docs/k05/KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md, mục WP8 |  |
 | B08 | Quyết định xóa oracle_v2.py và phần còn lại của phase6 | Nhân quyết định | kế hoạch, mục 4.4 |  |
 | B09 | Gỡ hàm p10_scenarios mồ côi trong lab-components.sh | Chưa phân công | kế hoạch, mục 4.2 | File dùng chung |
 | B10 | Quyết định có xóa khỏi lịch sử Git 1.864 file thêm nhầm không | Nhân quyết định | PR #27 | Cần force-push main; Lành phải reset lại bản local |

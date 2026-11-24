@@ -1,6 +1,6 @@
 # Phase 3 — Thiết kế bộ test có chủ đích và tiêu chí kết thúc
 
-**Phạm vi hiện hành sau thu gọn 19/10:** trình bày 13 ca/kịch bản đại diện tại E.3 của [báo cáo cuối kỳ](09-bao-cao-cuoi-ky.md). Danh mục và ma trận bên dưới là thiết kế mở rộng để tra cứu; không cần chạy hết hoặc hoàn thành mọi điểm mở để nộp môn học.
+**Phạm vi hiện hành sau thu gọn 19/10:** trình bày 13 ca/kịch bản đại diện tại E.2 của [báo cáo cuối kỳ K05](../k05/BAO_CAO_CUOI_KY_K05.md). Danh mục và ma trận bên dưới là thiết kế mở rộng để tra cứu; không cần chạy hết hoặc hoàn thành mọi điểm mở để nộp môn học.
 
 **Ngày:** 18/10/2026. **Phiên bản thiết kế:** `P3-v1`. **Phạm vi hoàn thành:** thiết kế và review tĩnh, chưa triển khai automation hoặc gửi request mới. Thực hiện bởi AI trong phiên này; không gán review cho thành viên.
 
