@@ -554,7 +554,7 @@ Theo quyết định ngày 23/11/2026 (chi tiết và bản sao lưu: [kế ho�
 
 `python scripts/check_md_links.py` quét 99 file Markdown mà Git theo dõi. Báo cáo này và `README.md` không có liên kết hỏng. Các tài liệu cũ trong `docs/HoanThanhPlan/`, `docs/ARCHIVES.md`, `docs/coverage/oracles/` và `evidence/progress-*.md` đã được gỡ định dạng liên kết tới 62 file đã xóa (chữ giữ nguyên, thêm ghi chú) và sửa 12 anchor mục lục sai dấu; không đổi nội dung khác. **18 liên kết hỏng còn lại** nằm ngoài phạm vi sửa: 14 trong bản sao nguyên văn của bằng chứng 13 ca (`bang-chung-13-tc/`, giữ nguyên để khớp hash), 3 trong `01_ke_hoach_trien_khai_R06_K05.md` (đường dẫn tuyệt đối trên máy khác) và 1 trong `AGENTS.md` (thư mục riêng `mnhy/`, Git bỏ qua).
 
-**Trong bản clone sạch** của `main` (không có `artifacts/`, `runtime/` và thư mục `tai-lieu-bo-tro/` không commit), cùng phép kiểm tra cho **144 liên kết hỏng**, 110 trong số đó trỏ tới `artifacts/runs/` (Git bỏ qua) ở các tài liệu cũ như báo cáo giữa kỳ. Báo cáo này, `README.md` và các file `docs/k05/` có 0 liên kết hỏng trong bản clone sạch. Chi tiết: [xac-minh-clone-sach.md](wp9/xac-minh-clone-sach.md).
+**Trong bản clone sạch** của `main` (không có `artifacts/`, `runtime/` và thư mục `tai-lieu-bo-tro/` không commit), cùng phép kiểm tra cho **123 liên kết hỏng** (sau khi xóa hai báo cáo cũ; 144 trước đó), 91 trong số đó trỏ tới `artifacts/runs/` (Git bỏ qua) ở các tài liệu cũ như báo cáo giữa kỳ. Báo cáo này, `README.md` và các file `docs/k05/` có 0 liên kết hỏng trong bản clone sạch. Chi tiết: [xac-minh-clone-sach.md](wp9/xac-minh-clone-sach.md).
 
 ### PL.5. Chỉ mục tài liệu K05
 
