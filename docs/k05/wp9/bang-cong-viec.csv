@@ -1,0 +1,23 @@
+﻿id,cong_viec,trang_thai,nguoi_thuc_hien,bang_chung,ghi_chu
+SCOPE,"Thu nhỏ phạm vi về K05, gỡ 170 TC v2, pairwise, khung coverage/CI và hồ sơ nội bộ",Done,"Cookie1109 (Nhân), theo lệnh duyệt từng nhóm","PR #21; docs/k05/KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md, mục 4",Bản sao lưu ngoài repo; bằng chứng 13 TC được trích sang docs/k05/bang-chung-13-tc
+WP1,"Chốt mẫu số 62 cặp (actor, operation) từ schema export lại",Done,Cookie1109 (Nhân),PR #21; docs/k05/mau-so-30-operation.csv,Người dùng duyệt 30 operation ngày 23/11/2026
+WP2,"Chạy raw/guided theo actor (editor, reader, anonymous)",Done,Cookie1109 (Nhân),"PR #21; lab.sh, scripts/lab-components.sh",Thay đổi giao diện dùng chung; chưa có xác nhận của Lành
+WP3,"Overlay guided cho assets, import, export, sort, auth",Done,Cookie1109 (Nhân),PR #21; wp5/bang-phan-hoi-theo-cap.csv,
+WP4,Bảo vệ trạng thái và tác dụng phụ ngoài qa_*,Done,Cookie1109 (Nhân),PR #22; docs/k05/wp4/,
+WP5,Chiến dịch 18 run (3 actor × raw/guided × 3 seed),Done,Cookie1109 (Nhân),PR #23; docs/k05/wp5/,"18/18 hoàn tất, 62/62 cặp có phản hồi"
+WP6,Coverage tracecov,Done,Cookie1109 (Nhân),PR #24; docs/k05/wp6/,
+WP7,"Gom nhóm failure, nguyên nhân gốc, reproducer",Done,Cookie1109 (Nhân),PR #25; docs/k05/wp7/,16 nguyên nhân gốc
+WP8,Báo cáo cuối kỳ K05 phần A–H,Done,Cookie1109 (Nhân),PR #26; docs/k05/BAO_CAO_CUOI_KY_K05.md,
+FIX,Gỡ 1.864 file thêm nhầm ở PR #26,Done,Cookie1109 (Nhân),PR #27,Nội dung vẫn còn trong lịch sử Git
+WP9,"Đóng góp, bảng công việc, mẫu đánh giá chéo, kế hoạch bảo vệ",Doing,Cookie1109 (Nhân),docs/k05/wp9/,Slide và demo: bản nháp trong wp9
+B01,"Trâm mô tả và đưa vào repo phần việc đã làm (fixture, policy, scenario)",Backlog,Phan Thị Bảo Trâm (chưa xác nhận),"docs/k05/wp9/dong-gop-tu-git.md, mục 5",Git chưa có commit nào của Trâm
+B02,Mỗi thành viên điền đánh giá chéo,Backlog,Cả ba thành viên,docs/k05/wp9/danh-gia-cheo-mau.md,Điểm do từng người tự điền
+B03,"Xem và chỉnh slide bảo vệ, phân người trình bày",Backlog,Cả nhóm,docs/k05/wp9/ke-hoach-bao-ve.md,Ngày bảo vệ chưa xác nhận
+B04,"Tập demo (bộ 13 ca, replay, một run Schemathesis ngắn)",Backlog,Cả nhóm,"docs/k05/wp9/ke-hoach-bao-ve.md, mục 3",
+B05,"Dựng lại từ đầu trên máy thứ hai (đủ Docker, license) và ghi kết quả",Backlog,Chưa phân công,docs/k05/wp9/xac-minh-clone-sach.md,Mới kiểm tra được phần không cần Docker
+B06,Tạo GitHub Project (hoặc Trello) và nhập danh sách này,Backlog,Chủ repo,bang-cong-viec.csv,Cần quyền project cho token gh; xem README của wp9
+B07,"Quyết định xóa hai báo cáo cũ (09-bao-cao-cuoi-ky, BAO_CAO_..._HOAN_CHINH)",Backlog,Nhân quyết định,"docs/k05/KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md, mục WP8",
+B08,Quyết định xóa oracle_v2.py và phần còn lại của phase6,Backlog,Nhân quyết định,"kế hoạch, mục 4.4",
+B09,Gỡ hàm p10_scenarios mồ côi trong lab-components.sh,Backlog,Chưa phân công,"kế hoạch, mục 4.2",File dùng chung
+B10,Quyết định có xóa khỏi lịch sử Git 1.864 file thêm nhầm không,Backlog,Nhân quyết định,PR #27,Cần force-push main; Lành phải reset lại bản local
+B11,Chốt ngày bảo vệ và hạn nộp báo cáo (1 tuần trước bảo vệ),Backlog,Cả nhóm,"yeu_cau.pdf, mục 4",Chưa biết ngày
