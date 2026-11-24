@@ -1,5 +1,7 @@
 # BÁO CÁO CUỐI KỲ MÔN KIỂM THỬ PHẦN MỀM
 
+> **Bản lưu lịch sử.** Tài liệu này được viết trước khi dự án thu nhỏ về đúng phạm vi K05 (23/11/2026) và còn nhắc tới nội dung đã bỏ (bộ 170 ca v2, thí nghiệm pairwise, khung coverage/CI nhóm tự đặt) cũng như cách hiểu `max_time` đã được đính chính. **Báo cáo hiện hành:** [BAO_CAO_CUOI_KY_K05.md](../k05/BAO_CAO_CUOI_KY_K05.md). Số liệu ở đây không được dùng thay cho báo cáo hiện hành.
+
 ## R06 DIRECTUS + K05 SCHEMA-BASED API TESTING/FUZZING
 
 **Trường Đại học Đà Lạt — Khoa Công nghệ Thông tin**  
@@ -20,18 +22,18 @@ Thí nghiệm bổ trợ về chi phí so sánh 36 tổ hợp truy vấn với 9
 
 ### Mục lục
 
-- [Mở đầu](#mo-dau)
-- [A. Phân tích hệ thống Directus](#phan-a)
-- [B. Kiến trúc hệ thống](#phan-b)
-- [C. Thiết lập môi trường và vận hành](#phan-c)
-- [D. Cơ sở lý thuyết và phương pháp K05](#phan-d)
-- [E. Phân tích và thiết kế kiểm thử](#phan-e)
-- [F. Triển khai kiểm thử tự động](#phan-f)
-- [G. Kết quả kiểm thử và phân tích](#phan-g)
-- [H. Cố định phiên bản và khả năng tái lập](#phan-h)
-- [Kết luận](#ket-luan)
-- [Tài liệu tham khảo](#tai-lieu-tham-khao)
-- [Phụ lục](#phu-luc)
+- [Mở đầu](#mở-đầu)
+- [A. Phân tích hệ thống Directus](#phần-a--phân-tích-hệ-thống-directus)
+- [B. Kiến trúc hệ thống](#phần-b--kiến-trúc-hệ-thống)
+- [C. Thiết lập môi trường và vận hành](#phần-c--thiết-lập-môi-trường-và-vận-hành)
+- [D. Cơ sở lý thuyết và phương pháp K05](#phần-d--cơ-sở-lý-thuyết-và-phương-pháp-k05)
+- [E. Phân tích và thiết kế kiểm thử](#phần-e--phân-tích-và-thiết-kế-kiểm-thử)
+- [F. Triển khai kiểm thử tự động](#phần-f--triển-khai-kiểm-thử-tự-động)
+- [G. Kết quả kiểm thử và phân tích](#phần-g--kết-quả-kiểm-thử-và-phân-tích)
+- [H. Cố định phiên bản và khả năng tái lập](#phần-h--cố-định-phiên-bản-và-khả-năng-tái-lập)
+- [Kết luận](#kết-luận)
+- [Tài liệu tham khảo](#tài-liệu-tham-khảo)
+- [Phụ lục](#phụ-lục)
 
 <a id="mo-dau"></a>
 ## MỞ ĐẦU
@@ -996,7 +998,7 @@ Báo cáo phân biệt bốn mốc bằng chứng. Campaign chính raw/guided ch
 | Nghiệm thu 18/10 | Scenario, ca thiết kế, replay, smoke, invariant, probe | Còn FAIL/OPEN/NOT_RUN |
 | Bộ đại diện hiện hành | Chọn 13 ID/kịch bản để trình bày | Tổng hợp nguồn; chưa chạy lại đồng bộ sau đổi selector |
 
-Nguồn: [run index nghiệm thu](tai-lieu-bo-tro/phase8-20261018/run-index.json), [danh mục mẫu Schemathesis](02-case-sinh-dai-dien.md), [thí nghiệm chi phí](06-toi-uu-chi-phi.md) và report theo run ID. Đơn vị thời gian có hậu tố `Z` là UTC; tên tệp/run giữ nguyên để đối chiếu, không đổi thành giờ địa phương rồi dùng làm ID khác.
+Nguồn: [run index nghiệm thu](tai-lieu-bo-tro/phase8-20261018/run-index.json), [danh mục mẫu Schemathesis](02-case-sinh-dai-dien.md), thí nghiệm chi phí *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* và report theo run ID. Đơn vị thời gian có hậu tố `Z` là UTC; tên tệp/run giữ nguyên để đối chiếu, không đổi thành giờ địa phương rồi dùng làm ID khác.
 
 ### G.2. Kết quả scenario và test case có chủ đích
 
@@ -1348,7 +1350,7 @@ flowchart TB
     ORA --> MEAS["Đo target, toàn HTTP và toàn lệnh"]
 ```
 
-Nguồn: [36 tổ hợp](03-query-exhaustive-36.csv), [tập 9 ca](03-query-pairwise.csv), [bảng xác minh cặp](tai-lieu-bo-tro/phase6-20261018/pair-coverage.json). Diagram không thể hiện một công cụ PICT/ACTS đã được sử dụng; tập của dự án được kiểm trực tiếp theo mô hình đã lưu.
+Nguồn: 36 tổ hợp *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, tập 9 ca *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, bảng xác minh cặp *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*. Diagram không thể hiện một công cụ PICT/ACTS đã được sử dụng; tập của dự án được kiểm trực tiếp theo mô hình đã lưu.
 
 #### G.9.2. Thiết kế phép đo và oracle
 
@@ -1373,7 +1375,7 @@ Request mục tiêu là lần thực gọi HTTP ở stage query. Tổng request 
 | Thời gian target trung vị, giây | 7,200 | 1,797 | 75,04% theo cặp |
 | Thời gian toàn lệnh trung vị, giây | 26,893 | 21,638 | 19,54% theo cặp |
 
-Mức giảm thời gian được tính `(1 - pairwise/full) × 100` **trong từng cặp**, rồi lấy trung vị; không lấy riêng hai trung vị chia nhau rồi coi là cùng phép tính. Thời gian toàn lệnh giảm theo cặp trong khoảng 19,31–21,18%. Nguồn là [query-trials.csv](tai-lieu-bo-tro/phase6-20261018/query-trials.csv), [paired-reductions.csv](tai-lieu-bo-tro/phase6-20261018/paired-reductions.csv), [query-analysis.json](tai-lieu-bo-tro/phase6-20261018/query-analysis.json).
+Mức giảm thời gian được tính `(1 - pairwise/full) × 100` **trong từng cặp**, rồi lấy trung vị; không lấy riêng hai trung vị chia nhau rồi coi là cùng phép tính. Thời gian toàn lệnh giảm theo cặp trong khoảng 19,31–21,18%. Nguồn là query-trials.csv *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, paired-reductions.csv *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, query-analysis.json *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*.
 
 Sáu lượt đều PASS nghiệp vụ, target HTTP 200, kiểm trạng thái đạt và runner/restore 0. Tổng số target interaction là `3×36 + 3×9 = 135`, nhưng chỉ có **36 ID thiết kế khác nhau**. PL.3 giữ đủ sáu dòng số đo để kiểm chứng trung vị và thứ tự chạy.
 
@@ -1482,7 +1484,7 @@ Các nguồn nội bộ dưới đây là tài liệu cấu hình, thiết kế 
 5. Nhóm R06–K05, *Cấu hình môi trường và baseline*: [Compose](../../compose.yaml), [cấu hình mẫu](../../config/lab.env.example), [manifest](../../manifest/baseline.yaml), [fixture oracle](../../scripts/data/fixture-oracle.json). Dùng cho A–C/H.
 6. Nhóm R06–K05, *Đặc tả, review OpenAPI và thiết kế*: [đặc tả](01-yeu-cau-va-dac-ta.md), [đối chiếu baseline P1-05](01-doi-chieu-baseline-p1-05.md), [review OpenAPI](02-danh-gia-openapi-va-sinh-test.md), [mẫu sinh](02-case-sinh-dai-dien.md), [catalog](03-test-case-catalog.csv). Dùng cho D–E và truy vết.
 7. Nhóm R06–K05, *Automation và bằng chứng thực nghiệm*: [bộ mã tự động](../../scripts/), [báo cáo automation](04-automation-va-tai-lap.md), [finding register](05-finding-register.md), [nghiệm thu](08-bao-cao-nghiem-thu.md), [kết quả theo ID](08-ket-qua-case.csv). Các run nguồn chi tiết ở PL.4.
-8. Nhóm R06–K05, *Thí nghiệm tối ưu chi phí QRY-PW-v1*, 18/10/2026. [Báo cáo và protocol/số đo](06-toi-uu-chi-phi.md), [36 tổ hợp](03-query-exhaustive-36.csv), [9 ca pairwise](03-query-pairwise.csv), [bằng chứng đủ cặp](tai-lieu-bo-tro/phase6-20261018/pair-coverage.json). Dùng cho G.9; không tuyên bố sử dụng PICT hoặc một công cụ thiết kế tổ hợp khác khi không có bằng chứng.
+8. Nhóm R06–K05, *Thí nghiệm tối ưu chi phí QRY-PW-v1*, 18/10/2026. Báo cáo và protocol/số đo *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, 36 tổ hợp *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, 9 ca pairwise *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, bằng chứng đủ cặp *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*. Dùng cho G.9; không tuyên bố sử dụng PICT hoặc một công cụ thiết kế tổ hợp khác khi không có bằng chứng.
 9. Mermaid, *Tài liệu cú pháp sơ đồ*: [Flowcharts](https://mermaid.js.org/syntax/flowchart.html), [Entity Relationship Diagrams](https://mermaid.js.org/syntax/entityRelationshipDiagram.html), [Sequence diagrams](https://mermaid.js.org/syntax/sequenceDiagram.html). Dùng rà soát ký hiệu và cú pháp mười sơ đồ; nội dung các sơ đồ vẫn lấy từ cấu hình, mã và bằng chứng của đề tài.
 
 Thuật ngữ phân vùng tương đương, biên, bảng quyết định, vòng lặp lỗi và chi phí kiểm thử được vận dụng trong phạm vi học phần. Bộ bài giảng do nhóm lưu tại [thư mục bài giảng](../slide_bai_giang/) gồm `slide1.pdf`, `2-kiem-thu-hop-den-0.pdf`, `kiem_thu-hop-trang.pdf`, `lms_presentation.pdf`. Báo cáo không gán thêm tác giả/năm/trang trích chưa xác minh cho các tệp này và không coi phân tích source là kết quả đo kiểm thử hộp trắng.
@@ -1542,7 +1544,7 @@ Tại mốc 18/10, có 18/18 kiểm thử offline của harness PASS trên host 
 
 Mỗi dòng dùng max-time 1200 giây, max-examples 100, worker 1, 5/s, timeout 10; tested 10/10, runner 1/restore 0, termination max_time. Nguồn là `metrics.json`, `campaign-summary.json`, `schemathesis-report.json`, `schemathesis-coverage.json` trong `raw|guided/seed-101|202|303/` dưới hai run chính. Tên đường dẫn dùng ký hiệu lựa chọn trong câu mô tả, không phải một thư mục chứa ký tự `|`.
 
-Nguồn trực tiếp đại diện: [raw seed 101 metrics](../../artifacts/runs/20261011T085034Z-76481/raw/seed-101/metrics.json), [guided seed 101 metrics](../../artifacts/runs/20261011T095117Z-89079/guided/seed-101/metrics.json), cùng [phân tích đối chứng](06-toi-uu-chi-phi.md). Không cộng các cột failure thành số lỗi độc lập.
+Nguồn trực tiếp đại diện: [raw seed 101 metrics](../../artifacts/runs/20261011T085034Z-76481/raw/seed-101/metrics.json), [guided seed 101 metrics](../../artifacts/runs/20261011T095117Z-89079/guided/seed-101/metrics.json), cùng phân tích đối chứng *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*. Không cộng các cột failure thành số lỗi độc lập.
 
 ### PL.3. Sáu lượt đo chi phí
 
@@ -1557,7 +1559,7 @@ Nguồn trực tiếp đại diện: [raw seed 101 metrics](../../artifacts/runs
 | 3 / trước | 36 ca | 36 | 79 | 7,200 | 27,200 |
 | 3 / sau | 9 ca | 9 | 52 | 1,798 | 21,438 |
 
-Nguồn: [query-trials.csv](tai-lieu-bo-tro/phase6-20261018/query-trials.csv). Mỗi full có 50 HTTP Python + 29 Bash; mỗi pairwise có 23 Python + 29 Bash. Phần chuẩn bị dùng chung doctor/seed/export có thời gian metadata 5/16/8 giây và không được cộng lặp vào mỗi trial. Mỗi lượt có state verification PASS và runner/restore 0.
+Nguồn: query-trials.csv *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*. Mỗi full có 50 HTTP Python + 29 Bash; mỗi pairwise có 23 Python + 29 Bash. Phần chuẩn bị dùng chung doctor/seed/export có thời gian metadata 5/16/8 giây và không được cộng lặp vào mỗi trial. Mỗi lượt có state verification PASS và runner/restore 0.
 
 Run ID đầy đủ gồm `p6-query-20261018-r1-all`, `p6-query-20261018-r1-pw`, `p6-query-20261018-r2-pw`, `p6-query-20261018-r2-all`, `p6-query-20261018-r3-all`, `p6-query-20261018-r3-pw`. Chỉ thứ tự đo nói trên được xác nhận; không mô tả là đã random hóa hoặc kiểm nhiều máy.
 

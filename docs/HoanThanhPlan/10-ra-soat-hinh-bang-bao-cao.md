@@ -91,9 +91,9 @@ Số tương tác trên được tính từ recorder trong sự kiện ScenarioF
 ## Nguồn kiểm tra chính
 
 - [Compose](../../compose.yaml), [manifest](../../manifest/baseline.yaml), [mã chuẩn bị và chạy](../../scripts/lab-components.sh), [bộ ca thiết kế](../../scripts/designed_cases.py), [invariant](../../scripts/invariants.py).
-- [Mô hình fixture](../../scripts/data/fixture-oracle.json), [mô hình truy vấn](../../scripts/data/query-cost-model-v1.json), [giao thức thí nghiệm](../../scripts/data/query-cost-protocol-v1.json).
+- [Mô hình fixture](../../scripts/data/fixture-oracle.json), mô hình truy vấn *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, giao thức thí nghiệm *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*.
 - [Sáu scenario](../../artifacts/runs/p8-20261018-scenarios/scenario-report.json), [DB oracle](../../artifacts/runs/p8-20261018-scenarios/database-oracle.json), [bộ ca thiết kế nguồn](../../artifacts/runs/p8-20261018-assertable/designed-report.json), [TC08 nguồn](../../artifacts/runs/p8-20261018-short-r2/case-P3-AUTHZ-DR-047.json).
 - Campaign raw `artifacts/runs/20261011T085034Z-76481` và guided `artifacts/runs/20261011T095117Z-89079`, các báo cáo/metrics/NDJSON của seed 101, 202, 303.
-- [Số đo chi phí](tai-lieu-bo-tro/phase6-20261018/query-trials.csv), [mức giảm từng cặp](tai-lieu-bo-tro/phase6-20261018/paired-reductions.csv), [phân tích chi phí](tai-lieu-bo-tro/phase6-20261018/query-analysis.json), [hồ sơ nghiệm thu](08-bao-cao-nghiem-thu.md).
+- Số đo chi phí *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, mức giảm từng cặp *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, phân tích chi phí *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*, [hồ sơ nghiệm thu](08-bao-cao-nghiem-thu.md).
 
 Lần rà soát này không sửa Word, không sửa chương trình, không chạy campaign và không thay dữ liệu gốc.
