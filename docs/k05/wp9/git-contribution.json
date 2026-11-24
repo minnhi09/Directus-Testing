@@ -1,0 +1,52 @@
+{
+  "ref": "origin/main",
+  "head": "9c4b6d8",
+  "commits_no_merge": 157,
+  "merge_commits": 15,
+  "unmapped_authors": {},
+  "people": {
+    "Trương Võ Trọng Nhân": {
+      "commits": 50,
+      "lines_added": 629800,
+      "lines_deleted": 346377,
+      "first_commit": "2026-10-19",
+      "last_commit": "2026-11-24",
+      "active_days": 4,
+      "lines_touched_by_area": {
+        "docs/HoanThanhPlan": 548963,
+        "docs/coverage": 351368,
+        "scripts": 36941,
+        "docs (khác)": 16134,
+        "docs/k05": 14760,
+        "tests": 3221,
+        "gốc / khác": 1955,
+        "docs/phan1": 1172,
+        "evidence": 884,
+        "docs/phan2": 656,
+        "profiles": 123
+      }
+    },
+    "Đinh Thị Mai Lành": {
+      "commits": 107,
+      "lines_added": 8645,
+      "lines_deleted": 837,
+      "first_commit": "2026-10-09",
+      "last_commit": "2026-10-19",
+      "active_days": 5,
+      "lines_touched_by_area": {
+        "scripts": 3646,
+        "docs (khác)": 2526,
+        "gốc / khác": 1513,
+        "evidence": 1319,
+        "manifest": 440,
+        "config": 38
+      }
+    }
+  },
+  "caveats": [
+    "So commit va so dong khong phai thuoc do dong gop.",
+    "Cong viec khong de lai commit (phan tich, kiem tra, hop nhom, review) khong duoc do.",
+    "Lich su main da duoc viet lai ngay 23/11/2026 de bo dong dong tac gia khoi 17 commit; tac gia va noi dung khong doi.",
+    "Git khong phan biet duoc commit co su ho tro cua cong cu AI."
+  ]
+}
