@@ -1,0 +1,50 @@
+{
+  "scope": "Current simplified course scope approved by user; original extended work distinguished",
+  "tasks": [
+    {
+      "id": "P8-01",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-02",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-03",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-04",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-05",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-06",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-07",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    },
+    {
+      "id": "P8-08",
+      "status": "Hoan thanh trong pham vi hien hanh",
+      "evidence": "08-bao-cao-nghiem-thu.md"
+    }
+  ],
+  "P8_06_removed_extension": "Two new 5xx patterns remain unresolved; further per-candidate replay/investigation not performed and removed from mandatory scope by simplification decision.",
+  "blocked_tool_operations": [],
+  "ui_interruption": "Observed via user screenshot; exact blocked operation not identified. No bypass attempted.",
+  "main_campaigns_rerun": false,
+  "upstream_oracle_schema_changes": false
+}

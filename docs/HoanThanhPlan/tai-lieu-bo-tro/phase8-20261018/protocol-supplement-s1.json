@@ -1,0 +1,86 @@
+{
+  "protocol_id": "P8-ACCEPT-v1-S1",
+  "created_at": "2026-10-18T10:39:39.177121+00:00",
+  "before_supplement_tests": true,
+  "reason": "Static coverage audit before executing these tests identified BR-23 search without a selected case, and missing FK rejection / non-null timestamp representatives. Add targeted existing designs, not the full 257 catalog.",
+  "source_checkpoint": "P8-ACCEPT-v1 unchanged; no runtime code, schema, policy or expected-result changes",
+  "budget": "same 600s deterministic cap, 1 worker, 5/s, timeout10; independent guarded lifecycle per step",
+  "steps": [
+    {
+      "label": "query-extra",
+      "arguments": [
+        "test",
+        "designed",
+        "--group",
+        "query"
+      ],
+      "ids": [
+        "P3-QUERY-ALL",
+        "P3-QUERY-DRAFT",
+        "P3-QUERY-PUBLISHED",
+        "P3-QUERY-SORT-ID",
+        "P3-QUERY-SORT-TITLE",
+        "P3-QUERY-SORT-SCORE",
+        "P3-QUERY-OFFSET3",
+        "P3-QUERY-PAGE2",
+        "P3-QUERY-PRECEDENCE",
+        "P3-QUERY-PROJECTION2",
+        "P3-QUERY-PROJECTION4",
+        "P3-QUERY-NESTED",
+        "P3-QUERY-SEARCH-SPECIALE",
+        "P3-QUERY-SEARCH-ABSENT",
+        "P3-QUERY-SEARCH-BLANK",
+        "P3-QUERY-READER-FILTER-DRAFT"
+      ]
+    },
+    {
+      "label": "fk-post",
+      "arguments": [
+        "test",
+        "designed",
+        "--case",
+        "P3-CATEGORY-POST-INVALID"
+      ],
+      "ids": [
+        "P3-CATEGORY-POST-INVALID"
+      ]
+    },
+    {
+      "label": "fk-patch",
+      "arguments": [
+        "test",
+        "designed",
+        "--case",
+        "P3-CATEGORY-PATCH-INVALID"
+      ],
+      "ids": [
+        "P3-CATEGORY-PATCH-INVALID"
+      ]
+    },
+    {
+      "label": "time-utc",
+      "arguments": [
+        "test",
+        "designed",
+        "--case",
+        "P3-PUBLISHED_AT-POST-UTC"
+      ],
+      "ids": [
+        "P3-PUBLISHED_AT-POST-UTC"
+      ]
+    },
+    {
+      "label": "time-offset",
+      "arguments": [
+        "test",
+        "designed",
+        "--case",
+        "P3-PUBLISHED_AT-PATCH-OFFSET"
+      ],
+      "ids": [
+        "P3-PUBLISHED_AT-PATCH-OFFSET"
+      ]
+    }
+  ],
+  "OPEN_policy": "P3-QUERY-SEARCH-BLANK remains business OPEN; observation cannot become PASS; nonzero exit retained and evaluated separately from restore."
+}

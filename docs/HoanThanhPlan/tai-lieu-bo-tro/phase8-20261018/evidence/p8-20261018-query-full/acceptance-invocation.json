@@ -1,0 +1,14 @@
+{
+  "run_id": "p8-20261018-query-full",
+  "started_at": "2026-10-18T10:44:16.0816937+00:00",
+  "finished_at": "2026-10-18T10:44:43.0634422+00:00",
+  "elapsed_seconds": 26.9790417,
+  "exit_code": 0,
+  "command": [
+    "test",
+    "cost-query",
+    "--set",
+    "exhaustive"
+  ],
+  "note": "Native raw/guided overrides are short compatibility probes only; historical main campaign budgets remain 1200s/100 examples/3 seeds."
+}

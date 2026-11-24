@@ -304,6 +304,15 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 - Mục G: bảng 62 cặp, bảng thống kê lỗi, coverage (mục 3.3), câu khẳng định theo mục 3.4. Mục H: pin phiên bản, hướng dẫn chạy lại.
 - **DoD:** không còn liên kết tới file đã xóa; mọi con số có nguồn artifact.
 
+**Kết quả (đã làm):** báo cáo mới [BAO_CAO_CUOI_KY_K05.md](BAO_CAO_CUOI_KY_K05.md) gồm phần A đến H, kết luận và phụ lục (catalog 257 ở PL.1, đính chính ở PL.3).
+
+- Dựng từ các gói WP1 đến WP7; mọi con số có nguồn là file trong `docs/k05/` hoặc `manifest/baseline.yaml`, và run ID ghi dạng chữ (thư mục `artifacts/runs/` bị Git bỏ qua).
+- **Chạy lại bộ 13 ca ngày 24/11/2026** sau khi thu nhỏ để xác nhận không hỏng gì: S1 đến S6 6 passed (run `20261124T063845Z-1883`); 7 ca thiết kế 6 passed, 1 failed (TC13, run `20261124T063913Z-1590`); 11 invariant 9 passed, 2 failed (run `20261124T064010Z-710`); replay `editor-crud` đạt; restore PASS ở mọi lần. Trùng kết quả ngày 16/11.
+- Câu khẳng định theo mục 3.4: có mẫu số 62 cặp, tách số request, check thất bại, nguyên nhân; coverage theo schema báo riêng từng chiều, không gộp thành "100%".
+- Liên kết: thêm `scripts/check_md_links.py` (quét 99 file Markdown Git theo dõi, kể cả anchor). Báo cáo và `README.md` sạch; 62 liên kết tới file đã xóa trong các tài liệu cũ được gỡ định dạng, 12 anchor mục lục được sửa; hai báo cáo cũ (`09-bao-cao-cuoi-ky.md`, `BAO_CAO_CUOI_KY_R06_K05_HOAN_CHINH.md`) và `HoanThanhPlan/README.md` có ghi chú "bản lưu lịch sử" trỏ tới báo cáo mới. **Còn 18 liên kết hỏng ngoài phạm vi sửa:** 14 trong bản sao nguyên văn `bang-chung-13-tc/` (giữ để khớp hash), 3 trong `01_ke_hoach_trien_khai_R06_K05.md` (đường dẫn máy khác), 1 trong `AGENTS.md` (thư mục riêng `mnhy/`).
+- **Quyết định còn mở:** hai báo cáo cũ (tổng 245 KB) đã bị thay thế nhưng chưa xóa vì mọi lần xóa trước đều theo lệnh của người dùng.
+- Tác dụng phụ ghi nhận: probe WP7 `POST` với `id=500000` làm dãy tự tăng của `qa_articles` nhảy lên (bài tạo mới từ khoảng 500.000); fixture 1 đến 12 không bị ảnh hưởng.
+
 ### WP9. Phần quản lý nhóm theo PDF (không phải test)
 
 | Việc | Hiện trạng |
@@ -368,7 +377,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [x] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET` (xong 24/11/2026: 18/18 hoàn tất; xem `wp5/README.md`)
 - [x] WP6: coverage tracecov (đo được, tracecov 0.25.2; xem `docs/k05/wp6/`)
 - [x] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate (xem `docs/k05/wp7/`)
-- [ ] WP8: báo cáo A–H viết lại, không còn liên kết hỏng
+- [x] WP8: báo cáo A–H viết lại (`docs/k05/BAO_CAO_CUOI_KY_K05.md`); liên kết hỏng còn lại chỉ ở bản sao nguyên văn và file riêng
 - [ ] WP9: board, đóng góp, peer evaluation, slide và demo
 - [x] Xóa nhóm A, B, C, D (mục 4.2) sau khi trích bằng chứng 13 TC (xong 23/11/2026)
 - [ ] Sáu tiêu chí C1–C6 (mục 3.2) đều có bằng chứng, hoặc tiêu chí không đạt được nêu rõ trong báo cáo

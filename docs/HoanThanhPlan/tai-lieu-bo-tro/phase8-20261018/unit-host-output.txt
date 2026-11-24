@@ -1,0 +1,9 @@
+P6 pairwise: INCOMPLETE, 1/9, state=PASS
+P6 pairwise: FAIL, 0/9, state=PASS
+P6 pairwise: FAIL, 1/9, state=FAIL
+Designed a failed 
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.097s
+
+OK

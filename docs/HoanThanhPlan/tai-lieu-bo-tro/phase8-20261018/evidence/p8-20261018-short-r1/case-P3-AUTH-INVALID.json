@@ -1,0 +1,165 @@
+{
+  "id": "P3-AUTH-INVALID",
+  "BR": "BR-19",
+  "AC": "AC-19",
+  "actor": "invalid-token",
+  "oracle_readiness": "CONDITIONAL",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0053405490007207845,
+      "response_artifact": "python-http/response-621.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004391816999486764,
+      "response_artifact": "python-http/response-622.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/users/me?fields=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0036010410003655124,
+      "response_artifact": "python-http/response-623.json",
+      "step_id": 3,
+      "stage": "control",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/users/me?fields=id",
+      "actor": "invalid-token",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 403,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.003203408999979729,
+      "response_artifact": "python-http/response-624.json",
+      "step_id": 4,
+      "stage": "target",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005687636000402563,
+      "response_artifact": "python-http/response-625.json",
+      "step_id": 5,
+      "stage": "cleanup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004313710000133142,
+      "response_artifact": "python-http/response-626.json",
+      "step_id": 6,
+      "stage": "cleanup",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004903658000330324,
+      "response_artifact": "python-http/response-627.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0050386279999656836,
+      "response_artifact": "python-http/response-628.json",
+      "step_id": 8,
+      "stage": "cleanup",
+      "parent_step_id": 7
+    }
+  ],
+  "bindings": {
+    "probe_key": "8c725662d1c6e5f7986d72e1",
+    "run_id": "p8-20261018-short-r1",
+    "case_id": "P3-AUTH-INVALID",
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "Token sai: 403/INVALID_TOKEN nếu đã xác định nhánh InvalidToken; valid control truy cập được users/me",
+  "expected_state": "Không suy hết auth subsystem đã được kiểm; network/5xx không là PASS",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "passed",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:32:59Z",
+  "resolved_request": {
+    "method": "GET",
+    "path": "/users/me",
+    "query": {
+      "fields": "id"
+    }
+  },
+  "target_response": {
+    "status": 403,
+    "body_summary": {
+      "error_codes": [
+        "INVALID_TOKEN"
+      ]
+    },
+    "artifact": "python-http/response-624.json"
+  },
+  "finished_at": "2026-10-18T10:33:00Z"
+}

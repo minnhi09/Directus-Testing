@@ -1,0 +1,42 @@
+{
+  "steps": [
+    {
+      "label": "query-full",
+      "exit_code": 0,
+      "restore_exit_code": 0
+    },
+    {
+      "label": "scenarios",
+      "exit_code": 0,
+      "restore_exit_code": 0
+    },
+    {
+      "label": "smoke",
+      "exit_code": 0,
+      "restore_exit_code": 0
+    },
+    {
+      "label": "invariants",
+      "exit_code": 1,
+      "restore_exit_code": 0
+    },
+    {
+      "label": "replay-qfqspn",
+      "exit_code": 0,
+      "restore_exit_code": 0
+    },
+    {
+      "label": "replay-z6ynal",
+      "exit_code": 0,
+      "restore_exit_code": 0
+    },
+    {
+      "label": "projection-replay",
+      "exit_code": 1,
+      "restore_exit_code": 0
+    }
+  ],
+  "aggregate_exit_code": 1,
+  "collection_complete": true,
+  "contains_failed_assertions": true
+}

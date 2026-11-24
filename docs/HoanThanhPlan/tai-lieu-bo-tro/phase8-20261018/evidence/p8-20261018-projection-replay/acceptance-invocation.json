@@ -1,0 +1,12 @@
+{
+  "run_id": "p8-20261018-projection-replay",
+  "started_at": "2026-10-18T10:46:38.1579189+00:00",
+  "finished_at": "2026-10-18T10:46:59.5699256+00:00",
+  "elapsed_seconds": 21.4119848,
+  "exit_code": 1,
+  "command": [
+    "replay",
+    "P3-CONTRACT-PROJECTION"
+  ],
+  "note": "Native raw/guided overrides are short compatibility probes only; historical main campaign budgets remain 1200s/100 examples/3 seeds."
+}

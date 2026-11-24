@@ -1,0 +1,164 @@
+{
+  "schema": 2,
+  "case_id": "aggregate-query-robustness",
+  "replay_scope": "regenerated_invariant",
+  "precondition": "pinned lab, verified seed/map/schema; fresh credentials",
+  "case": {
+    "id": "aggregate-query-robustness",
+    "name": "Query aggregate không làm API trả 5xx",
+    "status": "failed",
+    "expected": "unknown aggregate không 5xx; control variants trả 2xx",
+    "actual": "{\"unknown-function-shape\":500,\"empty-object-control\":200,\"count-function-control\":200}",
+    "details": "Regression probe chỉ đọc, không thay đổi dữ liệu; lưu cả variant gây candidate và hai control để phân biệt lỗi shape với trạng thái API bình thường.",
+    "steps": [
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=&aggregate=%7B%22foo%22%3A1%7D",
+        "status": 500,
+        "expected": "schema-accepted input không trả 5xx",
+        "actual": {
+          "errors": [
+            {
+              "code": "INTERNAL_SERVER_ERROR",
+              "message": "An unexpected error occurred."
+            }
+          ]
+        },
+        "response_artifact": "python-http/response-72.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=&aggregate=%7B%7D",
+        "status": 200,
+        "expected": "aggregate rỗng trả 2xx",
+        "actual": {
+          "data_type": "list",
+          "data_length": 12
+        },
+        "response_artifact": "python-http/response-73.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=&aggregate=%7B%22count%22%3A%5B%22id%22%5D%7D",
+        "status": 200,
+        "expected": "aggregate count trả 2xx",
+        "actual": {
+          "data_type": "list",
+          "data_length": 1
+        },
+        "response_artifact": "python-http/response-74.json"
+      }
+    ],
+    "cleanup_status": "passed",
+    "http_trace": [
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.005415083000002596,
+        "response_artifact": "python-http/response-70.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.004119720000062443,
+        "response_artifact": "python-http/response-71.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=&aggregate=%7B%22foo%22%3A1%7D",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 500,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.006418182999937017,
+        "response_artifact": "python-http/response-72.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=&aggregate=%7B%7D",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.005299100999991424,
+        "response_artifact": "python-http/response-73.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=&aggregate=%7B%22count%22%3A%5B%22id%22%5D%7D",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.004829143000051772,
+        "response_artifact": "python-http/response-74.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.004824450999990404,
+        "response_artifact": "python-http/response-75.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.00518149499998799,
+        "response_artifact": "python-http/response-76.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.0054660949999743025,
+        "response_artifact": "python-http/response-77.json"
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+        "actor": "editor",
+        "body": null,
+        "raw_body_sha256": null,
+        "status": 200,
+        "error": null,
+        "content_type": "application/json; charset=utf-8",
+        "elapsed": 0.004503579000015634,
+        "response_artifact": "python-http/response-78.json"
+      }
+    ]
+  }
+}

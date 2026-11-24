@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "path": "lab.sh",
+      "sha256": "f21aa89d927f34f02e4214a47ff8a1d4d9d15903ada9740a3d98b7a73890d8d4"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "181241bdf99db9591ea27b1cfb26cab6cbe50f4500a3a8f141fabf55b2f36276"
+    },
+    {
+      "path": "manifest/baseline.yaml",
+      "sha256": "3cd66ff2d2c19712b1924e76f3270fb8c9b8ad73ea93c50e5cd5d220d2d5b0ee"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ef9872a8099f5e85c3f97b9c6613203a3ae01016337d15128d121e225a01856c"
+    },
+    {
+      "path": "scripts/contract_checks.py",
+      "sha256": "66616c35d9c9619322dd793cd64623df07099f8acef38e2e2ec689569fec2cbb"
+    },
+    {
+      "path": "scripts/designed_cases.py",
+      "sha256": "765a55b8fdf17889e072d6028aefc88c2fca0117c8a1a313168a883b6e606fd0"
+    },
+    {
+      "path": "scripts/invariants.py",
+      "sha256": "9edc652d2bae91d8bf9a675ed710b3fe79aa24434a85c7ac2ee108eaa38f6fee"
+    },
+    {
+      "path": "scripts/replay_cases.py",
+      "sha256": "6893c89a5215078b51b994c4a5562b414730d4b90c9394aa60f0de4b9885ae13"
+    },
+    {
+      "path": "scripts/lab-components.sh",
+      "sha256": "c6d1e05a9158a77449f6cdb946dacb54d3c62c13dc9d52a81ed111db8c41eab9"
+    },
+    {
+      "path": "scripts/run-lab.ps1",
+      "sha256": "e635f5a6eb7cec50f042187286d859310428a98a398f43c3963a0d7241eb803b"
+    },
+    {
+      "path": "scripts/setup-windows.ps1",
+      "sha256": "37340918f50e8a2aaf61fb9874fbb6a0ce586f1832382b0c20c8662b1ff8f5f2"
+    },
+    {
+      "path": "scripts/data/fixture-oracle.json",
+      "sha256": "8dc8fde62dcbcd73d9bdfe05cf0ed0df93bf4cec48d1cbf4e4e41fb238fb71e0"
+    },
+    {
+      "path": "scripts/data/test-catalog-v1.json",
+      "sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58"
+    },
+    {
+      "path": "scripts/windows/jq",
+      "sha256": "1a899fe22167a510d1aae32826c55ed600658388c7e18b92c6a6f1c6ef04962b"
+    }
+  ]
+}

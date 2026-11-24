@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "profile": "guided",
+  "source_schema": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/phase8-20261018/schemas/r06-k05-v2/editor.json",
+  "source_sha256": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+  "scoped_schema": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/p8-20261018-probe-guided/guided/seed-101/schema-guided.json",
+  "scoped_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+  "reason": "guided adds fixture ID examples and valid request examples in a separate overlay",
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles"
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_articles"
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles/{id}"
+    },
+    {
+      "method": "PATCH",
+      "path": "/items/qa_articles/{id}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_articles/{id}"
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories"
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_categories"
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories/{id}"
+    },
+    {
+      "method": "PATCH",
+      "path": "/items/qa_categories/{id}"
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_categories/{id}"
+    }
+  ]
+}

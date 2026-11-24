@@ -1,0 +1,14 @@
+{
+  "run_id": "p8-20261018-time-utc",
+  "started_at": "2026-10-18T10:42:24.8573093+00:00",
+  "finished_at": "2026-10-18T10:42:45.0705494+00:00",
+  "elapsed_seconds": 20.2132112,
+  "exit_code": 0,
+  "command": [
+    "test",
+    "designed",
+    "--case",
+    "P3-PUBLISHED_AT-POST-UTC"
+  ],
+  "note": "Native raw/guided overrides are short compatibility probes only; historical main campaign budgets remain 1200s/100 examples/3 seeds."
+}

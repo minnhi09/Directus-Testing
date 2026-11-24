@@ -1,0 +1,12 @@
+{
+  "run_id": "p8-20261018-replay-qfqspn",
+  "started_at": "2026-10-18T10:45:56.8108562+00:00",
+  "finished_at": "2026-10-18T10:46:17.2339923+00:00",
+  "elapsed_seconds": 20.4231074,
+  "exit_code": 0,
+  "command": [
+    "replay",
+    "qfqspn"
+  ],
+  "note": "Native raw/guided overrides are short compatibility probes only; historical main campaign budgets remain 1200s/100 examples/3 seeds."
+}

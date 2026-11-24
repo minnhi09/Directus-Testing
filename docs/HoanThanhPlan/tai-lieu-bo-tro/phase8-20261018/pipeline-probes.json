@@ -1,0 +1,37 @@
+{
+  "collection_complete": true,
+  "scope": "Current checkpoint compatibility only: 60s, max-examples10, seed101 per profile. Historical three-seed main campaigns remain separate at 1200s/max-examples100.",
+  "probes": [
+    {
+      "profile": "raw",
+      "tested_operations": 10,
+      "run_id": "p8-20261018-probe-raw",
+      "restore_exit_code": 0,
+      "termination": "max_time",
+      "budget": {
+        "max_time_seconds": 60,
+        "max_examples_per_operation": 10,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "exit_code": 1
+    },
+    {
+      "profile": "guided",
+      "tested_operations": 10,
+      "run_id": "p8-20261018-probe-guided",
+      "restore_exit_code": 0,
+      "termination": "max_time",
+      "budget": {
+        "max_time_seconds": 60,
+        "max_examples_per_operation": 10,
+        "workers": 1,
+        "rate_limit": "5/s",
+        "request_timeout_seconds": 10
+      },
+      "exit_code": 1
+    }
+  ],
+  "aggregate_exit_code": 1
+}

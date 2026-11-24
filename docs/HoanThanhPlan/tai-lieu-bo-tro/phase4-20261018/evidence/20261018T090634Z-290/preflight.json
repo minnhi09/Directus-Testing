@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "fixture_version": "r06-k05-v2",
+  "map_sha256": "ba89e40892c9aeb5afbdbfd9c3dbc8b20c4e0430a11216f98c1ff7eb9357553e",
+  "database_oracle": {
+    "server_version": "16.15",
+    "collation": "en_US.utf8",
+    "title_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  "title_order_verified": true,
+  "catalog_sha256": "19fdf06dc77e74754e42d40071e090c5f28d4533df08c13172ffb4d3665e5a58"
+}

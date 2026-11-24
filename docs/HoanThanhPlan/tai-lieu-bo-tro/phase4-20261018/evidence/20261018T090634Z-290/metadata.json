@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "run_id": "20261018T090634Z-290",
+  "command": "test designed",
+  "status": "failed",
+  "exit_code": 1,
+  "started_at": "2026-10-18T09:06:34Z",
+  "finished_at": "2026-10-18T09:09:10Z",
+  "duration_seconds": 156,
+  "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "working_tree": "dirty",
+  "harness_inputs": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T090634Z-290/harness-inputs.json",
+  "fixture_map_input": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T090634Z-290/fixture-ids-input.json",
+  "project": "r06-k05",
+  "runtime_profile": "phase4-20261018",
+  "api_url": "http://127.0.0.1:8055",
+  "runner_api_url": "http://directus:8055",
+  "actor": "unspecified",
+  "fixture_version": "r06-k05-v2",
+  "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+  "seed": null,
+  "budget": null,
+  "baseline": {
+    "directus_image": "docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+    "postgres_image": "docker.io/library/postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+    "schemathesis_image": "docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5"
+  },
+  "campaign_index": null,
+  "fixture_map": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/phase4-20261018/fixture-ids.json",
+  "artifact_dir": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T090634Z-290",
+  "log_file": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T090634Z-290/run.log"
+}
