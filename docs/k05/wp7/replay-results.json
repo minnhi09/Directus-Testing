@@ -1,0 +1,875 @@
+{
+  "base": "http://127.0.0.1:8055",
+  "started_unix": 1795501544.1528544,
+  "state_before": {
+    "qa_articles": {
+      "count": 12,
+      "max_id": 12
+    },
+    "qa_categories": {
+      "count": 3,
+      "max_id": 3
+    }
+  },
+  "state_after_probes": {
+    "qa_articles": {
+      "count": 15,
+      "max_id": 500010
+    },
+    "qa_categories": {
+      "count": 6,
+      "max_id": 5
+    }
+  },
+  "cleaned_rows": [
+    {
+      "collection": "qa_articles",
+      "id": 500000,
+      "delete_status": 204
+    },
+    {
+      "collection": "qa_articles",
+      "id": 500009,
+      "delete_status": 204
+    },
+    {
+      "collection": "qa_articles",
+      "id": 500010,
+      "delete_status": 204
+    },
+    {
+      "collection": "qa_categories",
+      "id": -29490,
+      "delete_status": 204
+    },
+    {
+      "collection": "qa_categories",
+      "id": 4,
+      "delete_status": 204
+    },
+    {
+      "collection": "qa_categories",
+      "id": 5,
+      "delete_status": 204
+    }
+  ],
+  "admin_evidence": [
+    {
+      "root_cause": "RC01",
+      "method": "GET",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "server_message": "select \"qa_articles\".\"id\", \"qa_articles\".\"title\", \"qa_articles\".\"status\", \"qa_articles\".\"score\", \"qa_articles\".\"published_at\", \"qa_articles\".\"metadata\", \"qa_articles\".\"internal_notes\", \"qa_articles\".\"category\" from \"qa_articles\" where \"qa_articles\".\"id\" = $1 order by \"qa_articles\".\"id\" asc limit $2 - value \"9999999999\" is out of range for type integer"
+    },
+    {
+      "root_cause": "RC01",
+      "method": "DELETE",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "server_message": "delete from \"qa_articles\" where \"id\" in ($1) - value \"9999999999\" is out of range for type integer"
+    },
+    {
+      "root_cause": "RC02",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%7B%22foo%22%3A1%7D",
+      "status": 500,
+      "server_message": "fields is not iterable"
+    },
+    {
+      "root_cause": "RC02",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=abc",
+      "status": 500,
+      "server_message": "Cannot assign to read only property '0' of string 'abc'"
+    },
+    {
+      "root_cause": "RC03",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "server_message": "insert into \"qa_articles\" (\"published_at\", \"score\", \"title\") values ($1, $2, $3) returning \"id\" - invalid input syntax for type timestamp with time zone: \"false\""
+    },
+    {
+      "root_cause": "RC03",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "server_message": "insert into \"qa_articles\" (\"published_at\", \"score\", \"title\") values ($1, $2, $3) returning \"id\" - invalid input syntax for type timestamp with time zone: \"0NaN-NaN-NaNTNaN:NaN:NaN.NaN+NaN:NaN\""
+    },
+    {
+      "root_cause": "RC04",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "server_message": "insert into \"qa_categories\" (\"name\") values ($1) returning \"id\" - invalid byte sequence for encoding \"UTF8\": 0x00"
+    },
+    {
+      "root_cause": "RC04",
+      "method": "GET",
+      "path": "/items/qa_categories?search=a%00b",
+      "status": 500,
+      "server_message": "select \"qa_categories\".\"id\", \"qa_categories\".\"name\" from \"qa_categories\" where (LOWER(\"qa_categories\".\"name\") LIKE $1) order by \"qa_categories\".\"id\" asc limit $2 - invalid byte sequence for encoding \"UTF8\": 0x00"
+    },
+    {
+      "root_cause": "RC12",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "server_message": "Cannot read properties of null (reading 'id')"
+    },
+    {
+      "root_cause": "RC13",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "server_message": "insert into \"qa_categories\" (\"id\", \"name\") values ($1, $2) returning \"id\" - invalid input syntax for type integer: \"true\""
+    },
+    {
+      "root_cause": "RC13",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "server_message": "insert into \"qa_categories\" (\"id\", \"name\") values ($1, $2) returning \"id\" - invalid input syntax for type integer: \"1e+21\""
+    },
+    {
+      "root_cause": "RC13",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "server_message": "select \"id\" from \"qa_categories\" where \"id\" = $1 limit $2 - invalid input syntax for type integer: \"abc\""
+    },
+    {
+      "root_cause": "RC14",
+      "method": "GET",
+      "path": "/items/qa_articles?fields=sections.item%3Aheadings.title&export=csv",
+      "status": 500,
+      "server_message": "Data should not be empty or the \"fields\" option should be included"
+    },
+    {
+      "root_cause": "RC15",
+      "method": "GET",
+      "path": "/items/qa_articles?limit=897434&page=17592186044417",
+      "status": 500,
+      "server_message": "select \"qa_articles\".\"id\", \"qa_articles\".\"title\", \"qa_articles\".\"status\", \"qa_articles\".\"score\", \"qa_articles\".\"published_at\", \"qa_articles\".\"metadata\", \"qa_articles\".\"internal_notes\", \"qa_articles\".\"category\" from \"qa_articles\" order by \"qa_articles\".\"id\" asc limit $1 offset $2 - value \"15787825890584429000\" is out of range for type bigint"
+    },
+    {
+      "root_cause": "RC16",
+      "method": "GET",
+      "path": "/items/qa_articles?groupBy=a%29b%28",
+      "status": 500,
+      "server_message": "Cannot read properties of null (reading '1')"
+    }
+  ],
+  "state_final": {
+    "qa_articles": {
+      "count": 12,
+      "max_id": 12
+    },
+    "qa_categories": {
+      "count": 3,
+      "max_id": 3
+    }
+  },
+  "state_restored": true,
+  "results": [
+    {
+      "group": "H1",
+      "hypothesis": "GET id=2147483647 (max int4) - doi chung",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/2147483647",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access this."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET id=2147483648 (max int4 + 1)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/2147483648",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET id=9999999999",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET id=-173822012232 (am, ngoai int4)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/-173822012232",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET id=-1 (am, trong int4)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/-1",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access this."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET id=999999 (khong ton tai, trong int4)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/999999",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access this."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET id=abc (khong phai so)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles/abc",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access this."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "DELETE id=9999999999",
+      "actor": "editor",
+      "method": "DELETE",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "DELETE id=999999 (khong ton tai)",
+      "actor": "editor",
+      "method": "DELETE",
+      "path": "/items/qa_articles/999999",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to perform \"delete\" for collection \"qa_articles\" or it does not exist."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "PATCH id=9999999999",
+      "actor": "editor",
+      "method": "PATCH",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "PATCH id=999999 (khong ton tai)",
+      "actor": "editor",
+      "method": "PATCH",
+      "path": "/items/qa_articles/999999",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permissions to perform \"update\" for the field(s) \"title\" in collection \"qa_articles\" or it does not exist."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "GET qa_categories id=78159021685995732992",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_categories/78159021685995732992",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "admin GET id=9999999999",
+      "actor": "admin",
+      "method": "GET",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "select \"qa_articles\".\"id\", \"qa_articles\".\"title\", \"qa_articles\".\"status\", \"qa_articles\".\"score\", \"qa_articles\".\"published_at\", \"qa_articles\".\"metadata\", \"qa_art"
+    },
+    {
+      "group": "H1",
+      "hypothesis": "admin GET id=999999",
+      "actor": "admin",
+      "method": "GET",
+      "path": "/items/qa_articles/999999",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access this."
+    },
+    {
+      "group": "H1",
+      "hypothesis": "reader GET id=9999999999",
+      "actor": "reader",
+      "method": "GET",
+      "path": "/items/qa_articles/9999999999",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "aggregate={\"foo\":1}",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%7B%22foo%22%3A1%7D",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "aggregate={\"count\":\"*\"} - doi chung hop le",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%7B%22count%22%3A%22%2A%22%7D",
+      "status": 200,
+      "data_list_len": 1
+    },
+    {
+      "group": "H2",
+      "hypothesis": "aggregate={\"count\":[\"x\"]}",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%7B%22count%22%3A%5B%22x%22%5D%7D",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access field \"x\" in collection \"qa_articles\" or it does not exist. Queried in root."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "aggregate=[]",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%5B%5D",
+      "status": 400,
+      "code": "INVALID_QUERY",
+      "message": "Invalid query. \"aggregate\" must be of type object."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "aggregate=abc (khong phai JSON)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=abc",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "reader aggregate={\"foo\":1}",
+      "actor": "reader",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%7B%22foo%22%3A1%7D",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "qa_categories aggregate={\"foo\":1}",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_categories?aggregate=%7B%22foo%22%3A1%7D",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H2",
+      "hypothesis": "admin aggregate={\"foo\":1}",
+      "actor": "admin",
+      "method": "GET",
+      "path": "/items/qa_articles?aggregate=%7B%22foo%22%3A1%7D",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "fields is not iterable"
+    },
+    {
+      "group": "H3",
+      "hypothesis": "fields=sections.item:headings.title",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?fields=sections.item%3Aheadings.title",
+      "status": 200,
+      "data_list_len": 12
+    },
+    {
+      "group": "H3",
+      "hypothesis": "fields=year(date_published)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_categories?fields=year%28date_published%29",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access field \"date_published\" in collection \"qa_categories\" or it does not exist. Queried in root."
+    },
+    {
+      "group": "H3",
+      "hypothesis": "sort=year(date_created)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_categories?sort=year%28date_created%29",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access field \"date_created\" in collection \"qa_categories\" or it does not exist. Queried in root."
+    },
+    {
+      "group": "H3",
+      "hypothesis": "deep={\"x\":[-8587]}",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?deep=%7B%22x%22%3A%5B-8587%5D%7D",
+      "status": 200,
+      "data_list_len": 12
+    },
+    {
+      "group": "H3",
+      "hypothesis": "limit=-1 + page=2",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?limit=-1&page=2",
+      "status": 200,
+      "data_list_len": 12
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST articles toi thieu hop le (doi chung)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 200,
+      "data_keys": [
+        "category",
+        "id",
+        "internal_notes",
+        "metadata",
+        "published_at",
+        "score",
+        "status",
+        "title"
+      ]
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST articles id trong int4 (id=500000)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 200,
+      "data_keys": [
+        "category",
+        "id",
+        "internal_notes",
+        "metadata",
+        "published_at",
+        "score",
+        "status",
+        "title"
+      ]
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST articles id ngoai int4 (id=9999999999)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 400,
+      "code": "VALUE_OUT_OF_RANGE",
+      "message": "Numeric value in collection \"qa_articles\" is out of range."
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST categories id ngoai int4 (id=9999999999)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 400,
+      "code": "VALUE_OUT_OF_RANGE",
+      "message": "Numeric value in collection \"qa_categories\" is out of range."
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST categories mang co id ngoai int4",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 400,
+      "code": "VALUE_OUT_OF_RANGE",
+      "message": "Numeric value in collection \"qa_categories\" is out of range."
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST categories id am trong int4 (id=-29490)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 200,
+      "data_keys": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST categories id am ngoai int4 (id=-5345389491970)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 400,
+      "code": "VALUE_OUT_OF_RANGE",
+      "message": "Numeric value in collection \"qa_categories\" is out of range."
+    },
+    {
+      "group": "H4",
+      "hypothesis": "POST categories khoa la \"\" (rong)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 200,
+      "data_keys": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST published_at=false (boolean cho cot timestamp)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST published_at=true",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST published_at=\"abc\" (chuoi khong phai ngay)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST published_at=123 (so)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST published_at=\"2026-11-24T00:00:00Z\" (doi chung hop le)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 200,
+      "data_keys": [
+        "category",
+        "id",
+        "internal_notes",
+        "metadata",
+        "published_at",
+        "score",
+        "status",
+        "title"
+      ]
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "PATCH published_at=false tren bai 1",
+      "actor": "editor",
+      "method": "PATCH",
+      "path": "/items/qa_articles/1",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST name chua ky tu NUL (chr(0)) cho categories",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST title chua ky tu NUL (chr(0)) cho articles",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H4b",
+      "hypothesis": "POST name chua U+0019 (khong NUL) - doi chung",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 200,
+      "data_keys": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "group": "H7",
+      "hypothesis": "TRACE /items/qa_articles (phuong thuc khong ho tro, duong dan ton tai)",
+      "actor": "editor",
+      "method": "TRACE",
+      "path": "/items/qa_articles",
+      "status": 404,
+      "code": "ROUTE_NOT_FOUND",
+      "message": "Route /items/qa_articles doesn't exist."
+    },
+    {
+      "group": "H7",
+      "hypothesis": "TRACE /server/ping",
+      "actor": "editor",
+      "method": "TRACE",
+      "path": "/server/ping",
+      "status": 404,
+      "code": "ROUTE_NOT_FOUND",
+      "message": "Route /server/ping doesn't exist."
+    },
+    {
+      "group": "H7",
+      "hypothesis": "PUT /items/qa_articles/1 (khong ho tro)",
+      "actor": "editor",
+      "method": "PUT",
+      "path": "/items/qa_articles/1",
+      "status": 404,
+      "code": "ROUTE_NOT_FOUND",
+      "message": "Route /items/qa_articles/1 doesn't exist."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC04 search chua %00 (NUL trong query)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_categories?search=a%00b",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC12 POST mang chua null",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC13 POST id=true",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC13 POST id=\"\" (chuoi rong)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC13 POST id=1e21 (bieu dien mu)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC13 POST category.id=\"abc\" (khoa ngoai long)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC13 doi chung: id=100000000000000000000 (1e20, van co dang so nguyen)",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "status": 400,
+      "code": "VALUE_OUT_OF_RANGE",
+      "message": "Numeric value in collection \"qa_categories\" is out of range."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC14 export=csv voi fields=sections.item:headings.title",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?fields=sections.item%3Aheadings.title&export=csv",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC14 doi chung: export=csv khong co fields",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?export=csv",
+      "status": 200,
+      "raw": "\"id\",\"title\",\"status\",\"score\",\"published_at\",\"metadata.fixture_key\",\"metadata.fixture_version\",\"metadata.locale\",\"intern"
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC15 limit=897434&page=17592186044417",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?limit=897434&page=17592186044417",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC15 doi chung: limit=100&page=1000000",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?limit=100&page=1000000",
+      "status": 200,
+      "data_list_len": 0
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC16 groupBy=a)b(",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?groupBy=a%29b%28",
+      "status": 500,
+      "code": "INTERNAL_SERVER_ERROR",
+      "message": "An unexpected error occurred."
+    },
+    {
+      "group": "H8",
+      "hypothesis": "RC16 doi chung: groupBy=year(published_at)",
+      "actor": "editor",
+      "method": "GET",
+      "path": "/items/qa_articles?groupBy=year%28published_at%29",
+      "status": 200,
+      "data_list_len": 2
+    },
+    {
+      "group": "H5",
+      "hypothesis": "reader PATCH body rong {}",
+      "actor": "reader",
+      "method": "PATCH",
+      "path": "/items/qa_articles/1",
+      "status": 204,
+      "raw": ""
+    },
+    {
+      "group": "H5",
+      "hypothesis": "reader PATCH co du lieu",
+      "actor": "reader",
+      "method": "PATCH",
+      "path": "/items/qa_articles/1",
+      "status": 403,
+      "code": "FORBIDDEN",
+      "message": "You don't have permission to access field \"title\" in collection \"qa_articles\" or it does not exist. Queried in root."
+    },
+    {
+      "group": "H5",
+      "hypothesis": "reader PATCH khong body",
+      "actor": "reader",
+      "method": "PATCH",
+      "path": "/items/qa_articles/1",
+      "status": 204,
+      "raw": ""
+    },
+    {
+      "group": "H5",
+      "hypothesis": "editor PATCH body rong {}",
+      "actor": "editor",
+      "method": "PATCH",
+      "path": "/items/qa_articles/1",
+      "status": 200,
+      "data_keys": [
+        "category",
+        "id",
+        "internal_notes",
+        "metadata",
+        "published_at",
+        "score",
+        "status",
+        "title"
+      ]
+    },
+    {
+      "group": "H6",
+      "hypothesis": "editor POST utils/sort/qa_articles body rong",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/utils/sort/qa_articles",
+      "status": 400,
+      "code": "INVALID_PAYLOAD",
+      "message": "Invalid payload. Validation error: Invalid input: expected string, received undefined at \"item\" or Invalid input: expected number, received undefined at \"item\";"
+    },
+    {
+      "group": "H6",
+      "hypothesis": "editor POST utils/sort/qa_articles {item,to} khong ton tai",
+      "actor": "editor",
+      "method": "POST",
+      "path": "/utils/sort/qa_articles",
+      "status": 400,
+      "code": "INVALID_PAYLOAD",
+      "message": "Invalid payload. Collection \"qa_articles\" doesn't have a sort field."
+    }
+  ]
+}
