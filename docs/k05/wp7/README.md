@@ -122,6 +122,7 @@ Khung stack ghi trong log server khi replay: `extractPathsFromQuery`, `extractFi
 - RC05 có thể là thiết kế của Express/Directus; RC11 có thể là chủ ý (Directus bỏ qua tham số truy vấn lạ).
 - Chưa có người thứ hai tái hiện các reproducer; chỉ có lần replay trên lab này.
 - Các phát hiện sản phẩm chưa được báo cho Directus upstream và chưa kiểm tra xem phiên bản mới hơn có sửa chưa.
+- Probe `POST` với `id=500000` (nhóm H4) làm dãy tự tăng của `qa_articles` nhảy lên, nên bài tạo mới sau đó có ID từ khoảng 500.000 (ví dụ 500.014 trong run `20261124T063913Z-1590`). Fixture (ID 1 đến 12) không bị ảnh hưởng và không test nào giả định ID tạo mới.
 
 ## 7. Tái lập
 
