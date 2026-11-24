@@ -1,0 +1,12 @@
+{
+  "run_id": "p8-20261018-invariants",
+  "started_at": "2026-10-18T10:45:15.0579535+00:00",
+  "finished_at": "2026-10-18T10:45:56.7866518+00:00",
+  "elapsed_seconds": 41.7286367,
+  "exit_code": 1,
+  "command": [
+    "test",
+    "invariants"
+  ],
+  "note": "Native raw/guided overrides are short compatibility probes only; historical main campaign budgets remain 1200s/100 examples/3 seeds."
+}

@@ -1,0 +1,1405 @@
+{
+  "schema": 1,
+  "protocol_id": "P6-COST-v1",
+  "protocol_sha256": "02ac195775b34a57c3b69ca5ca9f66b34781ba65f2e67ba3e9fa1f867b8af682",
+  "model_id": "QRY-PW-v1",
+  "selection": "exhaustive",
+  "selected": 36,
+  "actor": "editor",
+  "method": "GET",
+  "path": "/items/qa_articles",
+  "results": [
+    {
+      "id": "P3-PW-01",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004619468000782945,
+      "response_artifact": "python-http/response-10.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-02",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004771124999933818,
+      "response_artifact": "python-http/response-11.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-03",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005320569000105024,
+      "response_artifact": "python-http/response-12.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-04",
+      "factors": {
+        "filter": "none",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004424141999152198,
+      "response_artifact": "python-http/response-13.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-05",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005311930000061693,
+      "response_artifact": "python-http/response-14.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-06",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004660989000512927,
+      "response_artifact": "python-http/response-15.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-07",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005212346000007528,
+      "response_artifact": "python-http/response-16.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-08",
+      "factors": {
+        "filter": "none",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004668061999836937,
+      "response_artifact": "python-http/response-17.json",
+      "expected_ids": [
+        4,
+        5,
+        6
+      ],
+      "actual_ids": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-09",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005143851999491744,
+      "response_artifact": "python-http/response-18.json",
+      "expected_ids": [
+        3,
+        8,
+        6
+      ],
+      "actual_ids": [
+        3,
+        8,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-10",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004505599000367511,
+      "response_artifact": "python-http/response-19.json",
+      "expected_ids": [
+        3,
+        8,
+        6
+      ],
+      "actual_ids": [
+        3,
+        8,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-11",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.00841461099935259,
+      "response_artifact": "python-http/response-20.json",
+      "expected_ids": [
+        3,
+        8,
+        6
+      ],
+      "actual_ids": [
+        3,
+        8,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-12",
+      "factors": {
+        "filter": "none",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004567508000036469,
+      "response_artifact": "python-http/response-21.json",
+      "expected_ids": [
+        3,
+        8,
+        6
+      ],
+      "actual_ids": [
+        3,
+        8,
+        6
+      ]
+    },
+    {
+      "id": "P3-PW-13",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.00534427299953677,
+      "response_artifact": "python-http/response-22.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-14",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005513941999197414,
+      "response_artifact": "python-http/response-23.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-15",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005670473999998649,
+      "response_artifact": "python-http/response-24.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-16",
+      "factors": {
+        "filter": "draft",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005940830999861646,
+      "response_artifact": "python-http/response-25.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-17",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.007238252999741235,
+      "response_artifact": "python-http/response-26.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-18",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004997752000235778,
+      "response_artifact": "python-http/response-27.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-19",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004772650000631984,
+      "response_artifact": "python-http/response-28.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-20",
+      "factors": {
+        "filter": "draft",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005414904000645038,
+      "response_artifact": "python-http/response-29.json",
+      "expected_ids": [
+        6,
+        9,
+        10
+      ],
+      "actual_ids": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "P3-PW-21",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.00843362000068737,
+      "response_artifact": "python-http/response-30.json",
+      "expected_ids": [
+        9,
+        1,
+        5
+      ],
+      "actual_ids": [
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "id": "P3-PW-22",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004765136000060011,
+      "response_artifact": "python-http/response-31.json",
+      "expected_ids": [
+        9,
+        1,
+        5
+      ],
+      "actual_ids": [
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "id": "P3-PW-23",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.006598279999707302,
+      "response_artifact": "python-http/response-32.json",
+      "expected_ids": [
+        9,
+        1,
+        5
+      ],
+      "actual_ids": [
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "id": "P3-PW-24",
+      "factors": {
+        "filter": "draft",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "draft",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004811120999875129,
+      "response_artifact": "python-http/response-33.json",
+      "expected_ids": [
+        9,
+        1,
+        5
+      ],
+      "actual_ids": [
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "id": "P3-PW-25",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005567170999711379,
+      "response_artifact": "python-http/response-34.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-26",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004701835999185278,
+      "response_artifact": "python-http/response-35.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-27",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004643348000172409,
+      "response_artifact": "python-http/response-36.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-28",
+      "factors": {
+        "filter": "published",
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004585464999763644,
+      "response_artifact": "python-http/response-37.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-29",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005290711000270676,
+      "response_artifact": "python-http/response-38.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-30",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004493942999943101,
+      "response_artifact": "python-http/response-39.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-31",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004519483999501972,
+      "response_artifact": "python-http/response-40.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-32",
+      "factors": {
+        "filter": "published",
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "title,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.00511958799961576,
+      "response_artifact": "python-http/response-41.json",
+      "expected_ids": [
+        8,
+        11,
+        12
+      ],
+      "actual_ids": [
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "P3-PW-33",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.005765851999967708,
+      "response_artifact": "python-http/response-42.json",
+      "expected_ids": [
+        8,
+        7,
+        11
+      ],
+      "actual_ids": [
+        8,
+        7,
+        11
+      ]
+    },
+    {
+      "id": "P3-PW-34",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.00454120700032945,
+      "response_artifact": "python-http/response-43.json",
+      "expected_ids": [
+        8,
+        7,
+        11
+      ],
+      "actual_ids": [
+        8,
+        7,
+        11
+      ]
+    },
+    {
+      "id": "P3-PW-35",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-offset3"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "offset": 3
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004697954000221216,
+      "response_artifact": "python-http/response-44.json",
+      "expected_ids": [
+        8,
+        7,
+        11
+      ],
+      "actual_ids": [
+        8,
+        7,
+        11
+      ]
+    },
+    {
+      "id": "P3-PW-36",
+      "factors": {
+        "filter": "published",
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "pagination": "limit3-page2"
+      },
+      "query": {
+        "sort": "-score,id",
+        "fields": "id,title,status,score",
+        "limit": 3,
+        "filter[status][_eq]": "published",
+        "page": 2
+      },
+      "verdict": "PASS",
+      "status": 200,
+      "api_elapsed_seconds": 0.004613092999534274,
+      "response_artifact": "python-http/response-45.json",
+      "expected_ids": [
+        8,
+        7,
+        11
+      ],
+      "actual_ids": [
+        8,
+        7,
+        11
+      ]
+    }
+  ],
+  "status": "PASS",
+  "verification": "PASS",
+  "target_wall_seconds": 7.196767837000152,
+  "error": null,
+  "setup_seconds": 3.1459488599994074,
+  "verification_seconds": 0.39996284900007595,
+  "runner_wall_seconds": 10.742686503999721,
+  "python_http": [
+    {
+      "stage": "authentication",
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200
+    },
+    {
+      "stage": "authentication",
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200
+    },
+    {
+      "stage": "authentication",
+      "method": "POST",
+      "path": "/auth/login",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/items/qa_categories",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/fields/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/fields/qa_categories",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/relations/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/items/qa_categories",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "preflight",
+      "method": "GET",
+      "path": "/items/qa_categories",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "target",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "verification",
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "status": 200
+    },
+    {
+      "stage": "verification",
+      "method": "GET",
+      "path": "/items/qa_categories",
+      "status": 200
+    }
+  ],
+  "python_http_attempts": 50,
+  "python_http_by_stage": {
+    "authentication": 3,
+    "preflight": 9,
+    "target": 36,
+    "verification": 2
+  },
+  "target_attempts": 36,
+  "target_statuses": {
+    "200": 36
+  },
+  "not_run": [],
+  "passed_pairs": 37,
+  "feasible_pairs": 37,
+  "passed": 36
+}

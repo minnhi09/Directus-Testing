@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "profile": "raw",
+  "seed": 101,
+  "operation_inventory": {
+    "schema": 1,
+    "profile": "raw",
+    "seed": 101,
+    "expected_operation_count": 10,
+    "covered_operation_count": 10,
+    "operations": [
+      {
+        "method": "GET",
+        "path": "/items/qa_articles",
+        "hits": 5,
+        "covered": true
+      },
+      {
+        "method": "POST",
+        "path": "/items/qa_articles",
+        "hits": 2,
+        "covered": true
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_articles/{id}",
+        "hits": 10,
+        "covered": true
+      },
+      {
+        "method": "PATCH",
+        "path": "/items/qa_articles/{id}",
+        "hits": 11,
+        "covered": true
+      },
+      {
+        "method": "DELETE",
+        "path": "/items/qa_articles/{id}",
+        "hits": 9,
+        "covered": true
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_categories",
+        "hits": 5,
+        "covered": true
+      },
+      {
+        "method": "POST",
+        "path": "/items/qa_categories",
+        "hits": 2,
+        "covered": true
+      },
+      {
+        "method": "GET",
+        "path": "/items/qa_categories/{id}",
+        "hits": 7,
+        "covered": true
+      },
+      {
+        "method": "PATCH",
+        "path": "/items/qa_categories/{id}",
+        "hits": 5,
+        "covered": true
+      },
+      {
+        "method": "DELETE",
+        "path": "/items/qa_categories/{id}",
+        "hits": 3,
+        "covered": true
+      }
+    ]
+  },
+  "schemathesis": {
+    "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+    },
+    "test_cases": {
+      "generated": 61,
+      "with_failures": 20,
+      "unique_failures": 22,
+      "without_checks": 0,
+      "errored": 0
+    },
+    "failures": [
+      {
+        "type": "RejectedPositiveData",
+        "title": "API rejected schema-compliant request",
+        "severity": "medium",
+        "count": 2,
+        "operations": [
+          "GET /items/qa_articles",
+          "GET /items/qa_articles/{id}"
+        ]
+      },
+      {
+        "type": "UndefinedStatusCode",
+        "title": "Undocumented HTTP status code",
+        "severity": "medium",
+        "count": 18,
+        "operations": [
+          "DELETE /items/qa_articles/{id}",
+          "DELETE /items/qa_categories/{id}",
+          "GET /items/qa_articles",
+          "GET /items/qa_articles/{id}",
+          "GET /items/qa_categories",
+          "GET /items/qa_categories/{id}",
+          "PATCH /items/qa_articles/{id}",
+          "PATCH /items/qa_categories/{id}",
+          "POST /items/qa_articles",
+          "POST /items/qa_categories"
+        ]
+      },
+      {
+        "type": "UnsupportedMethodResponse",
+        "title": "Unsupported methods",
+        "severity": "medium",
+        "count": 2,
+        "operations": [
+          "TRACE /items/qa_articles",
+          "TRACE /items/qa_categories"
+        ]
+      }
+    ],
+    "warnings": {
+      "missing_auth": [],
+      "base_url_mismatch": [],
+      "missing_test_data": [],
+      "validation_mismatch": [],
+      "missing_deserializer": [],
+      "unused_openapi_auth": [],
+      "unsupported_regex": [],
+      "method_not_allowed": [],
+      "constants_extraction": [],
+      "unmatched_filter": [],
+      "unresolvable_reference": [],
+      "low_valid_rate": []
+    }
+  }
+}

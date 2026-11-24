@@ -1,0 +1,227 @@
+{
+  "id": "P3-PUBLISHED_AT-POST-UTC",
+  "BR": "BR-06",
+  "AC": "AC-06",
+  "actor": "editor",
+  "oracle_readiness": "CONDITIONAL",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005652233000546403,
+      "response_artifact": "python-http/response-10.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005653071999404347,
+      "response_artifact": "python-http/response-11.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0060961780000070576,
+      "response_artifact": "python-http/response-12.json",
+      "step_id": 3,
+      "stage": "precondition",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004372514999886334,
+      "response_artifact": "python-http/response-13.json",
+      "step_id": 4,
+      "stage": "precondition",
+      "parent_step_id": 3
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "actor": "editor",
+      "body": {
+        "title": "Probe 8634ae1e34129aa656baa583",
+        "status": "draft",
+        "score": 3,
+        "published_at": "2026-10-01T08:00:00Z",
+        "metadata": {
+          "probe": "8634ae1e34129aa656baa583"
+        },
+        "internal_notes": "Private 8634ae1e34129aa656baa583",
+        "category": 1
+      },
+      "raw_body_sha256": "9de0cf2b0bef9d891444e9af55ad43851a713faad163372686f3dae1db131ab8",
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.009559527000419621,
+      "response_artifact": "python-http/response-14.json",
+      "step_id": 5,
+      "stage": "target",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles/131?fields=id,title,status,score,published_at,metadata,internal_notes,category",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005314619999808201,
+      "response_artifact": "python-http/response-15.json",
+      "step_id": 6,
+      "stage": "target",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005524855000658135,
+      "response_artifact": "python-http/response-16.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00466514600066148,
+      "response_artifact": "python-http/response-17.json",
+      "step_id": 8,
+      "stage": "cleanup",
+      "parent_step_id": 7
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_articles/131",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 204,
+      "error": null,
+      "content_type": "",
+      "elapsed": 0.007156184999985271,
+      "response_artifact": "python-http/response-18.json",
+      "step_id": 9,
+      "stage": "cleanup",
+      "parent_step_id": 8
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0051050120000581956,
+      "response_artifact": "python-http/response-19.json",
+      "step_id": 10,
+      "stage": "cleanup",
+      "parent_step_id": 9
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0040761759992165025,
+      "response_artifact": "python-http/response-20.json",
+      "step_id": 11,
+      "stage": "cleanup",
+      "parent_step_id": 10
+    }
+  ],
+  "bindings": {
+    "probe_key": "8634ae1e34129aa656baa583",
+    "run_id": "p8-20261018-time-utc",
+    "case_id": "P3-PUBLISHED_AT-POST-UTC",
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "2xx cho null/ISO chuẩn có offset; GET có null hoặc cùng instant theo parseISO/ISO source",
+  "expected_state": "So instant cho giá trị giây nguyên; không so byte string, không tự áp published phải có timestamp",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "not_applicable",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:42:36Z",
+  "resolved_request": {
+    "method": "POST",
+    "path": "/items/qa_articles",
+    "query": {},
+    "body": {
+      "title": "Probe 8634ae1e34129aa656baa583",
+      "status": "draft",
+      "score": 3,
+      "published_at": "2026-10-01T08:00:00Z",
+      "metadata": {
+        "probe": "8634ae1e34129aa656baa583"
+      },
+      "internal_notes": "Private 8634ae1e34129aa656baa583",
+      "category": 1
+    }
+  },
+  "target_response": {
+    "status": 200,
+    "body_summary": {
+      "error_codes": []
+    },
+    "artifact": "python-http/response-14.json"
+  },
+  "finished_at": "2026-10-18T10:42:38Z"
+}

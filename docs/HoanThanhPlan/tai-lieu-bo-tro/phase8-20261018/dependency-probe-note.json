@@ -1,0 +1,5 @@
+{
+  "initial_probe": "PackageNotFoundError: jsonschema",
+  "resolution": "Read actual installed distributions; no package installation or runtime source change",
+  "offline_tests": "18/18 PASS in pinned runner before metadata probe error; output preserved separately"
+}

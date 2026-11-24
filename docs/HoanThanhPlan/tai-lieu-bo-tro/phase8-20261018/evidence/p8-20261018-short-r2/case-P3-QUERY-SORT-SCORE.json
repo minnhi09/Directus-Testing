@@ -1,0 +1,150 @@
+{
+  "id": "P3-QUERY-SORT-SCORE",
+  "BR": "BR-21",
+  "AC": "AC-21",
+  "actor": "editor",
+  "oracle_readiness": "ASSERTABLE",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.006052861000171106,
+      "response_artifact": "python-http/response-643.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004605105000337062,
+      "response_artifact": "python-http/response-644.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cscore&limit=-1&sort=-score%2Cid",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005885122000108822,
+      "response_artifact": "python-http/response-645.json",
+      "step_id": 3,
+      "stage": "target",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004964969999491586,
+      "response_artifact": "python-http/response-646.json",
+      "step_id": 4,
+      "stage": "cleanup",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00505566199990426,
+      "response_artifact": "python-http/response-647.json",
+      "step_id": 5,
+      "stage": "cleanup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005463903000418213,
+      "response_artifact": "python-http/response-648.json",
+      "step_id": 6,
+      "stage": "cleanup",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004245100999469287,
+      "response_artifact": "python-http/response-649.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    }
+  ],
+  "bindings": {
+    "probe_key": "530995ef0705e252580fbebf",
+    "run_id": "p8-20261018-short-r2",
+    "case_id": "P3-QUERY-SORT-SCORE",
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "2xx + data đúng thứ tự/set/lát cắt/projection từ fixture oracle",
+  "expected_state": "Không dùng sorted/filtered GET target làm expected; numeric ID từ map; sort title phải qua điều kiện collation",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "not_applicable",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:35:40Z",
+  "resolved_request": {
+    "method": "GET",
+    "path": "/items/qa_articles",
+    "query": {
+      "fields": "id,title,score",
+      "limit": -1,
+      "sort": "-score,id"
+    }
+  },
+  "target_response": {
+    "status": 200,
+    "body_summary": {
+      "error_codes": []
+    },
+    "artifact": "python-http/response-645.json"
+  },
+  "finished_at": "2026-10-18T10:35:42Z"
+}

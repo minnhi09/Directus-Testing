@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "profile": "guided",
+  "seed": 202,
+  "status": "failed",
+  "termination": "interrupted",
+  "schema_sha256": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+  "runner_exit_code": 130,
+  "restore_exit_code": 0,
+  "report_present": true,
+  "coverage_present": true,
+  "budget": {
+    "max_time_seconds": 1200,
+    "max_examples_per_operation": 100,
+    "workers": 1,
+    "rate_limit": "5/s",
+    "request_timeout_seconds": 10
+  },
+  "schemathesis": {
+    "operations": {
+      "total": 10,
+      "selected": 10,
+      "tested": 10,
+      "errored": 0,
+      "skipped": 0,
+      "skip_reasons": []
+    },
+    "test_cases": {
+      "generated": 3158,
+      "with_failures": 44,
+      "unique_failures": 53,
+      "without_checks": 0,
+      "errored": 107
+    },
+    "failures": [
+      {
+        "type": "ServerError",
+        "title": "Server error",
+        "severity": "critical",
+        "count": 5,
+        "operations": [
+          "Stateful tests"
+        ]
+      },
+      {
+        "type": "JsonSchemaError",
+        "title": "Response violates schema",
+        "severity": "high",
+        "count": 7,
+        "operations": [
+          "GET /items/qa_articles/{id}",
+          "POST /items/qa_articles",
+          "POST /items/qa_categories",
+          "Stateful tests"
+        ]
+      },
+      {
+        "type": "AcceptedNegativeData",
+        "title": "API accepted schema-violating request",
+        "severity": "medium",
+        "count": 2,
+        "operations": [
+          "Stateful tests"
+        ]
+      },
+      {
+        "type": "RejectedPositiveData",
+        "title": "API rejected schema-compliant request",
+        "severity": "medium",
+        "count": 8,
+        "operations": [
+          "GET /items/qa_categories/{id}",
+          "Stateful tests"
+        ]
+      },
+      {
+        "type": "UndefinedContentType",
+        "title": "Undocumented Content-Type",
+        "severity": "medium",
+        "count": 3,
+        "operations": [
+          "GET /items/qa_articles",
+          "Stateful tests"
+        ]
+      },
+      {
+        "type": "UndefinedStatusCode",
+        "title": "Undocumented HTTP status code",
+        "severity": "medium",
+        "count": 26,
+        "operations": [
+          "DELETE /items/qa_articles/{id}",
+          "DELETE /items/qa_categories/{id}",
+          "GET /items/qa_articles",
+          "GET /items/qa_articles/{id}",
+          "GET /items/qa_categories",
+          "GET /items/qa_categories/{id}",
+          "PATCH /items/qa_articles/{id}",
+          "PATCH /items/qa_categories/{id}",
+          "POST /items/qa_articles",
+          "POST /items/qa_categories",
+          "Stateful tests"
+        ]
+      },
+      {
+        "type": "UnsupportedMethodResponse",
+        "title": "Unsupported methods",
+        "severity": "medium",
+        "count": 2,
+        "operations": [
+          "TRACE /items/qa_articles",
+          "TRACE /items/qa_categories"
+        ]
+      }
+    ],
+    "errors": [],
+    "stop_reason": "interrupted",
+    "complete": true,
+    "exit_code": 130,
+    "running_time": 645.0462647740005
+  }
+}

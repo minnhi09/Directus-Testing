@@ -1,0 +1,149 @@
+{
+  "id": "P3-AUTHZ-DR-005",
+  "BR": "BR-11;BR-08;BR-22",
+  "AC": "AC-08;AC-11;AC-22",
+  "actor": "editor",
+  "oracle_readiness": "ASSERTABLE",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004537416999482957,
+      "response_artifact": "python-http/response-796.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004363730000477517,
+      "response_artifact": "python-http/response-797.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles/1?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Ccategory",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004600274000040372,
+      "response_artifact": "python-http/response-798.json",
+      "step_id": 3,
+      "stage": "target",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004137206000450533,
+      "response_artifact": "python-http/response-799.json",
+      "step_id": 4,
+      "stage": "cleanup",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005624149000141188,
+      "response_artifact": "python-http/response-800.json",
+      "step_id": 5,
+      "stage": "cleanup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00454723999973794,
+      "response_artifact": "python-http/response-801.json",
+      "step_id": 6,
+      "stage": "cleanup",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00424774599923694,
+      "response_artifact": "python-http/response-802.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    }
+  ],
+  "bindings": {
+    "probe_key": "2fbec2ad87f6bdfd8eac9c89",
+    "run_id": "p8-20261018-assertable",
+    "case_id": "P3-AUTHZ-DR-005",
+    "target_id": 1,
+    "changed_score": 2,
+    "absent_category_id": 4
+  },
+  "expected_response": "2xx + JSON data đúng ID/set/field đã định",
+  "expected_state": "Không đổi dữ liệu; ID/value expected từ seed spec + map mới hoặc producer",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "not_applicable",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:39:01Z",
+  "resolved_request": {
+    "method": "GET",
+    "path": "/items/qa_articles/1",
+    "query": {
+      "fields": "id,title,status,score,published_at,metadata,category"
+    }
+  },
+  "target_response": {
+    "status": 200,
+    "body_summary": {
+      "error_codes": []
+    },
+    "artifact": "python-http/response-798.json"
+  },
+  "finished_at": "2026-10-18T10:39:02Z"
+}

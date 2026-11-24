@@ -33,7 +33,7 @@ Automation local/Docker, giữ exit code, credential riêng, cleanup/restore và
 
 ## 4. Lộ trình còn lại
 
-**Cập nhật sau Phase 6:** hồ sơ finding/RCA Phase 5 và [thí nghiệm chi phí Phase 6](06-toi-uu-chi-phi.md) đã hoàn thành trong phạm vi công bố. Phase 8 nay đã chốt theo [báo cáo nghiệm thu](08-bao-cao-nghiem-thu.md) và [phạm vi tối giản](LO_TRINH_TOI_GIAN_R06_K05.md). Còn lại **Phase 9**.
+**Cập nhật sau Phase 6:** hồ sơ finding/RCA Phase 5 và thí nghiệm chi phí Phase 6 *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* đã hoàn thành trong phạm vi công bố. Phase 8 nay đã chốt theo [báo cáo nghiệm thu](08-bao-cao-nghiem-thu.md) và [phạm vi tối giản](LO_TRINH_TOI_GIAN_R06_K05.md). Còn lại **Phase 9**.
 
 - **Phase 5:** đã có báo cáo finding/RCA gọn như trên; không đóng các finding OPEN.
 - **Phase 6:** đã thực hiện sáu trial query và phân tích bằng chứng lịch sử; kết quả/giới hạn ở báo cáo Phase 6. Thiết kế giữ phần đánh giá chi phí trong kế hoạch; ưu tiên mô hình query nhỏ đã thiết kế, có đối chứng và số đo thật. Không bổ sung thí nghiệm để bù cho việc bỏ Phase 7. Quyết định này không tự thay scope/budget của các lượt kiểm thử đã chốt.

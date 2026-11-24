@@ -1,0 +1,149 @@
+{
+  "id": "P3-AUTHZ-DR-004",
+  "BR": "BR-11;BR-08;BR-22",
+  "AC": "AC-08;AC-11;AC-22",
+  "actor": "editor",
+  "oracle_readiness": "ASSERTABLE",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004620837000402389,
+      "response_artifact": "python-http/response-789.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004373374999886437,
+      "response_artifact": "python-http/response-790.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Ccategory.id%2Ccategory.name&limit=-1",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0073467790007271105,
+      "response_artifact": "python-http/response-791.json",
+      "step_id": 3,
+      "stage": "target",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004717187999631278,
+      "response_artifact": "python-http/response-792.json",
+      "step_id": 4,
+      "stage": "cleanup",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004572491000544687,
+      "response_artifact": "python-http/response-793.json",
+      "step_id": 5,
+      "stage": "cleanup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00469527899986133,
+      "response_artifact": "python-http/response-794.json",
+      "step_id": 6,
+      "stage": "cleanup",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004244507999828784,
+      "response_artifact": "python-http/response-795.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    }
+  ],
+  "bindings": {
+    "probe_key": "2051b99253bfd3ea10456c16",
+    "run_id": "p8-20261018-assertable",
+    "case_id": "P3-AUTHZ-DR-004",
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "2xx + JSON data đúng ID/set/field đã định",
+  "expected_state": "Không đổi dữ liệu; ID/value expected từ seed spec + map mới hoặc producer",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "not_applicable",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:39:00Z",
+  "resolved_request": {
+    "method": "GET",
+    "path": "/items/qa_articles",
+    "query": {
+      "fields": "id,title,status,category.id,category.name",
+      "limit": -1
+    }
+  },
+  "target_response": {
+    "status": 200,
+    "body_summary": {
+      "error_codes": []
+    },
+    "artifact": "python-http/response-791.json"
+  },
+  "finished_at": "2026-10-18T10:39:01Z"
+}

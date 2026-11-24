@@ -1,0 +1,153 @@
+{
+  "id": "P3-QUERY-OFFSET-MINUS1",
+  "BR": "BR-21",
+  "AC": "AC-21",
+  "actor": "editor",
+  "oracle_readiness": "ASSERTABLE",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0046085819994914345,
+      "response_artifact": "python-http/response-1018.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004383954999866546,
+      "response_artifact": "python-http/response-1019.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle&sort=id&limit=3&offset=-1",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 400,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004549948000203585,
+      "response_artifact": "python-http/response-1020.json",
+      "step_id": 3,
+      "stage": "target",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004502554999817221,
+      "response_artifact": "python-http/response-1021.json",
+      "step_id": 4,
+      "stage": "cleanup",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004558466000162298,
+      "response_artifact": "python-http/response-1022.json",
+      "step_id": 5,
+      "stage": "cleanup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004430873000274005,
+      "response_artifact": "python-http/response-1023.json",
+      "step_id": 6,
+      "stage": "cleanup",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.006348673000502458,
+      "response_artifact": "python-http/response-1024.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    }
+  ],
+  "bindings": {
+    "probe_key": "a1e122274582d7a2540637ae",
+    "run_id": "p8-20261018-assertable",
+    "case_id": "P3-QUERY-OFFSET-MINUS1",
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "400 + INVALID_QUERY đúng nhánh validateQuery của pin",
+  "expected_state": "Dữ liệu không đổi; không coi mọi non-2xx là đúng",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "not_applicable",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:39:46Z",
+  "resolved_request": {
+    "method": "GET",
+    "path": "/items/qa_articles",
+    "query": {
+      "fields": "id,title",
+      "sort": "id",
+      "limit": 3,
+      "offset": -1
+    }
+  },
+  "target_response": {
+    "status": 400,
+    "body_summary": {
+      "error_codes": [
+        "INVALID_QUERY"
+      ]
+    },
+    "artifact": "python-http/response-1020.json"
+  },
+  "finished_at": "2026-10-18T10:39:47Z"
+}

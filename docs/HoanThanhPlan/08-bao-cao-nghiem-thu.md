@@ -80,7 +80,7 @@ Probe guided còn 27 interaction 500 được ghi: 22 POST categories và 5 GET 
 
 Người dùng đã chọn tái sử dụng campaign chính để tiết kiệm thời gian. [Impact audit](tai-lieu-bo-tro/phase8-20261018/campaign-impact-audit.json) cho thấy các hàm campaign không đổi so với input Phase 4; schema scoped của probe khớp lịch sử. Tuy nhiên source dirty lịch sử không có freeze byte đầy đủ: không gọi đó là sáu campaign đã chạy trên checkpoint Phase 8. Positive nghiệp vụ hiện tại và accepted của công cụ là hai chỉ số riêng.
 
-`generated` không phải tổng HTTP; check failure không phải defect; `report.complete=true` không xóa trạng thái hết ngân sách. Số coverage/status theo seed giữ trong [báo cáo Phase 6](06-toi-uu-chi-phi.md) và [pipeline audit](tai-lieu-bo-tro/phase8-20261018/pipeline-audit.json). Không chạy lại campaign hoặc thay ngân sách chính.
+`generated` không phải tổng HTTP; check failure không phải defect; `report.complete=true` không xóa trạng thái hết ngân sách. Số coverage/status theo seed giữ trong báo cáo Phase 6 *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* và [pipeline audit](tai-lieu-bo-tro/phase8-20261018/pipeline-audit.json). Không chạy lại campaign hoặc thay ngân sách chính.
 
 ## 6. Phạm vi còn thiếu và bàn giao
 

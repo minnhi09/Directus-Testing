@@ -1,0 +1,341 @@
+{
+  "id": "P3-AUTHZ-DR-039",
+  "BR": "BR-17;BR-24",
+  "AC": "AC-17;AC-24",
+  "actor": "reader",
+  "oracle_readiness": "CONDITIONAL",
+  "status": "passed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.008396254999752273,
+      "response_artifact": "python-http/response-303.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0069833770003242535,
+      "response_artifact": "python-http/response-304.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "actor": "editor",
+      "body": {
+        "title": "Probe cc9ee65ef3bfcb7022e73b7c",
+        "status": "published",
+        "score": 3,
+        "published_at": null,
+        "metadata": {
+          "probe": "cc9ee65ef3bfcb7022e73b7c"
+        },
+        "internal_notes": "Private cc9ee65ef3bfcb7022e73b7c",
+        "category": 1
+      },
+      "raw_body_sha256": "76dfce5f80d37b039638196655696b1701e3b5b38351e82293d1202fe142c287",
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.009718347000671201,
+      "response_artifact": "python-http/response-305.json",
+      "step_id": 3,
+      "stage": "setup",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004764710000017658,
+      "response_artifact": "python-http/response-306.json",
+      "step_id": 4,
+      "stage": "setup",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.006933381000635563,
+      "response_artifact": "python-http/response-307.json",
+      "step_id": 5,
+      "stage": "setup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "actor": "editor",
+      "body": {
+        "title": "Probe cc9ee65ef3bfcb7022e73b7cc",
+        "status": "draft",
+        "score": 3,
+        "published_at": null,
+        "metadata": {
+          "probe": "cc9ee65ef3bfcb7022e73b7cc"
+        },
+        "internal_notes": "Private cc9ee65ef3bfcb7022e73b7cc",
+        "category": 1
+      },
+      "raw_body_sha256": "483d67125d90201c1795ef0ed99fee9b41dcbce5b4c141ee2dfc59c9f61c34a0",
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.008454828000139969,
+      "response_artifact": "python-http/response-308.json",
+      "step_id": 6,
+      "stage": "control",
+      "parent_step_id": 5
+    },
+    {
+      "method": "PATCH",
+      "path": "/items/qa_articles/30",
+      "actor": "editor",
+      "body": {
+        "score": 4
+      },
+      "raw_body_sha256": "187b9eac220e748ec94ce7d49e38bd00a5af85d9330828b17c4fda5f972a8438",
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.011511452999911853,
+      "response_artifact": "python-http/response-309.json",
+      "step_id": 7,
+      "stage": "control",
+      "parent_step_id": 6
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004875601000094321,
+      "response_artifact": "python-http/response-310.json",
+      "step_id": 8,
+      "stage": "control",
+      "parent_step_id": 7
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005982653999126342,
+      "response_artifact": "python-http/response-311.json",
+      "step_id": 9,
+      "stage": "control",
+      "parent_step_id": 8
+    },
+    {
+      "method": "PATCH",
+      "path": "/items/qa_articles/29",
+      "actor": "reader",
+      "body": {
+        "score": 4
+      },
+      "raw_body_sha256": "187b9eac220e748ec94ce7d49e38bd00a5af85d9330828b17c4fda5f972a8438",
+      "status": 403,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004530173999228282,
+      "response_artifact": "python-http/response-312.json",
+      "step_id": 10,
+      "stage": "target",
+      "parent_step_id": 9
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0052370080002219765,
+      "response_artifact": "python-http/response-313.json",
+      "step_id": 11,
+      "stage": "readback",
+      "parent_step_id": 10
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.006223222000699025,
+      "response_artifact": "python-http/response-314.json",
+      "step_id": 12,
+      "stage": "readback",
+      "parent_step_id": 11
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005426941999758128,
+      "response_artifact": "python-http/response-315.json",
+      "step_id": 13,
+      "stage": "cleanup",
+      "parent_step_id": 12
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004638186000192945,
+      "response_artifact": "python-http/response-316.json",
+      "step_id": 14,
+      "stage": "cleanup",
+      "parent_step_id": 13
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_articles/29",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 204,
+      "error": null,
+      "content_type": "",
+      "elapsed": 0.007887046000178088,
+      "response_artifact": "python-http/response-317.json",
+      "step_id": 15,
+      "stage": "cleanup",
+      "parent_step_id": 14
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_articles/30",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 204,
+      "error": null,
+      "content_type": "",
+      "elapsed": 0.008077998000771913,
+      "response_artifact": "python-http/response-318.json",
+      "step_id": 16,
+      "stage": "cleanup",
+      "parent_step_id": 15
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004894457999398583,
+      "response_artifact": "python-http/response-319.json",
+      "step_id": 17,
+      "stage": "cleanup",
+      "parent_step_id": 16
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004189404000499053,
+      "response_artifact": "python-http/response-320.json",
+      "step_id": 18,
+      "stage": "cleanup",
+      "parent_step_id": 17
+    }
+  ],
+  "bindings": {
+    "probe_key": "cc9ee65ef3bfcb7022e73b7c",
+    "run_id": "p8-20261018-short-r1",
+    "case_id": "P3-AUTHZ-DR-039",
+    "target_id": 29,
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "403 + FORBIDDEN theo permission/readOne branch đúng pin; phải có control actor/endpoint/input hợp lệ",
+  "expected_state": "GET không data lab; POST không thêm ID; PATCH/DELETE không đổi target đủ field. Lỗi auth khác nhánh/setup phải BLOCKED/triage, không PASS",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "passed",
+    "contract": "not_run",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:31:55Z",
+  "resolved_request": {
+    "method": "PATCH",
+    "path": "/items/qa_articles/29",
+    "query": {},
+    "body": {
+      "score": 4
+    }
+  },
+  "target_response": {
+    "status": 403,
+    "body_summary": {
+      "error_codes": [
+        "FORBIDDEN"
+      ]
+    },
+    "artifact": "python-http/response-312.json"
+  },
+  "finished_at": "2026-10-18T10:31:58Z"
+}

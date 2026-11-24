@@ -1,0 +1,74 @@
+{
+  "schema": 2,
+  "case_id": "qfqspn",
+  "started_at": "2026-10-18T09:16:46Z",
+  "status": "reproduced",
+  "target_sent": true,
+  "sequence_replayed": false,
+  "replay_scope": "single_request",
+  "steps": [
+    {
+      "case_id": "qfqspn",
+      "parent_id": null,
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "status": 200,
+      "response_artifact": "python-http/response-10.json",
+      "transition": null,
+      "is_transition_applied": false
+    }
+  ],
+  "id_mapping": {
+    "qa_articles": {},
+    "qa_categories": {}
+  },
+  "source_events": "/work/artifacts/20261012T190350Z-1047/guided/seed-101/schemathesis-events.ndjson",
+  "source_line": 14,
+  "source_sha256": "9edab4700d6e8036ae5422dbf7948eb3f8aaef9ec1b73150c4198dd4916538b0",
+  "schema_hash": "cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831",
+  "sequence_case_ids": [
+    "qfqspn"
+  ],
+  "source_status": 200,
+  "actual_status": 200,
+  "actual_checks": [
+    {
+      "name": "not_a_server_error",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "status_code_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "content_type_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "response_schema_conformance",
+      "status": "failed",
+      "failures": [
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema"
+        }
+      ]
+    }
+  ],
+  "reproduced": true,
+  "matched_checks": [
+    {
+      "name": "response_schema_conformance",
+      "failure_type": "JsonSchemaError"
+    }
+  ],
+  "missing_checks": [],
+  "unsupported_checks": [],
+  "source_had_failures": true,
+  "status_equal": true,
+  "finished_at": "2026-10-18T09:16:51Z",
+  "runner_exit_code": 0
+}

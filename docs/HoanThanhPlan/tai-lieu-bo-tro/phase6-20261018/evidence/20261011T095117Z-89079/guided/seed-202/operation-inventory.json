@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "profile": "guided",
+  "seed": 202,
+  "expected_operation_count": 10,
+  "covered_operation_count": 10,
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles",
+      "hits": 1287,
+      "covered": true
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_articles",
+      "hits": 937,
+      "covered": true
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles/{id}",
+      "hits": 92,
+      "covered": true
+    },
+    {
+      "method": "PATCH",
+      "path": "/items/qa_articles/{id}",
+      "hits": 110,
+      "covered": true
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_articles/{id}",
+      "hits": 227,
+      "covered": true
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories",
+      "hits": 1169,
+      "covered": true
+    },
+    {
+      "method": "POST",
+      "path": "/items/qa_categories",
+      "hits": 910,
+      "covered": true
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories/{id}",
+      "hits": 282,
+      "covered": true
+    },
+    {
+      "method": "PATCH",
+      "path": "/items/qa_categories/{id}",
+      "hits": 297,
+      "covered": true
+    },
+    {
+      "method": "DELETE",
+      "path": "/items/qa_categories/{id}",
+      "hits": 375,
+      "covered": true
+    }
+  ]
+}

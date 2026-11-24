@@ -1,0 +1,214 @@
+{
+  "fixture_version": "r06-k05-v2",
+  "source": "scripts/lab-components.sh:article_spec/category_spec",
+  "source_sha256": "de5cde0e09c7e88261f30d197081d3a86ff76bc25837ea2e3ff7d5c3d84b40e6",
+  "numeric_ids_are_bound_from_new_run_map": true,
+  "categories": [
+    {
+      "fixture_key": "category_alpha",
+      "name": "Danh mục Alpha — Unicode"
+    },
+    {
+      "fixture_key": "category_beta",
+      "name": "Danh mục Beta / Kiểm thử"
+    },
+    {
+      "fixture_key": "category_gamma",
+      "name": "Danh mục Gamma"
+    }
+  ],
+  "articles": [
+    {
+      "fixture_key": "article_alpha_draft_1",
+      "id_ref": "${fixture.article_alpha_draft_1}",
+      "title": "Alpha 01 — bản nháp",
+      "status": "draft",
+      "score": 1,
+      "published_at": null,
+      "metadata": {
+        "fixture_key": "article_alpha_draft_1",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_alpha_draft_1",
+      "category_ref": "${fixture.category_alpha}"
+    },
+    {
+      "fixture_key": "article_alpha_draft_2",
+      "id_ref": "${fixture.article_alpha_draft_2}",
+      "title": "Alpha 02 — bản nháp có Unicode",
+      "status": "draft",
+      "score": 2,
+      "published_at": null,
+      "metadata": {
+        "fixture_key": "article_alpha_draft_2",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi",
+        "unicode": "Đà Nẵng"
+      },
+      "internal_notes": "Ghi chú nội bộ article_alpha_draft_2",
+      "category_ref": "${fixture.category_alpha}"
+    },
+    {
+      "fixture_key": "article_alpha_published_1",
+      "id_ref": "${fixture.article_alpha_published_1}",
+      "title": "Alpha 03 — đã xuất bản",
+      "status": "published",
+      "score": 4,
+      "published_at": "2026-10-01T08:00:00Z",
+      "metadata": {
+        "fixture_key": "article_alpha_published_1",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_alpha_published_1",
+      "category_ref": "${fixture.category_alpha}"
+    },
+    {
+      "fixture_key": "article_alpha_published_2",
+      "id_ref": "${fixture.article_alpha_published_2}",
+      "title": "Alpha 04 — xuất bản nullable metadata",
+      "status": "published",
+      "score": 5,
+      "published_at": "2026-10-02T08:00:00Z",
+      "metadata": null,
+      "internal_notes": "Ghi chú nội bộ article_alpha_published_2",
+      "category_ref": "${fixture.category_alpha}"
+    },
+    {
+      "fixture_key": "article_beta_draft_1",
+      "id_ref": "${fixture.article_beta_draft_1}",
+      "title": "Beta 01 — bản nháp",
+      "status": "draft",
+      "score": 0,
+      "published_at": null,
+      "metadata": {
+        "fixture_key": "article_beta_draft_1",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_beta_draft_1",
+      "category_ref": "${fixture.category_beta}"
+    },
+    {
+      "fixture_key": "article_beta_draft_2",
+      "id_ref": "${fixture.article_beta_draft_2}",
+      "title": "Beta 02 — bản nháp & rỗng thời điểm",
+      "status": "draft",
+      "score": 3,
+      "published_at": null,
+      "metadata": {
+        "fixture_key": "article_beta_draft_2",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_beta_draft_2",
+      "category_ref": "${fixture.category_beta}"
+    },
+    {
+      "fixture_key": "article_beta_published_1",
+      "id_ref": "${fixture.article_beta_published_1}",
+      "title": "Beta 03 — đã xuất bản",
+      "status": "published",
+      "score": 3,
+      "published_at": "2026-10-03T08:00:00Z",
+      "metadata": {
+        "fixture_key": "article_beta_published_1",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_beta_published_1",
+      "category_ref": "${fixture.category_beta}"
+    },
+    {
+      "fixture_key": "article_beta_published_2",
+      "id_ref": "${fixture.article_beta_published_2}",
+      "title": "Beta 04 — publication spéciale",
+      "status": "published",
+      "score": 4,
+      "published_at": "2026-10-04T08:00:00Z",
+      "metadata": {
+        "fixture_key": "article_beta_published_2",
+        "fixture_version": "r06-k05-v2",
+        "locale": "fr"
+      },
+      "internal_notes": "Ghi chú nội bộ article_beta_published_2",
+      "category_ref": "${fixture.category_beta}"
+    },
+    {
+      "fixture_key": "article_gamma_draft_1",
+      "id_ref": "${fixture.article_gamma_draft_1}",
+      "title": "Gamma 01 — bản nháp",
+      "status": "draft",
+      "score": 2,
+      "published_at": null,
+      "metadata": {
+        "fixture_key": "article_gamma_draft_1",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_gamma_draft_1",
+      "category_ref": "${fixture.category_gamma}"
+    },
+    {
+      "fixture_key": "article_gamma_draft_2",
+      "id_ref": "${fixture.article_gamma_draft_2}",
+      "title": "Gamma 02 — bản nháp Unicode 漢字",
+      "status": "draft",
+      "score": 5,
+      "published_at": null,
+      "metadata": {
+        "fixture_key": "article_gamma_draft_2",
+        "fixture_version": "r06-k05-v2",
+        "locale": "zh"
+      },
+      "internal_notes": "Ghi chú nội bộ article_gamma_draft_2",
+      "category_ref": "${fixture.category_gamma}"
+    },
+    {
+      "fixture_key": "article_gamma_published_1",
+      "id_ref": "${fixture.article_gamma_published_1}",
+      "title": "Gamma 03 — đã xuất bản",
+      "status": "published",
+      "score": 1,
+      "published_at": "2026-10-05T08:00:00Z",
+      "metadata": {
+        "fixture_key": "article_gamma_published_1",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_gamma_published_1",
+      "category_ref": "${fixture.category_gamma}"
+    },
+    {
+      "fixture_key": "article_gamma_published_2",
+      "id_ref": "${fixture.article_gamma_published_2}",
+      "title": "Gamma 04 — đã xuất bản cuối",
+      "status": "published",
+      "score": 5,
+      "published_at": "2026-10-06T08:00:00Z",
+      "metadata": {
+        "fixture_key": "article_gamma_published_2",
+        "fixture_version": "r06-k05-v2",
+        "locale": "vi"
+      },
+      "internal_notes": "Ghi chú nội bộ article_gamma_published_2",
+      "category_ref": "${fixture.category_gamma}"
+    }
+  ],
+  "title_order_keys": [
+    "article_alpha_draft_1",
+    "article_alpha_draft_2",
+    "article_alpha_published_1",
+    "article_alpha_published_2",
+    "article_beta_draft_1",
+    "article_beta_draft_2",
+    "article_beta_published_1",
+    "article_beta_published_2",
+    "article_gamma_draft_1",
+    "article_gamma_draft_2",
+    "article_gamma_published_1",
+    "article_gamma_published_2"
+  ],
+  "title_order_condition": "ASCII prefixes Alpha/Beta/Gamma and 01..04; verify database collation metadata before asserting, never infer expected from sorted target response"
+}

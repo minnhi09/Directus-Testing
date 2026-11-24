@@ -11,4 +11,4 @@ Các ZIP và bài giảng dưới đây được giữ tại workspace recovery 
 - `docs/HoanThanhPlan/tai-lieu-bo-tro/phase8-20261018/evidence-selected.zip`
 - `docs/slide_bai_giang/2-kiem-thu-hop-den-0.pdf`
 
-Bản Markdown trước sửa navigation được giữ nguyên byte tại [hồ sơ integration](coverage/reviews/integration-20261116/archive-navigation.json). Raw report, OpenAPI, fixture, verdict và oracle không đổi. Các source snapshot kế hoạch bất biến vẫn dùng ngữ cảnh đường dẫn gốc.
+Bản Markdown trước sửa navigation được giữ nguyên byte tại hồ sơ integration *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)*. Raw report, OpenAPI, fixture, verdict và oracle không đổi. Các source snapshot kế hoạch bất biến vẫn dùng ngữ cảnh đường dẫn gốc.

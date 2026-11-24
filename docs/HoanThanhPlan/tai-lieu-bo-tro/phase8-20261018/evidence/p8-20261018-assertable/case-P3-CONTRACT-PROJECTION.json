@@ -1,0 +1,175 @@
+{
+  "id": "P3-CONTRACT-PROJECTION",
+  "BR": "BR-22;BR-26",
+  "AC": "AC-22;AC-26",
+  "actor": "editor",
+  "oracle_readiness": "ASSERTABLE",
+  "status": "failed",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.006461511999987124,
+      "response_artifact": "python-http/response-1183.json",
+      "step_id": 1,
+      "stage": "precondition",
+      "parent_step_id": null
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00495259499984968,
+      "response_artifact": "python-http/response-1184.json",
+      "step_id": 2,
+      "stage": "precondition",
+      "parent_step_id": 1
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles/3?fields=title",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.004808962999959476,
+      "response_artifact": "python-http/response-1185.json",
+      "step_id": 3,
+      "stage": "target",
+      "parent_step_id": 2
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.00551528599953599,
+      "response_artifact": "python-http/response-1186.json",
+      "step_id": 4,
+      "stage": "cleanup",
+      "parent_step_id": 3
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.0050178290002804715,
+      "response_artifact": "python-http/response-1187.json",
+      "step_id": 5,
+      "stage": "cleanup",
+      "parent_step_id": 4
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005209419000493654,
+      "response_artifact": "python-http/response-1188.json",
+      "step_id": 6,
+      "stage": "cleanup",
+      "parent_step_id": 5
+    },
+    {
+      "method": "GET",
+      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
+      "actor": "editor",
+      "body": null,
+      "raw_body_sha256": null,
+      "status": 200,
+      "error": null,
+      "content_type": "application/json; charset=utf-8",
+      "elapsed": 0.005738412000027893,
+      "response_artifact": "python-http/response-1189.json",
+      "step_id": 7,
+      "stage": "cleanup",
+      "parent_step_id": 6
+    }
+  ],
+  "bindings": {
+    "probe_key": "a891cf3d5252900eafc1607d",
+    "run_id": "p8-20261018-assertable",
+    "case_id": "P3-CONTRACT-PROJECTION",
+    "changed_score": 4,
+    "absent_category_id": 4
+  },
+  "expected_response": "Đối chiếu đúng raw snapshot status/content/schema, giữ mismatch khi có",
+  "expected_state": "Business/read-back ghi riêng; JSON contract success không thay full field/data presence assertion; không đổi raw/disable check",
+  "verdicts": {
+    "business": "passed",
+    "authorization": "not_applicable",
+    "contract": "failed",
+    "robustness": "passed"
+  },
+  "cleanup_status": "passed",
+  "replay_scope": "full_designed_case",
+  "started_at": "2026-10-18T10:40:21Z",
+  "resolved_request": {
+    "method": "GET",
+    "path": "/items/qa_articles/3",
+    "query": {
+      "fields": "title"
+    }
+  },
+  "target_response": {
+    "status": 200,
+    "body_summary": {
+      "error_codes": []
+    },
+    "artifact": "python-http/response-1185.json"
+  },
+  "contract_checks": [
+    {
+      "name": "not_a_server_error",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "status_code_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "content_type_conformance",
+      "status": "passed",
+      "failures": []
+    },
+    {
+      "name": "response_schema_conformance",
+      "status": "failed",
+      "failures": [
+        {
+          "type": "JsonSchemaError",
+          "title": "Response violates schema"
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-10-18T10:40:22Z"
+}

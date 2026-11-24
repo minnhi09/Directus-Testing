@@ -1,0 +1,12 @@
+{
+  "run_id": "p8-20261018-replay-z6ynal",
+  "started_at": "2026-10-18T10:46:17.2442850+00:00",
+  "finished_at": "2026-10-18T10:46:38.1475952+00:00",
+  "elapsed_seconds": 20.903285,
+  "exit_code": 0,
+  "command": [
+    "replay",
+    "Z6yNal"
+  ],
+  "note": "Native raw/guided overrides are short compatibility probes only; historical main campaign budgets remain 1200s/100 examples/3 seeds."
+}

@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "run_id": "20261018T091538Z-1506",
+  "command": "test invariants",
+  "status": "failed",
+  "exit_code": 1,
+  "started_at": "2026-10-18T09:15:38Z",
+  "finished_at": "2026-10-18T09:16:19Z",
+  "duration_seconds": 41,
+  "harness_sha": "2e44fe7558cb4e3fc12e19b7d44af2421f81ed72",
+  "working_tree": "dirty",
+  "harness_inputs": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T091538Z-1506/harness-inputs.json",
+  "fixture_map_input": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T091538Z-1506/fixture-ids-input.json",
+  "project": "r06-k05",
+  "runtime_profile": "phase4-20261018",
+  "api_url": "http://127.0.0.1:8055",
+  "runner_api_url": "http://directus:8055",
+  "actor": "unspecified",
+  "fixture_version": "r06-k05-v2",
+  "schema_hash": "bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26",
+  "seed": null,
+  "budget": null,
+  "execution": {"schema":1,"command":["invariants.py","--case","all"],"actors":["editor","reader","anonymous"],"admin_usage":"preflight and restore only","workers":1,"budget":{"max_time_seconds":600,"rate_limit":"5/s","request_timeout_seconds":10,"cleanup_outside_max_time":true},"runner_image":"docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5","fixture_map_sha256":"a2145eada7b0a1c4c23661e169aeab44d2c0465ac364e5e4e7c9e99b814bb752","schema_sha256":{"editor":"bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26","reader":"d7dc1393eb7e01514f0f8a4d3796ab71cf1f0fe70f5c8a3da5c0ae20259b47b8"}},
+  "baseline": {
+    "directus_image": "docker.io/directus/directus:12.5.0@sha256:7de5d6898b955dab1672619aed590035dcade4f8d7396d913e55543e114d1331",
+    "postgres_image": "docker.io/library/postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+    "schemathesis_image": "docker.io/schemathesis/schemathesis:4.30.0@sha256:bb9cecfc9ac4058a15fcf9b505d9d9f972e2dde7c74c4e9289a35922f4cbc0a5"
+  },
+  "campaign_index": null,
+  "fixture_map": "D:/DAMH-full-recovery-2026-10-12/DAMH/runtime/profiles/phase4-20261018/fixture-ids.json",
+  "artifact_dir": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T091538Z-1506",
+  "log_file": "D:/DAMH-full-recovery-2026-10-12/DAMH/artifacts/runs/20261018T091538Z-1506/run.log"
+}

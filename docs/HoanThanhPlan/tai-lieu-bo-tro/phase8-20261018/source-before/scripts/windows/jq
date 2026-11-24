@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Native jq must preserve LF and JSON API paths on Git Bash.
+set -euo pipefail
+: "${LAB_JQ_EXE:?Run scripts/setup-windows.ps1 or set LAB_JQ_EXE to jq 1.8.2}"
+export MSYS2_ARG_CONV_EXCL="${MSYS2_ARG_CONV_EXCL:+$MSYS2_ARG_CONV_EXCL;}/items/"
+exec "$LAB_JQ_EXE" -b "$@"
