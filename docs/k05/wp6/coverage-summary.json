@@ -1,0 +1,358 @@
+{
+  "tracecov_version": [
+    "0.25.2"
+  ],
+  "groups": [
+    {
+      "actor": "anonymous",
+      "profile": "guided",
+      "seeds": 3,
+      "dimensions": {
+        "operations": {
+          "total": 10,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "parameters": {
+          "total": 11,
+          "min": 36.36363636363637,
+          "mean": 36.36,
+          "max": 36.36363636363637
+        },
+        "keywords": {
+          "total": 35,
+          "min": 17.142857142857142,
+          "mean": 17.14,
+          "max": 17.142857142857142
+        },
+        "examples": {
+          "total": 10,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "responses": {
+          "total": 16,
+          "min": 18.75,
+          "mean": 18.75,
+          "max": 18.75
+        },
+        "response_keywords": {
+          "total": 132,
+          "min": 12.121212121212121,
+          "mean": 12.12,
+          "max": 12.121212121212121
+        }
+      },
+      "union": {
+        "operations": {
+          "covered": 10,
+          "total": 10
+        },
+        "documented_responses": {
+          "covered": 3,
+          "total": 16
+        },
+        "parameter_keywords": {
+          "total": 35,
+          "covered": 6
+        }
+      }
+    },
+    {
+      "actor": "anonymous",
+      "profile": "raw",
+      "seeds": 3,
+      "dimensions": {
+        "operations": {
+          "total": 10,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "parameters": {
+          "total": 11,
+          "min": 36.36363636363637,
+          "mean": 36.36,
+          "max": 36.36363636363637
+        },
+        "keywords": {
+          "total": 35,
+          "min": 17.142857142857142,
+          "mean": 17.14,
+          "max": 17.142857142857142
+        },
+        "examples": {
+          "total": 9,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "responses": {
+          "total": 16,
+          "min": 18.75,
+          "mean": 18.75,
+          "max": 18.75
+        },
+        "response_keywords": {
+          "total": 132,
+          "min": 12.121212121212121,
+          "mean": 12.12,
+          "max": 12.121212121212121
+        }
+      },
+      "union": {
+        "operations": {
+          "covered": 10,
+          "total": 10
+        },
+        "documented_responses": {
+          "covered": 3,
+          "total": 16
+        },
+        "parameter_keywords": {
+          "total": 35,
+          "covered": 6
+        }
+      }
+    },
+    {
+      "actor": "editor",
+      "profile": "guided",
+      "seeds": 3,
+      "dimensions": {
+        "operations": {
+          "total": 30,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "parameters": {
+          "total": 87,
+          "min": 67.816091954023,
+          "mean": 68.58,
+          "max": 68.96551724137932
+        },
+        "keywords": {
+          "total": 516,
+          "min": 48.25581395348837,
+          "mean": 48.39,
+          "max": 48.44961240310077
+        },
+        "examples": {
+          "total": 86,
+          "min": 90.69767441860465,
+          "mean": 90.7,
+          "max": 90.69767441860465
+        },
+        "responses": {
+          "total": 61,
+          "min": 24.59016393442623,
+          "mean": 24.59,
+          "max": 24.59016393442623
+        },
+        "response_keywords": {
+          "total": 685,
+          "min": 28.613138686131386,
+          "mean": 28.91,
+          "max": 29.48905109489051
+        }
+      },
+      "union": {
+        "operations": {
+          "covered": 30,
+          "total": 30
+        },
+        "documented_responses": {
+          "covered": 15,
+          "total": 61
+        },
+        "parameter_keywords": {
+          "total": 516,
+          "covered": 266
+        }
+      }
+    },
+    {
+      "actor": "editor",
+      "profile": "raw",
+      "seeds": 3,
+      "dimensions": {
+        "operations": {
+          "total": 30,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "parameters": {
+          "total": 87,
+          "min": 51.724137931034484,
+          "mean": 51.72,
+          "max": 51.724137931034484
+        },
+        "keywords": {
+          "total": 516,
+          "min": 25.387596899224807,
+          "mean": 26.16,
+          "max": 26.550387596899224
+        },
+        "examples": {
+          "total": 85,
+          "min": 91.76470588235294,
+          "mean": 92.55,
+          "max": 92.94117647058823
+        },
+        "responses": {
+          "total": 61,
+          "min": 24.59016393442623,
+          "mean": 24.59,
+          "max": 24.59016393442623
+        },
+        "response_keywords": {
+          "total": 685,
+          "min": 21.605839416058394,
+          "mean": 21.61,
+          "max": 21.605839416058394
+        }
+      },
+      "union": {
+        "operations": {
+          "covered": 30,
+          "total": 30
+        },
+        "documented_responses": {
+          "covered": 15,
+          "total": 61
+        },
+        "parameter_keywords": {
+          "total": 516,
+          "covered": 141
+        }
+      }
+    },
+    {
+      "actor": "reader",
+      "profile": "guided",
+      "seeds": 3,
+      "dimensions": {
+        "operations": {
+          "total": 22,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "parameters": {
+          "total": 72,
+          "min": 62.5,
+          "mean": 66.2,
+          "max": 69.44444444444444
+        },
+        "keywords": {
+          "total": 428,
+          "min": 39.953271028037385,
+          "mean": 41.98,
+          "max": 43.22429906542056
+        },
+        "examples": {
+          "total": 80,
+          "min": 91.25,
+          "mean": 91.25,
+          "max": 91.25
+        },
+        "responses": {
+          "total": 42,
+          "min": 26.19047619047619,
+          "mean": 26.19,
+          "max": 26.19047619047619
+        },
+        "response_keywords": {
+          "total": 470,
+          "min": 28.29787234042553,
+          "mean": 30.0,
+          "max": 30.851063829787233
+        }
+      },
+      "union": {
+        "operations": {
+          "covered": 22,
+          "total": 22
+        },
+        "documented_responses": {
+          "covered": 11,
+          "total": 42
+        },
+        "parameter_keywords": {
+          "total": 428,
+          "covered": 193
+        }
+      }
+    },
+    {
+      "actor": "reader",
+      "profile": "raw",
+      "seeds": 3,
+      "dimensions": {
+        "operations": {
+          "total": 22,
+          "min": 100.0,
+          "mean": 100.0,
+          "max": 100.0
+        },
+        "parameters": {
+          "total": 72,
+          "min": 51.388888888888886,
+          "mean": 51.39,
+          "max": 51.388888888888886
+        },
+        "keywords": {
+          "total": 428,
+          "min": 25.700934579439252,
+          "mean": 26.56,
+          "max": 27.33644859813084
+        },
+        "examples": {
+          "total": 79,
+          "min": 93.67088607594937,
+          "mean": 93.67,
+          "max": 93.67088607594937
+        },
+        "responses": {
+          "total": 42,
+          "min": 23.80952380952381,
+          "mean": 23.81,
+          "max": 23.80952380952381
+        },
+        "response_keywords": {
+          "total": 470,
+          "min": 21.48936170212766,
+          "mean": 21.49,
+          "max": 21.48936170212766
+        }
+      },
+      "union": {
+        "operations": {
+          "covered": 22,
+          "total": 22
+        },
+        "documented_responses": {
+          "covered": 10,
+          "total": 42
+        },
+        "parameter_keywords": {
+          "total": 428,
+          "covered": 117
+        }
+      }
+    }
+  ],
+  "seed_count": 18,
+  "run_ids": [
+    "20261123T174529Z-808",
+    "20261123T174820Z-1596",
+    "20261123T175055Z-893",
+    "20261123T175314Z-1627",
+    "20261123T175522Z-1525",
+    "20261123T182014Z-67"
+  ]
+}
