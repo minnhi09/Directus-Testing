@@ -265,6 +265,12 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 - Chạy tuần tự, không chạy hai suite ghi/xóa song song trên cùng DB.
 - **DoD:** C3 và C4 (xem 3.2). Nếu run nào vẫn `max_time` thì ghi `INCOMPLETE_BUDGET` và loại C3 khỏi câu khẳng định.
 
+**Tiến độ WP5 (24/11/2026): xong.** Chi tiết, bảng 18 run và bảng 62 cặp: [wp5/README.md](wp5/README.md).
+
+- **18/18 seed hoàn tất thật** (C3, C4 đạt); 62/62 cặp có phản hồi (C1); 10/10 operation CRUD của Editor có 2xx (phần CRUD của C2). Tổng thời gian khoảng 1,8 giờ. C5 và C6 còn mở (WP7, WP6).
+- **Đính chính quan trọng:** `--max-time` của Schemathesis làm fuzzing và stateful lặp lại cho đến hết giờ (trợ giúp CLI 4.30), nên mọi campaign cũ dừng ở `max_time` **không phải** là chưa hoàn tất. Pilot: 2.254 vòng fuzzing 0,8 giây và chỉ 140 case trong 1.800 giây; bỏ `--max-time` thì xong trong 27 giây với cùng 66 failure. Vì vậy chạy bằng `LAB_MAX_TIME=0` (mỗi pha một lượt) kèm trần cứng `LAB_HARD_TIMEOUT`; báo cáo cuối kỳ cần sửa mọi chỗ gọi `max_time` là `INCOMPLETE_BUDGET`.
+- Phát hiện khi diễn giải: Reader nhận 200/204 trên `PATCH /items/qa_articles/{id}` với request rỗng vì policy Reader có quyền `update` với `fields=[]`; 13 cặp có phản hồi 5xx (chưa gom nhóm). Hai điểm này chuyển sang WP7.
+
 ### WP6. Coverage bằng tracecov
 
 - Kiểm `schemathesis --version` và `run --help` của image đã pin (digest trong `manifest/baseline.yaml`) để xác nhận các flag coverage (`--coverage-format`, `--coverage-report-json-path`). Tài liệu cũ ghi pipeline lịch sử có tracecov 0.25.2 nhưng chưa chứng minh các flag là tùy chọn chuẩn của 4.30.0.
@@ -323,7 +329,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 |---|---|
 | Fuzz 20 operation mới làm xuất hiện thêm lỗi 500 hoặc sai schema | Là kết quả thật, giữ nguyên và phân loại; không che, không nới check |
 | Thao tác auth/utils làm hỏng token hoặc dữ liệu lab | WP4: token riêng, restore sau mỗi seed |
-| Run không hoàn tất dù tăng ngân sách | Ghi `INCOMPLETE_BUDGET`, bỏ C3 khỏi câu khẳng định, nêu giới hạn trung thực |
+| Run không hoàn tất dù tăng ngân sách | Đã gặp và giải quyết ở WP5: nguyên nhân là `--max-time` (lặp tới hết giờ); chạy không `--max-time`, có trần cứng. Nếu vẫn chạm trần cứng thì ghi chưa hoàn tất và bỏ C3 |
 | Tracecov không có trong image 4.30.0 | WP6: `NOT_MEASURED`, vẫn báo coverage theo operation và request |
 | Schema export lại khác bản 11/10 | Cập nhật mẫu số, ghi hash và lý do |
 | Xóa nhầm phần dùng chung | Gỡ phụ thuộc bằng `grep`, chạy unittest sau mỗi nhóm; còn bản sao lưu |
@@ -345,7 +351,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [x] WP2: `test raw|guided` chạy theo actor (xong 23/11/2026; quyết định của người dùng, không có xác nhận của Lành)
 - [ ] WP3: overlay guided cho assets, import, export, sort, auth (overlay và `k05_reach_report.py` xong 23/11/2026; **còn: bảng C2 chính thức từ run đầy đủ ở WP5**)
 - [x] WP4: nhóm thao tác có tác dụng phụ chạy an toàn (xong 23/11/2026; xem `wp4/README.md`)
-- [ ] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET`
+- [x] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET` (xong 24/11/2026: 18/18 hoàn tất; xem `wp5/README.md`)
 - [ ] WP6: coverage tracecov hoặc `NOT_MEASURED`
 - [ ] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate
 - [ ] WP8: báo cáo A–H viết lại, không còn liên kết hỏng
@@ -365,5 +371,5 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 | `scripts/build_k05_denominator.py` | Sinh mẫu số từ schema theo actor, chỉ đọc file |
 | `runtime/schemas/r06-k05-v2/{editor,reader,anonymous,admin}.json` | Schema export 11/10/2026 (thư mục `runtime/` bị Git bỏ qua) |
 | `manifest/baseline.yaml` | Pin Directus, PostgreSQL, Schemathesis (version và digest) |
-| `docs/test-matrix.md` | Kết quả chiến dịch cũ: raw 59/65/51 case, guided khoảng 5,8 nghìn case mỗi seed, đều dừng `max_time` |
+| `docs/test-matrix.md` | Kết quả chiến dịch cũ: raw 59/65/51 case, guided khoảng 5,8 nghìn case mỗi seed, đều dừng `max_time` (không phải "chưa hoàn tất": xem `wp5/README.md` mục 3) |
 | `docs/HoanThanhPlan/tai-lieu-bo-tro/phase6-20261018/historical-raw-guided.csv` | Coverage và thời gian từng seed của chiến dịch cũ |

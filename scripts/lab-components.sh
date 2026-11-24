@@ -1382,6 +1382,9 @@ CAMPAIGN_BASE_RUN_DIR=''
 CAMPAIGN_SUMMARIES='[]'
 CAMPAIGN_SEEDS="${LAB_CAMPAIGN_SEEDS:-101,202,303}"
 CAMPAIGN_MAX_TIME="${LAB_MAX_TIME:-1200}"
+# LAB_MAX_TIME=0: do not pass --max-time, so every phase runs once and the run ends by itself; LAB_HARD_TIMEOUT is then
+# the wall-clock safety cap (seconds, enforced with `timeout` inside the runner container).
+CAMPAIGN_HARD_TIMEOUT="${LAB_HARD_TIMEOUT:-7200}"
 CAMPAIGN_MAX_EXAMPLES="${LAB_MAX_EXAMPLES:-100}"
 CAMPAIGN_WORKERS="${LAB_WORKERS:-1}"
 CAMPAIGN_RATE_LIMIT="${LAB_RATE_LIMIT:-5/s}"
@@ -1391,6 +1394,8 @@ CAMPAIGN_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}"
 CAMPAIGN_ACTOR="${LAB_ACTOR:-editor}"
 if [[ "$CAMPAIGN_ACTOR" == unspecified ]]; then CAMPAIGN_ACTOR=editor; fi
 CAMPAIGN_SCOPE="${LAB_CAMPAIGN_SCOPE:-main10}"
+# Optional override of the Schemathesis phases (default: raw = examples,coverage,fuzzing; guided adds stateful).
+CAMPAIGN_PHASES_OVERRIDE="${LAB_CAMPAIGN_PHASES:-}"
 TARGET_OPERATIONS_JSON=''
 
 target_operations_json() {
@@ -1420,7 +1425,11 @@ target_operations_json() {
 
 campaign_validate_config() {
 	local value
-	for value in "$CAMPAIGN_MAX_TIME" "$CAMPAIGN_MAX_EXAMPLES" "$CAMPAIGN_WORKERS" "$CAMPAIGN_REQUEST_TIMEOUT"; do
+	[[ "$CAMPAIGN_MAX_TIME" =~ ^(0|[1-9][0-9]*)$ ]] || {
+		printf 'ERROR: LAB_MAX_TIME phải là số nguyên không âm (0 = không đặt --max-time)\n' >&2
+		return 1
+	}
+	for value in "$CAMPAIGN_HARD_TIMEOUT" "$CAMPAIGN_MAX_EXAMPLES" "$CAMPAIGN_WORKERS" "$CAMPAIGN_REQUEST_TIMEOUT"; do
 		[[ "$value" =~ ^[1-9][0-9]*$ ]] || {
 			printf 'ERROR: campaign numeric config không hợp lệ: %s\n' "$value" >&2
 			return 1
@@ -1438,6 +1447,10 @@ campaign_validate_config() {
 		main10|full) ;;
 		*) printf 'ERROR: LAB_CAMPAIGN_SCOPE phải là main10 hoặc full\n' >&2; return 1 ;;
 	esac
+	if [[ -n "$CAMPAIGN_PHASES_OVERRIDE" ]] && ! [[ "$CAMPAIGN_PHASES_OVERRIDE" =~ ^(examples|coverage|fuzzing|stateful)(,(examples|coverage|fuzzing|stateful))*$ ]]; then
+		printf 'ERROR: LAB_CAMPAIGN_PHASES chỉ gồm examples, coverage, fuzzing, stateful, cách nhau bằng dấu phẩy\n' >&2
+		return 1
+	fi
 	if [[ "$CAMPAIGN_ACTOR" != editor && "$CAMPAIGN_SCOPE" != full ]]; then
 		printf 'ERROR: actor %s chỉ chạy được với LAB_CAMPAIGN_SCOPE=full (10 operation chính là của Editor)\n' "$CAMPAIGN_ACTOR" >&2
 		return 1
@@ -1912,6 +1925,7 @@ campaign_one() {
 	local operation_count
 	local side_rc=0
 	local side_effects_json='null'
+	local campaign_phases
 	mkdir -p "$campaign_dir"
 	RUN_DIR="$campaign_dir"
 	if ! campaign_refresh_tokens; then
@@ -1937,6 +1951,13 @@ campaign_one() {
 	fi
 	schema_file="$RUN_DIR/schema-$profile.json"
 	operation_count="$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")"
+	if [[ -n "$CAMPAIGN_PHASES_OVERRIDE" ]]; then
+		campaign_phases="$CAMPAIGN_PHASES_OVERRIDE"
+	elif [[ "$profile" == guided ]]; then
+		campaign_phases='examples,coverage,fuzzing,stateful'
+	else
+		campaign_phases='examples,coverage,fuzzing'
+	fi
 	case "$CAMPAIGN_ACTOR" in
 		editor) schema_token="$EDITOR_TOKEN" ;;
 		reader) schema_token="$READER_TOKEN" ;;
@@ -1953,11 +1974,12 @@ campaign_one() {
 		-e LAB_REQUEST_TIMEOUT="$CAMPAIGN_REQUEST_TIMEOUT" \
 		-e LAB_RATE_LIMIT="$CAMPAIGN_RATE_LIMIT" \
 		-e LAB_MAX_TIME="$CAMPAIGN_MAX_TIME" \
-		-e LAB_PHASES="$(if [[ "$profile" == guided ]]; then printf '%s' 'examples,coverage,fuzzing,stateful'; else printf '%s' 'examples,coverage,fuzzing'; fi)" \
+		-e LAB_HARD_TIMEOUT="$CAMPAIGN_HARD_TIMEOUT" \
+		-e LAB_PHASES="$campaign_phases" \
 		--mount "type=bind,src=$schema_file,dst=/work/schema.json,readonly" \
 		--mount "type=bind,src=$RUN_DIR,dst=/work/run" \
 		--entrypoint /bin/sh "$SCHEMATHESIS_IMAGE" \
-		-c 'exec schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" --max-time "$LAB_MAX_TIME" --phases "$LAB_PHASES" --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color ${SCHEMA_TOKEN:+-H "Authorization: Bearer $SCHEMA_TOKEN"}'
+		-c 'MT=; HT=; if [ "$LAB_MAX_TIME" != 0 ]; then MT="--max-time $LAB_MAX_TIME"; else HT="timeout $LAB_HARD_TIMEOUT"; fi; exec $HT schemathesis run /work/schema.json --url "$RUNNER_API_URL" --workers "$LAB_WORKERS" --max-examples "$LAB_MAX_EXAMPLES" --seed "$LAB_SEED" --request-timeout "$LAB_REQUEST_TIMEOUT" --rate-limit "$LAB_RATE_LIMIT" $MT --phases "$LAB_PHASES" --checks not_a_server_error,status_code_conformance,content_type_conformance,response_schema_conformance,unsupported_method,negative_data_rejection,positive_data_acceptance --report json,ndjson --report-json-path /work/run/schemathesis-report.json --report-ndjson-path /work/run/schemathesis-events.ndjson --coverage-format json --coverage-report-json-path /work/run/schemathesis-coverage.json --generation-database /work/run/schemathesis-examples.sqlite3 --generation-unique-inputs --output-sanitize true --output-truncate true --no-color ${SCHEMA_TOKEN:+-H "Authorization: Bearer $SCHEMA_TOKEN"}'
 	runner_rc=$?
 	set -e
 	if [[ -f "$RUN_DIR/schemathesis-report.json" ]]; then
@@ -1992,6 +2014,10 @@ campaign_one() {
 			status='passed'
 		fi
 	fi
+	local run_complete=false
+	if [[ "$termination" == completed && "$report_present" == true && "$coverage_present" == true ]] && (( restore_rc == 0 && side_rc == 0 )); then
+		run_complete=true
+	fi
 	if [[ "$status" == passed ]]; then
 		printf 'Campaign %s seed=%s: PASS\n' "$profile" "$seed"
 	else
@@ -2000,11 +2026,11 @@ campaign_one() {
 	jq -n --arg profile "$profile" --arg seed "$seed" --arg status "$status" --arg termination "$termination" \
 		--arg actor "$CAMPAIGN_ACTOR" --arg scope "$CAMPAIGN_SCOPE" --argjson operation_count "$operation_count" \
 		--arg schema_sha "$(sha256sum "$schema_file" | awk '{print $1}')" \
-		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" --argjson side_rc "$side_rc" --argjson side_effects "$side_effects_json" \
+		--argjson runner_rc "$runner_rc" --argjson restore_rc "$restore_rc" --argjson side_rc "$side_rc" --argjson side_effects "$side_effects_json" --argjson run_complete "$run_complete" \
 		--argjson report_present "$report_present" --argjson coverage_present "$coverage_present" \
-		--argjson report "$report_summary" \
+		--argjson report "$report_summary" --arg phases "$campaign_phases" \
 		--arg max_time "$CAMPAIGN_MAX_TIME" --arg max_examples "$CAMPAIGN_MAX_EXAMPLES" --arg workers "$CAMPAIGN_WORKERS" --arg rate_limit "$CAMPAIGN_RATE_LIMIT" --arg request_timeout "$CAMPAIGN_REQUEST_TIMEOUT" \
-		'{schema:1,profile:$profile,actor:$actor,scope:$scope,operation_count:$operation_count,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,side_effects_exit_code:$side_rc,side_effects:$side_effects,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber)},schemathesis:$report}' \
+		'{schema:1,profile:$profile,actor:$actor,scope:$scope,operation_count:$operation_count,seed:($seed|tonumber),status:$status,termination:$termination,schema_sha256:$schema_sha,runner_exit_code:$runner_rc,restore_exit_code:$restore_rc,side_effects_exit_code:$side_rc,side_effects:$side_effects,run_complete:$run_complete,report_present:$report_present,coverage_present:$coverage_present,budget:{max_time_seconds:($max_time|tonumber),max_examples_per_operation:($max_examples|tonumber),workers:($workers|tonumber),rate_limit:$rate_limit,request_timeout_seconds:($request_timeout|tonumber),phases:($phases|split(","))},schemathesis:$report}' \
 		> "$RUN_DIR/campaign-summary.json"
 	CAMPAIGN_SUMMARIES="$(jq -cn --argjson current "$CAMPAIGN_SUMMARIES" --slurpfile next "$RUN_DIR/campaign-summary.json" '$current + [$next[0]]')"
 	RUN_DIR="$base_dir"
@@ -2069,7 +2095,7 @@ campaign() {
 	jq -n --arg profile "$profile" --arg fixture "$FIXTURE_VERSION" --arg seeds "$CAMPAIGN_SEEDS" --argjson campaigns "$CAMPAIGN_SUMMARIES" \
 		--arg actor "$CAMPAIGN_ACTOR" --arg scope "$CAMPAIGN_SCOPE" --argjson operation_count "$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")" \
 		--argjson expected_seed_count "${#seeds[@]}" \
-		'{schema:1,profile:$profile,actor:$actor,scope:$scope,fixture_version:$fixture,seeds:($seeds|split(",")|map(tonumber)),operation_count:$operation_count,campaigns:$campaigns,status:(if (($campaigns|length) == $expected_seed_count and all($campaigns[];.status == "passed")) then "passed" else "failed_or_incomplete" end)}' \
+		'{schema:1,profile:$profile,actor:$actor,scope:$scope,fixture_version:$fixture,seeds:($seeds|split(",")|map(tonumber)),operation_count:$operation_count,campaigns:$campaigns,all_runs_complete:(($campaigns|length) == $expected_seed_count and all($campaigns[]; .run_complete == true)),status:(if (($campaigns|length) == $expected_seed_count and all($campaigns[];.status == "passed")) then "passed" else "failed_or_incomplete" end)}' \
 		> "$base_dir/campaign-index.json"
 	printf 'Campaign index: %s\n' "$base_dir/campaign-index.json"
 	return "$overall"
