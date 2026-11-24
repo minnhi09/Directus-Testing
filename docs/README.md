@@ -2,7 +2,7 @@
 
 ## Bắt đầu đọc
 
-1. [Báo cáo cuối kỳ hiện hành](HoanThanhPlan/09-bao-cao-cuoi-ky.md): phương pháp, bộ 13 ca đại diện, kết quả và giới hạn.
+1. [Báo cáo cuối kỳ hiện hành](k05/BAO_CAO_CUOI_KY_K05.md): phương pháp, bộ 13 ca đại diện, kết quả và giới hạn.
 2. [Phạm vi môn học và việc còn lại](HoanThanhPlan/LO_TRINH_TOI_GIAN_R06_K05.md).
 3. [Hướng dẫn chạy chương trình](../README.md) và [hướng dẫn Directus trên Windows](Huong_dan_chay_Directus_Windows.md).
 4. [Mục lục hồ sơ kiểm thử](HoanThanhPlan/README.md): đặc tả, ma trận, finding, chi phí và nghiệm thu.
@@ -10,7 +10,6 @@
 
 ## Tra cứu và chuẩn bị bảo vệ
 
-- [Bản báo cáo trình bày chi tiết](HoanThanhPlan/BAO_CAO_CUOI_KY_R06_K05_HOAN_CHINH.md).
 - [Báo cáo giữa kỳ](Bao_cao_giua_ky_R06_K05.md), [hướng dẫn chạy dự án](Bao_cao_Huong_dan_chay_du_an.md) và [thiết kế kịch bản](Bao_cao_Thiet_ke_kich_ban_kiem_thu.md).
 - [Phân tích hệ thống](phan1/01-phan-tich-he-thong.md), [phương pháp kiểm thử](phan2/01-co-so-ly-thuyet.md) và [lộ trình học, câu hỏi bảo vệ](hoc-tap-r06-k05/README.md).
 - [Truy vết A–H](traceability.md), [kiến trúc](architecture.md), [quyền](permissions.md), [replay](replay-cases.md) và [demo](demo.md).

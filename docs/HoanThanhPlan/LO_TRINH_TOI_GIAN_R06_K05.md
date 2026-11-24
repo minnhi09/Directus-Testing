@@ -30,7 +30,7 @@ Trên lab đã chuẩn bị đúng cấu hình/schema/dữ liệu, chạy tuần
 
 Đọc hai report theo từng run ID, cùng kết quả khôi phục. Một ca hợp đồng FAIL có thể đồng thời tạo/đọc dữ liệu đúng nghiệp vụ. Không xem mã thoát 0 là bằng chứng toàn Directus đúng. Lựa chọn mới đã được kiểm bằng kiểm thử bộ chọn không gọi API; không tự coi đây là lượt chạy mới của cả bộ 13.
 
-Các kết quả gốc của bộ được trích tại E.3/G.2 trong [báo cáo](09-bao-cao-cuoi-ky.md). Bằng chứng 10/10 thao tác nghiệp vụ giữ riêng; không suy ra con số đó chỉ từ tên hai kịch bản CRUD. Dùng schema/report/reproducer đã lưu để chứng minh K05, không lấy riêng 13 ca viết có chủ đích thay cho kiểm thử sinh tự động.
+Các kết quả gốc của bộ được trích tại E.2 và G.1 trong [báo cáo cuối kỳ K05](../k05/BAO_CAO_CUOI_KY_K05.md). Bằng chứng 10/10 thao tác nghiệp vụ giữ riêng; không suy ra con số đó chỉ từ tên hai kịch bản CRUD. Dùng schema/report/reproducer đã lưu để chứng minh K05, không lấy riêng 13 ca viết có chủ đích thay cho kiểm thử sinh tự động.
 
 ## 3. Những việc dừng mở rộng
 
