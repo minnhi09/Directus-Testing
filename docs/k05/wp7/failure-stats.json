@@ -1,0 +1,372 @@
+{
+  "seeds": 18,
+  "totals": {
+    "requests": 31147,
+    "checks_run": 177096,
+    "check_failures": 1356,
+    "cases_without_response": 1069
+  },
+  "groups": 237,
+  "per_seed": [
+    {
+      "run_id": "20261123T174529Z-808",
+      "actor": "editor",
+      "profile": "raw",
+      "seed": 101,
+      "requests": 117,
+      "checks_run": 619,
+      "check_failures": 84,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 66,
+      "schemathesis_generated_cases": 117,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T174529Z-808",
+      "actor": "editor",
+      "profile": "raw",
+      "seed": 202,
+      "requests": 116,
+      "checks_run": 612,
+      "check_failures": 84,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 64,
+      "schemathesis_generated_cases": 116,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T174529Z-808",
+      "actor": "editor",
+      "profile": "raw",
+      "seed": 303,
+      "requests": 114,
+      "checks_run": 598,
+      "check_failures": 83,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 65,
+      "schemathesis_generated_cases": 114,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T174820Z-1596",
+      "actor": "reader",
+      "profile": "raw",
+      "seed": 101,
+      "requests": 96,
+      "checks_run": 482,
+      "check_failures": 65,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 48,
+      "schemathesis_generated_cases": 96,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T174820Z-1596",
+      "actor": "reader",
+      "profile": "raw",
+      "seed": 202,
+      "requests": 98,
+      "checks_run": 496,
+      "check_failures": 64,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 45,
+      "schemathesis_generated_cases": 98,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T174820Z-1596",
+      "actor": "reader",
+      "profile": "raw",
+      "seed": 303,
+      "requests": 95,
+      "checks_run": 475,
+      "check_failures": 65,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 48,
+      "schemathesis_generated_cases": 95,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175055Z-893",
+      "actor": "anonymous",
+      "profile": "raw",
+      "seed": 101,
+      "requests": 32,
+      "checks_run": 149,
+      "check_failures": 27,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 21,
+      "schemathesis_generated_cases": 32,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175055Z-893",
+      "actor": "anonymous",
+      "profile": "raw",
+      "seed": 202,
+      "requests": 32,
+      "checks_run": 149,
+      "check_failures": 27,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 21,
+      "schemathesis_generated_cases": 32,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175055Z-893",
+      "actor": "anonymous",
+      "profile": "raw",
+      "seed": 303,
+      "requests": 32,
+      "checks_run": 149,
+      "check_failures": 27,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 21,
+      "schemathesis_generated_cases": 32,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175314Z-1627",
+      "actor": "anonymous",
+      "profile": "guided",
+      "seed": 101,
+      "requests": 33,
+      "checks_run": 156,
+      "check_failures": 27,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 22,
+      "schemathesis_generated_cases": 33,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175314Z-1627",
+      "actor": "anonymous",
+      "profile": "guided",
+      "seed": 202,
+      "requests": 33,
+      "checks_run": 156,
+      "check_failures": 27,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 22,
+      "schemathesis_generated_cases": 33,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175314Z-1627",
+      "actor": "anonymous",
+      "profile": "guided",
+      "seed": 303,
+      "requests": 33,
+      "checks_run": 156,
+      "check_failures": 27,
+      "cases_without_response": 0,
+      "schemathesis_unique_failures": 22,
+      "schemathesis_generated_cases": 33,
+      "schemathesis_errored_cases": 0
+    },
+    {
+      "run_id": "20261123T175522Z-1525",
+      "actor": "reader",
+      "profile": "guided",
+      "seed": 101,
+      "requests": 3691,
+      "checks_run": 20933,
+      "check_failures": 100,
+      "cases_without_response": 31,
+      "schemathesis_unique_failures": 72,
+      "schemathesis_generated_cases": 3722,
+      "schemathesis_errored_cases": 31
+    },
+    {
+      "run_id": "20261123T175522Z-1525",
+      "actor": "reader",
+      "profile": "guided",
+      "seed": 202,
+      "requests": 1043,
+      "checks_run": 5870,
+      "check_failures": 91,
+      "cases_without_response": 13,
+      "schemathesis_unique_failures": 65,
+      "schemathesis_generated_cases": 1056,
+      "schemathesis_errored_cases": 13
+    },
+    {
+      "run_id": "20261123T175522Z-1525",
+      "actor": "reader",
+      "profile": "guided",
+      "seed": 303,
+      "requests": 1742,
+      "checks_run": 9996,
+      "check_failures": 101,
+      "cases_without_response": 12,
+      "schemathesis_unique_failures": 72,
+      "schemathesis_generated_cases": 1754,
+      "schemathesis_errored_cases": 12
+    },
+    {
+      "run_id": "20261123T182014Z-67",
+      "actor": "editor",
+      "profile": "guided",
+      "seed": 101,
+      "requests": 7574,
+      "checks_run": 43031,
+      "check_failures": 154,
+      "cases_without_response": 257,
+      "schemathesis_unique_failures": 114,
+      "schemathesis_generated_cases": 7831,
+      "schemathesis_errored_cases": 257
+    },
+    {
+      "run_id": "20261123T182014Z-67",
+      "actor": "editor",
+      "profile": "guided",
+      "seed": 202,
+      "requests": 8031,
+      "checks_run": 46079,
+      "check_failures": 151,
+      "cases_without_response": 352,
+      "schemathesis_unique_failures": 111,
+      "schemathesis_generated_cases": 8383,
+      "schemathesis_errored_cases": 352
+    },
+    {
+      "run_id": "20261123T182014Z-67",
+      "actor": "editor",
+      "profile": "guided",
+      "seed": 303,
+      "requests": 8235,
+      "checks_run": 46990,
+      "check_failures": 152,
+      "cases_without_response": 404,
+      "schemathesis_unique_failures": 112,
+      "schemathesis_generated_cases": 8639,
+      "schemathesis_errored_cases": 404
+    }
+  ],
+  "by_actor": {
+    "editor": {
+      "groups": 136,
+      "check_failures": 708
+    },
+    "reader": {
+      "groups": 79,
+      "check_failures": 486
+    },
+    "anonymous": {
+      "groups": 22,
+      "check_failures": 162
+    }
+  },
+  "by_root_cause": {
+    "RC01": {
+      "category": "PRODUCT",
+      "description": "ID trong duong dan hoac body ngoai khoang int4 -> loi DB khong duoc dich o duong doc/sua/xoa, tra 500",
+      "groups": 14,
+      "check_failures": 28,
+      "actor_reader": 2,
+      "actor_editor": 26
+    },
+    "RC02": {
+      "category": "PRODUCT",
+      "description": "aggregate sai cau truc (gia tri khong phai mang/chuoi, hoac khong phai JSON) -> TypeError, tra 500",
+      "groups": 8,
+      "check_failures": 24,
+      "actor_reader": 12,
+      "actor_editor": 12
+    },
+    "RC03": {
+      "category": "PRODUCT",
+      "description": "published_at khong phai ngay gio (boolean/chuoi/so) -> loi PostgreSQL 22007 khong duoc dich, tra 500",
+      "groups": 2,
+      "check_failures": 4,
+      "actor_editor": 4
+    },
+    "RC04": {
+      "category": "PRODUCT",
+      "description": "chuoi chua ky tu NUL (U+0000) -> loi PostgreSQL 22021 khong duoc dich, tra 500",
+      "groups": 2,
+      "check_failures": 6,
+      "actor_editor": 6
+    },
+    "RC05": {
+      "category": "PRODUCT",
+      "description": "phuong thuc khong ho tro (TRACE) tra 404 thay vi 405 (muc do thap, chua ro la co y)",
+      "groups": 30,
+      "check_failures": 180,
+      "actor_editor": 72,
+      "actor_reader": 60,
+      "actor_anonymous": 48
+    },
+    "RC06": {
+      "category": "SCHEMA",
+      "description": "schema mo ta 200 nhung Directus tra 204 No Content",
+      "groups": 16,
+      "check_failures": 134,
+      "actor_editor": 85,
+      "actor_reader": 31,
+      "actor_anonymous": 18
+    },
+    "RC07": {
+      "category": "SCHEMA",
+      "description": "schema khong mo ta cac ma loi 4xx ma Directus tra ve (400, 401, 403, 404, 415...)",
+      "groups": 75,
+      "check_failures": 653,
+      "actor_editor": 325,
+      "actor_reader": 259,
+      "actor_anonymous": 69
+    },
+    "RC08": {
+      "category": "SCHEMA",
+      "description": "Content-Type phan hoi khac schema (ping tra text/html; export csv/xml/yaml)",
+      "groups": 15,
+      "check_failures": 51,
+      "actor_editor": 25,
+      "actor_reader": 20,
+      "actor_anonymous": 6
+    },
+    "RC09": {
+      "category": "SCHEMA",
+      "description": "schema phan hoi qua cung: fields chon cot lam doi hinh du lieu, POST tra doi tuong thay vi mang, export=json tra mang tran",
+      "groups": 26,
+      "check_failures": 43,
+      "actor_reader": 13,
+      "actor_editor": 30
+    },
+    "RC10": {
+      "category": "SCHEMA",
+      "description": "request hop le theo schema nhung bi tu choi (rang buoc runtime khong co trong schema: otp rong, thieu refresh_token, multipart...)",
+      "groups": 42,
+      "check_failures": 222,
+      "actor_editor": 112,
+      "actor_reader": 89,
+      "actor_anonymous": 21
+    },
+    "RC11": {
+      "category": "UNRESOLVED",
+      "description": "du lieu/tham so sai nhung duoc chap nhan (Directus bo qua tham so la, PATCH chi {id}); chua ket luan la loi hay thiet ke",
+      "groups": 7,
+      "check_failures": 11,
+      "actor_editor": 11
+    }
+  },
+  "check_failures_by_category": {
+    "SCHEMA": 1103,
+    "PRODUCT": 242,
+    "UNRESOLVED": 11
+  },
+  "server_error_interactions": {
+    "total": 932,
+    "by_root_cause": {
+      "RC01": 78,
+      "RC02": 695,
+      "RC03": 11,
+      "RC04": 94,
+      "RC12": 4,
+      "RC13": 36,
+      "RC14": 3,
+      "RC15": 1,
+      "RC16": 1,
+      "RC99": 9
+    }
+  }
+}
