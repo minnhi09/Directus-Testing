@@ -150,6 +150,8 @@ Kiểm tra sau xóa: 136 unit test đạt.
 | `oracle_v2.py`, `tests/test_oracle_v2.py`, `docs/coverage/oracles/ORACLE-V2-20261121/`, `artifacts/runs/step1…step3*` | **Không** thuộc 170 TC v2: là oracle cho 66 ca của catalog v1. Giữ cho tới khi quyết định vai trò của catalog 257 |
 | Phần còn lại của phase6 (`analyze.py`, `validate.py`, `source-*`, `evidence-index.json`) | Lẫn cả phần pairwise đã xóa; `evidence-index.json` còn liệt kê file đã xóa với hash cũ |
 
+**Trạng thái (24/11/2026):** catalog 257 được giữ làm phụ lục PL.1 của báo cáo cuối kỳ, ghi rõ chưa chạy và không nêu là số test case. Hai dòng còn lại (`oracle_v2.py` và các file còn lại của phase6) vẫn được giữ nguyên, **chưa quyết định xóa**; việc xóa cần lệnh của người dùng.
+
 ### 4.5. Việc dọn tham chiếu sau khi xóa
 
 Nhiều tài liệu còn nhắc file đã xóa: `09-bao-cao-cuoi-ky.md`, `BAO_CAO_CUOI_KY_R06_K05_HOAN_CHINH.md`, `08-bao-cao-nghiem-thu.md`, `README.md` của `HoanThanhPlan`, `docs/KE_HOACH_RUT_GON_R06_K05.md` (nhắc `admin_cases.py`). Sửa trong bước viết lại báo cáo (WP8), không sửa lẻ.
@@ -219,7 +221,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 
 - **DoD:** mỗi operation có ít nhất một request hợp lệ tới được handler, hoặc có giải thích kỹ thuật vì sao không thể (ví dụ phụ thuộc email/provider chưa cấu hình), ghi vào bảng C2.
 
-**Tiến độ WP3 (23/11/2026): overlay và công cụ đo xong; bảng C2 chính thức chờ WP5.**
+**Tiến độ WP3: xong.** Overlay và công cụ đo xong ngày 23/11/2026; bảng C2 chính thức là bảng 62 cặp của chiến dịch đầy đủ (24/11/2026): [wp5/bang-phan-hoi-theo-cap.csv](wp5/bang-phan-hoi-theo-cap.csv) và [wp5/README.md](wp5/README.md), mục 5. 10/10 operation CRUD của Editor có 2xx; mọi cặp còn lại có request tới được handler hoặc tầng xác thực/phân quyền, và các cặp không có 2xx đều có lý do ghi nhận.
 
 *Đã làm* (trong `scripts/lab-components.sh`, chỉ khi `LAB_CAMPAIGN_SCOPE=full` và profile guided; Editor + `main10` vẫn giống hệt từng byte bản cũ, đã kiểm lại):
 - Example cho tham số `collection` (`qa_articles`/`qa_categories`) của `utils/export`, `utils/import`, `utils/sort`; body mẫu cho `export` và `sort`; ID UUID đúng định dạng cho `assets/{id}`; body mẫu cho PATCH hàng loạt (mảng item có ID fixture).
@@ -229,7 +231,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 
 *Kết quả chạy thử* (các run ngắn, `max-examples=2`, 120 giây; **chỉ để kiểm tra overlay, không phải số liệu campaign**): trước overlay (4 run, lẫn raw và guided) 31/62 cặp có 2xx; sau overlay (3 run guided) 33/62. Hai tập run không hoàn toàn so sánh được, nên chỉ dùng để thấy hướng thay đổi. `utils/export` chuyển từ 403 sang 2xx (Editor và Reader); `utils/sort` chuyển từ 403 sang 400 (tới được bước kiểm tra của handler); `auth/login` từ 400 (sai payload) sang 401 (tới bước xác thực). Cả 62 cặp đều có request và phản hồi.
 
-*Các operation chưa có 2xx và lý do ghi nhận được* (từ các run ngắn; bảng chính thức lập lại sau WP5):
+*Các operation chưa có 2xx và lý do ghi nhận được* (từ các run ngắn; bảng chính thức đã lập lại ở WP5 và phân loại ở WP7):
 
 | Operation | Phản hồi | Lý do |
 |---|---|---|
@@ -238,7 +240,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 | `POST /auth/refresh` | 401 | Cần refresh token thật; dùng token bịa |
 | `POST /auth/password/reset` | 403 | Cần token reset gửi qua email; lab không cấu hình email |
 | `GET /auth/oauth`, `/auth/oauth/{provider}` | 404 | Lab không cấu hình provider OAuth |
-| `DELETE /items/qa_articles`, `/items/qa_categories` (hàng loạt) | 400 | Schema không mô tả `requestBody` cho DELETE hàng loạt nên không có body để gửi (ứng viên lỗi schema, chờ WP7; thêm body vào schema là đổi hợp đồng nên không làm trong overlay) |
+| `DELETE /items/qa_articles`, `/items/qa_categories` (hàng loạt) | 400 | Schema không mô tả `requestBody` cho DELETE hàng loạt nên không có body để gửi (đã phân loại ở WP7: lỗi schema, nhóm RC10; thêm body vào schema là đổi hợp đồng nên không làm trong overlay) |
 | `POST /utils/cache/clear` | 403 | Chỉ admin dùng được |
 | `POST /utils/import`, `/utils/import/{collection}` | 400/415/403 | Cần phần file multipart; overlay không biểu diễn được nội dung file nhị phân |
 | `POST /utils/sort/{collection}` | 400 | Chưa xác định nguyên nhân (nghi collection mẫu không có trường sắp xếp; chưa kiểm chứng) |
@@ -280,7 +282,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 **Kết quả (đã làm, xem [wp6/README.md](wp6/README.md)):**
 
 - Image `schemathesis/schemathesis:4.30.0` có sẵn nhóm *Coverage options* (`--coverage-format`, `--coverage-report-json-path`); harness đã thu `schemathesis-coverage.json` ở cả 18 seed, ghi `tracecov_version: 0.25.2`. C6 là **đo được**, không phải `NOT_MEASURED`.
-- Tổng hợp bằng `scripts/k05_coverage_report.py` thành ba bảng CSV (theo seed, theo nhóm, theo 62 cặp). Operations 100% ở cả 6 nhóm; parameters 36–69%, keywords 17–48%, examples 91–100%, responses documented 19–26% (Editor 15/61, Reader 10–11/42, Anonymous 3/16).
+- Tổng hợp bằng `scripts/k05_coverage_report.py` thành ba bảng CSV (theo seed, theo nhóm, theo 62 cặp). Operations 100% ở cả 6 nhóm (30/30, 22/22, 10/10 theo actor); parameters 36–69%, keywords 17–48%, examples 91–100%, responses documented 19–26% (Editor 15/61, Reader 10–11/42, Anonymous 3/16).
 - Phần chưa tới: chủ yếu mã phản hồi không có trong schema (204, 403, 400, 500) và `401` documented không gặp vì actor có token hợp lệ; từ khóa của thân request `oneOf`. Chạy thêm seed gần như không mở rộng coverage (phần hợp xấp xỉ trung bình).
 - Phát hiện chuyển sang WP7: nhiều phản hồi `204` không có trong schema (schema và hành vi lệch nhau), 33/62 cặp chưa gặp mã phản hồi nào của schema.
 
@@ -372,7 +374,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 
 - [x] WP1: schema 3 actor export từ lab pin, CSV mẫu số cập nhật (xong 23/11/2026; hash trùng bản 11/10)
 - [x] WP2: `test raw|guided` chạy theo actor (xong 23/11/2026; quyết định của người dùng, không có xác nhận của Lành)
-- [ ] WP3: overlay guided cho assets, import, export, sort, auth (overlay và `k05_reach_report.py` xong 23/11/2026; **còn: bảng C2 chính thức từ run đầy đủ ở WP5**)
+- [x] WP3: overlay guided cho assets, import, export, sort, auth (xong 23/11/2026; bảng C2 chính thức là bảng 62 cặp của WP5, xem `wp5/bang-phan-hoi-theo-cap.csv`)
 - [x] WP4: nhóm thao tác có tác dụng phụ chạy an toàn (xong 23/11/2026; xem `wp4/README.md`)
 - [x] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET` (xong 24/11/2026: 18/18 hoàn tất; xem `wp5/README.md`)
 - [x] WP6: coverage tracecov (đo được, tracecov 0.25.2; xem `docs/k05/wp6/`)
@@ -380,8 +382,8 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [x] WP8: báo cáo A–H viết lại (`docs/k05/BAO_CAO_CUOI_KY_K05.md`); liên kết hỏng còn lại chỉ ở bản sao nguyên văn và file riêng
 - [ ] WP9: board, đóng góp, peer evaluation, slide và demo
 - [x] Xóa nhóm A, B, C, D (mục 4.2) sau khi trích bằng chứng 13 TC (xong 23/11/2026)
-- [ ] Sáu tiêu chí C1–C6 (mục 3.2) đều có bằng chứng, hoặc tiêu chí không đạt được nêu rõ trong báo cáo
-- [ ] Mọi câu khẳng định "100%" đi kèm mẫu số 62 cặp
+- [x] Sáu tiêu chí C1–C6 (mục 3.2) đều có bằng chứng (xong 24/11/2026): C1, C2 (phần CRUD), C3, C4 ở `wp5/`; C5 ở `wp7/`; C6 ở `wp6/`; tổng hợp ở báo cáo, mục D.4 và G.3 đến G.6
+- [x] Mọi câu khẳng định "100%" đi kèm mẫu số (xong 24/11/2026): đã rà `docs/k05/` và README; "100%" chỉ còn xuất hiện cùng mẫu số (62/62 cặp; 30/30, 22/22, 10/10 operation) hoặc trong câu phủ định; các báo cáo cũ có ghi chú "bản lưu lịch sử"
 
 ---
 
