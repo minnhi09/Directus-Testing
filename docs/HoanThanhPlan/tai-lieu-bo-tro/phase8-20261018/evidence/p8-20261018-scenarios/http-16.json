@@ -1,1 +1,0 @@
-{"errors":[{"message":"You don't have permission to access field \"internal_notes\" in collection \"qa_articles\" or it does not exist. Queried in root.","extensions":{"reason":"You don't have permission to access field \"internal_notes\" in collection \"qa_articles\" or it does not exist. Queried in root.","code":"FORBIDDEN"}}]}

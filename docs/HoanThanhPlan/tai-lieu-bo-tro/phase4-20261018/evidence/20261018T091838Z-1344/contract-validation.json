@@ -1,1 +1,0 @@
-{"schema":1,"checks":[{"rule":"score 0..5","status":"400","accepted":false},{"rule":"status draft|published","status":"400","accepted":false}]}
