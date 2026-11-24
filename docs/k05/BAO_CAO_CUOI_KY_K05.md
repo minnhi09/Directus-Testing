@@ -23,7 +23,7 @@ Kết quả chính (nguồn ở từng mục; các con số **không** được 
 | Bộ 13 ca nghiệp vụ | **12 PASS, 1 FAIL** (TC13: nội dung nghiệp vụ đạt, hợp đồng OpenAPI sai); chạy lại ngày 24/11/2026 cho cùng kết quả | [G.1](#g1-bộ-13-ca-nghiệp-vụ) |
 | Chiến dịch Schemathesis | **18/18 run** (3 actor × raw/guided × 3 seed) kết thúc hoàn tất, khôi phục dữ liệu PASS, tác dụng phụ ngoài `qa_*` sạch | [G.3](#g3-chiến-dịch-schemathesis-18-run) |
 | Phủ theo mẫu số | **62/62 cặp** có request và phản hồi; **10/10** operation CRUD của Editor có phản hồi 2xx | [G.4](#g4-phủ-62-cặp-actor-operation) |
-| Phủ theo nội dung schema (tracecov) | operations 100%; parameters 36–69%; keywords 17–48%; examples 91–100%; responses có trong schema 19–26% | [G.5](#g5-coverage-theo-schema) |
+| Phủ theo nội dung schema (tracecov) | operations 100% (30/30, 22/22, 10/10 theo actor); parameters 36–69%; keywords 17–48%; examples 91–100%; responses có trong schema 19–26% | [G.5](#g5-coverage-theo-schema) |
 | Failure | 31.147 request; 1.356 lần check thất bại; 237 nhóm; **16 nguyên nhân gốc**, trong đó **9 lỗi sản phẩm** đã xác nhận bằng replay (đầu vào sai gây HTTP 500) | [G.6](#g6-failure-và-nguyên-nhân-gốc) |
 
 **Điều báo cáo này khẳng định** (có mẫu số và nguồn):
