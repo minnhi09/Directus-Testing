@@ -1,24 +1,24 @@
 # Đóng góp của thành viên theo dữ liệu Git và GitHub
 
-Dữ liệu lấy từ `origin/main` tại commit `9c4b6d8` (24/11/2026), bằng [scripts/k05_git_contrib.py](../../../scripts/k05_git_contrib.py); kết quả đầy đủ: [git-contribution.json](git-contribution.json). Issue, PR và người được giao lấy từ GitHub (`gh api`) cùng ngày. Tài liệu chỉ ghi **dữ kiện**; nhận xét về mức đóng góp là việc của đánh giá chéo ([danh-gia-cheo-mau.md](danh-gia-cheo-mau.md)).
+Dữ liệu lấy từ `origin/main` tại commit `696e061` (24/11/2026, sau khi viết lại lịch sử), bằng [scripts/k05_git_contrib.py](../../../scripts/k05_git_contrib.py); kết quả đầy đủ: [git-contribution.json](git-contribution.json). Issue, PR và người được giao lấy từ GitHub (`gh api`) cùng ngày. Tài liệu chỉ ghi **dữ kiện**; nhận xét về mức đóng góp là việc của đánh giá chéo ([danh-gia-cheo-mau.md](danh-gia-cheo-mau.md)).
 
 ## 1. Cách đọc (quan trọng)
 
 - **Số commit và số dòng không phải thước đo đóng góp.** Có commit nhỏ và commit lớn; có tài liệu sinh bằng công cụ, file sao chép và dữ liệu sinh tự động; nhiều việc không để lại commit (phân tích, kiểm tra, họp nhóm, review). Vì số dòng bị chi phối bởi các file JSON/CSV sinh tự động (và bởi hai commit thêm rồi gỡ nhầm 1.864 file ở PR #26 và #27), **tài liệu này không dùng số dòng**.
 - Các tên tác giả khác nhau trong Git được gộp theo người: `minnhi09`, `Đinh Thị Mai Lành`, `Dinh Thi Mai Lanh` là một người; `Trương Võ Trọng Nhân`, `Truong Vo Trong Nhan` là một người (GitHub `Cookie1109`). Việc gộp dựa trên tên tác giả và phân công trong `AGENTS.md`; chưa xác nhận với từng người.
-- Lịch sử `main` đã được viết lại ngày 23/11/2026 để bỏ dòng đồng tác giả khỏi 17 commit; tác giả, nội dung và ngày commit không đổi.
+- Lịch sử `main` đã được viết lại **hai lần**: ngày 23/11/2026 để bỏ dòng đồng tác giả khỏi 17 commit, và ngày 24/11/2026 để xóa hẳn 1.864 file thêm nhầm ở PR #26 (commit gỡ ở PR #27 vì thế không còn trong lịch sử). Tác giả, nội dung và ngày của các commit còn lại không đổi; mã hash của các commit sau PR #25 đã đổi.
 
 ## 2. Commit trên `main`
 
 | Thành viên | GitHub | Commit (không tính merge) | Số ngày có commit | Khoảng thời gian |
 |---|---|---:|---:|---|
 | Đinh Thị Mai Lành | `minnhi09` | 107 | 5 | 09/10 đến 19/10/2026 |
-| Trương Võ Trọng Nhân | `Cookie1109` | 50 | 4 | 19/10 đến 24/11/2026 |
+| Trương Võ Trọng Nhân | `Cookie1109` | 55 | 4 | 19/10 đến 24/11/2026 |
 | Phan Thị Bảo Trâm | `btram0812` | **0** | 0 | không có |
 
-Tổng: 157 commit không merge và 15 merge commit (172 đối tượng commit trên `main` tại `9c4b6d8`). Merge commit không được tính vào bảng (Lành 5, Nhân 10).
+Tổng: 162 commit không merge và 16 merge commit (178 đối tượng commit trên `main` tại `696e061`). Merge commit không được tính vào bảng (Lành 5, Nhân 11).
 
-Phân bố theo ngày (commit không merge): Lành 2 (09/10), 3 (10/10), **97 (11/10)**, 3 (12/10), 2 (19/10); Nhân 5 (19/10), 13 (16/11), 18 (23/11), 14 (24/11). Hai nhận xét khách quan: (i) lịch sử tập trung vào ít ngày, 97 trong 107 commit của Lành nằm trong một ngày (11/10); (ii) không có commit nào từ 20/10 đến 15/11 và Git không cho thấy hoạt động của thành viên nào trong khoảng đó.
+Phân bố theo ngày (commit không merge): Lành 2 (09/10), 3 (10/10), **97 (11/10)**, 3 (12/10), 2 (19/10); Nhân 5 (19/10), 13 (16/11), 18 (23/11), 19 (24/11). Hai nhận xét khách quan: (i) lịch sử tập trung vào ít ngày, 97 trong 107 commit của Lành nằm trong một ngày (11/10); (ii) không có commit nào từ 20/10 đến 15/11 và Git không cho thấy hoạt động của thành viên nào trong khoảng đó.
 
 ## 3. Pull request
 
@@ -33,7 +33,9 @@ Phân bố theo ngày (commit không merge): Lành 2 (09/10), 3 (10/10), **97 (1
 | 24 | `Cookie1109` | WP6: coverage tracecov | 24/11 |
 | 25 | `Cookie1109` | WP7: phân loại failure và nguyên nhân gốc | 24/11 |
 | 26 | `Cookie1109` | WP8: báo cáo cuối kỳ K05 | 24/11 |
-| 27 | `Cookie1109` | Gỡ file thêm nhầm ở PR #26 | 24/11 |
+| 27 | `Cookie1109` | Gỡ file thêm nhầm ở PR #26 (commit này không còn trong lịch sử `main` sau khi viết lại) | 24/11 |
+| 28 | `Cookie1109` | WP9: hồ sơ quản lý nhóm | 24/11 |
+| 29 | `Cookie1109` | Xóa hai báo cáo cuối kỳ cũ | 24/11 |
 
 Không PR nào do `btram0812` tạo. Không có review ghi nhận trên GitHub ở PR #20 (đã kiểm). Mọi PR được merge bằng merge commit.
 

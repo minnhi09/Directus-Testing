@@ -27,7 +27,7 @@ Thang 1 đến 5: 1 = gần như không có, 2 = dưới kỳ vọng, 3 = đạt
 | Thành viên | GitHub | Commit trên `main` | Ngày có commit | Issue được giao (đã đóng) | PR do mình tạo |
 |---|---|---:|---:|---|---:|
 | Đinh Thị Mai Lành | `minnhi09` | 107 | 5 (09/10 đến 19/10) | #1, #2, #3, #11, #12, #16 | 3 (#17, #18, #19) |
-| Trương Võ Trọng Nhân | `Cookie1109` | 50 | 4 (19/10 đến 24/11) | #6, #7, #8, #13, #14 | 8 (#20 đến #27) |
+| Trương Võ Trọng Nhân | `Cookie1109` | 55 | 4 (19/10 đến 24/11) | #6, #7, #8, #13, #14 | 10 (#20 đến #29) |
 | Phan Thị Bảo Trâm | `btram0812` | 0 | 0 | #4, #5, #9, #10, #15 | 0 |
 
 Giới hạn: số liệu này không đo review, họp, phân tích hay công việc không để lại commit; Git không có commit nào mang tên Trâm, **điều này không tự chứng tỏ Trâm không đóng góp** (xem [dong-gop-tu-git.md](dong-gop-tu-git.md), mục 5). Các thay đổi WP1 đến WP9 có sự hỗ trợ của công cụ AI (mục 6 cùng tài liệu).

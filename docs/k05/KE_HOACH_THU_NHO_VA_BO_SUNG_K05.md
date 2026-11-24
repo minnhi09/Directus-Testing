@@ -150,7 +150,7 @@ Kiểm tra sau xóa: 136 unit test đạt.
 | `oracle_v2.py`, `tests/test_oracle_v2.py`, `docs/coverage/oracles/ORACLE-V2-20261121/`, `artifacts/runs/step1…step3*` | **Không** thuộc 170 TC v2: là oracle cho 66 ca của catalog v1. Giữ cho tới khi quyết định vai trò của catalog 257 |
 | Phần còn lại của phase6 (`analyze.py`, `validate.py`, `source-*`, `evidence-index.json`) | Lẫn cả phần pairwise đã xóa; `evidence-index.json` còn liệt kê file đã xóa với hash cũ |
 
-**Trạng thái (24/11/2026):** catalog 257 được giữ làm phụ lục PL.1 của báo cáo cuối kỳ, ghi rõ chưa chạy và không nêu là số test case. Hai dòng còn lại (`oracle_v2.py` và các file còn lại của phase6) vẫn được giữ nguyên, **chưa quyết định xóa**; việc xóa cần lệnh của người dùng.
+**Trạng thái (24/11/2026):** catalog 257 được giữ làm phụ lục PL.1 của báo cáo cuối kỳ, ghi rõ chưa chạy và không nêu là số test case. Hai dòng còn lại **đã xóa ngày 24/11/2026 theo lệnh của người dùng**: `scripts/oracle_v2.py`, `tests/test_oracle_v2.py`, `docs/coverage/oracles/ORACLE-V2-20261121/` (3 file) và bốn file phase6 liên quan tới thí nghiệm pairwise (`evidence-index.json`, `source-after-manifest.json`, `run-measurements.ps1`, `measurement-source-freeze.json`). Giữ lại các file phase6 mang số liệu K05 (`historical-raw-guided.csv`, các file kiểm định, `replay-comparison.json`). Bộ unit test còn 33 test, đạt.
 
 ### 4.5. Việc dọn tham chiếu sau khi xóa
 
@@ -320,7 +320,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 | Việc | Hiện trạng |
 |---|---|
 | Công cụ quản lý (Trello/Jira/GitHub Projects) | Có 16 GitHub Issue (tạo 10/10, đóng cùng lúc 26/10); chưa có Project/Trello; cần quyền `project` cho token `gh` (do chủ tài khoản cấp) |
-| Lịch sử Git đóng góp đều | Tại `9c4b6d8`: Lành 107 commit (09/10 đến 19/10), Nhân 50 (19/10 đến 24/11), **Trâm 0**; không có commit từ 20/10 đến 15/11 |
+| Lịch sử Git đóng góp đều | Tại `696e061` (sau khi viết lại lịch sử): Lành 107 commit (09/10 đến 19/10), Nhân 55 (19/10 đến 24/11), **Trâm 0**; không có commit từ 20/10 đến 15/11 |
 | Peer evaluation | Có mẫu, chưa ai điền |
 | Slide, demo automation, gói nộp | Slide nháp và kịch bản demo có; cần nhóm xem và chỉnh; chưa phân người trình bày |
 | README chạy lại trên máy mới | Có; chưa có bằng chứng chạy trên máy thứ hai (PDF yêu cầu mô tả được, không bắt buộc đã chạy) |
@@ -333,7 +333,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - Đã chạy thử demo bước Schemathesis (anonymous raw, một seed): 55 giây, 32 ca sinh ra, 21 failure duy nhất, restore PASS, tác dụng phụ sạch (run `20261124T072243Z-1585`).
 - Phát hiện: trong bản clone sạch có **144 liên kết hỏng** ở tài liệu cũ (110 trỏ tới `artifacts/` bị Git bỏ qua); còn **123** (91) sau khi xóa hai báo cáo cũ ngày 24/11/2026; báo cáo K05, README và `docs/k05/` có 0. Con số 18 ở WP8 chỉ đúng khi có `artifacts/` và thư mục không commit trên đĩa.
 - **Chưa làm (cần nhóm):** Trâm mô tả và đưa vào repo phần việc của mình; từng người điền đánh giá chéo; tạo GitHub Project/Trello; xem và chỉnh slide, phân người trình bày; chốt ngày bảo vệ và hạn nộp; dựng lại trên máy thứ hai; quyết định cách nêu việc dùng công cụ AI.
-- Sự cố đã xử lý: PR #26 vô tình thêm 1.864 file của `tai-lieu-bo-tro/`; PR #27 gỡ khỏi cây theo dõi. Nội dung vẫn còn trong lịch sử Git (quyết định viết lại lịch sử còn mở).
+- Sự cố đã xử lý: PR #26 vô tình thêm 1.864 file của `tai-lieu-bo-tro/`; PR #27 gỡ khỏi cây theo dõi. Ngày 24/11/2026, theo lệnh của người dùng, lịch sử `main` được **viết lại** để xóa hẳn các file này (`git filter-branch --index-filter`, `--prune-empty`): cây tệp của `main` giữ nguyên (so khớp theo hash cây), không đường dẫn nào trong số 1.864 file còn trong lịch sử mới, tác giả và nội dung các commit khác không đổi; commit `94c3e30` (PR #27) và merge của nó bị loại vì thành rỗng. Đã `force-push` với `--force-with-lease`, xóa 4 nhánh từ xa chứa commit cũ, sao lưu trước ở `backup-main-truoc-viet-lai-20261124.bundle` (ngoài repo, 5,7 MB, đã `git bundle verify`). **Giới hạn:** các ref `refs/pull/26` đến `refs/pull/29` của GitHub vẫn trỏ tới commit cũ và không xóa được từ phía người dùng; muốn xóa hẳn khỏi GitHub phải nhờ GitHub Support chạy dọn rác. Lành phải `git fetch origin` rồi `git reset --hard origin/main`.
 
 ---
 

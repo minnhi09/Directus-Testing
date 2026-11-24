@@ -2,7 +2,7 @@
 
 Mục đích: trước khi bảo vệ, kiểm tra xem người khác clone repository có dựng và kiểm tra lại được phần không cần Docker hay không. **Đây không phải lần dựng lại trên một máy mới**: chạy trên chính máy phát triển, trong một thư mục tạm.
 
-Ngày 24/11/2026. Lệnh: `git clone https://github.com/minnhi09/Directus-Testing.git` (HTTPS), commit `9c4b6d8` (`main` sau PR #27). Thư mục tạm đã xóa sau khi kiểm tra.
+Ngày 24/11/2026. Lệnh: `git clone https://github.com/minnhi09/Directus-Testing.git` (HTTPS), commit `9c4b6d8` (`main` sau PR #27; hash này không còn vì lịch sử `main` đã được viết lại ngày 24/11/2026, cây tệp giống hệt commit tương ứng mới). Thư mục tạm đã xóa sau khi kiểm tra.
 
 ## 1. Kết quả
 
