@@ -15,20 +15,20 @@ Ngày 24/11/2026. Lệnh: `git clone https://github.com/minnhi09/Directus-Testin
 | `python -m unittest discover -s tests -p "test_*.py"` | 36 test, OK |
 | `bash -n lab.sh` và `bash -n scripts/lab-components.sh` | Cú pháp hợp lệ |
 | `docker compose --env-file config/lab.env.example ... config -q` | Thành công (cấu hình hợp lệ, không khởi động dịch vụ) |
-| `python scripts/check_md_links.py` trên toàn bộ file Markdown | 100 file, **144 liên kết hỏng** (xem mục 2) |
+| `python scripts/check_md_links.py` trên toàn bộ file Markdown | 100 file, **144 liên kết hỏng** tại `9c4b6d8`; sau khi xóa hai báo cáo cũ (commit `8ad67a3`, 104 file): **123** (xem mục 2) |
 | Cùng kiểm tra trên báo cáo K05, README, kế hoạch K05 và `wp4` đến `wp7` | 7 file, **0 liên kết hỏng** |
 
-## 2. 144 liên kết hỏng trong bản clone sạch
+## 2. Liên kết hỏng trong bản clone sạch (144 tại `9c4b6d8`, 123 sau khi xóa hai báo cáo cũ)
 
 Trên máy phát triển, kiểm tra liên kết báo cáo 18 liên kết hỏng (WP8) vì các file `artifacts/`, `runtime/`, `tmp/` và thư mục `tai-lieu-bo-tro/` tồn tại trên đĩa. Trong bản clone sạch chúng không có, nên số liệu thật là 144:
 
 | Nhóm | Số | Nguyên nhân | Ảnh hưởng |
 |---|---:|---|---|
-| Trỏ tới `artifacts/runs/...` | 110 | Thư mục `artifacts/` bị Git bỏ qua (artifact thô của từng run) | Chủ yếu báo cáo giữa kỳ, báo cáo thiết kế và hồ sơ `HoanThanhPlan`; liên kết chỉ dùng được trên máy đã chạy lab |
+| Trỏ tới `artifacts/runs/...` | 110 (91 sau khi xóa hai báo cáo cũ) | Thư mục `artifacts/` bị Git bỏ qua (artifact thô của từng run) | Chủ yếu báo cáo giữa kỳ, báo cáo thiết kế và hồ sơ `HoanThanhPlan`; liên kết chỉ dùng được trên máy đã chạy lab |
 | Bản sao nguyên văn `bang-chung-13-tc/` | 14 | Giữ nguyên để khớp hash, trỏ tới file đã xóa | Không sửa |
-| `runtime/`, `tmp/lab-tools/`, `../../directus/` (checkout upstream), `slide_bai_giang/` | 15 | Thư mục ngoài repository hoặc bị Git bỏ qua | Tài liệu cũ |
+| `runtime/`, `tmp/lab-tools/`, `../../directus/` (checkout upstream), `slide_bai_giang/` | 15 (14) | Thư mục ngoài repository hoặc bị Git bỏ qua | Tài liệu cũ |
 | Đường dẫn máy khác hoặc thư mục riêng | 4 | `01_ke_hoach_trien_khai_R06_K05.md` (đường dẫn Linux của máy khác), `AGENTS.md` (thư mục riêng `mnhy/`) | Không sửa |
-| Trỏ tới `tai-lieu-bo-tro/` (không commit) | 1 | Thư mục này được giữ không commit có chủ đích | Tài liệu cũ |
+| Trỏ tới `tai-lieu-bo-tro/` (không commit) | 1 (0) | Thư mục này được giữ không commit có chủ đích; liên kết duy nhất nằm trong báo cáo cũ đã xóa | không còn |
 
 Kết luận: báo cáo cuối kỳ K05, README và tài liệu `docs/k05/` đọc được hoàn toàn trên bản clone sạch; **các tài liệu cũ** (báo cáo giữa kỳ, hồ sơ `HoanThanhPlan`) có liên kết tới artifact thô chỉ tồn tại trên máy chạy lab. Số liệu của chúng đã được lưu gọn trong `docs/k05/` nên báo cáo cuối kỳ không phụ thuộc vào các liên kết đó.
 

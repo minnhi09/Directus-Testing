@@ -1,6 +1,6 @@
 # Truy vết A–H và backlog checkpoint
 
-**Đường đọc hiện hành sau thu gọn 19/10:** yêu cầu → ca đại diện → kết quả được trình bày tại E/G của [báo cáo cuối kỳ](HoanThanhPlan/09-bao-cao-cuoi-ky.md). Các bảng chi tiết bên dưới giữ mốc lịch sử, không phải backlog bắt buộc phải làm tiếp.
+**Đường đọc hiện hành sau thu gọn 19/10:** yêu cầu → ca đại diện → kết quả được trình bày tại E/G của [báo cáo cuối kỳ K05](k05/BAO_CAO_CUOI_KY_K05.md). Các bảng chi tiết bên dưới giữ mốc lịch sử, không phải backlog bắt buộc phải làm tiếp.
 
 > Nội dung bổ sung khi thực hiện plan đã được tập hợp tại [HoanThanhPlan](HoanThanhPlan/README.md), gồm [truy vết nghiệp vụ Phase 1](HoanThanhPlan/01-truy-vet-nghiep-vu.md). Các bảng A-H dưới đây giữ nguyên nội dung và mốc lịch sử.
 
