@@ -267,7 +267,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 
 **Tiến độ WP5 (24/11/2026): xong.** Chi tiết, bảng 18 run và bảng 62 cặp: [wp5/README.md](wp5/README.md).
 
-- **18/18 seed hoàn tất thật** (C3, C4 đạt); 62/62 cặp có phản hồi (C1); 10/10 operation CRUD của Editor có 2xx (phần CRUD của C2). Tổng thời gian khoảng 1,8 giờ. C6 được đo ở WP6; C5 còn mở (WP7).
+- **18/18 seed hoàn tất thật** (C3, C4 đạt); 62/62 cặp có phản hồi (C1); 10/10 operation CRUD của Editor có 2xx (phần CRUD của C2). Tổng thời gian khoảng 1,8 giờ. C6 được đo ở WP6 và C5 được đóng ở WP7.
 - **Đính chính quan trọng:** `--max-time` của Schemathesis làm fuzzing và stateful lặp lại cho đến hết giờ (trợ giúp CLI 4.30), nên mọi campaign cũ dừng ở `max_time` **không phải** là chưa hoàn tất. Pilot: 2.254 vòng fuzzing 0,8 giây và chỉ 140 case trong 1.800 giây; bỏ `--max-time` thì xong trong 27 giây với cùng 66 failure. Vì vậy chạy bằng `LAB_MAX_TIME=0` (mỗi pha một lượt) kèm trần cứng `LAB_HARD_TIMEOUT`; báo cáo cuối kỳ cần sửa mọi chỗ gọi `max_time` là `INCOMPLETE_BUDGET`.
 - Phát hiện khi diễn giải: Reader nhận 200/204 trên `PATCH /items/qa_articles/{id}` với request rỗng vì policy Reader có quyền `update` với `fields=[]`; 13 cặp có phản hồi 5xx (chưa gom nhóm). Hai điểm này chuyển sang WP7.
 
@@ -290,6 +290,13 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 - **Root cause cho lỗi 500 của aggregate (finding P5-F01):** hiện `OPEN` vì chưa có stack trace của server. Replay `aggregate={"foo":1}` và lưu log Directus tại thời điểm đó.
 - Một bảng duy nhất: số request, số check fail theo loại, số nhóm failure, số defect đã xác nhận; ghi rõ ba con số này khác nhau.
 - **DoD:** C5.
+
+**Kết quả (đã làm, xem [wp7/README.md](wp7/README.md)):**
+
+- 18 seed có 31.147 request, 1.356 lần check thất bại, 237 nhóm, **16 nguyên nhân gốc** (10 sản phẩm, 5 schema, 1 chưa kết luận); không còn nhóm chưa phân loại. Ba con số được tách riêng (request, check thất bại, nhóm) và đối chiếu thêm với 932 tương tác 5xx vì Schemathesis chỉ giữ một failure mỗi operation mỗi seed.
+- **Chín nguyên nhân sản phẩm đã xác nhận bằng replay và thông điệp lỗi gốc của server** (đầu vào sai gây `500` thay vì `4xx`: ID ngoài `int4` trong đường dẫn, `aggregate` sai cấu trúc, `published_at` sai kiểu, ký tự NUL, phần tử `null`, `id` sai kiểu hoặc ≥ 1e21, `export=csv` với `fields` không có thật, `page`×`limit` tràn `bigint`, `groupBy` ngoặc sai thứ tự). Giải thích 923/932 tương tác 5xx; 9 còn lại chưa tái hiện được. Finding P5-F01 (aggregate) đóng với RCA có stack và dòng mã tại commit đã pin.
+- Các câu hỏi mở của WP5 và WP6 được đóng: Reader `PATCH` rỗng (cấu hình fixture `fields=[]`, không phải lỗi), ID không tồn tại trả `403` (thiết kế của Directus, schema mô tả `404`), `utils/sort` `400` (thiếu tham số bắt buộc, collection không có trường sort), case guided "lỗi chạy" (bằng đúng số case stateful không có tương tác HTTP, 18/18 seed).
+- Phần lớn failure (1.103/1.356 lần check) là chênh lệch giữa schema OpenAPI Directus xuất ra và hành vi thực (mã `204`, mã lỗi 4xx, Content-Type, response schema, ràng buộc runtime).
 
 ### WP8. Viết lại báo cáo A–H theo phạm vi K05
 
@@ -360,7 +367,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [x] WP4: nhóm thao tác có tác dụng phụ chạy an toàn (xong 23/11/2026; xem `wp4/README.md`)
 - [x] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET` (xong 24/11/2026: 18/18 hoàn tất; xem `wp5/README.md`)
 - [x] WP6: coverage tracecov (đo được, tracecov 0.25.2; xem `docs/k05/wp6/`)
-- [ ] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate
+- [x] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate (xem `docs/k05/wp7/`)
 - [ ] WP8: báo cáo A–H viết lại, không còn liên kết hỏng
 - [ ] WP9: board, đóng góp, peer evaluation, slide và demo
 - [x] Xóa nhóm A, B, C, D (mục 4.2) sau khi trích bằng chứng 13 TC (xong 23/11/2026)
