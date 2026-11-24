@@ -267,7 +267,7 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 
 **Tiến độ WP5 (24/11/2026): xong.** Chi tiết, bảng 18 run và bảng 62 cặp: [wp5/README.md](wp5/README.md).
 
-- **18/18 seed hoàn tất thật** (C3, C4 đạt); 62/62 cặp có phản hồi (C1); 10/10 operation CRUD của Editor có 2xx (phần CRUD của C2). Tổng thời gian khoảng 1,8 giờ. C5 và C6 còn mở (WP7, WP6).
+- **18/18 seed hoàn tất thật** (C3, C4 đạt); 62/62 cặp có phản hồi (C1); 10/10 operation CRUD của Editor có 2xx (phần CRUD của C2). Tổng thời gian khoảng 1,8 giờ. C6 được đo ở WP6; C5 còn mở (WP7).
 - **Đính chính quan trọng:** `--max-time` của Schemathesis làm fuzzing và stateful lặp lại cho đến hết giờ (trợ giúp CLI 4.30), nên mọi campaign cũ dừng ở `max_time` **không phải** là chưa hoàn tất. Pilot: 2.254 vòng fuzzing 0,8 giây và chỉ 140 case trong 1.800 giây; bỏ `--max-time` thì xong trong 27 giây với cùng 66 failure. Vì vậy chạy bằng `LAB_MAX_TIME=0` (mỗi pha một lượt) kèm trần cứng `LAB_HARD_TIMEOUT`; báo cáo cuối kỳ cần sửa mọi chỗ gọi `max_time` là `INCOMPLETE_BUDGET`.
 - Phát hiện khi diễn giải: Reader nhận 200/204 trên `PATCH /items/qa_articles/{id}` với request rỗng vì policy Reader có quyền `update` với `fields=[]`; 13 cặp có phản hồi 5xx (chưa gom nhóm). Hai điểm này chuyển sang WP7.
 
@@ -276,6 +276,13 @@ Giữ schema gốc bất biến; overlay tách riêng, có lý do và diff (`AGE
 - Kiểm `schemathesis --version` và `run --help` của image đã pin (digest trong `manifest/baseline.yaml`) để xác nhận các flag coverage (`--coverage-format`, `--coverage-report-json-path`). Tài liệu cũ ghi pipeline lịch sử có tracecov 0.25.2 nhưng chưa chứng minh các flag là tùy chọn chuẩn của 4.30.0.
 - Nếu có: thu file coverage mỗi run, tổng hợp theo actor và profile. Nếu không: `NOT_MEASURED`, không quy đổi từ số request.
 - **DoD:** bảng coverage (tham số, từ khóa, phản hồi, example) và danh sách các phần không tới được kèm lý do.
+
+**Kết quả (đã làm, xem [wp6/README.md](wp6/README.md)):**
+
+- Image `schemathesis/schemathesis:4.30.0` có sẵn nhóm *Coverage options* (`--coverage-format`, `--coverage-report-json-path`); harness đã thu `schemathesis-coverage.json` ở cả 18 seed, ghi `tracecov_version: 0.25.2`. C6 là **đo được**, không phải `NOT_MEASURED`.
+- Tổng hợp bằng `scripts/k05_coverage_report.py` thành ba bảng CSV (theo seed, theo nhóm, theo 62 cặp). Operations 100% ở cả 6 nhóm; parameters 36–69%, keywords 17–48%, examples 91–100%, responses documented 19–26% (Editor 15/61, Reader 10–11/42, Anonymous 3/16).
+- Phần chưa tới: chủ yếu mã phản hồi không có trong schema (204, 403, 400, 500) và `401` documented không gặp vì actor có token hợp lệ; từ khóa của thân request `oneOf`. Chạy thêm seed gần như không mở rộng coverage (phần hợp xấp xỉ trung bình).
+- Phát hiện chuyển sang WP7: nhiều phản hồi `204` không có trong schema (schema và hành vi lệch nhau), 33/62 cặp chưa gặp mã phản hồi nào của schema.
 
 ### WP7. Triage, root cause và bảng thống kê lỗi
 
@@ -352,7 +359,7 @@ Không bịa bằng chứng đóng góp hay review; chỉ ghi những gì có th
 - [ ] WP3: overlay guided cho assets, import, export, sort, auth (overlay và `k05_reach_report.py` xong 23/11/2026; **còn: bảng C2 chính thức từ run đầy đủ ở WP5**)
 - [x] WP4: nhóm thao tác có tác dụng phụ chạy an toàn (xong 23/11/2026; xem `wp4/README.md`)
 - [x] WP5: 18 run, ghi trạng thái hoàn tất hoặc `INCOMPLETE_BUDGET` (xong 24/11/2026: 18/18 hoàn tất; xem `wp5/README.md`)
-- [ ] WP6: coverage tracecov hoặc `NOT_MEASURED`
+- [x] WP6: coverage tracecov (đo được, tracecov 0.25.2; xem `docs/k05/wp6/`)
 - [ ] WP7: bảng thống kê lỗi, reproducer, RCA lỗi 500 aggregate
 - [ ] WP8: báo cáo A–H viết lại, không còn liên kết hỏng
 - [ ] WP9: board, đóng góp, peer evaluation, slide và demo
