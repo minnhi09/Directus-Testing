@@ -325,7 +325,7 @@ s = new_slide("Đóng góp và quy trình nhóm (dữ kiện từ Git/GitHub)", 
 table(s, [
     ["Thành viên", "Commit trên main", "PR", "Issue được giao"],
     ["Đinh Thị Mai Lành", "107", "3", "6"],
-    ["Trương Võ Trọng Nhân", "50", "8", "5"],
+    ["Trương Võ Trọng Nhân", "55", "10", "5"],
     ["Phan Thị Bảo Trâm", "0", "0", "5"],
 ], Inches(0.7), Inches(1.4), Inches(11.9), [4.6, 2.8, 1.8, 2.7], size=19, row_h=0.6)
 bullets(s, ["Số commit không phải thước đo đóng góp; nhiều việc không để lại commit",
