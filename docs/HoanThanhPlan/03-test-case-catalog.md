@@ -1,6 +1,6 @@
 # Phase 3 — Danh mục test có chủ đích v1
 
-**Trạng thái:** tất cả là thiết kế, `execution_status=NOT_RUN`; không có kết quả API mới. [CSV đầy đủ](03-test-case-catalog.csv) và [JSON](tai-lieu-bo-tro/phase3-20261018/test-case-catalog.json) chứa UR/BR/AC, rủi ro, ưu tiên, actor, precondition, request, bước, expected response/state, cleanup, Q/GAP, nơi tích hợp và artifact dự kiến.
+**Trạng thái:** tất cả là thiết kế, `execution_status=NOT_RUN`; không có kết quả API mới. [CSV đầy đủ](03-test-case-catalog.csv) và JSON *(tệp đã gỡ khỏi repo; xem lịch sử Git)* chứa UR/BR/AC, rủi ro, ưu tiên, actor, precondition, request, bước, expected response/state, cleanup, Q/GAP, nơi tích hợp và artifact dự kiến.
 
 Đọc quy ước PC/oracle, template payload và tiêu chí kết thúc trong [báo cáo chính](03-thiet-ke-test-va-coverage.md) trước khi chuyển thành automation. `${...}` là biến phải resolve từ run/map/producer; không gửi literal placeholder lên API. `NOT_RUN` khác `OPEN`: một cái là thực thi, một cái là độ rõ expected.
 

@@ -42,7 +42,7 @@ Các nhãn REV-* là mục review của Phase 1, không phải số product defe
 | REV-12 | Phase 0 provenance và run metadata | Source baseline, checkout và tài liệu Phần 1 có SHA khác; run có dirty tree | Phân tích code khác bản có thể bị gán nhầm root cause hoặc tái lập hoàn toàn | Giữ nguồn/hash và TR-02/04; GAP-11 ở Phase 4-5 |
 | REV-13 | Aggregate probe và contract-schema-candidates | Aggregate request còn có fields rỗng; runtime object/204 có thể hợp lý nhưng khác schema | Bỏ thành phần request khi mô tả làm reproducer thiếu chính xác; contract failure không tự là bug nghiệp vụ | AC-25 ghi fields rỗng; giữ FAIL/candidate, GAP-10/15 |
 
-Các line number ở bảng là vị trí lúc review, function name là điểm tìm ổn định. Nguồn được ghim bằng hash trong [source manifest](tai-lieu-bo-tro/phase1-20261018/source-manifest-before.json). Không có kết luận product defect mới được xác nhận trong review này.
+Các line number ở bảng là vị trí lúc review, function name là điểm tìm ổn định. Nguồn được ghim bằng hash trong source manifest *(tệp đã gỡ khỏi repo; xem lịch sử Git)*. Không có kết luận product defect mới được xác nhận trong review này.
 
 ## 3. Backlog bổ sung để mọi yêu cầu có đường kiểm chứng
 

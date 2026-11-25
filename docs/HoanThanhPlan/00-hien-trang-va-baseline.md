@@ -22,7 +22,7 @@ Nền tảng có bằng chứng đã chạy là baseline Directus 12.5.0 + Postg
 |---|---|---|
 | P0-01 - Nguồn bằng chứng | Đã lập danh mục toàn bộ thư mục run và chọn bộ tham chiếu | [Evidence index](00-evidence-index.csv), [trích xuất 18 run](00-selected-evidence.json) |
 | P0-02 - Phân loại đợt chạy | Đã tách fixture v1/v2, Windows trước/sau OIG, campaign dài, pilot và repair thủ công | Evidence index, [campaign theo seed](00-campaign-index.csv) |
-| P0-03 - Trạng thái Git | Đã ghi branch/HEAD, modified/untracked, mode và phụ thuộc ngoài repo trước khi tạo đầu ra | [Git state trước Phase 0](tai-lieu-bo-tro/phase0-20261018/git-state-before.json) |
+| P0-03 - Trạng thái Git | Đã ghi branch/HEAD, modified/untracked, mode và phụ thuộc ngoài repo trước khi tạo đầu ra | Git state trước Phase 0 *(tệp đã gỡ khỏi repo; xem lịch sử Git)* |
 | P0-04 - Provenance | Đã đối chiếu image digest, SHA source/harness, schema hash và working tree | Mục 4-6; [schema inventory](00-schema-inventory.json) |
 | P0-05 - Bộ demo | Đã chọn ba luồng và hai finding; có nguồn cho số liệu và lệnh dự kiến | [Bộ demo tham chiếu](00-bo-demo-tham-chieu.md) |
 | P0-06 - Quyết định còn thiếu | Đã ghi câu hỏi, ảnh hưởng, nơi giải quyết và điều kiện không được suy diễn | [Decision backlog](00-quyet-dinh-va-phu-thuoc.md) |
@@ -187,8 +187,8 @@ Bộ demo hiện sẵn sàng về evidence; live demo phải có preflight tại
 Checkpoint gốc được tạo **cục bộ ngoài repo DAMH**, trước khi cập nhật kế hoạch/tài liệu Phase 0. Các liên kết dưới đây trỏ tới bản sao đã được gom vào `HoanThanhPlan/tai-lieu-bo-tro/`; bản gốc tại `output/phase0-20261018/` vẫn được giữ nguyên:
 
 - [checkpoint.zip](../ARCHIVES.md): 99 tệp, gồm tệp tracked/nonignored phù hợp, schema/fixture map và helper Windows chọn lọc.
-- [checkpoint-manifest.json](tai-lieu-bo-tro/phase0-20261018/checkpoint-manifest.json): hash/size của từng tệp và hash archive.
-- [git-state-before.json](tai-lieu-bo-tro/phase0-20261018/git-state-before.json): Git state, diff summary và mode trước đầu ra Phase 0.
+- checkpoint-manifest.json *(tệp đã gỡ khỏi repo; xem lịch sử Git)*: hash/size của từng tệp và hash archive.
+- git-state-before.json *(tệp đã gỡ khỏi repo; xem lịch sử Git)*: Git state, diff summary và mode trước đầu ra Phase 0.
 
 SHA-256 archive: `5ee3e1c64812f41610dd1065a451389d6e3cba604a23f706f27552ec55a02126`.
 

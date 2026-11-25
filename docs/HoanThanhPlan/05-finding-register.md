@@ -33,7 +33,7 @@ Các phép đối chiếu và quy tắc đếm có trong [audit finding](tai-lie
 | Raw schema Editor | SHA-256 `bd32aa69ff3e7330030c5f25e4c98fd1441a55c4b7465de25e3f42a4465a7d26`, [bản input nguyên vẹn](tai-lieu-bo-tro/phase5-20261018/evidence/20261018T091538Z-1506/schema-editor-input.json) |
 | Schema của hai replay Schemathesis | Guided source hash `cc4c888d4dcc65a225215f250853b1e0385b90b7bdcd235658df3e3b27fca831`. Giữ nhãn guided; không gọi kết quả replay này là campaign raw. Response POST/DELETE liên quan khớp hợp đồng raw được đối chiếu |
 
-[Manifest source](tai-lieu-bo-tro/phase5-20261018/baseline-source-manifest.json) ghi commit, Git blob và SHA-256 của 10 tệp lấy bằng `git show <pin>:<path>`. [Manifest evidence](tai-lieu-bo-tro/phase5-20261018/evidence-manifest.json) ghi 25 bản sao byte-identical từ artefact có sẵn. Đây là bộ nguồn cho phân tích, không phải trạng thái health hiện tại của lab.
+Manifest source *(tệp đã gỡ khỏi repo; xem lịch sử Git)* ghi commit, Git blob và SHA-256 của 10 tệp lấy bằng `git show <pin>:<path>`. [Manifest evidence](tai-lieu-bo-tro/phase5-20261018/evidence-manifest.json) ghi 25 bản sao byte-identical từ artefact có sẵn. Đây là bộ nguồn cho phân tích, không phải trạng thái health hiện tại của lab.
 
 ## 3. Phân tích đại diện A — P5-F01 aggregate 500
 
@@ -53,11 +53,11 @@ Expected ở đây là invariant robustness **không trả 5xx**. Input không t
 
 ### Source đúng pin cho biết điều gì?
 
-1. [Aggregate parameter](tai-lieu-bo-tro/phase5-20261018/baseline-source/packages/specs/src/parameters/aggregate.yaml), dòng 7–59, mô tả object với các key count/sum/avg/min/max… và kiểu string/array cho các key đã nêu. Snapshot không đặt `additionalProperties: false` để chặn key ngoài danh sách; không phải mọi thuộc tính của object đều được ràng buộc bằng các kiểu đó.
-2. [sanitize-query.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/utils/sanitize-query.ts), dòng 144–162, parse JSON rồi chỉ chuẩn hóa value kiểu string hoặc array. Với `foo: 1`, value số không được loại hoặc chuyển thành danh sách; cuối hàm dùng type assertion `as Aggregate`.
-3. [validate-query.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/utils/validate-query.ts), dòng 15–35, chỉ khai báo `aggregate: Joi.object()` tại query schema, chưa nêu rule cho từng operation/value ở đây.
-4. [apply-query/aggregate.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/database/run-ast/lib/apply-query/aggregate.ts), dòng 24–37, lấy `fields` từ mỗi entry; số 1 là truthy nên không bị bỏ qua bởi `if (!fields) continue`, rồi được dùng trong `for (const field of fields)`. Số không iterable: có đường phát sinh TypeError thay vì lỗi query có kiểm soát.
-5. [error-handler.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/middleware/error-handler.ts), dòng 84–109, chuyển exception không phải DirectusError sang fallback 500 và che chi tiết với actor không phải Admin, phù hợp response Editor đã lưu.
+1. Aggregate parameter *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 7–59, mô tả object với các key count/sum/avg/min/max… và kiểu string/array cho các key đã nêu. Snapshot không đặt `additionalProperties: false` để chặn key ngoài danh sách; không phải mọi thuộc tính của object đều được ràng buộc bằng các kiểu đó.
+2. sanitize-query.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 144–162, parse JSON rồi chỉ chuẩn hóa value kiểu string hoặc array. Với `foo: 1`, value số không được loại hoặc chuyển thành danh sách; cuối hàm dùng type assertion `as Aggregate`.
+3. validate-query.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 15–35, chỉ khai báo `aggregate: Joi.object()` tại query schema, chưa nêu rule cho từng operation/value ở đây.
+4. apply-query/aggregate.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 24–37, lấy `fields` từ mỗi entry; số 1 là truthy nên không bị bỏ qua bởi `if (!fields) continue`, rồi được dùng trong `for (const field of fields)`. Số không iterable: có đường phát sinh TypeError thay vì lỗi query có kiểm soát.
+5. error-handler.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 84–109, chuyển exception không phải DirectusError sang fallback 500 và che chi tiết với actor không phải Admin, phù hợp response Editor đã lưu.
 
 **Kết luận:** có khoảng trống kiểm tra kiểu/operation của aggregate trước các nơi dùng value như iterable; đây là giải thích source có căn cứ cho candidate 500. Chưa thu được stack server gắn chính run 18/10 để xác nhận nơi throw đầu tiên. Vì vậy giữ **candidate OPEN**, không gán vị trí throw của run này chỉ từ log/ghi chú lịch sử.
 
@@ -80,7 +80,7 @@ Actual của [response-81](tai-lieu-bo-tro/phase5-20261018/evidence/20261018T091
 
 | Nhánh runtime | Nhánh sinh OpenAPI | Sai lệch phát sinh |
 |---|---|---|
-| [items.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/controllers/items.ts), dòng 37–52: body array → createMany/readMany; body object → createOne/readOne; cả hai bọc trong `data` | [specifications.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/services/specifications.ts), dòng 242–258: request chấp nhận object hoặc array. Nhưng dòng 263–282 chọn response `data` theo **singleton của collection**, không theo body object/array | Với collection thường, generator luôn đặt response `data` array cho POST, còn runtime có nhánh trả object |
+| items.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 37–52: body array → createMany/readMany; body object → createOne/readOne; cả hai bọc trong `data` | specifications.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 242–258: request chấp nhận object hoặc array. Nhưng dòng 263–282 chọn response `data` theo **singleton của collection**, không theo body object/array | Với collection thường, generator luôn đặt response `data` array cho POST, còn runtime có nhánh trả object |
 
 Vì cả hai collection trong lab đều không singleton và dùng cùng generator, hai mismatch được gom thành **một nguyên nhân schema-response-shape**. Đây là phân tích nguyên nhân cụ thể đáp ứng yêu cầu RCA; không chỉ dựa vào tên check hoặc status 200.
 
@@ -90,11 +90,11 @@ Vì cả hai collection trong lab đều không singleton và dùng cùng genera
 
 ## 5. Hai nhóm contract còn lại
 
-**P5-F03 — DELETE:** [items.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/controllers/items.ts), dòng 235–250, gọi deleteOne rồi chuyển sang middleware mà không gán payload. [respond.ts](tai-lieu-bo-tro/phase5-20261018/baseline-source/api/src/middleware/respond.ts), dòng 120–125, trả 204 khi không có payload. Trong khi [item.yaml](tai-lieu-bo-tro/phase5-20261018/baseline-source/packages/specs/src/paths/items/item.yaml), dòng 54–66, khai báo 200/401/404; generator thêm/merge 200 ở specifications.ts dòng 316–333 và không bổ sung 204. Runtime 204 là có đường xử lý rõ; response map thiếu status đó.
+**P5-F03 — DELETE:** items.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 235–250, gọi deleteOne rồi chuyển sang middleware mà không gán payload. respond.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 120–125, trả 204 khi không có payload. Trong khi item.yaml *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 54–66, khai báo 200/401/404; generator thêm/merge 200 ở specifications.ts dòng 316–333 và không bổ sung 204. Runtime 204 là có đường xử lý rõ; response map thiếu status đó.
 
 Replay Z6yNal đã thực hiện parent `MsrYGI` GET → DELETE, map theo identity, tái hiện đúng `UndefinedStatusCode` với 204 và restore 0. Đây là **full recorded parent chain**, không khôi phục mọi trạng thái lịch sử của campaign. Chưa sửa schema; không tính cùng một DELETE vừa là lỗi nghiệp vụ vừa là defect schema thứ hai.
 
-**P5-F04 — export:** respond.ts dòng 101–104 chủ động đặt `text/csv`; GET trong [items.yaml](tai-lieu-bo-tro/phase5-20261018/baseline-source/packages/specs/src/paths/items/items.yaml), dòng 25–40, và generator specifications.ts dòng 263–286 mô tả response JSON. CSV của probe 18/10 xác nhận mismatch media type này. XML/YAML và alternate JSON export đã có [triage lịch sử](../../evidence/failure-triage-v2-2026-10-11.md), nhưng Phase 5 không chạy lại hoặc tính thêm chúng thành finding mới. Mismatch content type không tự chứng minh sai nội dung export; oracle đủ row chưa được nghiệm thu.
+**P5-F04 — export:** respond.ts dòng 101–104 chủ động đặt `text/csv`; GET trong items.yaml *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 25–40, và generator specifications.ts dòng 263–286 mô tả response JSON. CSV của probe 18/10 xác nhận mismatch media type này. XML/YAML và alternate JSON export đã có [triage lịch sử](../../evidence/failure-triage-v2-2026-10-11.md), nhưng Phase 5 không chạy lại hoặc tính thêm chúng thành finding mới. Mismatch content type không tự chứng minh sai nội dung export; oracle đủ row chưa được nghiệm thu.
 
 ## 6. Lỗi harness/môi trường và các trường hợp không kết luận thành defect
 

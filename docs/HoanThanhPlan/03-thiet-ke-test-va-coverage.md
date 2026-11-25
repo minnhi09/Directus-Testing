@@ -13,14 +13,14 @@ Bộ thiết kế nối [đặc tả v0.2](01-yeu-cau-va-dac-ta.md) → [khoản
 | [Báo cáo này](03-thiet-ke-test-va-coverage.md) | Quy ước dữ liệu/oracle, phân vùng, biên, quyền, chuỗi và mô hình pairwise |
 | [Danh mục case](03-test-case-catalog.md) / [CSV đầy đủ](03-test-case-catalog.csv) | Từng case có ID, actor, input, expected, trạng thái expected, tiền điều kiện, cleanup và nơi tích hợp |
 | [Tiêu chí kết thúc](03-tieu-chi-ket-thuc.md) | Entry gate, pass/fail, mẫu số coverage, budget, incomplete và đủ bằng chứng |
-| [Review thiết kế](03-review-thiet-ke.md) | Checklist P3-09, hạn chế được phát hiện và bàn giao Phase 4 |
-| [Truy vết](03-traceability.csv) | Đủ 26 BR → test hiện hữu → case mới thiết kế; không thay trạng thái evidence cũ |
-| [Inventory test hiện có](03-inventory-test-hien-co.csv) | S1–S6, INV-01…11 và ba mục smoke; nhóm trùng mục tiêu và cách tái sử dụng |
-| [Phân vùng](03-phan-vung-tuong-duong.csv) / [Biên](03-gia-tri-bien.csv) | 48 lớp dữ liệu và 34 điểm biên theo operation |
-| [Bảng quyền](03-bang-quyet-dinh-quyen.csv) | 69 luật khả thi, mỗi luật gắn case cụ thể |
+| Review thiết kế *(tệp đã gỡ khỏi repo; xem lịch sử Git)* | Checklist P3-09, hạn chế được phát hiện và bàn giao Phase 4 |
+| Truy vết *(tệp đã gỡ khỏi repo; xem lịch sử Git)* | Đủ 26 BR → test hiện hữu → case mới thiết kế; không thay trạng thái evidence cũ |
+| Inventory test hiện có *(tệp đã gỡ khỏi repo; xem lịch sử Git)* | S1–S6, INV-01…11 và ba mục smoke; nhóm trùng mục tiêu và cách tái sử dụng |
+| Phân vùng *(tệp đã gỡ khỏi repo; xem lịch sử Git)* / Biên *(tệp đã gỡ khỏi repo; xem lịch sử Git)* | 48 lớp dữ liệu và 34 điểm biên theo operation |
+| Bảng quyền *(tệp đã gỡ khỏi repo; xem lịch sử Git)* | 69 luật khả thi, mỗi luật gắn case cụ thể |
 | 36 query tham chiếu *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* / 9 query pairwise *(tệp đã bị xóa khỏi phạm vi K05; xem lịch sử Git)* | Tập con trỏ lại cùng case ID; không tạo thêm chín case trùng |
 
-Chi tiết máy đọc được nằm trong [thư mục hỗ trợ Phase 3](tai-lieu-bo-tro/phase3-20261018/), đặc biệt [catalog JSON](tai-lieu-bo-tro/phase3-20261018/test-case-catalog.json), [fixture oracle](tai-lieu-bo-tro/phase3-20261018/fixture-oracle.json), [oracle library](tai-lieu-bo-tro/phase3-20261018/oracle-library.json) và [design summary](tai-lieu-bo-tro/phase3-20261018/design-summary.json).
+Chi tiết máy đọc được nằm trong thư mục hỗ trợ Phase 3 *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, đặc biệt catalog JSON *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, fixture oracle *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, oracle library *(tệp đã gỡ khỏi repo; xem lịch sử Git)* và design summary *(tệp đã gỡ khỏi repo; xem lịch sử Git)*.
 
 ## 2. Số lượng và ý nghĩa
 
@@ -120,7 +120,7 @@ Phân vùng theo **hành vi có nguồn**, không chỉ kiểu JSON. Các lớp 
 | internal_notes | Null/text Unicode chứa khoảng trắng | Chính sách field Reader theo từng projection | Editor round-trip byte text có nghĩa; Reader oracle riêng |
 | category | Existing ID, null, ID không tồn tại | Nested existing/create theo Q-05 | Valid/null round-trip; FK sai không orphan, không nhầm coercion/permission với FK |
 
-Đủ 48 dòng lớp dữ liệu trong [CSV](03-phan-vung-tuong-duong.csv). Query còn được phân theo: filter không có/draft/published; sort numeric/title; phân trang hợp miền/ngoài miền/biên 0; search known hit/no hit/blank; projection public/private/wildcard/nested. Bảng quyền ở mục 7 mô hình hóa phân lớp actor/state/projection thay vì trộn với validation field.
+Đủ 48 dòng lớp dữ liệu trong CSV *(tệp đã gỡ khỏi repo; xem lịch sử Git)*. Query còn được phân theo: filter không có/draft/published; sort numeric/title; phân trang hợp miền/ngoài miền/biên 0; search known hit/no hit/blank; projection public/private/wildcard/nested. Bảng quyền ở mục 7 mô hình hóa phân lớp actor/state/projection thay vì trộn với validation field.
 
 Một negative test giữ mọi field khác hợp BR và dùng một target/control hợp lệ. Ví dụ `score=-1` phải giữ status=draft, title/category hợp lệ; `status=archived` phải giữ score=3. Không dùng một response lỗi cho hai field để tuyên bố cả hai rule đã được kiểm.
 
@@ -135,13 +135,13 @@ Một negative test giữ mọi field khác hợp BR và dùng một target/cont
 | offset min 0 | -1,0,1 với limit=3 | GET, 3 instance | -1 INVALID_QUERY; 0/1 đúng lát cắt |
 | page min 0 theo schema/validation | -1,0,1 với limit=3 | GET, 3 instance | -1 INVALID_QUERY; 1 trang đầu; page=0 giữ OPEN tới khi rõ semantics, không tự coi 0 sai |
 
-Tổng **34 điểm biên theo operation**, không phải 34 HTTP request đã chạy. [CSV biên](03-gia-tri-bien.csv) gắn từng điểm với case ID. Null/missing/coercion không phải biên số và đã có ca phân vùng riêng.
+Tổng **34 điểm biên theo operation**, không phải 34 HTTP request đã chạy. CSV biên *(tệp đã gỡ khỏi repo; xem lịch sử Git)* gắn từng điểm với case ID. Null/missing/coercion không phải biên số và đã có ca phân vùng riêng.
 
 Dùng ASCII làm biên độ dài để một ký tự = một code point = một byte; không cần đoán cách DB tính Unicode để chốt các ca này. Chuỗi `e + U+0301` được thiết kế riêng thành OPEN, không lấy số grapheme hiển thị làm maxLength. Mục tiêu ca 81/121 là từ chối đúng ràng buộc và không đổi dữ liệu; lỗi 5xx không trở thành PASS chỉ vì input quá dài.
 
 ## 7. Bảng quyết định quyền — P3-04
 
-Miền hữu hạn có **69 luật** trong [CSV](03-bang-quyet-dinh-quyen.csv), mỗi luật dẫn tới một case. Mười luật Editor chuẩn dùng lại P3-OP-01…10; 59 biến thể còn lại có case P3-AUTHZ-DR-*. Không tạo suite trùng cho mười ô đã được kiểm bởi positive acceptance.
+Miền hữu hạn có **69 luật** trong CSV *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, mỗi luật dẫn tới một case. Mười luật Editor chuẩn dùng lại P3-OP-01…10; 59 biến thể còn lại có case P3-AUTHZ-DR-*. Không tạo suite trùng cho mười ô đã được kiểm bởi positive acceptance.
 
 Điều kiện và các tổ hợp khả thi:
 
@@ -185,7 +185,7 @@ Recorder phải có producer/consumer, expression ID, ID mới, case/parent, act
 
 ## 9. Oracle độc lập — P3-06
 
-[Fixture oracle](tai-lieu-bo-tro/phase3-20261018/fixture-oracle.json) được trích **tĩnh từ `article_spec/category_spec` của harness**, có source hash, đủ 12 bài/3 category và field nghiệp vụ. Tệp không chép ID 1…12 hiện tại làm expected cố định. Run mới bind fixture key → ID bằng map được lưu/hash cùng seed/export.
+Fixture oracle *(tệp đã gỡ khỏi repo; xem lịch sử Git)* được trích **tĩnh từ `article_spec/category_spec` của harness**, có source hash, đủ 12 bài/3 category và field nghiệp vụ. Tệp không chép ID 1…12 hiện tại làm expected cố định. Run mới bind fixture key → ID bằng map được lưu/hash cùng seed/export.
 
 | Phép kiểm | Nguồn expected độc lập | Điều không dùng làm nguồn chuẩn |
 |---|---|---|
@@ -200,7 +200,7 @@ Recorder phải có producer/consumer, expression ID, ID mới, case/parent, act
 
 GET nền được phép làm **precondition/control** để xác minh runtime khớp fixture spec, không tự sinh expected từ giá trị nó trả mà chưa so nguồn. Mô hình này độc lập với output chức năng target, nhưng vẫn dùng harness làm nguồn fixture; lỗi cùng tồn tại trong cấu hình seed và spec vẫn là giới hạn cần nêu, không gọi oracle là tuyệt đối độc lập toàn hệ thống.
 
-Source error đúng pin bổ sung: [ValueTooLong](tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/value-too-long.ts), [InvalidForeignKey](tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/invalid-foreign-key.ts), [NotNullViolation](tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/not-null-violation.ts), [InvalidPayload](tai-lieu-bo-tro/phase3-20261018/baseline-source/packages/errors/src/errors/invalid-payload.ts); [manifest](tai-lieu-bo-tro/phase3-20261018/baseline-source-manifest.json). Các class khai báo 400, nhưng phải chứng minh request đi đúng nhánh/translator; không dùng chúng để khẳng định mọi SQL error đều đã được ánh xạ. `_nnull/_submitted` thường đi FailedValidation của source Phase 1, không dùng NotNullViolation thay mọi lỗi null.
+Source error đúng pin bổ sung: ValueTooLong *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, InvalidForeignKey *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, NotNullViolation *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, InvalidPayload *(tệp đã gỡ khỏi repo; xem lịch sử Git)*; manifest *(tệp đã gỡ khỏi repo; xem lịch sử Git)*. Các class khai báo 400, nhưng phải chứng minh request đi đúng nhánh/translator; không dùng chúng để khẳng định mọi SQL error đều đã được ánh xạ. `_nnull/_submitted` thường đi FailedValidation của source Phase 1, không dùng NotNullViolation thay mọi lỗi null.
 
 Oracle contract luôn chạy/ghi riêng với business, authorization, robustness và precondition. DELETE 204 hoặc object POST có thể business đúng nhưng raw contract FAIL; malformed timestamp có thể business OPEN nhưng robustness FAIL do 5xx. Một nhãn tổng PASS không được xóa các kết luận thành phần.
 
@@ -217,7 +217,7 @@ Giữ đúng mô hình dự kiến Phase 6: Editor, GET articles, fixture sạch
 
 Có **36** tổ hợp Cartesian. Pagination là một yếu tố gồm hai cách mã hóa tương đương, nên không sinh cùng lúc page+offset trong mô hình. Case precedence có cả hai nằm ngoài pairwise. Không có tổ hợp Cartesian nào khác bị loại. Mọi query phải hợp lệ trong fixture/policy và collation của mô hình; nếu điều kiện title chưa đạt thì thí nghiệm runtime BLOCKED, không xóa các dòng đó để tăng coverage.
 
-Đã tạo tĩnh tập **9 dòng**, phủ **37/37 cặp giá trị khả thi** của sáu cặp yếu tố. [JSON coverage](tai-lieu-bo-tro/phase3-20261018/pairwise-model-and-coverage.json) liệt kê từng cặp và case phủ nó, danh sách thiếu rỗng. Không dùng PICT hoặc gán tên thuật toán Allpairs cho script chọn tĩnh này.
+Đã tạo tĩnh tập **9 dòng**, phủ **37/37 cặp giá trị khả thi** của sáu cặp yếu tố. JSON coverage *(tệp đã gỡ khỏi repo; xem lịch sử Git)* liệt kê từng cặp và case phủ nó, danh sách thiếu rỗng. Không dùng PICT hoặc gán tên thuật toán Allpairs cho script chọn tĩnh này.
 
 Chín là tối thiểu trong **mô hình không có constraints loại dòng này**: cặp filter×sort có chín tổ hợp, một dòng chỉ phủ một tổ hợp đó; tập đã dựng đạt đúng chín và còn phủ các cặp khác. Đây là chứng minh về cấu trúc input, không về khả năng tìm defect.
 
@@ -229,9 +229,9 @@ Giữ riêng ngoài pairwise: token/quyền/row-field policy, null/missing/coerc
 
 Đã đối chiếu nội dung [bài giảng hộp đen](../ARCHIVES.md): trang PDF 13–17 về phân vùng, 28–29 về biên, 33–35/45 về quyết định, 46/49–56/59 về pairwise và giữ ca rủi ro cao. Trang PDF là chỉ số tệp, không dựa số trang tổng ghi trên slide. [Yêu cầu môn học](../yeu_cau.pdf), trang PDF 8, mô tả K05 là sinh request từ schema, kiểm invariant/status, lưu reproducer và thống kê lỗi. Ngưỡng số ca/coverage/budget của nhóm ở hồ sơ này không được ghi thành nguyên văn yêu cầu giảng viên; không lấy tỷ lệ tiết kiệm trong slide làm số đo của dự án.
 
-P3-01…09 hoàn thành ở phạm vi thiết kế: inventory/trùng, phân vùng, biên, 69 luật quyền, ba chuỗi, oracle có nguồn, mô hình pairwise, tiêu chí kết thúc trước chạy và review bởi AI. [Tiêu chí kết thúc](03-tieu-chi-ket-thuc.md) phân biệt nghiệm thu tài liệu với kết quả test/campaign; [review](03-review-thiet-ke.md) nêu phần bàn giao Phase 4.
+P3-01…09 hoàn thành ở phạm vi thiết kế: inventory/trùng, phân vùng, biên, 69 luật quyền, ba chuỗi, oracle có nguồn, mô hình pairwise, tiêu chí kết thúc trước chạy và review bởi AI. [Tiêu chí kết thúc](03-tieu-chi-ket-thuc.md) phân biệt nghiệm thu tài liệu với kết quả test/campaign; review *(tệp đã gỡ khỏi repo; xem lịch sử Git)* nêu phần bàn giao Phase 4.
 
-Kiểm tra tĩnh đầu ra được ghi tại [validation.json](tai-lieu-bo-tro/phase3-20261018/validation.json). Không có request API, seed/export mới, test suite mới chạy, thay đổi raw/harness hoặc commit/push trong Phase 3 này.
+Kiểm tra tĩnh đầu ra được ghi tại validation.json *(tệp đã gỡ khỏi repo; xem lịch sử Git)*. Không có request API, seed/export mới, test suite mới chạy, thay đổi raw/harness hoặc commit/push trong Phase 3 này.
 
 
-**Điều hướng kết quả sau thiết kế:** [Phase 4](04-automation-va-tai-lap.md) đã tích hợp/chạy subset và lưu [bảng execution riêng](04-ket-qua-case.csv). Catalog P3-v1 ở tài liệu này giữ trạng thái thiết kế tại thời điểm lập; bốn request projection category có errata rõ trong bản automation.
+**Điều hướng kết quả sau thiết kế:** [Phase 4](04-automation-va-tai-lap.md) đã tích hợp/chạy subset và lưu bảng execution riêng *(tệp đã gỡ khỏi repo; xem lịch sử Git)*. Catalog P3-v1 ở tài liệu này giữ trạng thái thiết kế tại thời điểm lập; bốn request projection category có errata rõ trong bản automation.

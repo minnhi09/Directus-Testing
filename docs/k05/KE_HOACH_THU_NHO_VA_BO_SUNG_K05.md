@@ -119,7 +119,7 @@ Kiểm tra sau xóa: 136 unit test đạt.
 - **Nhóm D:** 5 tài liệu đã xóa. Các quyết định nội bộ ghi trong `KE_HOACH_RUT_GON_R06_K05.md` và `KE_HOACH_KIEM_THU_DIRECTUS_TOAN_HE_THONG.md` (người duyệt, ngày duyệt, lý do rút gọn) chỉ còn trong bản sao lưu và lịch sử Git.
 
 **Còn sót, chưa xử lý:**
-- `scripts/lab-components.sh` còn hàm `p10_scenarios` và lệnh `p10-scenarios` (chỉ chạy được trong project `r06-k05-p09-*`, đã mồ côi); có thể còn mã pilot P14. Là file dùng chung, cần Lành đồng ý trước khi gỡ.
+- *(Đã gỡ ngày 26/11/2026, xem mục 4.4.)* `scripts/lab-components.sh` còn hàm `p10_scenarios` và lệnh `p10-scenarios` (chỉ chạy được trong project `r06-k05-p09-*`, đã mồ côi); có thể còn mã pilot P14. Là file dùng chung, cần Lành đồng ý trước khi gỡ.
 - Thư mục `.github/workflows/` rỗng (không còn workflow nào).
 - Tài liệu còn trỏ tới file đã xóa: `docs/coverage/oracles/ORACLE-V2-20261121/README.md`, `evidence/progress-2026-11-15.md`, `docs/k05/bang-chung-13-tc/chon-13-tc/README.md` (bản sao nguyên văn, không sửa), và các báo cáo trong `docs/HoanThanhPlan/` (sửa trong WP8).
 
@@ -149,6 +149,18 @@ Kiểm tra sau xóa: 136 unit test đạt.
 | Catalog v1 (257 ID) và `06-ket-qua-case.csv`, `08-ket-qua-case.csv` | Là thiết kế tay (biên, phân vùng, pairwise), không phải K05. Đề xuất: giữ làm phụ lục, **không** nêu 257 là số test case. Trong đó có 36 ca `pairwise-reference` (kỹ thuật K06) |
 | `oracle_v2.py`, `tests/test_oracle_v2.py`, `docs/coverage/oracles/ORACLE-V2-20261121/`, `artifacts/runs/step1…step3*` | **Không** thuộc 170 TC v2: là oracle cho 66 ca của catalog v1. Giữ cho tới khi quyết định vai trò của catalog 257 |
 | Phần còn lại của phase6 (`analyze.py`, `validate.py`, `source-*`, `evidence-index.json`) | Lẫn cả phần pairwise đã xóa; `evidence-index.json` còn liệt kê file đã xóa với hash cũ |
+
+**Dọn file thừa ngày 26/11/2026** (theo lệnh của người dùng: xóa những gì không ảnh hưởng phần giữa kỳ và vẫn đủ yêu cầu K05). Gỡ **74 file (943 KB)** khỏi Git, bản trên đĩa giữ nguyên:
+
+| Nhóm | Số file | Nội dung |
+|---|---:|---|
+| Pairwise (K06) và thiết kế thủ công ngoài K05 | 24 | `04-ket-qua-case.csv`, `06-ket-qua-case.csv`, `08-truy-vet-ket-qua.csv`; bảng quyết định quyền, giá trị biên, phân vùng, inventory, truy vết và review thiết kế (`03-*`); toàn bộ `tai-lieu-bo-tro/phase3-20261018/` (gồm mô hình pairwise); bốn bảng coverage thiết kế thủ công của phase8 |
+| Bản sao mã nguồn, manifest và log dụng cụ | 49 | các thư mục `baseline-source*`, `source-before`, `replay-source`, `baseline-auth-source`, `*source-manifest*.json`, `checkpoint-manifest.json`, log `*-output.txt` trong `tai-lieu-bo-tro/` |
+| Cấu hình mồ côi của khung P09 | 1 | `profiles/p09/compose.json`; đồng thời gỡ hàm `p10_scenarios` (34 dòng) và nhánh `p10-scenarios` trong `scripts/lab-components.sh` |
+
+Quy tắc chọn: không file nào được tài liệu giữa kỳ (báo cáo, hướng dẫn, thiết kế kịch bản, mô tả hệ thống, `phan1`, `phan2`, tài liệu học tập, demo) trỏ tới hay nhắc tên; không file nào được báo cáo K05, README hoặc các gói WP liên kết; không file nào mã đọc. **Giữ:** toàn bộ tài liệu và bằng chứng giữa kỳ; `evidence/`; các tài liệu K05 về OpenAPI, raw/guided, finding và số liệu lịch sử; catalog 257 (`03-test-case-catalog.md/.csv`) cùng `03-thiet-ke-test-va-coverage.md` mà phụ lục cần; `08-ket-qua-case.csv` (nguồn chọn bộ 13 ca). 84 liên kết tới file đã gỡ trong tài liệu cũ được đổi thành chữ thường kèm ghi chú.
+
+Kiểm tra sau khi gỡ: 33 unit test đạt; `bash -n` hợp lệ; `doctor` PASS; S1 đến S6 6 passed (run `20261125T174354Z-541`); 7 ca thiết kế 6 passed, 1 failed là TC13 (run `20261125T174416Z-457`); 11 invariant 9 passed, 2 failed (run `20261125T174502Z-1759`); khôi phục dữ liệu PASS; đúng như trước khi gỡ.
 
 **Trạng thái (24/11/2026):** catalog 257 được giữ làm phụ lục PL.1 của báo cáo cuối kỳ, ghi rõ chưa chạy và không nêu là số test case. Hai dòng còn lại **đã xóa ngày 24/11/2026 theo lệnh của người dùng**: `scripts/oracle_v2.py`, `tests/test_oracle_v2.py`, `docs/coverage/oracles/ORACLE-V2-20261121/` (3 file) và bốn file phase6 liên quan tới thí nghiệm pairwise (`evidence-index.json`, `source-after-manifest.json`, `run-measurements.ps1`, `measurement-source-freeze.json`). Giữ lại các file phase6 mang số liệu K05 (`historical-raw-guided.csv`, các file kiểm định, `replay-comparison.json`). Bộ unit test còn 33 test, đạt.
 

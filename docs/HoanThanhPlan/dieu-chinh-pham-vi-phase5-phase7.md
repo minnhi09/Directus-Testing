@@ -53,4 +53,4 @@ Automation local/Docker, giữ exit code, credential riêng, cleanup/restore và
 | P5-08 | Giữ trạng thái/ảnh hưởng của finding mở |
 | P7-01…09 | Loại khỏi phạm vi; không tính là task đã triển khai |
 
-[Bản trước điều chỉnh và checksum](tai-lieu-bo-tro/rut-gon-phase5-bo-phase7-20261018/source-before.json) được giữ để truy vết. Các báo cáo/run/checksum của Phase 0–4 vẫn là bằng chứng tại thời điểm thực hiện; tham chiếu CI/vòng đời lỗi trong bản lịch sử không tạo lại yêu cầu cho lộ trình hiện hành.
+Bản trước điều chỉnh và checksum *(tệp đã gỡ khỏi repo; xem lịch sử Git)* được giữ để truy vết. Các báo cáo/run/checksum của Phase 0–4 vẫn là bằng chứng tại thời điểm thực hiện; tham chiếu CI/vòng đời lỗi trong bản lịch sử không tạo lại yêu cầu cho lộ trình hiện hành.

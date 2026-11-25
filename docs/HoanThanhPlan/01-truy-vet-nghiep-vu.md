@@ -77,4 +77,4 @@ Không cộng số dòng UR/BR/test/replay để tính số testcase hoặc defe
 
 ### Bổ sung khi thực hiện Phase 3
 
-[Truy vết BR → case có chủ đích](03-traceability.csv) giữ đủ 26 BR, cùng UR/AC/Q/GAP và test hiện có. [Thiết kế Phase 3](03-thiet-ke-test-va-coverage.md), [catalog](03-test-case-catalog.md) và [tiêu chí kết thúc](03-tieu-chi-ket-thuc.md) bổ sung precondition/input/oracle/cleanup/ưu tiên và mẫu số coverage trước chạy. Các case mới thiết kế đều NOT_RUN; không gán kết quả lịch sử sang mã P3 hoặc nâng coverage thực thi từ số dòng thiết kế.
+Truy vết BR → case có chủ đích *(tệp đã gỡ khỏi repo; xem lịch sử Git)* giữ đủ 26 BR, cùng UR/AC/Q/GAP và test hiện có. [Thiết kế Phase 3](03-thiet-ke-test-va-coverage.md), [catalog](03-test-case-catalog.md) và [tiêu chí kết thúc](03-tieu-chi-ket-thuc.md) bổ sung precondition/input/oracle/cleanup/ưu tiên và mẫu số coverage trước chạy. Các case mới thiết kế đều NOT_RUN; không gán kết quả lịch sử sang mã P3 hoặc nâng coverage thực thi từ số dòng thiết kế.

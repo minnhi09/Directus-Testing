@@ -12,7 +12,7 @@ Tài liệu đi kèm:
 - [Danh mục bảy case sinh đại diện](02-case-sinh-dai-dien.md).
 - [Quy tắc overlay](02-quy-tac-overlay.md).
 - [Inventory operation theo actor](02-operation-inventory.csv).
-- [Kết quả audit máy đọc được](tai-lieu-bo-tro/phase2-20261018/schema-review.json), [manifest đầu vào](tai-lieu-bo-tro/phase2-20261018/source-manifest-before.json).
+- [Kết quả audit máy đọc được](tai-lieu-bo-tro/phase2-20261018/schema-review.json), manifest đầu vào *(tệp đã gỡ khỏi repo; xem lịch sử Git)*.
 
 ## 1. Nguồn và ranh giới kết luận
 
@@ -72,7 +72,7 @@ Mỗi requestBody POST/PATCH được chọn đều thiếu `required: true`; th
 
 Trong OAS 3.0.1, `nullable` phụ thuộc `type` khai báo tại cùng Schema Object và `$ref` có quy tắc riêng về sibling. Vì metadata không có type và category dùng oneOf, không suy riêng cờ nullable đã bảo đảm mọi công cụ xử lý null đúng ý lab. Cần probe công cụ/null ở Phase 4, giữ kết quả raw. Nguồn quy tắc: [OAS 3.0.1 — Schema/Reference Object](https://spec.openapis.org/oas/v3.0.1.html#schema-object).
 
-Nguồn phát sinh schema đúng pin: [specifications.ts](tai-lieu-bo-tro/phase2-20261018/baseline-source/api/src/services/specifications.ts), dòng 411–427 tính required từ nullable/default/generated; dòng 456–506 sinh type/relation; dòng 591–607 ánh xạ integer/json/timestamp. Nhánh này giải thích vì sao schema không tự mang mọi validation của fixture. [Manifest source](tai-lieu-bo-tro/phase2-20261018/baseline-source-manifest.json) ghi Git blob/SHA-256; không dùng source HEAD thay bản pin.
+Nguồn phát sinh schema đúng pin: specifications.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 411–427 tính required từ nullable/default/generated; dòng 456–506 sinh type/relation; dòng 591–607 ánh xạ integer/json/timestamp. Nhánh này giải thích vì sao schema không tự mang mọi validation của fixture. Manifest source *(tệp đã gỡ khỏi repo; xem lịch sử Git)* ghi Git blob/SHA-256; không dùng source HEAD thay bản pin.
 
 ### 3.2. `format: timestamp` với runner đã pin
 

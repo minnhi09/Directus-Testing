@@ -4,7 +4,7 @@
 
 **Ngày thực hiện:** 18/10/2026. **Trạng thái:** hoàn thành P4-01…09 trong phạm vi tích hợp harness và kiểm chứng suite ngắn. Không đồng nghĩa hoàn thành toàn bộ catalog, campaign cuối kỳ hoặc đóng các finding.
 
-Hai lượt suite ngắn đều **58/58 PASS**, cleanup và restore PASS, cùng hash harness/cấu hình/snapshot đầu vào. Suite invariant lịch sử vẫn **9 PASS, 2 FAIL**; failure được giữ cho Phase 5. Xem [bảng 257 case](04-ket-qua-case.csv), [chỉ mục 23 run](tai-lieu-bo-tro/phase4-20261018/run-index.json) và [so sánh hai lượt](tai-lieu-bo-tro/phase4-20261018/repeatability.json).
+Hai lượt suite ngắn đều **58/58 PASS**, cleanup và restore PASS, cùng hash harness/cấu hình/snapshot đầu vào. Suite invariant lịch sử vẫn **9 PASS, 2 FAIL**; failure được giữ cho Phase 5. Xem bảng 257 case *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, [chỉ mục 23 run](tai-lieu-bo-tro/phase4-20261018/run-index.json) và [so sánh hai lượt](tai-lieu-bo-tro/phase4-20261018/repeatability.json).
 
 ## 1. Những gì đã thay đổi
 
@@ -18,9 +18,9 @@ Hai lượt suite ngắn đều **58/58 PASS**, cleanup và restore PASS, cùng 
 | P4-06 | Ghi incremental report, phần chưa chạy, readiness, verdict, trace/parent, cleanup; lưu mã thoát runner/restore riêng; source/schema/map/budget có snapshot/hash | `designed-report.json`, `component-outcomes.json`, `harness-inputs.json`, `execution-config.json`; bài thử incomplete |
 | P4-07 | Siết negative: đúng status + mã lỗi, có control và kiểm không đổi dữ liệu; 5xx/network không PASS. Sort dùng seed/map và DB độc lập | 13 regression test offline; suite thật; S4 không còn lẫn row policy với private projection; S6 gửi request dù PATCH vắng schema Reader |
 | P4-08 | Chạy hai lượt ngắn tuần tự, đối chiếu dữ liệu/source/config/thứ tự/verdict | Các cờ so sánh trong `repeatability.json` đều true |
-| P4-09 | Kiểm cú pháp Python/Bash/PowerShell, diff, regression offline trên host và runner pin; chạy integration liên quan | [validation](tai-lieu-bo-tro/phase4-20261018/validation.json), [unit trên host](tai-lieu-bo-tro/phase4-20261018/unit-test-output.txt), [unit trong runner](tai-lieu-bo-tro/phase4-20261018/unit-test-pinned-output.txt) |
+| P4-09 | Kiểm cú pháp Python/Bash/PowerShell, diff, regression offline trên host và runner pin; chạy integration liên quan | [validation](tai-lieu-bo-tro/phase4-20261018/validation.json), unit trên host *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, unit trong runner *(tệp đã gỡ khỏi repo; xem lịch sử Git)* |
 
-Không nâng version, đổi schema/policy/fixture nghiệp vụ, reset volume hoặc sửa checkout Directus. Chưa commit/push. Các tệp đã dirty trước Phase 4 có [checkpoint riêng](tai-lieu-bo-tro/phase4-20261018/source-manifest-before.json); nguồn bàn giao có [manifest sau sửa](tai-lieu-bo-tro/phase4-20261018/source-manifest-after.json) và [gói source không chứa credential](../ARCHIVES.md).
+Không nâng version, đổi schema/policy/fixture nghiệp vụ, reset volume hoặc sửa checkout Directus. Chưa commit/push. Các tệp đã dirty trước Phase 4 có checkpoint riêng *(tệp đã gỡ khỏi repo; xem lịch sử Git)*; nguồn bàn giao có manifest sau sửa *(tệp đã gỡ khỏi repo; xem lịch sử Git)* và [gói source không chứa credential](../ARCHIVES.md).
 
 ## 2. Nền tảng và precondition thật
 
@@ -30,7 +30,7 @@ Run seed `20261018T064116Z-321` xác minh lại fixture hiện có, không nhân
 
 Oracle DB đọc riêng bằng SQL cho biết PostgreSQL **16.15**, collation `en_US.utf8`, title order ID 1…12 khớp thứ tự trong seed spec. Expected của query được xây từ spec + map; không lấy kết quả GET đang thử làm chuẩn. Preflight xác minh đủ 3 category/12 article, 6 published Reader, default draft, max length, validation score/status và FK SET NULL.
 
-Doctor cuối [`20261018T092140Z-1392`](tai-lieu-bo-tro/phase4-20261018/doctor-output.txt) PASS: health authenticated đạt; license thật `active`, entitlement custom permission rules bật. Không lưu giá trị license/credential. Một lần lab ở trạng thái Exited (255) đã bị preflight chặn (`20261018T085927Z-1907`); chạy `up` giữ volume rồi kiểm tiếp, chưa kết luận nguyên nhân môi trường.
+Doctor cuối `20261018T092140Z-1392` *(tệp đã gỡ khỏi repo; xem lịch sử Git)* PASS: health authenticated đạt; license thật `active`, entitlement custom permission rules bật. Không lưu giá trị license/credential. Một lần lab ở trạng thái Exited (255) đã bị preflight chặn (`20261018T085927Z-1907`); chạy `up` giữ volume rồi kiểm tiếp, chưa kết luận nguyên nhân môi trường.
 
 ## 3. Kết quả chạy mới
 
@@ -65,7 +65,7 @@ ID mapping chỉ thay path ID, filter ID/FK và FK category có kiểu. Không �
 
 Chuỗi parent đã ghi không đại diện toàn bộ state của campaign trước đó. Thiếu parent, mapping không chắc, schema nguồn mất, case ID nhập mơ hồ hoặc check ngoài bốn check nền tảng thì trả nonzero/chưa xác minh. P3 replay là tái sinh thiết kế, không tự nhận là replay nguyên counterexample đã shrink.
 
-Có [ba recorder trích chọn đã bỏ header xác thực](tai-lieu-bo-tro/phase4-20261018/replay-source/provenance.json) cùng schema nguồn để giữ ngoài cache. Đây là bản dẫn xuất; các replay thật trong bảng dùng events gốc. Nếu cần bàn giao sang máy mới, copy thư mục `replay-source/guided/seed-101/` vào `artifacts/runs/portable-phase4/guided/seed-101/` rồi đặt `LAB_REPLAY_EVENTS` tương ứng; nhánh dùng bản dẫn xuất này chưa được chạy runtime trong Phase 4.
+Có ba recorder trích chọn đã bỏ header xác thực *(tệp đã gỡ khỏi repo; xem lịch sử Git)* cùng schema nguồn để giữ ngoài cache. Đây là bản dẫn xuất; các replay thật trong bảng dùng events gốc. Nếu cần bàn giao sang máy mới, copy thư mục `replay-source/guided/seed-101/` vào `artifacts/runs/portable-phase4/guided/seed-101/` rồi đặt `LAB_REPLAY_EVENTS` tương ứng; nhánh dùng bản dẫn xuất này chưa được chạy runtime trong Phase 4.
 
 ## 5. Assertion, lỗi harness đã sửa và finding giữ lại
 
@@ -76,7 +76,7 @@ Các lỗi harness/thiết kế phát hiện khi tích hợp được giữ tron
 - Wrapper jq lúc đầu chặn cả chuyển POSIX file path cho jq native; seed fail. Sửa chỉ loại API `/items/` khỏi chuyển path, giữ file-path conversion; seed/export sau đó PASS.
 - SQL đọc collation sai, DELETE permission control dùng `body.get` khi không có body, và report chưa bắt đủ exception của từng case. Đã sửa; bộ regression kiểm report/cleanup vẫn có khi lỗi harness xuất hiện.
 - Bốn request category dùng field article khiến Editor positive control thất bại. Bản runtime sửa thành `id,name`, [errata có before/after/hash](tai-lieu-bo-tro/phase4-20261018/catalog-errata.json); catalog Phase 3 gốc giữ nguyên.
-- Chuỗi token thường đi vào nhánh static-token, trả 401/INVALID_CREDENTIALS; không phải nhánh JWT của expected. Giữ FAIL ở run `20261018T090634Z-290`; dùng JWT tổng hợp `iss=directus` với chữ ký cố ý sai để kiểm 403/INVALID_TOKEN và thêm valid users/me control. Căn cứ: [is-directus-jwt.ts](tai-lieu-bo-tro/phase4-20261018/baseline-auth-source/is-directus-jwt.ts), [get-accountability-for-token.ts](tai-lieu-bo-tro/phase4-20261018/baseline-auth-source/get-accountability-for-token.ts), [jwt.ts](tai-lieu-bo-tro/phase4-20261018/baseline-auth-source/jwt.ts), đều tại source pin.
+- Chuỗi token thường đi vào nhánh static-token, trả 401/INVALID_CREDENTIALS; không phải nhánh JWT của expected. Giữ FAIL ở run `20261018T090634Z-290`; dùng JWT tổng hợp `iss=directus` với chữ ký cố ý sai để kiểm 403/INVALID_TOKEN và thêm valid users/me control. Căn cứ: is-directus-jwt.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, get-accountability-for-token.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, jwt.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, đều tại source pin.
 - Adapter contract cần `Response` native để giữ header và phải bắt `FailureGroup` của đúng bản Schemathesis. Probe offline xác minh bắt được schema/status/500 failure, không tự biến check failure thành runner crash.
 
 Hai invariant FAIL vẫn cần Phase 5: aggregate shape không hợp lệ trả **500**, trong khi empty/count control đều 200; và bốn candidate hợp đồng (POST hai collection object/array, CSV content type, DELETE 204). Chưa gọi bốn mismatch thành bốn product defect; không tắt check hoặc sửa raw schema để né chúng.
