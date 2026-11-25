@@ -18,10 +18,10 @@ Phần này đáp ứng các yêu cầu **không phải kiểm thử** của [y�
 | Nhóm 3 đến 5 sinh viên (tr. 2) | Đạt | 3 thành viên (`AGENTS.md`, mục 3) |
 | Chọn 1 repo và 1 kỹ thuật; ghi commit SHA/tag (tr. 3, mốc 18/9) | Đạt | R06 Directus + K05; tag `v12.5.0`, commit `4f77933bf9551cac6b289576078783e189b8f4e3` ([manifest](../../../manifest/baseline.yaml)). Repo không có bằng chứng về ngày đăng ký |
 | Công cụ quản lý công việc từ mốc 18/9 (tr. 3, 5) | **Chưa đủ** | Có 16 GitHub Issue tạo 10/10 và đóng cùng lúc 26/10; chưa có GitHub Project/Trello/Jira; không có issue cho việc từ 23/11 |
-| Phần 1: đọc hiểu mã nguồn, kiến trúc, luồng dữ liệu 3 đến 5 nghiệp vụ, cài đặt, tài liệu cài đặt (tr. 1) | Đạt (với giới hạn) | Báo cáo K05 phần A đến C; README. Luồng dữ liệu chi tiết nằm ở báo cáo giữa kỳ (mục 6) |
+| Phần 1: đọc hiểu mã nguồn, kiến trúc, luồng dữ liệu 3 đến 5 nghiệp vụ, cài đặt, tài liệu cài đặt (tr. 1) | Đạt | Báo cáo K05 phần A đến C (cây thư mục A.6, dependency A.7, năm luồng dữ liệu A.8); README |
 | Phần 2: cơ sở lý thuyết, kịch bản, mã tự động, chạy, log, lỗi, nguyên nhân gốc (tr. 2) | Đạt | Báo cáo phần D đến G; `docs/k05/wp4` đến `wp7` |
 | Báo cáo cấu trúc A đến H (tr. 2 đến 3) | Đạt | [BAO_CAO_CUOI_KY_K05.md](../BAO_CAO_CUOI_KY_K05.md) |
-| Phần B: ít nhất một sơ đồ kiến trúc component/container và 3 đến 5 module liên quan (tr. 2) | Đạt (module nêu ngắn) | B.1 (sơ đồ), B.2, B.3 |
+| Phần B: ít nhất một sơ đồ kiến trúc component/container và 3 đến 5 module liên quan (tr. 2) | Đạt | B.1 (container), B.2 (thành phần), B.3 (năm module) |
 | Phần C: bằng chứng hệ thống chạy và ít nhất 3 luồng nghiệp vụ (tr. 2) | Đạt | C.4; bộ 13 ca chạy lại 24/11/2026 |
 | Phần F: mã chạy lại tự động và README có lệnh, dependency (tr. 2) | Đạt | README; `lab.sh`; chưa chứng minh trên máy thứ hai |
 | Phần G: log, metrics, lỗi, nguyên nhân (tr. 3) | Đạt | G.3 đến G.8 |

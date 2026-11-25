@@ -12,7 +12,7 @@ Ngày 24/11/2026. Lệnh: `git clone https://github.com/minnhi09/Directus-Testin
 | File bắt buộc theo README (`compose.yaml`, `lab.sh`, `config/lab.env.example`, `manifest/baseline.yaml`, `scripts/run-lab.ps1`, `scripts/setup-windows.ps1`, `scripts/lab-components.sh`, `scripts/invariants.py`, `scripts/designed_cases.py`, `scripts/replay_cases.py`, báo cáo K05, mẫu số, `README.md`) | Có đủ |
 | `config/lab.env` có trong bản clone không | Không (đúng kỳ vọng: file riêng, Git bỏ qua) |
 | `config/lab.env.example` | 25 khóa; ba image ghim bằng digest; bốn mật khẩu mẫu đều là giá trị giữ chỗ bắt đầu bằng `REPLACE_`, không phải mật khẩu thật |
-| `python -m unittest discover -s tests -p "test_*.py"` | 36 test, OK |
+| `python -m unittest discover -s tests -p "test_*.py"` | 36 test, OK (tại thời điểm đó; hiện còn 33 sau khi xóa test của `oracle_v2`) |
 | `bash -n lab.sh` và `bash -n scripts/lab-components.sh` | Cú pháp hợp lệ |
 | `docker compose --env-file config/lab.env.example ... config -q` | Thành công (cấu hình hợp lệ, không khởi động dịch vụ) |
 | `python scripts/check_md_links.py` trên toàn bộ file Markdown | 100 file, **144 liên kết hỏng** tại `9c4b6d8`; sau khi xóa hai báo cáo cũ (commit `8ad67a3`, 104 file): **123** (xem mục 2) |

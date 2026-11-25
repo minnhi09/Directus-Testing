@@ -2,12 +2,12 @@
 
 ## R06 Directus + K05 Schema-Based API Testing / Fuzzing
 
-**Môn học:** Kiểm thử phần mềm. **Nhóm:** 11. **Ngày tổng hợp:** 24/11/2026 (Asia/Bangkok).
+**Môn học:** Kiểm thử phần mềm. **Nhóm:** 11. **Ngày tổng hợp:** 24/11/2026, cập nhật phần A, B và số liệu ngày 26/11/2026 (Asia/Bangkok).
 **Hệ thống được kiểm thử (SUT):** Directus `12.5.0` (tag `v12.5.0`, commit `4f77933bf9551cac6b289576078783e189b8f4e3`).
 **Kỹ thuật:** K05, Schemathesis `4.30.0`. Đúng một kỹ thuật theo [yêu cầu môn học](../yeu_cau.pdf).
 **Phạm vi:** REST API do Directus sinh ra cho hai collection thử nghiệm `qa_categories`, `qa_articles`, cùng các endpoint hệ thống xuất hiện trong OpenAPI của ba actor (Editor, Reader, Anonymous).
 
-> **Trạng thái tài liệu.** Đây là bản viết lại theo phạm vi K05 sau khi thu nhỏ dự án (kế hoạch: [KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md](KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md)). Hai báo cáo cuối kỳ cũ trong `docs/HoanThanhPlan/` đã bị xóa ngày 24/11/2026 vì được tài liệu này thay thế (vẫn còn trong lịch sử Git và bản sao lưu ngoài repo). Phần quản lý nhóm (bảng đóng góp, đánh giá chéo, slide) thuộc WP9 và **chưa nằm trong bản này**.
+> **Trạng thái tài liệu.** Đây là bản viết lại theo phạm vi K05 sau khi thu nhỏ dự án (kế hoạch: [KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md](KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md)). Hai báo cáo cuối kỳ cũ trong `docs/HoanThanhPlan/` đã bị xóa ngày 24/11/2026 vì được tài liệu này thay thế (vẫn còn trong lịch sử Git và bản sao lưu ngoài repo). Phần quản lý nhóm (đóng góp, bảng công việc, mẫu đánh giá chéo, kế hoạch bảo vệ) nằm riêng ở [wp9/](wp9/README.md); một số việc trong đó cần chính nhóm làm và **chưa hoàn tất**.
 
 ---
 
@@ -76,6 +76,15 @@ Phạm vi kiểm thử không phải "toàn bộ Directus" mà là **các operat
 
 Số operation lấy từ [mau-so-30-operation.summary.json](mau-so-30-operation.summary.json) (export ngày 23/11/2026, run `20261123T111625Z-311`). Ma trận quyền chi tiết: [permissions.md](../permissions.md). Quyền tùy chỉnh theo policy cần license active với `custom_permission_rules_enabled=true`; `doctor` xác nhận điều kiện này trước mỗi đợt chạy.
 
+**Actor và use case chính** (trong phạm vi fixture):
+
+| Actor | Use case chính |
+|---|---|
+| Admin | Dựng collection, field, quan hệ, policy và tài khoản; seed dữ liệu; chụp và khôi phục trạng thái |
+| Editor | Đăng nhập; tạo, đọc, sửa, xóa category và article; lọc, sắp xếp, phân trang, tìm kiếm |
+| Reader | Đăng nhập; đọc category và article đã xuất bản; bị từ chối khi đọc field kín hoặc khi ghi |
+| Anonymous | Gọi các endpoint công khai (ví dụ `/server/ping`); bị từ chối trên hai collection |
+
 ## A.4. Mô hình dữ liệu fixture
 
 | Thành phần | Ràng buộc |
@@ -88,7 +97,176 @@ Số operation lấy từ [mau-so-30-operation.summary.json](mau-so-30-operation
 
 ## A.5. Nghiệp vụ trọng tâm
 
-Năm nghiệp vụ dùng để thiết kế kiểm thử: đăng nhập và cấp token; CRUD bài viết và danh mục; truy vấn và phân trang; kiểm soát quyền Reader; xử lý quan hệ category–article khi xóa danh mục. Ba luồng demo là **CRUD Editor**, **truy vấn/sắp xếp/phân trang** và **quyền Reader** (xem [C.4](#c4-ba-luồng-demo)). Sơ đồ tuần tự của các luồng này nằm trong [báo cáo giữa kỳ, mục 6](../Bao_cao_giua_ky_R06_K05.md#6-luồng-hoạt-động-của-hệ-thống).
+Năm nghiệp vụ dùng để thiết kế kiểm thử: đăng nhập và cấp token; CRUD bài viết và danh mục; truy vấn và phân trang; kiểm soát quyền Reader; xử lý quan hệ category–article khi xóa danh mục. Ba luồng demo là **CRUD Editor**, **truy vấn/sắp xếp/phân trang** và **quyền Reader** (xem [C.4](#c4-ba-luồng-demo)). Luồng dữ liệu của cả năm nghiệp vụ được vẽ ở [A.8](#a8-luồng-dữ-liệu-của-năm-nghiệp-vụ-trọng-tâm).
+
+## A.6. Cây thư mục và module
+
+Mã nguồn Directus tại commit đã ghim `4f77933` là một monorepo pnpm (Node 22, pnpm `10.27.0`). Đường dẫn dưới đây đọc trực tiếp từ commit đó; lab chạy bằng image dựng sẵn, không build từ mã này.
+
+```text
+directus/                      # monorepo upstream (chỉ đọc, không chép vào đồ án)
+├── directus/                  # gói phát hành và CLI
+├── api/src/                   # máy chủ API (gói @directus/api 40.0.0)
+│   ├── app.ts                 # lắp middleware và router
+│   ├── controllers/           # nhận HTTP request theo nhóm endpoint
+│   ├── services/              # xử lý nghiệp vụ (items, authentication, specifications...)
+│   ├── middleware/            # token, xác thực, schema, query, trả phản hồi, lỗi
+│   ├── permissions/           # kiểm tra quyền theo collection, field, item
+│   ├── database/              # Knex, dựng truy vấn, dịch lỗi cơ sở dữ liệu
+│   ├── auth/                  # nhà cung cấp đăng nhập
+│   ├── utils/                 # sanitize/validate query và tiện ích
+│   └── websocket/, extensions/, operations/, storage/ ...   # ngoài phạm vi
+├── app/                       # Data Studio (Vue), ngoài phạm vi
+├── sdk/                       # SDK cho ứng dụng client, ngoài phạm vi
+├── packages/                  # errors, schema, specs, utils, validation, types, env...
+└── tests/                     # kiểm thử của upstream
+```
+
+Repository đồ án `DAMH` tách riêng, chỉ chứa lab và mã kiểm thử:
+
+```text
+DAMH/
+├── compose.yaml, lab.sh       # Directus + PostgreSQL + runner; giao diện lệnh
+├── config/lab.env.example     # cấu hình mẫu (lab.env thật Git bỏ qua)
+├── scripts/                   # seed, xuất schema, chiến dịch, ca nghiệp vụ, phân tích
+├── tests/                     # unit test của mã đồ án
+├── manifest/baseline.yaml     # phiên bản và digest đã ghim
+├── docs/                      # báo cáo (docs/k05 là bản hiện hành)
+└── evidence/                  # bằng chứng chọn lọc
+```
+
+## A.7. Dependency chính
+
+`@directus/api` khai báo 129 dependency, trong đó 23 là gói nội bộ của monorepo. Các thư viện liên quan trực tiếp tới phần được kiểm thử (phiên bản lấy từ `pnpm-workspace.yaml` tại commit đã ghim):
+
+| Thư viện | Phiên bản | Vai trò trong luồng được kiểm thử |
+|---|---|---|
+| `express` | 4.22.3 | Máy chủ HTTP, router, chuỗi middleware |
+| `qs` | 6.16.0 | Phân tích query string |
+| `knex` | 3.1.0 | Dựng và chạy truy vấn SQL |
+| `pg` | 8.16.3 | Driver PostgreSQL |
+| `joi` | 18.2.9 | Kiểm tra hợp lệ dữ liệu |
+| `argon2` | 0.44.0 | Băm và kiểm tra mật khẩu |
+| `jsonwebtoken` | 9.0.3 | Ký và kiểm tra access token |
+| `openapi3-ts` | 4.5.0 | Kiểu dữ liệu để dựng tài liệu OpenAPI |
+| `pino` | 9.7.0 | Ghi log (nguồn của log server ở Phần G) |
+| `keyv` | 5.5.3 | Lớp cache (lab tắt cache ứng dụng) |
+| `@directus/specs`, `errors`, `schema`, `validation`, `utils` | gói nội bộ | Mảnh OpenAPI tĩnh, lỗi chuẩn, đọc schema DB, kiểm tra payload |
+
+Phía đồ án: Docker Compose, ba image đã ghim ([C.1](#c1-phiên-bản-và-digest-đã-ghim)), Bash, `jq`, Python (chỉ thư viện chuẩn cho các script phân tích; `python-pptx` cho script dựng slide).
+
+## A.8. Luồng dữ liệu của năm nghiệp vụ trọng tâm
+
+Tên hàm trong sơ đồ đối chiếu từ mã tại commit `4f77933`; mã trạng thái là kết quả đã quan sát trên lab.
+
+### A.8.1. Đăng nhập và cấp token
+
+```mermaid
+sequenceDiagram
+    actor C as Client
+    participant R as /auth/login
+    participant S as AuthenticationService
+    participant DB as PostgreSQL
+    C->>R: POST email, password
+    R->>S: login()
+    S->>DB: tìm người dùng trong directus_users
+    S->>S: trạng thái phải là active
+    S->>S: giới hạn số lần thử, vượt ngưỡng thì suspended
+    S->>S: kiểm tra mật khẩu và OTP nếu bật
+    S->>DB: lưu phiên vào directus_sessions
+    S-->>R: access token (JWT), refresh token
+    R-->>C: 200, hoặc 401 khi sai thông tin
+```
+
+Dữ liệu vào: email, mật khẩu. Dữ liệu ra: access token, refresh token. Điểm cần kiểm: đăng nhập sai nhiều lần làm tài khoản bị `suspended` (đã đo ở WP4).
+
+### A.8.2. CRUD bài viết bằng Editor
+
+```mermaid
+sequenceDiagram
+    actor E as Editor
+    participant API as controllers/items
+    participant S as ItemsService
+    participant P as permissions
+    participant DB as PostgreSQL
+    E->>API: POST /items/qa_articles
+    API->>S: createOne()
+    S->>P: processPayload (quyền field, validation, preset)
+    S->>DB: INSERT trong transaction
+    S-->>E: 200, bài vừa tạo và ID
+    E->>API: GET /items/qa_articles/ID
+    API->>S: readOne() rồi readByQuery()
+    S-->>E: 200, dữ liệu khớp đầu vào
+    E->>API: PATCH đổi score
+    API->>S: updateMany()
+    S->>P: validateAccess và processPayload
+    S->>DB: UPDATE
+    S-->>E: 200, field không sửa giữ nguyên
+    E->>API: DELETE theo ID
+    API->>S: deleteMany()
+    S->>P: validateAccess
+    S->>DB: DELETE
+    S-->>E: 204
+    E->>API: GET lại
+    S-->>E: 403, không còn dữ liệu
+```
+
+`readOne` ném `ForbiddenError` khi không có dòng nào, nên đọc một ID không tồn tại trả `403` chứ không phải `404`. Với `INSERT`, lỗi cơ sở dữ liệu được chuyển qua `translateDatabaseError`.
+
+### A.8.3. Truy vấn, sắp xếp và phân trang
+
+```mermaid
+flowchart LR
+    Q["GET /items/qa_articles<br/>filter, sort, fields, limit, offset, page, search"] --> San["sanitizeQuery<br/>validateQuery"]
+    San --> Ast["getAstFromQuery"]
+    Ast --> Perm["processAst<br/>kiểm quyền, chèn điều kiện"]
+    Perm --> Run["runAst<br/>sinh SQL bằng Knex"]
+    Run --> DB[("PostgreSQL")]
+    DB --> Res["respond<br/>JSON hoặc export"]
+```
+
+Expected của các ca truy vấn được tính từ fixture đã biết (6 bài `published`, sắp xếp `title,id`), không lấy từ chính phản hồi đang kiểm.
+
+### A.8.4. Kiểm soát quyền Reader
+
+```mermaid
+sequenceDiagram
+    actor Re as Reader
+    participant API as controllers/items
+    participant P as permissions
+    participant DB as PostgreSQL
+    Re->>API: GET article published
+    API->>P: processAst
+    P->>P: lấy policy và quyền của actor
+    P->>P: injectCases thêm điều kiện published
+    P->>DB: truy vấn đã bị giới hạn
+    DB-->>Re: 200, chỉ field được phép
+    Re->>API: GET xin thêm internal_notes
+    API->>P: validatePathPermissions
+    P-->>Re: 403
+    Re->>API: PATCH article có dữ liệu
+    API->>P: kiểm quyền update theo field
+    P-->>Re: 403, dữ liệu không đổi
+```
+
+### A.8.5. Xóa category và quan hệ category–article
+
+```mermaid
+sequenceDiagram
+    actor E as Editor
+    participant S as ItemsService
+    participant DB as PostgreSQL
+    E->>S: DELETE /items/qa_categories/ID
+    S->>S: validateAccess quyền delete
+    S->>DB: DELETE dòng category
+    DB->>DB: khóa ngoại ON DELETE SET NULL
+    Note over DB: qa_articles.category của bài liên quan thành null
+    S-->>E: 204
+    E->>S: GET article từng thuộc category đó
+    S-->>E: 200, category là null
+```
+
+Quy tắc `SET NULL` do fixture khai báo trên quan hệ và được cơ sở dữ liệu thực hiện; invariant `relation-nullification` kiểm tra đúng hành vi này.
 
 ---
 
@@ -114,11 +292,39 @@ flowchart TB
 
 Compose project `r06-k05`; ba dịch vụ: `directus`, `database` (PostgreSQL 16, volume riêng), `runner` (Schemathesis). Directus chỉ mở cổng `8055` trên loopback `127.0.0.1`; PostgreSQL không mở cổng ra host; runner gọi API qua tên nội bộ `directus`. Cấu hình: [compose.yaml](../../compose.yaml). Chi tiết: [architecture.md](../architecture.md), [phan1/02-kien-truc-va-luong-du-lieu.md](../phan1/02-kien-truc-va-luong-du-lieu.md).
 
-## B.2. Luồng xử lý một request của Directus
+## B.2. Kiến trúc thành phần của Directus API
 
-Request → xác thực token → xác định policy của actor → parse/sanitize query (`sanitizeQuery`) → dựng cây truy vấn và áp quyền (`processAst`) → `ItemsService` → Knex/SQL → PostgreSQL → phản hồi JSON. Lỗi cơ sở dữ liệu đi qua `translateDatabaseError` (chỉ dịch năm mã lỗi PostgreSQL); các mã khác thành HTTP 500. Nhiều phát hiện của WP7 nằm đúng ở hai điểm này (mục [G.7](#g7-phân-tích-nguyên-nhân-gốc-của-lỗi-http-500)).
+Thứ tự middleware đọc từ `api/src/app.ts` tại commit đã ghim (chỉ vẽ các bước liên quan; còn các middleware bảo mật, log, CORS, cache):
 
-## B.3. Quan hệ giữa kiến trúc và rủi ro cần kiểm thử
+```mermaid
+flowchart TB
+    Req["HTTP request"] --> Tok["extractToken"]
+    Tok --> Auth["authenticate<br/>xác định actor"]
+    Auth --> Sch["schema<br/>nạp mô hình dữ liệu"]
+    Sch --> San["sanitizeQuery<br/>chuẩn hóa và kiểm query"]
+    San --> Rt["router: /auth, /items, /server, /utils, /assets"]
+    Rt --> Ctl["controllers<br/>collectionExists"]
+    Ctl --> Svc["services<br/>ItemsService, AuthenticationService,<br/>SpecificationService"]
+    Svc --> Perm["permissions<br/>processAst, processPayload, validateAccess"]
+    Svc --> Data["database<br/>getAstFromQuery, runAst, translateDatabaseError"]
+    Data --> PG[("PostgreSQL")]
+    Ctl --> Resp["respond"]
+    Rt -. "lỗi" .-> Err["errorHandler<br/>400, 401, 403, 404, 500"]
+```
+
+## B.3. Năm module liên quan trực tiếp tới phần kiểm thử
+
+| Module | File chính (tại `4f77933`, trong `api/src/`) | Vai trò | Kiểm thử và phát hiện liên quan |
+|---|---|---|---|
+| **Sinh đặc tả OpenAPI** | `services/specifications.ts` (`SpecificationService`, `OASSpecsService.generate`) | Dựng OpenAPI theo quyền của người gọi (`reduceSchema`, `fetchPermissions`) cho `GET /server/specs/oas` | Là **đầu vào của K05**. Phản hồi `POST` bị khai báo là mảng với collection thường (TC13, RC09); thiếu nhiều mã phản hồi (RC06, RC07) |
+| **Xử lý query** | `middleware/sanitize-query.ts`, `utils/sanitize-query.ts`, `utils/validate-query.ts` | Chuẩn hóa và kiểm tra `filter`, `sort`, `fields`, `limit`, `offset`, `page`, `aggregate`... | Fuzzing tham số query. `sanitizeAggregate` không xử lý giá trị không phải chuỗi hay mảng, gây 500 (RC02) |
+| **Phân quyền** | `permissions/modules/process-ast/`, `process-payload/`, `validate-access/` | Chặn field không được phép, chèn điều kiện theo item, kiểm quyền ghi | S4–S6, `P3-AUTHZ-DR-047`, schema khác nhau theo actor. Reader `PATCH` rỗng được 204 do quyền `fields=[]` (G.8) |
+| **Dịch vụ items** | `controllers/items.ts`, `services/items.ts` | CRUD, quan hệ, transaction, trả lỗi `403` khi không có dòng | 10 operation CRUD, S1–S3, invariant quan hệ. `id` sai kiểu và `[null]` trong mảng gây 500 (RC13, RC12; chưa xác định dòng mã gây RC12) |
+| **Dịch lỗi cơ sở dữ liệu** | `database/errors/translate.ts`, `database/errors/dialects/postgres.ts` | Chuyển năm mã lỗi PostgreSQL thành lỗi Directus; mã khác thành 500 | Giải thích phần lớn lỗi sản phẩm RC01, RC03, RC04, RC13, RC15 ([G.7](#g7-phân-tích-nguyên-nhân-gốc-của-lỗi-http-500)) |
+
+Module thứ sáu được chạm tới nhưng không phải trọng tâm là xác thực (`controllers/auth.ts`, `services/authentication.ts`): các operation `/auth/*` có trong mẫu số, và giới hạn số lần đăng nhập sai dẫn tới biện pháp bảo vệ tài khoản ở WP4.
+
+## B.4. Quan hệ giữa kiến trúc và rủi ro cần kiểm thử
 
 | Thành phần | Rủi ro | Cách kiểm |
 |---|---|---|
@@ -294,7 +500,8 @@ Yêu cầu → ca kiểm thử → bằng chứng: tham số/operation → hàng
 | `scripts/k05_failure_triage.py`, `scripts/k05_wp7_replay.py` | Gom failure và replay xác nhận nguyên nhân (WP7) |
 | `scripts/k05_side_effect_probe.py` | Đo tác dụng phụ của `logout`, `refresh`, đăng nhập sai, `cache/clear`, `import` (WP4) |
 | `scripts/check_md_links.py` | Kiểm tra liên kết tương đối của tài liệu Markdown |
-| `tests/` | 36 unit test (`python -m unittest discover -s tests -p "test_*.py"`) |
+| `scripts/k05_git_contrib.py`, `scripts/build_defense_deck.py` | Thống kê đóng góp từ Git; dựng slide nháp (WP9) |
+| `tests/` | 33 unit test (`python -m unittest discover -s tests -p "test_*.py"`) |
 
 ## F.2. Giao diện chiến dịch
 
@@ -484,6 +691,7 @@ Xem [C.1](#c1-phiên-bản-và-digest-đã-ghim). Fixture: `r06-k05-v2`. Hash sc
 | 18 run chiến dịch (23/11/2026) | `c7b559f`, working tree `dirty` | Thay đổi chưa commit lúc chạy là commit `9def78a` (`LAB_MAX_TIME=0`, `LAB_CAMPAIGN_PHASES`, `LAB_HARD_TIMEOUT`, `run_complete`) |
 | Chạy lại 13 ca và invariant (24/11/2026) | `fc089ce`, `dirty` | `dirty` chỉ do `scripts/invariants.py` đổi mode file |
 | Replay WP7 (24/11/2026) | nhánh `feat/k05-wp7-triage` | 67 probe; `qa_*` khôi phục sau mỗi lần |
+| Chạy lại sau đợt dọn file (26/11/2026, giờ Bangkok) | nhánh dọn file, đã merge ở PR #31 | S1–S6 6 passed (`20261125T174354Z-541`); 7 ca thiết kế 6 passed, 1 failed (`20261125T174416Z-457`); 11 invariant 9 passed, 2 failed (`20261125T174502Z-1759`) |
 | Lần chạy 13 ca ngày 16/11/2026 | khung kiểm thử cũ (đã bỏ khỏi phạm vi) | Chỉ còn bản trích bằng chứng ở `bang-chung-13-tc`; chưa chạy lại bằng khung đó |
 
 ## H.3. Chạy lại từ đầu trên máy mới
@@ -553,9 +761,15 @@ Theo quyết định ngày 23/11/2026 (chi tiết và bản sao lưu: [kế ho�
 
 ### PL.4. Kiểm tra liên kết
 
-`python scripts/check_md_links.py` quét 99 file Markdown mà Git theo dõi. Báo cáo này và `README.md` không có liên kết hỏng. Các tài liệu cũ trong `docs/HoanThanhPlan/`, `docs/ARCHIVES.md`, `docs/coverage/oracles/` và `evidence/progress-*.md` đã được gỡ định dạng liên kết tới 62 file đã xóa (chữ giữ nguyên, thêm ghi chú) và sửa 12 anchor mục lục sai dấu; không đổi nội dung khác. **18 liên kết hỏng còn lại** nằm ngoài phạm vi sửa: 14 trong bản sao nguyên văn của bằng chứng 13 ca (`bang-chung-13-tc/`, giữ nguyên để khớp hash), 3 trong `01_ke_hoach_trien_khai_R06_K05.md` (đường dẫn tuyệt đối trên máy khác) và 1 trong `AGENTS.md` (thư mục riêng `mnhy/`, Git bỏ qua).
+`python scripts/check_md_links.py` quét mọi file Markdown mà Git theo dõi, kể cả anchor. Kết quả ngày 26/11/2026 (102 file):
 
-**Trong bản clone sạch** của `main` (không có `artifacts/`, `runtime/` và thư mục `tai-lieu-bo-tro/` không commit), cùng phép kiểm tra cho **123 liên kết hỏng** (sau khi xóa hai báo cáo cũ; 144 trước đó), 91 trong số đó trỏ tới `artifacts/runs/` (Git bỏ qua) ở các tài liệu cũ như báo cáo giữa kỳ. Báo cáo này, `README.md` và các file `docs/k05/` có 0 liên kết hỏng trong bản clone sạch. Chi tiết: [xac-minh-clone-sach.md](wp9/xac-minh-clone-sach.md).
+| Phạm vi kiểm | Liên kết hỏng |
+|---|---:|
+| Báo cáo này, `README.md`, `docs/k05/wp4` đến `wp7` và `wp9`, trong bản clone sạch | **0** |
+| Toàn bộ Markdown trên máy phát triển (có `artifacts/` và các file không commit) | 18 |
+| Toàn bộ Markdown trong bản clone sạch | 123 |
+
+123 liên kết trong bản clone sạch đều nằm ở tài liệu cũ: 91 trỏ tới `artifacts/runs/` (Git bỏ qua), 14 trong bản sao nguyên văn bằng chứng 13 ca (`bang-chung-13-tc/`, giữ để khớp hash), 14 trỏ tới `runtime/`, `tmp/`, checkout upstream hoặc thư mục slide, 4 là đường dẫn máy khác hoặc thư mục riêng. Liên kết tới các file đã gỡ khỏi repo được đổi thành chữ thường kèm ghi chú.
 
 ### PL.5. Chỉ mục tài liệu K05
 
@@ -568,4 +782,5 @@ Theo quyết định ngày 23/11/2026 (chi tiết và bản sao lưu: [kế ho�
 | [wp6/](wp6/README.md) | Coverage tracecov |
 | [wp7/](wp7/README.md) | Failure, nguyên nhân gốc, replay |
 | [bang-chung-13-tc/](bang-chung-13-tc/README.md) | Bằng chứng gốc của bộ 13 ca (bản sao nguyên văn) |
+| [wp9/](wp9/README.md) | Đóng góp, bảng công việc, mẫu đánh giá chéo, kế hoạch bảo vệ |
 | [KE_HOACH_COMMIT.md](KE_HOACH_COMMIT.md) | Kế hoạch commit và quy ước Git |
