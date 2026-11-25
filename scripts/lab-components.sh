@@ -2279,45 +2279,10 @@ schema_smoke() {
 	[[ "$report_present" == true && "$coverage_present" == true ]] || return 1
 }
 
-p10_scenarios() {
-	[[ "$PROJECT_NAME" == r06-k05-p09-* && "$API_URL" == http://127.0.0.1:18055 ]] || return 1
-	require_tools
-	require_admin_login || return 1
-	require_actor_logins || return 1
-	load_fixture_map || return 1
-	ensure_reader_schema || return 1
-	campaign_snapshot || return 1
-	SCENARIO_REPORT="$RUN_DIR/scenario-report.json"
-	jq -n --arg version "$FIXTURE_VERSION" '{schema:1,fixture_version:$version,scenarios:[]}' > "$SCENARIO_REPORT"
-	local overall=0
-	TRACE_SCENARIO_ID=S1
-	scenario_editor_crud || overall=1
-	TRACE_SCENARIO_ID=S2
-	scenario_filter_status || overall=1
-	TRACE_SCENARIO_ID=S3
-	scenario_sort_pagination || overall=1
-	TRACE_SCENARIO_ID=S4
-	scenario_reader_no_draft || overall=1
-	TRACE_SCENARIO_ID=S5
-	scenario_reader_hidden_field || overall=1
-	TRACE_SCENARIO_ID=S6
-	scenario_reader_write || overall=1
-	TRACE_SCENARIO_ID=VERIFY
-	# Do not invoke the broad legacy restore, which PATCHes baseline rows.
-	local collection
-	for collection in qa_articles qa_categories; do
-		api_expect_2xx 'verify unchanged baseline' GET "/items/$collection?limit=-1&sort=id" "$ADMIN_TOKEN" || return 1
-		jq -e --slurpfile before "$RUN_DIR/baseline-${collection#qa_}.json" '.data|sort_by(.id) == ($before[0].data|sort_by(.id))' "$API_BODY" >/dev/null || return 1
-	done
-	printf '{"restore_exit_code":0,"cleanup":"baseline_unchanged_no_broad_restore"}\n' > "$RUN_DIR/scenario-outcomes.json"
-	return "$overall"
-}
-
 main() {
 	local command_name="$1"
 	case "$command_name" in
 		seed) seed ;;
-		p10-scenarios) p10_scenarios ;;
 		smoke) smoke ;;
 		export-schema) export_schema ;;
 		scenarios) scenarios ;;

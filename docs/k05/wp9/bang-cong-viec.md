@@ -25,6 +25,8 @@ Cập nhật 24/11/2026. Nguồn: [bang-cong-viec.csv](bang-cong-viec.csv) (nh�
 | B07 | Xóa hai báo cáo cuối kỳ cũ (09-bao-cao-cuoi-ky, BAO_CAO_..._HOAN_CHINH) | Cookie1109 (Nhân), theo lệnh của người dùng | PR xóa hai báo cáo cũ (24/11/2026) | Còn trong lịch sử Git |
 | B08 | Xóa oracle_v2.py và phần còn lại của phase6 (liên quan pairwise) | Cookie1109 (Nhân), theo lệnh của người dùng | PR xóa oracle_v2 và phase6 (24/11/2026) | Còn trong lịch sử Git |
 | B10 | Viết lại lịch sử main để xóa 1.864 file thêm nhầm | Cookie1109 (Nhân), theo lệnh của người dùng | force-push main 24/11/2026; bản sao lưu bundle ngoài repo | refs/pull/26-29 của GitHub còn commit cũ; cần GitHub Support để xóa hẳn. Lành phải reset --hard origin/main |
+| B09 | Gỡ hàm p10_scenarios mồ côi trong lab-components.sh | Cookie1109 (Nhân), theo lệnh của người dùng | PR dọn file thừa (26/11/2026) | Gỡ cùng đợt B12 |
+| B12 | Gỡ file thừa không thuộc giữa kỳ và không cần cho K05 (74 file, hàm p10_scenarios) | Cookie1109 (Nhân), theo lệnh của người dùng | PR dọn file thừa (26/11/2026); kế hoạch mục 4.4 | Bản local giữ nguyên; còn trong lịch sử Git |
 
 ## 3. Đang làm (Doing)
 
@@ -42,7 +44,6 @@ Cập nhật 24/11/2026. Nguồn: [bang-cong-viec.csv](bang-cong-viec.csv) (nh�
 | B04 | Tập demo (bộ 13 ca, replay, một run Schemathesis ngắn) | Cả nhóm | docs/k05/wp9/ke-hoach-bao-ve.md, mục 3 |  |
 | B05 | Dựng lại từ đầu trên máy thứ hai (đủ Docker, license) và ghi kết quả | Chưa phân công | docs/k05/wp9/xac-minh-clone-sach.md | Mới kiểm tra được phần không cần Docker |
 | B06 | Tạo GitHub Project (hoặc Trello) và nhập danh sách này | Chủ repo | bang-cong-viec.csv | Cần quyền project cho token gh; xem README của wp9 |
-| B09 | Gỡ hàm p10_scenarios mồ côi trong lab-components.sh | Chưa phân công | kế hoạch, mục 4.2 | File dùng chung |
 | B11 | Chốt ngày bảo vệ và hạn nộp báo cáo (1 tuần trước bảo vệ) | Cả nhóm | yeu_cau.pdf, mục 4 | Chưa biết ngày |
 
 ## 5. Lịch sử giai đoạn G0 đến G1 (16 issue đã đóng)

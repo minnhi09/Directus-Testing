@@ -44,9 +44,9 @@ Trong bảng truy vết, cách viết `POST/PATCH collection[/id]` là viết g�
 | SRC-05 | [invariants.py](../../scripts/invariants.py), các hàm case_* | Oracle/assertion đang được triển khai; vẫn phải review vì assertion có thể chưa đủ mạnh |
 | SRC-06 | [test matrix](../test-matrix.md), [schema Editor](../../runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/editor.json), [schema Reader](../../runtime/profiles/windows-20261013-oig/schemas/r06-k05-v2/reader.json) | Method/path và contract máy đọc được; không tự nâng schema thiếu ràng buộc thành hợp đồng nghiệp vụ đầy đủ |
 | SRC-07 | [Phase 0](00-hien-trang-va-baseline.md), [selected evidence](00-selected-evidence.json) và artifact gốc | Quan sát thực thi lịch sử; dùng đối chiếu, không dùng làm nguồn duy nhất để chọn expected |
-| SRC-08 | [Đối chiếu P1-05](01-doi-chieu-baseline-p1-05.md), [manifest 22 tệp source đúng commit](tai-lieu-bo-tro/phase1-20261018/baseline-source-manifest.json) | Lựa chọn baseline của người dùng và suy luận tĩnh có điều kiện từ commit 4f77933; không dùng source HEAD hiện tại thay bản pin hoặc coi đọc code là test runtime |
+| SRC-08 | [Đối chiếu P1-05](01-doi-chieu-baseline-p1-05.md), manifest 22 tệp source đúng commit *(tệp đã gỡ khỏi repo; xem lịch sử Git)* | Lựa chọn baseline của người dùng và suy luận tĩnh có điều kiện từ commit 4f77933; không dùng source HEAD hiện tại thay bản pin hoặc coi đọc code là test runtime |
 
-Hash của 20 tệp nguồn trước khi biên soạn được giữ tại [source manifest Phase 1](tai-lieu-bo-tro/phase1-20261018/source-manifest-before.json). Harness HEAD là `2e44fe7558cb4e3fc12e19b7d44af2421f81ed72`, working tree có thay đổi từ trước. Không khẳng định SHA này mô tả toàn bộ working tree của các run cũ.
+Hash của 20 tệp nguồn trước khi biên soạn được giữ tại source manifest Phase 1 *(tệp đã gỡ khỏi repo; xem lịch sử Git)*. Harness HEAD là `2e44fe7558cb4e3fc12e19b7d44af2421f81ed72`, working tree có thay đổi từ trước. Không khẳng định SHA này mô tả toàn bộ working tree của các run cũ.
 
 **Quyết định DEC-P1-01:** Bám baseline đã pin và cấu hình lab hiện có; không tự thêm minLength/trim/cấm coercion hoặc quy tắc published-time. Lựa chọn này đã được người dùng xác nhận. Chi tiết không đủ nguồn vẫn OPEN; không cần hỏi lại hướng này khi thực hiện phase tiếp theo.
 

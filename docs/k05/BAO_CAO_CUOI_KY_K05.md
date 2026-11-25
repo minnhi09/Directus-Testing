@@ -508,7 +508,6 @@ $env:LAB_ACTOR='editor'; $env:LAB_CAMPAIGN_SCOPE='full'; $env:LAB_MAX_TIME='0'
 - Chưa dựng lại từ đầu trên **máy thứ hai**; mô tả H.3 là quy trình cần tái lập, không phải khẳng định đã chạy được ở mọi máy.
 - Chưa có workflow CI chạy được (thư mục workflow rỗng sau khi thu nhỏ); mọi kết quả là chạy cục bộ.
 - Ngưỡng khóa đăng nhập chính xác, hành vi `utils/import` ngoài `qa_categories` và các thay đổi ở mức cơ sở dữ liệu không đi qua API chưa được đo.
-- `scripts/lab-components.sh` còn hàm `p10_scenarios` mồ côi; chưa gỡ vì là file dùng chung.
 
 ---
 
@@ -537,6 +536,8 @@ Trong phạm vi K05, 62/62 cặp (actor, operation) của OpenAPI do lab Directu
 [Catalog v1](../HoanThanhPlan/03-test-case-catalog.md) chứa 257 mã thiết kế tay (giá trị biên, phân vùng, pairwise...), đều ở trạng thái `execution_status = NOT_RUN` trong chính tài liệu đó. Đây là **thiết kế mở rộng, không phải K05**: bảng không được nêu như "257 test case đã chạy", và 36 ca `pairwise-reference` thuộc kỹ thuật khác (đã bỏ khỏi phạm vi). Chỉ **7 ca** trong catalog (E.2) thuộc bộ 13 và đã chạy.
 
 ### PL.2. Phần đã loại khỏi phạm vi
+
+Ngày 26/11/2026 gỡ thêm 74 file không thuộc phần giữa kỳ và không cần cho K05 (dấu vết pairwise và thiết kế thủ công, bản sao mã nguồn cùng log dụng cụ của hồ sơ cũ, cấu hình và hàm mồ côi của khung P09); danh sách nhóm và kiểm tra sau khi gỡ ở [kế hoạch, mục 4.4](KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md#44-chờ-quyết-định).
 
 Theo quyết định ngày 23/11/2026 (chi tiết và bản sao lưu: [kế hoạch, mục 4](KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md)): bộ 170 ca v2 (G0–G10), thí nghiệm pairwise 36/9 và mô hình chi phí truy vấn, khung coverage/CI nhóm tự đặt (M1–M3, Verified Coverage, workflow), chuỗi P09/P10/P14 và các hồ sơ nội bộ liên quan. Bằng chứng của bộ 13 ca đã được trích trước khi xóa, mỗi file có hash đối chiếu bản gốc.
 

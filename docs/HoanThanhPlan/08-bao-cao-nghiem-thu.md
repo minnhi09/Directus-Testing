@@ -8,7 +8,7 @@
 
 | Task | Trạng thái hiện hành | Bằng chứng/giới hạn |
 |---|---|---|
-| P8-01 — Khóa checkpoint | Hoàn thành | [Checkpoint 28 tệp](tai-lieu-bo-tro/phase8-20261018/checkpoint-manifest.json), [archive](../ARCHIVES.md). Mã chưa commit được nhận diện bằng SHA-256; không tự tạo commit/tag |
+| P8-01 — Khóa checkpoint | Hoàn thành | Checkpoint 28 tệp *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, [archive](../ARCHIVES.md). Mã chưa commit được nhận diện bằng SHA-256; không tự tạo commit/tag |
 | P8-02 — Preflight và deterministic | Hoàn thành | Doctor/seed/export; hai suite 58 ca; suite 118 ASSERTABLE; nhóm query và bốn ca bổ sung; scenario, smoke, invariant, full36 |
 | P8-03 — Xử lý sai lệch trước campaign | Hoàn thành kiểm tra | Precondition đạt; cleanup/restore đạt ở các run nghiệm thu. Giữ FAIL thật và phân loại; không có lỗi harness/restore đang chặn các bước sau |
 | P8-04 — Campaign | Hoàn thành theo lựa chọn tái sử dụng | Giữ hai campaign lịch sử đủ ba seed; hai probe 60 giây trên checkpoint mới được ghi riêng; không gọi probe là campaign chính |
@@ -85,9 +85,9 @@ Người dùng đã chọn tái sử dụng campaign chính để tiết kiệm 
 ## 6. Phạm vi còn thiếu và bàn giao
 
 - [Catalog kết quả](08-ket-qua-case.csv): **184 PASS, 7 FAIL, 1 OPEN, 65 NOT_RUN** trên 257 ID; không cộng lặp run/replay thành ca mới.
-- [Truy vết BR](08-truy-vet-ket-qua.csv): cả 26 BR có case đã thực thi; không đồng nghĩa toàn bộ 26 BR đều đúng hoặc được phủ hết. Failure contract gắn BR-11/BR-22 không tự chứng minh CRUD/projection sai nghiệp vụ.
-- [Biên](tai-lieu-bo-tro/phase8-20261018/boundary-coverage.csv): 33/34 điểm PASS, `page=0` chưa chạy. [Quyền](tai-lieu-bo-tro/phase8-20261018/permission-coverage.csv): 54/69 luật có case chỉ định PASS, 15 chưa chạy qua ID đó; scenario/invariant có thêm kiểm tra field kín nhưng không tự tăng số đếm.
-- [Phân vùng](tai-lieu-bo-tro/phase8-20261018/equivalence-coverage.csv): 25/48 lớp có đại diện field-focused PASS; không khẳng định đúng mọi giá trị trong lớp. Empty/blank/coercion, Unicode length, một số missing/default/nested và timestamp bất thường còn giới hạn.
+- Truy vết BR *(tệp đã gỡ khỏi repo; xem lịch sử Git)*: cả 26 BR có case đã thực thi; không đồng nghĩa toàn bộ 26 BR đều đúng hoặc được phủ hết. Failure contract gắn BR-11/BR-22 không tự chứng minh CRUD/projection sai nghiệp vụ.
+- Biên *(tệp đã gỡ khỏi repo; xem lịch sử Git)*: 33/34 điểm PASS, `page=0` chưa chạy. Quyền *(tệp đã gỡ khỏi repo; xem lịch sử Git)*: 54/69 luật có case chỉ định PASS, 15 chưa chạy qua ID đó; scenario/invariant có thêm kiểm tra field kín nhưng không tự tăng số đếm.
+- Phân vùng *(tệp đã gỡ khỏi repo; xem lịch sử Git)*: 25/48 lớp có đại diện field-focused PASS; không khẳng định đúng mọi giá trị trong lớp. Empty/blank/coercion, Unicode length, một số missing/default/nested và timestamp bất thường còn giới hạn.
 - Search blank vẫn OPEN; query hữu hạn và schema coverage không phải source line/branch coverage. Replay recorded parent chain không tái lập toàn bộ trạng thái campaign.
 
 18/18 unit test PASS trên host và image pin; các dòng FAIL giả lập trong unit log là tình huống regression được test, khác failure API thật. [Evidence index](tai-lieu-bo-tro/phase8-20261018/evidence-index.json), [gói chọn lọc](../ARCHIVES.md) và [validation](tai-lieu-bo-tro/phase8-20261018/validation.json) giữ bằng chứng đọc sau; raw NDJSON/header không đưa vào gói chia sẻ. Dữ liệu gốc và checkpoint trước thu gọn được giữ nguyên.

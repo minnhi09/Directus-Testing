@@ -17,18 +17,18 @@ Quyết định này giải quyết **hướng chọn yêu cầu**, không tự 
 
 ## 2. Nguồn được ghim và cách kiểm tra
 
-Đã lưu bản sao chọn lọc 22 tệp đúng commit, nay được tập hợp tại `tai-lieu-bo-tro/phase1-20261018/baseline-source/` trong hồ sơ này; bản gốc tại `output/phase1-20261018/baseline-source/` được giữ để đối chiếu. [Manifest source](tai-lieu-bo-tro/phase1-20261018/baseline-source-manifest.json) ghi commit, Git blob, SHA-256 và đường dẫn lịch sử của từng tệp. Đây là tài liệu tham chiếu tĩnh, không phải bản build/runtime hoặc bản sao toàn repo Directus.
+Đã lưu bản sao chọn lọc 22 tệp đúng commit, nay được tập hợp tại `tai-lieu-bo-tro/phase1-20261018/baseline-source/` trong hồ sơ này; bản gốc tại `output/phase1-20261018/baseline-source/` được giữ để đối chiếu. Manifest source *(tệp đã gỡ khỏi repo; xem lịch sử Git)* ghi commit, Git blob, SHA-256 và đường dẫn lịch sử của từng tệp. Đây là tài liệu tham chiếu tĩnh, không phải bản build/runtime hoặc bản sao toàn repo Directus.
 
 Các vị trí quan trọng:
 
-- [process-payload.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/process-payload.ts), dòng 35-58, 61-81, 104-130: quyền field, required khi create, non-null, validation và payload trả về.
-- [is-field-nullable.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/permissions/modules/process-payload/lib/is-field-nullable.ts), dòng 7-13: ngoại lệ cho field nullable/generated/generate special.
-- [generate-joi.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/utils/shared/generate-joi.ts), dòng 279-280, 295-316, 323-329, 365-366, 383-389; [validate-payload.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/utils/shared/validate-payload.ts), dòng 57-64: luật enum/range/non-null/submitted và kết quả validation.
-- [items.ts - service](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/services/items.ts), dòng 177-224, 259-263, 609-623, 797-849: đường create/update, chọn field cho SQL, readOne không có kết quả.
-- [payload.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/services/payload.ts), dòng 215-280, 449-525: xử lý giá trị, JSON và timestamp.
-- [items.ts - controller](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/controllers/items.ts), dòng 35-52: POST object/array và response tương ứng.
-- [sanitize-query.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/utils/sanitize-query.ts), dòng 34-79, 144-173; [validate-query.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/utils/validate-query.ts), dòng 15-61: xử lý query trước validation.
-- [search.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/run-ast/lib/apply-query/search.ts), dòng 23-35, 37-65, 78-108: chọn trường searchable, quyền và SQL tìm kiếm.
+- process-payload.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 35-58, 61-81, 104-130: quyền field, required khi create, non-null, validation và payload trả về.
+- is-field-nullable.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 7-13: ngoại lệ cho field nullable/generated/generate special.
+- generate-joi.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 279-280, 295-316, 323-329, 365-366, 383-389; validate-payload.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 57-64: luật enum/range/non-null/submitted và kết quả validation.
+- items.ts - service *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 177-224, 259-263, 609-623, 797-849: đường create/update, chọn field cho SQL, readOne không có kết quả.
+- payload.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 215-280, 449-525: xử lý giá trị, JSON và timestamp.
+- items.ts - controller *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 35-52: POST object/array và response tương ứng.
+- sanitize-query.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 34-79, 144-173; validate-query.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 15-61: xử lý query trước validation.
+- search.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, dòng 23-35, 37-65, 78-108: chọn trường searchable, quyền và SQL tìm kiếm.
 
 Các đoạn source cho phép suy luận có điều kiện. Chúng chưa chứng minh image đang chạy là bản build từ chính source này; giới hạn provenance image/source ở Phase 0 vẫn giữ nguyên.
 
@@ -71,7 +71,7 @@ Các đoạn source cho phép suy luận có điều kiện. Chúng chưa chứn
 
 **Còn OPEN:** Tập format, timezone mặc định khi thiếu offset, precision và error cho từng input malformed/empty trong đúng runtime. Không suy trực tiếp mọi chuỗi rỗng sẽ đi tới cùng lỗi SQLSTATE.
 
-Nguồn bổ trợ: [date/index.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/index.ts), [date/dialects/default.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/dialects/default.ts), [date/types.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/helpers/date/types.ts).
+Nguồn bổ trợ: date/index.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, date/dialects/default.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, date/types.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*.
 
 ### Q-05 - JSON, relation và POST array
 
@@ -99,7 +99,7 @@ Nguồn bổ trợ: [date/index.ts](tai-lieu-bo-tro/phase1-20261018/baseline-sou
 
 **Còn OPEN:** Nhánh thực tế của từng request/SQL error, đầy đủ error envelope/field/path và những trường hợp nhiều lỗi khác status. PostgreSQL error translator chỉ ánh xạ một tập SQLSTATE; không suy mọi lỗi DB là 400.
 
-Nguồn: [forbidden.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/forbidden.ts), [invalid-query.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-query.ts), [failed-validation.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/validation/src/errors/failed-validation.ts), [invalid-credentials.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-credentials.ts), [invalid-token.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/packages/errors/src/errors/invalid-token.ts), [error-handler.ts](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/middleware/error-handler.ts), [postgres errors](tai-lieu-bo-tro/phase1-20261018/baseline-source/api/src/database/errors/dialects/postgres.ts).
+Nguồn: forbidden.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, invalid-query.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, failed-validation.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, invalid-credentials.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, invalid-token.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, error-handler.ts *(tệp đã gỡ khỏi repo; xem lịch sử Git)*, postgres errors *(tệp đã gỡ khỏi repo; xem lịch sử Git)*.
 
 ### Q-07 - Search, sort và collation
 
