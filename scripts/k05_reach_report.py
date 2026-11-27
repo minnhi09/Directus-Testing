@@ -2,7 +2,7 @@
 """Bang C1/C2 cua K05: moi cap (actor, operation) trong mau so da nhan phan hoi nao.
 
 Doc cac thu muc run campaign (artifacts/runs/<run_id>) va file mau so
-docs/k05/mau-so-30-operation.csv. Chi doc, khong goi API, khong khoi dong lab.
+scripts/data/mau-so-30-operation.csv. Chi doc, khong goi API, khong khoi dong lab.
 
 Quy tac dem (de khong thoi phong so lieu):
   * chi dem tuong tac co phuong thuc HTTP trung phuong thuc cua operation. Request
@@ -29,7 +29,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DENOMINATOR = ROOT / "docs" / "k05" / "mau-so-30-operation.csv"
+DENOMINATOR = ROOT / "scripts" / "data" / "mau-so-30-operation.csv"
 RUNS = ROOT / "artifacts" / "runs"
 LABEL_RE = re.compile(r"^(GET|POST|PUT|PATCH|DELETE|SEARCH) (/\S*)$")
 

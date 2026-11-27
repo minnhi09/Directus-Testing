@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Replay co chu dich cac nhom failure cua WP7 de tim nguyen nhan (chi loopback, lab r06-k05).
+"""Replay co chu dich cac nhom failure de tim nguyen nhan (chi loopback, lab r06-k05).
 
 
 
@@ -10,7 +10,7 @@ Moi probe ghi: gia thuyet, actor, request, ma phan hoi, ma loi Directus. Cuoi cu
 
 qa_* khong doi (so dong, ID lon nhat); neu probe lo tao dong thi bao cao va xoa bang admin.
 
-Ghi ket qua vao docs/k05/wp7/replay-results.json.
+Ghi ket qua vao results/failures/replay-results.json.
 
 """
 
@@ -38,7 +38,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 BASE = "http://127.0.0.1:8055"
 
-OUT = ROOT / "docs" / "k05" / "wp7" / "replay-results.json"
+OUT = ROOT / "results" / "failures" / "replay-results.json"
 
 
 

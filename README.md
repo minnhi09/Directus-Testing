@@ -2,7 +2,7 @@
 
 Directus tự sinh API thêm, đọc, sửa, xóa dữ liệu từ cơ sở dữ liệu. Nhóm 11 kiểm thử API này bằng kỹ thuật **K05 – kiểm thử API dựa trên tài liệu OpenAPI và fuzzing**, dùng công cụ **Schemathesis**, kết hợp các ca nghiệp vụ có kết quả mong đợi rõ ràng.
 
-Báo cáo cuối kỳ được nộp riêng dưới dạng tệp Word; README này dùng cùng mã `TC`, `Q` với báo cáo đó. Tài liệu trong kho: [yêu cầu môn học](docs/yeu_cau.pdf) · [kế hoạch và tiến độ K05](docs/k05/KE_HOACH_THU_NHO_VA_BO_SUNG_K05.md).
+Báo cáo cuối kỳ được nộp riêng dưới dạng tệp Word; README này dùng cùng mã `TC`, `Q` với báo cáo đó.
 
 ## Phạm vi và kết quả
 
@@ -15,6 +15,27 @@ Báo cáo cuối kỳ được nộp riêng dưới dạng tệp Word; README n�
 | Sinh tự động | 3 vai trò × 2 cách chạy × 3 giá trị khởi tạo | Hoàn tất 18/18 lượt, 31.147 yêu cầu — ngày 24/11/2026 |
 
 Nguyên nhân của các ca không đạt được phân tích trong báo cáo. Không đổi kết quả mong đợi hoặc bỏ ca không đạt để có báo cáo toàn đạt.
+
+## Cấu trúc kho mã
+
+```text
+Directus-Testing/
+├─ compose.yaml            Khai báo các thành phần chạy bằng Docker
+├─ lab.sh                  Chương trình điều phối (được gọi qua PowerShell)
+├─ config/lab.env.example  Tệp cấu hình mẫu
+├─ manifest/baseline.yaml  Phiên bản và thiết lập kiểm thử được cố định
+├─ scripts/
+│  ├─ run-lab.ps1          Lệnh chính trên Windows
+│  ├─ lab-components.sh    Dữ liệu mẫu, 6 kịch bản, chạy Schemathesis
+│  ├─ designed_cases.py    Các ca TC07 – TC13
+│  ├─ invariants.py        11 phép kiểm quy tắc
+│  ├─ replay_cases.py      Chạy lại một số tình huống
+│  ├─ contract_checks.py   So phản hồi với tài liệu API
+│  ├─ k05_*.py             Tổng hợp độ bao phủ, phân loại sai lệch
+│  └─ data/                Dữ liệu mẫu, danh mục ca, 62 tổ hợp vai trò – thao tác
+├─ tests/                  Kiểm thử cho chính chương trình kiểm thử
+└─ results/                Kết quả đã lưu
+```
 
 ## Yêu cầu môi trường
 
@@ -121,7 +142,7 @@ python scripts/k05_failure_triage.py --run <run_id> --out <thư mục>
 python scripts/k05_wp7_replay.py   # gửi lại 67 yêu cầu thăm dò lỗi
 ```
 
-Số liệu và bằng chứng đã lưu nằm trong [docs/k05](docs/k05/). Bản [báo cáo Markdown](docs/k05/BAO_CAO_CUOI_KY_K05.md) ở đó là bản làm việc cũ hơn, đánh số mục khác báo cáo nộp. Những vấn đề chưa xác minh vẫn giữ trạng thái "chưa kết luận".
+Số liệu và bằng chứng đã lưu nằm trong thư mục [results](results/README.md). Những vấn đề chưa xác minh vẫn giữ trạng thái "chưa kết luận".
 
 ## Kiểm thử cho chính chương trình kiểm thử
 
@@ -131,12 +152,6 @@ Gồm 33 kiểm thử đơn vị, không cần khởi động Directus:
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-Kiểm tra liên kết giữa các tài liệu: `python scripts/check_md_links.py`.
-
 ## Xem OpenAPI bằng Swagger UI
 
-Sau `seed` và `export-schema`, chạy `./lab.sh swagger up` rồi mở `http://127.0.0.1:8086`. Chọn Editor hoặc Reader, gọi `/auth/login` bằng tài khoản tương ứng, sau đó nhập `Bearer <access_token>` trong **Authorize**. Dùng `./lab.sh swagger down` để chỉ dừng giao diện. Schema gốc của Schemathesis không bị sửa. Xem [hướng dẫn Swagger UI](docs/swagger-ui.md) và [bằng chứng tích hợp](evidence/swagger-ui-integration-2026-10-19.md).
-
-## Bài nộp
-
-Gói nộp gồm báo cáo, slide/demo, mã kiểm thử và dependency/config mẫu, schema/report/reproducer chọn lọc, cùng đánh giá đóng góp thật. Hồ sơ lịch sử của các giai đoạn trước nằm trong [mục lục HoanThanhPlan](docs/HoanThanhPlan/README.md); đó là bản lưu, không phải checklist phải làm tiếp. Không bổ sung CI/CD, quét lỗ hổng hay load test chỉ để hoàn thiện môn học.
+Sau `seed` và `export-schema`, chạy `./lab.sh swagger up` rồi mở `http://127.0.0.1:8086`. Chọn Editor hoặc Reader, gọi `/auth/login` bằng tài khoản tương ứng, sau đó nhập `Bearer <access_token>` trong **Authorize**. Dùng `./lab.sh swagger down` để chỉ dừng giao diện. Schema gốc của Schemathesis không bị sửa.

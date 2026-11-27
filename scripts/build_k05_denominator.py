@@ -3,7 +3,7 @@
 
 Offline va xac dinh. Chi doc 3 file schema theo actor (editor, reader,
 anonymous); chi ghi 2 file ket qua. Khong goi server, khong khoi dong lab.
-Admin khong thuoc mau so: admin khong phai tai khoan fuzz (AGENTS.md muc 4).
+Admin khong thuoc mau so: admin khong phai tai khoan fuzz.
 
 Mau so nay la quyet dinh pham vi cua nguoi dung ngay 23/11/2026 (duyet
 "30 operation"), chua co xac nhan cua giang vien hay cua Lanh.
@@ -22,7 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCHEMA_DIR = ROOT / "runtime" / "schemas" / "r06-k05-v2"
-DEFAULT_OUT_DIR = ROOT / "docs" / "k05"
+DEFAULT_OUT_DIR = ROOT / "scripts" / "data"
 ACTORS = ("editor", "reader", "anonymous")
 METHODS = ("get", "post", "patch", "put", "delete", "search")
 # 10 operation cua campaign chinh truoc day (Editor, khong co bulk).
