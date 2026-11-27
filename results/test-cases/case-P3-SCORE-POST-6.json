@@ -15,8 +15,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.007881526000005579,
-      "response_artifact": "python-http/response-49.json",
+      "elapsed": 0.007193836999988434,
+      "response_artifact": "python-http/response-43.json",
       "step_id": 1,
       "stage": "precondition",
       "parent_step_id": null
@@ -30,8 +30,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.005955759000016769,
-      "response_artifact": "python-http/response-50.json",
+      "elapsed": 0.007933695999994939,
+      "response_artifact": "python-http/response-44.json",
       "step_id": 2,
       "stage": "precondition",
       "parent_step_id": 1
@@ -45,8 +45,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.007514725999953953,
-      "response_artifact": "python-http/response-51.json",
+      "elapsed": 0.007368122000002586,
+      "response_artifact": "python-http/response-45.json",
       "step_id": 3,
       "stage": "precondition",
       "parent_step_id": 2
@@ -60,8 +60,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.005594893000022694,
-      "response_artifact": "python-http/response-52.json",
+      "elapsed": 0.007825541000002545,
+      "response_artifact": "python-http/response-46.json",
       "step_id": 4,
       "stage": "precondition",
       "parent_step_id": 3
@@ -71,22 +71,22 @@
       "path": "/items/qa_articles",
       "actor": "editor",
       "body": {
-        "title": "Probe 34cbb040d9b4494d1828ecf9",
+        "title": "Probe b55e2fab666128417ab0ca8f",
         "status": "draft",
         "score": 6,
         "published_at": null,
         "metadata": {
-          "probe": "34cbb040d9b4494d1828ecf9"
+          "probe": "b55e2fab666128417ab0ca8f"
         },
-        "internal_notes": "Private 34cbb040d9b4494d1828ecf9",
+        "internal_notes": "Private b55e2fab666128417ab0ca8f",
         "category": 1
       },
-      "raw_body_sha256": "1722324ccc392f820995d8c0138bf6f8452db1b57a3fe07b9b39227c626d4d65",
+      "raw_body_sha256": "f9f3a9c8e7e846c64182978c5ed8c06882eca1cca2d6d9c5b99f0330b1b13dbc",
       "status": 400,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.0073413410000284784,
-      "response_artifact": "python-http/response-53.json",
+      "elapsed": 0.007787874000001693,
+      "response_artifact": "python-http/response-47.json",
       "step_id": 5,
       "stage": "target",
       "parent_step_id": 4
@@ -100,8 +100,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.005869513999982701,
-      "response_artifact": "python-http/response-54.json",
+      "elapsed": 0.007265454999995313,
+      "response_artifact": "python-http/response-48.json",
       "step_id": 6,
       "stage": "readback",
       "parent_step_id": 5
@@ -115,8 +115,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.005254846000013913,
-      "response_artifact": "python-http/response-55.json",
+      "elapsed": 0.005873950999998101,
+      "response_artifact": "python-http/response-49.json",
       "step_id": 7,
       "stage": "readback",
       "parent_step_id": 6
@@ -130,10 +130,10 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.006406119000018862,
-      "response_artifact": "python-http/response-56.json",
+      "elapsed": 0.0063231139999970765,
+      "response_artifact": "python-http/response-50.json",
       "step_id": 8,
-      "stage": "readback",
+      "stage": "cleanup",
       "parent_step_id": 7
     },
     {
@@ -145,10 +145,10 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.006107503999999153,
-      "response_artifact": "python-http/response-57.json",
+      "elapsed": 0.00738014299999179,
+      "response_artifact": "python-http/response-51.json",
       "step_id": 9,
-      "stage": "readback",
+      "stage": "cleanup",
       "parent_step_id": 8
     },
     {
@@ -160,8 +160,8 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.006201900000007754,
-      "response_artifact": "python-http/response-58.json",
+      "elapsed": 0.006632476000007159,
+      "response_artifact": "python-http/response-52.json",
       "step_id": 10,
       "stage": "cleanup",
       "parent_step_id": 9
@@ -175,46 +175,16 @@
       "status": 200,
       "error": null,
       "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.007268273000022418,
-      "response_artifact": "python-http/response-59.json",
+      "elapsed": 0.005836524000002896,
+      "response_artifact": "python-http/response-53.json",
       "step_id": 11,
       "stage": "cleanup",
       "parent_step_id": 10
-    },
-    {
-      "method": "GET",
-      "path": "/items/qa_articles?fields=id%2Ctitle%2Cstatus%2Cscore%2Cpublished_at%2Cmetadata%2Cinternal_notes%2Ccategory&limit=-1&sort=id",
-      "actor": "editor",
-      "body": null,
-      "raw_body_sha256": null,
-      "status": 200,
-      "error": null,
-      "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.005926012999964314,
-      "response_artifact": "python-http/response-60.json",
-      "step_id": 12,
-      "stage": "cleanup",
-      "parent_step_id": 11
-    },
-    {
-      "method": "GET",
-      "path": "/items/qa_categories?fields=id%2Cname&limit=-1&sort=id",
-      "actor": "editor",
-      "body": null,
-      "raw_body_sha256": null,
-      "status": 200,
-      "error": null,
-      "content_type": "application/json; charset=utf-8",
-      "elapsed": 0.006754774000000907,
-      "response_artifact": "python-http/response-61.json",
-      "step_id": 13,
-      "stage": "cleanup",
-      "parent_step_id": 12
     }
   ],
   "bindings": {
-    "probe_key": "34cbb040d9b4494d1828ecf9",
-    "run_id": "P10-20261116-02",
+    "probe_key": "b55e2fab666128417ab0ca8f",
+    "run_id": "20261125T174416Z-457",
     "case_id": "P3-SCORE-POST-6",
     "changed_score": 4,
     "absent_category_id": 4
@@ -229,20 +199,20 @@
   },
   "cleanup_status": "passed",
   "replay_scope": "full_designed_case",
-  "started_at": "2026-11-15T23:39:49Z",
+  "started_at": "2026-11-25T17:44:38Z",
   "resolved_request": {
     "method": "POST",
     "path": "/items/qa_articles",
     "query": {},
     "body": {
-      "title": "Probe 34cbb040d9b4494d1828ecf9",
+      "title": "Probe b55e2fab666128417ab0ca8f",
       "status": "draft",
       "score": 6,
       "published_at": null,
       "metadata": {
-        "probe": "34cbb040d9b4494d1828ecf9"
+        "probe": "b55e2fab666128417ab0ca8f"
       },
-      "internal_notes": "Private 34cbb040d9b4494d1828ecf9",
+      "internal_notes": "Private b55e2fab666128417ab0ca8f",
       "category": 1
     }
   },
@@ -253,7 +223,7 @@
         "FAILED_VALIDATION"
       ]
     },
-    "artifact": "python-http/response-53.json"
+    "artifact": "python-http/response-47.json"
   },
-  "finished_at": "2026-11-15T23:39:51Z"
+  "finished_at": "2026-11-25T17:44:41Z"
 }
