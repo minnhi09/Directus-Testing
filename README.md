@@ -60,6 +60,14 @@ Copy-Item config\lab.env.example config\lab.env
 
 Mở `config/lab.env` và thay mọi giá trị `REPLACE_*`: mật khẩu cơ sở dữ liệu, hai khóa bảo mật của Directus và mật khẩu của các tài khoản. `LICENSE_KEY` phải là khóa bản quyền Directus hợp lệ, cho phép tạo quy tắc quyền riêng cho Reader. Tệp này chỉ lưu trên máy chạy; không đưa mật khẩu, mã truy cập hay khóa thật lên Git hoặc vào bài nộp. Máy đã cấu hình thì giữ tệp đang dùng, không chép đè.
 
+Chương trình chỉ chạy khi `config/lab.env` có quyền riêng tư; nếu không, lệnh `up` dừng với thông báo `phải có quyền riêng tư`. Trên Windows, sau khi tạo tệp, gõ lệnh sau tại thư mục gốc của kho mã để chỉ tài khoản đang dùng được truy cập tệp:
+
+```powershell
+icacls config\lab.env /inheritance:r /grant:r "$($env:USERDOMAIN)\$($env:USERNAME):(F)"
+```
+
+Trên Linux dùng `chmod 600 config/lab.env`.
+
 Nếu Windows không cho chạy tệp `.ps1`, gõ lệnh sau trước; thiết lập chỉ có hiệu lực trong cửa sổ PowerShell đang mở:
 
 ```powershell
