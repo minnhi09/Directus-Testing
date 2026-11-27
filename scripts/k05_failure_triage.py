@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Gom failure cua cac run WP5 (WP7): tu NDJSON cua Schemathesis sang nhom nguyen nhan.
+"""Gom failure cua cac luot sinh tu dong: tu NDJSON cua Schemathesis sang nhom nguyen nhan.
 
 Chi doc artifacts/runs/<run_id>/<profile>/seed-*/schemathesis-events.ndjson va campaign-summary.json;
-khong goi API, khong khoi dong lab. Ghi ra docs/k05/wp7/:
+khong goi API, khong khoi dong lab. Ghi ra results/failures/:
   failure-groups.csv   moi dong mot nhom (actor, operation, check, loai failure, ma phan hoi, thong diep chuan hoa)
   failure-stats.json   ba con so khac nhau: request, check bi fail, nhom
   group-exemplars.json moi nhom mot request/phan hoi mau (da loc bi mat) de lam reproducer
@@ -28,8 +28,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "artifacts" / "runs"
-WP5 = ROOT / "docs" / "k05" / "wp5" / "campaign-summaries.json"
-OUT = ROOT / "docs" / "k05" / "wp7"
+SUMMARIES = ROOT / "results" / "campaign" / "campaign-summaries.json"
+OUT = ROOT / "results" / "failures"
 SECRET_HEADERS = {"authorization", "cookie", "set-cookie"}
 
 
@@ -64,7 +64,7 @@ def error_summary(content: str) -> str:
 
 INT4_MAX = 2147483647
 
-# Bang nguyen nhan (RC). category theo AGENTS.md muc 6: PRODUCT, SCHEMA, HARNESS, ENV, UNRESOLVED.
+# Bang nguyen nhan (RC). category: PRODUCT, SCHEMA, HARNESS, ENV, UNRESOLVED.
 RC = {
     "RC01": ("PRODUCT", "ID trong duong dan hoac body ngoai khoang int4 -> loi DB khong duoc dich o duong doc/sua/xoa, tra 500"),
     "RC02": ("PRODUCT", "aggregate sai cau truc (gia tri khong phai mang/chuoi, hoac khong phai JSON) -> TypeError, tra 500"),
@@ -122,7 +122,7 @@ def _bad_id(value) -> bool:
 def cause_5xx(uri: str, body_text: str) -> str:
     """Xac dinh nguyen nhan cua mot phan hoi 5xx tu CHINH request.
 
-    Cac nguyen nhan da duoc xac nhan bang replay o WP7 (scripts/k05_wp7_replay.py va cac probe bo sung);
+    Cac nguyen nhan da duoc xac nhan bang replay (scripts/k05_wp7_replay.py va cac probe bo sung);
     khong khop quy tac nao thi tra ve RC99 (chua phan loai).
     """
     path, _, query = uri.partition("?")
@@ -185,7 +185,7 @@ def classify(ftype: str, status, uri: str, body_text: str) -> str:
 
 
 def default_run_ids() -> list[str]:
-    data = json.loads(WP5.read_text(encoding="utf-8"))
+    data = json.loads(SUMMARIES.read_text(encoding="utf-8"))
     out: list[str] = []
     for item in data["runs"]:
         if item["run_id"] not in out:
@@ -259,7 +259,7 @@ def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--run", action="append", help="run_id (lap lai duoc); mac dinh: cac run cua WP5")
+    ap.add_argument("--run", action="append", help="run_id (lap lai duoc); mac dinh: cac run trong results/campaign")
     ap.add_argument("--out", type=Path, default=OUT)
     args = ap.parse_args()
 

@@ -1,24 +1,12 @@
-# Giu nguyen byte cua bang chung de doi chieu SHA-256
-docs/HoanThanhPlan/tai-lieu-bo-tro/** -text
+# Giữ nguyên từng byte của dữ liệu mẫu và kết quả đã lưu
+results/** -text whitespace=cr-at-eol
 
-# CI immutable evidence and portable source checkout
-docs/** -text whitespace=cr-at-eol
-evidence/** -text whitespace=cr-at-eol
+# Mã chạy trong container cần xuống dòng kiểu LF
 scripts/** text eol=lf
 tests/** text eol=lf
-profiles/** text eol=lf
-.github/** text eol=lf
 lab.sh text eol=lf
-# Fixture bytes are evidence too
 scripts/data/** -text whitespace=cr-at-eol
-tests/fixtures/** -text whitespace=cr-at-eol
 
-# Preserve original source-input bytes cited by handoff P00
-AGENTS.md -text
-01_ke_hoach_trien_khai_R06_K05.md -text
-yeu_cau.pdf -text
-
-# Canonical Git configuration and original baseline input
 .gitattributes text eol=lf
 .gitignore text eol=lf
 manifest/** -text

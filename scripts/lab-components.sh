@@ -1389,7 +1389,7 @@ CAMPAIGN_MAX_EXAMPLES="${LAB_MAX_EXAMPLES:-100}"
 CAMPAIGN_WORKERS="${LAB_WORKERS:-1}"
 CAMPAIGN_RATE_LIMIT="${LAB_RATE_LIMIT:-5/s}"
 CAMPAIGN_REQUEST_TIMEOUT="${LAB_REQUEST_TIMEOUT:-10}"
-# WP2: actor (editor|reader|anonymous) and scope (main10|full). Defaults keep the
+# Actor (editor|reader|anonymous) and scope (main10|full). Defaults keep the
 # historical behaviour: Editor, 10 method-path pairs of the two qa_* collections.
 CAMPAIGN_ACTOR="${LAB_ACTOR:-editor}"
 if [[ "$CAMPAIGN_ACTOR" == unspecified ]]; then CAMPAIGN_ACTOR=editor; fi
@@ -1480,7 +1480,7 @@ campaign_require_inputs() {
 	expected_count="$(jq -r 'length' <<< "$TARGET_OPERATIONS_JSON")"
 	if [[ "$CAMPAIGN_SCOPE" == full ]]; then
 		# The denominator file is the contract: schema operations must equal its rows for this actor.
-		local denominator="$LAB_ROOT_DIR/docs/k05/mau-so-30-operation.csv"
+		local denominator="$LAB_ROOT_DIR/scripts/data/mau-so-30-operation.csv"
 		local denominator_count
 		[[ -f "$denominator" ]] || {
 			printf 'ERROR: thiếu file mẫu số: %s\n' "$denominator" >&2
@@ -1576,7 +1576,7 @@ campaign_build_schema() {
 			| ex_body("/items/qa_articles/{id}"; "patch"; {score:4})
 			| ex_body("/items/qa_categories/{id}"; "patch"; {name:"Guided category update"})
 			| (if $scope == "full" then
-				# WP3: examples for operations outside the two qa_* collections. They only add `example`
+				# Examples for operations outside the two qa_* collections. They only add `example`
 				# values to operations that already exist in the actor schema; every identity below is
 				# made-up and non-existent, so no real credential or secret is written to artifacts.
 				ex_param("/assets/{id}"; "get"; "id"; "7a3c9e52-4b1d-4f6a-9d28-0c5e1b8f3a47")
@@ -1650,7 +1650,7 @@ campaign_build_schema() {
 	printf 'Campaign schema %s (%s, %s): %s\n' "$profile" "$CAMPAIGN_ACTOR" "$CAMPAIGN_SCOPE" "$target"
 }
 
-# WP4: side-effect guard. Campaigns fuzz operations that can change state outside qa_* (login attempts can
+# Side-effect guard. Campaigns fuzz operations that can change state outside qa_* (login attempts can
 # suspend an account, bulk and import write items, auth/logout touches sessions). campaign_restore only
 # repairs qa_*, so every seed fingerprints the rest of the lab before and after and reports any difference.
 # After a seed only the admin token is needed (restore and audit are admin-only). Do not require every
@@ -1931,7 +1931,7 @@ campaign_one() {
 	if ! campaign_refresh_tokens; then
 		printf 'WARN: không đăng nhập được trước campaign %s seed=%s; thử đặt lại tài khoản lab bị tạm ngưng\n' "$profile" "$seed" >&2
 		if ! { campaign_unsuspend_lab_accounts && campaign_refresh_tokens; }; then
-			printf 'ERROR: không refresh được token trước campaign %s seed=%s (xem docs/k05/wp4)\n' "$profile" "$seed" >&2
+			printf 'ERROR: không refresh được token trước campaign %s seed=%s\n' "$profile" "$seed" >&2
 			RUN_DIR="$base_dir"
 			return 1
 		fi

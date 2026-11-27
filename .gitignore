@@ -1,28 +1,17 @@
-# Thư mục riêng, không đưa lên repository
-/mnhy/
-
-# Metadata Windows
-*:Zone.Identifier
-/yeu_cau.pdf
-
-# Local lab credentials and generated run data
+# Cấu hình có mật khẩu, khóa bản quyền và dữ liệu sinh ra khi chạy
 /config/lab.env
 /artifacts/runs/
 /runtime/
 
-# Local caches and temporary renderings; retain user documents for review
+# Bộ nhớ đệm và tệp tạm
 __pycache__/
 *.py[cod]
 /tmp/
-# Public course input: exact duplicate of docs/yeu_cau.pdf, needed by original refs
-!/yeu_cau.pdf
+*:Zone.Identifier
 
-# Chi dua tai lieu va bang chung da chon loc len Git
-/docs/slide_bai_giang/
-/docs/**/*.zip
-/docs/**/*.docx
-/docs/**/*.pptx
-/docs/**/*.pdf
-!/docs/yeu_cau.pdf
-/docs/**/*.log
-/docs/**/*.ndjson
+# Tài liệu làm việc riêng trên máy, không thuộc mã kiểm thử
+/mnhy/
+/docs/
+/evidence/
+/AGENTS.md
+/yeu_cau.pdf

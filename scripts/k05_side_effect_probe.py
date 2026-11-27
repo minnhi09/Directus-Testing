@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""WP4: thăm dò chủ động các thao tác có tác dụng phụ trên lab local.
+"""Thăm dò chủ động các thao tác có tác dụng phụ trên lab local.
 
 Chỉ chạy với lab loopback http://127.0.0.1:8055 (dự án r06-k05). Chỉ dùng thư viện chuẩn của Python 3.
 Đọc thông tin đăng nhập từ config/lab.env TRONG BỘ NHỚ; không in và không ghi mật khẩu/token/refresh token.

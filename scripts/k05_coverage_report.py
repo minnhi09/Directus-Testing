@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Tong hop coverage tracecov (WP6) tu cac file schemathesis-coverage.json cua cac run WP5.
+"""Tong hop coverage tracecov tu cac file schemathesis-coverage.json cua cac luot sinh tu dong.
 
 Chi doc artifacts/runs/<run_id>/<profile>/seed-*/schemathesis-coverage.json va
-campaign-summary.json; khong goi API, khong khoi dong lab. Ghi ra docs/k05/wp6/.
+campaign-summary.json; khong goi API, khong khoi dong lab. Ghi ra results/coverage/.
 
 Dinh nghia (theo tracecov 0.25.2 trong Schemathesis 4.30.0):
   operations        so operation duoc gui it nhat mot request
@@ -30,8 +30,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "artifacts" / "runs"
-WP5 = ROOT / "docs" / "k05" / "wp5" / "campaign-summaries.json"
-OUT = ROOT / "docs" / "k05" / "wp6"
+SUMMARIES = ROOT / "results" / "campaign" / "campaign-summaries.json"
+OUT = ROOT / "results" / "coverage"
 
 DIMS = ("operations", "parameters", "keywords", "examples", "responses", "response_keywords")
 
@@ -41,7 +41,7 @@ def pct(part: int, total: int) -> float | None:
 
 
 def default_run_ids() -> list[str]:
-    data = json.loads(WP5.read_text(encoding="utf-8"))
+    data = json.loads(SUMMARIES.read_text(encoding="utf-8"))
     seen: list[str] = []
     for item in data["runs"]:
         if item["run_id"] not in seen:
@@ -134,7 +134,7 @@ def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--run", action="append", help="run_id (lap lai duoc); mac dinh: cac run cua WP5")
+    ap.add_argument("--run", action="append", help="run_id (lap lai duoc); mac dinh: cac run trong results/campaign")
     ap.add_argument("--out", type=Path, default=OUT)
     args = ap.parse_args()
 
